@@ -1275,6 +1275,7 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .eh-ray-topic small{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:4px}
 .eh-ray-topic label{display:flex;gap:5px;align-items:center;font-size:11px;cursor:pointer}
 .eh-ray-topic input{accent-color:var(--text);width:16px;height:16px}
+.s-recovery-notebook{padding:16px;border:1px solid var(--line);border-radius:12px;margin:16px 0}.s-recovery-notebook h2{font-size:16px;margin:0 0 8px}.s-recovery-notebook>p{color:var(--muted);font-size:12px;margin:0 0 12px}
 
 /* Editorial study dashboard (#58/#69): content-first, grounded, no emoji and responsive. */
 .home-editorial{width:min(100%,1180px);margin:0 auto;padding:24px 22px 70px;color:var(--text);box-sizing:border-box}
@@ -6259,7 +6260,7 @@ function sQuestionMarkup(q,answer,examMode,pend){
    '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(((!examMode&&answer)||qIsExcluded(q,k))?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
    ((!examMode&&answer)?(k===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(k===answer.selected?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':'')):'')+'</label></div>').join('')+'</div>'+
    (!examMode&&answer?'<div class="s-feedback '+(answer.correct?'good':'bad')+'"><strong>'+(answer.correct?'Resposta correta.':'Resposta incorreta.')+'</strong> Gabarito: '+esc(q.gabarito)+'.</div>':'')+
-   (examMode?'':qPedModule(q,!!answer))+'</div>';
+   (examMode?'':qPedModule(q,!!answer))+(examMode||!answer||!errorLedger(id).open?'':'<div class="s-inlineactions"><button type="button" class="s-button" data-q-retry="'+esc(id)+'">Refazer para recuperar erro</button></div>')+'</div>';
 }
 const qProps=q=>{
   if(!q)return '<div class="s-card"><p class="s-note">Selecione uma questão para ver seus dados.</p></div>';
@@ -6328,11 +6329,13 @@ function renderPractice(){
   if(qPracticeRoute!==path)qfReadPracticeRoute(path);
   qPracticeRoute=path;
   const all=qObjs(),selected=qfSt('study').f.sit||[];
-  const stats=all.reduce((a,q)=>{const answer=qSel(q);if(answer){a.done++;if(answer!==q.gabarito)a.wrong++;}return a;},{done:0,wrong:0});
+  const stats=all.reduce((a,q)=>{const answer=qSel(q);if(answer){a.done++;if(errorLedger(q.id).open)a.wrong++;}return a;},{done:0,wrong:0});
   const options='<div class="s-filterbar q-opts"><label class="q-opt">Questões por vez <select id="qPer" aria-label="Questões por vez">'+[1,5,10,20].map(n=>'<option value="'+n+'" '+(qPer===n?'selected':'')+'>'+n+'</option>').join('')+'</select></label><label class="q-opt q-switch"><input type="checkbox" role="switch" id="qAuto" '+(qAuto?'checked':'')+'><span>Corrigir ao selecionar a alternativa</span></label></div>';
   const actions=''; /* The shared qfHTML action bar includes Create Simulado. */
-  const title=sHead('Banco de questões','Resolver questões','Questões oficiais e questões criadas por você no mesmo banco, com filtros e correção individual.',sBtn('Configurar simulado','#/simulado'),sBadge(all.length+' questões')+sBadge(stats.done+' resolvidas')+sBadge(stats.wrong+' erradas'));
-  const html=sBreadcrumb([['Início','#/espaco'],['Questões','']])+title+qfHTML('study',all,{extra:actions,renderList:renderPracticeList})+options;
+  const errorOnly=path.split('?')[0]==='/questoes/erradas';
+  const title=sHead('Banco de questões',errorOnly?'Caderno de Erros':'Resolver questões',errorOnly?'Questões com erro ainda pendente até a próxima resposta correta.':'Questões oficiais e questões criadas por você no mesmo banco, com filtros e correção individual.',sBtn('Configurar simulado','#/simulado'),sBadge(all.length+' questões')+sBadge(stats.done+' resolvidas')+sBadge(stats.wrong+' erradas'));
+  const notebook=errorOnly?'<section class="s-recovery-notebook" aria-label="Caderno de Erros"><h2>Erros por semana, disciplina e assunto</h2><p>Uma questão só é recuperada depois que uma nova tentativa é respondida corretamente; abrir a resolução não conta como recuperação.</p>'+errorNotebookMarkup(all)+'</section>':'';
+  const html=sBreadcrumb([['Início','#/espaco'],['Questões','']])+title+notebook+qfHTML('study',all,{extra:actions,renderList:renderPracticeList})+options;
   studyPage('Questões','Banco unificado',html);
 }
 const wOf=x=>!x.user&&x.materia==='Conhecimentos Específicos'?2.5:1;
@@ -6356,7 +6359,7 @@ function finishExam(){
  s.finished=Date.now();s.total=q.length;s.max=max;s.correct=correct;s.score=score;s.byMatter=byMatter;saveExam(s);try{recSim(s,q);}catch(e){}location.hash='/simulado/resultado';
 }
 function sSimOpts(){
-  const b=qObjs(),er=b.filter(q=>{const a=qSel(q);return a&&a!==q.gabarito;}).length,pe=b.filter(q=>!qSel(q)).length;
+  const b=qObjs(),er=b.filter(q=>errorLedger(q.id).open).length,pe=b.filter(q=>!qSel(q)).length;
   if(simSrc==='erradas'&&!er)simSrc='todas';if(simSrc==='pendentes'&&!pe)simSrc='todas';
   const radio=(name,val,cur,label,dis)=>'<label class="q-opt q-radio"><input type="radio" name="'+name+'" value="'+val+'" '+(cur===val?'checked':'')+(dis?' disabled':'')+'><span>'+label+'</span></label>';
   const quantity='<label class="q-opt">Quantidade <select id="simQty" aria-label="Quantidade de questões">'+['todas',10,20,30,50].filter(v=>v==='todas'||v<=b.length).map(v=>'<option value="'+v+'" '+(String(simQty)===String(v)?'selected':'')+'>'+(v==='todas'?'Todas ('+b.length+')':v+' questões')+'</option>').join('')+'</select></label>';
@@ -6457,7 +6460,7 @@ view.addEventListener('click',e=>{
    const submit=card?.querySelector('[data-qo-submit]');if(submit)submit.disabled=false;
  } return; }
  const confirm=e.target.closest('[data-qo-submit]'); if(confirm){ const q=qObjs().find(x=>x.id===confirm.dataset.qoSubmit);if(!q||qSel(q))return;if(!qPend[q.id]){toast('Selecione uma alternativa antes de responder.');return;}qCorrect(q.id,qPend[q.id],'single');return; }
- const qr=e.target.closest('[data-qo-reset]'); if(qr){ const q=qObjs().find(x=>x.id===qr.dataset.qoReset); if(q){ delete qPend[q.id]; if(q.user){ const m=uqAns(); delete m[q.id]; saveUqAns(m); } else { const a=getAnswers(),prev=a[q.n]||{}; a[q.n]={selected:null,correct:null,updatedAt:Date.now(),version:(prev.version||0)+1,deleted:true}; saveAnswers(a); } } rr0(); return; }
+ const qr=e.target.closest('[data-qo-reset],[data-q-retry]'); if(qr){ const id=qr.dataset.qoReset||qr.dataset.qRetry,q=qObjs().find(x=>x.id===id);if(q)qResetForRetry(q);if(location.hash.startsWith('#/questoes'))renderPractice();else rr0();return; }
  if(e.target.closest('[data-qt-sim]')){ startSim(qtList); return; }
  const qd=e.target.closest('[data-qd-sim]'); if(qd){ startSim(qObjs().filter(q=>q.materia&&(findEnt('disciplina',q.materia)||{}).id===qd.dataset.qdSim)); return; }
  const hh=location.hash.slice(1).split('/'); const rr=()=>showObjs(location.hash.slice(1));
@@ -6475,7 +6478,7 @@ view.addEventListener('click',e=>{
  if(e.target.closest('[data-sc-start]')){
   const parts=location.hash.slice(1).split('/'),kind=parts[1],id=parts[2];
   let items=qObjs().filter(q=>q.user?q[UQF[kind]]===id:scHas(kind,id));
-  if(simSrc==='erradas')items=items.filter(q=>qSel(q)&&qSel(q)!==q.gabarito);
+  if(simSrc==='erradas')items=items.filter(q=>errorLedger(q.id).open);
   if(simSrc==='pendentes')items=items.filter(q=>!qSel(q));
   if(String(scCount)!=='todas')items=items.slice(0,Number(scCount));
   startSim(items);return;
@@ -6492,7 +6495,7 @@ view.addEventListener('click',e=>{
  const chk=e.target.closest('[data-q-check]'); if(chk){const id=chk.dataset.qCheck,key=chk.closest('[data-practice-key]')?.dataset.practiceKey||'study';if(!qPend[id]){toast('Escolha uma alternativa');return;}qCorrect(id,qPend[id],key);return;}
  if(e.target.closest('[data-s-start]')){
   let items=qObjs();
-  if(simSrc==='erradas')items=items.filter(q=>qSel(q)&&qSel(q)!==q.gabarito);
+  if(simSrc==='erradas')items=items.filter(q=>errorLedger(q.id).open);
   if(simSrc==='pendentes')items=items.filter(q=>!qSel(q));
   if(String(simQty)!=='todas')items=items.slice(0,Number(simQty));
   startSim(items);return;
