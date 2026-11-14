@@ -8,6 +8,8 @@ on:
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
       - 'tests/question-confirm.test.mjs'
+      - 'tests/editorial-home.test.mjs'
+      - 'tests/home-icon-contract.test.mjs'
       - '.github/workflows/validate-prototype.yml'
   push:
     branches: [dev]
@@ -16,6 +18,8 @@ on:
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
       - 'tests/question-confirm.test.mjs'
+      - 'tests/editorial-home.test.mjs'
+      - 'tests/home-icon-contract.test.mjs'
       - '.github/workflows/validate-prototype.yml'
 
 permissions:
@@ -29,4 +33,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs tests/question-confirm.test.mjs
+      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs tests/question-confirm.test.mjs tests/editorial-home.test.mjs tests/home-icon-contract.test.mjs
