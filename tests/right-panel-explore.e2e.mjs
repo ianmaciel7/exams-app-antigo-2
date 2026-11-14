@@ -41,7 +41,7 @@ try{
   await page.locator('#rpBody').waitFor();
   assert.ok((await page.locator('#rpTabs [data-rp-tab].on').innerText()).includes('Objetos internos'),'context navigation keeps tool');
   await page.locator('#rpTabs [data-rp-tab]').filter({hasText:'Explorar'}).click();
-  assert.ok((await page.locator('#rpBody .rp-relevant')).count()>0,'relevant content section');
+  assert.ok((await page.locator('#rpBody .rp-relevant').count())>0,'relevant content section');
   await snap('issue54_relevant_chromium.png');
   report.checks.push('contextual relevant section after navigating entity');
   assert.deepEqual(report.errors,[],'no uncaught page JavaScript errors');
