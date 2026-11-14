@@ -1192,6 +1192,7 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 /* Editorial study dashboard (#58/#69): content-first, grounded, no emoji and responsive. */
 .home-editorial{width:min(100%,1180px);margin:0 auto;padding:24px 22px 70px;color:var(--text);box-sizing:border-box}
 .home-editorial *{box-sizing:border-box}
+.eh-bank-loading,.eh-bank-error{margin:0 0 18px;padding:10px;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-size:12px}.eh-bank-error button{border:0;background:transparent;text-decoration:underline;color:var(--text);cursor:pointer}
 .eh-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.09em;color:var(--muted);text-transform:uppercase}
 .eh-head{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;margin-bottom:22px;flex-wrap:wrap}
 .eh-head h1{font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-.025em;font-weight:680;margin:7px 0 13px}
@@ -4758,7 +4759,21 @@ function opValorPage(k,v,list){
   return opPage({crumb:[['Espaço','#/espaco'],[PROPS[k].n,'']],icon:'espaco',kind:PROPS[k].n,title:v,body:opSec('Objetos',rows.length?opList(rows):opEmpty('Nenhum objeto com este valor.'),{count:list.length})});
 }
 /* Editorial, live-data Space Home (#58/#69). No fabricated study counts or exam attributes. */
+let ehBankState='idle',ehBankError='';
+function ehEnsureBank(){
+  if(space!=='dataprev'||questionBank||ehBankState!=='idle')return;
+  ehBankState='loading';ehBankError='';
+  loadQuestions().then(()=>{
+    ehBankState='ready';
+    if(location.hash==='#/espaco')showObjs('/espaco');
+  }).catch(e=>{
+    ehBankState='failed';ehBankError=e.message||'Falha ao carregar as questões';
+    if(location.hash==='#/espaco')showObjs('/espaco');
+  });
+}
+
 function opEspacoPage(sp,mine){
+  ehEnsureBank();
   const allDocs=docsOf(space),lastId=store.get('last:'+space),lastDoc=allDocs.find(d=>d.id===lastId)||null;
   const questions=qObjs().filter(q=>q.user?(
     q.conc===space||(q.ed&&edicoesOf(space).some(e=>e.id===q.ed))||(q.cg&&cargosOf(q.ed).some(c=>c.id===q.cg))
@@ -4784,7 +4799,9 @@ function opEspacoPage(sp,mine){
   const actionHref=errors.length?'#/questoes/erradas':source;
   const card=(value,label,details)=>'<div class="eh-metric"><strong>'+value+'</strong><span>'+label+'</span>'+(details?'<small>'+details+'</small>':'')+'</div>';
   const status=due===null?'Data da prova não cadastrada':due>=0?'Prova em '+due+' dias':'Prova realizada';
-  const docsCount=allDocs.length,qCount=questions.length;
+  const docsCount=allDocs.length,qCount=questions.length,loadingBank=space==='dataprev'&&!questionBank;
+  const loadedCount=loadingBank?'—':String(qCount);
+  const loadNotice=ehBankState==='failed'?'<div class="eh-bank-error" role="alert">Não foi possível carregar o banco de questões: '+esc(ehBankError)+'. <button type="button" data-home-retry>Tentar novamente</button></div>':loadingBank?'<p class="eh-bank-loading" role="status">Carregando questões do espaço…</p>':'';
   const mainMeta=(concurso?'<span class="eh-tag">'+esc(concurso.t)+'</span>':'')+
     (ed?'<a class="eh-tag" href="#/edicao/'+esc(ed.id)+'">'+esc(ed.t)+'</a>':'')+
     (ed?'<span class="eh-tag">'+esc(status)+'</span>':'');
@@ -4873,12 +4890,13 @@ function opEspacoPage(sp,mine){
     '</span><div class="dash-act-txt"><b>Fazer simulado</b><small>Configure a prova e acompanhe seu resultado</small></div></a></div>';
   return '<main class="home-editorial"><header class="eh-head"><div><div class="eh-eyebrow">VISÃO GERAL DO ESPAÇO</div>'+
     '<h1>'+esc(sp.name)+'</h1><div class="eh-head-tags">'+mainMeta+'</div></div>'+
-    '<div class="eh-head-stats">'+card(String(qCount),'Questões')+card(String(docsCount),'Documentos')+
+    '<div class="eh-head-stats">'+card(loadedCount,'Questões')+card(String(docsCount),'Documentos')+
     card(String(errors.length),'Para revisar')+'</div></header>'+
-    '<div class="eh-intro"><div class="eh-eyebrow">Como quer estudar agora?</div>'+studyEntries+'</div>'+
+    loadNotice+'<div class="eh-intro"><div class="eh-eyebrow">Como quer estudar agora?</div>'+studyEntries+'</div>'+
     '<div class="eh-top-grid">'+action+review+'</div>'+pace+content+recents+'</main>';
 }
 view.addEventListener('click',e=>{
+  if(e.target.closest('[data-home-retry]')){ehBankState='idle';ehEnsureBank();showObjs('/espaco');return;}
   const tab=e.target.closest('[data-home-tab]');
   if(tab){
     const parent=tab.closest('.eh-content');if(!parent)return;
