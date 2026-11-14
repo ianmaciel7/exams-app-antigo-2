@@ -6635,7 +6635,6 @@ function buildGraph(seq){
 
 // Workspace management: separate tab sets, explicit overflow, context menus and drag targets.
 const historyGroup=document.querySelector('#wsTabs .hist');
-function overflowButton(id,label,list,fn){const b=document.createElement('button');b.id=id;b.className='icon-btn';b.setAttribute('aria-label',label);b.title=label;b.setAttribute('aria-haspopup','menu');b.textContent='⌄';list.parentNode.insertBefore(b,list.nextSibling);b.onclick=()=>miniMenu(b,fn());}
 { const b=document.createElement('button'); b.id='wsOverflow'; b.className='icon-btn'; b.type='button'; b.setAttribute('aria-label','Lista de abas'); b.title='Lista de abas'; b.setAttribute('aria-haspopup','dialog'); b.setAttribute('aria-expanded','false');
   b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'; $('wsTabList').after(b); b.after($('wsNew')); b.onclick=()=>openTabMenu(); }
 let tmEl=null;
@@ -6661,17 +6660,10 @@ function wsCloseMany(pred,label){ const snap=WS.tabs.slice(), act=WS.active; con
   WS.tabs=keep; if(!keep.some(t=>t.id===WS.active)){ WS.active=keep[Math.min(snap.findIndex(t=>t.id===act),keep.length-1)].id; const nt=curTab(); wsSave(); wsPaint(); wsGo(nt.hist[nt.i]); } else { wsSave(); wsPaint(); }
   toast(label,()=>{ WS.tabs=snap; WS.active=act; wsSave(); wsPaint(); const nt=curTab(); wsGo(nt.hist[nt.i]); }); }
 function wsDuplicate(id){ const t=WS.tabs.find(q=>q.id===id); if(!t) return; const c={id:uid(),hist:[t.hist[t.i]],i:0,title:t.title,pinned:false,sc:{},ui:{}}; WS.tabs.splice(WS.tabs.indexOf(t)+1,0,c); const old=curTab(); old.sc[old.i]=view.scrollTop; WS.active=c.id; wsSave(); wsPaint(); wsGo(c.hist[0]); }
-overflowButton('rpOverflow','Todas as abas laterais',$('rpTabs'),()=>RP.tabs.map(t=>({t:t.views.map(vTitle).join(' + '),ic:RT[t.views[0].type].ic,fn:()=>rpSelect(t.id)})));
-$('rpOverflow').style.gridColumn='2';$('rpOverflow').style.gridRow='1';$('rpAdd').style.gridColumn='3';$('rpStack').style.gridColumn='4';$('rpHide').style.gridColumn='5';
-$('rpTabs').style.gridColumn='1 / -1';
-/* o botão "todas as abas" só aparece quando as abas não cabem */
-(function(){const pairs=[[$('rpTabs'),$('rpOverflow')]];
- const upd=()=>pairs.forEach(([l,b])=>{if(l&&b)b.hidden=!(l.scrollWidth>l.clientWidth+1);});
- if(window.ResizeObserver){const ro=new ResizeObserver(upd);pairs.forEach(([l])=>l&&ro.observe(l));}
- if(window.MutationObserver){const mo=new MutationObserver(upd);pairs.forEach(([l])=>l&&mo.observe(l,{childList:true,subtree:true,characterData:true}));}
- addEventListener('resize',upd);upd();})();
 function tabMenu(anchor,id,right){const t=(right?RP.tabs:WS.tabs).find(t=>t.id===id);if(!t)return;miniMenu(anchor,right?[
+{t:'Empilhar ferramenta',ic:WI.stack,off:t.views.length>=3,fn:()=>toolMenu($('rpAdd'),k=>{rpSelect(id);rpStack(k);})},
 {t:'Fechar aba lateral',ic:WI.x,fn:()=>rpCloseTab(id)},
+{t:'Fechar outras abas',ic:WI.x,off:RP.tabs.length<=1,fn:()=>rpCloseOthers(id)},
 {t:'Mover aba para a esquerda',ic:WI.left,fn:()=>{const i=RP.tabs.indexOf(t);if(i>0){RP.tabs.splice(i,1);RP.tabs.splice(i-1,0,t);wsSave();rpPaintAll();}}}
 ]:[
 {t:'Fechar',ic:WI.x,off:WS.tabs.length<2,fn:()=>wsClose(id)},
