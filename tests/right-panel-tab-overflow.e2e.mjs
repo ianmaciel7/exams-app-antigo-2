@@ -16,9 +16,11 @@ try{
   await page.locator('#rpBody').waitFor();
   assert.equal(await page.locator('#rpStack').count(),0,'redundant stack action removed from header');
 
-  await page.evaluate(()=>{
-    ['graf','back','internos','rel','ia','explorar'].forEach(type=>rpAddTab(type));
-  });
+  // Exercise the real UI instead of calling an IIFE-private function from the test.
+  for(const label of ['Gráfico','Links de entrada','Objetos internos','Conteúdo relacionado','Chat de IA','Explorar']){
+    await page.locator('#rpAdd').click();
+    await page.locator('.ws-menu [role="menuitem"]').filter({hasText:label}).click();
+  }
   assert.ok(await page.locator('#rpTabs [data-rp-tab]').count()>=5);
   assert.equal(await page.locator('#rpOverflow').isVisible(),true,'overflow is visible for many tabs');
   assert.equal(await page.locator('#rpTabs.compact').count(),1,'tab list compacted');
