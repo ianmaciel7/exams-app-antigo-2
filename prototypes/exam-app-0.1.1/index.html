@@ -5760,7 +5760,7 @@ function qPedModule(q,answered=false){
   const panels={gabarito:answer,estatisticas:qPedStats(q),cadernos:nbMembership(q),anotacoes:note,fontes:sources};
   const tabHtml=PED_TABS.map(([key,label])=>'<button type="button" role="tab" id="qped-tab-'+esc(id)+'-'+key+
     '" aria-controls="qped-panel-'+esc(id)+'-'+key+'" data-qped-tab="'+esc(id)+'|'+key+'" aria-selected="'+(active===key)+
-    '" tabindex="'+(active===key?'0':'-1')+'">'+label+'</button>').join('');
+    '" tabindex="'+(active?active===key:key==='gabarito'?'0':'-1')+'">'+label+'</button>').join('');
   return '<section class="qped" data-qped="'+esc(id)+'"><div class="qped-tabrow">'+
     '<div class="qped-tabs" role="tablist" aria-label="Ferramentas pedagógicas da questão">'+tabHtml+'</div>'+
     '<button type="button" class="qped-close" data-qped-close="'+esc(id)+'" aria-label="Fechar painel pedagógico"'+(!active?' hidden':'')+'>×</button></div>'+
@@ -5777,7 +5777,7 @@ view.addEventListener('click',e=>{
     store.set(qPedKey(id),next);
     parent.querySelectorAll('[data-qped-tab]').forEach(el=>{
       const chosen=el.dataset.qpedTab.endsWith('|'+next)&&!!next;
-      el.setAttribute('aria-selected',String(chosen));el.tabIndex=chosen?0:-1;
+      el.setAttribute('aria-selected',String(chosen));el.tabIndex=chosen||(!next&&el.dataset.qpedTab.endsWith('|gabarito'))?0:-1;
     });
     parent.querySelectorAll('.qped-panel').forEach(el=>{el.hidden=!next||el.id!=='qped-panel-'+id+'-'+next;});
     const closeButton=parent.querySelector('[data-qped-close]');if(closeButton)closeButton.hidden=!next;
