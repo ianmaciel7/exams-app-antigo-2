@@ -92,7 +92,8 @@ test('closing last tab restores Explore and undo restores original tab', () => {
 });
 
 test('context-aware headers and pinned graph changes refresh the tab strip', () => {
-  assert.match(html, /title="\x27\+esc\(t\.views\.map\(vTitle\)/);
+  assert.match(html, /const on=t.id===RP.active,v=t.views\[0\],ttl=rpTabTitle\(t\),full=t.views.map\(vTitle\).join\(' \+ '\)/);
+  assert.match(html, /title="'\+esc\(full\)\+'/);
   assert.match(html, /else if\(v\.type==='graf'\)\{ v\.ref=h; wsSave\(\); rpPaintBody\(\); rpPaintTabs\(\); \}/);
 });
 
@@ -105,4 +106,15 @@ test('pinning and unpinning immediately repaint contextual tab titles (#55)',()=
     html.includes("b=T.closest('[data-pin-to-ctx]'); if(b){ const sec=b.closest('.rp-view'), v=viewById(sec&&sec.dataset.v); if(v){ v.ref=b.dataset.pinToCtx; wsSave(); rpPaintAll(); } return; }"),
     'pin must refresh tab header and body in the same event'
   );
+});
+
+test('contextual tab overflow preserves full tab names and no top-level stack button',()=>{
+  assert.match(html,/id="rpOverflow"[^>]*aria-controls="rpTabMenu"/);
+  assert.match(html,/id="rpTabSearch" type="search"/);
+  assert.match(html,/function rpRenderTabMenu\(query=''\)/);
+  assert.match(html,/RP\.tabs\.filter\(t=>norm\(rpTabTitle\(t\)\)\.includes\(q\)\)/);
+  assert.match(html,/classList\.toggle\('compact',RP\.tabs\.length>=5\)/);
+  assert.doesNotMatch(html,/id="rpStack"/);
+  assert.match(html,/t:'Empilhar ferramenta'/);
+  assert.match(html,/data-rp-menu-close/);
 });
