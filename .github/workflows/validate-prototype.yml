@@ -7,6 +7,7 @@ on:
       - 'prototypes/exam-app-0.1.1/index.html'
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
+      - 'tests/question-confirm.test.mjs'
       - '.github/workflows/validate-prototype.yml'
   push:
     branches: [dev]
@@ -14,6 +15,7 @@ on:
       - 'prototypes/exam-app-0.1.1/index.html'
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
+      - 'tests/question-confirm.test.mjs'
       - '.github/workflows/validate-prototype.yml'
 
 permissions:
@@ -27,4 +29,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs
+      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs tests/question-confirm.test.mjs
