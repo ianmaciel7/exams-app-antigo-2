@@ -19,7 +19,7 @@ test('all referenced UIICON keys render an SVG rather than undefined text', () =
 });
 
 test('home study entrypoints preserve accessible visible labels', () => {
-  assert.match(html, /<b>Resolver questões<\/b><small>Prática individual com correção imediata<\/small>/);
+  assert.match(html, /<b>Resolver questões<\/b><small>Prática individual com confirmação da resposta<\/small>/);
   assert.match(html, /<b>Fazer simulado<\/b><small>Configure a prova e acompanhe seu resultado<\/small>/);
   assert.match(html, /\.dash-actions\{[^}]*minmax\(min\(100%,200px\),1fr\)/);
   assert.match(html, /\.dash-act-txt b,\.dash-act-txt small\{overflow-wrap:anywhere\}/);
