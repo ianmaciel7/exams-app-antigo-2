@@ -41,6 +41,7 @@ test('grip ranges are scoped to question and literal text rendering is escaped',
 });
 test('invalid saved ranges are ignored and typography clamps 14–20px',()=>{
  const {api,mem}=setup();
+ assert.equal(api.qDockFontSize(),16,'unset font preference must default to 16px');
  mem.set(api.qDockHighlightKey('q1'),{statement:[{start:-1,end:2},{start:3,end:3},{start:0,end:1000}]});
  assert.equal(api.qHighlightMarkup({id:'q1'},'abc','statement'),'abc');
  mem.set('question-font:dataprev',99);assert.equal(api.qDockFontSize(),20);
