@@ -95,3 +95,14 @@ test('context-aware headers and pinned graph changes refresh the tab strip', () 
   assert.match(html, /title="\x27\+esc\(t\.views\.map\(vTitle\)/);
   assert.match(html, /else if\(v\.type==='graf'\)\{ v\.ref=h; wsSave\(\); rpPaintBody\(\); rpPaintTabs\(\); \}/);
 });
+
+test('pinning and unpinning immediately repaint contextual tab titles (#55)',()=>{
+  assert.ok(
+    html.includes("b=T.closest('[data-unpin]'); if(b){ const v=viewById(b.dataset.unpin); if(v){ delete v.ref; wsSave(); rpPaintAll(); } return; }"),
+    'unpin must refresh tab header and body in the same event'
+  );
+  assert.ok(
+    html.includes("b=T.closest('[data-pin-to-ctx]'); if(b){ const sec=b.closest('.rp-view'), v=viewById(sec&&sec.dataset.v); if(v){ v.ref=b.dataset.pinToCtx; wsSave(); rpPaintAll(); } return; }"),
+    'pin must refresh tab header and body in the same event'
+  );
+});

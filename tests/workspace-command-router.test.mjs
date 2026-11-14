@@ -10,10 +10,11 @@ assert.ok(a>=0&&b>a,'command registry anchors exist');
 
 function harness({mac=false}={}){
   const calls=[];
+  const elements={};
   const doc={querySelector:()=>null,addEventListener(type,fn){if(type==='keydown')this.keyHandler=fn;}};
   const ctx={
     document:doc,navigator:{platform:mac?'MacIntel':'Win32'},
-    $:()=>({classList:{contains:()=>false}}),
+    $:id=>elements[id]||(elements[id]={classList:{contains:()=>false}}),
     app:{classList:{contains:()=>false,remove:()=>{}}},
     MQT:{matches:false},ovOpen:false,palOpen:false,WS:{tabs:[{id:'a'},{id:'b'}],active:'a'},
     cur:{d:{id:'abc'},pdf:false},
@@ -30,7 +31,7 @@ function harness({mac=false}={}){
     startRename:()=>{},setZoom:()=>{},docsOf:()=>[],
     esc:s=>s
   };
-  const source='(function(){'+html.slice(a,b)+'\nreturn {workspaceCommands,shortcutMatches,formatShortcut,routeWorkspaceShortcut,commandTargetEditable,shortcutCatalogHtml};})()';
+  const source='(function(){'+html.slice(a,b)+'\nreturn {workspaceCommands,shortcutMatches,formatShortcut,routeWorkspaceShortcut,commandTargetEditable,shortcutCatalogHtml,syncWorkspaceShortcutHints};})()';
   const api=runInNewContext(source,ctx);
   function key(k,mods={}){
     const e={key:k,ctrlKey:false,metaKey:false,altKey:false,shiftKey:false,isComposing:false,defaultPrevented:false,
@@ -39,7 +40,7 @@ function harness({mac=false}={}){
     api.routeWorkspaceShortcut(e);
     return e;
   }
-  return {api,calls,key,ctx};
+  return {api,calls,key,ctx,elements};
 }
 test('chords are canonical on Windows and macOS; wrong modifiers do not match',()=>{
   const a=harness();
@@ -78,4 +79,18 @@ test('command catalog is generated rather than a static hardcoded table',()=>{
   assert.ok(ids.includes('workspace.sidebar'));
   assert.match(h.api.shortcutCatalogHtml(),/Buscar documentos/);
   assert.match(html,/html:shortcutCatalogHtml\(\)/);
+});
+
+test('Mod respects the actual OS and button hints follow the registered command',()=>{
+  const windows=harness();
+  assert.equal(windows.api.shortcutMatches({key:'k',ctrlKey:false,metaKey:true,altKey:false,shiftKey:false},'Mod+k'),false);
+  assert.equal(windows.api.shortcutMatches({key:'k',ctrlKey:true,metaKey:false,altKey:false,shiftKey:false},'Mod+k'),true);
+  assert.equal(windows.elements.wsNew.title,'Nova aba (Alt + T)');
+  assert.equal(windows.elements.wsNewBtn.title,'Novo (Alt + T)');
+  assert.equal(windows.elements.wsSearchBtn.title,'Buscar (Ctrl + K)');
+  const mac=harness({mac:true});
+  assert.equal(mac.api.shortcutMatches({key:'k',ctrlKey:true,metaKey:false,altKey:false,shiftKey:false},'Mod+k'),false);
+  assert.equal(mac.api.shortcutMatches({key:'k',ctrlKey:false,metaKey:true,altKey:false,shiftKey:false},'Mod+k'),true);
+  assert.equal(mac.elements.wsNew.title,'Nova aba (Option + T)');
+  assert.equal(mac.elements.wsSearchBtn.title,'Buscar (⌘ + K)');
 });
