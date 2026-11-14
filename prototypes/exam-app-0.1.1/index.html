@@ -1401,6 +1401,18 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .rp-search:focus-within{border-color:var(--ring)}
 .rp-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:13px;color:var(--text)}
 .rp-search svg{width:15px;height:15px;flex:none}
+
+/* Contextual launcher & relevant content (#54 / #66) */
+.rp-launch{margin:0 0 18px}.rp-launch h2,.rp-relevant h2{font:600 12px/1.4 inherit;color:var(--muted);margin:0 0 9px}
+.rp-launch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.rp-launch-btn{min-width:0;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:8px 4px;text-align:center;border-radius:8px;border:1px solid var(--line);background:var(--pop);color:var(--text);cursor:pointer;font-size:11px;line-height:1.3;overflow-wrap:break-word}
+.rp-launch-btn:hover{background:var(--hover)}.rp-launch-btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.rp-launch-icon{display:grid;place-items:center;width:23px;height:23px;color:var(--muted)}.rp-launch-icon svg{width:22px;height:22px}
+.rp-relevant{margin:0 0 16px}.rp-relevant-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.rp-relevant-head h2{margin:0}.rp-relevant-head button{font-size:11px;flex:none}
+.rp-relevant .rp-note{margin:6px 0 8px}.rp-explore-search{border-top:1px solid var(--line);padding-top:11px}
+.rp-explore-search>summary{cursor:pointer;color:var(--muted);font-size:12px;margin-bottom:9px}
+.rp-explore-search[open]>summary{color:var(--text)}
+@media (max-width:480px){.rp-launch-grid{gap:6px}.rp-launch-btn{font-size:10.5px}}
 .rp-intro{margin:0 0 12px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 .rp-chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
 .rp-filters{margin:0 0 8px}.rp-filters summary{cursor:pointer;color:var(--muted);font-size:12px;list-style:none}.rp-filters summary::-webkit-details-marker{display:none}.rp-filters summary::after{content:'+';margin-left:6px}.rp-filters[open] summary::after{content:'−'}.rp-filters .rp-chips{margin-top:8px}
@@ -5800,7 +5812,7 @@ const WI={x:IX('<path d="M6 6l12 12M18 6L6 18"/>',2),plus:IX('<path d="M12 5v14M
   panel:IX('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M15 4v16"/>'),stack:IX('<rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/>'),
   out:IX('<path d="M7 17L17 7M9 7h8v8"/>'),left:IX('<path d="M15 6l-6 6 6 6"/>'),side:IX('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/>'),
   minus:IX('<path d="M5 12h14"/>',2),fit:IX('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')};
-const RT={explorar:{n:'Navegar',ic:WI.search},graf:{n:'Gráfico',ic:WI.graph},back:{n:'Backlinks',ic:WI.back},rel:{n:'Conteúdo relacionado',ic:WI.rel},ia:{n:'Assistente de IA',ic:WI.spark},obj:{n:'Objeto',ic:WI.obj}};
+const RT={explorar:{n:'Explorar',ic:WI.search},graf:{n:'Gráfico',ic:WI.graph},back:{n:'Links de entrada',ic:WI.back},internos:{n:'Objetos internos',ic:WI.obj},rel:{n:'Conteúdo relacionado',ic:WI.rel},ia:{n:'Chat de IA',ic:WI.spark},obj:{n:'Objeto',ic:WI.obj}};
 const KORD=['concurso','edicao','cargo','pdf','questao','orgao','banca','disciplina'];
 const kn=k=>TYPES[k]?TYPES[k].n:k;
 const kIcon=k=>k==='grafico'?WI.graph:(TYI()[k]||(k==='espaco'?SI.collection:SI.file));
@@ -6122,7 +6134,7 @@ const rpRow=(n,sub)=>{
   '</div>';
 };
 const rpEmpty=(t,s,extra)=>'<div class="rp-empty"><b>'+esc(t)+'</b>'+esc(s||'')+(extra||'')+'</div>';
-const toolBtns=(cls)=>'<div class="rp-tools">'+['explorar','graf','back','rel','ia'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
+const toolBtns=(cls)=>'<div class="rp-tools">'+['explorar','graf','back','internos','rel','ia'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
 function ctxBar(v,n){
   if(v.ref&&!n) return '<div class="rp-ctx"><span>Objeto de outro espaço</span><button type="button" class="rp-link" data-unpin="'+v.id+'">Seguir contexto</button></div>';
   if(!v.ref&&!n) return '';
@@ -6135,16 +6147,58 @@ function ctxBar(v,n){
   '</div>';
 }
 const needCtx=()=>{const m=/^#\/tipo\/([^/]+)/.exec(curHref()); if(m)return rpEmpty('Tipo de objeto: '+kn(m[1]),'Você está vendo a coleção deste tipo. Selecione um objeto para consultar seus backlinks e conteúdo relacionado.'); return rpEmpty('Contexto do workspace','Selecione um objeto na área principal para consultar suas relações. As abas laterais permanecem disponíveis.');};
+/* Contextual explorer launcher: real tools, not decorative placeholders (#54, #66). */
 function bodyExplorar(v){
   const all=[...gr().N.values()], kinds=KORD.filter(k=>all.some(n=>n.kind===k));
   const filter=v.kind?'Filtro: '+kn(v.kind):'Filtrar por tipo';
-  return '<p class="rp-intro">Encontre um item do espaço. O contexto aparece somente quando você pedir.</p><div class="rp-search">'+WI.search+'<input type="search" id="ex-'+v.id+'" data-ex-q="'+v.id+'" placeholder="Buscar no espaço" aria-label="Buscar no espaço" value="'+esc(v.q||'')+'" autocomplete="off"></div><details class="rp-filters"'+(v.kind?' open':'')+'><summary><span data-ex-filter-label>'+esc(filter)+'</span></summary><div class="rp-chips" role="group" aria-label="Filtrar por tipo" data-ex-chips>'+exChips(v,kinds)+'</div></details><div class="rp-list" data-ex-list>'+exRows(v)+'</div>'; }
+  const tools=[['graf','Grafo',RT.graf.ic],['back','Links de entrada',RT.back.ic],
+    ['internos','Objetos internos',RT.internos.ic],['rel','Conteúdo relacionado',RT.rel.ic],
+    ['ia','Chat de IA',RT.ia.ic],['search','Buscar',WI.search]];
+  const launch='<section class="rp-launch" aria-label="Ferramentas contextuais"><h2>Explorar</h2><div class="rp-launch-grid">'+
+    tools.map(([key,label,ic])=>'<button type="button" class="rp-launch-btn" '+
+      (key==='search'?'data-rp-focus-search':'data-rp-new="'+key+'"')+
+      ' aria-label="'+esc(label)+'"><span class="rp-launch-icon" aria-hidden="true">'+ic+'</span><span>'+esc(label)+'</span></button>').join('')+
+    '</div></section>';
+  const n=vNode(v),linked=n?nbrs(n).slice(0,6):[];
+  const relevant='<section class="rp-relevant" aria-label="Conteúdo relevante">'+
+    '<div class="rp-relevant-head"><h2>Conteúdo relevante</h2><button type="button" class="rp-link" data-rp-new="rel">Encontrar mais</button></div>'+
+    (n?'<p class="rp-note">Relações diretas de '+esc(n.title)+'</p>':'<p class="rp-note">Abra um objeto para visualizar suas relações.</p>')+
+    (linked.length?'<div class="rp-list">'+linked.map(x=>rpRow(x)).join('')+'</div>':
+      '<p class="rp-note">Nenhuma relação direta disponível neste contexto.</p>')+
+    '</section>';
+  const search='<details class="rp-explore-search" data-rp-find'+((v.q||v.kind)?' open':'')+'><summary>Buscar objetos no espaço</summary>'+
+    '<div class="rp-search">'+WI.search+'<input type="search" id="ex-'+v.id+'" data-ex-q="'+v.id+
+    '" placeholder="Buscar no espaço" aria-label="Buscar no espaço" value="'+esc(v.q||'')+'" autocomplete="off"></div>'+
+    '<details class="rp-filters"'+(v.kind?' open':'')+'><summary><span data-ex-filter-label>'+esc(filter)+'</span></summary>'+
+    '<div class="rp-chips" role="group" aria-label="Filtrar por tipo" data-ex-chips>'+exChips(v,kinds)+'</div></details>'+
+    '<div class="rp-list" data-ex-list>'+exRows(v)+'</div></details>';
+  return launch+relevant+search;
+}
 const exChips=(v,kinds)=>['']. concat(kinds).map(k=>'<button type="button" class="rp-chip" data-ex-kind="'+k+'" aria-pressed="'+((v.kind||'')===k)+'">'+(k?esc(kn(k)):'Tudo')+'</button>').join('');
 function exRows(v){ const q=norm(String(v.q||'')), all=[...gr().N.values()].filter(n=>(!v.kind||n.kind===v.kind)&&(!q||norm(n.title+' '+n.sub).includes(q)));
   all.sort((a,b)=>KORD.indexOf(a.kind)-KORD.indexOf(b.kind)||a.title.localeCompare(b.title,'pt-BR',{numeric:true}));
   if(!all.length) return '<div class="rp-empty">'+(q?'<b>Nada encontrado para “'+esc(v.q)+'”</b>Tente outra palavra ou outro tipo.':'<b>Nenhum objeto ainda</b>Crie um concurso na barra lateral.')+'</div>';
   const rows=all.slice(0,80), groups=new Map(), tot={}; all.forEach(n=>{ tot[n.kind]=(tot[n.kind]||0)+1; }); rows.forEach(n=>{ const g=groups.get(n.kind)||[]; g.push(n); groups.set(n.kind,g); });
   return [...groups].map(([kind,items])=>'<section class="rp-group" aria-label="'+esc(kn(kind))+'"><div class="rp-group-title">'+esc(kn(kind))+'<span>'+tot[kind]+'</span></div>'+items.map(n=>rpRow(n)).join('')+'</section>').join('')+(all.length>80?'<div class="rp-more">Mostrando 80 de '+all.length+'. Refine a busca.</div>':''); }
+function bodyInternos(v){
+  const n=vNode(v);
+  if(v.ref&&!n) return ctxBar(v,n)+rpEmpty('Objeto indisponível neste espaço','Desafixe para seguir o contexto atual.',
+    '<div class="rp-tools"><button type="button" class="rp-btn" data-unpin="'+v.id+'">Seguir contexto</button></div>');
+  if(!n) return needCtx();
+  const groups=new Map(),seen=new Set(),nodes=gr().N;
+  n.out.forEach(([href,relation])=>{
+    if(seen.has(href))return;
+    const linked=nodes.get(href);if(!linked)return;
+    seen.add(href);
+    if(!groups.has(linked.kind))groups.set(linked.kind,[]);
+    groups.get(linked.kind).push({linked,relation});
+  });
+  if(!seen.size) return ctxBar(v,n)+rpEmpty('Sem objetos internos','Este objeto ainda não referencia outros objetos.');
+  return ctxBar(v,n)+'<div class="rp-list">'+[...groups].map(([kind,items])=>
+    '<section class="rp-group" aria-label="'+esc(kn(kind))+'"><div class="rp-group-title">'+esc(kn(kind))+
+    '<span>'+items.length+'</span></div>'+items.map(({linked,relation})=>rpRow(linked,'via '+relation)).join('')+'</section>'
+  ).join('')+'</div>';
+}
 function bodyBack(v){ const n=vNode(v);
   if(v.ref&&!n) return ctxBar(v,n)+rpEmpty('Objeto não pertence a este espaço','O contexto fixado pertence a outro espaço ou não existe mais.','<div class="rp-tools"><button type="button" class="rp-btn" data-unpin="'+v.id+'">Seguir contexto do espaço atual</button></div>');
   if(!n) return needCtx();
@@ -6205,7 +6259,7 @@ function bodyIa(v){ const m=/^#\/questao\/(.+)$/.exec(curHref()||''), q=m&&nodeO
    +'<p class="rp-note ai-only">'+(q?'Questão em foco: <b>'+esc(q.title)+'</b>':'Abra uma questão na área principal para explicá-la ou criar cartões a partir dela.')+'</p>'
    +(m?aiRow(decodeURIComponent(m[1])):'')
    +'<div class="ai-row ai-only">'+(m?'':'<p class="ai-hint">'+AI_WHY+'</p>')+'<button type="button" class="op-btn ai-btn" data-ai="plan">'+aiSpark+' Sugerir o que revisar</button><div class="ai-boxes">'+aiBox('plan')+'</div></div></div>'; }
-const BODY={explorar:bodyExplorar,back:bodyBack,rel:bodyRel,graf:bodyGraf,obj:bodyObj,ia:bodyIa};
+const BODY={explorar:bodyExplorar,back:bodyBack,internos:bodyInternos,rel:bodyRel,graf:bodyGraf,obj:bodyObj,ia:bodyIa};
 function viewHtml(v,solo){ const T=RT[v.type], nav=(v.hist&&v.hist.length)||(v.future&&v.future.length);
   if(solo&&!nav) return '<section class="rp-view solo" data-v="'+v.id+'" style="flex-grow:1" aria-label="'+esc(vTitle(v))+'"><div class="rp-vb" data-vb="'+v.id+'">'+BODY[v.type](v)+'</div></section>';
   if(solo) return '<section class="rp-view solo" data-v="'+v.id+'" style="flex-grow:1" aria-label="'+esc(vTitle(v))+'"><header class="rp-vh solo-h">'
@@ -6273,7 +6327,7 @@ function rpCloseOthers(id){ const snap=RP.tabs.slice(), act=RP.active, keep=RP.t
   toast('Outras abas do painel fechadas',()=>{ RP.tabs=snap; RP.active=act; wsSave(); rpPaintAll(); }); }
 function rpOpenObj(h){ if(!isObjHref(h)) return; const found=RP.tabs.find(t=>(!t.sp||t.sp===space)&&t.views.some(v=>v.type==='obj'&&v.ref===h)); if(found){rpSelect(found.id);openRP(true);return;} rpCapture();rpAddTab('obj',h); }
 function rpFromView(v,h){ if(!v) return; if(v.type==='explorar'||v.type==='obj'){ v.future=[];v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]).slice(-20); v.type='obj'; v.ref=h; wsSave(); rpPaintBody(); rpPaintTabs(); } else if(v.type==='graf'){ v.ref=h; wsSave(); rpPaintBody(); rpPaintTabs(); } else rpOpenObj(h); }
-const toolMenu=(anchor,fn)=>miniMenu(anchor,['explorar','graf','back','rel','ia'].map(k=>({t:RT[k].n,ic:RT[k].ic,fn:()=>fn(k)})));
+const toolMenu=(anchor,fn)=>miniMenu(anchor,['explorar','graf','back','internos','rel','ia'].map(k=>({t:RT[k].n,ic:RT[k].ic,fn:()=>fn(k)})));
 $('rpAdd').onclick=e=>toolMenu(e.currentTarget,k=>rpAddTab(k));
 $('rpStack').onclick=e=>{ const t=rpTab(); if(t&&t.views.length>=3){ toast('Cada aba do painel aceita até 3 visualizações empilhadas'); return; } toolMenu(e.currentTarget,k=>rpStack(k)); };
 $('rpTabs').addEventListener('keydown',e=>tabKeys(e,$('rpTabs'),'[data-rp-tab]',t=>rpSelect(t.dataset.rpTab),t=>rpCloseTab(t.dataset.rpTab)));
@@ -6285,6 +6339,7 @@ $('rpBody').addEventListener('click',e=>{ const T=e.target;
   let graphBtn=T.closest('[data-rpg]'); if(graphBtn){ const svg=graphBtn.closest('.rp-vb')?.querySelector('[data-rpg-viewport]'); if(!svg)return; const v=svg.viewBox.baseVal, step=v.width*.2, kind=graphBtn.dataset.rpg; if(kind==='reset'){ const cx=+svg.dataset.cx,cy=+svg.dataset.cy; svg.setAttribute('viewBox',(cx-150)+' '+(cy-120)+' 300 240'); } else if(kind==='zoom-in'||kind==='zoom-out'){ const f=kind==='zoom-in'?.8:1.25,nw=Math.max(80,Math.min(2400,v.width*f)),nh=nw*.8,cx=v.x+v.width/2,cy=v.y+v.height/2; svg.setAttribute('viewBox',(cx-nw/2)+' '+(cy-nh/2)+' '+nw+' '+nh); } else { const dx=kind==='left'?-step:kind==='right'?step:0,dy=kind==='up'?-step:kind==='down'?step:0; svg.setAttribute('viewBox',(v.x+dx)+' '+(v.y+dy)+' '+v.width+' '+v.height); } return; }
   let b=T.closest('[data-vforward]');if(b){const v=viewById(b.dataset.vforward);if(v?.future?.length){v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]);Object.assign(v,v.future.pop());wsSave();rpPaintAll();}return;}
   b=T.closest('[data-vmove]');if(b){const t=rpTab(),v=viewById(b.dataset.vmove),i=t.views.indexOf(v);miniMenu(b,[{t:'Mover para cima',off:i===0,fn:()=>{t.views.splice(i,1);t.views.splice(i-1,0,v);wsSave();rpPaintAll();}},{t:'Mover para baixo',off:i===t.views.length-1,fn:()=>{t.views.splice(i,1);t.views.splice(i+1,0,v);wsSave();rpPaintAll();}}]);return;}
+  b=T.closest('[data-rp-focus-search]'); if(b){ const details=b.closest('.rp-vb')?.querySelector('[data-rp-find]'); if(details){ details.open=true; details.querySelector('[data-ex-q]')?.focus(); } return; }
   b=T.closest('[data-rp-new]'); if(b){ rpAddTab(b.dataset.rpNew); return; }
   b=T.closest('[data-vclose]'); if(b){ rpCloseView(b.dataset.vclose); return; }
   b=T.closest('[data-vback]'); if(b){ const v=viewById(b.dataset.vback); if(v&&v.hist&&v.hist.length){ v.future=(v.future||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]);const p=v.hist.pop(); v.type=p.type; v.ref=p.ref; v.q=p.q; v.kind=p.kind; wsSave(); rpPaintBody(); rpPaintTabs(); } return; }
