@@ -11,7 +11,7 @@ const source=html.slice(from,until);
 function run({questions=[],docs=[],history=[]}={}){
   const state=new Map();const calls=[],sims=[];
   const env={
-    space:'dataprev',view:{addEventListener(){}},
+    space:'dataprev',questionBank:{questoes:[]},loadQuestions:()=>Promise.resolve(),showObjs:()=>{},location:{hash:'#/espaco'},view:{addEventListener(){}},
     store:{get:k=>state.get(k),set:(k,v)=>state.set(k,v)},docsOf:()=>docs,
     qObjs:()=>questions,qSel:q=>q.selected||null,histAll:()=>history,
     edicoesOf:()=>[],cargosOf:()=>[],CONCURSOS:[{sp:'dataprev',id:'dataprev',t:'Concurso de TI'}],
