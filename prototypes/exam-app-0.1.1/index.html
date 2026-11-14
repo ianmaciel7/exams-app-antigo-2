@@ -4809,12 +4809,12 @@ const tdKey=t=>'type-dashboard:'+space+':'+t;
 function tdState(t){
   const old=store.get(tdKey(t))||{};
   return {tab:old.tab==='overview'?'overview':'all',
-    layout:TD_LAYOUTS.some(v=>v[0]===old.layout)?old.layout:'gallery',
+    layout:TD_LAYOUTS.some(v=>v[0]===old.layout)?old.layout:(['questao','simulado','resposta'].includes(t)?'list':'gallery'),
     search:String(old.search||''),sort:old.sort==='recent'?'recent':'name'};
 }
 function tdUpdate(t,patch){const next=Object.assign({},tdState(t),patch);store.set(tdKey(t),next);return next;}
 const tdItems=(t,list)=>list.map(d=>{
-  const href=objHref(d),name=String(d.t||d.title||('Objeto '+d.id)),date=Number(d.updatedAt||d.modified||d.criada||d.createdAt||0);
+  const href=d.href||objHref(d),name=String(d.t||d.title||('Objeto '+d.id)),date=Number(d.updatedAt||d.modified||d.criada||d.createdAt||0);
   return {id:d.id||href,href,name,kind:d.type||t,
     detail:String(d.cat||d.classe||d.materia||d.assunto||d.origem||''),date:Number.isFinite(date)?date:0};
 });
@@ -4831,7 +4831,7 @@ function tdObjectMarkup(item,layout){
   if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'">'+
     '<a href="'+esc(item.href)+'">'+main+'</a><button type="button" data-td-copy="'+esc(item.href)+'" title="Copiar link do objeto">Copiar link</button></div>';
   return '<a class="td-item" data-td-item data-td-term="'+search+'" href="'+esc(item.href)+'">'+
-    '<span class="td-item-top">'+main.split('</span>')[0]+'</span><span class="td-card-title">'+esc(item.name)+'</span>'+
+    '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span></span><span class="td-card-title">'+esc(item.name)+'</span>'+
     '<span class="td-card-meta">'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</span></a>';
 }
 function tdObjectsMarkup(t,items,layout){
@@ -5146,8 +5146,10 @@ function perfSec(filter,title){
 }
 function simRows(list){ return list.slice().sort((a,b)=>b.at-a.at).map(x=>'<a class="op-row" href="#/tentativa/'+x.id+'"><span class="op-rt"><b>Simulado de '+fmtDT(x.at)+'</b><small>'+x.correct+' acertos em '+x.total+' questões · '+fmtDur(x.secs)+'</small></span><span class="op-tail">'+pctOf(x.correct,x.total)+'%</span><span class="op-go" aria-hidden="true">›</span></a>').join(''); }
 function simuladoTipoPage(){
-  const L=simsAll();
-  return opPage({iid:'tipo:simulado',crumb:[['Espaço','#/espaco'],['Simulado','']],icon:'simulado',kind:'Tipo de objeto',title:'Simulado',wide:true,body:perfSec(h=>h.src==='Simulado','Desempenho nos simulados')+opSec('Tentativas',L.length?'<div class="op-list">'+simRows(L)+'</div>':opEmpty('Nenhum simulado feito ainda. Abra o tipo Questão e use "Fazer simulado".'),{count:L.length})});
+  const L=simsAll(),objects=L.map((x,i)=>({id:x.id||'s'+x.at,type:'simulado',t:'Simulado · '+fmtDT(x.at),
+    detail:((x.total||0)+' questões · '+(x.score||0)+' pontos'),href:'#/tentativa/'+(x.id||'s'+x.at),updatedAt:x.at||0}));
+  return tdTypePage('simulado',TYPES.simulado,objects,{richList:L.length?'<div class="op-list">'+simRows(L)+'</div>':opEmpty('Nenhum simulado concluído.'),
+    overviewExtra:perfSec(h=>h.src==='Simulado','Desempenho nos simulados')});
 }
 function tentativaPage(x){
   const ed=x.ed&&edicaoById(x.ed), cg=x.cg&&cargoById(x.cg), cc=x.conc&&concursoById(x.conc);
@@ -5222,10 +5224,11 @@ function respostaPage(r){
   return opPage({iid:'resposta:'+r.id,crumb:[['Espaço','#/espaco'],['Resposta','#/tipo/resposta'],[respTitle(r),'']],icon:'resposta',kind:'Resposta',kindHref:'#/tipo/resposta',title:respTitle(r),props,body:opSec('Questão',q?'<div class="op-list"><a class="op-row" href="#/questao/'+q.id+'"><span class="op-rt"><b>'+esc(qTitle(q))+'</b></span><span class="op-go" aria-hidden="true">›</span></a></div>':opEmpty('Questão indisponível.'))});
 }
 function respostaTipoPage(){
-  const L=respAll();
-  return opPage({iid:'tipo:resposta',crumb:[['Espaço','#/espaco'],['Resposta','']],icon:'resposta',kind:'Tipo de objeto',title:'Resposta',wide:true,body:perfSec(null,'Desempenho')+opSec('Respostas',L.length?'<div class="op-list">'+respRows(L)+'</div>':opEmpty('Nenhuma resposta ainda. Resolva uma questão e ela aparece aqui.'),{count:L.length})});
+  const L=respAll(),objects=L.map(r=>({id:r.id,t:respTitle(r),type:'resposta',href:'#/resposta/'+r.id,
+    detail:r.n||'',updatedAt:r.t||0}));
+  return tdTypePage('resposta',TYPES.resposta,objects,{richList:L.length?'<div class="op-list">'+respRows(L)+'</div>':opEmpty('Nenhuma resposta registrada.'),
+    overviewExtra:perfSec(null,'Desempenho')});
 }
-
 /* ---- Questão como objeto (tipo Questão, Disciplina) ---- */
 const ORIGENS={oficial:'Oficial',ia:'Gerada por IA',manual:'Manual'};
 const qOrig=q=>q.origem||(q.user?'manual':'oficial');
@@ -5601,12 +5604,15 @@ view.addEventListener('focusout',e=>{
 });
 function qtFiltered(all){ return all.filter(q=>(!qtF.banca||q.banca===qtF.banca)&&(!qtF.orig||qOrig(q)===qtF.orig)&&(!qtF.disc||q.materia===qtF.disc)&&(!qtF.ed||q.ed===qtF.ed)&&(!qtF.sit||(qtF.sit==='pendentes'?!qSel(q):(qSel(q)&&qSel(q)!==q.gabarito)))); }
 function questaoTipoPage(sp){
-  const all=qObjs(), list=qfFilter('tipo',all); qtList=list;
+  const all=qObjs(),list=qfFilter('tipo',all);qtList=list;
   const ord='<div class="sim-opts-row" role="radiogroup" aria-label="Ordem do simulado">'+[['original','Ordem original'],['aleatoria','Ordem aleatória']].map(o=>'<label class="q-opt q-radio"><input type="radio" name="simOrd" value="'+o[0]+'"'+(simOrd===o[0]?' checked':'')+'><span>'+o[1]+'</span></label>').join('')+'</div>';
-  const props=[['Tipo',chipA('Tipo de objeto','#/espaco')]];
-  return opPage({iid:'tipo:questao',crumb:[['Espaço','#/espaco'],['Questão','']],icon:'questao',kind:'Tipo de objeto',title:'Questão',wide:true,
-    actions:'<div class="op-actions">'+ord+'<button type="button" class="op-btn pri" data-qt-sim>Fazer simulado'+(list.length!==all.length?' ('+list.length+')':'')+'</button></div>',
-    body:perfSec(null)+opSec('Objetos',qfHTML('tipo',all,{onChange:l=>{qtList=l;const b=document.querySelector('[data-qt-sim]');if(b)b.textContent='Fazer simulado'+(l.length!==all.length?' ('+l.length+')':'');}}),{count:all.length})+opSec('Queries / Meus filtros',sfLinks(),{count:sfAll().filter(x=>x.sp===space).length})});
+  const extra=ord+'<button type="button" class="op-btn pri" data-qt-sim>Fazer simulado'+(list.length!==all.length?' ('+list.length+')':'')+'</button>';
+  const advanced=qfHTML('tipo',all,{onChange:l=>{
+    qtList=l;const b=document.querySelector('[data-qt-sim]');if(b)b.textContent='Fazer simulado'+(l.length!==all.length?' ('+l.length+')':'');
+  }});
+  const objects=all.map(q=>({...q,t:qTitle(q),href:'#/questao/'+q.id,updatedAt:q.criada||0}));
+  return tdTypePage('questao',TYPES.questao,objects,{richList:advanced,
+    overviewExtra:perfSec(null),actionHTML:extra});
 }
 /* ---- v0.1.1 · Métricas e marcações da Questão ---- */
 const qFlags=()=>{const v=store.get('qflags');return v&&typeof v==='object'?v:{};};
