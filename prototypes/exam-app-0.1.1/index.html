@@ -194,6 +194,33 @@
 .qped .nb-membership-body{padding-top:12px}
 @media(max-width:660px){.qped-graphs{grid-template-columns:1fr}.qped-panel{padding:12px}.qped-donut{flex-wrap:wrap}}
 
+
+/* Shared interactive exam tools (#74). */
+.q-dock{position:relative;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0 16px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--side);min-width:0}
+.q-dock-tools{display:flex;flex-wrap:wrap;gap:4px}
+.q-dock-tools button{display:grid;place-items:center;min-width:32px;min-height:32px;padding:5px;border:1px solid transparent;border-radius:7px;background:transparent;color:var(--text);font-weight:600;font-size:12px;cursor:pointer}
+.q-dock-tools button:hover,.q-dock-tools button[aria-pressed=true]{background:var(--hover);border-color:var(--line)}
+.q-dock-tools button:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.q-dock-tools button:disabled{opacity:.3;cursor:default}
+.q-dock-tools svg{width:17px;height:17px}
+.q-dock-status{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums;font-size:11px;color:var(--muted)}
+.q-dock.over-target [data-q-dock-clock]{color:var(--study-warn);font-weight:700}
+.q-dock-sheet{flex:1 1 100%;max-height:220px;overflow:auto;border-top:1px solid var(--line);padding:12px 0}
+.q-dock-sheet[hidden]{display:none!important}
+.q-dock-sheet .s-navigator,.q-dock-sheet .q-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(30px,1fr));gap:5px}
+.q-dock-sheet .s-navigator button{cursor:pointer}
+.q-highlight{background:color-mix(in srgb,#ffd94c 66%,transparent);color:inherit;border-radius:2px;cursor:pointer}
+.q-highlight:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+:is(.qo,.s-question) .qo-stm,:is(.qo,.s-question) .question-statement,
+:is(.qo,.s-question) .sc-alt,:is(.qo,.s-question) .s-option,
+:is(.qo,.s-question) .q-associated-body{
+ font-size:var(--q-dock-font,16px);line-height:1.7}
+#app.study-focus .side,#app.study-focus #wsTabs,#app.study-focus #rpanel{display:none!important}
+#app.study-focus .main{width:100%;max-width:none;flex:1}
+#app.study-focus .main .view{max-width:none}
+#app.study-focus .qo,#app.study-focus .study-shell{max-width:850px;margin:0 auto}
+@media(max-width:680px){.q-dock{padding:7px}.q-dock-tools{gap:2px}.q-dock-tools button{min-width:34px;min-height:34px}}
+
 /* Shared question-card presentation in global and contextual practice views (#136). */
 .practice-list .s-question *{box-sizing:border-box}
 .practice-list .s-question .s-eyebrow{display:block;margin:0 0 6px}
@@ -5691,7 +5718,7 @@ function qExcludeButton(q,l,locked=false){
 function qAssociated(q){
   const base=q.textoAssociado||q.textoBase||q.textoApoio||q.texto_associado||q.texto_base||'';
   if(!String(base).trim())return '';
-  return '<details class="q-associated"><summary>Texto associado</summary><div class="q-associated-body">'+esc(base)+'</div></details>';
+  return '<details class="q-associated"><summary>Texto associado</summary><div class="q-associated-body" data-q-highlight="'+esc(q.id)+'|associated">'+qHighlightMarkup(q,base,'associated')+'</div></details>';
 }
 function qCompactMeta(q,i){
   const link=(value,href)=>value?(href?'<a href="'+esc(href)+'">'+esc(value)+'</a>':'<span>'+esc(value)+'</span>'):'';
@@ -5836,6 +5863,157 @@ view.addEventListener('keydown',e=>{
   tabs[next]?.focus();tabs[next]?.click();
 });
 
+
+/* Shared study dock: highlights, focus, timer, typography, answer sheet (#74). */
+const qDockHighlightKey=id=>'question-highlights:'+space+':'+id;
+const qDockClockKey=id=>'question-clock:'+space+':'+id;
+const qDockFontKey='question-font:'+space;
+function qDockRanges(id,part){
+  const rec=store.get(qDockHighlightKey(id))||{},a=rec[part];
+  return Array.isArray(a)?a.filter(r=>Number.isInteger(r.start)&&Number.isInteger(r.end)&&r.start>=0&&r.end>r.start):[];
+}
+function qHighlightMarkup(q,raw,part='statement'){
+  const id=String(q.id||('q'+q.n)),text=String(raw||''),ranges=qDockRanges(id,part).filter(r=>r.end<=text.length)
+    .sort((a,b)=>a.start-b.start||a.end-b.end);
+  let result='',cursor=0;
+  for(const r of ranges){
+    if(r.start<cursor)continue;
+    result+=esc(text.slice(cursor,r.start))+'<mark tabindex="0" role="button" class="q-highlight" title="Remover grifo" aria-label="Remover grifo" data-q-highlight-remove="'+
+      esc(id)+'|'+part+'|'+r.start+'|'+r.end+'">'+esc(text.slice(r.start,r.end))+'</mark>';
+    cursor=r.end;
+  }
+  return result+esc(text.slice(cursor));
+}
+function qDockFontSize(){
+  const saved=store.get(qDockFontKey);
+  if(saved===null||saved===undefined||saved==='')return 16;
+  const size=Number(saved);
+  return Number.isInteger(size)?Math.min(20,Math.max(14,size)):16;
+}
+function qDockClock(id){
+  const saved=store.get(qDockClockKey(id))||{},base=Number(saved.elapsed)||0;
+  const running=Number(saved.runningAt)||0;
+  return {seconds:Math.max(0,Math.floor((base+(running?Math.max(0,Date.now()-running):0))/1000)),running:!!running};
+}
+const qDockFmt=sec=>String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+let qDockClockLoop=null;
+function qDockPaintClock(){
+  view.querySelectorAll('[data-q-dock-clock]').forEach(el=>{
+    const c=qDockClock(el.dataset.qDockClock);el.textContent=qDockFmt(c.seconds);
+    const container=el.closest('.q-dock');
+    container?.querySelector('[data-q-dock-timer]')?.setAttribute('aria-pressed',String(c.running));
+    container?.classList.toggle('over-target',c.seconds>=180);
+  });
+}
+function qDockStartTick(){
+  if(qDockClockLoop)return;
+  qDockClockLoop=setInterval(()=>{
+    qDockPaintClock();
+    if(!view.querySelector('[data-q-dock-clock]')){clearInterval(qDockClockLoop);qDockClockLoop=null;}
+  },1000);
+}
+const QD_HIGHLIGHT='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 18 6 2 11-11-6-6L4 14zM4 21h16M13 5l6 6"/></svg>';
+const QD_FOCUS='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg>';
+const QD_SHEET='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>';
+function qDock(q,mode='single'){
+  const id=String(q.id||('q'+q.n)),clock=qDockClock(id),font=qDockFontSize();
+  if(clock.running)qDockStartTick();
+  return '<section class="q-dock" data-q-dock="'+esc(id)+'" data-q-dock-mode="'+mode+'" aria-label="Ferramentas de resolução">'+
+    '<div class="q-dock-tools" role="toolbar" aria-label="Ferramentas de estudo">'+
+    '<button type="button" data-q-dock-highlight="'+esc(id)+'" title="Grifar seleção do enunciado ou texto associado" aria-label="Grifar texto selecionado">'+QD_HIGHLIGHT+'</button>'+
+    '<button type="button" data-q-dock-focus="'+esc(id)+'" title="Alternar modo foco" aria-pressed="'+app.classList.contains('study-focus')+'">'+QD_FOCUS+'</button>'+
+    '<button type="button" data-q-dock-timer="'+esc(id)+'" title="Iniciar ou pausar cronômetro" aria-label="Cronômetro da questão" aria-pressed="'+clock.running+'">'+UIICON.timer+'</button>'+
+    '<button type="button" data-q-dock-font="down" aria-label="Diminuir fonte"'+(font<=14?' disabled':'')+'>A−</button>'+
+    '<button type="button" data-q-dock-font="up" aria-label="Aumentar fonte"'+(font>=20?' disabled':'')+'>A+</button>'+
+    '<button type="button" data-q-dock-sheet="'+esc(id)+'" aria-expanded="false" aria-label="Folha de respostas" title="Folha de respostas">'+QD_SHEET+'</button>'+
+    '</div><div class="q-dock-status"><span data-q-dock-clock="'+esc(id)+'" title="Tempo nesta questão">'+qDockFmt(clock.seconds)+
+    '</span><span class="q-dock-font-readout" aria-label="Tamanho da fonte">'+font+'px</span></div>'+
+    '<div class="q-dock-sheet" role="region" aria-label="Mapa de respostas" hidden></div></section>';
+}
+function qDockApplyFont(){
+  const font=qDockFontSize();
+  view.querySelectorAll('.qo,.s-question').forEach(el=>el.style.setProperty('--q-dock-font',font+'px'));
+  view.querySelectorAll('.q-dock-font-readout').forEach(el=>el.textContent=font+'px');
+  view.querySelectorAll('[data-q-dock-font]').forEach(el=>{
+    el.disabled=el.dataset.qDockFont==='down'?font<=14:font>=20;
+  });
+}
+function qDockSaveRanges(id,part,ranges){
+  const old=store.get(qDockHighlightKey(id))||{};
+  store.set(qDockHighlightKey(id),{...old,[part]:ranges});
+}
+function qDockRepaintHighlight(id,part){
+  const q=qObjs().find(x=>x.id===id);if(!q)return;
+  const raw=part==='associated'?(q.textoAssociado||q.textoBase||q.textoApoio||q.texto_associado||q.texto_base||''):q.enunciado;
+  view.querySelectorAll('[data-q-highlight="'+id+'|'+part+'"]').forEach(el=>{el.innerHTML=qHighlightMarkup(q,raw,part);});
+}
+function qDockSelectHighlight(id){
+  const sel=window.getSelection();
+  if(!sel||sel.isCollapsed||!sel.rangeCount)return false;
+  const range=sel.getRangeAt(0),startEl=range.startContainer.parentElement,endEl=range.endContainer.parentElement;
+  const root=startEl?.closest('[data-q-highlight]'),endRoot=endEl?.closest('[data-q-highlight]');
+  if(!root||root!==endRoot||!root.dataset.qHighlight.startsWith(id+'|'))return false;
+  const part=root.dataset.qHighlight.split('|')[1],pre=range.cloneRange();
+  pre.selectNodeContents(root);pre.setEnd(range.startContainer,range.startOffset);
+  const start=pre.toString().length,end=start+range.toString().length;
+  if(end<=start)return false;
+  const ranges=qDockRanges(id,part);
+  const overlaps=ranges.some(r=>start<r.end&&end>r.start);
+  if(overlaps)return false;
+  qDockSaveRanges(id,part,ranges.concat({start,end}).sort((a,b)=>a.start-b.start));
+  sel.removeAllRanges();qDockRepaintHighlight(id,part);return true;
+}
+view.addEventListener('pointerdown',e=>{
+  if(e.target.closest('[data-q-dock-highlight]'))e.preventDefault(); // preserve selection until the click handler reads it
+});
+view.addEventListener('click',e=>{
+  const mark=e.target.closest('[data-q-highlight-remove]');
+  if(mark){
+    const [id,part,start,end]=mark.dataset.qHighlightRemove.split('|');
+    qDockSaveRanges(id,part,qDockRanges(id,part).filter(x=>x.start!==Number(start)||x.end!==Number(end)));
+    qDockRepaintHighlight(id,part);return;
+  }
+  const hl=e.target.closest('[data-q-dock-highlight]');
+  if(hl){if(qDockSelectHighlight(hl.dataset.qDockHighlight))toast('Grifo salvo');else toast('Selecione um trecho do enunciado ou texto associado');return;}
+  const focus=e.target.closest('[data-q-dock-focus]');
+  if(focus){
+    app.classList.toggle('study-focus');
+    view.querySelectorAll('[data-q-dock-focus]').forEach(el=>el.setAttribute('aria-pressed',String(app.classList.contains('study-focus'))));
+    return;
+  }
+  const timer=e.target.closest('[data-q-dock-timer]');
+  if(timer){
+    const id=timer.dataset.qDockTimer,old=store.get(qDockClockKey(id))||{},running=Number(old.runningAt)||0;
+    const base=Number(old.elapsed)||0;
+    store.set(qDockClockKey(id),{elapsed:base+(running?Math.max(0,Date.now()-running):0),runningAt:running?null:Date.now()});
+    qDockPaintClock();qDockStartTick();return;
+  }
+  const font=e.target.closest('[data-q-dock-font]');
+  if(font){
+    const next=Math.min(20,Math.max(14,qDockFontSize()+(font.dataset.qDockFont==='up'?1:-1)));
+    store.set(qDockFontKey,next);qDockApplyFont();return;
+  }
+  const sheet=e.target.closest('[data-q-dock-sheet]');
+  if(sheet){
+    const root=sheet.closest('.q-dock'),panel=root?.querySelector('.q-dock-sheet');
+    if(!panel)return;
+    if(!panel.hidden){panel.hidden=true;sheet.setAttribute('aria-expanded','false');return;}
+    const mode=root.dataset.qDockMode;
+    let source=mode==='single'?view.querySelector('#qDrawer .q-grid'):mode==='exam'?
+      view.querySelector('.sim-nav-drawer .s-navigator'):view.querySelector('.s-asidecol .s-navigator');
+    panel.innerHTML=source?source.outerHTML:'<p>Folha de respostas ainda indisponível neste contexto.</p>';
+    panel.hidden=false;sheet.setAttribute('aria-expanded','true');return;
+  }
+});
+view.addEventListener('keydown',e=>{
+  const mark=e.target.closest('[data-q-highlight-remove]');
+  if(mark&&(e.key==='Enter'||e.key===' ')){e.preventDefault();mark.click();}
+  if(e.key==='Escape'&&app.classList.contains('study-focus')){
+    app.classList.remove('study-focus');
+    view.querySelectorAll('[data-q-dock-focus]').forEach(el=>el.setAttribute('aria-pressed','false'));
+  }
+});
+
 function questaoPage(q){
   const all=qObjs(), i=all.findIndex(x=>x.id===q.id), prev=all[i-1], next=all[i+1], r=qSel(q);
   const ch=(t,h)=>t?(h?'<a class="chip" href="'+h+'">'+esc(t)+'</a>':'<span class="chip">'+esc(t)+'</span>'):'';
@@ -5857,7 +6035,7 @@ function questaoPage(q){
     (r?'<button type="button" class="op-btn" data-qo-reset="'+q.id+'">Refazer</button>':'<span></span>')+
     (next?'<a class="op-btn" href="#/questao/'+next.id+'">Próxima <kbd>J</kbd> →</a>':'<span></span>')+
   '</div>'+drawerHtml;
-  const body='<div class="qo">'+qCompactMeta(q,i)+qAssociated(q)+'<p class="sc-stm qo-stm">'+esc(q.enunciado)+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+qPedModule(q,!!r)+qMarks(q)+nav+'</div>';
+  const body='<div class="qo" style="--q-dock-font:'+qDockFontSize()+'px">'+qCompactMeta(q,i)+qDock(q,'single')+qAssociated(q)+'<p class="sc-stm qo-stm" data-q-highlight="'+esc(q.id)+'|statement">'+qHighlightMarkup(q,q.enunciado,'statement')+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+qPedModule(q,!!r)+qMarks(q)+nav+'</div>';
   return opPage({iid:'questao:'+q.id,crumb:[['Espaço','#/espaco'],['Questão','#/tipo/questao'],[qTitle(q),'']],icon:'questao',kind:'Questão',kindHref:'#/tipo/questao',title:qTitle(q),body:body+'<details class="qo-metadata"><summary>Ficha completa da questão</summary>'+opProps(props,'questao:'+q.id)+'</details>'+qRelated(q,all)});
 }
 function discPage(en){
@@ -5963,8 +6141,8 @@ function studyError(e,h){studyPage('Questões','Erro ao carregar','<div class="s
 function sQuestionMarkup(q,answer,examMode,pend){
   const id=q.id||'q'+q.n,number=q.user&&!examMode?'Criada por você':'Questão '+q.n;
   const locationLabel=[q.banca||'Banca não informada',q.ano||''].filter(Boolean).join(' · ');
-  return '<div class="s-question" data-qid="'+esc(id)+'"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div><span class="s-eyebrow">'+esc(number)+'</span><strong style="font-size:13px">'+esc(q.materia||'Sem disciplina')+'</strong></div><span style="display:flex;gap:6px;flex-wrap:wrap">'+sBadge(locationLabel)+sBadge(ORIGENS[qOrig(q)]||'Manual')+'</span></div>'+
-   qAssociated(q)+'<div class="question-statement">'+esc(q.enunciado)+'</div><div class="s-choices">'+Object.entries(q.alternativas||{}).map(([k,v])=>
+  return '<div class="s-question" data-qid="'+esc(id)+'" style="--q-dock-font:'+qDockFontSize()+'px"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div><span class="s-eyebrow">'+esc(number)+'</span><strong style="font-size:13px">'+esc(q.materia||'Sem disciplina')+'</strong></div><span style="display:flex;gap:6px;flex-wrap:wrap">'+sBadge(locationLabel)+sBadge(ORIGENS[qOrig(q)]||'Manual')+'</span></div>'+
+   qDock(q,examMode?'exam':'practice')+qAssociated(q)+'<div class="question-statement" data-q-highlight="'+esc(q.id)+'|statement">'+qHighlightMarkup(q,q.enunciado,'statement')+'</div><div class="s-choices">'+Object.entries(q.alternativas||{}).map(([k,v])=>
    '<div class="q-choice-row'+(qIsExcluded(q,k)?' excluded':'')+'">'+qExcludeButton(q,k,!examMode&&!!answer)+
    '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(((!examMode&&answer)||qIsExcluded(q,k))?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
    ((!examMode&&answer)?(k===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(k===answer.selected?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':'')):'')+'</label></div>').join('')+'</div>'+
