@@ -160,7 +160,7 @@
 .qped{margin:20px 0 22px;border:1px solid var(--line);border-radius:10px;background:var(--bg-base);overflow:hidden}
 .qped-tabrow{display:flex;align-items:center;border-bottom:1px solid var(--line);min-width:0;gap:4px}
 .qped-tabs{display:flex;gap:3px;min-width:0;flex:1;overflow-x:auto;padding:5px 7px}
-.qped-tabs [role=tab]{border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font-size:11.5px;font-weight:550;padding:10px 9px;cursor:pointer;white-space:nowrap}
+.qped-tabs [role=tab]{display:inline-flex;align-items:center;gap:5px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font-size:11.5px;font-weight:550;padding:10px 9px;cursor:pointer;white-space:nowrap}
 .qped-tabs [role=tab]:hover{background:var(--hover);color:var(--text)}
 .qped-tabs [aria-selected=true]{color:var(--text);border-bottom-color:var(--text)}
 .qped-tabs [role=tab]:focus-visible,.qped-close:focus-visible,.qped-format button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
@@ -184,6 +184,7 @@
 .qped-format{display:flex;gap:3px;flex-wrap:wrap}
 .qped-format button{min-width:30px;height:30px;padding:4px;border:1px solid var(--line);border-radius:7px;color:var(--text);background:var(--side);cursor:pointer;font-size:11px}
 .qped-note-editor textarea{background:var(--side);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:11px;font:inherit;min-height:100px;resize:vertical}
+.qped-preview{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--side);min-height:32px;overflow-wrap:anywhere;font-size:12px}.qped-preview p{margin:0 0 6px}.qped-preview p:last-child{margin-bottom:0}.qped-preview mark{background:var(--active);color:var(--text)}
 .qped-note-actions{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap}
 .qped-note-actions span{font-size:11px;color:var(--muted)}
 .qped-note-actions button{border:1px solid var(--line);border-radius:8px;background:var(--text);color:var(--bg-base);padding:8px 12px;cursor:pointer;font-size:12px}
@@ -5713,6 +5714,26 @@ function qCompactMeta(q,i){
 const PED_TABS=[['gabarito','Gabarito Comentado'],['estatisticas','Estatísticas'],['cadernos','Cadernos'],
   ['anotacoes','Anotações'],['fontes','Fontes & Edital']];
 const qPedKey=id=>'question-pedagogy:'+space+':'+id;
+
+const PED_ICONS={
+  gabarito:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7a3 3 0 0 1 3 3v12H7a3 3 0 0 0-3 2zM20 5h-3a3 3 0 0 0-3 3v12h3a3 3 0 0 1 3 2z"/></svg>',
+  estatisticas:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 2v10l8 6A10 10 0 1 0 12 2zM14 2a10 10 0 0 1 8 14l-8-6z"/></svg>',
+  cadernos:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>',
+  anotacoes:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 20 4.5-1 11-11-3.5-3.5-11 11zM14 6l3.5 3.5"/></svg>',
+  fontes:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2.5-2.5a5 5 0 0 0-7.1-7.1L11 5M14 11a5 5 0 0 0-7.1 0L4.4 13.5a5 5 0 0 0 7.1 7.1L13 19"/></svg>'
+};
+function qPedPreview(text){
+  const inline=line=>esc(line).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/==([^=\n]+)==/g,'<mark>$1</mark>')
+    .replace(/&lt;u&gt;(.+?)&lt;\/u&gt;/g,'<u>$1</u>')
+    .replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  const raw=String(text||''),lines=raw.split(/\r?\n/);
+  if(!raw.trim())return '<p class="qped-empty">Prévia da anotação</p>';
+  return lines.map(line=>/^\s*[-*]\s+/.test(line)?'<p>• '+inline(line.replace(/^\s*[-*]\s+/,''))+'</p>':
+    /^\s*\d+\.\s+/.test(line)?'<p>'+inline(line)+'</p>':
+    line.trim()?'<p>'+inline(line)+'</p>':'<p>&nbsp;</p>').join('');
+}
+
 function qPedStats(q){
   const records=histAll().filter(h=>h.q===q.id&&/^[A-E]$/.test(h.a||'')).sort((a,b)=>b.t-a.t);
   const total=records.length,correct=records.filter(h=>h.ok).length,pct=total?Math.round(correct/total*100):0;
@@ -5750,7 +5771,7 @@ function qPedModule(q,answered=false){
     '<button type="button" data-qped-format="'+kind+'" aria-label="'+title+'" title="'+title+'">'+text+'</button>').join('');
   const note='<div class="qped-note-editor"><div class="qped-format" role="toolbar" aria-label="Formatação da anotação">'+toolbar+'</div>'+
     '<textarea data-qnote="'+esc(id)+'" rows="6" aria-label="Anotação privada da questão">'+esc(notes.note||'')+'</textarea>'+
-    '<div class="qped-note-actions"><span>Texto formatado com Markdown básico.</span><button type="button" data-qped-save="'+esc(id)+'">Salvar nota</button></div></div>';
+    '<div class="qped-preview" data-qped-preview aria-label="Prévia da anotação">'+qPedPreview(notes.note||'')+'</div>'+'<div class="qped-note-actions"><span>Texto formatado com Markdown básico.</span><button type="button" data-qped-save="'+esc(id)+'">Salvar nota</button></div></div>';
   const sources='<div class="qped-sources">'+
     (q.doc?'<a href="#'+esc(q.doc)+'">Caderno oficial de questões (PDF)</a>':'')+
     (answered&&qOrig(q)==='oficial'?'<a href="#gabarito">Gabarito oficial em PDF</a>':'')+
@@ -5760,7 +5781,7 @@ function qPedModule(q,answered=false){
   const panels={gabarito:answer,estatisticas:qPedStats(q),cadernos:nbMembership(q),anotacoes:note,fontes:sources};
   const tabHtml=PED_TABS.map(([key,label])=>'<button type="button" role="tab" id="qped-tab-'+esc(id)+'-'+key+
     '" aria-controls="qped-panel-'+esc(id)+'-'+key+'" data-qped-tab="'+esc(id)+'|'+key+'" aria-selected="'+(active===key)+
-    '" tabindex="'+(active?active===key:key==='gabarito'?'0':'-1')+'">'+label+'</button>').join('');
+    '" tabindex="'+(active?active===key:key==='gabarito'?'0':'-1')+'">'+PED_ICONS[key]+label+'</button>').join('');
   return '<section class="qped" data-qped="'+esc(id)+'"><div class="qped-tabrow">'+
     '<div class="qped-tabs" role="tablist" aria-label="Ferramentas pedagógicas da questão">'+tabHtml+'</div>'+
     '<button type="button" class="qped-close" data-qped-close="'+esc(id)+'" aria-label="Fechar painel pedagógico"'+(!active?' hidden':'')+'>×</button></div>'+
@@ -5803,6 +5824,7 @@ view.addEventListener('click',e=>{
     if(area){qSetFlag(save.dataset.qpedSave,{note:area.value});toast('Anotação salva');}
   }
 });
+view.addEventListener('input',e=>{const area=e.target.closest('[data-qnote]');if(!area)return;const preview=area.closest('.qped-note-editor')?.querySelector('[data-qped-preview]');if(preview)preview.innerHTML=qPedPreview(area.value);});
 view.addEventListener('keydown',e=>{
   const tab=e.target.closest('[data-qped-tab]');if(!tab)return;
   const root=tab.closest('.qped'),tabs=[...root.querySelectorAll('[data-qped-tab]')],i=tabs.indexOf(tab);
