@@ -27,7 +27,7 @@ try{
       const content=await home.innerText();
       assert.doesNotMatch(content,/1\.248|84%|🎉|🔥|🎯/);
       const rect=await home.boundingBox();
-      assert.ok(rect&&rect.left>=-2&&rect.x+rect.width<=width+2,'Home should fit viewport '+width+': '+JSON.stringify(rect));
+      assert.ok(rect&&rect.x>=-2&&rect.x+rect.width<=width+2,'Home should fit viewport '+width+': '+JSON.stringify(rect));
       assert.equal(await page.locator('.dash-actions a[href="#/simulado"]').count(),1);
       const firstCount=await page.locator('.eh-head-stats .eh-metric').first().locator('strong').innerText();
       assert.ok(Number(firstCount)>0,'question count must be the loaded question bank count, not a hardcoded fallback');
