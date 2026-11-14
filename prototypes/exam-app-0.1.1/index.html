@@ -5540,7 +5540,7 @@ function showObjs(h0,seq){
     title=PROPS[k].n+': '+v; meta=list.length+' objeto'+(list.length===1?'':'s')+' · '+sp.name;
     html=opValorPage(k,v,list);
   } else {
-    title=sp.name; meta='Espaço · '+(mine.length+entsAll().length+70+uqAll().length+simsAll().length)+' objetos';
+    title=sp.name; meta='Espaço · '+(mine.length+entsAll().filter(x=>x.sp===space).length+(space==='dataprev'&&questionBank?questionBank.questoes.length:0)+uqAll().filter(x=>x.conc===space).length+simsAll().length)+' objetos';
     html=opEspacoPage(sp,mine);
   }
   blank(title,''); document.title=title+' · '+sp.name; $('docMeta').textContent=meta;
