@@ -212,7 +212,8 @@
 .q-highlight{background:color-mix(in srgb,#ffd94c 66%,transparent);color:inherit;border-radius:2px;cursor:pointer}
 .q-highlight:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 :is(.qo,.s-question) .qo-stm,:is(.qo,.s-question) .question-statement,
-:is(.qo,.s-question) .sc-alt,:is(.qo,.s-question) .s-option{
+:is(.qo,.s-question) .sc-alt,:is(.qo,.s-question) .s-option,
+:is(.qo,.s-question) .q-associated-body{
  font-size:var(--q-dock-font,16px);line-height:1.7}
 #app.study-focus .side,#app.study-focus #wsTabs,#app.study-focus #rpanel{display:none!important}
 #app.study-focus .main{width:100%;max-width:none;flex:1}
@@ -5914,6 +5915,7 @@ const QD_FOCUS='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stro
 const QD_SHEET='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>';
 function qDock(q,mode='single'){
   const id=String(q.id||('q'+q.n)),clock=qDockClock(id),font=qDockFontSize();
+  if(clock.running)qDockStartTick();
   return '<section class="q-dock" data-q-dock="'+esc(id)+'" data-q-dock-mode="'+mode+'" aria-label="Ferramentas de resolução">'+
     '<div class="q-dock-tools" role="toolbar" aria-label="Ferramentas de estudo">'+
     '<button type="button" data-q-dock-highlight="'+esc(id)+'" title="Grifar seleção do enunciado ou texto associado" aria-label="Grifar texto selecionado">'+QD_HIGHLIGHT+'</button>'+
@@ -6009,7 +6011,6 @@ view.addEventListener('keydown',e=>{
     view.querySelectorAll('[data-q-dock-focus]').forEach(el=>el.setAttribute('aria-pressed','false'));
   }
 });
-new MutationObserver(()=>{if(view.querySelector('.q-dock')){qDockApplyFont();qDockPaintClock();}}).observe(view,{subtree:true,childList:true});
 
 function questaoPage(q){
   const all=qObjs(), i=all.findIndex(x=>x.id===q.id), prev=all[i-1], next=all[i+1], r=qSel(q);
@@ -6032,7 +6033,7 @@ function questaoPage(q){
     (r?'<button type="button" class="op-btn" data-qo-reset="'+q.id+'">Refazer</button>':'<span></span>')+
     (next?'<a class="op-btn" href="#/questao/'+next.id+'">Próxima <kbd>J</kbd> →</a>':'<span></span>')+
   '</div>'+drawerHtml;
-  const body='<div class="qo">'+qCompactMeta(q,i)+qDock(q,'single')+qAssociated(q)+'<p class="sc-stm qo-stm" data-q-highlight="'+esc(q.id)+'|statement">'+qHighlightMarkup(q,q.enunciado,'statement')+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+qPedModule(q,!!r)+qMarks(q)+nav+'</div>';
+  const body='<div class="qo" style="--q-dock-font:'+qDockFontSize()+'px">'+qCompactMeta(q,i)+qDock(q,'single')+qAssociated(q)+'<p class="sc-stm qo-stm" data-q-highlight="'+esc(q.id)+'|statement">'+qHighlightMarkup(q,q.enunciado,'statement')+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+qPedModule(q,!!r)+qMarks(q)+nav+'</div>';
   return opPage({iid:'questao:'+q.id,crumb:[['Espaço','#/espaco'],['Questão','#/tipo/questao'],[qTitle(q),'']],icon:'questao',kind:'Questão',kindHref:'#/tipo/questao',title:qTitle(q),body:body+'<details class="qo-metadata"><summary>Ficha completa da questão</summary>'+opProps(props,'questao:'+q.id)+'</details>'+qRelated(q,all)});
 }
 function discPage(en){
@@ -6138,7 +6139,7 @@ function studyError(e,h){studyPage('Questões','Erro ao carregar','<div class="s
 function sQuestionMarkup(q,answer,examMode,pend){
   const id=q.id||'q'+q.n,number=q.user&&!examMode?'Criada por você':'Questão '+q.n;
   const locationLabel=[q.banca||'Banca não informada',q.ano||''].filter(Boolean).join(' · ');
-  return '<div class="s-question" data-qid="'+esc(id)+'"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div><span class="s-eyebrow">'+esc(number)+'</span><strong style="font-size:13px">'+esc(q.materia||'Sem disciplina')+'</strong></div><span style="display:flex;gap:6px;flex-wrap:wrap">'+sBadge(locationLabel)+sBadge(ORIGENS[qOrig(q)]||'Manual')+'</span></div>'+
+  return '<div class="s-question" data-qid="'+esc(id)+'" style="--q-dock-font:'+qDockFontSize()+'px"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div><span class="s-eyebrow">'+esc(number)+'</span><strong style="font-size:13px">'+esc(q.materia||'Sem disciplina')+'</strong></div><span style="display:flex;gap:6px;flex-wrap:wrap">'+sBadge(locationLabel)+sBadge(ORIGENS[qOrig(q)]||'Manual')+'</span></div>'+
    qDock(q,examMode?'exam':'practice')+qAssociated(q)+'<div class="question-statement" data-q-highlight="'+esc(q.id)+'|statement">'+qHighlightMarkup(q,q.enunciado,'statement')+'</div><div class="s-choices">'+Object.entries(q.alternativas||{}).map(([k,v])=>
    '<div class="q-choice-row'+(qIsExcluded(q,k)?' excluded':'')+'">'+qExcludeButton(q,k,!examMode&&!!answer)+
    '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(((!examMode&&answer)||qIsExcluded(q,k))?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
