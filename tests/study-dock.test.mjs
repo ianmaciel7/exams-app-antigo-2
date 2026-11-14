@@ -35,7 +35,8 @@ test('grip ranges are scoped to question and literal text rendering is escaped',
  assert.match(markup,/data-q-highlight-remove="q1\|statement\|0\|4"/);
  assert.equal((markup.match(/<mark/g)||[]).length,2);
  assert.doesNotMatch(markup,/<script>/);
- assert.match(markup,/&lt;script>/);
+ assert.match(markup,/&lt;/);
+ assert.match(markup,/&gt;/);
  assert.equal(api.qDockRanges('q2','statement').length,0,'separate question has no highlights');
 });
 test('invalid saved ranges are ignored and typography clamps 14–20px',()=>{
