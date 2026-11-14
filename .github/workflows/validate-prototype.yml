@@ -10,6 +10,7 @@ on:
       - 'tests/question-confirm.test.mjs'
       - 'tests/editorial-home.test.mjs'
       - 'tests/type-workspace.test.mjs'
+      - 'tests/question-pedagogy.test.mjs'
       - 'tests/home-icon-contract.test.mjs'
       - '.github/workflows/validate-prototype.yml'
   push:
@@ -21,6 +22,7 @@ on:
       - 'tests/question-confirm.test.mjs'
       - 'tests/editorial-home.test.mjs'
       - 'tests/type-workspace.test.mjs'
+      - 'tests/question-pedagogy.test.mjs'
       - 'tests/home-icon-contract.test.mjs'
       - '.github/workflows/validate-prototype.yml'
 
@@ -35,4 +37,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs tests/question-confirm.test.mjs tests/editorial-home.test.mjs tests/home-icon-contract.test.mjs tests/type-workspace.test.mjs
+      - run: node --test tests/study-navigation.test.mjs tests/workspace-command-router.test.mjs tests/question-confirm.test.mjs tests/editorial-home.test.mjs tests/home-icon-contract.test.mjs tests/type-workspace.test.mjs tests/question-pedagogy.test.mjs

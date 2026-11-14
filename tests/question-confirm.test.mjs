@@ -57,7 +57,7 @@ test('associated text only hides a separate provided source; never hides the que
   assert.ok(from>=0&&to>from);
   const {runInNewContext}=requireWorkaround();
   const storeData=new Map(),env={
-    space:'test',store:{get:k=>storeData.get(k),set:(k,v)=>storeData.set(k,v)},
+    space:'test',view:{addEventListener(){}},store:{get:k=>storeData.get(k),set:(k,v)=>storeData.set(k,v)},
     esc:x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
     discEnt:()=>null,edicaoById:()=>null,valHref:()=>null
   };
