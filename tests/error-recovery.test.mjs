@@ -15,7 +15,7 @@ function harness(log=[]){
  const env={store:{get:k=>values.get(k),set:(k,v)=>{values.set(k,v);writes.push([k,v]);}},
    qPend:pending,uqAns:()=>({}),saveUqAns:()=>{},getAnswers:()=>answers,
    saveAnswers:a=>{values.set('answers',a);writes.push(['answers',a]);},
-   esc:t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
+   esc:t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),
    qTitle:q=>'Questão '+q.id,Date,Number,Math,Array,Set,Map,String
  };
  return {api:runInNewContext(code,env),values,answers,pending,writes};
