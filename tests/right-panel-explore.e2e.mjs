@@ -44,6 +44,12 @@ try{
   assert.ok((await page.locator('#rpBody .rp-relevant').count())>0,'relevant content section');
   await snap('issue54_relevant_chromium.png');
   report.checks.push('contextual relevant section after navigating entity');
+  await page.locator('#rpAdd').click();
+  await page.locator('.ws-menu [role="menuitem"]').filter({hasText:'Gráfico'}).click();
+  const globalLink=page.locator('#rpBody .rp-acts a[href="#/grafico"]');
+  await globalLink.waitFor({timeout:10000});
+  assert.match(await globalLink.innerText(),/Ver grafo global/,'scope of graph CTA must be truthful');
+  report.checks.push('graph CTA explicitly announces global graph scope');
   assert.deepEqual(report.errors,[],'no uncaught page JavaScript errors');
 }finally{
   await browser.close();
