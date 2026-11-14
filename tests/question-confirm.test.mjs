@@ -1,3 +1,4 @@
+import { runInNewContext as vmRunInNewContext } from 'node:vm';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -29,3 +30,49 @@ test('reset clears pending state and correct answer only appears after grading',
   assert.match(html,/if\(qr\)\{ const q=qObjs\(\)\.find\(x=>x\.id===qr\.dataset\.qoReset\); if\(q\)\{ delete qPend\[q\.id\];/);
   assert.match(page,/r\?'<p class="s-note">/);
 });
+
+
+test('all three routes render a separate, keyboard-accessible scissor control',()=>{
+  assert.match(html,/function qExcludeButton\(q,l,locked=false\)/);
+  assert.match(html,/aria-pressed="'\+off\+'" aria-label="/);
+  assert.match(html,/qExcludeButton\(q,l,!!r\)/);
+  assert.match(html,/qExcludeButton\(q,k,!examMode&&!!answer\)/);
+  assert.match(html,/q-choice-row/);
+  assert.match(html,/\.q-choice-row\.excluded>/);
+  assert.match(html,/const saved=new Set\(qExcluded\(q\)\)/);
+  assert.match(html,/store\.set\(qExcludedKey\(q\),\[\.\.\.saved\]\)/);
+  assert.match(html,/if\(off&&qPend\[id\]===letter\)/);
+  assert.match(html,/if\(off&&option\?\.checked\)/);
+});
+test('single-question object puts metadata after content and uses a two-line context header',()=>{
+  assert.match(page,/qCompactMeta\(q,i\)/);
+  assert.match(page,/qAssociated\(q\)/);
+  assert.match(page,/class="qo-metadata"/);
+  assert.match(page,/title:qTitle\(q\),body:body/);
+  assert.doesNotMatch(page,/title:qTitle\(q\),props,body/);
+  assert.match(html,/class="q-compact-secondary"/);
+});
+test('associated text only hides a separate provided source; never hides the question itself',()=>{
+  const from=html.indexOf('const qExcludedKey='),to=html.indexOf('function questaoPage(q){',from);
+  assert.ok(from>=0&&to>from);
+  const {runInNewContext}=requireWorkaround();
+  const storeData=new Map(),env={
+    space:'test',store:{get:k=>storeData.get(k),set:(k,v)=>storeData.set(k,v)},
+    esc:x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
+    discEnt:()=>null,edicaoById:()=>null,valHref:()=>null
+  };
+  const api=runInNewContext(html.slice(from,to)+'\n({qExcluded,qExcludedKey,qIsExcluded,qExcludeButton,qAssociated,qCompactMeta})',env);
+  const question={id:'q91',n:91,enunciado:'Marque a alternativa correta.',textoAssociado:'Apoio separado & literal.',alternativas:{A:'Resposta'}};
+  assert.equal(api.qExcluded(question).length,0);
+  assert.match(api.qAssociated(question),/<details class="q-associated">/);
+  assert.match(api.qAssociated(question),/Apoio separado &amp; literal/);
+  assert.equal(api.qAssociated({...question,textoAssociado:''}),'');
+  assert.match(api.qCompactMeta(question,0),/q-compact-primary/);
+  storeData.set(api.qExcludedKey(question),['A']);
+  assert.equal(api.qIsExcluded(question,'A'),true);
+  assert.match(api.qExcludeButton(question,'A'),/aria-pressed="true"/);
+});
+function requireWorkaround(){
+  // Dynamically importing is unnecessary; use the same node:vm import as the other tests.
+  return {runInNewContext:vmRunInNewContext};
+}

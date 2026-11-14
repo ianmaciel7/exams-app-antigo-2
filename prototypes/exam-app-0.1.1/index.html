@@ -129,6 +129,32 @@
 }
 </style>
 <style>
+
+/* Accessible question elimination / compact exam heading (#71). */
+.q-choice-row{display:flex;align-items:stretch;gap:6px;min-width:0}
+.q-choice-row>.sc-alt,.q-choice-row>.s-option{flex:1;min-width:0}
+.q-choice-row.excluded>.sc-alt,.q-choice-row.excluded>.s-option{text-decoration:line-through;opacity:.45}
+.q-choice-row.excluded>.s-option input,.q-choice-row.excluded>.sc-alt{cursor:not-allowed}
+.q-exclude{display:grid;place-items:center;align-self:center;flex:none;width:34px;height:36px;border:1px solid transparent;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer}
+.q-exclude[aria-pressed="true"]{background:var(--hover);border-color:var(--line);color:var(--text)}
+.q-exclude:disabled{opacity:.3;cursor:default}
+.q-exclude:not(:disabled):hover,.q-exclude:focus-visible{border-color:var(--accent);color:var(--text);background:var(--hover)}
+.q-exclude:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+.q-choice-row.excluded>.sc-alt:disabled{pointer-events:none}
+.q-compact-head{display:grid;gap:7px;margin:4px 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:12px}
+.q-compact-primary,.q-compact-secondary{display:flex;flex-wrap:wrap;align-items:center;gap:9px;min-width:0}
+.q-compact-num{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--side);border-radius:8px;padding:4px 7px;flex:none;font-variant-numeric:tabular-nums}
+.q-compact-crumb{display:flex;align-items:center;gap:7px;min-width:0;flex-wrap:wrap}
+.q-compact-secondary{color:var(--muted)}
+.q-compact-head a{color:var(--text);text-decoration:none}
+.q-compact-head a:hover{text-decoration:underline}
+.qo-metadata{margin-top:14px;border-top:1px solid var(--line);padding:12px 0}
+.qo-metadata>summary,.q-associated>summary{cursor:pointer;color:var(--muted);font-size:12px;font-weight:600;padding:6px 0}
+.q-associated{margin:6px 0 16px;padding:8px 14px;border-left:2px solid var(--accent);background:var(--side);border-radius:0 8px 8px 0}
+.q-associated-body{white-space:pre-wrap;line-height:1.65;font-size:13px}
+:is(.study-shell,.practice-list) .s-choices{display:flex;flex-direction:column;gap:7px}
+@media (pointer:coarse){.q-exclude{width:44px;min-height:44px}}
+
 /* Shared question-card presentation in global and contextual practice views (#136). */
 .practice-list .s-question *{box-sizing:border-box}
 .practice-list .s-question .s-eyebrow{display:block;margin:0 0 6px}
@@ -4563,7 +4589,7 @@ function scBody(k,id,tab,kind,title){
     const sel='<div class="sc-filters"><select id="scMat" aria-label="Disciplina"><option value="todas">Todas as disciplinas</option>'+examNames.map(n=>'<option value="'+esc(n)+'"'+(scMat===n?' selected':'')+'>'+esc(n)+'</option>').join('')+'</select><select id="scSit" aria-label="Situação">'+[['todas','Todas'],['pendentes','Não resolvidas'],['erradas','Que errei']].map(o=>'<option value="'+o[0]+'"'+(scSit===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select><span class="sc-count" role="status">'+(list.length+listU.length)+((list.length+listU.length)===1?' questão':' questões')+'</span>'+ACT+'</div>';
     const rows=list.map(q=>{const r=a[q.n],st=r?(r.correct?UIICON.check:UIICON.close):'';const t=String(q.enunciado).replace(/\s+/g,' ').trim();return '<a class="op-row sc-q" href="#/questao/q'+q.n+'"><span class="sc-n">'+q.n+'</span><span class="op-rt"><b>'+esc(t.length>110?t.slice(0,110)+'…':t)+'</b><small>'+esc(q.materia)+' · FGV 2026</small></span><span class="sc-st '+(r?(r.correct?'ok':'bad'):'')+'">'+(st||'')+'</span><span class="op-go" aria-hidden="true">›</span></a>';}).join('');
     const urows=listU.map(q=>{const r=ua[q.id],t=q.enunciado.replace(/\s+/g,' ').trim();return '<a class="op-row sc-q" href="#/questao/'+q.id+'"><span class="sc-n">+</span><span class="op-rt"><b>'+esc(t.length>110?t.slice(0,110)+'…':t)+'</b><small>'+esc(q.materia||'Sem disciplina')+' · criada por você</small></span><span class="sc-st '+(r?(r===q.gabarito?'ok':'bad'):'')+'">'+(r?(r===q.gabarito?UIICON.check:UIICON.close):'')+'</span><span class="op-go" aria-hidden="true">›</span></a>';}).join('');
-    const form=scForm?'<form class="sc-form" onsubmit="return false"><label>Disciplina<input id="uqMat" list="uqMats" placeholder="Ex.: Língua Portuguesa"><datalist id="uqMats">'+examNames.map(n=>'<option value="'+esc(n)+'">').join('')+'</datalist></label><label>Origem<select id="uqOri"><option value="manual">Manual (criada por mim)</option><option value="ia">Gerada por IA</option><option value="oficial">Oficial (de uma prova)</option></select></label><label>Assunto<input id="uqAssunto" placeholder="Ex.: Interpretação de texto"></label><label>Modalidade<select id="uqModal"><option value="Múltipla escolha">Múltipla escolha</option><option value="Certo/Errado">Certo/Errado</option></select></label><label>Dificuldade<select id="uqDif"><option value="">Não classificada</option><option>Fácil</option><option>Média</option><option>Difícil</option></select></label><label>Enunciado<textarea id="uqEnu" rows="4"></textarea></label>'+['A','B','C','D','E'].map(l=>'<label class="sc-lt">'+l+'<input id="uqAlt'+l+'" placeholder="Alternativa '+l+(l<'C'?'':' (opcional)')+'"></label>').join('')+'<label>Gabarito<select id="uqGab">'+['A','B','C','D','E'].map(l=>'<option>'+l+'</option>').join('')+'</select></label><div class="op-actions"><button type="button" class="op-btn pri" data-uq-save>Salvar questão</button><button type="button" class="op-btn" data-uq-cancel>Cancelar</button></div></form>':'';
+    const form=scForm?'<form class="sc-form" onsubmit="return false"><label>Disciplina<input id="uqMat" list="uqMats" placeholder="Ex.: Língua Portuguesa"><datalist id="uqMats">'+examNames.map(n=>'<option value="'+esc(n)+'">').join('')+'</datalist></label><label>Origem<select id="uqOri"><option value="manual">Manual (criada por mim)</option><option value="ia">Gerada por IA</option><option value="oficial">Oficial (de uma prova)</option></select></label><label>Assunto<input id="uqAssunto" placeholder="Ex.: Interpretação de texto"></label><label>Modalidade<select id="uqModal"><option value="Múltipla escolha">Múltipla escolha</option><option value="Certo/Errado">Certo/Errado</option></select></label><label>Dificuldade<select id="uqDif"><option value="">Não classificada</option><option>Fácil</option><option>Média</option><option>Difícil</option></select></label><label>Enunciado<textarea id="uqEnu" rows="4"></textarea></label><label>Texto associado (opcional)<textarea id="uqBase" rows="3" placeholder="Texto-base de apoio separado do comando da questão"></textarea></label>'+['A','B','C','D','E'].map(l=>'<label class="sc-lt">'+l+'<input id="uqAlt'+l+'" placeholder="Alternativa '+l+(l<'C'?'':' (opcional)')+'"></label>').join('')+'<label>Gabarito<select id="uqGab">'+['A','B','C','D','E'].map(l=>'<option>'+l+'</option>').join('')+'</select></label><div class="op-actions"><button type="button" class="op-btn pri" data-uq-save>Salvar questão</button><button type="button" class="op-btn" data-uq-cancel>Cancelar</button></div></form>':'';
     return scSec(form+qfHTML(k+':'+id,qObjs().filter(q=>q.user?q[UQF[k]]===id:scHas(k,id)),{extra:ACT,renderList:renderPracticeList}));
   }
   const uaS=uqAns(),total=bank.length+mine.length,er=bank.filter(x=>a[x.n]&&!a[x.n].correct).length+mine.filter(q=>uaS[q.id]&&uaS[q.id]!==q.gabarito).length,pe=bank.filter(x=>!a[x.n]).length+mine.filter(q=>!uaS[q.id]).length;
@@ -4940,7 +4966,7 @@ const origTag=q=>'<span class="s-badge" title="Origem da questão">'+ORIGENS[qOr
 const qTitle=q=>q.user?(String(q.enunciado).replace(/\s+/g,' ').trim().slice(0,70)||'Questão'):'Questão '+q.n;
 function qObjs(){
   const b=(questionBank&&questionBank.questoes)||[];
-  const bank=b.map((q,i)=>({id:'q'+q.n,type:'questao',bi:i,n:q.n,materia:q.materia,assunto:q.assunto||'',modalidade:q.modalidade||'',dificuldade:q.dificuldade||'',anulada:!!q.anulada,desatualizada:!!q.desatualizada,comentario:q.comentario||'',enunciado:q.enunciado,alternativas:q.alternativas,gabarito:q.gabarito,banca:'FGV',orgao:'Dataprev',ano:'2026',ed:'dataprev-2026',cg:'dataprev-2026-ti-dev',conc:'dataprev',origem:'oficial',doc:'tipo1'}));
+  const bank=b.map((q,i)=>({id:'q'+q.n,type:'questao',bi:i,n:q.n,materia:q.materia,assunto:q.assunto||'',modalidade:q.modalidade||'',dificuldade:q.dificuldade||'',anulada:!!q.anulada,desatualizada:!!q.desatualizada,comentario:q.comentario||'',textoAssociado:q.textoAssociado||q.textoBase||q.textoApoio||q.texto_associado||'',enunciado:q.enunciado,alternativas:q.alternativas,gabarito:q.gabarito,banca:'FGV',orgao:'Dataprev',ano:'2026',ed:'dataprev-2026',cg:'dataprev-2026-ti-dev',conc:'dataprev',origem:'oficial',doc:'tipo1'}));
   const u=uqAll().map(q=>{const e=q.ed&&edicaoById(q.ed);return Object.assign({type:'questao',user:true,banca:e?edBancaName(e):'',orgao:e?edOrgaoName(e):'',ano:e&&e.ano?String(e.ano):''},q);});
   return bank.concat(u);
 }
@@ -5335,13 +5361,49 @@ function qMarks(q){ const f=qFlag(q.id); return '<div class="qm-marks"><button t
 function qNote(q){ const f=qFlag(q.id); return opSec('Anotações','<textarea class="qm-note" data-qnote="'+q.id+'" rows="3" aria-label="Anotações da questão" placeholder="Escreva um lembrete, o motivo do erro ou a regra que cai nessa questão.">'+esc(f.note||'')+'</textarea>'); }
 function qRelated(q,all){ if(!q.materia) return ''; const rel=all.filter(x=>x.id!==q.id&&x.materia===q.materia); if(!rel.length) return ''; const pend=rel.filter(x=>!qSel(x)); const pick=pend.concat(rel.filter(x=>qSel(x))); const top=pick.slice(0,5), rest=pick.slice(5); return opSec('Questões relacionadas','<div class="op-list">'+qRows(top)+'</div>'+(rest.length?'<details class="qrel-more"><summary class="op-btn">Ver todas ('+rel.length+')</summary><div class="op-list">'+qRows(rest)+'</div></details>':''),{count:rel.length}); }
 const qmCss=document.createElement('style'); qmCss.textContent='.qm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}.qm-c{background:var(--bg,var(--panel,#fff));padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}.qm-c small{font-size:12px;color:var(--muted)}.qm-c b{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.qm-ok{color:var(--study-good)}.qm-bad{color:#b4412f}.qm-rev{color:var(--accent,inherit)}.qm-marks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.qm-note{width:100%;box-sizing:border-box;font:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text);resize:vertical}'; document.head.appendChild(qmCss);
+
+/* Question examination tools (#71): scoped persistence and consistent semantics in single, practice and exam. */
+const qExcludedKey=q=>'question-exclusions:'+space+':'+String(q.id||('q'+q.n));
+const qExcluded=q=>{
+  const saved=store.get(qExcludedKey(q));
+  return Array.isArray(saved)?saved.filter(x=>/^[A-E]$/.test(x)):[];
+};
+const qIsExcluded=(q,l)=>qExcluded(q).includes(l);
+const Q_SCISSORS='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="m8.1 8.1 12 12M14 10l6-6M8.1 15.9l4-4"/></svg>';
+function qExcludeButton(q,l,locked=false){
+  const off=qIsExcluded(q,l),id=String(q.id||('q'+q.n));
+  return '<button type="button" class="q-exclude" data-q-exclude="'+esc(id)+'|'+esc(l)+
+    '" aria-pressed="'+off+'" aria-label="'+(off?'Restaurar':'Descartar')+' alternativa '+esc(l)+
+    '" title="'+(off?'Restaurar':'Descartar')+' alternativa '+esc(l)+'"'+(locked?' disabled':'')+'>'+Q_SCISSORS+'</button>';
+}
+function qAssociated(q){
+  const base=q.textoAssociado||q.textoBase||q.textoApoio||q.texto_associado||q.texto_base||'';
+  if(!String(base).trim())return '';
+  return '<details class="q-associated"><summary>Texto associado</summary><div class="q-associated-body">'+esc(base)+'</div></details>';
+}
+function qCompactMeta(q,i){
+  const link=(value,href)=>value?(href?'<a href="'+esc(href)+'">'+esc(value)+'</a>':'<span>'+esc(value)+'</span>'):'';
+  const disc=q.materia&&(discEnt(q.materia)||{}).id;
+  const n=q.user?'+'+String(q.id||''):String(q.n||i+1);
+  const desc=[link(q.materia,disc?'#/disciplina/'+disc:''),q.assunto?'<span>'+esc(q.assunto)+'</span>':''].filter(Boolean).join('<span aria-hidden="true">›</span>');
+  const meta=[q.ano?'<span>Ano: '+link(q.ano,'#/valor/ano/'+q.ano)+'</span>':'',
+    q.banca?'<span>Banca: '+link(q.banca,valHref('banca',q.banca))+'</span>':'',
+    q.orgao?'<span>Órgão: '+link(q.orgao,valHref('orgao',q.orgao))+'</span>':'',
+    q.ed&&edicaoById(q.ed)?'<span>Prova: '+link(edicaoById(q.ed).t,'#/edicao/'+q.ed)+'</span>':''
+  ].filter(Boolean);
+  return '<div class="q-compact-head"><div class="q-compact-primary"><span class="q-compact-num">'+(i+1)+
+    ' <a href="#/questao/'+esc(q.id)+'">Q'+esc(n)+'</a></span><nav class="q-compact-crumb" aria-label="Assunto da questão">'+
+    (desc||'<span>Sem disciplina cadastrada</span>')+'</nav></div><div class="q-compact-secondary">'+
+    meta.join(' <span aria-hidden="true">·</span> ')+'</div></div>';
+}
+
 function questaoPage(q){
   const all=qObjs(), i=all.findIndex(x=>x.id===q.id), prev=all[i-1], next=all[i+1], r=qSel(q);
   const ch=(t,h)=>t?(h?'<a class="chip" href="'+h+'">'+esc(t)+'</a>':'<span class="chip">'+esc(t)+'</span>'):'';
   const de=discEnt(q.materia), ed=q.ed&&edicaoById(q.ed), cg=q.cg&&cargoById(q.cg), cc=q.conc&&concursoById(q.conc);
   const props=[['Tipo',ch('Questão','#/tipo/questao')],['Disciplina',q.materia?ch(q.materia,de?'#/disciplina/'+de.id:''):''],['Banca',q.banca?ch(q.banca,valHref('banca',q.banca)):''],['Órgão',q.orgao?ch(q.orgao,valHref('orgao',q.orgao)):''],['Ano',q.ano?ch(q.ano,'#/valor/ano/'+q.ano):''],['Edição',ed?ch(ed.t,'#/edicao/'+ed.id):''],['Cargo',cg?ch(cg.t,'#/cargo/'+cg.id):''],['Concurso',cc?ch(cc.t,'#/concurso/'+cc.id):''],['Origem',ch(ORIGENS[qOrig(q)],'')+(qOrig(q)==='oficial'&&q.doc?' '+ch('Caderno tipo 1 (PDF)','#'+q.doc):'')],['Gabarito oficial',r?opTxt(q.gabarito)+(qOrig(q)==='oficial'?' '+ch('Gabarito (PDF)','#gabarito'):''):opTxt('Liberado depois que você responder')],['Posição',opTxt((i+1)+' de '+all.length)]];
   const selected=!r?(qPend[q.id]||null):null;
-  const alts=Object.entries(q.alternativas).map(([l,v])=>'<button type="button" class="sc-alt'+(r?(l===q.gabarito?' good':(l===r?' bad':'')):(l===selected?' picked':''))+'" data-qo-ans="'+q.id+'|'+l+'" aria-pressed="'+(!r&&l===selected)+'"'+(r?' disabled':'')+'><kbd>'+l+'</kbd><span>'+esc(v)+'</span>'+(r&&l===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(r&&l===r?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':''))+'</button>').join('');
+  const alts=Object.entries(q.alternativas).map(([l,v])=>'<div class="q-choice-row'+(qIsExcluded(q,l)?' excluded':'')+'">'+qExcludeButton(q,l,!!r)+'<button type="button" class="sc-alt'+(r?(l===q.gabarito?' good':(l===r?' bad':'')):(l===selected?' picked':''))+'" data-qo-ans="'+q.id+'|'+l+'" aria-pressed="'+(!r&&l===selected)+'"'+((r||qIsExcluded(q,l))?' disabled':'')+'><kbd>'+l+'</kbd><span>'+esc(v)+'</span>'+(r&&l===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(r&&l===r?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':''))+'</button></div>').join('');
   const ansMap=getAnswers();
   const qGridCells=all.map((item,idx)=>{
     const an=ansMap[item.n];
@@ -5356,9 +5418,9 @@ function questaoPage(q){
     (r?'<button type="button" class="op-btn" data-qo-reset="'+q.id+'">Refazer</button>':'<span></span>')+
     (next?'<a class="op-btn" href="#/questao/'+next.id+'">Próxima <kbd>J</kbd> →</a>':'<span></span>')+
   '</div>'+drawerHtml;
-  const body='<div class="qo"><p class="sc-stm qo-stm">'+esc(q.enunciado)+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+(r?aiRow(q.id):'')+qMarks(q)+nav+'</div>';
+  const body='<div class="qo">'+qCompactMeta(q,i)+qAssociated(q)+'<p class="sc-stm qo-stm">'+esc(q.enunciado)+'</p><div class="qo-alts">'+alts+'</div>'+(!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+q.id+'"'+(!selected?' disabled':'')+'>Responder</button><span class="qo-hint">Selecione uma alternativa e confirme sua resposta.</span></div>':'')+(r?'<p class="s-note">'+(r===q.gabarito?UIICON.check+' Resposta correta!':UIICON.close+' Resposta incorreta. Gabarito oficial: '+q.gabarito+'.')+'</p>':'')+(r?aiRow(q.id):'')+qMarks(q)+nav+'</div>';
   const hh=histAll().filter(h=>h.q===q.id).sort((a,b)=>b.t-a.t); const hist=opSec('Respostas',hh.length?'<div class="op-list">'+hh.map(h=>{const rid=h.id||('r'+h.t.toString(36)+'-'+h.q);return '<a class="op-row" href="#/resposta/'+rid+'"><span class="op-rt"><b>'+fmtDT(h.t)+'</b><small>'+esc(h.src)+(h.a?' · marcou '+esc(h.a):'')+'</small></span><span class="sc-st '+(h.ok?'ok':'bad')+'">'+(h.ok?UIICON.check+' Acertou':UIICON.close+' Errou')+'</span><span class="op-go" aria-hidden="true">›</span></a>';}).join('')+'</div>':opEmpty('Você ainda não respondeu esta questão.'),{count:hh.length});
-  return opPage({iid:'questao:'+q.id,crumb:[['Espaço','#/espaco'],['Questão','#/tipo/questao'],[qTitle(q),'']],icon:'questao',kind:'Questão',kindHref:'#/tipo/questao',title:qTitle(q),props,body:body+qMetrics(q,hh,r)+opSec('Cadernos',nbMembership(q))+hist+qNote(q)+qRelated(q,all)});
+  return opPage({iid:'questao:'+q.id,crumb:[['Espaço','#/espaco'],['Questão','#/tipo/questao'],[qTitle(q),'']],icon:'questao',kind:'Questão',kindHref:'#/tipo/questao',title:qTitle(q),body:body+'<details class="qo-metadata"><summary>Ficha completa da questão</summary>'+opProps(props,'questao:'+q.id)+'</details>'+qMetrics(q,hh,r)+opSec('Cadernos',nbMembership(q))+hist+qNote(q)+qRelated(q,all)});
 }
 function discPage(en){
   const all=qObjs().filter(q=>q.materia&&findEnt('disciplina',q.materia)&&findEnt('disciplina',q.materia).id===en.id);
@@ -5464,9 +5526,10 @@ function sQuestionMarkup(q,answer,examMode,pend){
   const id=q.id||'q'+q.n,number=q.user&&!examMode?'Criada por você':'Questão '+q.n;
   const locationLabel=[q.banca||'Banca não informada',q.ano||''].filter(Boolean).join(' · ');
   return '<div class="s-question" data-qid="'+esc(id)+'"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div><span class="s-eyebrow">'+esc(number)+'</span><strong style="font-size:13px">'+esc(q.materia||'Sem disciplina')+'</strong></div><span style="display:flex;gap:6px;flex-wrap:wrap">'+sBadge(locationLabel)+sBadge(ORIGENS[qOrig(q)]||'Manual')+'</span></div>'+
-   '<div class="question-statement">'+esc(q.enunciado)+'</div><div class="s-choices">'+Object.entries(q.alternativas||{}).map(([k,v])=>
-   '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(!examMode&&answer?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
-   ((!examMode&&answer)?(k===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(k===answer.selected?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':'')):'')+'</label>').join('')+'</div>'+
+   qAssociated(q)+'<div class="question-statement">'+esc(q.enunciado)+'</div><div class="s-choices">'+Object.entries(q.alternativas||{}).map(([k,v])=>
+   '<div class="q-choice-row'+(qIsExcluded(q,k)?' excluded':'')+'">'+qExcludeButton(q,k,!examMode&&!!answer)+
+   '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(((!examMode&&answer)||qIsExcluded(q,k))?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
+   ((!examMode&&answer)?(k===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(k===answer.selected?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':'')):'')+'</label></div>').join('')+'</div>'+
    (!examMode&&answer?'<div class="s-feedback '+(answer.correct?'good':'bad')+'"><strong>'+(answer.correct?'Resposta correta.':'Resposta incorreta.')+'</strong> Gabarito: '+esc(q.gabarito)+'.</div>':'')+
    (!examMode&&answer?aiRow(id):'')+(examMode?'':nbMembership(q))+'</div>';
 }
@@ -5632,6 +5695,33 @@ view.addEventListener('keydown',e=>{
   }
 });
 view.addEventListener('click',e=>{
+ const cut=e.target.closest('[data-q-exclude]');
+ if(cut){
+   const [id,letter]=cut.dataset.qExclude.split('|'),q=qObjs().find(x=>x.id===id);
+   if(!q||cut.disabled||!/^[A-E]$/.test(letter))return;
+   const saved=new Set(qExcluded(q));
+   if(saved.has(letter))saved.delete(letter);else saved.add(letter);
+   store.set(qExcludedKey(q),[...saved]);
+   const row=cut.closest('.q-choice-row'),off=saved.has(letter);
+   row?.classList.toggle('excluded',off);
+   cut.setAttribute('aria-pressed',String(off));
+   cut.setAttribute('aria-label',(off?'Restaurar':'Descartar')+' alternativa '+letter);
+   cut.title=(off?'Restaurar':'Descartar')+' alternativa '+letter;
+   const option=row?.querySelector('[data-qo-ans],input[type=radio]');
+   if(option)option.disabled=off;
+   if(off&&qPend[id]===letter){
+     delete qPend[id];
+     row?.closest('.qo')?.querySelectorAll('[data-qo-ans]').forEach(b=>{b.classList.remove('picked');b.setAttribute('aria-pressed','false');});
+     const submit=row?.closest('.qo')?.querySelector('[data-qo-submit]');if(submit)submit.disabled=true;
+   }
+   if(off&&option?.checked){
+     option.checked=false;
+     if(location.hash==='#/simulado/exec'){
+       const current=getExam();if(current&&!current.finished){delete current.answers[q.n];saveExam(current);}
+     }else delete qPend[id];
+   }
+   return;
+ }
  const rr0=()=>showObjs(location.hash.slice(1)); const rrKeep=()=>{ const y=view.scrollTop; rr0(); view.scrollTop=y; };
  const qa=e.target.closest('[data-qo-ans]'); if(qa){ const [id,l]=qa.dataset.qoAns.split('|'); const q=qObjs().find(x=>x.id===id); if(q&&!qSel(q)){
    qPend[id]=l; const card=qa.closest('.qo');
@@ -5647,7 +5737,7 @@ view.addEventListener('click',e=>{
  if(e.target.closest('[data-uq-cancel]')){ scForm=false; rr(); return; }
  if(e.target.closest('[data-uq-save]')){ const v=id=>(view.querySelector('#'+id)||{}).value||''; const enu=v('uqEnu').trim(); const alts={}; ['A','B','C','D','E'].forEach(l=>{const t=v('uqAlt'+l).trim(); if(t)alts[l]=t;}); const gab=v('uqGab');
    if(!enu){toast('Escreva o enunciado');return;} if(Object.keys(alts).length<2){toast('Informe ao menos duas alternativas');return;} if(!alts[gab]){toast('O gabarito precisa ser uma alternativa preenchida');return;}
-   const q={id:'u'+Date.now().toString(36),materia:v('uqMat').trim(),assunto:v('uqAssunto').trim(),modalidade:v('uqModal')||'Múltipla escolha',dificuldade:v('uqDif')||'',enunciado:enu,alternativas:alts,gabarito:gab,origem:v('uqOri')||'manual',criada:Date.now()};
+   const q={id:'u'+Date.now().toString(36),materia:v('uqMat').trim(),assunto:v('uqAssunto').trim(),modalidade:v('uqModal')||'Múltipla escolha',dificuldade:v('uqDif')||'',textoAssociado:v('uqBase').trim(),enunciado:enu,alternativas:alts,gabarito:gab,origem:v('uqOri')||'manual',criada:Date.now()};
    if(hh[1]==='concurso')q.conc=hh[2]; else if(hh[1]==='edicao'){q.ed=hh[2];q.conc=(edicaoById(hh[2])||{}).conc;} else {const g=cargoById(hh[2]);q.cg=hh[2];q.ed=g&&g.edicao;q.conc=g&&(edicaoById(g.edicao)||{}).conc;}
    if(q.materia) ensureEnt('disciplina',q.materia); saveUq(uqAll().concat(q)); scForm=false; toast('Questão salva'); rr(); return; }
  const ua=e.target.closest('[data-uq-ans]'); if(ua){ e.preventDefault(); const [id,l]=ua.dataset.uqAns.split('|'); const m=uqAns(); m[id]=l; saveUqAns(m); rr(); return; }
