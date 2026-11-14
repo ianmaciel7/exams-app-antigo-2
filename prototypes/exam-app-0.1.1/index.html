@@ -1188,6 +1188,78 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .sim-disc-item .s-progress{width:100%!important}
 .sim-disc-item:last-child{border-bottom:0}
 
+
+/* Editorial study dashboard (#58/#69): content-first, grounded, no emoji and responsive. */
+.home-editorial{width:min(100%,1180px);margin:0 auto;padding:24px 22px 70px;color:var(--text);box-sizing:border-box}
+.home-editorial *{box-sizing:border-box}
+.eh-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.09em;color:var(--muted);text-transform:uppercase}
+.eh-head{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;margin-bottom:22px;flex-wrap:wrap}
+.eh-head h1{font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-.025em;font-weight:680;margin:7px 0 13px}
+.eh-head-tags{display:flex;flex-wrap:wrap;gap:6px}
+.eh-tag{display:inline-flex;align-items:center;padding:4px 9px;border-radius:100px;border:1px solid var(--line);font-size:11px;color:var(--muted)}
+.eh-tag:is(a){text-decoration:none}.eh-tag:is(a):hover{color:var(--text)}
+.eh-head-stats{display:flex;align-items:flex-start;gap:22px;flex-wrap:wrap}
+.eh-metric{display:flex;flex-direction:column;gap:4px;min-width:65px}
+.eh-metric>strong{font-size:24px;font-weight:650;line-height:1.1;font-variant-numeric:tabular-nums}
+.eh-metric>span{font-size:11px;color:var(--muted)}.eh-metric>small{color:var(--muted);font-size:10.5px}
+.eh-intro{margin-bottom:20px}.eh-intro .eh-eyebrow{margin-bottom:8px}
+.eh-intro .dash-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:640px}
+.eh-intro .dash-act-btn{padding:11px 12px;min-width:0}.eh-intro .dash-act-ico{width:30px;height:30px}
+.eh-top-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr);gap:16px;align-items:stretch}
+.eh-card{padding:23px;border:1px solid var(--line);border-radius:12px;background:var(--bg-base);min-width:0}
+.eh-card h2{font-size:20px;line-height:1.32;font-weight:650;margin:18px 0 12px;overflow-wrap:anywhere}
+.eh-card p{font-size:12.5px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+.eh-action{background:var(--side)}.eh-actions{display:flex;gap:8px;flex-wrap:wrap}
+.eh-button{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg-base);color:var(--text);font-size:12px;font-weight:600;text-decoration:none;text-align:center}
+.eh-button:hover{background:var(--hover)}.eh-button.primary{background:var(--text);color:var(--bg-base);border-color:var(--text)}
+.eh-button.primary:hover{opacity:.87}
+.eh-review{display:flex;flex-direction:column}.eh-review-number{font-size:38px;line-height:1.2;margin-top:14px;font-variant-numeric:tabular-nums}
+.eh-review a,.eh-pace a,.eh-topic a,.eh-ray-row a{color:var(--text);font-size:12px}
+.eh-review small{font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:auto;padding-top:10px}
+.eh-pace{margin-top:16px;padding:20px 23px}
+.eh-pace-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
+.eh-pace-head strong{font-size:29px;font-variant-numeric:tabular-nums}
+.eh-pace-head span{font-size:13px;color:var(--muted)}
+.eh-pace-head a{margin-left:auto}
+.eh-rates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:1px solid var(--line);padding-top:12px}
+.eh-rates .eh-metric strong{font-size:20px}
+.eh-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:20px;align-items:end;min-height:84px}
+.eh-week-day{height:80px;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;gap:5px;color:var(--muted);font-size:10px;text-align:center;font-variant-numeric:tabular-nums;min-width:0}
+.eh-week-day.today{color:var(--text);font-weight:700}
+.eh-week-bar{min-height:4px;width:min(36px,95%);background:var(--muted);opacity:.35;border-radius:4px 4px 0 0}
+.eh-week-day.today .eh-week-bar{background:var(--text);opacity:1}
+.eh-week-day strong{font-weight:500}
+.eh-content,.eh-recents{margin-top:32px}
+.eh-section-head h2{font-size:20px;font-weight:650;line-height:1.3;margin:5px 0 16px}
+.eh-tabs{display:flex;align-items:center;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);padding-bottom:6px}
+.eh-tabs button{white-space:nowrap;border:0;border-radius:7px;background:transparent;color:var(--muted);padding:8px 12px;font-size:12px;font-weight:550;cursor:pointer}
+.eh-tabs button:hover{background:var(--hover);color:var(--text)}
+.eh-tabs button[aria-selected=true]{background:var(--active);color:var(--text)}
+.eh-tabs button:focus-visible,.eh-disc-list button:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+.home-editorial [hidden]{display:none!important}
+.eh-master-detail{display:grid;grid-template-columns:minmax(180px,35%) minmax(0,1fr);gap:20px;padding-top:17px}
+.eh-disc-list{display:flex;flex-direction:column;gap:3px}
+.eh-disc-list button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;border:0;border-radius:7px;background:transparent;padding:10px;text-align:left;cursor:pointer;color:var(--text);font-size:12px}
+.eh-disc-list button[aria-pressed=true]{background:var(--active)}
+.eh-disc-list small,.eh-detail small,.eh-ray-row small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.eh-detail{min-width:0}
+.eh-detail h3{font-size:15px;margin:2px 0 12px}
+.eh-topic,.eh-ray-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}
+.eh-topic b,.eh-ray-row strong{font-weight:600;overflow-wrap:anywhere}
+.eh-topic-status{border-radius:100px;border:1px solid var(--line);padding:4px 8px;color:var(--muted);font-size:10px}
+.eh-tab-cta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding-top:18px}.eh-tab-cta p{flex:1 1 100%;color:var(--muted);font-size:12px}
+.eh-errors,.eh-recent-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px;margin-top:12px}
+.eh-errors>a,.eh-recent{display:flex;align-items:center;gap:10px;min-width:0;padding:12px;border:1px solid var(--line);border-radius:9px;text-decoration:none;color:var(--text);font-size:12px}
+.eh-errors>a:hover,.eh-recent:hover{background:var(--hover)}
+.eh-errors>a>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.eh-errors>a>small,.eh-recent small{font-size:11px;color:var(--muted);display:block}
+.eh-object-ico{width:32px;height:32px;display:grid;place-items:center;flex:none;border-radius:8px;background:var(--hover)}
+.eh-object-ico svg{width:18px;height:18px}
+.eh-empty{color:var(--muted);font-size:12px;padding:18px 0}
+@media(max-width:900px){.eh-top-grid{grid-template-columns:1fr}.eh-master-detail{grid-template-columns:1fr}.eh-disc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.eh-head-stats{width:100%}}
+@media(max-width:520px){.home-editorial{padding:18px 14px 56px}.eh-card{padding:17px}.eh-head-stats{gap:12px}.eh-metric>strong{font-size:21px}.eh-intro .dash-actions{grid-template-columns:1fr}.eh-disc-list{grid-template-columns:1fr}.eh-week{gap:3px}.eh-week-day{font-size:9px}.eh-pace-head a{margin-left:0;width:100%}}
+@media(prefers-reduced-motion:reduce){.eh-button,.eh-tabs button{transition:none}}
+
 /* ---- Home Study Dashboard (#/espaco) ---- */
 .dash-wrap{display:flex;flex-direction:column;gap:24px;margin-bottom:32px}
 .dash-hero{background:linear-gradient(135deg, color-mix(in srgb, var(--hover) 70%, var(--bg)), var(--side));border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.03)}
@@ -4685,170 +4757,150 @@ function opValorPage(k,v,list){
   const rows=list.map(d=>({icon:d.type,title:d.t,meta:TYPES[d.type].n,href:objHref(d)}));
   return opPage({crumb:[['Espaço','#/espaco'],[PROPS[k].n,'']],icon:'espaco',kind:PROPS[k].n,title:v,body:opSec('Objetos',rows.length?opList(rows):opEmpty('Nenhum objeto com este valor.'),{count:list.length})});
 }
+/* Editorial, live-data Space Home (#58/#69). No fabricated study counts or exam attributes. */
 function opEspacoPage(sp,mine){
-  const lastD=docsOf(space).find(x=>x.id===store.get('last:'+space))||docsOf(space)[0], lp=lastD&&store.get('pos:'+lastD.id);
-  const st=studyStats(), H=histAll(), sims=simsAll();
-  const tot=(questionBank&&questionBank.length)||70;
-  const covPct=pctOf(st.done,tot);
-  const todayStr=new Date().toDateString();
-  const qToday=H.filter(h=>new Date(h.t).toDateString()===todayStr).length;
-  const ok=H.filter(h=>h.ok).length;
-  const globalAcc=H.length?pctOf(ok,H.length):0;
-  const weekStart=new Date(); weekStart.setHours(0,0,0,0); weekStart.setDate(weekStart.getDate()-6);
-  const prevWeekStart=new Date(weekStart); prevWeekStart.setDate(prevWeekStart.getDate()-7);
-  const recent=H.filter(h=>new Date(h.t)>=weekStart), previous=H.filter(h=>new Date(h.t)>=prevWeekStart&&new Date(h.t)<weekStart);
-  const recentAcc=recent.length?pctOf(recent.filter(h=>h.ok).length,recent.length):null;
-  const previousAcc=previous.length?pctOf(previous.filter(h=>h.ok).length,previous.length):null;
-  const weekDelta=recentAcc!==null&&previousAcc!==null?recentAcc-previousAcc:null;
-  const activeDays=new Set(H.map(h=>{const d=new Date(h.t);return Number.isNaN(+d)?null:new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();}).filter(Number.isFinite));
-  let streak=0, cursor=new Date(); cursor.setHours(0,0,0,0);
-  if(!activeDays.has(cursor.getTime())) cursor.setDate(cursor.getDate()-1);
-  while(activeDays.has(cursor.getTime())){streak++;cursor.setDate(cursor.getDate()-1);}
-  const examDate=edicoesOf(space).map(examDateISO).find(Boolean), examDays=examDate?daysTo(examDate):null;
-
-  // Disciplinas criticas para radar
-  const ms={};
-  H.forEach(h=>{ if(h.m){ const b=ms[h.m]||(ms[h.m]={m:h.m,t:0,o:0}); b.t++; if(h.ok)b.o++; } });
-  const weak=Object.values(ms).sort((a,b)=>a.o/a.t-b.o/b.t||b.t-a.t).slice(0,3);
-
-  // 1. Hero do Concurso Ativo
-  const heroHtml=space==='dataprev'?`
-  <div class="dash-hero">
-    <div class="dash-hero-top">
-      <div>
-        <span class="dash-hero-badge">${UIICON.target} Meta Principal · Certame Ativo</span>
-        <h2 class="dash-hero-title">Dataprev 2026 · Analista de Tecnologia da Informação</h2>
-        <p class="dash-hero-sub">FGV · Perfil: Engenharia de Software · 80 vagas imediatas + 371 CR · R$ 10.685,44</p>
-      </div>
-      <div class="dash-hero-timer">
-        <span>${UIICON.calendar} ${examDays===null?'Data da prova não cadastrada':examDays>=0?'Prova em '+examDays+' dias':'Prova realizada'}</span>
-        ${examDate?'<small style="opacity:.7">• '+brDate(examDate)+'</small>':''}
-      </div>
-    </div>
-    <div class="dash-hero-cov">
-      <div class="dash-cov-head">
-        <span><b>Termômetro do Edital</b> · Cobertura programática</span>
-        <span><b>${st.done}</b> de ${tot} questões resolvidas (${covPct}%)</span>
-      </div>
-      <div class="dash-cov-bar"><div class="dash-cov-fill" style="width:${covPct}%"></div></div>
-    </div>
-  </div>`:`<div class="dash-hero"><div class="dash-hero-top"><div><span class="dash-hero-badge">${UIICON.book} Espaço de estudo</span><h2 class="dash-hero-title">${esc(sp.name)}</h2><p class="dash-hero-sub">Comece resolvendo questões avulsas ou configure um simulado. Organize seus materiais neste espaço.</p></div></div></div>`;
-
-  // 2. Retomada Rápida (Immediate Action Hero)
-  const resumeHtml=`
-  <div class="dash-resume-grid">
-    <div class="dash-resume-card">
-      <div class="dash-resume-head">
-        <span class="dash-resume-icon">${UIICON.book}</span>
-        <div class="dash-resume-txt">
-          <b>${lastD?esc(lastD.t):'Nenhum documento adicionado'}</b>
-          <small>${lp&&lp.total?'Página '+lp.page+' de '+lp.total:'Pronto para retomar leitura'}</small>
-        </div>
-      </div>
-      <a class="dash-cta pri" href="${lastD?'#'+lastD.id:'#/espaco'}">${lastD?'Continuar leitura':'Ver espaço'} ›</a>
-    </div>
-    <div class="dash-resume-card">
-      <div class="dash-resume-head">
-        <span class="dash-resume-icon">${UIICON.target}</span>
-        <div class="dash-resume-txt">
-          <b>${st.done?'Sessão de Questões':'Banco de Questões'}</b>
-          <small>${st.done?st.done+' respondidas · '+pctOf(st.correct,st.done)+'% de acertos':'Inicie sua resolução focada'}</small>
-        </div>
-      </div>
-      <a class="dash-cta sec" href="#/questoes">${st.done?'Continuar prática':'Resolver questões'} ›</a>
-    </div>
-  </div>`;
-
-  // 3. KPIs de Estudo
-  const kpisHtml=`
-  <div class="dash-kpis">
-    <div class="dash-kpi">
-      <span class="dash-kpi-lbl">Taxa de Acertos</span>
-      <span class="dash-kpi-val">${globalAcc}%</span>
-      <span class="dash-kpi-sub">${weekDelta===null?(H.length?H.length+' respostas no total':'Responda questões para medir seu desempenho'):(weekDelta>0?'↑ +':weekDelta<0?'↓ ':'')+Math.abs(weekDelta)+' pontos vs. semana anterior'}</span>
-    </div>
-    <div class="dash-kpi">
-      <span class="dash-kpi-lbl">Questões Hoje</span>
-      <span class="dash-kpi-val">${qToday}</span>
-      <span class="dash-kpi-sub">${qToday===1?'questão respondida hoje':'questões respondidas hoje'}</span>
-    </div>
-    <div class="dash-kpi">
-      <span class="dash-kpi-lbl">Sequência (Streak)</span>
-      <span class="dash-kpi-val">${streak?streak+' dias':'0 dias'}</span>
-      <span class="dash-kpi-sub">${streak?'dias consecutivos com respostas':'Responda uma questão para iniciar'}</span>
-    </div>
-    <div class="dash-kpi">
-      <span class="dash-kpi-lbl">Simulados Feitos</span>
-      <span class="dash-kpi-val">${sims.length}</span>
-      <span class="dash-kpi-sub">${sims.length?'Última nota: '+sims[sims.length-1].score+' pts':'Nenhum simulado ainda'}</span>
-    </div>
-  </div>`;
-
-  // 4. Hub de Ações Rápidas
-  const actionsHtml=`
-  <div class="dash-actions">
-    <a class="dash-act-btn" href="#/simulado">
-      <span class="dash-act-ico">${UIICON.timer}</span>
-      <div class="dash-act-txt">
-        <b>Configurar simulado</b>
-        <small>Definir questões e ordem</small>
-      </div>
-    </a>
-    <a class="dash-act-btn" href="#/questoes/erradas">
-      <span class="dash-act-ico">${UIICON.alert}</span>
-      <div class="dash-act-txt">
-        <b>Caderno de Erros</b>
-        <small>${st.wrong||0} questões para fixar</small>
-      </div>
-    </a>
-    <a class="dash-act-btn" href="#/grafico">
-      <span class="dash-act-ico">${UIICON.nodes}</span>
-      <div class="dash-act-txt">
-        <b>Grafo de Conhecimento</b>
-        <small>Conexões orgânicas</small>
-      </div>
-    </a>
-    <button type="button" class="dash-act-btn" data-addv>
-      <span class="dash-act-ico">${UIICON.filePlus}</span>
-      <div class="dash-act-txt">
-        <b>Importar PDF/Edital</b>
-        <small>Adicionar material novo</small>
-      </div>
-    </button>
-  </div>`;
-
-  // 5. Radar de disciplinas deficitarias
-  const radarHtml=weak.length?`
-  <div class="dash-radar-list">
-    ${weak.map(x=>{
-      const e=findEnt('disciplina',x.m);
-      const pct=pctOf(x.o,x.t);
-      return `<div class="dash-radar-row">
-        <span><b>${esc(x.m)}</b> <small style="color:var(--muted)">(${pct}% acertos em ${x.t} tentativas)</small></span>
-        <a class="dash-radar-btn" href="${e?'#/disciplina/'+e.id :'#/questoes'}">Treinar Matéria ›</a>
-      </div>`;
-    }).join('')}
-  </div>`:'<p class="op-empty">Resolva questões por disciplina para calcular seu radar de matérias deficitárias.</p>';
-
-  // Secoes secundarias
-  const tipos=Object.keys(TYPES).filter(t=>!hiddenTypes.has(t)).map(t=>{ const n=t==='questao'?(70+uqAll().length):t==='caderno'?nbAll().filter(b=>b.sp===space).length:t==='simulado'?simsAll().length:t==='resposta'?histAll().length:isEntT(t)?entsOf(t).length:mine.filter(d=>isA(d.type,t)).length; return {icon:t,iid:'tipo:'+t,title:TYPES[t].n,meta:n+(n===1?' objeto':' objetos')+(TYPES[t].parent?' · estende '+TYPES[TYPES[t].parent].n:''),href:'#/tipo/'+t}; });
-  const rows=mine.map(d=>({icon:d.type,title:d.t,meta:[TYPES[d.type].n,d.cat].filter(Boolean).join(' · '),href:objHref(d)}));
-
-  const studyEntries='<div class="dash-actions"><a class="dash-act-btn" href="#/questoes"><span class="dash-act-ico">'+UIICON.book+'</span><div class="dash-act-txt"><b>Resolver questões</b><small>Prática individual com correção imediata</small></div></a><a class="dash-act-btn" href="#/simulado"><span class="dash-act-ico">'+UIICON.timer+'</span><div class="dash-act-txt"><b>Fazer simulado</b><small>Configure a prova e acompanhe seu resultado</small></div></a></div>';
-  const fullBody=`
-  <div class="dash-wrap">
-    ${opSec('Como quer estudar agora?', studyEntries)}
-    ${heroHtml}
-    ${opSec('Continuar de Onde Parou', resumeHtml)}
-    ${opSec('Métricas Chave de Estudo', kpisHtml)}
-    ${opSec('Ações Rápidas de Estudo', actionsHtml)}
-    ${weak.length?opSec('Radar de Disciplinas Críticas (Prioridade de Treino)', radarHtml):''}
-    ${opSec('Documentos do Concurso e Provas', rows.length?opList(rows):opEmpty('Nenhum documento cadastrado neste espaço.'),{count:rows.length})}
-    ${opSec('Tipos de Objeto do Espaço', opList(tipos), {count:tipos.length})}
-  </div>`;
-
-  return opPage({icon:'espaco',kind:'Espaço',title:sp.name,wide:true,body:fullBody});
+  const allDocs=docsOf(space),lastId=store.get('last:'+space),lastDoc=allDocs.find(d=>d.id===lastId)||null;
+  const questions=qObjs().filter(q=>q.user?(
+    q.conc===space||(q.ed&&edicoesOf(space).some(e=>e.id===q.ed))||(q.cg&&cargosOf(q.ed).some(c=>c.id===q.cg))
+  ):space==='dataprev');
+  const history=histAll().filter(h=>h.conc===space||(space==='dataprev'&&!h.conc));
+  const answered=questions.filter(q=>!!qSel(q)),right=answered.filter(q=>qSel(q)===q.gabarito);
+  const errors=answered.filter(q=>qSel(q)!==q.gabarito);
+  const now=new Date(),startToday=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+  const startWeek=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  startWeek.setDate(startWeek.getDate()-(startWeek.getDay()+6)%7);
+  const weekDays=Array.from({length:7},(_,i)=>{
+    const d=new Date(startWeek);d.setDate(startWeek.getDate()+i);
+    const dayStart=d.getTime(),dayEnd=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1).getTime();
+    return {day:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'][i],count:history.filter(h=>h.t>=dayStart&&h.t<dayEnd).length,
+      today:dayStart===startToday,future:dayStart>startToday};
+  });
+  const todayHistory=history.filter(h=>h.t>=startToday), todayCorrect=todayHistory.filter(h=>h.ok);
+  const todayCount=todayHistory.length, todayAcc=todayCount?Math.round(todayCorrect.length/todayCount*100):null;
+  const concurso=CONCURSOS.find(c=>c.sp===space&&!isT(c.id));
+  const ed=edicoesOf(space)[0],examDate=ed&&examDateISO(ed),due=examDate?daysTo(examDate):null;
+  const source=questions.length?'#/questoes':lastDoc?'#'+lastDoc.id:'#/tipo/questao';
+  const priority=errors[0],priorityTopic=priority?(priority.assunto||priority.materia):questions[0]?(questions[0].assunto||questions[0].materia):'Seu próximo estudo';
+  const actionHref=errors.length?'#/questoes/erradas':source;
+  const card=(value,label,details)=>'<div class="eh-metric"><strong>'+value+'</strong><span>'+label+'</span>'+(details?'<small>'+details+'</small>':'')+'</div>';
+  const status=due===null?'Data da prova não cadastrada':due>=0?'Prova em '+due+' dias':'Prova realizada';
+  const docsCount=allDocs.length,qCount=questions.length;
+  const mainMeta=(concurso?'<span class="eh-tag">'+esc(concurso.t)+'</span>':'')+
+    (ed?'<a class="eh-tag" href="#/edicao/'+esc(ed.id)+'">'+esc(ed.t)+'</a>':'')+
+    (ed?'<span class="eh-tag">'+esc(status)+'</span>':'');
+  const action='<section class="eh-card eh-action"><div class="eh-eyebrow">HOJE · PRÓXIMA AÇÃO</div>'+
+    '<h2>'+esc(priorityTopic||'Comece pelos fundamentos')+'</h2>'+
+    '<p>'+ (errors.length?'Você tem '+errors.length+' questão'+(errors.length===1?'':'ões')+' com erro ainda registrado. Continue a prática para reforçar o conteúdo.':
+      answered.length?'Continue o ritmo: '+answered.length+' questões já respondidas neste espaço.':
+      'Organize seu estudo começando pelas questões disponíveis ou pelos materiais cadastrados.')+'</p>'+
+    '<div class="eh-actions"><a class="eh-button primary" href="'+actionHref+'">Continuar estudando</a>'+
+    '<a class="eh-button" href="'+(ed?'#/edicao/'+esc(ed.id):'#/tipo/edicao')+'">Mapa do edital</a></div></section>';
+  const review='<section class="eh-card eh-review"><div class="eh-eyebrow">REVISÃO DE HOJE</div>'+
+    '<strong class="eh-review-number">'+errors.length+'</strong>'+
+    '<p>'+ (errors.length?'questões com erro registrado para retomar':'nenhuma questão incorreta pendente')+'</p>'+
+    '<a href="#/questoes/erradas">Abrir caderno de erros</a><small>Contagem baseada no resultado mais recente de cada questão; não é uma fila SRS agendada.</small></section>';
+  const week='<div class="eh-week" aria-label="Questões respondidas na semana">'+weekDays.map(x=>
+    '<div class="eh-week-day'+(x.today?' today':'')+'" title="'+x.count+' respostas '+x.day+'"><div class="eh-week-bar" style="height:'+
+    (x.count?Math.min(100,18+x.count*14):4)+'%" aria-hidden="true"></div><span>'+x.day+(x.today?' · Hoje':'')+'</span>'+
+    '<strong>'+x.count+'</strong></div>').join('')+'</div>';
+  const pace='<section class="eh-card eh-pace"><div class="eh-eyebrow">SEU RITMO HOJE</div>'+
+    '<div class="eh-pace-head"><strong>'+todayCount+'</strong><span>questões respondidas hoje</span><a href="#/questoes">Comece a resolver</a></div>'+
+    '<div class="eh-rates">'+card(todayAcc===null?'—':todayAcc+'%','Taxa de acerto',todayCount?todayCorrect.length+' corretas':'Sem respostas hoje')+
+    card(todayAcc===null?'—':100-todayAcc+'%','Taxa de erro',todayCount?(todayCount-todayCorrect.length)+' incorretas':'Sem respostas hoje')+'</div>'+week+'</section>';
+  const important=Array.from(new Set(questions.map(q=>q.materia||'Sem disciplina cadastrada')));
+  const selected=store.get('eh-disc:'+space);
+  const active=important.includes(selected)?selected:important[0];
+  const subjectMap=new Map(important.map(name=>[name,questions.filter(q=>(q.materia||'Sem disciplina cadastrada')===name)]));
+  const subjectMarkup=list=>{
+    const byTopic=new Map();
+    list.forEach(q=>{const name=q.assunto||'Sem assunto cadastrado';if(!byTopic.has(name))byTopic.set(name,[]);byTopic.get(name).push(q);});
+    return byTopic.size?[...byTopic].map(([name,items])=>{
+      const done=items.filter(q=>qSel(q)),ok=done.filter(q=>qSel(q)===q.gabarito),pct=done.length?Math.round(ok.length/done.length*100):null;
+      return '<div class="eh-topic"><div><b>'+esc(name)+'</b><small>'+done.length+' de '+items.length+
+        ' respondidas'+(pct===null?'':' · '+pct+'% de acerto')+'</small></div>'+
+        '<span class="eh-topic-status">'+(pct!==null&&pct<70?'Recomendado':done.length===items.length?'Praticado':'A estudar')+'</span>'+
+        '<a href="#/questoes">Praticar tópico</a></div>';
+    }).join(''):'<p class="eh-empty">Nenhum assunto neste espaço.</p>';
+  };
+  const disciplines=important.length?'<div class="eh-master-detail"><div class="eh-disc-list" role="group" aria-label="Disciplinas do edital">'+important.map((name,i)=>{
+    const list=subjectMap.get(name),done=list.filter(q=>qSel(q)),current=name===active;
+    return '<button type="button" data-home-disc="'+esc(name)+'" aria-pressed="'+current+'"><span>'+(i+1)+'. '+esc(name)+'</span><small>'+
+      done.length+' / '+list.length+' questões</small></button>';
+  }).join('')+'</div><div class="eh-detail">'+important.map(name=>'<div data-home-disc-pane="'+esc(name)+'"'+(name===active?'':' hidden')+'><h3>'+esc(name)+'</h3>'+subjectMarkup(subjectMap.get(name))+'</div>').join('')+'</div></div>':
+    '<p class="eh-empty">Ainda não há questões ou disciplinas cadastradas neste espaço.</p>';
+  const grouped=new Map();questions.forEach(q=>{const m=q.materia||'Sem disciplina';if(!grouped.has(m))grouped.set(m,[]);grouped.get(m).push(q);});
+  const totalWeight=questions.reduce((n,q)=>n+wOf(q),0);
+  const raio=grouped.size?'<div class="eh-ray">'+[...grouped].map(([name,items])=>{
+    const acc=items.filter(q=>!!qSel(q)),right=acc.filter(q=>qSel(q)===q.gabarito);
+    const weight=items.reduce((n,q)=>n+wOf(q),0);
+    const share=totalWeight?Math.round(weight/totalWeight*100):0;
+    return '<div class="eh-ray-row"><div><strong>'+esc(name)+'</strong><small>'+items.length+' questões · '+share+'% dos pontos catalogados</small></div>'+
+      '<span>'+ (acc.length?Math.round(right.length/acc.length*100)+'% de acerto':'Sem tentativas')+'</span>'+
+      '<a href="#/questoes">Estudar</a></div>';
+  }).join('')+'</div>':'<p class="eh-empty">Sem questões cadastradas para calcular incidência e desempenho.</p>';
+  const wrong=errors.length?'<div class="eh-errors">'+errors.slice(0,25).map(q=>
+    '<a href="#/questao/'+esc(q.id)+'"><span class="eh-object-ico" aria-hidden="true">'+UIICON.book+'</span>'+
+    '<span>'+esc(q.materia||'Questão')+' · '+esc(q.assunto||q.id)+'</span><small>Retomar</small></a>').join('')+'</div>':
+    '<p class="eh-empty">Sem questões incorretas no estado mais recente. Abrir um gabarito não altera a recuperação.</p>';
+  const tabs=[['disciplinas','Disciplinas & Assuntos',disciplines],['caderno','Caderno de Questões',
+    '<div class="eh-tab-cta"><p>'+qCount+' questões cadastradas no espaço, com filtros de prática e cadernos.</p>'+
+    '<a class="eh-button primary" href="#/questoes">Abrir banco de questões</a><a class="eh-button" href="#/cadernos">Meus cadernos</a></div>'],
+    ['raiox','Raio-X da Banca',raio],['erros','Caderno de Erros',wrong]];
+  const selectedTab=store.get('eh-tab:'+space),tabKey=tabs.some(x=>x[0]===selectedTab)?selectedTab:'disciplinas';
+  const content='<section class="eh-content"><div class="eh-section-head"><div class="eh-eyebrow">CONTEÚDO DO SEU EDITAL</div>'+
+    '<h2>Acompanhe por disciplina</h2></div><div class="eh-tabs" role="tablist" aria-label="Conteúdo do seu edital">'+tabs.map(([id,name])=>
+    '<button type="button" role="tab" id="eh-tab-'+id+'" aria-controls="eh-panel-'+id+'" data-home-tab="'+id+
+    '" aria-selected="'+(id===tabKey)+'" tabindex="'+(id===tabKey?'0':'-1')+'">'+name+'</button>').join('')+'</div>'+
+    tabs.map(([id,name,body])=>'<section role="tabpanel" id="eh-panel-'+id+'" aria-labelledby="eh-tab-'+id+
+      '" data-home-panel="'+id+'"'+(id===tabKey?'':' hidden')+'>'+body+'</section>').join('')+'</section>';
+  const recentMap=new Map();
+  history.slice().reverse().forEach(h=>{if(h.q&&!recentMap.has(h.q))recentMap.set(h.q,h);});
+  const recentList=[...recentMap.values()].slice(0,4).map(h=>{
+    const q=questions.find(x=>x.id===h.q),t=q?('Questão '+(q.n||q.id)):h.n;
+    return '<a href="#/questao/'+esc(h.q)+'" class="eh-recent"><span class="eh-object-ico" aria-hidden="true">'+UIICON.book+
+      '</span><span><b>'+esc(t||'Questão')+'</b><small>'+esc(h.m||'Sem disciplina')+' · '+new Date(h.t).toLocaleDateString('pt-BR')+
+      '</small></span></a>';
+  });
+  if(lastDoc)recentList.unshift('<a href="#'+esc(lastDoc.id)+'" class="eh-recent"><span class="eh-object-ico" aria-hidden="true">'+UIICON.filePlus+
+    '</span><span><b>'+esc(lastDoc.t)+'</b><small>Último documento aberto</small></span></a>');
+  const recents='<section class="eh-recents"><div class="eh-section-head"><div class="eh-eyebrow">RETOMAR</div><h2>Objetos recentes</h2></div>'+
+    (recentList.length?'<div class="eh-recent-list">'+recentList.slice(0,5).join('')+'</div>':
+      '<p class="eh-empty">Você ainda não abriu documentos nem respondeu questões neste espaço.</p>')+'</section>';
+  // Preserve the existing visible, tested study entrypoints (#132).
+  const studyEntries='<div class="dash-actions"><a class="dash-act-btn" href="#/questoes"><span class="dash-act-ico">'+UIICON.book+
+    '</span><div class="dash-act-txt"><b>Resolver questões</b><small>Prática individual com correção imediata</small></div></a>'+
+    '<a class="dash-act-btn" href="#/simulado"><span class="dash-act-ico">'+UIICON.timer+
+    '</span><div class="dash-act-txt"><b>Fazer simulado</b><small>Configure a prova e acompanhe seu resultado</small></div></a></div>';
+  return '<main class="home-editorial"><header class="eh-head"><div><div class="eh-eyebrow">VISÃO GERAL DO ESPAÇO</div>'+
+    '<h1>'+esc(sp.name)+'</h1><div class="eh-head-tags">'+mainMeta+'</div></div>'+
+    '<div class="eh-head-stats">'+card(String(qCount),'Questões')+card(String(docsCount),'Documentos')+
+    card(String(errors.length),'Para revisar')+'</div></header>'+
+    '<div class="eh-intro"><div class="eh-eyebrow">Como quer estudar agora?</div>'+studyEntries+'</div>'+
+    '<div class="eh-top-grid">'+action+review+'</div>'+pace+content+recents+'</main>';
 }
+view.addEventListener('click',e=>{
+  const tab=e.target.closest('[data-home-tab]');
+  if(tab){
+    const parent=tab.closest('.eh-content');if(!parent)return;
+    const name=tab.dataset.homeTab;store.set('eh-tab:'+space,name);
+    parent.querySelectorAll('[data-home-tab]').forEach(b=>{const on=b.dataset.homeTab===name;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;});
+    parent.querySelectorAll('[data-home-panel]').forEach(panel=>{panel.hidden=panel.dataset.homePanel!==name;});
+    return;
+  }
+  const disc=e.target.closest('[data-home-disc]');
+  if(disc){
+    const parent=disc.closest('.eh-master-detail');if(!parent)return;
+    const name=disc.dataset.homeDisc;store.set('eh-disc:'+space,name);
+    parent.querySelectorAll('[data-home-disc]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.homeDisc===name)));
+    parent.querySelectorAll('[data-home-disc-pane]').forEach(panel=>{panel.hidden=panel.dataset.homeDiscPane!==name;});
+  }
+});
+view.addEventListener('keydown',e=>{
+  const tab=e.target.closest('[data-home-tab]');if(!tab||!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;
+  const all=[...tab.closest('.eh-tabs').querySelectorAll('[data-home-tab]')],i=all.indexOf(tab);
+  const next=e.key==='Home'?0:e.key==='End'?all.length-1:(i+(e.key==='ArrowRight'?1:-1)+all.length)%all.length;
+  e.preventDefault();all[next].focus();all[next].click();
+});
 
 /* ---- Histórico de respostas, tentativas (Simulado) e Desempenho ---- */
 const histAll=()=>{const v=store.get('hist');return Array.isArray(v)?v:[];};
