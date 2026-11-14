@@ -5885,7 +5885,9 @@ function qHighlightMarkup(q,raw,part='statement'){
   return result+esc(text.slice(cursor));
 }
 function qDockFontSize(){
-  const size=Number(store.get(qDockFontKey));
+  const saved=store.get(qDockFontKey);
+  if(saved===null||saved===undefined||saved==='')return 16;
+  const size=Number(saved);
   return Number.isInteger(size)?Math.min(20,Math.max(14,size)):16;
 }
 function qDockClock(id){
