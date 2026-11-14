@@ -1339,6 +1339,28 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .ws-tablist::-webkit-scrollbar,.rp-tabs::-webkit-scrollbar{display:none}
 .ws-tab{flex:0 1 200px;min-width:96px;height:34px;display:flex;align-items:center;gap:7px;padding:0 5px 0 10px;border:1px solid transparent;border-bottom:0;border-radius:9px 9px 0 0;color:var(--muted);cursor:pointer;margin-bottom:-1px;font-size:13px;position:relative}
 .rp-tabs .ws-tab{flex-basis:150px;min-width:84px}
+
+/* Contextual tab strip: full active title, compact inactive icons, searchable overflow (#55/#66). */
+#rpOverflow[hidden],#rpTabMenu[hidden]{display:none!important}
+.rp-tabs.compact .ws-tab:not(.on){flex:0 0 34px;min-width:34px;max-width:34px;padding:0 8px;justify-content:center}
+.rp-tabs.compact .ws-tab:not(.on) .ws-tt,.rp-tabs.compact .ws-tab:not(.on) .ws-tx{display:none}
+.rp-tabs.compact .ws-tab.on{flex:1 1 130px;min-width:100px}
+.rp-tab-popover{position:absolute;right:42px;top:42px;width:min(270px,calc(100% - 22px));max-height:min(410px,70vh);z-index:35;border:1px solid var(--line);border-radius:10px;background:var(--pop);box-shadow:0 12px 40px rgba(0,0,0,.24);padding:10px;display:flex;flex-direction:column;gap:8px}
+.rp-tab-popover label{font-size:12px;color:var(--muted);font-weight:600}
+.rp-tab-popover input{height:34px;min-width:0;width:100%;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--text);font-size:12px;padding:0 9px}
+.rp-tab-popover input:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+.rp-tab-menu-list{overflow:auto;min-height:0;max-height:290px}
+.rp-tab-menu-item{display:flex;align-items:center;gap:3px;min-width:0}
+.rp-tab-menu-select{flex:1;display:flex;align-items:center;gap:8px;min-width:0;text-align:left;padding:8px;border-radius:7px;font-size:12px}
+.rp-tab-menu-select>span:last-child{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.rp-tab-menu-select:hover,.rp-tab-menu-select[aria-current=true]{background:var(--hover)}
+.rp-tab-menu-icon,.rp-tab-menu-close{width:18px;height:18px;flex:none;display:grid;place-items:center}
+.rp-tab-menu-icon svg,.rp-tab-menu-close svg{width:16px;height:16px}
+.rp-tab-menu-close{border-radius:5px;width:28px;height:28px;color:var(--muted)}
+.rp-tab-menu-close:hover{background:var(--hover);color:var(--text)}
+.rp-tab-menu-item button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+.rp-tab-menu-empty{padding:10px 4px;color:var(--muted);font-size:12px}
+
 .ws-tab:hover{background:var(--hover);color:var(--text)}
 .ws-tab.on{background:var(--bg);border-color:var(--line);color:var(--text);font-weight:500}
 .ws-ti{width:15px;height:15px;display:grid;place-items:center;flex:none;color:var(--muted)}
@@ -1811,9 +1833,14 @@ a.rp-link:hover{background:var(--active)}
     <div class="rp-rz" id="rpRz" role="separator" aria-orientation="vertical" aria-label="Redimensionar painel" tabindex="0"></div>
     <div class="rp-top"><span class="rp-panel-label">PAINEL CONTEXTUAL</span>
       <div class="rp-tabs" id="rpTabs" role="tablist" aria-label="Abas do painel"></div>
+      <button type="button" class="icon-btn" id="rpOverflow" aria-label="Buscar abas do painel" aria-expanded="false" aria-controls="rpTabMenu" title="Buscar abas" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
       <button class="icon-btn" id="rpAdd" aria-haspopup="menu" aria-label="Nova aba do painel" title="Nova aba do painel"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-      <button class="icon-btn" id="rpStack" aria-haspopup="menu" aria-label="Empilhar outra ferramenta nesta aba" title="Empilhar outra ferramenta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/></svg></button>
       <button class="icon-btn" id="rpHide" aria-label="Ocultar painel contextual" title="Ocultar painel"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="rp-tab-popover" id="rpTabMenu" role="dialog" aria-label="Buscar abas do painel" hidden>
+      <label for="rpTabSearch">Buscar abas</label>
+      <input id="rpTabSearch" type="search" placeholder="Filtrar abas…" autocomplete="off" aria-label="Buscar abas abertas">
+      <div class="rp-tab-menu-list" id="rpTabMenuList" role="list" aria-live="polite"></div>
     </div>
     <div class="rp-body" id="rpBody"></div>
   </aside>
@@ -6117,9 +6144,33 @@ function vTitle(v){
   }
   return RT[v.type].n;
 }
-function rpPaintTabs(){ gr(); $('rpTabs').innerHTML=RP.tabs.map(t=>{ const on=t.id===RP.active, v=t.views[0], ttl=t.views.length>1&&t.views.every(v=>['back','rel'].includes(v.type))?'Contexto':vTitle(v)+(t.views.length>1?' +'+(t.views.length-1):'');
-  return '<div class="ws-tab'+(on?' on':'')+'" role="tab" aria-label="'+esc(ttl)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+'" data-rp-tab="'+t.id+'" title="'+esc(t.views.map(vTitle).join(' + '))+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+'</span><span class="ws-tt">'+esc(ttl)+'</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-rp-tabx="'+t.id+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>'; }).join('');
-  const L=$('rpTabs'), on=L.querySelector('.on'); if(on&&L.scrollWidth>L.clientWidth){ const a=on.offsetLeft, b=a+on.offsetWidth; if(a<L.scrollLeft) L.scrollLeft=a-4; else if(b>L.scrollLeft+L.clientWidth) L.scrollLeft=b-L.clientWidth+4; } }
+function rpTabTitle(t){
+  const v=t.views[0];
+  return t.views.length>1&&t.views.every(x=>['back','rel','internos'].includes(x.type))?
+    'Contexto':vTitle(v)+(t.views.length>1?' +'+(t.views.length-1):'');
+}
+function rpPaintTabs(){
+  gr();
+  const L=$('rpTabs');
+  L.classList.toggle('compact',RP.tabs.length>=5);
+  L.innerHTML=RP.tabs.map(t=>{
+    const on=t.id===RP.active,v=t.views[0],ttl=rpTabTitle(t),full=t.views.map(vTitle).join(' + ');
+    return '<div class="ws-tab'+(on?' on':'')+'" role="tab" aria-label="'+esc(ttl)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
+      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
+      '" data-rp-tabx="'+esc(t.id)+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
+  }).join('');
+  const overflow=RP.tabs.length>=5||L.scrollWidth>L.clientWidth+2;
+  $('rpOverflow').hidden=!overflow;
+  if(!overflow)rpCloseOverflowMenu(false);
+  else if(!$('rpTabMenu').hidden)rpRenderTabMenu($('rpTabSearch').value);
+  const active=L.querySelector('.on');
+  if(active&&L.scrollWidth>L.clientWidth){
+    const a=active.offsetLeft,b=a+active.offsetWidth;
+    if(a<L.scrollLeft)L.scrollLeft=a-4;
+    else if(b>L.scrollLeft+L.clientWidth)L.scrollLeft=b-L.clientWidth+4;
+  }
+}
 const rpRow=(n,sub)=>{
   return '<div class="rp-item-row">'+
     '<a class="rp-row" href="'+esc(n.href)+'" title="Abrir '+esc(n.title)+' no centro">'+
@@ -6329,12 +6380,52 @@ function rpOpenObj(h){ if(!isObjHref(h)) return; const found=RP.tabs.find(t=>(!t
 function rpFromView(v,h){ if(!v) return; if(v.type==='explorar'||v.type==='obj'){ v.future=[];v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]).slice(-20); v.type='obj'; v.ref=h; wsSave(); rpPaintBody(); rpPaintTabs(); } else if(v.type==='graf'){ v.ref=h; wsSave(); rpPaintBody(); rpPaintTabs(); } else rpOpenObj(h); }
 const toolMenu=(anchor,fn)=>miniMenu(anchor,['explorar','graf','back','internos','rel','ia'].map(k=>({t:RT[k].n,ic:RT[k].ic,fn:()=>fn(k)})));
 $('rpAdd').onclick=e=>toolMenu(e.currentTarget,k=>rpAddTab(k));
-$('rpStack').onclick=e=>{ const t=rpTab(); if(t&&t.views.length>=3){ toast('Cada aba do painel aceita até 3 visualizações empilhadas'); return; } toolMenu(e.currentTarget,k=>rpStack(k)); };
+function rpRenderTabMenu(query=''){
+  const q=norm(query),items=RP.tabs.filter(t=>norm(rpTabTitle(t)).includes(q));
+  $('rpTabMenuList').innerHTML=items.length?items.map(t=>{
+    const name=rpTabTitle(t),active=t.id===RP.active;
+    return '<div class="rp-tab-menu-item" role="listitem">'+
+      '<button type="button" class="rp-tab-menu-select" data-rp-menu-activate="'+esc(t.id)+
+      '"'+(active?' aria-current="true"':'')+'><span class="rp-tab-menu-icon" aria-hidden="true">'+RT[t.views[0].type].ic+
+      '</span><span>'+esc(name)+'</span></button>'+
+      '<button type="button" class="rp-tab-menu-close" data-rp-menu-close="'+esc(t.id)+
+      '" aria-label="Fechar aba '+esc(name)+'">'+WI.x+'</button></div>';
+  }).join(''):'<p class="rp-tab-menu-empty">Nenhuma aba encontrada.</p>';
+}
+function rpCloseOverflowMenu(restoreFocus=false){
+  const menu=$('rpTabMenu');if(menu.hidden)return;
+  menu.hidden=true;
+  $('rpOverflow').setAttribute('aria-expanded','false');
+  if(restoreFocus&&!$('rpOverflow').hidden)$('rpOverflow').focus();
+}
+$('rpOverflow').onclick=()=>{
+  if(!$('rpTabMenu').hidden){rpCloseOverflowMenu(true);return;}
+  $('rpTabMenu').hidden=false;
+  $('rpOverflow').setAttribute('aria-expanded','true');
+  $('rpTabSearch').value='';
+  rpRenderTabMenu('');
+  $('rpTabSearch').focus();
+};
+$('rpTabSearch').addEventListener('input',e=>rpRenderTabMenu(e.target.value));
+$('rpTabMenu').addEventListener('click',e=>{
+  const close=e.target.closest('[data-rp-menu-close]');
+  if(close){rpCloseTab(close.dataset.rpMenuClose);if(!$('rpTabMenu').hidden)$('rpTabSearch').focus();return;}
+  const active=e.target.closest('[data-rp-menu-activate]');
+  if(active){rpSelect(active.dataset.rpMenuActivate);rpCloseOverflowMenu(true);}
+});
+$('rpTabMenu').addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();e.stopPropagation();rpCloseOverflowMenu(true);}
+});
+document.addEventListener('pointerdown',e=>{
+  const menu=$('rpTabMenu'),trigger=$('rpOverflow');
+  if(!menu.hidden&&!menu.contains(e.target)&&!trigger.contains(e.target))rpCloseOverflowMenu(false);
+});
+
 $('rpTabs').addEventListener('keydown',e=>tabKeys(e,$('rpTabs'),'[data-rp-tab]',t=>rpSelect(t.dataset.rpTab),t=>rpCloseTab(t.dataset.rpTab)));
 $('rpTabs').addEventListener('click',e=>{ const x=e.target.closest('[data-rp-tabx]'); if(x){ rpCloseTab(x.dataset.rpTabx); return; } const t=e.target.closest('[data-rp-tab]'); if(t) rpSelect(t.dataset.rpTab); });
 $('rpTabs').addEventListener('dblclick',e=>{ if(e.target.closest('button')) return; const t=e.target.closest('[data-rp-tab]'); if(t) rpCloseTab(t.dataset.rpTab); });
 $('rpTabs').addEventListener('auxclick',e=>{ if(e.button!==1) return; const t=e.target.closest('[data-rp-tab]'); if(t){ e.preventDefault(); rpCloseTab(t.dataset.rpTab); } });
-$('rpTabs').addEventListener('contextmenu',e=>{ const t=e.target.closest('[data-rp-tab]'); if(!t) return; e.preventDefault(); e.stopImmediatePropagation(); const id=t.dataset.rpTab, one=RP.tabs.length<=1; miniMenu(t,[{t:'Fechar aba',ic:WI.x,fn:()=>rpCloseTab(id)},{t:'Fechar outras abas',ic:WI.x,off:one,fn:()=>rpCloseOthers(id)}]); });
+$('rpTabs').addEventListener('contextmenu',e=>{ const t=e.target.closest('[data-rp-tab]'); if(!t) return; e.preventDefault(); e.stopImmediatePropagation(); const id=t.dataset.rpTab, one=RP.tabs.length<=1; miniMenu(t,[{t:'Empilhar ferramenta',ic:WI.stack,off:(RP.tabs.find(x=>x.id===id)?.views.length||0)>=3,fn:()=>toolMenu($('rpAdd'),k=>{rpSelect(id);rpStack(k);})},{t:'Fechar aba',ic:WI.x,fn:()=>rpCloseTab(id)},{t:'Fechar outras abas',ic:WI.x,off:one,fn:()=>rpCloseOthers(id)}]); });
 $('rpBody').addEventListener('click',e=>{ const T=e.target;
   let graphBtn=T.closest('[data-rpg]'); if(graphBtn){ const svg=graphBtn.closest('.rp-vb')?.querySelector('[data-rpg-viewport]'); if(!svg)return; const v=svg.viewBox.baseVal, step=v.width*.2, kind=graphBtn.dataset.rpg; if(kind==='reset'){ const cx=+svg.dataset.cx,cy=+svg.dataset.cy; svg.setAttribute('viewBox',(cx-150)+' '+(cy-120)+' 300 240'); } else if(kind==='zoom-in'||kind==='zoom-out'){ const f=kind==='zoom-in'?.8:1.25,nw=Math.max(80,Math.min(2400,v.width*f)),nh=nw*.8,cx=v.x+v.width/2,cy=v.y+v.height/2; svg.setAttribute('viewBox',(cx-nw/2)+' '+(cy-nh/2)+' '+nw+' '+nh); } else { const dx=kind==='left'?-step:kind==='right'?step:0,dy=kind==='up'?-step:kind==='down'?step:0; svg.setAttribute('viewBox',(v.x+dx)+' '+(v.y+dy)+' '+v.width+' '+v.height); } return; }
   let b=T.closest('[data-vforward]');if(b){const v=viewById(b.dataset.vforward);if(v?.future?.length){v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]);Object.assign(v,v.future.pop());wsSave();rpPaintAll();}return;}
