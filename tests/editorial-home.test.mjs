@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
-const from=html.indexOf('function opEspacoPage(sp,mine){');
+const from=html.indexOf("let ehBankState='idle'");
 const until=html.indexOf('/* ---- Histórico de respostas, tentativas (Simulado) e Desempenho ---- */',from);
 assert.ok(from>=0&&until>from,'home implementation exists');
 const source=html.slice(from,until);
