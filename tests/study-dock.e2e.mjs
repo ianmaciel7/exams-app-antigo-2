@@ -20,7 +20,8 @@ try{
     await link.waitFor({timeout:25000});
     await page.goto(base+await link.getAttribute('href'),{waitUntil:'domcontentloaded'});
     const dock=page.locator('.qo .q-dock');await dock.waitFor();
-    assert.equal(await dock.locator('.q-dock-tools button').count(),6);
+    assert.equal(await dock.locator('.q-dock-tools button').count(),7);
+    assert.equal(await dock.locator('[data-q-dock-srs]').count(),1,'saved highlight can become an SRS card');
     const target=page.locator('.qo [data-q-highlight$="|statement"]');
     await target.waitFor();
     await page.evaluate(()=>{
