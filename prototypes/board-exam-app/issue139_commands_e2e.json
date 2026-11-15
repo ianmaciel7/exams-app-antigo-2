@@ -1,5 +1,5 @@
 {
-  "sourceDigest": "73994d33eee57e82f65f721e109e426532a400046dbcd793dea7f8f688c6938f",
+  "sourceDigest": "b90cdfd0da20212a67399218af38c5a9a3b660ac1dc0ddb4af46724d0d1c2601",
   "cases": [
     {
       "phase": "before",
@@ -26,7 +26,8 @@
       "interaction": "real-question-route-and-editor",
       "questionRoute": true,
       "questionAnswerShortcutSelected": true,
-      "searchEditorSuppressedAnswer": true
+      "searchEditorSuppressedAnswer": true,
+      "searchEscapeRestoredFocus": true
     },
     {
       "phase": "after",
@@ -41,6 +42,6 @@
   "pageErrors": [],
   "limitations": [
     "Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.",
-    "Covers global search, sidebar, new-item menu, shortcut help, synthetic question answer routing, graph local key ownership, editor suppression, and non-interception of Ctrl+Tab. Real IME and OS-level key reservation still require manual platform testing."
+    "Covers global search, sidebar, new-item menu, shortcut help, the real question practice route and global graph route, editor suppression, Escape focus restoration, and non-interception of Ctrl+Tab. Physical IME and OS-level key reservation still require manual platform testing."
   ]
 }
