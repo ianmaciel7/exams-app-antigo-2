@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
@@ -6,7 +8,13 @@ import { chromium } from 'playwright';
 const evidenceDir=path.resolve('prototypes/board-exam-app/assets');
 await mkdir(evidenceDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const report={cases:[],pageErrors:[],limitations:[
+const sourceDigest=createHash('sha256').update([
+  'prototypes/exam-app-0.1.1/index.html',
+  'tests/workspace-command-router.test.mjs',
+  'tests/workspace-command-router.e2e.mjs',
+  '.github/workflows/e2e-workspace-command-router.yml'
+].map(file=>readFileSync(file,'utf8')).join('')).digest('hex');
+const report={sourceDigest,cases:[],pageErrors:[],limitations:[
   'Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.',
   'Covers global search, sidebar, new-item menu, shortcut help, synthetic question answer routing, graph local key ownership, editor suppression, and non-interception of Ctrl+Tab. Real IME and OS-level key reservation still require manual platform testing.'
 ]};
@@ -94,6 +102,7 @@ try{
     await page.locator('#pal.on').waitFor();
     await page.locator('#palIn').focus();
     await page.keyboard.press('a');
+    assert.equal(await page.locator('#palIn').inputValue(),'a','search editor receives typed text');
     assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),false,
       'typing in the real search editor must not select a practice answer');
     await page.locator('#palIn').press('Escape');
