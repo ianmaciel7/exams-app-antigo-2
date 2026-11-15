@@ -1,5 +1,5 @@
 {
-  "sourceDigest": "b90cdfd0da20212a67399218af38c5a9a3b660ac1dc0ddb4af46724d0d1c2601",
+  "sourceDigest": "51612b8c7b4cdab53205bc5bcbb6f99751edac926b1303748a2af348c10e17e7",
   "cases": [
     {
       "phase": "before",
@@ -34,6 +34,9 @@
       "interaction": "real-graph-route-and-reserved-chord",
       "graphRoute": true,
       "graphKeyRedrewCanvas": true,
+      "graphZoomIn": true,
+      "graphScaleBefore": 2.2,
+      "graphScaleAfter": 2.64,
       "graphSuppressedGlobalSidebar": true,
       "reservedCtrlTabPrevented": false,
       "screenshot": "issue139_after_contexts.png"
