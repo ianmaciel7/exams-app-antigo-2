@@ -70,3 +70,44 @@ test('collection/global CTAs clearly describe the global scope',()=>{
   assert.doesNotMatch(graphSection,/Abrir gráfico completo/);
   assert.equal((graphSection.match(/Ver grafo global/g)||[]).length,4);
 });
+
+function collectionGraph(count){
+  const nodes=new Map(Array.from({length:count},(_,i)=>{
+    const n={href:'#/questao/q'+i,title:'Questão '+i,kind:'questao',out:[],inn:[]};
+    return [n.href,n];
+  }));
+  const env={
+    gr:()=>({N:nodes}),vNode:()=>null,curHref:()=>'#/tipo/questao',
+    kn:x=>x,esc:x=>String(x),WI:{graph:'G'}
+  };
+  return runInNewContext(src,env).bodyGraf({id:'collection'});
+}
+
+test('contextual collection graph initially fits all nodes, including dense collections (#54)',()=>{
+  for(const count of [1,3,50,120]){
+    const graph=collectionGraph(count);
+    const svg=graph.match(/<svg class="rp-graph rp-graph-viewport"[^>]+>/)?.[0];
+    assert.ok(svg,'collection must have viewport SVG');
+    const values=svg.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
+    assert.ok(values&&values.length===4&&values.every(Number.isFinite),'numeric viewBox');
+    const [x0,y0,width,height]=values;
+    assert.ok(width>=300&&height>=240,'initial frame at least baseline dimensions');
+    assert.ok(Math.abs(width/height-300/240)<0.00001,'preserve ratio');
+    assert.ok(svg.includes('data-fit-w="'+width+'"')&&svg.includes('data-fit-h="'+height+'"'),'persist fitted bounds for Reset');
+    const circles=[...graph.matchAll(/<circle cx="(-?[\d.]+)" cy="(-?[\d.]+)" r="8\.5"/g)];
+    assert.equal(circles.length,count,'every collection item rendered');
+    for(const hit of circles){
+      const [cx,cy]=[Number(hit[1]),Number(hit[2])];
+      assert.ok(cx-8.5>=x0&&cx+8.5<=x0+width,'node visible horizontally');
+      assert.ok(cy-8.5>=y0&&cy+8.5<=y0+height,'node visible vertically');
+    }
+    if(count>=50)assert.ok(width>300,'dense graph must enlarge initial fit');
+  }
+});
+
+test('contextual graph Reset and zoom preserve dynamically fitted viewport (#54)',()=>{
+  const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
+  assert.match(html,/fw=\+svg\.dataset\.fitW\|\|300,fh=\+svg\.dataset\.fitH\|\|240/);
+  assert.match(html,/Math\.max\(2400,fw\*2\)/,'zoom-out allows the original large extent');
+  assert.match(html,/nh=nw\*fh\/fw/,'zoom preserves frame aspect ratio');
+});
