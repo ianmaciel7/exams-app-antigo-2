@@ -2350,6 +2350,31 @@ Implementação e Auditoria Issue #145:
 **5. Testes Automatizados e Política Zero Emoji:**
 - Criada suíte de testes tests/workspace-loading-state.test.mjs com 4 testes unitários automatizados cobrindo remoção de timers cegos, classes de CSS e reduced-motion, máquina de estados com cancelamento de corrida e conformidade estrita com a Zero Emoji Policy.
 
+## 52. Leitor PDF reflow e anotações — Issue #77
+<!-- container e1453 @ (54000,11200) -->
+
+Modo PDF original e texto reflow; fonte/tamanho/entrelinha, j/k, h grifar, n nota marginal, t etiqueta, z desfazer e [ sumário. Testes Playwright desktop 1366 e mobile 390 sobre PDF de duas colunas GERADO por pdf-lib com PDF.js no navegador, com ordem esquerda→direita, persistência e limpeza entre rotas. Defeito de layout corrigido: toolbar fora do flex da página. LIMITES: não é DOU oficial real, falta OCR para escaneados, TOC semântico e projeção das anotações sobre o canvas original. Issue #77 permanece aberta.
+
+![imagem e1455](assets/issue77_reader_original_1366.png)
+
+![imagem e1457](assets/issue77_reader_text_highlight_1366.png)
+
+PDF real gerado no teste: canvas e duas colunas em tela desktop
+
+Modo texto reflow: coluna esquerda antes da direita e grifo focado
+
+![imagem e1459](assets/issue77_reader_marginalia_1366.png)
+
+![imagem e1461](assets/issue77_reader_marginalia_390.png)
+
+Nota marginal, etiqueta, sumário e restauração do modo texto
+
+Mesmo fluxo na viewport de 390px sem compressão do PDF
+
+[PR #190 — Reader](https://github.com/ianmaciel7/exams-app/pull/190)
+
+[Chromium PDF E2E](https://github.com/ianmaciel7/exams-app/actions/runs/43731298495)
+
 ## 10. Arquivos do projeto (Dataprev 2026 e referências)
 <!-- container e363 @ (0,12666) -->
 

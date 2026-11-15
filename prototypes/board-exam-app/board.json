@@ -756,7 +756,19 @@
     "e1447",
     "e1450",
     "e1451",
-    "e1452"
+    "e1452",
+    "e1453",
+    "e1454",
+    "e1455",
+    "e1456",
+    "e1457",
+    "e1458",
+    "e1459",
+    "e1460",
+    "e1461",
+    "e1462",
+    "e1463",
+    "e1464"
   ],
   "elements": {
     "e1": {
@@ -7912,6 +7924,110 @@
       "y": 11100,
       "w": 1570,
       "h": 1600
+    },
+    "e1453": {
+      "type": "container",
+      "text": "52. Leitor PDF reflow e anotações — Issue #77",
+      "color": "white",
+      "x": 54000,
+      "y": 11200,
+      "w": 1700,
+      "h": 2050
+    },
+    "e1454": {
+      "type": "text",
+      "size": "small",
+      "x": 54025,
+      "y": 11215,
+      "w": 1640,
+      "h": 275,
+      "text": "Modo PDF original e texto reflow; fonte/tamanho/entrelinha, j/k, h grifar, n nota marginal, t etiqueta, z desfazer e [ sumário. Testes Playwright desktop 1366 e mobile 390 sobre PDF de duas colunas GERADO por pdf-lib com PDF.js no navegador, com ordem esquerda→direita, persistência e limpeza entre rotas. Defeito de layout corrigido: toolbar fora do flex da página. LIMITES: não é DOU oficial real, falta OCR para escaneados, TOC semântico e projeção das anotações sobre o canvas original. Issue #77 permanece aberta."
+    },
+    "e1455": {
+      "type": "image",
+      "src": "/_blob/issue77_reader_original_1366",
+      "x": 54025,
+      "y": 11525,
+      "w": 760,
+      "h": 430
+    },
+    "e1456": {
+      "type": "text",
+      "size": "small",
+      "text": "PDF real gerado no teste: canvas e duas colunas em tela desktop",
+      "x": 54025,
+      "y": 11963,
+      "w": 775,
+      "h": 75
+    },
+    "e1457": {
+      "type": "image",
+      "src": "/_blob/issue77_reader_text_highlight_1366",
+      "x": 54855,
+      "y": 11525,
+      "w": 760,
+      "h": 430
+    },
+    "e1458": {
+      "type": "text",
+      "size": "small",
+      "text": "Modo texto reflow: coluna esquerda antes da direita e grifo focado",
+      "x": 54855,
+      "y": 11963,
+      "w": 775,
+      "h": 75
+    },
+    "e1459": {
+      "type": "image",
+      "src": "/_blob/issue77_reader_marginalia_1366",
+      "x": 54025,
+      "y": 12175,
+      "w": 760,
+      "h": 430
+    },
+    "e1460": {
+      "type": "text",
+      "size": "small",
+      "text": "Nota marginal, etiqueta, sumário e restauração do modo texto",
+      "x": 54025,
+      "y": 12613,
+      "w": 775,
+      "h": 75
+    },
+    "e1461": {
+      "type": "image",
+      "src": "/_blob/issue77_reader_marginalia_390",
+      "x": 54855,
+      "y": 12175,
+      "w": 760,
+      "h": 430
+    },
+    "e1462": {
+      "type": "text",
+      "size": "small",
+      "text": "Mesmo fluxo na viewport de 390px sem compressão do PDF",
+      "x": 54855,
+      "y": 12613,
+      "w": 775,
+      "h": 75
+    },
+    "e1463": {
+      "type": "link",
+      "title": "PR #190 — Reader",
+      "href": "https://github.com/ianmaciel7/exams-app/pull/190",
+      "x": 54025,
+      "y": 13050,
+      "w": 325,
+      "h": 56
+    },
+    "e1464": {
+      "type": "link",
+      "title": "Chromium PDF E2E",
+      "href": "https://github.com/ianmaciel7/exams-app/actions/runs/43731298495",
+      "x": 54360,
+      "y": 13050,
+      "w": 325,
+      "h": 56
     }
   }
 }
