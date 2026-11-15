@@ -8,7 +8,7 @@ await mkdir(evidenceDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
   'Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.',
-  'Covers global search, sidebar, new-item menu and shortcut help; graph, full questions and all contextual components are not exhaustively tested.'
+  'Covers global search, sidebar, new-item menu, shortcut help, synthetic question answer routing, graph local key ownership, editor suppression, and non-interception of Ctrl+Tab. Real IME and OS-level key reservation still require manual platform testing.'
 ]};
 const addr=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
 async function snap(page,filename){
@@ -83,6 +83,50 @@ try{
     await page.locator('#newMenuIn').press('Escape');
     await page.locator('#newMenu:not(.open)').waitFor({state:'hidden'});
     report.cases.push({phase:'after',interaction:'global-chords',sidebarToggledTwice:true,newItemOptions:count,screenshot:'issue139_after_new_item.png'});
+
+
+    const contextFixture=await page.evaluate(()=>{
+      const q=document.createElement('section');
+      q.className='s-question';
+      q.innerHTML='<button type="button" data-qo-ans="router-fixture|A">A</button><input id="router-editor" aria-label="Resposta em edição">';
+      const answer=q.querySelector('button');
+      answer.addEventListener('click',()=>answer.dataset.activated='true');
+      document.body.append(q);
+      const graph=document.createElement('div');
+      graph.id='gvc';graph.style.cssText='display:block;position:fixed;left:4px;top:4px;width:120px;height:80px;z-index:2147483647;background:white';
+      graph.setAttribute('aria-label','Grafo de teste');
+      const graphTarget=document.createElement('button');
+      graphTarget.id='issue139-graph';graphTarget.textContent='Graph test';graph.append(graphTarget);
+      graph.dataset.localKeys='0';
+      graph.addEventListener('keydown',ev=>{if(ev.key==='+')graph.dataset.localKeys=String(Number(graph.dataset.localKeys)+1)});
+      document.body.append(graph);
+      return true;
+    });
+    assert.equal(contextFixture,true);
+    await page.locator('#router-editor').focus();
+    await page.keyboard.press('a');
+    assert.equal(await page.locator('[data-qo-ans]').getAttribute('data-activated'),null,
+      'editing text must not select the question answer');
+    await page.locator('#router-editor').blur();
+    await page.keyboard.press('a');
+    assert.equal(await page.locator('[data-qo-ans]').getAttribute('data-activated'),'true',
+      'available question answer command routes to its contextual target');
+    await page.locator('#issue139-graph').focus();
+    await page.keyboard.press('Control+b');
+    assert.equal(await page.locator('#app').evaluate(x=>x.classList.contains('collapsed')),collapsedBefore,
+      'graph retains ownership of key events without dispatching global sidebar command');
+    await page.keyboard.press('+');
+    assert.equal(await page.locator('#gvc').last().getAttribute('data-local-keys'),'1',
+      'graph-local keyboard handler receives its chord');
+    const reservedDefaultPrevented=await page.locator('body').evaluate(el=>{
+      const ev=new KeyboardEvent('keydown',{key:'Tab',ctrlKey:true,bubbles:true,cancelable:true});
+      el.dispatchEvent(ev);return ev.defaultPrevented;
+    });
+    assert.equal(reservedDefaultPrevented,false,'router leaves browser-reserved Ctrl+Tab untouched');
+    await snap(page,'after_contexts');
+    report.cases.push({phase:'after',interaction:'question-graph-editor-reserved-chord',
+      questionAnswerActivated:true,editorSuppressedQuestionCommand:true,graphLocalKeyOwned:true,
+      graphSuppressedGlobalSidebar:true,reservedCtrlTabPrevented:false,screenshot:'issue139_after_contexts.png'});
 
     assert.deepEqual(report.pageErrors,[],'no uncaught browser JavaScript errors');
     console.log('Workspace commands: dynamic help, Ctrl+K, Ctrl+B, Ctrl+Alt+N, editable/modal exclusion PASS');
