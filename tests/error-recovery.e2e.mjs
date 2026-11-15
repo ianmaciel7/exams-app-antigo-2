@@ -70,7 +70,10 @@ try{
   report.checks.push('only a new correct confirmed practice answer recovers wrong item');
   await go('#/espaco');
   await page.locator('#eh-tab-erros').click();
-  assert.equal(await page.locator('#eh-panel-erros .eh-error-entry[href="'+href+'"]').count(),0);
+  const recoveredEntry=page.locator('#eh-panel-erros .eh-error-entry[href="'+href+'"]');
+  assert.equal(await recoveredEntry.count(),1,'weekly cohort preserves recovered questions');
+  assert.match(await recoveredEntry.innerText(),/Recuperada/,'cohort explicitly marks the recovered state');
+  assert.match(await page.locator('#eh-panel-erros .eh-error-week h3').innerText(),/Errou 1 · Recuperou 1/);
   assert.match(await page.locator('.eh-review').innerText(),/1 questão recuperada/);
 
   await page.locator('#eh-tab-raiox').click();

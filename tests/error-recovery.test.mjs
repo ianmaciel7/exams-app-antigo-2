@@ -95,8 +95,8 @@ test('weekly error cohort keeps recovered questions and shows wrong/recovered co
    {id:'q1',n:1,materia:'Direito',assunto:'Base'},{id:'q2',n:2,materia:'Direito',assunto:'Base'}
  ];
  const notebook=h.api.errorNotebookMarkup(questions,base+3*day);
- assert.doesNotMatch(notebook,/#\\/questao\\/q1/,'the pending notebook removes recovered questions');
- assert.match(notebook,/#\\/questao\\/q2/);
+ assert.ok(!notebook.includes('#/questao/q1'),'the pending notebook removes recovered questions');
+ assert.ok(notebook.includes('#/questao/q2'),'the pending notebook retains unresolved questions');
  const home=h.api.errorNotebookMarkup(questions,base+3*day,true);
  assert.match(home,/Errou 2 · Recuperou 1/);
  assert.match(home,/Recuperada/);
