@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-15T12:39:57.470Z",
+  "sourceDigest": "3e568d7f7a135306274d28200180090eac506013a5afb24470b13f35f50d704d",
   "cases": [
     {
       "phase": "before",
@@ -23,10 +23,16 @@
     },
     {
       "phase": "after",
-      "interaction": "question-graph-editor-reserved-chord",
-      "questionAnswerActivated": true,
-      "editorSuppressedQuestionCommand": true,
-      "graphLocalKeyOwned": true,
+      "interaction": "real-question-route-and-editor",
+      "questionRoute": true,
+      "questionAnswerShortcutSelected": true,
+      "searchEditorSuppressedAnswer": true
+    },
+    {
+      "phase": "after",
+      "interaction": "real-graph-route-and-reserved-chord",
+      "graphRoute": true,
+      "graphKeyRedrewCanvas": true,
       "graphSuppressedGlobalSidebar": true,
       "reservedCtrlTabPrevented": false,
       "screenshot": "issue139_after_contexts.png"
