@@ -15,7 +15,7 @@ on:
       - '.github/workflows/e2e-daily-review.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   daily-review:
@@ -23,8 +23,6 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -45,20 +43,6 @@ jobs:
           exit 1
       - name: Test QA, cloze, TTS, grading, persistence and direct imports
         run: node tests/daily-review.e2e.mjs
-      - name: Record independently tested screenshots in versioned board
-        if: ${{ github.event_name == 'pull_request' && github.head_ref == 'fix/issue-82-luna-20261115' && github.event.pull_request.head.repo.full_name == github.repository && success() }}
-        run: |
-          python3 scripts/append-issue82-daily-board.py
-          npm run board
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md
-          git add prototypes/board-exam-app/issue82_daily_review_e2e.json
-          git add prototypes/board-exam-app/assets/issue82_*.png
-          if ! git diff --cached --quiet; then
-            git commit -m 'docs(board): preserve issue 82 Chromium proof'
-            git push origin "HEAD:${GITHUB_HEAD_REF}"
-          fi
       - name: Upload true browser screenshots and journal
         if: always()
         uses: actions/upload-artifact@v4
