@@ -94,3 +94,13 @@ test('Mod respects the actual OS and button hints follow the registered command'
   assert.equal(mac.elements.wsNew.title,'Nova aba (Option + T)');
   assert.equal(mac.elements.wsSearchBtn.title,'Buscar (⌘ + K)');
 });
+
+test('tab cycling avoids browser and operating-system reserved Mod+Tab chords',()=>{
+  const h=harness();
+  assert.ok(!h.api.workspaceCommands.some(c=>c.shortcut.split('|').some(k=>k==='Mod+Tab'||k==='Mod+Shift+Tab')));
+  const e=h.key('Tab',{ctrlKey:true});
+  assert.equal(e.defaultPrevented,false,'Ctrl+Tab remains available to the browser');
+  assert.deepEqual(h.calls,[]);
+  assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle').shortcut,'Alt+Shift+ArrowRight');
+  assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle-back').shortcut,'Alt+Shift+ArrowLeft');
+});
