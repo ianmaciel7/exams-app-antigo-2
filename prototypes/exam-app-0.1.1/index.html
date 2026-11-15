@@ -7446,7 +7446,13 @@ function rpAddTab(type,ref){
   wsSave(); if(!rpVisible()) openRP(true); else rpPaintAll();
 }
 function rpStack(type,ref){ const t=rpTab(); if(!t){ rpAddTab(type,ref); return; } if(t.views.length>=3){ toast('Cada aba do painel aceita até 3 visualizações empilhadas'); return; } t.views.forEach(v=>{ v.f=1; }); const v={id:uid(),type,f:1,ref:ref||undefined};if(type==='back')t.views.unshift(v);else t.views.push(v); wsSave(); rpPaintAll(); }
-function rpCloseView(id){ const t=rpTab(); if(!t) return; t.views=t.views.filter(v=>v.id!==id); if(!t.views.length){ RP.tabs=RP.tabs.filter(x=>x!==t); RP.active=RP.tabs[0]?RP.tabs[0].id:null; } wsSave(); rpPaintAll(); }
+function rpCloseView(id){
+  const t=rpTab(); if(!t||!t.views.some(v=>v.id===id)) return;
+  // Closing the final view must use the tab close flow: restore Explore and keep Undo.
+  if(t.views.length===1){ rpCloseTab(t.id); return; }
+  t.views=t.views.filter(v=>v.id!==id);
+  wsSave(); rpPaintAll();
+}
 function rpCloseTab(id){
   const i=RP.tabs.findIndex(t=>t.id===id); if(i<0) return;
   const t=RP.tabs[i]; RP.tabs.splice(i,1);
