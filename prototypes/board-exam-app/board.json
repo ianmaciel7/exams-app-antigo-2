@@ -756,7 +756,19 @@
     "e1447",
     "e1450",
     "e1451",
-    "e1452"
+    "e1452",
+    "e1453",
+    "e1454",
+    "e1455",
+    "e1456",
+    "e1457",
+    "e1458",
+    "e1459",
+    "e1460",
+    "e1461",
+    "e1462",
+    "e1463",
+    "e1464"
   ],
   "elements": {
     "e1": {
@@ -7912,6 +7924,110 @@
       "y": 11100,
       "w": 1570,
       "h": 1600
+    },
+    "e1453": {
+      "type": "container",
+      "color": "white",
+      "text": "50. Recuperação estrita e Raio-X do Edital — Issue #76",
+      "x": 50500,
+      "y": 11000,
+      "w": 1650,
+      "h": 2100
+    },
+    "e1454": {
+      "type": "text",
+      "size": "small",
+      "x": 50518,
+      "y": 11012,
+      "w": 1590,
+      "h": 300,
+      "text": "A recuperação só ocorre após uma nova resposta correta; abrir gabarito não altera o histórico. A coorte semanal mostra “Errou X · Recuperou Y”; a rota Caderno de Erros lista apenas pendentes. O Raio-X usa incidência de questões, pontos catalogados, cobertura e acerto da última tentativa confirmada. A cobertura deste protótipo é limitada aos assuntos presentes no catálogo; o Anexo II completo e a associação automática de PDFs não estão implementados. As capturas abaixo vieram do E2E Chromium executado nesta PR."
+    },
+    "e1455": {
+      "type": "image",
+      "src": "/_blob/issue76_wrong_confirmed",
+      "x": 50518,
+      "y": 11330,
+      "w": 755,
+      "h": 425
+    },
+    "e1456": {
+      "type": "text",
+      "size": "small",
+      "text": "ANTES: primeira resposta incorreta confirmada",
+      "x": 50518,
+      "y": 11760,
+      "w": 760,
+      "h": 55
+    },
+    "e1457": {
+      "type": "image",
+      "src": "/_blob/issue76_notebook_pending",
+      "x": 51328,
+      "y": 11330,
+      "w": 755,
+      "h": 425
+    },
+    "e1458": {
+      "type": "text",
+      "size": "small",
+      "text": "DEPOIS: erro pendente agrupado por semana e disciplina",
+      "x": 51328,
+      "y": 11760,
+      "w": 760,
+      "h": 55
+    },
+    "e1459": {
+      "type": "image",
+      "src": "/_blob/issue76_recovered",
+      "x": 50518,
+      "y": 11980,
+      "w": 755,
+      "h": 425
+    },
+    "e1460": {
+      "type": "text",
+      "size": "small",
+      "text": "DEPOIS: recuperação após nova resposta correta",
+      "x": 50518,
+      "y": 12410,
+      "w": 760,
+      "h": 55
+    },
+    "e1461": {
+      "type": "image",
+      "src": "/_blob/issue76_raiox_vertical",
+      "x": 51328,
+      "y": 11980,
+      "w": 755,
+      "h": 425
+    },
+    "e1462": {
+      "type": "text",
+      "size": "small",
+      "text": "DEPOIS: assuntos, prioridades e marcação persistente",
+      "x": 51328,
+      "y": 12410,
+      "w": 760,
+      "h": 55
+    },
+    "e1463": {
+      "type": "link",
+      "title": "PR #187 — issue #76",
+      "href": "https://github.com/ianmaciel7/exams-app/pull/187",
+      "x": 50518,
+      "y": 12850,
+      "w": 300,
+      "h": 56
+    },
+    "e1464": {
+      "type": "link",
+      "title": "E2E Chromium — run 43727853810",
+      "href": "https://github.com/ianmaciel7/exams-app/actions/runs/43727853810",
+      "x": 50860,
+      "y": 12850,
+      "w": 340,
+      "h": 56
     }
   }
 }

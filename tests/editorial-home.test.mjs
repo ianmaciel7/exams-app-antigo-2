@@ -7,7 +7,10 @@ const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import
 const from=html.indexOf("let ehBankState='idle'");
 const until=html.indexOf('/* ---- Histórico de respostas, tentativas (Simulado) e Desempenho ---- */',from);
 assert.ok(from>=0&&until>from,'home implementation exists');
-const source=html.slice(from,until);
+const recoveryStart=html.indexOf('const ERROR_REVIEW_DAY=');
+const recoveryEnd=html.indexOf('function histMeta(',recoveryStart);
+assert.ok(recoveryStart>=0&&recoveryEnd>recoveryStart,'history recovery helpers found');
+const source=html.slice(recoveryStart,recoveryEnd)+'\n'+html.slice(from,until);
 function run({questions=[],docs=[],history=[]}={}){
   const state=new Map();const calls=[],sims=[];
   const env={
@@ -17,6 +20,7 @@ function run({questions=[],docs=[],history=[]}={}){
     edicoesOf:()=>[],cargosOf:()=>[],CONCURSOS:[{sp:'dataprev',id:'dataprev',t:'Concurso de TI'}],
     isT:()=>false,examDateISO:()=>null,daysTo:()=>null,
     wOf:q=>q.materia==='Conhecimentos Específicos'?2.5:1,
+    qTitle:q=>'Questão '+(q.n||q.id),
     UIICON:{book:'<svg></svg>',timer:'<svg></svg>',filePlus:'<svg></svg>'},
     esc:x=>String(x??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
     Date,Math,Set,Map
