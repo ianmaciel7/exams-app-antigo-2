@@ -28,7 +28,8 @@ test('Enter can confirm and practice defaults to explicit confirmation',()=>{
 });
 test('reset clears pending state and correct answer only appears after grading',()=>{
   assert.match(html,/const qr=e\.target\.closest\('\[data-qo-reset\],\[data-q-retry\]'\)/);
-  assert.match(html,/qResetForRetry\(q\)/);
+  assert.match(html,/qResetForRetry\(q,key\)/);
+  assert.match(html,/closest\('\[data-practice-key\]'\)/);
   assert.match(html,/delete qPend\[q\.id\]/);
   assert.match(page,/r\?'<p class="s-note">/);
 });
