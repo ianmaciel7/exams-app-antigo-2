@@ -4059,7 +4059,7 @@ let cur=null, token=0, zoom=1, io=null, baseW=0;
 const hasPdf=!!window.pdfjsLib;
 if(hasPdf) pdfjsLib.GlobalWorkerOptions.workerSrc='pdf.worker.min.js';
 function setZoomLabel(){ $('zfit').textContent=Math.round(zoom*100)+'%'; }
-function blank(title,html,seq){ $('props').hidden=true; document.querySelector('.main').classList.remove('reading-mode'); if(cur&&cur.pdf){ try{cur.pdf.destroy();}catch(e){} } cur=null; token++;
+function blank(title,html,seq){ cleanupReader(); $('props').hidden=true; document.querySelector('.main').classList.remove('reading-mode'); if(cur&&cur.pdf){ try{cur.pdf.destroy();}catch(e){} } cur=null; token++;
   $('docTitle').textContent=title; $('docMeta').textContent=''; $('pg').textContent=''; $('rp').style.width='0'; $('zfit').textContent='';
   view.innerHTML='<div class="msg">'+html+'</div>'; markCurrent();
   if(title==='Não encontrado'||title==='Página não encontrada') wsLoadingEnd('failed',{seq,error:title});
@@ -4067,6 +4067,7 @@ function blank(title,html,seq){ $('props').hidden=true; document.querySelector('
 }
 
 async function open(d,seq){
+  cleanupReader();
   document.querySelector('.main').classList.remove('on-board','study-mode');
   document.querySelector('.main').classList.toggle('reading-mode',d.classe!=='referência');
   $('docTitle').textContent=d.t; $('docMeta').textContent=d.g+' · '+d.m;
@@ -4099,7 +4100,18 @@ async function open(d,seq){
     view.innerHTML='<div class="msg" role="alert"><b>Não foi possível abrir “'+esc(d.t)+'”.</b><br>'+why+'<br>Seu ponto de leitura foi mantido.<br><button class="cta" data-retry>Tentar de novo</button> <a class="cta alt" href="#/quadro">Ir para o Quadro</a></div>'; token++; wsLoadingEnd('failed',{seq,error:why}); } }
 }
 let readerTextMode=false,readerFocus=null,readerTocCollapsed=false,readerUndo=[];
+function cleanupReader(){document.querySelector('.reader-tools')?.remove();document.querySelector('.reader-toc')?.remove();readerFocus=null;readerTextMode=false;}
+addEventListener('hashchange',()=>{const id=location.hash.replace(/^#/,'').split('/')[0];if(!allDocs().some(d=>d.id===id))cleanupReader();});
 const readerKey=(d,p,i)=>'reader:'+d.id+':'+p+':'+i;
+function readerOrderItems(items,pageWidth){
+  const starts=[...new Set(items.map(x=>x.x).filter(Number.isFinite))].sort((a,b)=>a-b);
+  let split=null,gap=0;
+  for(let i=1;i<starts.length;i++){const size=starts[i]-starts[i-1];if(size>gap){gap=size;split=(starts[i]+starts[i-1])/2;}}
+  const left=split===null?0:items.filter(x=>x.x<split).length,right=split===null?0:items.length-left;
+  const columns=gap>=Math.max(28,pageWidth*.06)&&left>=3&&right>=3;
+  return items.map(x=>({...x,column:columns&&x.x>=split?1:0})).sort((a,b)=>a.column-b.column||b.y-a.y||a.x-b.x);
+}
+
 function readerControls(){
   let bar=document.querySelector('.reader-tools');if(bar)bar.remove();
   bar=document.createElement('div');bar.className='reader-tools';bar.setAttribute('role','toolbar');bar.setAttribute('aria-label','Ferramentas de leitura');
@@ -4111,12 +4123,12 @@ async function renderReaderText(page,holder,c,n){
   holder.textContent='';holder.classList.add('reader-text-page');holder.dataset.textStatus='loading';
   try{
     const tc=await page.getTextContent();if(c!==cur||!holder.isConnected)return;
-    const items=tc.items.filter(x=>x.str&&x.str.trim()).map(x=>({text:x.str.trim(),y:Math.round(x.transform[5]/4)*4,x:x.transform[4]})).sort((a,b)=>b.y-a.y||a.x-b.x);
-    const rows=[];for(const it of items){let row=rows.find(r=>Math.abs(r.y-it.y)<=3);if(!row){row={y:it.y,x:it.x,text:it.text};rows.push(row)}else row.text+=' '+it.text;}
+    const items=readerOrderItems(tc.items.filter(x=>x.str&&x.str.trim()).map(x=>({text:x.str.trim(),y:Math.round(x.transform[5]/4)*4,x:x.transform[4]})),c.w);
+    const rows=[];for(const it of items){let row=rows.find(r=>r.column===it.column&&Math.abs(r.y-it.y)<=3);if(!row){row={column:it.column,y:it.y,x:it.x,text:it.text};rows.push(row)}else row.text+=' '+it.text;}
     const paras=[];let current='';for(const row of rows){const t=row.text.replace(/\s+/g,' ').trim();if(!t)continue;current+=(current?' ':'')+t;if(/[.!?;:]$/.test(t)||current.length>430){paras.push(current);current='';}}if(current)paras.push(current);
     if(!paras.length){holder.dataset.textStatus='unavailable';holder.textContent='Esta página não contém texto extraível.';return;}
     paras.forEach((text,i)=>{const p=document.createElement('p');p.className='reader-paragraph';p.tabIndex=-1;p.dataset.readerIndex=String(i);p.textContent=text;const saved=store.get(readerKey(c.d,n,i));if(saved?.highlight)p.classList.add('reader-highlight');if(saved?.tag){const tag=document.createElement('small');tag.className='reader-tag';tag.textContent=saved.tag;p.append(tag);}if(saved?.note){const note=document.createElement('aside');note.className='reader-marginalia';note.textContent=saved.note;p.append(note);}holder.append(p);});
-    holder.dataset.textStatus='ready';refreshReaderToc();
+    holder.dataset.textStatus='ready';refreshReaderToc();if(!readerFocus){const first=holder.querySelector('.reader-paragraph');if(first)focusReader(first);}
   }catch(e){holder.dataset.textStatus='error';holder.textContent='Não foi possível extrair o texto desta página.';}
 }
 function refreshReaderToc(){
@@ -4127,14 +4139,15 @@ function focusReader(p){document.querySelectorAll('.reader-focused').forEach(x=>
 function readerAction(key){
   if(!readerTextMode||!readerFocus)return;
   const p=readerFocus,page=p.closest('.reader-text-page'),n=Number(page.dataset.p),i=Number(p.dataset.readerIndex),k=readerKey(cur.d,n,i),state=store.get(k)||{};
-  if(key==='h'){readerUndo.push({k,state});state.highlight=!state.highlight;store.set(k,state);p.classList.toggle('reader-highlight',state.highlight);}
-  if(key==='n'){const note=prompt('Nota para este parágrafo:',state.note||'');if(note===null)return;readerUndo.push({k,state});state.note=note;store.set(k,state);const old=p.querySelector('.reader-marginalia');if(old)old.remove();if(note){const aside=document.createElement('aside');aside.className='reader-marginalia';aside.textContent=note;p.prepend(aside);}}
-  if(key==='t'){const tag=prompt('Etiqueta do grifo:',state.tag||'#');if(tag===null)return;readerUndo.push({k,state});state.tag=tag;store.set(k,state);p.title=tag;let badge=p.querySelector('.reader-tag');if(!badge){badge=document.createElement('small');badge.className='reader-tag';p.prepend(badge);}badge.textContent=tag;}
+  if(key==='h'){readerUndo.push({k,state:structuredClone(state)});state.highlight=!state.highlight;store.set(k,state);p.classList.toggle('reader-highlight',state.highlight);}
+  if(key==='n'){const note=prompt('Nota para este parágrafo:',state.note||'');if(note===null)return;readerUndo.push({k,state:structuredClone(state)});state.note=note;store.set(k,state);const old=p.querySelector('.reader-marginalia');if(old)old.remove();if(note){const aside=document.createElement('aside');aside.className='reader-marginalia';aside.textContent=note;p.prepend(aside);}}
+  if(key==='t'){const tag=prompt('Etiqueta do grifo:',state.tag||'#');if(tag===null)return;readerUndo.push({k,state:structuredClone(state)});state.tag=tag;store.set(k,state);p.title=tag;let badge=p.querySelector('.reader-tag');if(!badge){badge=document.createElement('small');badge.className='reader-tag';p.prepend(badge);}badge.textContent=tag;}
   if(key==='z'){const last=readerUndo.pop();if(last){store.set(last.k,last.state);layout();}}
 }
 document.addEventListener('keydown',e=>{
-  if(!readerTextMode||e.altKey||e.ctrlKey||e.metaKey||e.target.matches('input,textarea,select,[contenteditable="true"]'))return;
+  if(!readerTextMode||!cur?.pdf||!document.querySelector('.reader-tools')||e.isComposing||e.keyCode===229||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,[contenteditable="true"],dialog[open],[aria-modal="true"],.modal,.dialog,[role="dialog"]'))return;
   if(['j','k'].includes(e.key)&&readerFocus){const ps=[...view.querySelectorAll('.reader-paragraph')],i=ps.indexOf(readerFocus),next=ps[Math.max(0,Math.min(ps.length-1,i+(e.key==='j'?1:-1)))];if(next){e.preventDefault();focusReader(next);}return;}
+  if(e.key==='['){e.preventDefault();readerTocCollapsed=!readerTocCollapsed;const t=document.querySelector('.reader-toc');if(t)t.hidden=readerTocCollapsed;const b=document.querySelector('[data-reader-toc]');if(b)b.setAttribute('aria-expanded',String(!readerTocCollapsed));return;}
   if(['h','n','t','z'].includes(e.key)){e.preventDefault();readerAction(e.key);}
 });
 document.addEventListener('click',e=>{

@@ -1,0 +1,19 @@
+name: E2E Enhanced PDF Reader
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'tests/reader-enhanced-text.test.mjs'
+      - '.github/workflows/e2e-reader-enhanced-text.yml'
+permissions:
+  contents: read
+jobs:
+  reader-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/reader-enhanced-text.test.mjs
