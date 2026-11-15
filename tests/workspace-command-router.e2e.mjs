@@ -133,10 +133,14 @@ try{
     await page.waitForTimeout(180);
     await page.locator('#gvc').focus();
     const drawBefore=await page.evaluate(()=>window.__issue139GraphDraws);
+    const graphScaleBefore=await page.evaluate(()=>GV?.k);
+    assert.ok(Number.isFinite(graphScaleBefore),'real graph state is available before zoom');
     await page.keyboard.press('Equal');
     await page.waitForTimeout(180);
     const drawAfter=await page.evaluate(()=>window.__issue139GraphDraws);
-    assert.ok(drawAfter>drawBefore,'real graph handles its keyboard zoom chord and redraws');
+    const graphScaleAfter=await page.evaluate(()=>GV?.k);
+    assert.ok(drawAfter>drawBefore,'real graph redraws after the keyboard chord');
+    assert.ok(graphScaleAfter>graphScaleBefore,'Equal zoom chord increases the actual graph scale');
     const sidebarBeforeGraphChord=await page.locator('#app').evaluate(x=>x.classList.contains('collapsed'));
     await page.keyboard.press('Control+b');
     assert.equal(await page.locator('#app').evaluate(x=>x.classList.contains('collapsed')),sidebarBeforeGraphChord,
@@ -148,7 +152,7 @@ try{
     assert.equal(reservedDefaultPrevented,false,'router does not prevent browser-reserved Ctrl+Tab');
     await snap(page,'after_contexts');
     report.cases.push({phase:'after',interaction:'real-graph-route-and-reserved-chord',
-      graphRoute:true,graphKeyRedrewCanvas:true,graphSuppressedGlobalSidebar:true,
+      graphRoute:true,graphKeyRedrewCanvas:true,graphZoomIn:true,graphScaleBefore,graphScaleAfter,graphSuppressedGlobalSidebar:true,
       reservedCtrlTabPrevented:false,screenshot:'issue139_after_contexts.png'});
 
     assert.deepEqual(report.pageErrors,[],'no uncaught browser JavaScript errors');
