@@ -5139,7 +5139,7 @@ function opEspacoPage(sp,mine){
     const topicMap=new Map();
     items.forEach(q=>{const t=q.assunto||'Sem assunto cadastrado';if(!topicMap.has(t))topicMap.set(t,[]);topicMap.get(t).push(q);});
     const topicHtml=[...topicMap].map(([topic,list])=>{
-      const metrics=errorTopicMetrics(list,items);
+      const metrics=errorTopicMetrics(list,questions);
       const open=list.filter(q=>errorLedger(q.id).open).length;
       const topicWeight=list.reduce((n,q)=>n+wOf(q),0);
       const priority=metrics.priority;
@@ -5158,7 +5158,7 @@ function opEspacoPage(sp,mine){
       (acc.length?Math.round(right.length/acc.length*100)+'% de acerto':'Sem tentativas')+
       '</span><a href="#/questoes">Estudar</a></div>'+topicHtml+'</section>';
   }).join('')+'</div>':'<p class="eh-empty">Sem questões cadastradas para calcular incidência e desempenho.</p>';
-  const wrong=errorNotebookMarkup(questions);
+  const wrong=errorNotebookMarkup(questions,Date.now(),true);
   const tabs=[['disciplinas','Disciplinas & Assuntos',disciplines],['caderno','Caderno de Questões',
     '<div class="eh-tab-cta"><p>'+qCount+' questões cadastradas no espaço, com filtros de prática e cadernos.</p>'+
     '<a class="eh-button primary" href="#/questoes">Abrir banco de questões</a><a class="eh-button" href="#/cadernos">Meus cadernos</a></div>'],
@@ -5281,10 +5281,10 @@ function errorTopicMetrics(items,allQuestions,history=histAll()){
   const priority=score>=.15?'Alta':score>=.06?'Média':tried.length?'Baixa':'Não estudado';
   return {attempted:tried.length,correct,accuracy,coverage,questionShare,weightShare,exposure,gap,score,priority};
 }
-function errorNotebookMarkup(questions,at=Date.now()){
-  const all=questions.map(q=>({q,state:errorLedger(q.id)})).filter(x=>x.state.everWrong)
+function errorNotebookMarkup(questions,at=Date.now(),includeRecovered=false){
+  const all=questions.map(q=>({q,state:errorLedger(q.id)})).filter(x=>includeRecovered?x.state.everWrong:x.state.open)
     .sort((a,b)=>b.state.lastWrongAt-a.state.lastWrongAt||a.q.id.localeCompare(b.q.id));
-  if(!all.length)return '<p class="eh-empty">Nenhum erro registrado. Uma questão só será recuperada após uma nova resposta correta.</p>';
+  if(!all.length)return '<p class="eh-empty">Nenhum erro pendente. Uma questão só será recuperada após uma nova resposta correta.</p>';
   const weeks=new Map();
   all.forEach(x=>{
     const d=new Date(x.state.lastWrongAt),start=new Date(d.getFullYear(),d.getMonth(),d.getDate());
@@ -5300,8 +5300,8 @@ function errorNotebookMarkup(questions,at=Date.now()){
       if(!grouped.has(label))grouped.set(label,[]);
       grouped.get(label).push(x);
     });
-    return '<section class="eh-error-week"><h3>Semana de '+esc(week)+' <small>Errou '+entries.length+
-      ' · Recuperou '+recovered+'</small></h3>'+[...grouped].map(([group,items])=>
+    return '<section class="eh-error-week"><h3>Semana de '+esc(week)+' <small>Errou '+(includeRecovered?entries.length:entries.length)+
+      ' · Recuperou '+(includeRecovered?recovered:0)+'</small></h3>'+[...grouped].map(([group,items])=>
       '<div class="eh-error-group"><h4>'+esc(group)+'</h4>'+items.map(({q,state})=>
         '<a href="#/questao/'+esc(q.id)+'" class="eh-error-entry"><span>'+esc(qTitle(q))+'</span>'+
         '<small>'+state.errors+' erro'+(state.errors===1?'':'s')+' · '+
