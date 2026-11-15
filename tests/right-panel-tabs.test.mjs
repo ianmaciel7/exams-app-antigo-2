@@ -135,7 +135,7 @@ test('local graph observes its responsive container and disconnects observers on
     cancelAnimationFrame() {},
     document: { removeEventListener() {} },
   };
-  const api = runInNewContext(graphLifecycle + '\\n({ stopGV, getGraph:()=>GV })', context);
+  const api = runInNewContext(graphLifecycle + '\n({ stopGV, getGraph:()=>GV })', context);
   const prior = api.getGraph();
   api.stopGV();
   assert.equal(prior.stop, true);
@@ -144,6 +144,6 @@ test('local graph observes its responsive container and disconnects observers on
   assert.equal(api.getGraph(), null);
 
   const sizeLifecycle = section('const size=()=>{ const r=wrap.getBoundingClientRect();', 'fit(); st.sized=true;');
-  assert.match(sizeLifecycle, /new ResizeObserver\\(\\(\\)=>\\{ const first=!st\\.sized;[\\s\\S]*?st\\.ro\\.observe\\(wrap\\);/);
-  assert.match(sizeLifecycle, /cv\\.width=st\\.W\\*st\\.dpr; cv\\.height=st\\.H\\*st\\.dpr/);
+  assert.match(sizeLifecycle, /new ResizeObserver\(\(\)=>\{ const first=!st\.sized;[\s\S]*?st\.ro\.observe\(wrap\);/);
+  assert.match(sizeLifecycle, /cv\.width=st\.W\*st\.dpr; cv\.height=st\.H\*st\.dpr/);
 });
