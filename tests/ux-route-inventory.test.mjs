@@ -122,3 +122,15 @@ test('recency slider displays persisted zero and daily reset follows local day',
   assert.ok(source.includes('(d.recency===undefined?50:d.recency)'), 'zero is not treated as a falsy fallback');
   assert.match(source,/d\.doneDay===srsLocalDay\(\)/);
 });
+
+test('SRS merge preserves recovered-attempt ledger, contextual tabs and both evidence sections',()=>{
+  assert.ok(source.includes('mergeConfirmedAttemptFallback'),'issue 76 remote recovery ledger must survive');
+  assert.ok(source.includes('Alt+Shift+ArrowRight'),'issue 139 browser-safe shortcut must survive');
+  assert.ok(source.includes('data-q-dock-srs'),'SRS import must survive');
+  const board=JSON.parse(readFileSync(new URL('../prototypes/board-exam-app/board.json',import.meta.url),'utf8'));
+  const titles=Object.values(board.elements).filter(e=>e.type==='container').map(e=>e.text||'');
+  assert.ok(titles.some(s=>s.includes('50. Recuperação estrita')),'issue 76 evidence remains in board');
+  assert.ok(titles.some(s=>s.includes('51. Revisão diária')),'issue 82 evidence is in the board');
+  const refs=Object.values(board.elements).filter(e=>e.type==='image').map(e=>e.src||'');
+  assert.ok(refs.some(s=>s.includes('issue76_'))&&refs.some(s=>s.includes('issue82_')),'screenshots of both issues preserved');
+});
