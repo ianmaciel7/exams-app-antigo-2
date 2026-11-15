@@ -5312,8 +5312,18 @@ function errorNotebookMarkup(questions,at=Date.now(),includeRecovered=false){
     ).join('')+'</section>';
   }).join('')+'</div>';
 }
-function qResetForRetry(q){
+function qResetForRetry(q,key=''){
   if(!q)return;
+  const bookId=key.startsWith('book:')?key.slice(5).split(':')[0]:null;
+  if(bookId){
+    if(!nbFind(bookId))return;
+    const map=nbAnswerMap(),bookAnswers={...(map[bookId]||{})};
+    delete bookAnswers[q.id];
+    map[bookId]=bookAnswers;
+    store.set('cadernoAnswers',map);
+    delete qPend[q.id];
+    return;
+  }
   delete qPend[q.id];
   if(q.user){
     const data=uqAns();delete data[q.id];saveUqAns(data);
@@ -6486,7 +6496,7 @@ view.addEventListener('click',e=>{
    const submit=card?.querySelector('[data-qo-submit]');if(submit)submit.disabled=false;
  } return; }
  const confirm=e.target.closest('[data-qo-submit]'); if(confirm){ const q=qObjs().find(x=>x.id===confirm.dataset.qoSubmit);if(!q||qSel(q))return;if(!qPend[q.id]){toast('Selecione uma alternativa antes de responder.');return;}qCorrect(q.id,qPend[q.id],'single');return; }
- const qr=e.target.closest('[data-qo-reset],[data-q-retry]'); if(qr){ const id=qr.dataset.qoReset||qr.dataset.qRetry,q=qObjs().find(x=>x.id===id);if(q)qResetForRetry(q);if(location.hash.startsWith('#/questoes'))renderPractice();else rr0();return; }
+ const qr=e.target.closest('[data-qo-reset],[data-q-retry]'); if(qr){ const id=qr.dataset.qoReset||qr.dataset.qRetry,q=qObjs().find(x=>x.id===id),key=qr.closest('[data-practice-key]')?.dataset.practiceKey||'';if(q)qResetForRetry(q,key);if(key.startsWith('book:'))nbRender(location.hash.slice(1));else if(location.hash.startsWith('#/questoes'))renderPractice();else rr0();return; }
  if(e.target.closest('[data-qt-sim]')){ startSim(qtList); return; }
  const qd=e.target.closest('[data-qd-sim]'); if(qd){ startSim(qObjs().filter(q=>q.materia&&(findEnt('disciplina',q.materia)||{}).id===qd.dataset.qdSim)); return; }
  const hh=location.hash.slice(1).split('/'); const rr=()=>showObjs(location.hash.slice(1));
