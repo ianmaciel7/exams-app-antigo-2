@@ -5143,15 +5143,17 @@ function opEspacoPage(sp,mine){
       const open=list.filter(q=>errorLedger(q.id).open).length;
       const topicWeight=list.reduce((n,q)=>n+wOf(q),0);
       const priority=metrics.priority;
+      const practiceHref='#/questoes?disc='+encodeURIComponent(name)+'&assunto='+encodeURIComponent(topic);
       const token='edital-theory:'+space+':'+encodeURIComponent(name)+':'+encodeURIComponent(topic);
       const checked=store.get(token)===true;
       return '<div class="eh-ray-topic"><div><b>'+esc(topic)+'</b><small>'+list.length+' questão'+(list.length===1?'':'ões')+
         ' · '+topicWeight.toLocaleString('pt-BR')+' pontos catalogados'+
         ' · Incidência '+Math.round(metrics.questionShare*100)+'% / peso '+Math.round(metrics.weightShare*100)+'%'+
-        ' · Cobertura '+Math.round(metrics.coverage*100)+'% · '+Math.round(metrics.accuracy*100)+'% de acerto pessoal'+
+        ' · Questões resolvidas '+metrics.attempted+'/'+list.length+' · Cobertura '+Math.round(metrics.coverage*100)+'% · '+Math.round(metrics.accuracy*100)+'% de acerto pessoal'+
         ' · '+open+' erros pendentes</small></div><span class="eh-topic-status">Prioridade: '+priority+
         ' ('+Math.round(metrics.score*100)+' pontos de exposição)</span>'+
-        '<label><input type="checkbox" data-edital-theory="'+esc(token)+'"'+(checked?' checked':'')+'><span>Teoria estudada</span></label></div>';
+        '<label><input type="checkbox" data-edital-theory="'+esc(token)+'"'+(checked?' checked':'')+'><span>Teoria / PDF lido</span></label>'+
+        '<a class="eh-topic-practice" data-topic-practice href="'+esc(practiceHref)+'">Praticar tópico →</a></div>';
     }).join('');
     return '<section class="eh-ray-section"><div class="eh-ray-row"><div><strong>'+esc(name)+'</strong><small>'+items.length+
       ' questões · '+share+'% dos pontos catalogados</small></div><span>'+
