@@ -10,10 +10,11 @@ const code=html.slice(start,end)+'\n({errorLedger,errorReviewSummary,errorNotebo
 const day=86400000,base=Date.UTC(2026,10,9,10,0,0),id='q1';
 const record=(at,ok,a=ok?'B':'A',qid=id)=>({q:qid,t:at,ok,a,src:'Prática'});
 function harness(log=[]){
- const values=new Map([['hist',log]]),answers={1:{selected:'A',correct:false,deleted:false,version:1}},
+ const values=new Map([['hist',log],['cadernoAnswers',{book42:{q1:{selected:'A',at:base}}}]]),answers={1:{selected:'A',correct:false,deleted:false,version:1}},
    pending={q1:'A'},writes=[];
  const env={store:{get:k=>values.get(k),set:(k,v)=>{values.set(k,v);writes.push([k,v]);}},
    qPend:pending,uqAns:()=>({}),saveUqAns:()=>{},getAnswers:()=>answers,
+   nbFind:bid=>bid==='book42'?{id:bid}:null,nbAnswerMap:()=>values.get('cadernoAnswers')||{},
    saveAnswers:a=>{values.set('answers',a);writes.push(['answers',a]);},
    esc:t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),
    qTitle:q=>'Questão '+q.id,wOf:q=>!q.user&&q.materia==='Conhecimentos Específicos'?2.5:1,Date,Number,Math,Array,Set,Map,String
@@ -59,6 +60,24 @@ test('viewing solutions or clearing an answer does not mutate history or declare
  assert.equal(h.values.get('answers')[1].deleted,true);
  assert.equal(h.pending.q1,undefined);
  assert.equal(h.writes.filter(([k])=>k==='hist').length,0);
+});
+test('retry inside a notebook clears only its scoped answer and preserves general practice',()=>{
+ const h=harness([record(base,false)]);
+ const before=JSON.stringify(h.values.get('hist'));
+ h.api.qResetForRetry({id,n:1,user:false},'book:book42');
+ assert.equal(h.values.get('cadernoAnswers').book42.q1,undefined);
+ assert.equal(h.answers[1].selected,'A','unrelated global practice answer must survive');
+ assert.equal(JSON.stringify(h.values.get('hist')),before,'immutable attempt ledger must survive');
+ assert.equal(h.writes.filter(([k])=>k==='answers').length,0);
+ assert.equal(h.pending.q1,undefined);
+ assert.match(html,/closest\('\[data-practice-key\]'\)/,'retry action obtains notebook context');
+ assert.match(html,/if\(key\.startsWith\('book:'\)\)nbRender/,'retry rerenders notebook route');
+});
+test('retry without a valid notebook does not clear global answers',()=>{
+ const h=harness([record(base,false)]);
+ h.api.qResetForRetry({id,n:1,user:false},'book:missing');
+ assert.equal(h.answers[1].selected,'A');
+ assert.equal(h.writes.length,0);
 });
 test('pending, recovered, due and scheduled counts are distinct and based on actual timestamps',()=>{
  const data=[record(base,false,'A','q1'),record(base,false,'A','q2'),
