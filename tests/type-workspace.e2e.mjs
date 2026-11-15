@@ -44,7 +44,8 @@ try{
       assert.ok(await page.locator('[data-td-item]:visible').count()>0,'clear after reload restores entries');
       await page.locator('[data-td-search="orgao"]').fill('sem-resultado-xyz');
       await page.locator('[data-td-layout="orgao"]').selectOption('embed');
-      await page.locator('.td-layout-embed').waitFor();
+      await page.locator('.td-layout-embed').waitFor({state:'attached'});
+      assert.equal(await page.locator('[data-td-layout="orgao"]').inputValue(),'embed','embedded layout selected while search has no matches');
       assert.equal(await page.locator('[data-td-item]:visible').count(),0,'persisted search filters embedded layout');
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('.td-content').waitFor();
