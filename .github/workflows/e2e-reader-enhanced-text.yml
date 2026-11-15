@@ -8,7 +8,7 @@ on:
       - 'tests/reader-enhanced-text.e2e.mjs'
       - '.github/workflows/e2e-reader-enhanced-text.yml'
 permissions:
-  contents: write
+  contents: read
 jobs:
   reader-contract:
     runs-on: ubuntu-latest
@@ -23,8 +23,6 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -43,20 +41,6 @@ jobs:
           exit 1
       - name: Test PDF.js two-column text extraction and keyboard actions in Chromium
         run: node tests/reader-enhanced-text.e2e.mjs
-      - name: Version real PDF screenshots into the board exactly once
-        if: ${{ github.event_name == 'pull_request' && github.head_ref == 'fix/issue-77-luna-20261115' && github.event.pull_request.head.repo.full_name == github.repository && success() }}
-        run: |
-          python3 scripts/append-issue77-reader-board.py
-          npm run board
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md
-          git add prototypes/board-exam-app/issue77_reader_e2e.json
-          git add prototypes/board-exam-app/assets/issue77_reader_*.png
-          if ! git diff --cached --quiet; then
-            git commit -m 'docs(board): version issue 77 verified Chromium screenshots'
-            git push origin "HEAD:${GITHUB_HEAD_REF}"
-          fi
       - name: Upload reader screenshots and test journal
         if: always()
         uses: actions/upload-artifact@v4
