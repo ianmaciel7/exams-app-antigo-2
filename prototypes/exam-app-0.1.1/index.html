@@ -5139,16 +5139,18 @@ function opEspacoPage(sp,mine){
     const topicMap=new Map();
     items.forEach(q=>{const t=q.assunto||'Sem assunto cadastrado';if(!topicMap.has(t))topicMap.set(t,[]);topicMap.get(t).push(q);});
     const topicHtml=[...topicMap].map(([topic,list])=>{
-      const tried=list.filter(q=>errorLedger(q.id).attempts>0),good=tried.filter(q=>qSel(q)===q.gabarito);
+      const metrics=errorTopicMetrics(list,items);
       const open=list.filter(q=>errorLedger(q.id).open).length;
       const topicWeight=list.reduce((n,q)=>n+wOf(q),0);
-      const ratio=tried.length?good.length/tried.length:null;
-      const priority=open||ratio!==null&&ratio<.7?'Alta':ratio===null?'Não estudado':'Em dia';
+      const priority=metrics.priority;
       const token='edital-theory:'+space+':'+encodeURIComponent(name)+':'+encodeURIComponent(topic);
       const checked=store.get(token)===true;
       return '<div class="eh-ray-topic"><div><b>'+esc(topic)+'</b><small>'+list.length+' questão'+(list.length===1?'':'ões')+
-        ' · '+topicWeight.toLocaleString('pt-BR')+' pontos catalogados'+(tried.length?' · '+Math.round(ratio*100)+'% de acerto pessoal':' · Sem tentativas')+
-        ' · '+open+' erros pendentes</small></div><span class="eh-topic-status">Prioridade: '+priority+'</span>'+
+        ' · '+topicWeight.toLocaleString('pt-BR')+' pontos catalogados'+
+        ' · Incidência '+Math.round(metrics.questionShare*100)+'% / peso '+Math.round(metrics.weightShare*100)+'%'+
+        ' · Cobertura '+Math.round(metrics.coverage*100)+'% · '+Math.round(metrics.accuracy*100)+'% de acerto pessoal'+
+        ' · '+open+' erros pendentes</small></div><span class="eh-topic-status">Prioridade: '+priority+
+        ' ('+Math.round(metrics.score*100)+' pontos de exposição)</span>'+
         '<label><input type="checkbox" data-edital-theory="'+esc(token)+'"'+(checked?' checked':'')+'><span>Teoria estudada</span></label></div>';
     }).join('');
     return '<section class="eh-ray-section"><div class="eh-ray-row"><div><strong>'+esc(name)+'</strong><small>'+items.length+
@@ -5258,10 +5260,31 @@ function errorReviewSummary(questions,at=Date.now(),history=histAll()){
     due:states.filter(x=>x.state.everWrong&&x.state.dueAt<=at),
     scheduled:states.filter(x=>x.state.everWrong&&x.state.dueAt>at)};
 }
+function errorTopicMetrics(items,allQuestions,history=histAll()){
+  const ids=new Set(items.map(q=>q.id)),latest=new Map();
+  history.forEach((h,i)=>{
+    if(!ids.has(h.q)||!/^[A-E]$/.test(h.a||'')||typeof h.ok!=='boolean'||!Number.isFinite(Number(h.t)))return;
+    const prior=latest.get(h.q);
+    if(!prior||Number(h.t)>Number(prior.h.t)||Number(h.t)===Number(prior.h.t)&&i>prior.i)latest.set(h.q,{h,i});
+  });
+  const tried=items.filter(q=>latest.has(q.id));
+  const correct=tried.filter(q=>latest.get(q.id).h.ok).length;
+  const accuracy=tried.length?correct/tried.length:0;
+  const coverage=items.length?tried.length/items.length:0;
+  const questionShare=allQuestions.length?items.length/allQuestions.length:0;
+  const totalWeight=allQuestions.reduce((n,q)=>n+wOf(q),0);
+  const weight=items.reduce((n,q)=>n+wOf(q),0);
+  const weightShare=totalWeight?weight/totalWeight:questionShare;
+  const exposure=(questionShare+weightShare)/2;
+  const gap=.6*(1-coverage)+.4*(1-accuracy);
+  const score=exposure*gap;
+  const priority=score>=.15?'Alta':score>=.06?'Média':tried.length?'Baixa':'Não estudado';
+  return {attempted:tried.length,correct,accuracy,coverage,questionShare,weightShare,exposure,gap,score,priority};
+}
 function errorNotebookMarkup(questions,at=Date.now()){
-  const all=questions.map(q=>({q,state:errorLedger(q.id)})).filter(x=>x.state.open)
+  const all=questions.map(q=>({q,state:errorLedger(q.id)})).filter(x=>x.state.everWrong)
     .sort((a,b)=>b.state.lastWrongAt-a.state.lastWrongAt||a.q.id.localeCompare(b.q.id));
-  if(!all.length)return '<p class="eh-empty">Nenhum erro pendente. Uma questão só será recuperada após uma nova resposta correta.</p>';
+  if(!all.length)return '<p class="eh-empty">Nenhum erro registrado. Uma questão só será recuperada após uma nova resposta correta.</p>';
   const weeks=new Map();
   all.forEach(x=>{
     const d=new Date(x.state.lastWrongAt),start=new Date(d.getFullYear(),d.getMonth(),d.getDate());
@@ -5271,18 +5294,19 @@ function errorNotebookMarkup(questions,at=Date.now()){
     weeks.get(key).push(x);
   });
   return '<div class="eh-error-notebook">'+[...weeks].map(([week,entries])=>{
-    const grouped=new Map();
+    const grouped=new Map(),recovered=entries.filter(x=>x.state.recovered).length;
     entries.forEach(x=>{
       const label=(x.q.materia||'Sem disciplina')+' · '+(x.q.assunto||'Sem assunto');
       if(!grouped.has(label))grouped.set(label,[]);
       grouped.get(label).push(x);
     });
-    return '<section class="eh-error-week"><h3>Semana de '+esc(week)+' <small>'+entries.length+' questão'+
-      (entries.length===1?'':'ões')+'</small></h3>'+[...grouped].map(([group,items])=>
+    return '<section class="eh-error-week"><h3>Semana de '+esc(week)+' <small>Errou '+entries.length+
+      ' · Recuperou '+recovered+'</small></h3>'+[...grouped].map(([group,items])=>
       '<div class="eh-error-group"><h4>'+esc(group)+'</h4>'+items.map(({q,state})=>
         '<a href="#/questao/'+esc(q.id)+'" class="eh-error-entry"><span>'+esc(qTitle(q))+'</span>'+
-        '<small>'+state.errors+' erro'+(state.errors===1?'':'s')+' · '+(state.dueAt<=at?'Revisar agora':'Próxima revisão: '+new Date(state.dueAt).toLocaleDateString('pt-BR'))+
-        '</small><strong>Refazer</strong></a>').join('')+'</div>'
+        '<small>'+state.errors+' erro'+(state.errors===1?'':'s')+' · '+
+        (state.recovered?'Recuperada':state.dueAt<=at?'Revisar agora':'Próxima revisão: '+new Date(state.dueAt).toLocaleDateString('pt-BR'))+
+        '</small><strong>'+(state.open?'Refazer':'Revisar')+'</strong></a>').join('')+'</div>'
     ).join('')+'</section>';
   }).join('')+'</div>';
 }
