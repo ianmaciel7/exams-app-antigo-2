@@ -90,3 +90,36 @@ test('SRS cards persist, reveal, grade, isolate spaces, and apply theme/recency 
   assert.equal(mastered.mastered, true);
   assert.equal(srs.load().done, 2);
 });
+
+test('saved question highlights are imported into SRS with provenance and no duplicates', () => {
+  const begin=source.indexOf('/* ---- Daily Review / spaced repetition (#82) ---- */');
+  const end=source.indexOf('function showReview()',begin);
+  const saved=new Map();
+  const data={get:k=>saved.get(k)||null,set:(k,v)=>saved.set(k,structuredClone(v))};
+  const env={store:data,space:'alpha',esc:s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
+    qDockRanges:(id,part)=>id==='q42'&&part==='statement'?[{start:10,end:20}]:[]};
+  runInNewContext(source.slice(begin,end),env);
+  const api=runInNewContext('({from:srsCreateFromQuestionHighlight,load:srsLoad,create:srsCreateCard,day:srsLocalDay})',env);
+  const q={id:'q42',n:42,enunciado:'Um trecho correto pode virar cartão de estudo.',materia:'Direito'};
+  const first=api.from(q);
+  assert.ok(first,'first saved statement highlight creates a card');
+  assert.equal(first.answer,q.enunciado.slice(10,20));
+  assert.equal(first.sourceKind,'question-highlight');
+  assert.equal(first.sourceRef,'#/questao/q42');
+  assert.equal(first.theme,'Direito');
+  const second=api.from(q);
+  assert.equal(second.id,first.id,'repeated import reuses one active linked card');
+  assert.equal(api.load().cards.length,1,'stored card count is stable after duplicate selection');
+  const comment=api.create('qa','','Explique a questão','Comentário validado','Direito',1000,
+    {label:'Comentário de questão',ref:'#/questao/q42',kind:'question-comment',id:'q42'});
+  assert.equal(comment.sourceKind,'question-comment');
+  assert.equal(api.load().cards.length,2);
+  assert.ok(!api.from({id:'q99',n:99,enunciado:'Sem grifos'}));
+  assert.match(source,/data-q-dock-srs/,'user can directly import selected highlights');
+  assert.match(source,/data-qped-srs-comment/,'commentary export is available after confirmation');
+});
+test('recency slider displays persisted zero and daily reset follows local day',()=>{
+  assert.match(source,/value="'\+\(d\.recency===undefined\?50:d\.recency\)\+'"' data-srs-setting="recency"/);
+  assert.match(source,/d\.doneDay===srsLocalDay\(\)/);
+  assert.doesNotMatch(source,/new Date\(\)\.toISOString\(\)\.slice\(0,10\)/);
+});
