@@ -103,4 +103,8 @@ test('tab cycling avoids browser and operating-system reserved Mod+Tab chords',(
   assert.deepEqual(h.calls,[]);
   assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle').shortcut,'Alt+Shift+ArrowRight');
   assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle-back').shortcut,'Alt+Shift+ArrowLeft');
+  h.key('ArrowRight',{altKey:true,shiftKey:true});
+  h.key('ArrowLeft',{altKey:true,shiftKey:true});
+  assert.deepEqual(h.calls,['activate:b','activate:a'],
+    'new non-reserved chords dispatch to next and previous tab exactly once');
 });
