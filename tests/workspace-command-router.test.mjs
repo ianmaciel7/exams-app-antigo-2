@@ -106,6 +106,12 @@ test('tab cycling avoids browser and operating-system reserved Mod+Tab chords',(
   h.key('ArrowRight',{altKey:true,shiftKey:true});
   h.ctx.WS.active='b';
   h.key('ArrowLeft',{altKey:true,shiftKey:true});
+  const mac=harness({mac:true});
+  const metaTab=mac.key('Tab',{metaKey:true});
+  assert.equal(metaTab.defaultPrevented,false,'Meta+Tab remains available to macOS');
+  assert.deepEqual(mac.calls,[]);
+  mac.key('ArrowRight',{altKey:true,shiftKey:true});
+  assert.deepEqual(mac.calls,['activate:b'],'safe next-tab chord dispatches on macOS too');
   assert.deepEqual(h.calls,['activate:b','activate:a'],
     'new non-reserved chords dispatch to next and previous tab exactly once');
 });
