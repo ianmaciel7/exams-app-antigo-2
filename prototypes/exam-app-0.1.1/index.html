@@ -6507,7 +6507,8 @@ function showReview(){
 
 view.addEventListener('click',e=>{
  const rev=e.target.closest('[data-srs-reveal]'); if(rev){const c=rev.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===c.dataset.srsCard); if(card){c.outerHTML=srsCardMarkup(card,true);} return;}
- const speak=e.target.closest('[data-srs-speak]');if(speak){const el=speak.closest('[data-srs-card]'),card=(srsLoad().cards||[]).find(x=>x.id===el.dataset.srsCard);if(!('speechSynthesis' in window)){toast('Áudio de voz indisponível neste navegador.');return;}const utterance=new SpeechSynthesisUtterance(srsSpeakText(card,!el.querySelector('.srs-grade')?.hidden));utterance.lang='pt-BR';speechSynthesis.cancel();speechSynthesis.speak(utterance);return;}\n const mode=e.target.closest('[data-srs-mode]'); if(mode){const d=srsLoad();d.mode=mode.dataset.srsMode;srsSave(d);showReview();return;}
+ const speak=e.target.closest('[data-srs-speak]');if(speak){const el=speak.closest('[data-srs-card]'),card=(srsLoad().cards||[]).find(x=>x.id===el.dataset.srsCard);if(!('speechSynthesis' in window)){toast('Áudio de voz indisponível neste navegador.');return;}const utterance=new SpeechSynthesisUtterance(srsSpeakText(card,!el.querySelector('.srs-grade')?.hidden));utterance.lang='pt-BR';speechSynthesis.cancel();speechSynthesis.speak(utterance);return;}
+ const mode=e.target.closest('[data-srs-mode]'); if(mode){const d=srsLoad();d.mode=mode.dataset.srsMode;srsSave(d);showReview();return;}
  const open=e.target.closest('[data-srs-open-create]'); if(open){view.querySelector('#srs-create')?.setAttribute('open','');view.querySelector('#srs-text')?.focus();return;}
  const tab=e.target.closest('[data-srs-tab]');if(tab){view.querySelector('#srs-cloze').hidden=tab.dataset.srsTab!=='cloze';view.querySelector('#srs-qa').hidden=tab.dataset.srsTab!=='qa';return;}
  const word=e.target.closest('[data-srs-word]');if(word){word.classList.toggle('selected');return;}

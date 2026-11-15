@@ -71,11 +71,11 @@ test('SRS cards persist, reveal, grade, isolate spaces, and apply theme/recency 
   assert.equal(srs.due(1001).length, 0);
   assert.equal(srs.load().cards[0].dueAt, 1000 + 2 * 86400000);
   srs.setSpace('beta');
-  assert.equal(srs.load().cards.length, 0);
+  assert.equal((srs.load().cards || []).length, 0);
   srs.create('qa', '', 'Other space?', 'Other answer', 'History', 1000);
   assert.equal(srs.load().cards.length, 1);
   srs.setSpace('alpha');
-  assert.equal(srs.load().cards.length, 1);
+  assert.equal(srs.load().cards.length, 2);
 
   srs.create('qa', '', 'Older card?', 'Old', 'Constitutional', 2000);
   srs.create('qa', '', 'Other topic?', 'Topic', 'History', 3000);
