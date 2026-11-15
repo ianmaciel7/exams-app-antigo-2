@@ -13,7 +13,7 @@ const section = (start, end) => {
 const source = [
   section('function vTitle(v)', 'function rpPaintTabs()'),
   section('function rpTabMatches(t,type,ref)', 'function rpStack(type,ref)'),
-  section('function rpCloseTab(id)', 'function rpCloseOthers(id)'),
+  section('function rpCloseView(id)', 'function rpCloseOthers(id)'),
 ].join('\n');
 
 function harness() {
@@ -28,6 +28,7 @@ function harness() {
     uid: () => 'new-' + (++serial),
     rpSelect: id => { RP.active = id; },
     rpVisible: () => true,
+    rpTab: () => RP.tabs.find(t => t.id === RP.active),
     openRP: () => {},
     wsSave: () => {},
     rpPaintAll: () => {},
@@ -36,7 +37,7 @@ function harness() {
     nodeOf: href => href === '#/concurso/dataprev' ? { title: 'Dataprev' }
       : href === '#/cargo/analista' ? { title: 'Analista de TI' } : null,
   };
-  const api = runInNewContext(source + '\n({ rpAddTab, rpCloseTab, rpTabMatches, vTitle })', context);
+  const api = runInNewContext(source + '\n({ rpAddTab, rpCloseTab, rpCloseView, rpTabMatches, vTitle })', context);
   return { api, RP, context, undo };
 }
 
@@ -122,4 +123,35 @@ test('contextual tab overflow preserves full tab names and no top-level stack bu
   assert.match(html,/if\(e.key==='F10'&&e.shiftKey\)/);
   assert.match(html,/t:'Empilhar ferramenta'/);
   assert.match(html,/data-rp-menu-close/);
+});
+
+test('closing the last view restores Explore and retains Undo (#55 #54)', () => {
+  const h = harness();
+  h.api.rpAddTab('graf');
+  const currentId = h.RP.active;
+  const viewId = h.RP.tabs[0].views[0].id;
+  h.api.rpCloseView(viewId);
+  assert.equal(h.RP.tabs.length, 1);
+  assert.equal(h.RP.tabs[0].views[0].type, 'explorar');
+  assert.notEqual(h.RP.active, currentId);
+  assert.equal(h.undo.length, 1);
+  h.undo[0]();
+  assert.equal(h.RP.tabs.length, 1);
+  assert.equal(h.RP.tabs[0].views[0].type, 'graf');
+  assert.equal(h.RP.active, currentId);
+});
+
+test('closing one stacked view preserves its tab and ignores unknown views (#55 #54)', () => {
+  const h = harness();
+  h.api.rpAddTab('graf');
+  const t = h.RP.tabs[0];
+  const initialId = t.id;
+  t.views.push({ id: 'related', type: 'rel', f: 1 });
+  h.api.rpCloseView('nonexistent');
+  assert.equal(t.views.length, 2);
+  h.api.rpCloseView('related');
+  assert.equal(t.views.length, 1);
+  assert.equal(t.views[0].type, 'graf');
+  assert.equal(h.RP.active, initialId);
+  assert.equal(h.undo.length, 0);
 });
