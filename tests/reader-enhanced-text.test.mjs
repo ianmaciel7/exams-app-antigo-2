@@ -56,3 +56,17 @@ test('reader controls are cleaned up on navigation and global keys respect activ
   assert.match(readerScript, /contenteditable/);
   assert.match(readerScript, /if\(!readerFocus\)\{const first/);
 });
+
+test('reader toolbar does not squeeze PDF canvas and all three board proof sections survive merge',()=>{
+ assert.match(readerScript,/view\.parentElement\.before\(bar\)/,'toolbar must be outside horizontal PDF flex row');
+ assert.match(readerScript,/readerUndo=\[\]/,'new document must clear stale undo history');
+ const board=JSON.parse(readFileSync(new URL('../prototypes/board-exam-app/board.json',import.meta.url),'utf8'));
+ const names=Object.values(board.elements).filter(e=>e.type==='container').map(e=>e.text||'');
+ for(const title of ['50. Recuperação estrita','51. Revisão diária','52. Leitor PDF'])
+   assert.ok(names.some(s=>s.includes(title)),title+' must survive merge');
+ const imageRefs=Object.values(board.elements).filter(e=>e.type==='image').map(e=>e.src||'');
+ for(const name of ['issue76_','issue82_','issue77_reader_'])
+   assert.ok(imageRefs.some(s=>s.includes(name)),name+' Chromium evidence must survive merge');
+ assert.match(html,/srsCreateFromQuestionHighlight/,'issue 82 SRS integration is retained');
+ assert.match(html,/mergeConfirmedAttemptFallback/,'issue 76 recovery ledger is retained');
+});
