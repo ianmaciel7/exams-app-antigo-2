@@ -123,3 +123,27 @@ test('contextual tab overflow preserves full tab names and no top-level stack bu
   assert.match(html,/t:'Empilhar ferramenta'/);
   assert.match(html,/data-rp-menu-close/);
 });
+
+
+test('local graph observes its responsive container and disconnects observers on teardown (#66)', () => {
+  const graphLifecycle = section('let GV=null; const GVK={};', 'function showGraph(seq)');
+  const context = {
+    GV: { stop: false, raf: 17, ro: { disconnect() { this.disconnected = true; } },
+      io: { disconnect() { this.disconnected = true; } },
+      motionMQ: { removeEventListener() {} }, onMotionChange() {},
+      onVisibilityChange() {} },
+    cancelAnimationFrame() {},
+    document: { removeEventListener() {} },
+  };
+  const api = runInNewContext(graphLifecycle + '\\n({ stopGV, getGraph:()=>GV })', context);
+  const prior = api.getGraph();
+  api.stopGV();
+  assert.equal(prior.stop, true);
+  assert.equal(prior.ro.disconnected, true);
+  assert.equal(prior.io.disconnected, true);
+  assert.equal(api.getGraph(), null);
+
+  const sizeLifecycle = section('const size=()=>{ const r=wrap.getBoundingClientRect();', 'fit(); st.sized=true;');
+  assert.match(sizeLifecycle, /new ResizeObserver\\(\\(\\)=>\\{ const first=!st\\.sized;[\\s\\S]*?st\\.ro\\.observe\\(wrap\\);/);
+  assert.match(sizeLifecycle, /cv\\.width=st\\.W\\*st\\.dpr; cv\\.height=st\\.H\\*st\\.dpr/);
+});
