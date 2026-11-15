@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { runInNewContext } from 'node:vm';
 
 const source = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
 const guide = readFileSync(new URL('../docs/ux/arquitetura-informacao-navegacao.md', import.meta.url), 'utf8');
@@ -12,7 +13,8 @@ test('current route inventory is grounded in actual dispatch logic', () => {
   ];
   for (const literal of active) assert.ok(source.includes(literal), 'missing route ' + literal);
   assert.match(source, /if\(h0\.startsWith\('\/questoes'\)\|\|h0==='\/simulado'\)\{ showStudyRoute\(h0\); return; \}/);
-  assert.match(source, /if\(h0==='\/revisao'\)\{ location\.replace\('#\/questoes\/erradas'\); return; \}/);
+  assert.match(source, /if\(h0==='\/revisao'\)\{ showReview\(\); return; \}/);
+  assert.doesNotMatch(source, /if\(h0==='\/revisao'\)\{ location\.replace\('#\/questoes\/erradas'\); return; \}/);
 });
 
 test('guide distinguishes implemented navigation from future contracts', () => {
@@ -37,4 +39,54 @@ test('guide covers decisions, empirical validation, and issue boundaries', () =>
   ]) {
     assert.ok(guide.includes(label), 'missing acceptance artifact: ' + label);
   }
+});
+
+
+test('SRS cards persist, reveal, grade, isolate spaces, and apply theme/recency settings', () => {
+  const begin = source.indexOf('/* ---- Daily Review / spaced repetition (#82) ---- */');
+  const end = source.indexOf('function showReview()', begin);
+  assert.ok(begin >= 0 && end > begin, 'SRS helpers are present');
+  const values = new Map();
+  const storage = {
+    get(key) { return JSON.parse(values.get('leitor:' + key) || 'null'); },
+    set(key, value) { values.set('leitor:' + key, JSON.stringify(value)); },
+  };
+  const context = { store: storage, space: 'alpha', esc: value => String(value).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])) };
+  runInNewContext(source.slice(begin, end), context);
+  const srs = runInNewContext('({ setSpace(v){space=v}, load:srsLoad, save:srsSave, create:srsCreateCard, grade:srsGradeCard, due:srsDueCards, markup:srsCardMarkup, speak:srsSpeakText })', context);
+
+  const qa = srs.create('qa', '', 'What is the answer?', 'Stored answer', 'Constitutional', 1000);
+  const afterReload = srs.load();
+  assert.equal(afterReload.cards.length, 1);
+  assert.match(srs.markup(afterReload.cards[0], false), /Revelar resposta/);
+  assert.doesNotMatch(srs.markup(afterReload.cards[0], false), /Stored answer/);
+  assert.match(srs.markup(afterReload.cards[0], true), /Stored answer/);
+  assert.doesNotMatch(srs.speak(afterReload.cards[0]), /Stored answer/);
+  assert.match(srs.speak(afterReload.cards[0], true), /Stored answer/);
+  const cloze = srs.create('cloze', 'The {{c1::quorum}} must be met.', '', '', 'Cloze', 1050);
+  assert.match(srs.speak(cloze), /lacuna/);
+  assert.match(srs.speak(cloze, true), /quorum/);
+
+  srs.grade(qa.id, 'soon', 1000);
+  assert.equal(srs.due(1001).length, 0);
+  assert.equal(srs.load().cards[0].dueAt, 1000 + 2 * 86400000);
+  srs.setSpace('beta');
+  assert.equal(srs.load().cards.length, 0);
+  srs.create('qa', '', 'Other space?', 'Other answer', 'History', 1000);
+  assert.equal(srs.load().cards.length, 1);
+  srs.setSpace('alpha');
+  assert.equal(srs.load().cards.length, 1);
+
+  srs.create('qa', '', 'Older card?', 'Old', 'Constitutional', 2000);
+  srs.create('qa', '', 'Other topic?', 'Topic', 'History', 3000);
+  const settings = srs.load();
+  settings.theme = 'Constitutional';
+  settings.recency = 0;
+  settings.goal = 10;
+  srs.save(settings);
+  const filtered = srs.due(3000000000);
+  assert.deepEqual(Array.from(filtered, card => card.question), ['What is the answer?', 'Older card?']);
+  const mastered = srs.grade(qa.id, 'never', 4000);
+  assert.equal(mastered.mastered, true);
+  assert.equal(srs.load().done, 2);
 });
