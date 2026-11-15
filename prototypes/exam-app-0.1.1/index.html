@@ -4895,7 +4895,7 @@ function tdObjectMarkup(item,layout,searchTerm=''){
   const hidden=searchTerm&&!((item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(searchTerm.toLocaleLowerCase('pt-BR')))?' hidden':'';
   if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+main+
     '<span class="td-type-col">'+esc(TYPES[item.kind]?.n||item.kind)+'</span></a>';
-  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'">'+
+  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'>'+
     '<a href="'+esc(item.href)+'">'+main+'</a><button type="button" data-td-copy="'+esc(item.href)+'" title="Copiar link do objeto">Copiar link</button></div>';
   return '<a class="td-item" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+
     '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span></span><span class="td-card-title">'+esc(item.name)+'</span>'+
