@@ -94,3 +94,24 @@ test('Mod respects the actual OS and button hints follow the registered command'
   assert.equal(mac.elements.wsNew.title,'Nova aba (Option + T)');
   assert.equal(mac.elements.wsSearchBtn.title,'Buscar (⌘ + K)');
 });
+
+test('tab cycling avoids browser and operating-system reserved Mod+Tab chords',()=>{
+  const h=harness();
+  assert.ok(!h.api.workspaceCommands.some(c=>c.shortcut.split('|').some(k=>k==='Mod+Tab'||k==='Mod+Shift+Tab')));
+  const e=h.key('Tab',{ctrlKey:true});
+  assert.equal(e.defaultPrevented,false,'Ctrl+Tab remains available to the browser');
+  assert.deepEqual(h.calls,[]);
+  assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle').shortcut,'Alt+Shift+ArrowRight');
+  assert.equal(h.api.workspaceCommands.find(c=>c.id==='workspace.tab-cycle-back').shortcut,'Alt+Shift+ArrowLeft');
+  h.key('ArrowRight',{altKey:true,shiftKey:true});
+  h.ctx.WS.active='b';
+  h.key('ArrowLeft',{altKey:true,shiftKey:true});
+  const mac=harness({mac:true});
+  const metaTab=mac.key('Tab',{metaKey:true});
+  assert.equal(metaTab.defaultPrevented,false,'Meta+Tab remains available to macOS');
+  assert.deepEqual(mac.calls,[]);
+  mac.key('ArrowRight',{altKey:true,shiftKey:true});
+  assert.deepEqual(mac.calls,['activate:b'],'safe next-tab chord dispatches on macOS too');
+  assert.deepEqual(h.calls,['activate:b','activate:a'],
+    'new non-reserved chords dispatch to next and previous tab exactly once');
+});

@@ -1270,6 +1270,28 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .sim-disc-item:last-child{border-bottom:0}
 
 
+
+/* Recovery-aware notebook and topic-level verticalized edital (#76). */
+.eh-error-notebook{display:grid;gap:18px}
+.eh-error-week{border:1px solid var(--line);border-radius:10px;padding:12px 15px}
+.eh-error-week h3{font-size:13px;margin:0 0 10px}
+.eh-error-week h3 small{font-weight:400;color:var(--muted);margin-left:8px}
+.eh-error-group{padding:6px 0 12px;border-top:1px solid var(--line)}
+.eh-error-group h4{font-size:11px;font-weight:600;color:var(--muted);margin:8px 0}
+.eh-error-entry{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0;color:var(--text);font-size:12px;text-decoration:none}
+.eh-error-entry:hover{text-decoration:underline}
+.eh-error-entry small{color:var(--muted);font-size:11px}
+.eh-error-entry strong{margin-left:auto;font-size:11px}
+.eh-ray-section{border-bottom:1px solid var(--line);padding:8px 0}
+.eh-ray-section>.eh-ray-row{border-bottom:0}
+.eh-ray-topic{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 10px 9px 20px;font-size:11.5px;border-top:1px dashed var(--line)}
+.eh-ray-topic>div{flex:1 1 160px}
+.eh-ray-topic b{font-weight:600}
+.eh-ray-topic small{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:4px}
+.eh-ray-topic label{display:flex;gap:5px;align-items:center;font-size:11px;cursor:pointer}
+.eh-ray-topic input{accent-color:var(--text);width:16px;height:16px}
+.s-recovery-notebook{padding:16px;border:1px solid var(--line);border-radius:12px;margin:16px 0}.s-recovery-notebook h2{font-size:16px;margin:0 0 8px}.s-recovery-notebook>p{color:var(--muted);font-size:12px;margin:0 0 12px}
+
 /* Editorial study dashboard (#58/#69): content-first, grounded, no emoji and responsive. */
 .home-editorial{width:min(100%,1180px);margin:0 auto;padding:24px 22px 70px;color:var(--text);box-sizing:border-box}
 .home-editorial *{box-sizing:border-box}
@@ -3963,8 +3985,8 @@ async function buildIndex(){
   return indexing;
 }
 let palOpen=false, palSel=0, palItems=[], palNewTab=false, palOpener=null;
-function palFocusTarget(el){ return !!(el&&el.isConnected&&!el.disabled&&!el.closest('[hidden],[aria-hidden="true"]')&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden'); }
-function openSearch(newTab=false){ if(typeof newTab!=='boolean') newTab=false; const searchButton=$('searchBtn'); palOpener=palFocusTarget(searchButton)?searchButton:null; closePops(); closeCtx&&closeCtx(); palNewTab=newTab; palOpen=true; $('pal').classList.add('on'); $('palIn').setAttribute('aria-expanded','true'); $('pal').setAttribute('aria-label',newTab?'Abrir em nova aba':'Buscar'); $('palIn').placeholder=newTab?'Buscar conteúdo para abrir em nova aba':'Buscar objetos e texto dos PDFs neste espaço'; $('palIn').value=''; renderPal(); setTimeout(()=>$('palIn').focus(),10); if(hasPdf) buildIndex(); }
+function palFocusTarget(el){ return !!(el&&el!==document.body&&el!==document.documentElement&&el.isConnected&&!el.disabled&&!el.closest('[hidden],[aria-hidden="true"]')&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden'); }
+function openSearch(newTab=false){ if(typeof newTab!=='boolean') newTab=false; const active=document.activeElement, searchButton=$('wsSearchBtn')||$('searchBtn'); palOpener=palFocusTarget(active)?active:(palFocusTarget(searchButton)?searchButton:null); closePops(); closeCtx&&closeCtx(); palNewTab=newTab; palOpen=true; $('pal').classList.add('on'); $('palIn').setAttribute('aria-expanded','true'); $('pal').setAttribute('aria-label',newTab?'Abrir em nova aba':'Buscar'); $('palIn').placeholder=newTab?'Buscar conteúdo para abrir em nova aba':'Buscar objetos e texto dos PDFs neste espaço'; $('palIn').value=''; renderPal(); setTimeout(()=>$('palIn').focus(),10); if(hasPdf) buildIndex(); }
 function closePal(){ if(!palOpen) return; palOpen=false; palNewTab=false; $('pal').classList.remove('on'); $('palIn').setAttribute('aria-expanded','false'); $('palIn').removeAttribute('aria-activedescendant'); const opener=palOpener; palOpener=null; if(palFocusTarget(opener)) opener.focus(); }
 function hl(t,q){ if(!q) return esc(t); const n=norm(t); let out='',k=0,i;
   while((i=n.indexOf(q,k))>-1){ out+=esc(t.slice(k,i))+'<mark>'+esc(t.slice(i,i+q.length))+'</mark>'; k=i+q.length; } return out+esc(t.slice(k)); }
@@ -4339,10 +4361,10 @@ command('workspace.close-tab','Fechar aba atual','Alt+w','Abas',80,()=>!!WS?.tab
 command('workspace.panel','Alternar painel direito','Mod+\\','Abas',80,()=>true,()=>openRP(!rpVisible()));
 command('workspace.tab-prev','Voltar no histórico da aba','Alt+ArrowLeft|Mod+[','Abas',85,()=>true,()=>wsStep(-1));
 command('workspace.tab-next','Avançar no histórico da aba','Alt+ArrowRight|Mod+]','Abas',85,()=>true,()=>wsStep(1));
-command('workspace.tab-cycle','Próxima aba','Mod+Tab','Abas',80,()=>WS?.tabs?.length>1,()=>{
+command('workspace.tab-cycle','Próxima aba','Alt+Shift+ArrowRight','Abas',80,()=>WS?.tabs?.length>1,()=>{
   const i=WS.tabs.findIndex(t=>t.id===WS.active);wsActivate(WS.tabs[(i+1)%WS.tabs.length].id);
 });
-command('workspace.tab-cycle-back','Aba anterior','Mod+Shift+Tab','Abas',80,()=>WS?.tabs?.length>1,()=>{
+command('workspace.tab-cycle-back','Aba anterior','Alt+Shift+ArrowLeft','Abas',80,()=>WS?.tabs?.length>1,()=>{
   const i=WS.tabs.findIndex(t=>t.id===WS.active);wsActivate(WS.tabs[(i+WS.tabs.length-1)%WS.tabs.length].id);
 });
 for(let n=1;n<=9;n++){
@@ -4963,27 +4985,28 @@ function tdOrder(list,sort){
   return list.slice().sort((a,b)=>sort==='recent'?b.date-a.date||a.name.localeCompare(b.name,'pt-BR',{numeric:true}):
     a.name.localeCompare(b.name,'pt-BR',{numeric:true})||a.href.localeCompare(b.href));
 }
-function tdObjectMarkup(item,layout){
+function tdObjectMarkup(item,layout,searchTerm=''){
   const main='<span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span>'+
     '<span class="td-item-text"><strong>'+esc(item.name)+'</strong><small>'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</small></span>';
   const search=esc((item.name+' '+item.detail).toLocaleLowerCase('pt-BR'));
-  if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'" href="'+esc(item.href)+'">'+main+
+  const hidden=searchTerm&&!((item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(searchTerm.toLocaleLowerCase('pt-BR')))?' hidden':'';
+  if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+main+
     '<span class="td-type-col">'+esc(TYPES[item.kind]?.n||item.kind)+'</span></a>';
-  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'">'+
+  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'>'+
     '<a href="'+esc(item.href)+'">'+main+'</a><button type="button" data-td-copy="'+esc(item.href)+'" title="Copiar link do objeto">Copiar link</button></div>';
-  return '<a class="td-item" data-td-item data-td-term="'+search+'" href="'+esc(item.href)+'">'+
+  return '<a class="td-item" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+
     '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span></span><span class="td-card-title">'+esc(item.name)+'</span>'+
     '<span class="td-card-meta">'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</span></a>';
 }
-function tdObjectsMarkup(t,items,layout){
+function tdObjectsMarkup(t,items,layout,searchTerm=''){
   if(!items.length)return '<p class="td-empty">Nenhum objeto deste tipo cadastrado no espaço.</p>';
   if(layout==='board'||layout==='mural'){
     const groups=new Map();
     items.forEach(x=>{const key=x.detail||TYPES[x.kind]?.n||'Sem classificação';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(x);});
     return '<div class="td-layout td-layout-'+layout+'">'+[...groups].map(([group,list])=>'<section class="td-column"><h3>'+
-      esc(group)+' <small>'+list.length+'</small></h3>'+list.map(x=>tdObjectMarkup(x,layout)).join('')+'</section>').join('')+'</div>';
+      esc(group)+' <small>'+list.length+'</small></h3>'+list.map(x=>tdObjectMarkup(x,layout,searchTerm)).join('')+'</section>').join('')+'</div>';
   }
-  return '<div class="td-layout td-layout-'+layout+'">'+items.map(x=>tdObjectMarkup(x,layout)).join('')+'</div>';
+  return '<div class="td-layout td-layout-'+layout+'">'+items.map(x=>tdObjectMarkup(x,layout,searchTerm)).join('')+'</div>';
 }
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
@@ -5015,7 +5038,7 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
        '<option value="recent"'+(state.sort==='recent'?' selected':'')+'>Mais recentes</option></select></label>'+
     '<label>Visualização <select data-td-layout="'+esc(t)+'">'+TD_LAYOUTS.map(([id,name])=>
       '<option value="'+id+'"'+(state.layout===id?' selected':'')+'>'+name+'</option>').join('')+'</select></label></div>';
-  const rendered=tdObjectsMarkup(t,matching,state.layout);
+  const rendered=tdObjectsMarkup(t,items,state.layout,state.search);
   // Question page retains its advanced filter/answer workflows in the existing List view.
   const all=controls+(richList&&state.layout==='list'?'<div class="td-advanced">'+richList+'</div>':rendered);
   const body='<div class="td-content">'+tabHead+'<section role="tabpanel" id="td-panel-overview" aria-labelledby="td-tab-overview"'+
@@ -5118,7 +5141,7 @@ function opEspacoPage(sp,mine){
   ):space==='dataprev');
   const history=histAll().filter(h=>h.conc===space||(space==='dataprev'&&!h.conc));
   const answered=questions.filter(q=>!!qSel(q)),right=answered.filter(q=>qSel(q)===q.gabarito);
-  const errors=answered.filter(q=>qSel(q)!==q.gabarito);
+  const recovery=errorReviewSummary(questions),errors=recovery.pending.map(x=>x.q);
   const now=new Date(),startToday=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
   const startWeek=new Date(now.getFullYear(),now.getMonth(),now.getDate());
   startWeek.setDate(startWeek.getDate()-(startWeek.getDay()+6)%7);
@@ -5152,8 +5175,8 @@ function opEspacoPage(sp,mine){
     '<a class="eh-button" href="'+(ed?'#/edicao/'+esc(ed.id):'#/tipo/edicao')+'">Mapa do edital</a></div></section>';
   const review='<section class="eh-card eh-review"><div class="eh-eyebrow">REVISÃO DE HOJE</div>'+
     '<strong class="eh-review-number">'+errors.length+'</strong>'+
-    '<p>'+ (errors.length?'questões com erro registrado para retomar':'nenhuma questão incorreta pendente')+'</p>'+
-    '<a href="#/questoes/erradas">Abrir caderno de erros</a><small>Contagem baseada no resultado mais recente de cada questão; não é uma fila SRS agendada.</small></section>';
+    '<p>'+ (errors.length?'questões com erro pendente de nova resposta correta':'nenhuma questão incorreta pendente')+'</p>'+
+    '<a href="#/questoes/erradas">Abrir caderno de erros</a><small>'+recovery.due.length+' revisão'+(recovery.due.length===1?'':'ões')+' vencida'+(recovery.due.length===1?'':'s')+'; '+recovery.recovered.length+' questão'+(recovery.recovered.length===1?'':'ões')+' recuperada'+(recovery.recovered.length===1?'':'s')+'. Agenda baseada em tentativas confirmadas.</small></section>';
   const week='<div class="eh-week" aria-label="Questões respondidas na semana">'+weekDays.map(x=>
     '<div class="eh-week-day'+(x.today?' today':'')+'" title="'+x.count+' respostas '+x.day+'"><div class="eh-week-bar" style="height:'+
     (x.count?Math.min(100,18+x.count*14):4)+'%" aria-hidden="true"></div><span>'+x.day+(x.today?' · Hoje':'')+'</span>'+
@@ -5189,14 +5212,31 @@ function opEspacoPage(sp,mine){
     const acc=items.filter(q=>!!qSel(q)),right=acc.filter(q=>qSel(q)===q.gabarito);
     const weight=items.reduce((n,q)=>n+wOf(q),0);
     const share=totalWeight?Math.round(weight/totalWeight*100):0;
-    return '<div class="eh-ray-row"><div><strong>'+esc(name)+'</strong><small>'+items.length+' questões · '+share+'% dos pontos catalogados</small></div>'+
-      '<span>'+ (acc.length?Math.round(right.length/acc.length*100)+'% de acerto':'Sem tentativas')+'</span>'+
-      '<a href="#/questoes">Estudar</a></div>';
+    const topicMap=new Map();
+    items.forEach(q=>{const t=q.assunto||'Sem assunto cadastrado';if(!topicMap.has(t))topicMap.set(t,[]);topicMap.get(t).push(q);});
+    const topicHtml=[...topicMap].map(([topic,list])=>{
+      const metrics=errorTopicMetrics(list,questions);
+      const open=list.filter(q=>errorLedger(q.id).open).length;
+      const topicWeight=list.reduce((n,q)=>n+wOf(q),0);
+      const priority=metrics.priority;
+      const practiceHref='#/questoes?disc='+encodeURIComponent(name)+'&assunto='+encodeURIComponent(topic);
+      const token='edital-theory:'+space+':'+encodeURIComponent(name)+':'+encodeURIComponent(topic);
+      const checked=store.get(token)===true;
+      return '<div class="eh-ray-topic"><div><b>'+esc(topic)+'</b><small>'+list.length+' questão'+(list.length===1?'':'ões')+
+        ' · '+topicWeight.toLocaleString('pt-BR')+' pontos catalogados'+
+        ' · Incidência '+Math.round(metrics.questionShare*100)+'% / peso '+Math.round(metrics.weightShare*100)+'%'+
+        ' · Questões resolvidas '+metrics.attempted+'/'+list.length+' · Cobertura '+Math.round(metrics.coverage*100)+'% · '+Math.round(metrics.accuracy*100)+'% de acerto pessoal'+
+        ' · '+open+' erros pendentes</small></div><span class="eh-topic-status">Prioridade: '+priority+
+        ' ('+Math.round(metrics.score*100)+' pontos de exposição)</span>'+
+        '<label><input type="checkbox" data-edital-theory="'+esc(token)+'"'+(checked?' checked':'')+'><span>Teoria / PDF lido</span></label>'+
+        '<a class="eh-topic-practice" data-topic-practice href="'+esc(practiceHref)+'">Praticar tópico →</a></div>';
+    }).join('');
+    return '<section class="eh-ray-section"><div class="eh-ray-row"><div><strong>'+esc(name)+'</strong><small>'+items.length+
+      ' questões · '+share+'% dos pontos catalogados</small></div><span>'+
+      (acc.length?Math.round(right.length/acc.length*100)+'% de acerto':'Sem tentativas')+
+      '</span><a href="#/questoes">Estudar</a></div>'+topicHtml+'</section>';
   }).join('')+'</div>':'<p class="eh-empty">Sem questões cadastradas para calcular incidência e desempenho.</p>';
-  const wrong=errors.length?'<div class="eh-errors">'+errors.slice(0,25).map(q=>
-    '<a href="#/questao/'+esc(q.id)+'"><span class="eh-object-ico" aria-hidden="true">'+UIICON.book+'</span>'+
-    '<span>'+esc(q.materia||'Questão')+' · '+esc(q.assunto||q.id)+'</span><small>Retomar</small></a>').join('')+'</div>':
-    '<p class="eh-empty">Sem questões incorretas no estado mais recente. Abrir um gabarito não altera a recuperação.</p>';
+  const wrong=errorNotebookMarkup(questions,Date.now(),true);
   const tabs=[['disciplinas','Disciplinas & Assuntos',disciplines],['caderno','Caderno de Questões',
     '<div class="eh-tab-cta"><p>'+qCount+' questões cadastradas no espaço, com filtros de prática e cadernos.</p>'+
     '<a class="eh-button primary" href="#/questoes">Abrir banco de questões</a><a class="eh-button" href="#/cadernos">Meus cadernos</a></div>'],
@@ -5233,6 +5273,10 @@ function opEspacoPage(sp,mine){
     loadNotice+'<div class="eh-intro"><div class="eh-eyebrow">Como quer estudar agora?</div>'+studyEntries+'</div>'+
     '<div class="eh-top-grid">'+action+review+'</div>'+pace+content+recents+'</main>';
 }
+view.addEventListener('change',e=>{
+ const input=e.target.closest('[data-edital-theory]');if(!input)return;
+ store.set(input.dataset.editalTheory,input.checked);
+});
 view.addEventListener('click',e=>{
   if(e.target.closest('[data-home-retry]')){ehBankState='idle';ehEnsureBank();showObjs('/espaco');return;}
   const tab=e.target.closest('[data-home-tab]');
@@ -5261,6 +5305,144 @@ view.addEventListener('keydown',e=>{
 /* ---- Histórico de respostas, tentativas (Simulado) e Desempenho ---- */
 const histAll=()=>{const v=store.get('hist');return Array.isArray(v)?v:[];};
 const simsAll=()=>{const v=store.get('sims');return Array.isArray(v)?v:[];};
+/* Legacy/remote answer snapshots can outlive their local confirmed-attempt ledger.
+   Restore only verifiable selections; never invent earlier review rounds. */
+function mergeConfirmedAttemptFallback(history,answers,questions,userAnswers,restoredAt=Date.now()){
+  const result=Array.isArray(history)?history.slice():[],latest=new Map();
+  result.forEach(h=>{
+    if(!h||!h.q||!/^[A-E]$/.test(h.a||'')||typeof h.ok!=='boolean'||!Number.isFinite(Number(h.t)))return;
+    const prev=latest.get(h.q),at=Number(h.t);
+    if(!prev||at>=prev.t)latest.set(h.q,{t:at,a:h.a,ok:h.ok});
+  });
+  const append=(qid,choice,ok,time,meta={})=>{
+    if(typeof qid!=='string'||!/^[A-E]$/.test(choice||'')||typeof ok!=='boolean')return;
+    const t=Number(time)>0&&Number.isFinite(Number(time))?Number(time):restoredAt;
+    const prev=latest.get(qid);
+    if(prev&&(prev.t>=t||(prev.a===choice&&prev.ok===ok)))return;
+    const row={id:'restored-'+qid+'-'+t+'-'+choice,q:qid,t,ok,a:choice,
+      src:'Resposta confirmada restaurada',m:meta.materia||'',n:meta.n||qid,
+      conc:meta.conc||'',ed:meta.ed||'',cg:meta.cg||''};
+    result.push(row);latest.set(qid,{t,a:choice,ok});
+  };
+  for(const [n,a] of Object.entries(answers||{})){
+    if(!/^\d+$/.test(n)||!a||a.deleted)continue;
+    append('q'+n,a.selected,a.correct,a.updatedAt,{n:'Questão '+n});
+  }
+  for(const q of Array.isArray(questions)?questions:[]){
+    if(!q||!q.id||!q.gabarito)continue;
+    const choice=(userAnswers||{})[q.id];
+    if(/^[A-E]$/.test(choice||''))append(q.id,choice,choice===q.gabarito,
+      q.updatedAt||restoredAt,q);
+  }
+  return result;
+}
+
+
+/* Recovery ledger (#76): derived only from confirmed answers. Reading a solution is never recovery. */
+const ERROR_REVIEW_DAY=86400000;
+const ERROR_INTERVAL_DAYS=[1,3,7,21];
+function errorLedger(qid,history=histAll()){
+  const rows=history.map((h,i)=>({h,i})).filter(x=>x.h.q===qid&&/^[A-E]$/.test(x.h.a||'')&&
+    typeof x.h.ok==='boolean'&&Number.isFinite(Number(x.h.t)))
+    .sort((a,b)=>Number(a.h.t)-Number(b.h.t)||a.i-b.i);
+  const state={qid,everWrong:false,open:false,recovered:false,errors:0,correctReviews:0,
+    stage:0,dueAt:0,lastWrongAt:0,lastAttemptAt:0,attempts:rows.length,intervalDays:0};
+  for(const {h} of rows){
+    const at=Number(h.t);
+    state.lastAttemptAt=at;
+    if(!h.ok){
+      state.errors++;state.everWrong=true;state.open=true;state.recovered=false;
+      state.stage=0;state.intervalDays=1;state.lastWrongAt=at;
+      state.dueAt=at+ERROR_REVIEW_DAY;
+    }else if(state.everWrong){
+      state.open=false;state.recovered=true;state.correctReviews++;
+      state.stage=Math.min(3,state.stage+1);
+      state.intervalDays=ERROR_INTERVAL_DAYS[state.stage];
+      state.dueAt=at+state.intervalDays*ERROR_REVIEW_DAY;
+    }
+  }
+  return state;
+}
+function errorReviewSummary(questions,at=Date.now(),history=histAll()){
+  const states=questions.map(q=>({q,state:errorLedger(q.id,history)}));
+  return {total:questions.length,pending:states.filter(x=>x.state.open),
+    recovered:states.filter(x=>x.state.recovered),
+    due:states.filter(x=>x.state.everWrong&&x.state.dueAt<=at),
+    scheduled:states.filter(x=>x.state.everWrong&&x.state.dueAt>at)};
+}
+function errorTopicMetrics(items,allQuestions,history=histAll()){
+  const ids=new Set(items.map(q=>q.id)),latest=new Map();
+  history.forEach((h,i)=>{
+    if(!ids.has(h.q)||!/^[A-E]$/.test(h.a||'')||typeof h.ok!=='boolean'||!Number.isFinite(Number(h.t)))return;
+    const prior=latest.get(h.q);
+    if(!prior||Number(h.t)>Number(prior.h.t)||Number(h.t)===Number(prior.h.t)&&i>prior.i)latest.set(h.q,{h,i});
+  });
+  const tried=items.filter(q=>latest.has(q.id));
+  const correct=tried.filter(q=>latest.get(q.id).h.ok).length;
+  const accuracy=tried.length?correct/tried.length:0;
+  const coverage=items.length?tried.length/items.length:0;
+  const questionShare=allQuestions.length?items.length/allQuestions.length:0;
+  const totalWeight=allQuestions.reduce((n,q)=>n+wOf(q),0);
+  const weight=items.reduce((n,q)=>n+wOf(q),0);
+  const weightShare=totalWeight?weight/totalWeight:questionShare;
+  const exposure=(questionShare+weightShare)/2;
+  const gap=.6*(1-coverage)+.4*(1-accuracy);
+  const score=exposure*gap;
+  const priority=score>=.15?'Alta':score>=.06?'Média':tried.length?'Baixa':'Não estudado';
+  return {attempted:tried.length,correct,accuracy,coverage,questionShare,weightShare,exposure,gap,score,priority};
+}
+function errorNotebookMarkup(questions,at=Date.now(),includeRecovered=false){
+  const all=questions.map(q=>({q,state:errorLedger(q.id)})).filter(x=>includeRecovered?x.state.everWrong:x.state.open)
+    .sort((a,b)=>b.state.lastWrongAt-a.state.lastWrongAt||a.q.id.localeCompare(b.q.id));
+  if(!all.length)return '<p class="eh-empty">Nenhum erro pendente. Uma questão só será recuperada após uma nova resposta correta.</p>';
+  const weeks=new Map();
+  all.forEach(x=>{
+    const d=new Date(x.state.lastWrongAt),start=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    start.setDate(start.getDate()-(start.getDay()+6)%7);
+    const key=start.toLocaleDateString('pt-BR');
+    if(!weeks.has(key))weeks.set(key,[]);
+    weeks.get(key).push(x);
+  });
+  return '<div class="eh-error-notebook">'+[...weeks].map(([week,entries])=>{
+    const grouped=new Map(),recovered=entries.filter(x=>x.state.recovered).length;
+    entries.forEach(x=>{
+      const label=(x.q.materia||'Sem disciplina')+' · '+(x.q.assunto||'Sem assunto');
+      if(!grouped.has(label))grouped.set(label,[]);
+      grouped.get(label).push(x);
+    });
+    return '<section class="eh-error-week"><h3>Semana de '+esc(week)+' <small>Errou '+(includeRecovered?entries.length:entries.length)+
+      ' · Recuperou '+(includeRecovered?recovered:0)+'</small></h3>'+[...grouped].map(([group,items])=>
+      '<div class="eh-error-group"><h4>'+esc(group)+'</h4>'+items.map(({q,state})=>
+        '<a href="#/questao/'+esc(q.id)+'" class="eh-error-entry"><span>'+esc(qTitle(q))+'</span>'+
+        '<small>'+state.errors+' erro'+(state.errors===1?'':'s')+' · '+
+        (state.recovered?'Recuperada':state.dueAt<=at?'Revisar agora':'Próxima revisão: '+new Date(state.dueAt).toLocaleDateString('pt-BR'))+
+        '</small><strong>'+(state.open?'Refazer':'Revisar')+'</strong></a>').join('')+'</div>'
+    ).join('')+'</section>';
+  }).join('')+'</div>';
+}
+function qResetForRetry(q,key=''){
+  if(!q)return;
+  const bookId=key.startsWith('book:')?key.slice(5).split(':')[0]:null;
+  if(bookId){
+    if(!nbFind(bookId))return;
+    const map=nbAnswerMap(),bookAnswers={...(map[bookId]||{})};
+    delete bookAnswers[q.id];
+    map[bookId]=bookAnswers;
+    store.set('cadernoAnswers',map);
+    delete qPend[q.id];
+    return;
+  }
+  delete qPend[q.id];
+  if(q.user){
+    const data=uqAns();delete data[q.id];saveUqAns(data);
+  }else{
+    const data=getAnswers(),old=data[q.n]||{};
+    data[q.n]={selected:null,correct:null,updatedAt:Date.now(),version:(old.version||0)+1,deleted:true};
+    saveAnswers(data);
+  }
+  // Resetting an answer must not mutate immutable history.
+}
+
 function histMeta(q,ok,src,at,alt,sim){ const t=at||Date.now(), qid=q.id||('q'+q.n); return {id:'r'+t.toString(36)+'-'+qid,a:alt||'',sim:sim||'',q:qid,t:t,ok:!!ok,src,m:q.materia||'',n:q.user?String(q.enunciado||'').replace(/\s+/g,' ').trim().slice(0,70):'Questão '+q.n,conc:q.conc||'',ed:q.ed||'',cg:q.cg||''}; }
 function recHist(q,ok,src,at,alt){ const h=histAll(); h.push(histMeta(q,ok,src,at,alt)); store.set('hist',h); }
 function recSim(s,q){
@@ -5409,7 +5591,7 @@ const QF_CATS=[
  {id:'conc',t:'Concurso',get:q=>q.conc?[q.conc]:[],fmt:v=>(concursoById(v)||{}).t||v},
  {id:'ed',t:'Edição',get:q=>q.ed?[q.ed]:[],fmt:v=>(edicaoById(v)||{}).t||v},
  {id:'orig',t:'Origem',get:q=>[qOrig(q)],fmt:v=>ORIGENS[v]||v},
- {id:'sit',t:'Situação',get:q=>{const r=qSel(q),f=qFlag(q.id),a=[!r?'pendentes':(r===q.gabarito?'certas':'erradas')];if(r)a.push('resolvidas');if(f.rev)a.push('rev');if(f.fav)a.push('fav');return a;},fmt:v=>QF_SIT[v]||v,fixed:Object.keys(QF_SIT),always:true}
+ {id:'sit',t:'Situação',get:q=>{const r=qSel(q),f=qFlag(q.id),state=errorLedger(q.id),a=[!r?'pendentes':(r===q.gabarito?'certas':state.open?'erradas':'resolvidas')];if(r)a.push('resolvidas');if(state.open&&!a.includes('erradas'))a.push('erradas');if(f.rev)a.push('rev');if(f.fav)a.push('fav');return a;},fmt:v=>QF_SIT[v]||v,fixed:Object.keys(QF_SIT),always:true}
 ];
 const QF_EXCLUSIONS=[
  {id:'cadernos',t:'Dos meus cadernos',mode:'exclude',test:q=>nbAll().some(b=>b.sp===space&&b.questionIds.includes(q.id))},
@@ -5866,7 +6048,7 @@ function qPedModule(q,answered=false){
   const answer=answered?'<p class="qped-feedback">Gabarito: <strong>'+esc(q.gabarito)+'</strong>.</p>'+
     (q.comentario?'<div class="qped-comment">'+esc(q.comentario)+'</div>':
       '<p class="qped-empty">Esta questão não contém comentário pedagógico estruturado no banco.</p>')+
-    aiRow(id):'<p class="qped-empty">Responda e confirme para liberar o gabarito e os comentários.</p>';
+    aiRow(id)+(q.comentario?'<button type="button" class="op-btn" data-qped-srs-comment="'+esc(id)+'">Criar cartão do comentário</button>':''):'<p class="qped-empty">Responda e confirme para liberar o gabarito e os comentários.</p>';
   const notes=qFlag(id);
   const toolbar=[['bold','Negrito','B'],['italic','Itálico','I'],['underline','Sublinhar','U'],
     ['bullet','Lista com marcadores','•'],['number','Lista numerada','1.'],['mark','Destaque','◐']].map(([kind,title,text])=>
@@ -5918,6 +6100,12 @@ view.addEventListener('click',e=>{
     const inserted=open+(selected||'texto')+close;
     area.value=before+inserted+after;area.focus();
     area.setSelectionRange(before.length+open.length,before.length+open.length+(selected||'texto').length);
+    return;
+  }
+  const commentReview=e.target.closest('[data-qped-srs-comment]');
+  if(commentReview){
+    const q=qObjs().find(x=>x.id===commentReview.dataset.qpedSrsComment);
+    if(q&&q.comentario){srsCreateCard('qa','','Qual é a explicação da questão '+(q.n||q.id)+'?',q.comentario,q.materia||'',Date.now(),{label:'Comentário de questão',ref:'#/questao/'+encodeURIComponent(q.id),kind:'question-comment',id:q.id});toast('Comentário enviado para a revisão diária');}
     return;
   }
   const save=e.target.closest('[data-qped-save]');
@@ -5996,6 +6184,7 @@ function qDock(q,mode='single'){
   return '<section class="q-dock" data-q-dock="'+esc(id)+'" data-q-dock-mode="'+mode+'" aria-label="Ferramentas de resolução">'+
     '<div class="q-dock-tools" role="toolbar" aria-label="Ferramentas de estudo">'+
     '<button type="button" data-q-dock-highlight="'+esc(id)+'" title="Grifar seleção do enunciado ou texto associado" aria-label="Grifar texto selecionado">'+QD_HIGHLIGHT+'</button>'+
+    '<button type="button" data-q-dock-srs="'+esc(id)+'" title="Criar cartão da primeira marcação salva" aria-label="Criar revisão de grifo da questão">'+UIICON.book+'</button>'+
     '<button type="button" data-q-dock-focus="'+esc(id)+'" title="Alternar modo foco" aria-pressed="'+app.classList.contains('study-focus')+'">'+QD_FOCUS+'</button>'+
     '<button type="button" data-q-dock-timer="'+esc(id)+'" title="Iniciar ou pausar cronômetro" aria-label="Cronômetro da questão" aria-pressed="'+clock.running+'">'+UIICON.timer+'</button>'+
     '<button type="button" data-q-dock-font="down" aria-label="Diminuir fonte"'+(font<=14?' disabled':'')+'>A−</button>'+
@@ -6050,6 +6239,8 @@ view.addEventListener('click',e=>{
   }
   const hl=e.target.closest('[data-q-dock-highlight]');
   if(hl){if(qDockSelectHighlight(hl.dataset.qDockHighlight))toast('Grifo salvo');else toast('Selecione um trecho do enunciado ou texto associado');return;}
+  const review=e.target.closest('[data-q-dock-srs]');
+  if(review){const q=qObjs().find(x=>x.id===review.dataset.qDockSrs);if(srsCreateFromQuestionHighlight(q))toast('Trecho grifado enviado para a revisão diária');else toast('Grife um trecho da questão antes de criar um cartão');return;}
   const focus=e.target.closest('[data-q-dock-focus]');
   if(focus){
     app.classList.toggle('study-focus');
@@ -6222,7 +6413,7 @@ function sQuestionMarkup(q,answer,examMode,pend){
    '<label class="s-option'+((!examMode&&answer)?(k===q.gabarito?' good':(k===answer.selected?' bad':'')):'')+'"><input type="radio" name="study-answer" value="'+esc(k)+'" '+(((examMode?answer:answer&&answer.selected)===k||(!examMode&&!answer&&pend===k))?'checked':'')+' '+(((!examMode&&answer)||qIsExcluded(q,k))?'disabled':'')+'/><b>'+esc(k)+'</b><span>'+esc(v)+'</span>'+
    ((!examMode&&answer)?(k===q.gabarito?'<em class="alt-t good">'+UIICON.check+' Correta</em>':(k===answer.selected?'<em class="alt-t bad">'+UIICON.close+' Sua resposta</em>':'')):'')+'</label></div>').join('')+'</div>'+
    (!examMode&&answer?'<div class="s-feedback '+(answer.correct?'good':'bad')+'"><strong>'+(answer.correct?'Resposta correta.':'Resposta incorreta.')+'</strong> Gabarito: '+esc(q.gabarito)+'.</div>':'')+
-   (examMode?'':qPedModule(q,!!answer))+'</div>';
+   (examMode?'':qPedModule(q,!!answer))+(examMode||!answer||!errorLedger(id).open?'':'<div class="s-inlineactions"><button type="button" class="s-button" data-q-retry="'+esc(id)+'">Refazer para recuperar erro</button></div>')+'</div>';
 }
 const qProps=q=>{
   if(!q)return '<div class="s-card"><p class="s-note">Selecione uma questão para ver seus dados.</p></div>';
@@ -6291,11 +6482,13 @@ function renderPractice(){
   if(qPracticeRoute!==path)qfReadPracticeRoute(path);
   qPracticeRoute=path;
   const all=qObjs(),selected=qfSt('study').f.sit||[];
-  const stats=all.reduce((a,q)=>{const answer=qSel(q);if(answer){a.done++;if(answer!==q.gabarito)a.wrong++;}return a;},{done:0,wrong:0});
+  const stats=all.reduce((a,q)=>{const answer=qSel(q);if(answer){a.done++;if(errorLedger(q.id).open)a.wrong++;}return a;},{done:0,wrong:0});
   const options='<div class="s-filterbar q-opts"><label class="q-opt">Questões por vez <select id="qPer" aria-label="Questões por vez">'+[1,5,10,20].map(n=>'<option value="'+n+'" '+(qPer===n?'selected':'')+'>'+n+'</option>').join('')+'</select></label><label class="q-opt q-switch"><input type="checkbox" role="switch" id="qAuto" '+(qAuto?'checked':'')+'><span>Corrigir ao selecionar a alternativa</span></label></div>';
   const actions=''; /* The shared qfHTML action bar includes Create Simulado. */
-  const title=sHead('Banco de questões','Resolver questões','Questões oficiais e questões criadas por você no mesmo banco, com filtros e correção individual.',sBtn('Configurar simulado','#/simulado'),sBadge(all.length+' questões')+sBadge(stats.done+' resolvidas')+sBadge(stats.wrong+' erradas'));
-  const html=sBreadcrumb([['Início','#/espaco'],['Questões','']])+title+qfHTML('study',all,{extra:actions,renderList:renderPracticeList})+options;
+  const errorOnly=path.split('?')[0]==='/questoes/erradas';
+  const title=sHead('Banco de questões',errorOnly?'Caderno de Erros':'Resolver questões',errorOnly?'Questões com erro ainda pendente até a próxima resposta correta.':'Questões oficiais e questões criadas por você no mesmo banco, com filtros e correção individual.',sBtn('Configurar simulado','#/simulado'),sBadge(all.length+' questões')+sBadge(stats.done+' resolvidas')+sBadge(stats.wrong+' erradas'));
+  const notebook=errorOnly?'<section class="s-recovery-notebook" aria-label="Caderno de Erros"><h2>Erros por semana, disciplina e assunto</h2><p>Uma questão só é recuperada depois que uma nova tentativa é respondida corretamente; abrir a resolução não conta como recuperação.</p>'+errorNotebookMarkup(all)+'</section>':'';
+  const html=sBreadcrumb([['Início','#/espaco'],['Questões','']])+title+notebook+qfHTML('study',all,{extra:actions,renderList:renderPracticeList})+options;
   studyPage('Questões','Banco unificado',html);
 }
 const wOf=x=>!x.user&&x.materia==='Conhecimentos Específicos'?2.5:1;
@@ -6319,7 +6512,7 @@ function finishExam(){
  s.finished=Date.now();s.total=q.length;s.max=max;s.correct=correct;s.score=score;s.byMatter=byMatter;saveExam(s);try{recSim(s,q);}catch(e){}location.hash='/simulado/resultado';
 }
 function sSimOpts(){
-  const b=qObjs(),er=b.filter(q=>{const a=qSel(q);return a&&a!==q.gabarito;}).length,pe=b.filter(q=>!qSel(q)).length;
+  const b=qObjs(),er=b.filter(q=>errorLedger(q.id).open).length,pe=b.filter(q=>!qSel(q)).length;
   if(simSrc==='erradas'&&!er)simSrc='todas';if(simSrc==='pendentes'&&!pe)simSrc='todas';
   const radio=(name,val,cur,label,dis)=>'<label class="q-opt q-radio"><input type="radio" name="'+name+'" value="'+val+'" '+(cur===val?'checked':'')+(dis?' disabled':'')+'><span>'+label+'</span></label>';
   const quantity='<label class="q-opt">Quantidade <select id="simQty" aria-label="Quantidade de questões">'+['todas',10,20,30,50].filter(v=>v==='todas'||v<=b.length).map(v=>'<option value="'+v+'" '+(String(simQty)===String(v)?'selected':'')+'>'+(v==='todas'?'Todas ('+b.length+')':v+' questões')+'</option>').join('')+'</select></label>';
@@ -6420,7 +6613,7 @@ view.addEventListener('click',e=>{
    const submit=card?.querySelector('[data-qo-submit]');if(submit)submit.disabled=false;
  } return; }
  const confirm=e.target.closest('[data-qo-submit]'); if(confirm){ const q=qObjs().find(x=>x.id===confirm.dataset.qoSubmit);if(!q||qSel(q))return;if(!qPend[q.id]){toast('Selecione uma alternativa antes de responder.');return;}qCorrect(q.id,qPend[q.id],'single');return; }
- const qr=e.target.closest('[data-qo-reset]'); if(qr){ const q=qObjs().find(x=>x.id===qr.dataset.qoReset); if(q){ delete qPend[q.id]; if(q.user){ const m=uqAns(); delete m[q.id]; saveUqAns(m); } else { const a=getAnswers(),prev=a[q.n]||{}; a[q.n]={selected:null,correct:null,updatedAt:Date.now(),version:(prev.version||0)+1,deleted:true}; saveAnswers(a); } } rr0(); return; }
+ const qr=e.target.closest('[data-qo-reset],[data-q-retry]'); if(qr){ const id=qr.dataset.qoReset||qr.dataset.qRetry,q=qObjs().find(x=>x.id===id),key=qr.closest('[data-practice-key]')?.dataset.practiceKey||'';if(q)qResetForRetry(q,key);if(key.startsWith('book:'))nbRender(location.hash.slice(1));else if(location.hash.startsWith('#/questoes'))renderPractice();else rr0();return; }
  if(e.target.closest('[data-qt-sim]')){ startSim(qtList); return; }
  const qd=e.target.closest('[data-qd-sim]'); if(qd){ startSim(qObjs().filter(q=>q.materia&&(findEnt('disciplina',q.materia)||{}).id===qd.dataset.qdSim)); return; }
  const hh=location.hash.slice(1).split('/'); const rr=()=>showObjs(location.hash.slice(1));
@@ -6438,7 +6631,7 @@ view.addEventListener('click',e=>{
  if(e.target.closest('[data-sc-start]')){
   const parts=location.hash.slice(1).split('/'),kind=parts[1],id=parts[2];
   let items=qObjs().filter(q=>q.user?q[UQF[kind]]===id:scHas(kind,id));
-  if(simSrc==='erradas')items=items.filter(q=>qSel(q)&&qSel(q)!==q.gabarito);
+  if(simSrc==='erradas')items=items.filter(q=>errorLedger(q.id).open);
   if(simSrc==='pendentes')items=items.filter(q=>!qSel(q));
   if(String(scCount)!=='todas')items=items.slice(0,Number(scCount));
   startSim(items);return;
@@ -6455,7 +6648,7 @@ view.addEventListener('click',e=>{
  const chk=e.target.closest('[data-q-check]'); if(chk){const id=chk.dataset.qCheck,key=chk.closest('[data-practice-key]')?.dataset.practiceKey||'study';if(!qPend[id]){toast('Escolha uma alternativa');return;}qCorrect(id,qPend[id],key);return;}
  if(e.target.closest('[data-s-start]')){
   let items=qObjs();
-  if(simSrc==='erradas')items=items.filter(q=>qSel(q)&&qSel(q)!==q.gabarito);
+  if(simSrc==='erradas')items=items.filter(q=>errorLedger(q.id).open);
   if(simSrc==='pendentes')items=items.filter(q=>!qSel(q));
   if(String(simQty)!=='todas')items=items.slice(0,Number(simQty));
   startSim(items);return;
@@ -6520,6 +6713,103 @@ view.addEventListener('click',e=>{ const b=e.target.closest('[data-ai]'); if(b){
   const c=e.target.closest('[data-ai-close]'); if(c){ delete aiMem[c.dataset.aiClose]; aiPaint(c.dataset.aiClose); return; }
   const y=e.target.closest('[data-ai-copy]'); if(y){ const m=aiMem[y.dataset.aiCopy]; try{ navigator.clipboard.writeText(m&&m.copy||'').then(()=>toast('Copiado'),()=>toast('Não foi possível copiar')); }catch(_){ toast('Não foi possível copiar'); } } });
 
+/* ---- Daily Review / spaced repetition (#82) ---- */
+const srsKey=()=> 'daily-review:'+space;
+const srsLoad=()=>{const x=store.get(srsKey());return x&&typeof x==='object'?x:{}};
+const srsSave=x=>store.set(srsKey(),x);
+const srsDue=(c,now=Date.now())=>!c.discarded&&!c.mastered&&(!c.dueAt||c.dueAt<=now);
+function srsEscape(s){return esc(String(s||''));}
+function srsSpeakText(c,revealed=false){
+ if(!c)return '';
+ if(c.kind!=='cloze')return String(c.question||'')+(revealed?' '+String(c.answer||''):'');
+ return String(c.text||'').split('{{c1::').map((part,i)=>{
+   if(!i)return part;const end=part.indexOf('}}');if(end<0)return part;
+   return (revealed?part.slice(0,end):'lacuna')+part.slice(end+2);
+ }).join('');
+}
+function srsCardMarkup(c,revealed=false){
+  const front=c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,(m,a)=>revealed?a:'_____ ('+a.trim().split(/\s+/).length+' words)'):c.question;
+  return '<article class="srs-card" data-srs-card="'+srsEscape(c.id)+'"><div class="srs-source">'+srsEscape(c.source||'Cartão pessoal')+'</div><h2>'+srsEscape(front)+'</h2>'+
+    (revealed?'<div class="srs-answer">'+srsEscape(c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):c.answer)+'</div>':'<button class="op-btn" data-srs-reveal>Revelar resposta</button>')+
+    '<button class="op-btn" data-srs-speak>Ouvir cartão</button><div class="srs-grade" '+(revealed?'':'hidden')+'><button class="op-btn" data-srs-grade="never">Nunca · dominar</button><button class="op-btn" data-srs-grade="soon">Em breve</button><button class="op-btn" data-srs-grade="later">Depois</button><button class="op-btn" data-srs-grade="someday">Algum dia</button><button class="op-btn" data-srs-feedback>Feedback</button></div></article>';
+}
+function srsDueCards(now=Date.now()){
+ const d=srsLoad(),cards=(d.cards||[]).filter(c=>srsDue(c,now));
+ const theme=String(d.theme||'').trim().toLocaleLowerCase();
+ const filtered=cards.filter(c=>!theme||String(c.theme||'').trim().toLocaleLowerCase()===theme);
+ const goal=Math.max(5,Number(d.goal)||6),limit=goal+(Number(d.bonus)||0);
+ const rec=d.recency===undefined?50:Math.max(0,Math.min(100,Number(d.recency)||0));
+ const n=filtered.length, ranks=new Map(filtered.slice().sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).map((c,i)=>[c.id,n<2?0:i/(n-1)]));
+ return filtered.sort((a,b)=>{
+   const score=c=>{const rank=ranks.get(c.id)||0;return (rec/100)*rank+(1-rec/100)*(1-rank);};
+   return score(b)-score(a)||(a.dueAt||0)-(b.dueAt||0);
+ }).slice(0,limit);
+}
+function srsCreateCard(kind,text,question,answer,theme='',now=Date.now(),origin=null){
+ const d=srsLoad();d.cards=d.cards||[];
+ if(origin&&origin.kind&&origin.id){const existing=d.cards.find(c=>!c.discarded&&c.sourceKind===origin.kind&&c.sourceId===origin.id);if(existing)return existing;}
+ const card={id:'srs-'+now+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,theme:String(theme||'').trim(),
+   source:origin?.label||'Texto inserido manualmente',sourceRef:origin?.ref||'',sourceKind:origin?.kind||'',sourceId:origin?.id||'',createdAt:now,dueAt:now};
+ d.cards.push(card);srsSave(d);return card;
+}
+function srsCreateFromQuestionHighlight(q,part=''){
+ if(!q)return null;
+ const id=String(q.id||('q'+q.n)),parts=part?[part]:['statement','associated'];
+ for(const p of parts){
+   if(!['statement','associated'].includes(p))continue;
+   const raw=String(p==='statement'?q.enunciado||'':q.textoAssociado||q.textoBase||q.textoApoio||'');
+   for(const range of qDockRanges(id,p)){
+     if(range.end>raw.length)continue;
+     const answer=raw.slice(range.start,range.end).trim();
+     if(!answer)continue;
+     const origin={label:'Grifo da questão',ref:'#/questao/'+encodeURIComponent(id),kind:'question-highlight',id:id+':'+p+':'+range.start+'-'+range.end};
+     return srsCreateCard('qa','','Qual trecho foi grifado na questão '+(q.n||id)+'?',answer,q.materia||'',Date.now(),origin);
+   }
+ }
+ return null;
+}
+function srsLocalDay(t=Date.now()){const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function srsGradeCard(id,grade,now=Date.now()){
+ const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===id);
+ if(!card||!['never','soon','later','someday'].includes(grade))return null;
+ const days={soon:2,later:10,someday:45};
+ if(grade==='never'){card.mastered=true;card.dueAt=null;}else card.dueAt=now+days[grade]*86400000;
+ card.lastGrade=grade;
+ const day=srsLocalDay(now);if(d.doneDay!==day){d.doneDay=day;d.done=0;}d.done=(d.done||0)+1;
+ srsSave(d);return card;
+}
+function showReview(){
+ const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
+ document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
+ const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}</style>';
+ const queue='<section><div class="srs-head"><div><h1>Revisão diária</h1><p>'+due.length+' cartões para revisar · '+done+' de '+goal+' de hoje</p></div><div class="srs-actions"><button class="op-btn" data-srs-mode="single" aria-pressed="'+((d.mode||'single')==='single')+'">Cartão único</button><button class="op-btn" data-srs-mode="feed" aria-pressed="'+(d.mode==='feed')+'">Feed vertical</button></div></div><div class="srs-progress" role="progressbar" aria-label="Progresso diário" aria-valuenow="'+Math.min(done,goal)+'" aria-valuemax="'+goal+'"><i></i></div>'+
+ (c?((d.mode==='feed'?due: [c]).map(x=>srsCardMarkup(x,false)).join('')):'<div class="srs-panel"><h2>Tudo em dia</h2><p>Não há cartões vencidos. Crie um cartão a partir de um grifo ou comentário para começar.</p></div>')+
+ '<button class="op-btn" data-srs-open-create>Criar cartão</button></section>';
+ const create='<details class="srs-panel" id="srs-create"><summary><strong>Criar cartão de estudo</strong></summary><p class="srs-muted">Cole um grifo do PDF ou comentário de questão abaixo; o texto fica guardado neste navegador.</p><label>Texto do grifo ou comentário<textarea id="srs-text" rows="4" placeholder="Cole aqui o texto de origem"></textarea></label><div class="srs-actions"><button class="op-btn" data-srs-tab="cloze">Cloze Deletion</button><button class="op-btn" data-srs-tab="qa">Pergunta e resposta</button></div><div id="srs-cloze"><p>Selecione palavras para ocultar:</p><div id="srs-token-area"></div><label>Pergunta<textarea id="srs-cloze-question" rows="2" placeholder="Contexto opcional"></textarea></label><button class="op-btn" data-srs-save-cloze>Salvar cloze</button></div><div id="srs-qa" hidden><label>Pergunta<input id="srs-question" placeholder="Digite uma pergunta"></label><label>Resposta<textarea id="srs-answer" rows="3"></textarea></label><button class="op-btn" data-srs-use-highlight>Usar texto de origem como resposta</button><button class="op-btn" data-srs-save-qa>Salvar cartão Q&amp;A</button></div></details>';
+ const settings='<details class="srs-panel"><summary><strong>Configurações da revisão</strong></summary><label>Cartões por dia: <output id="srs-goal-value">'+goal+'</output><input type="range" min="5" max="20" value="'+goal+'" data-srs-setting="goal"></label><label>Recência (0 = antigos, 100 = recentes): <output id="srs-recency-value">'+((d.recency===undefined?50:d.recency))+'</output><input type="range" min="0" max="100" value="'+(d.recency===undefined?50:d.recency)+'" data-srs-setting="recency"></label><label>Cartões bônus: <input type="number" min="0" max="10" value="'+(d.bonus||0)+'" data-srs-setting="bonus"></label><label>Disciplina/tag do cartão<input id="srs-card-theme" placeholder="Ex.: Direito Constitucional"></label><label>Sessão temática por disciplina/tag<input data-srs-setting="theme" value="'+srsEscape(d.theme||'')+'" placeholder="Ex.: Direito Constitucional"></label><button class="op-btn" data-srs-save-settings>Salvar configurações</button></details>';
+ const history='<details class="srs-panel"><summary><strong>Cartões ativos ('+cards.filter(x=>!x.discarded&&!x.mastered).length+')</strong></summary>'+cards.map(x=>'<div class="srs-row"><span>'+srsEscape(x.kind==='cloze'?x.text:x.question)+'</span><button class="op-btn" data-srs-discard="'+srsEscape(x.id)+'">Descartar</button></div>').join('')+'</details>';
+ view.innerHTML=styles+'<main class="srs-wrap">'+queue+create+settings+history+'</main>'; view.scrollTop=0;
+ const src=view.querySelector('#srs-text'); const renderTokens=()=>{const area=view.querySelector('#srs-token-area');if(!area)return;area.innerHTML=(src.value||'').split(/(\s+)/).map((w,i)=>w.trim()?'<button type="button" class="srs-word" data-srs-word="'+i+'">'+srsEscape(w)+'</button>':srsEscape(w)).join('');}; src?.addEventListener('input',renderTokens);
+}
+
+view.addEventListener('click',e=>{
+ const rev=e.target.closest('[data-srs-reveal]'); if(rev){const c=rev.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===c.dataset.srsCard); if(card){c.outerHTML=srsCardMarkup(card,true);} return;}
+ const speak=e.target.closest('[data-srs-speak]');if(speak){const el=speak.closest('[data-srs-card]'),card=(srsLoad().cards||[]).find(x=>x.id===el.dataset.srsCard);if(!('speechSynthesis' in window)){toast('Áudio de voz indisponível neste navegador.');return;}const utterance=new SpeechSynthesisUtterance(srsSpeakText(card,!el.querySelector('.srs-grade')?.hidden));utterance.lang='pt-BR';speechSynthesis.cancel();speechSynthesis.speak(utterance);return;}
+ const mode=e.target.closest('[data-srs-mode]'); if(mode){const d=srsLoad();d.mode=mode.dataset.srsMode;srsSave(d);showReview();return;}
+ const open=e.target.closest('[data-srs-open-create]'); if(open){view.querySelector('#srs-create')?.setAttribute('open','');view.querySelector('#srs-text')?.focus();return;}
+ const tab=e.target.closest('[data-srs-tab]');if(tab){view.querySelector('#srs-cloze').hidden=tab.dataset.srsTab!=='cloze';view.querySelector('#srs-qa').hidden=tab.dataset.srsTab!=='qa';return;}
+ const word=e.target.closest('[data-srs-word]');if(word){word.classList.toggle('selected');return;}
+ const use=e.target.closest('[data-srs-use-highlight]');if(use){view.querySelector('#srs-answer').value=view.querySelector('#srs-text').value;return;}
+ const saveCard=(kind,text,question,answer)=>{const d=srsLoad();d.cards=d.cards||[];srsCreateCard(kind,text,question,answer,(view.querySelector('#srs-card-theme')||{}).value||'');showReview();};
+ const sc=e.target.closest('[data-srs-save-cloze]');if(sc){const raw=view.querySelector('#srs-text').value.trim(),selected=[...view.querySelectorAll('.srs-word.selected')];if(!raw||!selected.length){toast('Cole o texto e selecione as palavras a ocultar.');return;}const words=raw.split(/(\s+)/);const ids=selected.map(x=>Number(x.dataset.srsWord)).sort((a,b)=>a-b);let out='',active=false;words.forEach((w,i)=>{if(ids.includes(i)){if(!active)out+='{{c1::';out+=w;active=true;}else{if(active)out+='}}';out+=w;active=false;}});if(active)out+='}}';saveCard('cloze',out,view.querySelector('#srs-cloze-question').value.trim(),'');return;}
+ const qa=e.target.closest('[data-srs-save-qa]');if(qa){const q=view.querySelector('#srs-question').value.trim(),a=view.querySelector('#srs-answer').value.trim();if(!q||!a){toast('Informe pergunta e resposta.');return;}saveCard('qa','',q,a);return;}
+ const grade=e.target.closest('[data-srs-grade]');if(grade){const el=grade.closest('[data-srs-card]');if(srsGradeCard(el.dataset.srsCard,grade.dataset.srsGrade))showReview();return;}
+ const fb=e.target.closest('[data-srs-feedback]');if(fb){const choice=prompt('Ajuste de intervalo: Never, Soon, Later ou Someday');const gradeMap={'Never':'never','Soon':'soon','Later':'later','Someday':'someday'};const el=fb.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el.dataset.srsCard);if(card&&gradeMap[choice]){srsGradeCard(card.id,gradeMap[choice]);showReview();}return;}
+ const discard=e.target.closest('[data-srs-discard]');if(discard){const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===discard.dataset.srsDiscard);if(card)card.discarded=true;srsSave(d);showReview();return;}
+ const saveSettings=e.target.closest('[data-srs-save-settings]');if(saveSettings){const d=srsLoad();d.goal=Number(view.querySelector('[data-srs-setting="goal"]').value);d.recency=Number(view.querySelector('[data-srs-setting="recency"]').value);d.bonus=Number(view.querySelector('[data-srs-setting="bonus"]').value);d.theme=view.querySelector('[data-srs-setting="theme"]').value.trim();srsSave(d);showReview();return;}
+});
+view.addEventListener('input',e=>{const k=e.target.dataset.srsSetting;if(!k)return;const out=view.querySelector('#srs-'+k+'-value');if(out)out.textContent=e.target.value;if(k==='goal'||k==='recency'||k==='bonus'||k==='theme'){const d=srsLoad();d[k]=k==='theme'?e.target.value:Number(e.target.value);srsSave(d);}});
+
 /* ---- routing ---- */
 function route(spaceChanged){
   document.querySelector('.main').classList.remove('study-mode');
@@ -6537,7 +6827,7 @@ function route(spaceChanged){
   if(h0==='/tipo/caderno'){ location.hash='/cadernos'; return; }
   if(h0==='/cadernos'||h0==='/filtros'||h0.startsWith('/caderno/')){ nbRoute(h0); return; }
   if(h0==='/grafico'||h0==='/explorar'){ showGraph(); return; }
-  if(h0==='/revisao'){ location.replace('#/questoes/erradas'); return; }
+  if(h0==='/revisao'){ showReview(); return; }
   if(h0==='/quadro'){ $('spaceRow')?.removeAttribute('aria-current'); showBoard(); return; }
   if(h0.startsWith('/questoes')||h0==='/simulado'){ showStudyRoute(h0); return; }
   if(h0==='/espaco'||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
@@ -7596,6 +7886,16 @@ try {
         } catch(e){}
       }
 
+      // Restore a minimal latest-attempt record for legacy remote backups that
+      // saved confirmed answers but did not carry the immutable attempt ledger.
+      const oldHistory=histAll();
+      const restoredHistory=mergeConfirmedAttemptFallback(oldHistory,getAnswers(),
+        store.get('uq')||[],store.get('uqAns')||{},Number(remote.userQuestions?.updatedAt)||Date.now());
+      if(restoredHistory.length>oldHistory.length){
+        store.set('hist',restoredHistory);
+        changed=true;
+      }
+
       if (changed) {
         try { if (typeof paintSpaces === 'function') paintSpaces(); } catch(e){}
         try { if (typeof paintNav === 'function') paintNav(); } catch(e){}
@@ -7610,4 +7910,5 @@ try {
 })();
 </script>
 
+<!-- Recovery #76: tested browser evidence and limitations are versioned in ../board-exam-app/BOARD.md. -->
 </body></html>
