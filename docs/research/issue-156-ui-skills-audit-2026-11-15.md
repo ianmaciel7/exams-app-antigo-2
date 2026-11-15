@@ -107,3 +107,8 @@ Os textos abaixo são propostas, não issues abertas nem defeitos já reproduzid
 | Comparar branch dev início/fim e integrar via PR squash | SHA inicial registrado; PR draft apontará para dev. Sem merge/squash nem fechamento de issue nesta entrega |
 
 **Condição de encerramento:** manter issue #156 aberta até leitura das referências subordinadas marcadas, execução visual em browser com capturas verificadas, testes de teclado/AT e definição de issues independentes se os comportamentos forem reproduzidos. Não usar “22 skills auditadas” como descrição desta etapa; são 21 arquivos de skill com inspeção de entrada e um agregador identificado, com referências internas e UI runtime ainda pendentes.
+
+
+### Limite de sincronização do board
+
+O `board.json` foi consultado e seus metadados foram usados nesta auditoria, mas não foi alterado nesta branch: a sessão não oferece shell/Node para executar `npm run board`, que AGENTS.md exige para regenerar `BOARD.md` após mudança. O relatório nesta PR preserva as observações estáticas; a inclusão no board e a regeneração controlada ficam pendentes, sem editar `BOARD.md` manualmente.
