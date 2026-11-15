@@ -2350,6 +2350,31 @@ Implementação e Auditoria Issue #145:
 **5. Testes Automatizados e Política Zero Emoji:**
 - Criada suíte de testes tests/workspace-loading-state.test.mjs com 4 testes unitários automatizados cobrindo remoção de timers cegos, classes de CSS e reduced-motion, máquina de estados com cancelamento de corrida e conformidade estrita com a Zero Emoji Policy.
 
+## 50. Recuperação estrita e Raio-X do Edital — Issue #76
+<!-- container e1453 @ (50500,11000) -->
+
+A recuperação só ocorre após uma nova resposta correta; abrir gabarito não altera o histórico. A coorte semanal mostra “Errou X · Recuperou Y”; a rota Caderno de Erros lista apenas pendentes. O Raio-X usa incidência de questões, pontos catalogados, cobertura e acerto da última tentativa confirmada. A cobertura deste protótipo é limitada aos assuntos presentes no catálogo; o Anexo II completo e a associação automática de PDFs não estão implementados. As capturas abaixo vieram do E2E Chromium executado nesta PR.
+
+![imagem e1455](assets/issue76_wrong_confirmed.png)
+
+![imagem e1457](assets/issue76_notebook_pending.png)
+
+ANTES: primeira resposta incorreta confirmada
+
+DEPOIS: erro pendente agrupado por semana e disciplina
+
+![imagem e1459](assets/issue76_recovered.png)
+
+![imagem e1461](assets/issue76_raiox_vertical.png)
+
+DEPOIS: recuperação após nova resposta correta
+
+DEPOIS: assuntos, prioridades e marcação persistente
+
+[PR #187 — issue #76](https://github.com/ianmaciel7/exams-app/pull/187)
+
+[E2E Chromium — run 43727853810](https://github.com/ianmaciel7/exams-app/actions/runs/43727853810)
+
 ## 10. Arquivos do projeto (Dataprev 2026 e referências)
 <!-- container e363 @ (0,12666) -->
 
