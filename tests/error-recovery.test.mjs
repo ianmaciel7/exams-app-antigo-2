@@ -91,12 +91,15 @@ test('question filters and practice route preserve unresolved ledger status afte
 test('weekly error cohort keeps recovered questions and shows wrong/recovered counts',()=>{
  const data=[record(base,false,'A','q1'),record(base+day,true,'B','q1'),
    record(base+2*day,false,'A','q2')];
- const h=harness(data),markup=h.api.errorNotebookMarkup([
+ const h=harness(data),questions=[
    {id:'q1',n:1,materia:'Direito',assunto:'Base'},{id:'q2',n:2,materia:'Direito',assunto:'Base'}
- ],base+3*day);
- assert.match(markup,/Errou 2 · Recuperou 1/);
- assert.match(markup,/Recuperada/);
- assert.match(markup,/Revisar agora/);
+ ];
+ const notebook=h.api.errorNotebookMarkup(questions,base+3*day);
+ assert.doesNotMatch(notebook,/#\\/questao\\/q1/,'the pending notebook removes recovered questions');
+ assert.match(notebook,/#\\/questao\\/q2/);
+ const home=h.api.errorNotebookMarkup(questions,base+3*day,true);
+ assert.match(home,/Errou 2 · Recuperou 1/);
+ assert.match(home,/Recuperada/);
 });
 test('topic priority combines catalog question incidence and weight with latest-answer coverage and accuracy',()=>{
  const all=Array.from({length:10},(_,i)=>({id:'q'+i,materia:i<2?'Conhecimentos Específicos':'Geral'}));
@@ -122,4 +125,12 @@ test('topic accuracy uses latest confirmed attempt and UI explains its incidence
  assert.equal(metrics.priority,'Baixa');
  assert.match(html,/Incidência .*peso/);
  assert.match(html,/Cobertura/);
+});
+
+test('catalog exposure denominator spans the whole edital so subject weights affect equal-size topics',()=>{
+ const all=[{id:'q1',materia:'Conhecimentos Específicos'},{id:'q2',materia:'Geral'}];
+ const h=harness([]),specific=h.api.errorTopicMetrics([all[0]],all,[]),general=h.api.errorTopicMetrics([all[1]],all,[]);
+ assert.equal(specific.questionShare,general.questionShare);
+ assert.notEqual(specific.weightShare,general.weightShare);
+ assert.ok(specific.score>general.score,'equal coverage and accuracy rank the higher-weight topic higher');
 });
