@@ -5229,6 +5229,38 @@ view.addEventListener('keydown',e=>{
 /* ---- Histórico de respostas, tentativas (Simulado) e Desempenho ---- */
 const histAll=()=>{const v=store.get('hist');return Array.isArray(v)?v:[];};
 const simsAll=()=>{const v=store.get('sims');return Array.isArray(v)?v:[];};
+/* Legacy/remote answer snapshots can outlive their local confirmed-attempt ledger.
+   Restore only verifiable selections; never invent earlier review rounds. */
+function mergeConfirmedAttemptFallback(history,answers,questions,userAnswers,restoredAt=Date.now()){
+  const result=Array.isArray(history)?history.slice():[],latest=new Map();
+  result.forEach(h=>{
+    if(!h||!h.q||!/^[A-E]$/.test(h.a||'')||typeof h.ok!=='boolean'||!Number.isFinite(Number(h.t)))return;
+    const prev=latest.get(h.q),at=Number(h.t);
+    if(!prev||at>=prev.t)latest.set(h.q,{t:at,a:h.a,ok:h.ok});
+  });
+  const append=(qid,choice,ok,time,meta={})=>{
+    if(typeof qid!=='string'||!/^[A-E]$/.test(choice||'')||typeof ok!=='boolean')return;
+    const t=Number(time)>0&&Number.isFinite(Number(time))?Number(time):restoredAt;
+    const prev=latest.get(qid);
+    if(prev&&(prev.t>=t||(prev.a===choice&&prev.ok===ok)))return;
+    const row={id:'restored-'+qid+'-'+t+'-'+choice,q:qid,t,ok,a:choice,
+      src:'Resposta confirmada restaurada',m:meta.materia||'',n:meta.n||qid,
+      conc:meta.conc||'',ed:meta.ed||'',cg:meta.cg||''};
+    result.push(row);latest.set(qid,{t,a:choice,ok});
+  };
+  for(const [n,a] of Object.entries(answers||{})){
+    if(!/^\d+$/.test(n)||!a||a.deleted)continue;
+    append('q'+n,a.selected,a.correct,a.updatedAt,{n:'Questão '+n});
+  }
+  for(const q of Array.isArray(questions)?questions:[]){
+    if(!q||!q.id||!q.gabarito)continue;
+    const choice=(userAnswers||{})[q.id];
+    if(/^[A-E]$/.test(choice||''))append(q.id,choice,choice===q.gabarito,
+      q.updatedAt||restoredAt,q);
+  }
+  return result;
+}
+
 
 /* Recovery ledger (#76): derived only from confirmed answers. Reading a solution is never recovery. */
 const ERROR_REVIEW_DAY=86400000;
@@ -7670,6 +7702,16 @@ try {
           store.set('uqAns', merged.uqAns);
           changed = true;
         } catch(e){}
+      }
+
+      // Restore a minimal latest-attempt record for legacy remote backups that
+      // saved confirmed answers but did not carry the immutable attempt ledger.
+      const oldHistory=histAll();
+      const restoredHistory=mergeConfirmedAttemptFallback(oldHistory,getAnswers(),
+        store.get('uq')||[],store.get('uqAns')||{},Number(remote.userQuestions?.updatedAt)||Date.now());
+      if(restoredHistory.length>oldHistory.length){
+        store.set('hist',restoredHistory);
+        changed=true;
       }
 
       if (changed) {
