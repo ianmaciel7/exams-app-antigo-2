@@ -107,6 +107,7 @@ try{
       'typing in the real search editor must not select a practice answer');
     await page.locator('#palIn').press('Escape');
     await page.locator('#pal:not(.on)').waitFor({state:'hidden'});
+    await page.evaluate(()=>document.activeElement?.blur());
     await page.keyboard.press('1');
     assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),true,
       'question answer shortcut selects an available answer on the real practice route');
