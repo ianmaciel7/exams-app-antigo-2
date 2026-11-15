@@ -5791,7 +5791,7 @@ function qPedModule(q,answered=false){
   const answer=answered?'<p class="qped-feedback">Gabarito: <strong>'+esc(q.gabarito)+'</strong>.</p>'+
     (q.comentario?'<div class="qped-comment">'+esc(q.comentario)+'</div>':
       '<p class="qped-empty">Esta questão não contém comentário pedagógico estruturado no banco.</p>')+
-    aiRow(id):'<p class="qped-empty">Responda e confirme para liberar o gabarito e os comentários.</p>';
+    aiRow(id)+(q.comentario?'<button type="button" class="op-btn" data-qped-srs-comment="'+esc(id)+'">Criar cartão do comentário</button>':''):'<p class="qped-empty">Responda e confirme para liberar o gabarito e os comentários.</p>';
   const notes=qFlag(id);
   const toolbar=[['bold','Negrito','B'],['italic','Itálico','I'],['underline','Sublinhar','U'],
     ['bullet','Lista com marcadores','•'],['number','Lista numerada','1.'],['mark','Destaque','◐']].map(([kind,title,text])=>
@@ -5843,6 +5843,12 @@ view.addEventListener('click',e=>{
     const inserted=open+(selected||'texto')+close;
     area.value=before+inserted+after;area.focus();
     area.setSelectionRange(before.length+open.length,before.length+open.length+(selected||'texto').length);
+    return;
+  }
+  const commentReview=e.target.closest('[data-qped-srs-comment]');
+  if(commentReview){
+    const q=qObjs().find(x=>x.id===commentReview.dataset.qpedSrsComment);
+    if(q&&q.comentario){srsCreateCard('qa','','Qual é a explicação da questão '+(q.n||q.id)+'?',q.comentario,q.materia||'',Date.now(),{label:'Comentário de questão',ref:'#/questao/'+encodeURIComponent(q.id),kind:'question-comment',id:q.id});toast('Comentário enviado para a revisão diária');}
     return;
   }
   const save=e.target.closest('[data-qped-save]');
@@ -5921,6 +5927,7 @@ function qDock(q,mode='single'){
   return '<section class="q-dock" data-q-dock="'+esc(id)+'" data-q-dock-mode="'+mode+'" aria-label="Ferramentas de resolução">'+
     '<div class="q-dock-tools" role="toolbar" aria-label="Ferramentas de estudo">'+
     '<button type="button" data-q-dock-highlight="'+esc(id)+'" title="Grifar seleção do enunciado ou texto associado" aria-label="Grifar texto selecionado">'+QD_HIGHLIGHT+'</button>'+
+    '<button type="button" data-q-dock-srs="'+esc(id)+'" title="Criar cartão da primeira marcação salva" aria-label="Criar revisão de grifo da questão">'+UIICON.book+'</button>'+
     '<button type="button" data-q-dock-focus="'+esc(id)+'" title="Alternar modo foco" aria-pressed="'+app.classList.contains('study-focus')+'">'+QD_FOCUS+'</button>'+
     '<button type="button" data-q-dock-timer="'+esc(id)+'" title="Iniciar ou pausar cronômetro" aria-label="Cronômetro da questão" aria-pressed="'+clock.running+'">'+UIICON.timer+'</button>'+
     '<button type="button" data-q-dock-font="down" aria-label="Diminuir fonte"'+(font<=14?' disabled':'')+'>A−</button>'+
@@ -5975,6 +5982,8 @@ view.addEventListener('click',e=>{
   }
   const hl=e.target.closest('[data-q-dock-highlight]');
   if(hl){if(qDockSelectHighlight(hl.dataset.qDockHighlight))toast('Grifo salvo');else toast('Selecione um trecho do enunciado ou texto associado');return;}
+  const review=e.target.closest('[data-q-dock-srs]');
+  if(review){const q=qObjs().find(x=>x.id===review.dataset.qDockSrs);if(srsCreateFromQuestionHighlight(q))toast('Trecho grifado enviado para a revisão diária');else toast('Grife um trecho da questão antes de criar um cartão');return;}
   const focus=e.target.closest('[data-q-dock-focus]');
   if(focus){
     app.classList.toggle('study-focus');
@@ -6477,29 +6486,48 @@ function srsDueCards(now=Date.now()){
    return score(b)-score(a)||(a.dueAt||0)-(b.dueAt||0);
  }).slice(0,limit);
 }
-function srsCreateCard(kind,text,question,answer,theme='',now=Date.now()){
+function srsCreateCard(kind,text,question,answer,theme='',now=Date.now(),origin=null){
  const d=srsLoad();d.cards=d.cards||[];
- const card={id:'srs-'+now+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,theme:String(theme||'').trim(),source:'Grifo/comentário',createdAt:now,dueAt:now};
+ if(origin&&origin.kind&&origin.id){const existing=d.cards.find(c=>!c.discarded&&c.sourceKind===origin.kind&&c.sourceId===origin.id);if(existing)return existing;}
+ const card={id:'srs-'+now+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,theme:String(theme||'').trim(),
+   source:origin?.label||'Texto inserido manualmente',sourceRef:origin?.ref||'',sourceKind:origin?.kind||'',sourceId:origin?.id||'',createdAt:now,dueAt:now};
  d.cards.push(card);srsSave(d);return card;
 }
+function srsCreateFromQuestionHighlight(q,part=''){
+ if(!q)return null;
+ const id=String(q.id||('q'+q.n)),parts=part?[part]:['statement','associated'];
+ for(const p of parts){
+   if(!['statement','associated'].includes(p))continue;
+   const raw=String(p==='statement'?q.enunciado||'':q.textoAssociado||q.textoBase||q.textoApoio||'');
+   for(const range of qDockRanges(id,p)){
+     if(range.end>raw.length)continue;
+     const answer=raw.slice(range.start,range.end).trim();
+     if(!answer)continue;
+     const origin={label:'Grifo da questão',ref:'#/questao/'+encodeURIComponent(id),kind:'question-highlight',id:id+':'+p+':'+range.start+'-'+range.end};
+     return srsCreateCard('qa','','Qual trecho foi grifado na questão '+(q.n||id)+'?',answer,q.materia||'',Date.now(),origin);
+   }
+ }
+ return null;
+}
+function srsLocalDay(t=Date.now()){const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function srsGradeCard(id,grade,now=Date.now()){
  const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===id);
  if(!card||!['never','soon','later','someday'].includes(grade))return null;
  const days={soon:2,later:10,someday:45};
  if(grade==='never'){card.mastered=true;card.dueAt=null;}else card.dueAt=now+days[grade]*86400000;
  card.lastGrade=grade;
- const day=new Date(now).toISOString().slice(0,10);if(d.doneDay!==day){d.doneDay=day;d.done=0;}d.done=(d.done||0)+1;
+ const day=srsLocalDay(now);if(d.doneDay!==day){d.doneDay=day;d.done=0;}d.done=(d.done||0)+1;
  srsSave(d);return card;
 }
 function showReview(){
- const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===new Date().toISOString().slice(0,10)?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
+ const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
  const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}</style>';
  const queue='<section><div class="srs-head"><div><h1>Revisão diária</h1><p>'+due.length+' cartões para revisar · '+done+' de '+goal+' de hoje</p></div><div class="srs-actions"><button class="op-btn" data-srs-mode="single" aria-pressed="'+((d.mode||'single')==='single')+'">Cartão único</button><button class="op-btn" data-srs-mode="feed" aria-pressed="'+(d.mode==='feed')+'">Feed vertical</button></div></div><div class="srs-progress" role="progressbar" aria-label="Progresso diário" aria-valuenow="'+Math.min(done,goal)+'" aria-valuemax="'+goal+'"><i></i></div>'+
  (c?((d.mode==='feed'?due: [c]).map(x=>srsCardMarkup(x,false)).join('')):'<div class="srs-panel"><h2>Tudo em dia</h2><p>Não há cartões vencidos. Crie um cartão a partir de um grifo ou comentário para começar.</p></div>')+
  '<button class="op-btn" data-srs-open-create>Criar cartão</button></section>';
  const create='<details class="srs-panel" id="srs-create"><summary><strong>Criar cartão de estudo</strong></summary><p class="srs-muted">Cole um grifo do PDF ou comentário de questão abaixo; o texto fica guardado neste navegador.</p><label>Texto do grifo ou comentário<textarea id="srs-text" rows="4" placeholder="Cole aqui o texto de origem"></textarea></label><div class="srs-actions"><button class="op-btn" data-srs-tab="cloze">Cloze Deletion</button><button class="op-btn" data-srs-tab="qa">Pergunta e resposta</button></div><div id="srs-cloze"><p>Selecione palavras para ocultar:</p><div id="srs-token-area"></div><label>Pergunta<textarea id="srs-cloze-question" rows="2" placeholder="Contexto opcional"></textarea></label><button class="op-btn" data-srs-save-cloze>Salvar cloze</button></div><div id="srs-qa" hidden><label>Pergunta<input id="srs-question" placeholder="Digite uma pergunta"></label><label>Resposta<textarea id="srs-answer" rows="3"></textarea></label><button class="op-btn" data-srs-use-highlight>Usar texto de origem como resposta</button><button class="op-btn" data-srs-save-qa>Salvar cartão Q&amp;A</button></div></details>';
- const settings='<details class="srs-panel"><summary><strong>Configurações da revisão</strong></summary><label>Cartões por dia: <output id="srs-goal-value">'+goal+'</output><input type="range" min="5" max="20" value="'+goal+'" data-srs-setting="goal"></label><label>Recência (0 = antigos, 100 = recentes): <output id="srs-recency-value">'+((d.recency===undefined?50:d.recency))+'</output><input type="range" min="0" max="100" value="'+(d.recency||50)+'" data-srs-setting="recency"></label><label>Cartões bônus: <input type="number" min="0" max="10" value="'+(d.bonus||0)+'" data-srs-setting="bonus"></label><label>Disciplina/tag do cartão<input id="srs-card-theme" placeholder="Ex.: Direito Constitucional"></label><label>Sessão temática por disciplina/tag<input data-srs-setting="theme" value="'+srsEscape(d.theme||'')+'" placeholder="Ex.: Direito Constitucional"></label><button class="op-btn" data-srs-save-settings>Salvar configurações</button></details>';
+ const settings='<details class="srs-panel"><summary><strong>Configurações da revisão</strong></summary><label>Cartões por dia: <output id="srs-goal-value">'+goal+'</output><input type="range" min="5" max="20" value="'+goal+'" data-srs-setting="goal"></label><label>Recência (0 = antigos, 100 = recentes): <output id="srs-recency-value">'+((d.recency===undefined?50:d.recency))+'</output><input type="range" min="0" max="100" value="'+(d.recency===undefined?50:d.recency)+'" data-srs-setting="recency"></label><label>Cartões bônus: <input type="number" min="0" max="10" value="'+(d.bonus||0)+'" data-srs-setting="bonus"></label><label>Disciplina/tag do cartão<input id="srs-card-theme" placeholder="Ex.: Direito Constitucional"></label><label>Sessão temática por disciplina/tag<input data-srs-setting="theme" value="'+srsEscape(d.theme||'')+'" placeholder="Ex.: Direito Constitucional"></label><button class="op-btn" data-srs-save-settings>Salvar configurações</button></details>';
  const history='<details class="srs-panel"><summary><strong>Cartões ativos ('+cards.filter(x=>!x.discarded&&!x.mastered).length+')</strong></summary>'+cards.map(x=>'<div class="srs-row"><span>'+srsEscape(x.kind==='cloze'?x.text:x.question)+'</span><button class="op-btn" data-srs-discard="'+srsEscape(x.id)+'">Descartar</button></div>').join('')+'</details>';
  view.innerHTML=styles+'<main class="srs-wrap">'+queue+create+settings+history+'</main>'; view.scrollTop=0;
  const src=view.querySelector('#srs-text'); const renderTokens=()=>{const area=view.querySelector('#srs-token-area');if(!area)return;area.innerHTML=(src.value||'').split(/(\s+)/).map((w,i)=>w.trim()?'<button type="button" class="srs-word" data-srs-word="'+i+'">'+srsEscape(w)+'</button>':srsEscape(w)).join('');}; src?.addEventListener('input',renderTokens);
