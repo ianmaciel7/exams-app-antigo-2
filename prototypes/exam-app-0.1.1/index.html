@@ -4264,10 +4264,10 @@ command('workspace.close-tab','Fechar aba atual','Alt+w','Abas',80,()=>!!WS?.tab
 command('workspace.panel','Alternar painel direito','Mod+\\','Abas',80,()=>true,()=>openRP(!rpVisible()));
 command('workspace.tab-prev','Voltar no histórico da aba','Alt+ArrowLeft|Mod+[','Abas',85,()=>true,()=>wsStep(-1));
 command('workspace.tab-next','Avançar no histórico da aba','Alt+ArrowRight|Mod+]','Abas',85,()=>true,()=>wsStep(1));
-command('workspace.tab-cycle','Próxima aba','Mod+Tab','Abas',80,()=>WS?.tabs?.length>1,()=>{
+command('workspace.tab-cycle','Próxima aba','Alt+Shift+ArrowRight','Abas',80,()=>WS?.tabs?.length>1,()=>{
   const i=WS.tabs.findIndex(t=>t.id===WS.active);wsActivate(WS.tabs[(i+1)%WS.tabs.length].id);
 });
-command('workspace.tab-cycle-back','Aba anterior','Mod+Shift+Tab','Abas',80,()=>WS?.tabs?.length>1,()=>{
+command('workspace.tab-cycle-back','Aba anterior','Alt+Shift+ArrowLeft','Abas',80,()=>WS?.tabs?.length>1,()=>{
   const i=WS.tabs.findIndex(t=>t.id===WS.active);wsActivate(WS.tabs[(i+WS.tabs.length-1)%WS.tabs.length].id);
 });
 for(let n=1;n<=9;n++){
