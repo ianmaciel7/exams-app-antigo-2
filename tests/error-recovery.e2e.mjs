@@ -87,8 +87,26 @@ try{
   assert.equal(await page.locator('[data-edital-theory="'+savedKey+'"]').isChecked(),true,
     'explicit theory studied marker persists');
   assert.ok(await page.locator('.eh-ray-topic .eh-topic-status').count()>0);
+  const progress=await page.locator('.eh-ray-topic').first().innerText();
+  const progressCount=new RegExp('Questões resolvidas (\\d+)/(\\d+)').exec(progress);
+  assert.ok(progressCount,'topic row displays resolved questions over its cataloged total');
+  assert.ok(Number(progressCount[1])<=Number(progressCount[2]));
   await page.screenshot({path:path.join(assets,'issue76_raiox_vertical.png'),animations:'disabled'});
   report.checks.push('verticalized topic priorities and theory study checkboxes persist');
+
+  const practice=page.locator('[data-topic-practice]').first();
+  await practice.waitFor();
+  const practiceHref=await practice.getAttribute('href');
+  const filters=new URLSearchParams(practiceHref.split('?')[1]||'');
+  assert.ok(filters.get('disc')&&filters.get('assunto'),'topic action carries both catalog filters');
+  await practice.click();
+  const disciplineChip=page.locator('[data-qf-chip="disc"]');
+  const topicChip=page.locator('[data-qf-chip="assunto"]');
+  await disciplineChip.waitFor();
+  await topicChip.waitFor();
+  assert.equal(await disciplineChip.getAttribute('title'),filters.get('disc'));
+  assert.equal(await topicChip.getAttribute('title'),filters.get('assunto'));
+  report.checks.push('topic practice action opens the question bank with matching discipline and subject filters');
   assert.deepEqual(report.pageErrors,[],'no uncaught browser JS errors');
 }finally{
   await context.close();await browser.close();
