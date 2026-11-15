@@ -6445,6 +6445,58 @@ view.addEventListener('click',e=>{ const b=e.target.closest('[data-ai]'); if(b){
   const c=e.target.closest('[data-ai-close]'); if(c){ delete aiMem[c.dataset.aiClose]; aiPaint(c.dataset.aiClose); return; }
   const y=e.target.closest('[data-ai-copy]'); if(y){ const m=aiMem[y.dataset.aiCopy]; try{ navigator.clipboard.writeText(m&&m.copy||'').then(()=>toast('Copiado'),()=>toast('Não foi possível copiar')); }catch(_){ toast('Não foi possível copiar'); } } });
 
+/* ---- Daily Review / spaced repetition (#82) ---- */
+const SRS_KEY='daily-review:'+space;
+const srsLoad=()=>{const x=store.get(SRS_KEY);return x&&typeof x==='object'?x:{}};
+const srsSave=x=>store.set(SRS_KEY,JSON.stringify(x));
+const srsDue=(c,now=Date.now())=>!c.discarded&&!c.mastered&&(!c.dueAt||c.dueAt<=now);
+function srsEscape(s){return esc(String(s||''));}
+function srsCardMarkup(c,revealed=false){
+  const front=c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,(m,a)=>revealed?a:'_____ ('+a.trim().split(/\s+/).length+' words)'):c.question;
+  return '<article class="srs-card" data-srs-card="'+srsEscape(c.id)+'"><div class="srs-source">'+srsEscape(c.source||'Cartão pessoal')+'</div><h2>'+srsEscape(front)+'</h2>'+
+    (revealed?'<div class="srs-answer">'+srsEscape(c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):c.answer)+'</div>':'<button class="op-btn" data-srs-reveal>Revelar resposta</button>')+
+    '<div class="srs-grade" '+(revealed?'':'hidden')+'><button class="op-btn" data-srs-grade="never">Nunca · dominar</button><button class="op-btn" data-srs-grade="soon">Em breve</button><button class="op-btn" data-srs-grade="later">Depois</button><button class="op-btn" data-srs-grade="someday">Algum dia</button><button class="op-btn" data-srs-feedback>Feedback</button></div></article>';
+}
+function srsDueCards(){
+ const d=srsLoad(),now=Date.now(),cards=(d.cards||[]).filter(c=>srsDue(c,now));
+ const goal=Math.max(5,Number(d.goal)||6),limit=goal+(Number(d.bonus)||0);
+ const rec=Number(d.recency)||50;
+ return cards.sort((a,b)=>((b.createdAt||0)*rec-(a.createdAt||0)*rec)||((a.dueAt||0)-(b.dueAt||0))).slice(0,limit);
+}
+function showReview(){
+ const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===new Date().toISOString().slice(0,10)?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
+ document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
+ const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}</style>';
+ const queue='<section><div class="srs-head"><div><h1>Revisão diária</h1><p>'+due.length+' cartões para revisar · '+done+' de '+goal+' de hoje</p></div><div class="srs-actions"><button class="op-btn" data-srs-mode="single" aria-pressed="'+((d.mode||'single')==='single')+'">Cartão único</button><button class="op-btn" data-srs-mode="feed" aria-pressed="'+(d.mode==='feed')+'">Feed vertical</button></div></div><div class="srs-progress" role="progressbar" aria-label="Progresso diário" aria-valuenow="'+Math.min(done,goal)+'" aria-valuemax="'+goal+'"><i></i></div>'+
+ (c?((d.mode==='feed'?due: [c]).map(x=>srsCardMarkup(x,false)).join('')):'<div class="srs-panel"><h2>Tudo em dia</h2><p>Não há cartões vencidos. Crie um cartão a partir de um grifo ou comentário para começar.</p></div>')+
+ '<button class="op-btn" data-srs-open-create>Criar cartão</button></section>';
+ const create='<details class="srs-panel" id="srs-create"><summary><strong>Criar cartão de estudo</strong></summary><p class="srs-muted">Cole um grifo do PDF ou comentário de questão abaixo; o texto fica guardado neste navegador.</p><label>Texto do grifo ou comentário<textarea id="srs-text" rows="4" placeholder="Cole aqui o texto de origem"></textarea></label><div class="srs-actions"><button class="op-btn" data-srs-tab="cloze">Cloze Deletion</button><button class="op-btn" data-srs-tab="qa">Pergunta e resposta</button></div><div id="srs-cloze"><p>Selecione palavras para ocultar:</p><div id="srs-token-area"></div><label>Pergunta<textarea id="srs-cloze-question" rows="2" placeholder="Contexto opcional"></textarea></label><button class="op-btn" data-srs-save-cloze>Salvar cloze</button></div><div id="srs-qa" hidden><label>Pergunta<input id="srs-question" placeholder="Digite uma pergunta"></label><label>Resposta<textarea id="srs-answer" rows="3"></textarea></label><button class="op-btn" data-srs-use-highlight>Usar texto de origem como resposta</button><button class="op-btn" data-srs-save-qa>Salvar cartão Q&amp;A</button></div></details>';
+ const settings='<details class="srs-panel"><summary><strong>Configurações da revisão</strong></summary><label>Cartões por dia: <output id="srs-goal-value">'+goal+'</output><input type="range" min="5" max="20" value="'+goal+'" data-srs-setting="goal"></label><label>Recência (0 = antigos, 100 = recentes): <output id="srs-recency-value">'+(d.recency||50)+'</output><input type="range" min="0" max="100" value="'+(d.recency||50)+'" data-srs-setting="recency"></label><label>Cartões bônus: <input type="number" min="0" max="10" value="'+(d.bonus||0)+'" data-srs-setting="bonus"></label><label>Sessão temática por disciplina/tag<input data-srs-setting="theme" value="'+srsEscape(d.theme||'')+'" placeholder="Ex.: Direito Constitucional"></label><button class="op-btn" data-srs-save-settings>Salvar configurações</button></details>';
+ const history='<details class="srs-panel"><summary><strong>Cartões ativos ('+cards.filter(x=>!x.discarded&&!x.mastered).length+')</strong></summary>'+cards.map(x=>'<div class="srs-row"><span>'+srsEscape(x.kind==='cloze'?x.text:x.question)+'</span><button class="op-btn" data-srs-discard="'+srsEscape(x.id)+'">Descartar</button></div>').join('')+'</details>';
+ view.innerHTML=styles+'<main class="srs-wrap">'+queue+create+settings+history+'</main>'; view.scrollTop=0;
+ const src=view.querySelector('#srs-text'); const renderTokens=()=>{const area=view.querySelector('#srs-token-area');if(!area)return;area.innerHTML=(src.value||'').split(/(\s+)/).map((w,i)=>w.trim()?'<button type="button" class="srs-word" data-srs-word="'+i+'">'+srsEscape(w)+'</button>':srsEscape(w)).join('');}; src?.addEventListener('input',renderTokens);
+}
+function srsSetDue(card,grade,d){
+ const days={soon:2,later:10,someday:45}; if(grade==='never'){card.mastered=true;card.dueAt=null;}else card.dueAt=Date.now()+days[grade]*86400000;
+ card.lastGrade=grade;
+}
+view.addEventListener('click',e=>{
+ const rev=e.target.closest('[data-srs-reveal]'); if(rev){const c=rev.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===c.dataset.srsCard); if(card){c.outerHTML=srsCardMarkup(card,true);} return;}
+ const mode=e.target.closest('[data-srs-mode]'); if(mode){const d=srsLoad();d.mode=mode.dataset.srsMode;srsSave(d);showReview();return;}
+ const open=e.target.closest('[data-srs-open-create]'); if(open){view.querySelector('#srs-create')?.setAttribute('open','');view.querySelector('#srs-text')?.focus();return;}
+ const tab=e.target.closest('[data-srs-tab]');if(tab){view.querySelector('#srs-cloze').hidden=tab.dataset.srsTab!=='cloze';view.querySelector('#srs-qa').hidden=tab.dataset.srsTab!=='qa';return;}
+ const word=e.target.closest('[data-srs-word]');if(word){word.classList.toggle('selected');return;}
+ const use=e.target.closest('[data-srs-use-highlight]');if(use){view.querySelector('#srs-answer').value=view.querySelector('#srs-text').value;return;}
+ const saveCard=(kind,text,question,answer)=>{const d=srsLoad();d.cards=d.cards||[];d.cards.push({id:'srs-'+Date.now()+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,source:'Grifo/comentário',createdAt:Date.now(),dueAt:Date.now()});srsSave(d);showReview();};
+ const sc=e.target.closest('[data-srs-save-cloze]');if(sc){const raw=view.querySelector('#srs-text').value.trim(),selected=[...view.querySelectorAll('.srs-word.selected')];if(!raw||!selected.length){toast('Cole o texto e selecione as palavras a ocultar.');return;}const words=raw.split(/(\s+)/);const ids=selected.map(x=>Number(x.dataset.srsWord)).sort((a,b)=>a-b);let out='',active=false;words.forEach((w,i)=>{if(ids.includes(i)){if(!active)out+='{{c1::';out+=w;active=true;}else{if(active)out+='}}';out+=w;active=false;}});if(active)out+='}}';saveCard('cloze',out,view.querySelector('#srs-cloze-question').value.trim(),'');return;}
+ const qa=e.target.closest('[data-srs-save-qa]');if(qa){const q=view.querySelector('#srs-question').value.trim(),a=view.querySelector('#srs-answer').value.trim();if(!q||!a){toast('Informe pergunta e resposta.');return;}saveCard('qa','',q,a);return;}
+ const grade=e.target.closest('[data-srs-grade]');if(grade){const el=grade.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el.dataset.srsCard);if(card){srsSetDue(card,grade.dataset.srsGrade,d);const day=new Date().toISOString().slice(0,10);if(d.doneDay!==day){d.doneDay=day;d.done=0;}d.done=(d.done||0)+1;srsSave(d);showReview();}return;}
+ const fb=e.target.closest('[data-srs-feedback]');if(fb){const choice=prompt('Ajuste de intervalo: Never, Soon, Later ou Someday');const gradeMap={'Never':'never','Soon':'soon','Later':'later','Someday':'someday'};const el=fb.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el.dataset.srsCard);if(card&&gradeMap[choice]){srsSetDue(card,gradeMap[choice],d);srsSave(d);showReview();}return;}
+ const discard=e.target.closest('[data-srs-discard]');if(discard){const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===discard.dataset.srsDiscard);if(card)card.discarded=true;srsSave(d);showReview();return;}
+ const saveSettings=e.target.closest('[data-srs-save-settings]');if(saveSettings){const d=srsLoad();d.goal=Number(view.querySelector('[data-srs-setting="goal"]').value);d.recency=Number(view.querySelector('[data-srs-setting="recency"]').value);d.bonus=Number(view.querySelector('[data-srs-setting="bonus"]').value);d.theme=view.querySelector('[data-srs-setting="theme"]').value.trim();srsSave(d);showReview();return;}
+});
+view.addEventListener('input',e=>{const k=e.target.dataset.srsSetting;if(!k)return;const out=view.querySelector('#srs-'+k+'-value');if(out)out.textContent=e.target.value;if(k==='goal'||k==='recency'||k==='bonus'||k==='theme'){const d=srsLoad();d[k]=k==='theme'?e.target.value:Number(e.target.value);srsSave(d);}});
+
 /* ---- routing ---- */
 function route(spaceChanged){
   document.querySelector('.main').classList.remove('study-mode');
@@ -6462,7 +6514,7 @@ function route(spaceChanged){
   if(h0==='/tipo/caderno'){ location.hash='/cadernos'; return; }
   if(h0==='/cadernos'||h0==='/filtros'||h0.startsWith('/caderno/')){ nbRoute(h0); return; }
   if(h0==='/grafico'||h0==='/explorar'){ showGraph(); return; }
-  if(h0==='/revisao'){ location.replace('#/questoes/erradas'); return; }
+  if(h0==='/revisao'){ showReview(); return; }
   if(h0==='/quadro'){ $('spaceRow')?.removeAttribute('aria-current'); showBoard(); return; }
   if(h0.startsWith('/questoes')||h0==='/simulado'){ showStudyRoute(h0); return; }
   if(h0==='/espaco'||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
