@@ -43,6 +43,13 @@ try{
   try{
    await page.goto(base+'#edital',{waitUntil:'domcontentloaded'});
    await page.locator('.reader-tools [data-reader-mode]').waitFor({timeout:25000});
+   const layout=await page.evaluate(()=>{const v=document.querySelector('.view'),p=document.querySelector('.page'),main=document.querySelector('.main');return {
+     route:location.hash,main:main?.className,viewRect:v?.getBoundingClientRect().toJSON(),
+     viewDisplay:v&&getComputedStyle(v).display,pageStyle:p?.getAttribute('style'),
+     parent:p?.parentElement?.className,app:document.querySelector('#app')?.className
+   };});
+   console.log('PDF_VIEW_DIAGNOSTIC '+JSON.stringify(layout));
+   await page.screenshot({path:path.join(assets,'issue77_reader_diagnostic_'+width+'.png'),animations:'disabled'});
    await page.locator('.page[data-canvas-status="ready"]').first().waitFor({timeout:20000});
    assert.equal(await page.locator('.reader-tools [data-reader-mode]').getAttribute('aria-pressed'),'false');
    await page.locator('[data-reader-mode]').click();
