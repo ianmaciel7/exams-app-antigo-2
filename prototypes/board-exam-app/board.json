@@ -7729,7 +7729,7 @@
       "y": 11008,
       "w": 1590,
       "h": 82,
-      "text": "Roteador declarativo único para comandos globais, categorias, prioridade, chord normalizado Mod (Ctrl/Command), Alt e Shift e disponibilidade contextual. E2E Chromium valida busca Ctrl+K, alternância Ctrl+B, novo objeto Ctrl+Alt+N, proteção de campos e diálogos, janela de ajuda gerada do mesmo catálogo, sem erro JS. Capturas e medições em issue139_commands_e2e.json. Permanecem sem cobertura E2E integral os contextos de grafo, simulado, leitor e atalhos reservados do SO ou IME real; a issue #139 fica aberta até a paridade completa."
+      "text": "Roteador declarativo único para comandos globais, categorias, prioridade, chord normalizado Mod (Ctrl/Command), Alt e Shift e disponibilidade contextual. E2E Chromium valida busca Ctrl+K, alternância Ctrl+B, novo objeto Ctrl+Alt+N, proteção de campos e diálogos, janela de ajuda gerada do mesmo catálogo, sem erro JS. Capturas e medições em issue139_commands_e2e.json. Matriz E2E adicional: questão seleciona alternativa pelo atalho; campo de edição suprime a seleção; o grafo conserva o evento local e bloqueia Ctrl+B global; Ctrl+Tab não é cancelado pelo roteador. IME físico e captura das teclas reservadas pelo SO continuam dependentes de teste manual por plataforma. Evidências completas em issue139_commands_e2e.json."
     },
     "e1399": {
       "type": "image",

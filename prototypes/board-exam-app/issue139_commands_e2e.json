@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-14T17:01:27.462Z",
+  "date": "2026-11-15T12:39:57.470Z",
   "cases": [
     {
       "phase": "before",
@@ -20,11 +20,21 @@
       "sidebarToggledTwice": true,
       "newItemOptions": 2,
       "screenshot": "issue139_after_new_item.png"
+    },
+    {
+      "phase": "after",
+      "interaction": "question-graph-editor-reserved-chord",
+      "questionAnswerActivated": true,
+      "editorSuppressedQuestionCommand": true,
+      "graphLocalKeyOwned": true,
+      "graphSuppressedGlobalSidebar": true,
+      "reservedCtrlTabPrevented": false,
+      "screenshot": "issue139_after_contexts.png"
     }
   ],
   "pageErrors": [],
   "limitations": [
     "Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.",
-    "Covers global search, sidebar, new-item menu and shortcut help; graph, full questions and all contextual components are not exhaustively tested."
+    "Covers global search, sidebar, new-item menu, shortcut help, synthetic question answer routing, graph local key ownership, editor suppression, and non-interception of Ctrl+Tab. Real IME and OS-level key reservation still require manual platform testing."
   ]
 }
