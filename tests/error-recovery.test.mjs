@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
 const start=html.indexOf('const histAll=()=>'),end=html.indexOf('function histMeta(',start);
 assert.ok(start>=0&&end>start,'real immutable attempt-history ledger is present');
-const code=html.slice(start,end)+'\n({errorLedger,errorReviewSummary,errorNotebookMarkup,qResetForRetry})';
+const code=html.slice(start,end)+'\n({errorLedger,errorReviewSummary,errorNotebookMarkup,errorTopicMetrics,qResetForRetry})';
 const day=86400000,base=Date.UTC(2026,10,9,10,0,0),id='q1';
 const record=(at,ok,a=ok?'B':'A',qid=id)=>({q:qid,t:at,ok,a,src:'Prática'});
 function harness(log=[]){
@@ -16,7 +16,7 @@ function harness(log=[]){
    qPend:pending,uqAns:()=>({}),saveUqAns:()=>{},getAnswers:()=>answers,
    saveAnswers:a=>{values.set('answers',a);writes.push(['answers',a]);},
    esc:t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),
-   qTitle:q=>'Questão '+q.id,Date,Number,Math,Array,Set,Map,String
+   qTitle:q=>'Questão '+q.id,wOf:q=>!q.user&&q.materia==='Conhecimentos Específicos'?2.5:1,Date,Number,Math,Array,Set,Map,String
  };
  return {api:runInNewContext(code,env),values,answers,pending,writes};
 }
@@ -86,4 +86,40 @@ test('question filters and practice route preserve unresolved ledger status afte
  assert.match(html,/errorOnly=path\.split\('\?'\)\[0\]==='\/questoes\/erradas'/);
  assert.match(html,/errorNotebookMarkup\(all\)/);
  assert.match(html,/errorLedger\(q\.id\)\.open/);
+});
+
+test('weekly error cohort keeps recovered questions and shows wrong/recovered counts',()=>{
+ const data=[record(base,false,'A','q1'),record(base+day,true,'B','q1'),
+   record(base+2*day,false,'A','q2')];
+ const h=harness(data),markup=h.api.errorNotebookMarkup([
+   {id:'q1',n:1,materia:'Direito',assunto:'Base'},{id:'q2',n:2,materia:'Direito',assunto:'Base'}
+ ],base+3*day);
+ assert.match(markup,/Errou 2 · Recuperou 1/);
+ assert.match(markup,/Recuperada/);
+ assert.match(markup,/Revisar agora/);
+});
+test('topic priority combines catalog question incidence and weight with latest-answer coverage and accuracy',()=>{
+ const all=Array.from({length:10},(_,i)=>({id:'q'+i,materia:i<2?'Conhecimentos Específicos':'Geral'}));
+ const important=all.slice(0,2),lowExposure=all.slice(2,3),history=[record(base,false,'A','q0')];
+ const h=harness(history),high=h.api.errorTopicMetrics(important,all,history);
+ assert.equal(high.questionShare,.2);
+ assert.equal(high.weightShare,5/13);
+ assert.equal(high.coverage,.5);
+ assert.equal(high.accuracy,0);
+ assert.equal(high.priority,'Alta');
+ const unstudied=h.api.errorTopicMetrics(lowExposure,all,[]);
+ assert.equal(unstudied.priority,'Média');
+ const mastered=h.api.errorTopicMetrics(lowExposure,all,[record(base,true,'B','q2')]);
+ assert.equal(mastered.coverage,1);
+ assert.equal(mastered.accuracy,1);
+ assert.equal(mastered.score,0);
+ assert.equal(mastered.priority,'Baixa');
+});
+test('topic accuracy uses latest confirmed attempt and UI explains its incidence-weight-coverage score',()=>{
+ const item={id:'q1',materia:'Geral'},log=[record(base,false,'A'),record(base+day,true,'B')];
+ const h=harness(log),metrics=h.api.errorTopicMetrics([item],[item],log);
+ assert.equal(metrics.accuracy,1);
+ assert.equal(metrics.priority,'Baixa');
+ assert.match(html,/Incidência .*peso/);
+ assert.match(html,/Cobertura/);
 });
