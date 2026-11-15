@@ -4100,7 +4100,7 @@ async function open(d,seq){
     view.innerHTML='<div class="msg" role="alert"><b>Não foi possível abrir “'+esc(d.t)+'”.</b><br>'+why+'<br>Seu ponto de leitura foi mantido.<br><button class="cta" data-retry>Tentar de novo</button> <a class="cta alt" href="#/quadro">Ir para o Quadro</a></div>'; token++; wsLoadingEnd('failed',{seq,error:why}); } }
 }
 let readerTextMode=false,readerFocus=null,readerTocCollapsed=false,readerUndo=[];
-function cleanupReader(){document.querySelector('.reader-tools')?.remove();document.querySelector('.reader-toc')?.remove();readerFocus=null;readerTextMode=false;}
+function cleanupReader(){document.querySelector('.reader-tools')?.remove();document.querySelector('.reader-toc')?.remove();readerFocus=null;readerTextMode=false;readerUndo=[];}
 addEventListener('hashchange',()=>{const id=location.hash.replace(/^#/,'').split('/')[0];if(!allDocs().some(d=>d.id===id))cleanupReader();});
 const readerKey=(d,p,i)=>'reader:'+d.id+':'+p+':'+i;
 function readerOrderItems(items,pageWidth){
