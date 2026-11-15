@@ -26,6 +26,7 @@ test('custom object type navigation and editable objects are real routes, not mo
   assert.match(html,/#\/custom-object\//);
   assert.match(html,/data-custom-edit/);
   assert.match(html,/customObjectPage\(obj\)/);
-  assert.match(html,/if\(T\.custom\) NEWL\[t\]/);
+  assert.match(html,/const canNew=T\.custom\|\|/);
+  assert.match(html,/data-new/);
   assert.match(html,/customObjects\.filter\(o=>o\.sp===sp/);
 });
