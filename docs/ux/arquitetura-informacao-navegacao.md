@@ -53,7 +53,7 @@ Fontes internas inspecionadas na `dev`: `prototypes/exam-app-0.1.1/index.html`, 
 | `#/tipo/questao` | Catálogo único de *objetos* via `qObjs()` (questões oficiais + próprias), filtros e comando para iniciar simulado | I | Catálogo não é o mesmo que prática inline global |
 | `#/questao/:id` | Ficha da questão, alternativas, respostas e metadados | I | Não confundir “objeto” com tarefa de prática |
 | `#/tipo/:tipo`, `#/disciplina/:id` | Catálogo de tipos e entidade contextual | I | Navegação focada em taxonomia |
-| `#/revisao` | Fila SRS diária com progresso/meta, modos cartão/feed, TTS, cartões Cloze e Q&A, quatro graduações, feedback e filtro por disciplina/tag | I/P | Cartões e agenda persistem no navegador por espaço; grifos/comentários são colados manualmente no criador, sem importação automática do PDF |
+| `#/revisao` | Fila SRS diária com progresso/meta, modos cartão/feed, TTS, cartões Cloze e Q&A, quatro graduações, feedback e filtro por disciplina/tag | I/P | Cartões e agenda persistem no navegador por espaço; grifos e comentários de questões podem ser importados diretamente; grifos do PDF ainda dependem de integração, e textos externos podem ser colados manualmente |
 | `#/grafico`, `#/explorar` | Grafo global/exploração | I/P | Melhorias de motor e controles #67/#68 |
 | `#/quadro` | Quadro visual do espaço | I | Não é o fluxo principal de resolução |
 
