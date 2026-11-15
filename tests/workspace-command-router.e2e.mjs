@@ -98,7 +98,7 @@ try{
     await page.locator('#view .s-question').waitFor({timeout:25000});
     const options=page.locator('#view .s-question input[type=radio]');
     await options.first().waitFor({timeout:25000});
-    await page.locator('#wsSearchBtn').focus();
+    await page.locator('#sideNewBtn').focus();
     await page.keyboard.press('Control+k');
     await page.locator('#pal.on').waitFor();
     await page.locator('#palIn').focus();
@@ -108,7 +108,7 @@ try{
       'typing in the real search editor must not select a practice answer');
     await page.locator('#palIn').press('Escape');
     await page.locator('#pal:not(.on)').waitFor({state:'hidden'});
-    assert.equal(await page.evaluate(()=>document.activeElement?.id),'wsSearchBtn',
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'sideNewBtn',
       'Escape restores focus to the visible search opener');
     await page.keyboard.press('1');
     assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),true,
