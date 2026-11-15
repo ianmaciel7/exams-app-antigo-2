@@ -16,7 +16,7 @@ const sourceDigest=createHash('sha256').update([
 ].map(file=>readFileSync(file,'utf8')).join('')).digest('hex');
 const report={sourceDigest,cases:[],pageErrors:[],limitations:[
   'Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.',
-  'Covers global search, sidebar, new-item menu, shortcut help, synthetic question answer routing, graph local key ownership, editor suppression, and non-interception of Ctrl+Tab. Real IME and OS-level key reservation still require manual platform testing.'
+  'Covers global search, sidebar, new-item menu, shortcut help, the real question practice route and global graph route, editor suppression, Escape focus restoration, and non-interception of Ctrl+Tab. Physical IME and OS-level key reservation still require manual platform testing.'
 ]};
 const addr=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
 async function snap(page,filename){
@@ -114,7 +114,7 @@ try{
     assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),true,
       'question answer shortcut selects an available answer on the real practice route');
     report.cases.push({phase:'after',interaction:'real-question-route-and-editor',
-      questionRoute:true,questionAnswerShortcutSelected:true,searchEditorSuppressedAnswer:true});
+      questionRoute:true,questionAnswerShortcutSelected:true,searchEditorSuppressedAnswer:true,searchEscapeRestoredFocus:true});
 
     await page.evaluate(()=>{
       window.__issue139GraphDraws=0;
