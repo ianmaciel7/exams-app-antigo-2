@@ -9,12 +9,21 @@ boardpath=root/"board.json"
 board=json.loads(boardpath.read_text(encoding="utf-8"))
 els,order=board["elements"],board["order"]
 title="46. Atalhos de teclado — Issue #139: registro e roteamento centralizado"
-if any(v.get("type")=="container" and v.get("text")==title for v in els.values()):
-    print("Command router evidence already registered")
-    raise SystemExit(0)
-
 manifest=json.loads((root/"issue139_commands_e2e.json").read_text(encoding="utf-8"))
-assert not manifest["pageErrors"] and len(manifest["cases"])==3,"Incomplete browser evidence"
+assert not manifest["pageErrors"] and any(c.get("interaction")=="question-graph-editor-reserved-chord" for c in manifest["cases"]),"Missing contextual command-router E2E evidence"
+existing=next((v for v in els.values() if v.get("type")=="container" and v.get("text")==title),None)
+if existing:
+    x,y,w,h=(existing[k] for k in ("x","y","w","h"))
+    for item in els.values():
+        if item.get("type")!="text" or not item.get("text"): continue
+        if x < item.get("x",0)+item.get("w",0)/2 < x+w and y < item.get("y",0)+item.get("h",0)/2 < y+h:
+            if "Permanecem sem cobertura E2E integral" in item["text"]:
+                item["text"]=item["text"].replace(
+                    "Permanecem sem cobertura E2E integral os contextos de grafo, simulado, leitor e atalhos reservados do SO ou IME real; a issue #139 fica aberta até a paridade completa.",
+                    "Matriz E2E adicional: questão seleciona alternativa pelo atalho; campo de edição suprime a seleção; o grafo conserva o evento local e bloqueia Ctrl+B global; Ctrl+Tab não é cancelado pelo roteador. IME físico e captura das teclas reservadas pelo SO continuam dependentes de teste manual por plataforma. Evidências completas em issue139_commands_e2e.json.")
+    boardpath.write_text(json.dumps(board,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("Updated #139 board matrix with contextual browser evidence")
+    raise SystemExit(0)
 frames=[
     ("before_help","ANTES: janela de ajuda com tabela fixa de seis atalhos"),
     ("after_help","DEPOIS: janela gerada dinamicamente a partir do registro de comandos"),
