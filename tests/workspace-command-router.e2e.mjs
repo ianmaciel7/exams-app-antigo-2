@@ -118,10 +118,20 @@ try{
 
     await page.evaluate(()=>{
       window.__issue139GraphDraws=0;
-      const old=CanvasRenderingContext2D.prototype.clearRect;
+      window.__issue139GraphScale=null;
+      let awaitingGraphTransform=false;
+      const oldClear=CanvasRenderingContext2D.prototype.clearRect;
       CanvasRenderingContext2D.prototype.clearRect=function(...args){
-        if(this.canvas?.id==='gvc') window.__issue139GraphDraws++;
-        return old.apply(this,args);
+        if(this.canvas?.id==='gvc'){window.__issue139GraphDraws++;awaitingGraphTransform=true;}
+        return oldClear.apply(this,args);
+      };
+      const oldSet=CanvasRenderingContext2D.prototype.setTransform;
+      CanvasRenderingContext2D.prototype.setTransform=function(...args){
+        if(this.canvas?.id==='gvc'&&awaitingGraphTransform){
+          window.__issue139GraphScale=args[0]/(window.devicePixelRatio||1);
+          awaitingGraphTransform=false;
+        }
+        return oldSet.apply(this,args);
       };
     });
     await page.goto(addr(8765).replace('#/espaco','#/grafico'),{waitUntil:'domcontentloaded'});
@@ -133,14 +143,14 @@ try{
     await page.waitForTimeout(180);
     await page.locator('#gvc').focus();
     const drawBefore=await page.evaluate(()=>window.__issue139GraphDraws);
-    const graphScaleBefore=await page.evaluate(()=>GV?.k);
-    assert.ok(Number.isFinite(graphScaleBefore),'real graph state is available before zoom');
+    const graphScaleBefore=await page.evaluate(()=>window.__issue139GraphScale);
+    assert.ok(Number.isFinite(graphScaleBefore),'real canvas transform exposes the graph zoom before shortcut');
     await page.keyboard.press('Equal');
     await page.waitForTimeout(180);
     const drawAfter=await page.evaluate(()=>window.__issue139GraphDraws);
-    const graphScaleAfter=await page.evaluate(()=>GV?.k);
+    const graphScaleAfter=await page.evaluate(()=>window.__issue139GraphScale);
     assert.ok(drawAfter>drawBefore,'real graph redraws after the keyboard chord');
-    assert.ok(graphScaleAfter>graphScaleBefore,'Equal zoom chord increases the actual graph scale');
+    assert.ok(graphScaleAfter>graphScaleBefore,'Equal zoom chord increases the actual rendered graph scale');
     const sidebarBeforeGraphChord=await page.locator('#app').evaluate(x=>x.classList.contains('collapsed'));
     await page.keyboard.press('Control+b');
     assert.equal(await page.locator('#app').evaluate(x=>x.classList.contains('collapsed')),sidebarBeforeGraphChord,
