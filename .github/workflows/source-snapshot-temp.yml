@@ -1,0 +1,38 @@
+name: Temporary Source Snapshot for Issue Audit
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - '.github/workflows/source-snapshot-temp.yml'
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.head_ref == 'fix/recovery-e2e-readonly-20261115'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Archive tracked source, tests, docs and board illustrations
+        run: |
+          python3 - <<'PY'
+          import pathlib, subprocess, tarfile
+          tracked=subprocess.check_output(["git","ls-files","-z"]).split(b"\0")
+          allowed={".html",".js",".css",".json",".md",".mjs",".py",".yaml",".yml",".ts",".tsx",".svg",".sh",".png",".toml"}
+          paths=[]
+          for raw in tracked:
+              if not raw: continue
+              path=pathlib.Path(raw.decode())
+              if path.suffix.lower() not in allowed: continue
+              if path.parts[:2]==("docs","archives"): continue
+              if path.is_file(): paths.append(path)
+          with tarfile.open("/tmp/exams-app-source.tar.gz","w:gz") as archive:
+              for path in paths: archive.add(path,arcname=str(path),recursive=False)
+          print("Archived files:",len(paths))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exams-app-source-snapshot-temp
+          path: /tmp/exams-app-source.tar.gz
+          retention-days: 1
