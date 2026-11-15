@@ -58,6 +58,7 @@ try{
     await page.locator('#dlg [data-x="1"]').click();
 
     await page.locator('body').click({position:{x:1200,y:700}});
+    await page.locator('#wsSearchBtn').focus();
     await page.keyboard.press('Control+k');
     await page.locator('#pal.on').waitFor();
     await page.locator('#palIn').waitFor();
@@ -107,7 +108,8 @@ try{
       'typing in the real search editor must not select a practice answer');
     await page.locator('#palIn').press('Escape');
     await page.locator('#pal:not(.on)').waitFor({state:'hidden'});
-    await page.evaluate(()=>document.activeElement?.blur());
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'wsSearchBtn',
+      'Escape restores focus to the visible search opener');
     await page.keyboard.press('1');
     assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),true,
       'question answer shortcut selects an available answer on the real practice route');
