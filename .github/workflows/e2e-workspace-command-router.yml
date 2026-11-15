@@ -48,13 +48,22 @@ jobs:
           python3 scripts/append-command-router-board.py
           npm run board
           grep -q '46. Atalhos de teclado' prototypes/board-exam-app/BOARD.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md prototypes/board-exam-app/issue139_commands_e2e.json
-          git add prototypes/board-exam-app/assets/issue139_*.png
-          if ! git diff --cached --quiet; then
-            git commit -m 'test(ux): preserve Issue #139 verified Chromium command evidence'
-            git push origin "HEAD:${{ github.head_ref }}"
+          prior_digest="$(git show HEAD:prototypes/board-exam-app/issue139_commands_e2e.json 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{process.stdout.write(JSON.parse(s).sourceDigest||'')}catch{}})")"
+          current_digest="$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('prototypes/board-exam-app/issue139_commands_e2e.json','utf8')).sourceDigest||'')")"
+          if [[ -n "$prior_digest" && "$prior_digest" == "$current_digest" ]]; then
+            echo "Source/test digest unchanged; keep the verified evidence already committed."
+            git restore --worktree -- prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md prototypes/board-exam-app/issue139_commands_e2e.json
+            git restore --worktree -- 'prototypes/board-exam-app/assets/issue139_*.png'
+            git clean -f -- prototypes/board-exam-app/assets/issue139_*.png
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md prototypes/board-exam-app/issue139_commands_e2e.json
+            git add prototypes/board-exam-app/assets/issue139_*.png
+            if ! git diff --cached --quiet; then
+              git commit -m 'test(ux): preserve Issue #139 verified Chromium command evidence'
+              git push origin "HEAD:${{ github.head_ref }}"
+            fi
           fi
       - name: Upload evidence
         if: always()
