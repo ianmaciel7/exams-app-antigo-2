@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
 const start=html.indexOf('const histAll=()=>'),end=html.indexOf('function histMeta(',start);
 assert.ok(start>=0&&end>start,'real immutable attempt-history ledger is present');
-const code=html.slice(start,end)+'\n({errorLedger,errorReviewSummary,errorNotebookMarkup,errorTopicMetrics,qResetForRetry})';
+const code=html.slice(start,end)+'\n({errorLedger,errorReviewSummary,errorNotebookMarkup,errorTopicMetrics,qResetForRetry,mergeConfirmedAttemptFallback})';
 const day=86400000,base=Date.UTC(2026,10,9,10,0,0),id='q1';
 const record=(at,ok,a=ok?'B':'A',qid=id)=>({q:qid,t:at,ok,a,src:'Prática'});
 function harness(log=[]){
@@ -107,6 +107,33 @@ test('question filters and practice route preserve unresolved ledger status afte
  assert.match(html,/errorLedger\(q\.id\)\.open/);
 });
 
+test('remote restored wrong practice answers recover a minimum immutable attempt record',()=>{
+ const h=harness([]);
+ const restored={1:{selected:'A',correct:false,updatedAt:base,deleted:false}};
+ const first=h.api.mergeConfirmedAttemptFallback([],restored,[],{},base+day);
+ assert.equal(first.length,1);
+ assert.equal(first[0].src,'Resposta confirmada restaurada');
+ assert.equal(h.api.errorLedger(id,first).open,true);
+ const repeat=h.api.mergeConfirmedAttemptFallback(first,restored,[],{},base+day);
+ assert.equal(repeat.length,1,'recovery is idempotent');
+ const updated={1:{selected:'B',correct:true,updatedAt:base+day,deleted:false}};
+ const second=h.api.mergeConfirmedAttemptFallback(first,updated,[],{},base+2*day);
+ assert.equal(second.length,2);
+ assert.equal(h.api.errorLedger(id,second).recovered,true);
+ const newerLocal=h.api.mergeConfirmedAttemptFallback(second,restored,[],{},base+3*day);
+ assert.equal(newerLocal.length,2,'older restored state cannot regress recovered history');
+});
+test('legacy custom-question answer snapshot preserves pending wrong status after restore',()=>{
+ const h=harness([]);
+ const questions=[{id:'user-one',gabarito:'B',materia:'Direito',updatedAt:base}];
+ const migrated=h.api.mergeConfirmedAttemptFallback([],{},questions,{'user-one':'A'},base+day);
+ assert.equal(migrated.length,1);
+ assert.equal(h.api.errorLedger('user-one',migrated).open,true);
+ const again=h.api.mergeConfirmedAttemptFallback(migrated,{},questions,{'user-one':'A'},base+day);
+ assert.equal(again.length,1);
+ assert.equal(h.api.mergeConfirmedAttemptFallback([], {1:{selected:'A',correct:false,deleted:true}},[],{},base).length,0);
+ assert.match(html,/mergeConfirmedAttemptFallback\(oldHistory,getAnswers\(\)/,'recovery is wired to boot reconciliation');
+});
 test('weekly error cohort keeps recovered questions and shows wrong/recovered counts',()=>{
  const data=[record(base,false,'A','q1'),record(base+day,true,'B','q1'),
    record(base+2*day,false,'A','q2')];
