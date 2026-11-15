@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
@@ -6,9 +8,15 @@ import { chromium } from 'playwright';
 const evidenceDir=path.resolve('prototypes/board-exam-app/assets');
 await mkdir(evidenceDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
+const sourceDigest=createHash('sha256').update([
+  'prototypes/exam-app-0.1.1/index.html',
+  'tests/workspace-command-router.test.mjs',
+  'tests/workspace-command-router.e2e.mjs',
+  '.github/workflows/e2e-workspace-command-router.yml'
+].map(file=>readFileSync(file,'utf8')).join('')).digest('hex');
+const report={sourceDigest,cases:[],pageErrors:[],limitations:[
   'Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.',
-  'Covers global search, sidebar, new-item menu and shortcut help; graph, full questions and all contextual components are not exhaustively tested.'
+  'Covers global search, sidebar, new-item menu, shortcut help, the real question practice route and global graph route, editor suppression, Escape focus restoration, and non-interception of Ctrl+Tab. Physical IME and OS-level key reservation still require manual platform testing.'
 ]};
 const addr=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
 async function snap(page,filename){
@@ -83,6 +91,79 @@ try{
     await page.locator('#newMenuIn').press('Escape');
     await page.locator('#newMenu:not(.open)').waitFor({state:'hidden'});
     report.cases.push({phase:'after',interaction:'global-chords',sidebarToggledTwice:true,newItemOptions:count,screenshot:'issue139_after_new_item.png'});
+
+
+
+    await page.goto(addr(8765).replace('#/espaco','#/questoes'),{waitUntil:'domcontentloaded'});
+    await page.locator('#view .s-question').waitFor({timeout:25000});
+    const options=page.locator('#view .s-question input[type=radio]');
+    await options.first().waitFor({timeout:25000});
+    await page.locator('#sideNewBtn').focus();
+    await page.keyboard.press('Control+k');
+    await page.locator('#pal.on').waitFor();
+    await page.locator('#palIn').focus();
+    await page.keyboard.press('a');
+    assert.equal(await page.locator('#palIn').inputValue(),'a','search editor receives typed text');
+    assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),false,
+      'typing in the real search editor must not select a practice answer');
+    await page.locator('#palIn').press('Escape');
+    await page.locator('#pal:not(.on)').waitFor({state:'hidden'});
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'sideNewBtn',
+      'Escape restores focus to the visible search opener');
+    await page.keyboard.press('1');
+    assert.equal(await options.evaluateAll(nodes=>nodes.some(node=>node.checked)),true,
+      'question answer shortcut selects an available answer on the real practice route');
+    report.cases.push({phase:'after',interaction:'real-question-route-and-editor',
+      questionRoute:true,questionAnswerShortcutSelected:true,searchEditorSuppressedAnswer:true,searchEscapeRestoredFocus:true});
+
+    await page.evaluate(()=>{
+      window.__issue139GraphDraws=0;
+      window.__issue139GraphScale=null;
+      let awaitingGraphTransform=false;
+      const oldClear=CanvasRenderingContext2D.prototype.clearRect;
+      CanvasRenderingContext2D.prototype.clearRect=function(...args){
+        if(this.canvas?.id==='gvc'){window.__issue139GraphDraws++;awaitingGraphTransform=true;}
+        return oldClear.apply(this,args);
+      };
+      const oldSet=CanvasRenderingContext2D.prototype.setTransform;
+      CanvasRenderingContext2D.prototype.setTransform=function(...args){
+        if(this.canvas?.id==='gvc'&&awaitingGraphTransform){
+          window.__issue139GraphScale=args[0]/(window.devicePixelRatio||1);
+          awaitingGraphTransform=false;
+        }
+        return oldSet.apply(this,args);
+      };
+    });
+    await page.goto(addr(8765).replace('#/espaco','#/grafico'),{waitUntil:'domcontentloaded'});
+    await page.locator('#gvc').waitFor({timeout:25000});
+    await page.waitForFunction(()=>{
+      const info=document.querySelector('.gv-info');
+      return info&&!info.textContent.includes('carregando');
+    },{timeout:25000});
+    await page.waitForTimeout(180);
+    await page.locator('#gvc').focus();
+    const drawBefore=await page.evaluate(()=>window.__issue139GraphDraws);
+    const graphScaleBefore=await page.evaluate(()=>window.__issue139GraphScale);
+    assert.ok(Number.isFinite(graphScaleBefore),'real canvas transform exposes the graph zoom before shortcut');
+    await page.keyboard.press('Equal');
+    await page.waitForTimeout(180);
+    const drawAfter=await page.evaluate(()=>window.__issue139GraphDraws);
+    const graphScaleAfter=await page.evaluate(()=>window.__issue139GraphScale);
+    assert.ok(drawAfter>drawBefore,'real graph redraws after the keyboard chord');
+    assert.ok(graphScaleAfter>graphScaleBefore,'Equal zoom chord increases the actual rendered graph scale');
+    const sidebarBeforeGraphChord=await page.locator('#app').evaluate(x=>x.classList.contains('collapsed'));
+    await page.keyboard.press('Control+b');
+    assert.equal(await page.locator('#app').evaluate(x=>x.classList.contains('collapsed')),sidebarBeforeGraphChord,
+      'real graph canvas keeps Ctrl+B from dispatching a global sidebar command');
+    const reservedDefaultPrevented=await page.locator('body').evaluate(el=>{
+      const ev=new KeyboardEvent('keydown',{key:'Tab',ctrlKey:true,bubbles:true,cancelable:true});
+      el.dispatchEvent(ev);return ev.defaultPrevented;
+    });
+    assert.equal(reservedDefaultPrevented,false,'router does not prevent browser-reserved Ctrl+Tab');
+    await snap(page,'after_contexts');
+    report.cases.push({phase:'after',interaction:'real-graph-route-and-reserved-chord',
+      graphRoute:true,graphKeyRedrewCanvas:true,graphZoomIn:true,graphScaleBefore,graphScaleAfter,graphSuppressedGlobalSidebar:true,
+      reservedCtrlTabPrevented:false,screenshot:'issue139_after_contexts.png'});
 
     assert.deepEqual(report.pageErrors,[],'no uncaught browser JavaScript errors');
     console.log('Workspace commands: dynamic help, Ctrl+K, Ctrl+B, Ctrl+Alt+N, editable/modal exclusion PASS');

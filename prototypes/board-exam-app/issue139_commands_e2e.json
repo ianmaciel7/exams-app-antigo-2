@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-14T17:01:27.462Z",
+  "sourceDigest": "51612b8c7b4cdab53205bc5bcbb6f99751edac926b1303748a2af348c10e17e7",
   "cases": [
     {
       "phase": "before",
@@ -20,11 +20,31 @@
       "sidebarToggledTwice": true,
       "newItemOptions": 2,
       "screenshot": "issue139_after_new_item.png"
+    },
+    {
+      "phase": "after",
+      "interaction": "real-question-route-and-editor",
+      "questionRoute": true,
+      "questionAnswerShortcutSelected": true,
+      "searchEditorSuppressedAnswer": true,
+      "searchEscapeRestoredFocus": true
+    },
+    {
+      "phase": "after",
+      "interaction": "real-graph-route-and-reserved-chord",
+      "graphRoute": true,
+      "graphKeyRedrewCanvas": true,
+      "graphZoomIn": true,
+      "graphScaleBefore": 2.2,
+      "graphScaleAfter": 2.64,
+      "graphSuppressedGlobalSidebar": true,
+      "reservedCtrlTabPrevented": false,
+      "screenshot": "issue139_after_contexts.png"
     }
   ],
   "pageErrors": [],
   "limitations": [
     "Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.",
-    "Covers global search, sidebar, new-item menu and shortcut help; graph, full questions and all contextual components are not exhaustively tested."
+    "Covers global search, sidebar, new-item menu, shortcut help, the real question practice route and global graph route, editor suppression, Escape focus restoration, and non-interception of Ctrl+Tab. Physical IME and OS-level key reservation still require manual platform testing."
   ]
 }
