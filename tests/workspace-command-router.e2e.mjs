@@ -113,7 +113,7 @@ try{
     report.cases.push({phase:'after',interaction:'real-question-route-and-editor',
       questionRoute:true,questionAnswerShortcutSelected:true,searchEditorSuppressedAnswer:true});
 
-    await page.addInitScript(()=>{
+    await page.evaluate(()=>{
       window.__issue139GraphDraws=0;
       const old=CanvasRenderingContext2D.prototype.clearRect;
       CanvasRenderingContext2D.prototype.clearRect=function(...args){
@@ -127,10 +127,13 @@ try{
       const info=document.querySelector('.gv-info');
       return info&&!info.textContent.includes('carregando');
     },{timeout:25000});
+    await page.waitForTimeout(180);
     await page.locator('#gvc').focus();
     const drawBefore=await page.evaluate(()=>window.__issue139GraphDraws);
     await page.keyboard.press('Equal');
-    await page.waitForFunction(n=>window.__issue139GraphDraws>n,drawBefore,{timeout:5000});
+    await page.waitForTimeout(180);
+    const drawAfter=await page.evaluate(()=>window.__issue139GraphDraws);
+    assert.ok(drawAfter>drawBefore,'real graph handles its keyboard zoom chord and redraws');
     const sidebarBeforeGraphChord=await page.locator('#app').evaluate(x=>x.classList.contains('collapsed'));
     await page.keyboard.press('Control+b');
     assert.equal(await page.locator('#app').evaluate(x=>x.classList.contains('collapsed')),sidebarBeforeGraphChord,
