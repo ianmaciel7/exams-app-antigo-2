@@ -4888,27 +4888,28 @@ function tdOrder(list,sort){
   return list.slice().sort((a,b)=>sort==='recent'?b.date-a.date||a.name.localeCompare(b.name,'pt-BR',{numeric:true}):
     a.name.localeCompare(b.name,'pt-BR',{numeric:true})||a.href.localeCompare(b.href));
 }
-function tdObjectMarkup(item,layout){
+function tdObjectMarkup(item,layout,searchTerm=''){
   const main='<span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span>'+
     '<span class="td-item-text"><strong>'+esc(item.name)+'</strong><small>'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</small></span>';
   const search=esc((item.name+' '+item.detail).toLocaleLowerCase('pt-BR'));
-  if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'" href="'+esc(item.href)+'">'+main+
+  const hidden=searchTerm&&!((item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(searchTerm.toLocaleLowerCase('pt-BR')))?' hidden':'';
+  if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+main+
     '<span class="td-type-col">'+esc(TYPES[item.kind]?.n||item.kind)+'</span></a>';
-  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'">'+
+  if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'>'+
     '<a href="'+esc(item.href)+'">'+main+'</a><button type="button" data-td-copy="'+esc(item.href)+'" title="Copiar link do objeto">Copiar link</button></div>';
-  return '<a class="td-item" data-td-item data-td-term="'+search+'" href="'+esc(item.href)+'">'+
+  return '<a class="td-item" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+
     '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span></span><span class="td-card-title">'+esc(item.name)+'</span>'+
     '<span class="td-card-meta">'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</span></a>';
 }
-function tdObjectsMarkup(t,items,layout){
+function tdObjectsMarkup(t,items,layout,searchTerm=''){
   if(!items.length)return '<p class="td-empty">Nenhum objeto deste tipo cadastrado no espaço.</p>';
   if(layout==='board'||layout==='mural'){
     const groups=new Map();
     items.forEach(x=>{const key=x.detail||TYPES[x.kind]?.n||'Sem classificação';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(x);});
     return '<div class="td-layout td-layout-'+layout+'">'+[...groups].map(([group,list])=>'<section class="td-column"><h3>'+
-      esc(group)+' <small>'+list.length+'</small></h3>'+list.map(x=>tdObjectMarkup(x,layout)).join('')+'</section>').join('')+'</div>';
+      esc(group)+' <small>'+list.length+'</small></h3>'+list.map(x=>tdObjectMarkup(x,layout,searchTerm)).join('')+'</section>').join('')+'</div>';
   }
-  return '<div class="td-layout td-layout-'+layout+'">'+items.map(x=>tdObjectMarkup(x,layout)).join('')+'</div>';
+  return '<div class="td-layout td-layout-'+layout+'">'+items.map(x=>tdObjectMarkup(x,layout,searchTerm)).join('')+'</div>';
 }
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
@@ -4940,7 +4941,7 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
        '<option value="recent"'+(state.sort==='recent'?' selected':'')+'>Mais recentes</option></select></label>'+
     '<label>Visualização <select data-td-layout="'+esc(t)+'">'+TD_LAYOUTS.map(([id,name])=>
       '<option value="'+id+'"'+(state.layout===id?' selected':'')+'>'+name+'</option>').join('')+'</select></label></div>';
-  const rendered=tdObjectsMarkup(t,matching,state.layout);
+  const rendered=tdObjectsMarkup(t,items,state.layout,state.search);
   // Question page retains its advanced filter/answer workflows in the existing List view.
   const all=controls+(richList&&state.layout==='list'?'<div class="td-advanced">'+richList+'</div>':rendered);
   const body='<div class="td-content">'+tabHead+'<section role="tabpanel" id="td-panel-overview" aria-labelledby="td-tab-overview"'+
