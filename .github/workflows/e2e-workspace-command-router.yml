@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   command-router:
-    if: github.head_ref == 'refactor/139-keyboard-command-router' && github.event.pull_request.head.repo.full_name == github.repository
+    if: (github.head_ref == 'refactor/139-keyboard-command-router' || startsWith(github.head_ref, 'fix/issue-139-')) && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -36,10 +36,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if test -f prototypes/board-exam-app/issue139_commands_e2e.json; then
-            echo 'Existing screenshots are already versioned, skipping recapture.'
-            exit 0
-          fi
           git worktree add --detach /tmp/exams-before-139 0c7465431938d3d48a49166c928e8066fa67b912
           python3 -m http.server 8765 --directory prototypes >/tmp/exams-after-139.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-before-139/prototypes >/tmp/exams-before-139.log 2>&1 &
