@@ -756,7 +756,19 @@
     "e1447",
     "e1450",
     "e1451",
-    "e1452"
+    "e1452",
+    "e1453",
+    "e1454",
+    "e1455",
+    "e1456",
+    "e1457",
+    "e1458",
+    "e1459",
+    "e1460",
+    "e1461",
+    "e1462",
+    "e1463",
+    "e1464"
   ],
   "elements": {
     "e1": {
@@ -7912,6 +7924,110 @@
       "y": 11100,
       "w": 1570,
       "h": 1600
+    },
+    "e1453": {
+      "type": "container",
+      "text": "51. Revisão diária — cartões vinculados e provas Chromium — Issue #82",
+      "color": "white",
+      "x": 52000,
+      "y": 11000,
+      "w": 1690,
+      "h": 2080
+    },
+    "e1454": {
+      "type": "text",
+      "size": "small",
+      "x": 52024,
+      "y": 11015,
+      "w": 1610,
+      "h": 290,
+      "text": "A rota #/revisao mantém cartões Q&A e Cloze, revela respostas sob demanda, oferece TTS sem vazar a resposta antes da revelação, agenda 2/10/45 dias e domínio, configura meta e recência e preserva estado entre recargas por espaço. Grifos e comentários de questões são importados diretamente com origem rastreável e deduplicação. Capturas reais Playwright Chromium, em 390px e 1366px, validadas na PR #192. Pendências: importação dos grifos de PDF, calibração pedagógica do SRS e acessibilidade física assistiva."
+    },
+    "e1455": {
+      "type": "image",
+      "src": "/_blob/issue82_qa_revealed_1366",
+      "x": 52025,
+      "y": 11335,
+      "w": 760,
+      "h": 425
+    },
+    "e1456": {
+      "type": "text",
+      "size": "small",
+      "text": "Pergunta e resposta: revelação explícita, sem vazamento no áudio",
+      "x": 52025,
+      "y": 11770,
+      "w": 770,
+      "h": 80
+    },
+    "e1457": {
+      "type": "image",
+      "src": "/_blob/issue82_cloze_1366",
+      "x": 52845,
+      "y": 11335,
+      "w": 760,
+      "h": 425
+    },
+    "e1458": {
+      "type": "text",
+      "size": "small",
+      "text": "Cloze: lacuna gerada por clique e revisão com TTS",
+      "x": 52845,
+      "y": 11770,
+      "w": 770,
+      "h": 80
+    },
+    "e1459": {
+      "type": "image",
+      "src": "/_blob/issue82_question_import_1366",
+      "x": 52025,
+      "y": 11985,
+      "w": 760,
+      "h": 425
+    },
+    "e1460": {
+      "type": "text",
+      "size": "small",
+      "text": "Grifo real da questão vira cartão vinculado sem duplicação",
+      "x": 52025,
+      "y": 12420,
+      "w": 770,
+      "h": 80
+    },
+    "e1461": {
+      "type": "image",
+      "src": "/_blob/issue82_question_import_390",
+      "x": 52845,
+      "y": 11985,
+      "w": 760,
+      "h": 425
+    },
+    "e1462": {
+      "type": "text",
+      "size": "small",
+      "text": "Importação responsiva em viewport móvel de 390px",
+      "x": 52845,
+      "y": 12420,
+      "w": 770,
+      "h": 80
+    },
+    "e1463": {
+      "type": "link",
+      "title": "PR #192 — Daily Review",
+      "href": "https://github.com/ianmaciel7/exams-app/pull/192",
+      "x": 52025,
+      "y": 12855,
+      "w": 320,
+      "h": 55
+    },
+    "e1464": {
+      "type": "link",
+      "title": "Chromium E2E — run 43730006968",
+      "href": "https://github.com/ianmaciel7/exams-app/actions/runs/43730006968",
+      "x": 52365,
+      "y": 12855,
+      "w": 380,
+      "h": 55
     }
   }
 }

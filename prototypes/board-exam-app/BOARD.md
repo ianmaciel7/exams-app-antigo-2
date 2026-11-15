@@ -2350,6 +2350,31 @@ Implementação e Auditoria Issue #145:
 **5. Testes Automatizados e Política Zero Emoji:**
 - Criada suíte de testes tests/workspace-loading-state.test.mjs com 4 testes unitários automatizados cobrindo remoção de timers cegos, classes de CSS e reduced-motion, máquina de estados com cancelamento de corrida e conformidade estrita com a Zero Emoji Policy.
 
+## 51. Revisão diária — cartões vinculados e provas Chromium — Issue #82
+<!-- container e1453 @ (52000,11000) -->
+
+A rota #/revisao mantém cartões Q&A e Cloze, revela respostas sob demanda, oferece TTS sem vazar a resposta antes da revelação, agenda 2/10/45 dias e domínio, configura meta e recência e preserva estado entre recargas por espaço. Grifos e comentários de questões são importados diretamente com origem rastreável e deduplicação. Capturas reais Playwright Chromium, em 390px e 1366px, validadas na PR #192. Pendências: importação dos grifos de PDF, calibração pedagógica do SRS e acessibilidade física assistiva.
+
+![imagem e1455](assets/issue82_qa_revealed_1366.png)
+
+![imagem e1457](assets/issue82_cloze_1366.png)
+
+Pergunta e resposta: revelação explícita, sem vazamento no áudio
+
+Cloze: lacuna gerada por clique e revisão com TTS
+
+![imagem e1459](assets/issue82_question_import_1366.png)
+
+![imagem e1461](assets/issue82_question_import_390.png)
+
+Grifo real da questão vira cartão vinculado sem duplicação
+
+Importação responsiva em viewport móvel de 390px
+
+[PR #192 — Daily Review](https://github.com/ianmaciel7/exams-app/pull/192)
+
+[Chromium E2E — run 43730006968](https://github.com/ianmaciel7/exams-app/actions/runs/43730006968)
+
 ## 10. Arquivos do projeto (Dataprev 2026 e referências)
 <!-- container e363 @ (0,12666) -->
 
