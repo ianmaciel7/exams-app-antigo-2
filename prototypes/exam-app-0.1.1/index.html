@@ -5067,7 +5067,7 @@ function tdState(t){
   const old=store.get(tdKey(t))||{};
   return {tab:old.tab==='overview'?'overview':'all',
     layout:TD_LAYOUTS.some(v=>v[0]===old.layout)?old.layout:(['questao','simulado','resposta'].includes(t)?'list':'gallery'),
-    search:String(old.search||''),sort:old.sort==='recent'?'recent':'name',collection:String(old.collection||'')};
+    search:String(old.search||''),sort:old.sort==='recent'?'recent':'name',collection:String(old.collection||''),query:String(old.query||'')};
 }
 function tdUpdate(t,patch){const next=Object.assign({},tdState(t),patch);store.set(tdKey(t),next);return next;}
 const tdItems=(t,list)=>list.map(d=>{
@@ -5105,12 +5105,65 @@ function tdObjectsMarkup(t,items,layout,searchTerm=''){
   }
   return '<div class="td-layout td-layout-'+layout+'">'+items.map(x=>tdObjectMarkup(x,layout,searchTerm)).join('')+'</div>';
 }
+/* Scoped, safe saved queries over known object fields and real graph relationships (#56/#84).
+   Grammar: name/category/type/tag/prop/link:<value>, combined with AND/OR (left-to-right).
+   No eval, regex execution, or invented object metadata. */
+function tdParseQuery(expression){
+  const raw=String(expression||'').trim();
+  if(!raw||raw.length>400)return null;
+  const chunks=raw.split(/\s+(AND|OR)\s+/i);
+  if(chunks.length%2!==1||chunks.length>11)return null;
+  const rules=[];
+  for(let i=0;i<chunks.length;i+=2){
+    const match=/^(name|category|type|tag|prop|link)\s*:\s*(.+)$/i.exec(chunks[i].trim());
+    if(!match)return null;
+    const field=match[1].toLowerCase(),value=match[2].trim().replace(/^"(.+)"$/,'$1').trim();
+    if(!value||value.length>120)return null;
+    rules.push({field,value,join:i?chunks[i-1].toUpperCase():null});
+  }
+  return rules;
+}
+function tdQueryMatch(item,expression,context={}){
+  const rules=tdParseQuery(expression);if(!rules)return false;
+  const normal=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR');
+  const tags=Array.isArray(context.tags)?context.tags:[],props=Array.isArray(context.props)?context.props:[],links=Array.isArray(context.links)?context.links:[];
+  const contains=(hay,needle)=>normal(hay).includes(normal(needle));
+  const matches=rule=>{
+    switch(rule.field){
+      case 'name':return contains(item.name,rule.value);
+      case 'category':return contains(item.detail,rule.value);
+      case 'type':return contains(item.kind,rule.value)||contains(context.typeName,rule.value);
+      case 'tag':return tags.some(tag=>contains(tag,rule.value));
+      case 'link':return links.some(link=>contains(link,rule.value));
+      case 'prop':{
+        const [key,value]=rule.value.includes('=')?rule.value.split(/=(.*)/s).slice(0,2):['',rule.value];
+        return props.some(([name,text])=>(!key||contains(name,key))&&contains(text,value));
+      }
+      default:return false;
+    }
+  };
+  return rules.reduce((result,rule,i)=>i===0?matches(rule):
+    rule.join==='OR'?(result||matches(rule)):(result&&matches(rule)),false);
+}
+function tdQueryContext(item){
+  const iid=String(item.href||'').replace(/^#\//,'').replace('/',':');
+  const meta=store.get('object-meta:'+space+':'+iid)||{};
+  const node=typeof nodeOf==='function'?nodeOf(item.href):null;
+  const graph=typeof gr==='function'?gr().N:new Map();
+  const props=[['Categoria',item.detail],...(Array.isArray(node?.extra)?node.extra:[])];
+  const links=node?[...node.inn,...node.out].map(([h,relation])=>{
+    const adjacent=graph.get(h);return [h,adjacent?.title||'',relation].join(' ');
+  }):[];
+  return {tags:Array.isArray(meta.tags)?meta.tags:[],props,links,typeName:TYPES[item.kind]?.n||item.kind};
+}
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
   const recent=tdOrder(items,'recent').filter(x=>x.date>0).slice(0,6);
   const typeColl=tdCollections(t),query=store.get('typeQueries:'+space+':'+t)||[];
   const collections=typeColl,queries=Array.isArray(query)?query:[];
-  const collection=collections.find(c=>c.id===state.collection),visibleItems=collection?items.filter(x=>tdCollectionHrefs(collection).includes(x.href)):items;
+  const collection=collections.find(c=>c.id===state.collection),activeQuery=queries.find(q=>q.id===state.query);
+  const collectionItems=collection?items.filter(x=>tdCollectionHrefs(collection).includes(x.href)):items;
+  const visibleItems=activeQuery?collectionItems.filter(x=>tdQueryMatch(x,activeQuery.term,tdQueryContext(x))):collectionItems;
   const matching=visibleItems.filter(x=>(x.name+' '+x.detail).toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR')));
   const card=x=>'<a class="td-recent" href="'+esc(x.href)+'"><span class="td-item-icon" aria-hidden="true">'+iconSvg(x.id,OPI()[x.kind]||SI.file)+
     '</span><span><strong>'+esc(x.name)+'</strong><small>'+esc(x.detail||T.n)+'</small></span></a>';
@@ -5136,10 +5189,11 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
        '<option value="recent"'+(state.sort==='recent'?' selected':'')+'>Mais recentes</option></select></label>'+
     '<label>Visualização <select data-td-layout="'+esc(t)+'">'+TD_LAYOUTS.map(([id,name])=>
       '<option value="'+id+'"'+(state.layout===id?' selected':'')+'>'+name+'</option>').join('')+'</select></label></div>';
-  const collectionBanner=collection?'<div class="td-collection-banner" role="status"><span>Coleção: <strong>'+esc(collection.name)+'</strong> · '+visibleItems.length+' objetos</span><button type="button" data-td-clear-collection="'+esc(t)+'">Mostrar todos</button></div>':'';
+  const collectionBanner=collection?'<div class="td-collection-banner" role="status"><span>Coleção: <strong>'+esc(collection.name)+'</strong> · '+collectionItems.length+' objetos</span><button type="button" data-td-clear-collection="'+esc(t)+'">Mostrar todos</button></div>':'';
+  const queryBanner=activeQuery?'<div class="td-collection-banner" role="status"><span>Query: <strong>'+esc(activeQuery.name)+'</strong> · '+visibleItems.length+' objetos · '+esc(activeQuery.term)+'</span><button type="button" data-td-clear-query="'+esc(t)+'">Limpar query</button></div>':'';
   const rendered=tdObjectsMarkup(t,visibleItems,state.layout,state.search);
-  // Advanced question lists are not collection-aware and therefore must not bypass membership filtering.
-  const all=collectionBanner+controls+(richList&&state.layout==='list'&&!collection?'<div class="td-advanced">'+richList+'</div>':rendered);
+  // Advanced question lists cannot bypass collection or saved-query membership.
+  const all=collectionBanner+queryBanner+controls+(richList&&state.layout==='list'&&!collection&&!activeQuery?'<div class="td-advanced">'+richList+'</div>':rendered);
   const body='<div class="td-content">'+tabHead+'<section role="tabpanel" id="td-panel-overview" aria-labelledby="td-tab-overview"'+
     (state.tab==='overview'?'':' hidden')+'>'+overview+'</section><section role="tabpanel" id="td-panel-all" aria-labelledby="td-tab-all"'+
     (state.tab==='all'?'':' hidden')+'>'+all+'</section></div>';
@@ -5223,6 +5277,10 @@ view.addEventListener('click',async e=>{
     const type=el.dataset.tdClearCollection;
     tdUpdate(type,{collection:'',search:''});showObjs('/tipo/'+type);return;
   }
+  if(el=e.target.closest('[data-td-clear-query]')){
+    const type=el.dataset.tdClearQuery;
+    tdUpdate(type,{query:'',search:''});showObjs('/tipo/'+type);return;
+  }
   el=e.target.closest('[data-td-tab]');
   if(el){const [t,id]=el.dataset.tdTab.split('|');tdUpdate(t,{tab:id});showObjs('/tipo/'+t);return;}
   if(el=e.target.closest('[data-td-menu],[data-td-more]')){
@@ -5240,9 +5298,11 @@ view.addEventListener('click',async e=>{
     const collection=el.hasAttribute('data-td-create-collection'),t=el.dataset.tdCreateCollection||el.dataset.tdCreateQuery;
     const savedKey=(collection?'typeCollections:':'typeQueries:')+space+':'+t;
     const input=await formDialog({title:collection?'Criar coleção':'Criar query',ok:'Salvar',
+      text:collection?'Agrupe objetos manualmente.':'Exemplos: name:Concurso AND tag:Revisão; prop:Ano=2026; link:Dataprev. Operadores AND/OR, avaliados da esquerda para a direita.',
       fields:collection?[{id:'nome',label:'Nome da coleção'}]:
-        [{id:'nome',label:'Nome da query'},{id:'busca',label:'Expressão de busca (termo de texto)'}],
-      validate:v=>({nome:!String(v.nome||'').trim()?'Nome obrigatório':''})});
+        [{id:'nome',label:'Nome da query'},{id:'busca',label:'Condições (campo:valor, AND/OR)',placeholder:'category:PDF AND tag:Edital'}],
+      validate:v=>({nome:!String(v.nome||'').trim()?'Nome obrigatório':'',
+        ...(collection?{}:{busca:!tdParseQuery(v.busca)?'Informe condições válidas com name:, category:, type:, tag:, prop: ou link:.':''})})});
     if(!input)return;
     const current=store.get(savedKey)||[];
     const next=Array.isArray(current)?current.slice():[];
@@ -5251,7 +5311,7 @@ view.addEventListener('click',async e=>{
   }
   if(el=e.target.closest('[data-td-apply-query]')){
     const [t,id]=el.dataset.tdApplyQuery.split('|'),saved=store.get('typeQueries:'+space+':'+t)||[],q=saved.find(x=>x.id===id);
-    if(q){tdUpdate(t,{tab:'all',search:q.term});showObjs('/tipo/'+t);}return;
+    if(q){tdUpdate(t,{tab:'all',search:'',query:q.id});showObjs('/tipo/'+t);}return;
   }
   if(el=e.target.closest('[data-td-copy]')){
     const relative=el.dataset.tdCopy,link=location.origin+location.pathname+relative;
