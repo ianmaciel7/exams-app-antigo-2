@@ -5,13 +5,13 @@ on:
     branches: [dev]
     paths:
       - 'prototypes/board-exam-app/**'
-      - 'docs/board/**'
+      - 'prototypes/docs/board/**'
       - '.github/workflows/validate-board.yml'
   push:
     branches: [dev]
     paths:
       - 'prototypes/board-exam-app/**'
-      - 'docs/board/**'
+      - 'prototypes/docs/board/**'
       - '.github/workflows/validate-board.yml'
 
 permissions:

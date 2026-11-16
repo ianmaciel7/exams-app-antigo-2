@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
 
 const source = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
-const guide = readFileSync(new URL('../docs/ux/arquitetura-informacao-navegacao.md', import.meta.url), 'utf8');
+const guide = readFileSync(new URL('../prototypes/docs/ux/arquitetura-informacao-navegacao.md', import.meta.url), 'utf8');
 
 test('current route inventory is grounded in actual dispatch logic', () => {
   const active = [

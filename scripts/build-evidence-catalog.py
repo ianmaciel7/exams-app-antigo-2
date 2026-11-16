@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera o catálogo central de evidências do repositório.
 
-Saídas (em docs/evidence/):
+Saídas (em prototypes/docs/evidence/):
   - catalog.json  : fonte estruturada (ids estáveis, vínculos, classificações)
   - CATALOG.md    : índice navegável em Markdown
   - gallery.html  : galeria com miniaturas, ampliação e comparação antes/depois
@@ -24,21 +24,21 @@ from collections import defaultdict
 from datetime import datetime, timezone
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-OUT = os.path.join(ROOT, 'docs', 'evidence')
+OUT = os.path.join(ROOT, 'prototypes', 'docs', 'evidence')
 REPO_URL = 'https://github.com/ianmaciel7/exams-app'
 MEDIA_RE = re.compile(r'\.(png|jpe?g|gif|webp)$', re.I)
 SKIP_DIRS = {'.git', 'node_modules'}
 
 # Diretórios escaneados (relativos à raiz). Assets do board e arquivos arquivados.
-SCAN_DIRS = ['prototypes', 'docs/archives', 'docs/research', 'docs/ux', 'docs/reports', 'docs/auditorias', 'docs/pesquisas']
+SCAN_DIRS = ['prototypes']
 
 PESQUISA = {
-    'capacities': ('Pesquisa Capacities', 'docs/research/capacities-issue-32-2026-11-15.md'),
-    'qconcursos': ('Pesquisa QConcursos', 'docs/research/qconcursos-issue-31-2026-11-15.md'),
-    'examtopics': ('Pesquisa ExamTopics', 'docs/research/examtopics-inventory.md'),
+    'capacities': ('Pesquisa Capacities', 'prototypes/docs/research/capacities-issue-32-2026-11-15.md'),
+    'qconcursos': ('Pesquisa QConcursos', 'prototypes/docs/research/qconcursos-issue-31-2026-11-15.md'),
+    'examtopics': ('Pesquisa ExamTopics', 'prototypes/docs/research/examtopics-inventory.md'),
     'readwise': ('Dossiê Readwise', 'prototypes/board-exam-app/READWISE_DOSSIER.md'),
-    'notes-app-old': ('Catálogo de versões arquivadas', 'docs/archives/README.md'),
-    'exams-app-old': ('Catálogo de versões arquivadas', 'docs/archives/README.md'),
+    'notes-app-old': ('Catálogo de versões arquivadas', 'prototypes/docs/archives/README.md'),
+    'exams-app-old': ('Catálogo de versões arquivadas', 'prototypes/docs/archives/README.md'),
 }
 
 FUNCAO_RULES = [
@@ -61,8 +61,8 @@ ORIGEM = [
     (r'^prototypes/board-exam-app/assets/claude-storage-bridge/', 'Teste: ponte de armazenamento Claude'),
     (r'^prototypes/board-exam-app/assets/', 'Board: captura de assets'),
     (r'^prototypes/exam-app-0\.1\.\d/', 'Protótipo: versão publicada'),
-    (r'^docs/archives/', 'Arquivo: versão histórica'),
-    (r'^docs/', 'Documentação'),
+    (r'^prototypes/docs/archives/', 'Arquivo: versão histórica'),
+    (r'^prototypes/docs/', 'Documentação'),
 ]
 
 
@@ -102,7 +102,7 @@ def pick(rules, text, default):
 
 def classify_tipo(path):
     name = os.path.basename(path).lower()
-    if path.startswith('docs/archives/') or re.match(r'(capacities|qconcursos|examtopics|readwise|archive_|notes_app)', name):
+    if path.startswith('prototypes/docs/archives/') or re.match(r'(capacities|qconcursos|examtopics|readwise|archive_|notes_app)', name):
         return 'evidência externa'
     if re.match(r'(lowchrome_97|pdf112|issue120_e2e)', name) or path.startswith('prototypes/board-exam-app/assets/claude-storage-bridge/'):
         return 'teste executado'
@@ -196,10 +196,10 @@ def referencias_quebradas(corpus):
 
 def load_corpus():
     corpus = {}
-    for base in ['prototypes', 'docs', 'scripts', 'tests', '.github']:
+    for base in ['prototypes', 'prototypes/docs', 'scripts', 'tests', '.github']:
         for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, base)):
             dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != 'assets']
-            if os.path.relpath(dirpath, ROOT).replace(os.sep, '/').startswith('docs/evidence'):
+            if os.path.relpath(dirpath, ROOT).replace(os.sep, '/').startswith('prototypes/docs/evidence'):
                 continue  # o próprio catálogo não conta como referência
             for fn in filenames:
                 if re.search(r'\.(md|json|html|py|mjs|js|yml)$', fn):
@@ -293,7 +293,7 @@ def build():
 
     # Evidências em arquivos de teste (JSON): inventário separado.
     testes = []
-    for path in sorted(git('ls-files', 'prototypes/board-exam-app', 'docs/reports', 'prototypes/analises').splitlines()):
+    for path in sorted(git('ls-files', 'prototypes/board-exam-app', 'prototypes/docs/reports', 'prototypes/analises').splitlines()):
         if re.search(r'(_e2e|manifest|diagnostic|execution-log)\.json$', path):
             testes.append({'id': stable_id(path), 'caminho': path, 'tipo': 'teste executado', 'data': dates.get(path)})
 
@@ -332,7 +332,7 @@ def build():
 
 
 def rel_img(path):
-    return '../../' + path
+    return '../../../' + path
 
 
 def write_markdown(c):
@@ -347,7 +347,7 @@ def write_markdown(c):
         f'- Pares antes/depois: **{c["resumo"]["pares_antes_depois"]}**',
         f'- Resultados de teste em JSON: **{c["resumo"]["testes_json"]}**',
         '',
-        'Galeria visual: `docs/evidence/gallery.html` (abra o arquivo localmente; o GitHub mostra o código-fonte HTML).',
+        'Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmente; o GitHub mostra o código-fonte HTML).',
         '',
         '## Como ler',
         '',

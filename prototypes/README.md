@@ -12,7 +12,7 @@ Protótipos e material de design do Exam App, baixados do Claude. Tudo aqui é a
 ## Board do Exam App
 
 - Comece pela central: `board-exam-app/mestre.html` mostra mapa dos sete boards, filtros por tipo, documentos e diagramas.
-- Mapa e leitura por assunto: `../docs/board/README.md` e `../docs/board/boards/00-mapa-geral.md`.
+- Mapa e leitura por assunto: `docs/board/README.md` e `docs/board/boards/00-mapa-geral.md`.
 - Agentes: leia primeiro o mapa geral e o board temático da tarefa; abra `BOARD.md` apenas para detalhes do canvas original.
 - `board-exam-app/board.json`: fonte canônica dos blocos, imagens e setas.
 - `board-exam-app/BOARD.md`: Markdown gerado de `board.json`; não editar manualmente.

@@ -177,7 +177,7 @@ async function run() {
     console.log(`[CDP] Screenshot salvo em: ${ssPath} (${buffer.length} bytes)`);
 
     // Salvar relatório estruturado
-    const reportDir = path.resolve('docs/reports/claude-storage-bridge');
+    const reportDir = path.resolve('prototypes/docs/reports/claude-storage-bridge');
     fs.mkdirSync(reportDir, { recursive: true });
     const reportData = {
       timestamp: new Date().toISOString(),

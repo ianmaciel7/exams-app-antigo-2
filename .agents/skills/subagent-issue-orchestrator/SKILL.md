@@ -20,7 +20,7 @@ Esta skill descreve o protocolo padrão para orquestrar a resolução autônoma,
 1. Utilizar a ferramenta `invoke_subagent` passando múltiplos subagentes na lista `Subagents`:
    - `Model: 'flash'` (alta velocidade e eficiência para tarefas bem especificadas).
    - `Role: 'Issue <N> Specialist'`
-   - `Prompt`: Deve conter o número da issue, título, requisitos funcionais exatos, referências históricas (`docs/archives/`) ou de design, e regras mandatórias do repositório.
+   - `Prompt`: Deve conter o número da issue, título, requisitos funcionais exatos, referências históricas (`prototypes/docs/archives/`) ou de design, e regras mandatórias do repositório.
 2. Cada subagente deve criar uma branch temática `fix/<tema>-issue-<N>`, comitar suas alterações, opcionalmente abrir o PR e reportar o resultado detalhado ao orquestrador.
 
 ## 3. Protocolo de Auditoria do Orquestrador (Quality Gate)

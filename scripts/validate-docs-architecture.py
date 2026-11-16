@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Valida JSON e links Markdown locais em docs/architecture, docs/features e docs/planning."""
+"""Valida JSON e links Markdown locais em prototypes/docs/architecture, prototypes/docs/features e prototypes/docs/planning."""
 import json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-AREAS = ["docs/architecture", "docs/features", "docs/planning"]
+AREAS = ["prototypes/docs/architecture", "prototypes/docs/features", "prototypes/docs/planning"]
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 errors = []
 
@@ -27,4 +27,4 @@ for area in AREAS:
 if errors:
     print("\n".join(errors))
     sys.exit(1)
-print("docs/architecture, docs/features, docs/planning: JSON e links locais OK")
+print("prototypes/docs/architecture, prototypes/docs/features, prototypes/docs/planning: JSON e links locais OK")

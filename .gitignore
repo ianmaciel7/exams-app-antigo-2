@@ -25,7 +25,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-# extracted legacy bundles (local, regenerable from docs/archives/*.bundle)
+# extracted legacy bundles (local, regenerable from prototypes/docs/archives/*.bundle)
 /.archive-extracted/
 .agents/local.json
 .agents/generated/
