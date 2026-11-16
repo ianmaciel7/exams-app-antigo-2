@@ -8504,7 +8504,7 @@ function bodyGraf(v){
       allT.forEach(m=>{
         const p=pos.get(m.href);
         const t=m.title.length>16?m.title.slice(0,15)+'…':m.title;
-        s+='<a href="'+esc(m.href)+'" class="g-n k-'+m.kind+'" aria-label="'+esc(m.title)+'"><title>'+esc(m.title)+'</title><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="8.5"/><text x="'+p[0].toFixed(1)+'" y="'+(p[1]+19).toFixed(1)+'" text-anchor="middle">'+esc(t)+'</text></a>';
+        s+='<a href="'+esc(m.href)+'" class="g-n g-spring k-'+m.kind+'" data-sx="'+cx.toFixed(1)+'" data-sy="'+cy.toFixed(1)+'" aria-label="'+esc(m.title)+'"><title>'+esc(m.title)+'</title><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="8.5"/><text x="'+p[0].toFixed(1)+'" y="'+(p[1]+19).toFixed(1)+'" text-anchor="middle">'+esc(t)+'</text></a>';
       });
       s+='<a href="'+esc(curH)+'" class="g-n g-c k-'+tKind+'" aria-label="Coleção '+esc(kn(tKind))+'"><title>Coleção '+esc(kn(tKind))+'</title><circle cx="'+cx+'" cy="'+cy+'" r="14"/><text x="'+cx+'" y="'+(cy+28)+'" text-anchor="middle">'+esc(kn(tKind))+'</text></a>';
       s+='</svg>';
@@ -8555,7 +8555,18 @@ function rpPaintBody(){ rpSig=gr().sig+'|'+curHref(); const t=rpTab(), b=$('rpBo
   if(!t){ b.innerHTML='<div class="rp-empty"><b>Painel vazio</b>Escolha uma ferramenta para trabalhar ao lado do conteúdo principal.'+toolBtns()+'</div>'; return; }
   b.innerHTML=t.views.map((v,i)=>(i?'<div class="rp-split" role="separator" aria-orientation="horizontal" tabindex="0" data-split="'+(i-1)+'" aria-label="Redimensionar visualizações"></div>':'')+viewHtml(v,t.views.length===1)).join('');
   b.querySelectorAll('[data-vb]').forEach(el=>{ el.scrollTop=ys[el.dataset.vb]??(viewById(el.dataset.vb)||{}).scroll??0; });
-  b.querySelectorAll('[data-ai-box]').forEach(el=>{ if(aiMem[el.dataset.aiBox]) aiPaint(el.dataset.aiBox); }); }
+  b.querySelectorAll('[data-ai-box]').forEach(el=>{ if(aiMem[el.dataset.aiBox]) aiPaint(el.dataset.aiBox); });
+  springGraphIn(b); }
+/* Collection graph entrance: nodes spring out from the collection centre (#227).
+   Pure CSS transition on a transform; skipped under reduced motion; no state is stored. */
+function springGraphIn(root){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const nodes=[...root.querySelectorAll('.g-spring')]; if(!nodes.length) return;
+  nodes.forEach(a=>{ const c=a.querySelector('circle'); if(!c) return; const dx=(+a.dataset.sx)-(+c.getAttribute('cx')), dy=(+a.dataset.sy)-(+c.getAttribute('cy'));
+    a.style.transition='none'; a.style.transform='translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px)'; });
+  void root.offsetWidth;
+  nodes.forEach((a,i)=>{ setTimeout(()=>{ a.style.transition='transform 620ms cubic-bezier(.34,1.45,.64,1)'; a.style.transform='translate(0px,0px)'; },i*18); });
+}
 function rpPaintAll(){ gr(); rpPaintTabs(); rpPaintBody(); }
 let rpSig=null;
 function rpRefresh(){ const a=document.activeElement; if(a&&a.matches&&a.matches('#rpanel input')){ gr(); rpPaintTabs(); return; }
