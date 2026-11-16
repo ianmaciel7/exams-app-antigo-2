@@ -1504,6 +1504,14 @@ button.td-saved{cursor:pointer}.td-saved small{color:var(--muted)}
 .props-card .prop-ico svg{width:14px;height:14px}
 .props-card .op-prop dd{margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:0;font-size:12.5px}
 .op-props{margin:0;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.op-props.flat{border:0;padding:0}
+/* Object properties are inline and borderless; the collapsible card remains available in detail panels. */
+.op-side .op-props.op-props-inline{margin:0;padding:0;border:0;background:transparent}
+.op-side .op-props-inline .op-prop{min-height:30px;padding:5px 6px;margin:0 -6px;align-items:center;gap:8px;border-radius:7px}
+.op-side .op-props-inline .op-prop:hover{background:var(--hover)}
+.op-side .op-props-inline .op-prop dt{display:flex;align-items:center;gap:7px;min-width:0;font-size:12.5px}
+.op-side .op-props-inline .op-prop dd{align-items:center;font-size:13px}
+.op-side .op-props-inline .prop-ico{display:inline-grid;place-items:center;width:16px;height:16px;flex:none}
+.op-side .op-props-inline .prop-ico svg{width:14px;height:14px}
 .op-prop{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:baseline;padding:6px 0;font-size:13.5px}.op-prop dt{color:var(--muted)}.op-prop dd{margin:0;display:flex;flex-wrap:wrap;gap:6px;min-width:0}.op-val{color:var(--text);line-height:1.45}
 .op-sec{margin-top:34px}.op-sech{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
 .board .op h2{margin:0;font-size:15px;font-weight:650;color:var(--text);letter-spacing:0}.op h2 span{margin-left:7px;font-weight:400;font-size:13px;color:var(--muted)}
@@ -4851,7 +4859,7 @@ function custRows(iid){ if(!/^(concurso|edicao|cargo):/.test(iid||'')) return ''
     const val=cvShow(x.k,kind,v);
     const inner=(kind[0]==='rel'&&v?'<span class="op-relv">'+val+'</span> ':'')+'<button type="button" class="op-ed" data-edit-cv="'+esc(iid+'|'+x.k)+'" aria-label="Editar '+esc(PROPS[x.k].n)+'">'+(kind[0]==='rel'&&v?'<span class="op-val op-ph">Alterar</span>':val)+'</button>';
     return opPropRow(PROPS[x.k].n,inner); }).join(''); }
-const opProps=(rows,iid)=>{
+const opProps=(rows,iid,inline=false)=>{
   const o=OV(); const r=rows.filter(x=>x&&(x[1]||(iid&&EMPTYOK.includes(x[0]))));
   const baseItems=r.map(([l,v])=>{ const k='prop:'+iid+'|'+l; let inner=v;
     const editable=iid&&(l==='Órgão'||l==='Banca'||(l==='Concurso'&&iid.startsWith('edicao:'))||(l==='Edição'&&iid.startsWith('cargo:')));
@@ -4868,6 +4876,7 @@ const opProps=(rows,iid)=>{
   const cu=custRows(iid);
   const allRows=baseItems+cu;
   if(!allRows) return '';
+  if(inline) return '<dl class="op-props flat op-props-inline" data-props-for="'+esc(iid||'')+'">'+allRows+'</dl>';
   const count=r.length+(cu?(cu.match(/class="op-prop"/g)||[]).length:0);
   const collapsedByDefault=/^questao:[^:]+$/.test(iid||'');
   return '<div class="props-card'+(collapsedByDefault?' is-collapsed':'')+'" data-props-for="'+esc(iid||'')+'">'+
@@ -4940,7 +4949,7 @@ const pkChip=(t,k)=>{ const [c,to]=pkOf(t,k), [lb,ph]=KL[c]||KL.txt; return '<bu
 function opPage(o){
   const cr=(o.crumb||[]).filter(([t,h])=>!(t==='Espaço'&&h==='#/espaco'));
   return '<article class="op'+(o.wide?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
-   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+'<h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1></div>'+(o.actions?'<div class="op-actions">'+(o.actions||'')+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side">'+opProps(o.props,o.iid)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div></article>';
+   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+'<h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1></div>'+(o.actions?'<div class="op-actions">'+(o.actions||'')+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div></article>';
 }
 function opStats(){ const st=studyStats(), tot=(questionBank&&questionBank.length)||70;
   if(!st.done) return '';
