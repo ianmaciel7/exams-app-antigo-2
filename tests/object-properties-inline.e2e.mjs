@@ -52,6 +52,35 @@ try {
       assert.ok((await page.locator('#view .op-side').innerText()).includes(newValue),
         'existing inline editor persists changes after reload');
       report.cases.push({ width, interaction: 'editable property persisted after reload' });
+
+      const tools = page.locator('#view .op-head-tools');
+      assert.equal(await tools.locator('button').count(), 3, 'width, IA, more actions rendered');
+      const wide = tools.locator('[data-op-width]');
+      assert.equal(await wide.getAttribute('aria-pressed'), 'false');
+      await wide.click();
+      await page.waitForFunction(() => document.querySelector('#view .op')?.classList.contains('op-wide'));
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.locator('#view [data-op-width]').waitFor({ timeout: 15000 });
+      assert.equal(await page.locator('#view [data-op-width]').getAttribute('aria-pressed'), 'true',
+        'per-object width preference persists');
+
+      await page.locator('#view [data-op-meta]').click();
+      await page.locator('#fd_alias').fill('Apelido do concurso');
+      await page.locator('#fd_tags').fill('Lei seca, Revisão, Lei seca');
+      await page.locator('#dlg [data-x="1"]').click();
+      await page.waitForFunction(() => document.querySelector('#view .op-meta')?.textContent?.includes('Apelido do concurso'));
+      assert.equal(await page.locator('#view .op-meta .op-meta-chip').count(), 3,
+        'one alias and two deduplicated tags');
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.locator('#view .op-meta').waitFor({ timeout: 15000 });
+      assert.match(await page.locator('#view .op-meta').innerText(), /Apelido do concurso/);
+      assert.equal(await page.locator('#view .op-meta .op-meta-chip').count(), 3,
+        'metadata persists after reload');
+      await page.locator('#view [data-op-more]').click();
+      assert.ok(await page.getByRole('menuitem', { name: 'Links de entrada no painel' }).count() > 0);
+      await page.keyboard.press('Escape');
+      await page.screenshot({ path: path.join(assets, 'issue57_object_header_' + width + '.png'), animations: 'disabled' });
+      report.cases.push({ width, interaction: 'object width, aliases, tags, menu and reload verified' });
     } finally { await ctx.close(); }
   }
   assert.deepEqual(report.errors, [], 'no page JavaScript exceptions');
