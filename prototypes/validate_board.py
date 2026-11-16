@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrity checks for board.json. Usage: python validate_board.py (run inside prototypes/board-exam-app__*)."""
+"""Integrity checks for board.json. Usage: python validate_board.py (run inside prototypes/)."""
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +20,7 @@ for k, v in E.items():
         if a in v and v[a] not in E:
             errors.append(f"seta {k} aponta para {v[a]} inexistente")
     for m in re.findall(r"assets/([A-Za-z0-9_.\-]+\.(?:png|jpe?g|gif|webp|svg))", json.dumps(v)):
-        if not os.path.exists(os.path.join(HERE, "assets", m)):
+        if not any(os.path.exists(os.path.join(HERE, p)) for p in (m, "board-exam-app__assets__" + m)):
             errors.append(f"asset ausente em {k}: {m}")
 
 if errors:
