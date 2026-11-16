@@ -15,7 +15,7 @@ const manual = {
   gabarito: 'B', criada: 1763140000000,
 };
 const errors = [];
-const baseUrl = (port, route) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1/index.html#' + route;
+const baseUrl = (port, route) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1__index.html#' + route;
 
 async function newPage() {
   const context = await browser.newContext({ viewport: { width: 1366, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });

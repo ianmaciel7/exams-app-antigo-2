@@ -10,7 +10,7 @@ const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
   'Chromium pointer/keyboard and mobile emulation tested; physical touch hardware and a screen reader were not tested.',
   'Scope is the space switcher only; the app still stores spaces in browser-local storage, not a cloud database.'
 ]};
-const url=(port)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
+const url=(port)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#/espaco';
 const afterPort=8765,beforePort=8766;
 async function capture(page,filename){
   await page.screenshot({path:path.join(output,'issue138_'+filename+'.png'),animations:'disabled',fullPage:false});
