@@ -2,119 +2,119 @@
 
 Gerado em 2026-11-16 a partir da dev `9beadadd` mais PR #260 (`45bebdf`). Cada linha: caminho antigo → novo, sha256 do conteúdo atual (16 hex). Caminhos antigos `docs/…` não existem mais; use esta tabela para encontrá-los.
 
-| Origem (antes) | Destino (agora) | sha256 (atual) |
-|---|---|---|
-| `docs/architecture/README.md` | `prototypes/docs/architecture/README.md` | `781d2d33ee471fbd` |
-| `docs/architecture/adr/0001-prototipo-estatico-sem-build.md` | `prototypes/docs/architecture/adr/0001-prototipo-estatico-sem-build.md` | `c4d561449d0c63a0` |
-| `docs/architecture/adr/0002-ia-via-capacidade-sample.md` | `prototypes/docs/architecture/adr/0002-ia-via-capacidade-sample.md` | `e0012f5658703b6c` |
-| `docs/architecture/adr/0003-persistencia-offline-first-outbox.md` | `prototypes/docs/architecture/adr/0003-persistencia-offline-first-outbox.md` | `b1e27aa42d89a2e6` |
-| `docs/architecture/adr/README.md` | `prototypes/docs/architecture/adr/README.md` | `0e1a4a04ea19ee3c` |
-| `docs/architecture/c4.md` | `prototypes/docs/architecture/c4.md` | `a945e6c5ad201ce3` |
-| `docs/architecture/dominio.md` | `prototypes/docs/architecture/dominio.md` | `269c461762517bd1` |
-| `docs/architecture/modelos.md` | `prototypes/docs/architecture/modelos.md` | `916274a4142b3865` |
-| `docs/archives/README.md` | `prototypes/docs/archives/README.md` | `b0abc71ed5a48c1a` |
-| `docs/archives/REUSE-MAP.md` | `prototypes/docs/archives/REUSE-MAP.md` | `a5aef158d0206a75` |
-| `docs/archives/exams-app-old-backup-dev-20261111-1903.bundle` | `prototypes/docs/archives/exams-app-old-backup-dev-20261111-1903.bundle` | `45607e086eca212c` |
-| `docs/archives/exams-app-old-backup-dev-20261111-1903.md` | `prototypes/docs/archives/exams-app-old-backup-dev-20261111-1903.md` | `ac9aee9a2d184324` |
-| `docs/archives/exams-app-old-backup-dev-before-adr2.bundle` | `prototypes/docs/archives/exams-app-old-backup-dev-before-adr2.bundle` | `197dd3bde28bda70` |
-| `docs/archives/exams-app-old-backup-dev-before-adr2.md` | `prototypes/docs/archives/exams-app-old-backup-dev-before-adr2.md` | `c395616b91e823dc` |
-| `docs/archives/exams-app-old-backup-old-1-dark.png` | `prototypes/docs/archives/exams-app-old-backup-old-1-dark.png` | `7193b1cbb419a070` |
-| `docs/archives/exams-app-old-backup-old-1.bundle` | `prototypes/docs/archives/exams-app-old-backup-old-1.bundle` | `f21e9d0fec028cd1` |
-| `docs/archives/exams-app-old-backup-old-1.md` | `prototypes/docs/archives/exams-app-old-backup-old-1.md` | `5ded859d91e2c125` |
-| `docs/archives/exams-app-old-backup-old-1.png` | `prototypes/docs/archives/exams-app-old-backup-old-1.png` | `c451bc9c51f593a8` |
-| `docs/archives/notes-app-old-1.bundle` | `prototypes/docs/archives/notes-app-old-1.bundle` | `cecab4b509f6af00` |
-| `docs/archives/notes-app-old-1.md` | `prototypes/docs/archives/notes-app-old-1.md` | `99fed485cc38bba2` |
-| `docs/archives/notes-app-old-10.bundle` | `prototypes/docs/archives/notes-app-old-10.bundle` | `515858ddf88553d9` |
-| `docs/archives/notes-app-old-10.md` | `prototypes/docs/archives/notes-app-old-10.md` | `a1f4fcb43d4d13de` |
-| `docs/archives/notes-app-old-10.png` | `prototypes/docs/archives/notes-app-old-10.png` | `b4d06762abb25c51` |
-| `docs/archives/notes-app-old-11.bundle` | `prototypes/docs/archives/notes-app-old-11.bundle` | `0a140e95c7a207ba` |
-| `docs/archives/notes-app-old-11.md` | `prototypes/docs/archives/notes-app-old-11.md` | `7b480882bbe54cb5` |
-| `docs/archives/notes-app-old-11.png` | `prototypes/docs/archives/notes-app-old-11.png` | `baca8440271e706b` |
-| `docs/archives/notes-app-old-2.bundle` | `prototypes/docs/archives/notes-app-old-2.bundle` | `b4f4ea171df3207e` |
-| `docs/archives/notes-app-old-2.md` | `prototypes/docs/archives/notes-app-old-2.md` | `801ab8fa05ad774e` |
-| `docs/archives/notes-app-old-2.png` | `prototypes/docs/archives/notes-app-old-2.png` | `4022a52fe2010adc` |
-| `docs/archives/notes-app-old-3.bundle` | `prototypes/docs/archives/notes-app-old-3.bundle` | `063a0c8345bec493` |
-| `docs/archives/notes-app-old-3.md` | `prototypes/docs/archives/notes-app-old-3.md` | `fb50a3fbcff1f379` |
-| `docs/archives/notes-app-old-3.png` | `prototypes/docs/archives/notes-app-old-3.png` | `13144f04b0f75fac` |
-| `docs/archives/notes-app-old-4.bundle` | `prototypes/docs/archives/notes-app-old-4.bundle` | `1b0bb645bd74bf01` |
-| `docs/archives/notes-app-old-4.md` | `prototypes/docs/archives/notes-app-old-4.md` | `639f861c7b02c016` |
-| `docs/archives/notes-app-old-4.png` | `prototypes/docs/archives/notes-app-old-4.png` | `270be8f3de5c8e6e` |
-| `docs/archives/notes-app-old-5.bundle` | `prototypes/docs/archives/notes-app-old-5.bundle` | `16c39bb02b1f55e2` |
-| `docs/archives/notes-app-old-5.md` | `prototypes/docs/archives/notes-app-old-5.md` | `73f168ff7006426a` |
-| `docs/archives/notes-app-old-5.png` | `prototypes/docs/archives/notes-app-old-5.png` | `0e50099c9f448d0b` |
-| `docs/archives/notes-app-old-6.bundle` | `prototypes/docs/archives/notes-app-old-6.bundle` | `d96871dad75174e2` |
-| `docs/archives/notes-app-old-6.md` | `prototypes/docs/archives/notes-app-old-6.md` | `08153ecab5a5cf6d` |
-| `docs/archives/notes-app-old-6.png` | `prototypes/docs/archives/notes-app-old-6.png` | `a62cfc4cbb5597bf` |
-| `docs/archives/notes-app-old-7.bundle` | `prototypes/docs/archives/notes-app-old-7.bundle` | `a522d4120ef04209` |
-| `docs/archives/notes-app-old-7.md` | `prototypes/docs/archives/notes-app-old-7.md` | `d60135ff5cbdc318` |
-| `docs/archives/notes-app-old-7.png` | `prototypes/docs/archives/notes-app-old-7.png` | `88dc852f64f0e36f` |
-| `docs/archives/notes-app-old-8.bundle` | `prototypes/docs/archives/notes-app-old-8.bundle` | `96d4f98fad7ecc72` |
-| `docs/archives/notes-app-old-8.md` | `prototypes/docs/archives/notes-app-old-8.md` | `37d68231f1206e10` |
-| `docs/archives/notes-app-old-8.png` | `prototypes/docs/archives/notes-app-old-8.png` | `28c96152aa1ba68a` |
-| `docs/archives/notes-app-old-9.bundle` | `prototypes/docs/archives/notes-app-old-9.bundle` | `cf6ae6b75439da13` |
-| `docs/archives/notes-app-old-9.md` | `prototypes/docs/archives/notes-app-old-9.md` | `9b7621c5d575682b` |
-| `docs/archives/notes-app-old-9.png` | `prototypes/docs/archives/notes-app-old-9.png` | `8dab82e9af58e5e8` |
-| `docs/archives/notes-app-old.bundle` | `prototypes/docs/archives/notes-app-old.bundle` | `3183366dd5a29e9c` |
-| `docs/archives/notes-app-old.md` | `prototypes/docs/archives/notes-app-old.md` | `253f2e0090325c8b` |
-| `docs/auditorias/231-skills-m3-apple.md` | `prototypes/docs/auditorias/231-skills-m3-apple.md` | `29e52dc95cb44735` |
-| `docs/board/FONTES.md` | `prototypes/docs/board/FONTES.md` | `c12ae8b5f01b3441` |
-| `docs/board/README.md` | `prototypes/docs/board/README.md` | `b098f7b22066d0f5` |
-| `docs/board/RELATORIO-REESTRUTURACAO.md` | `prototypes/docs/board/RELATORIO-REESTRUTURACAO.md` | `8cb1375efc61668b` |
-| `docs/board/boards/00-mapa-geral.md` | `prototypes/docs/board/boards/00-mapa-geral.md` | `0eec9bc87e8256f7` |
-| `docs/board/boards/01-produto-e-dominio.md` | `prototypes/docs/board/boards/01-produto-e-dominio.md` | `88dab8b77c3fbc5e` |
-| `docs/board/boards/02-workspace-e-ux.md` | `prototypes/docs/board/boards/02-workspace-e-ux.md` | `1314cbd36e8abe81` |
-| `docs/board/boards/03-fluxos-de-estudo.md` | `prototypes/docs/board/boards/03-fluxos-de-estudo.md` | `5496f217fdcb243e` |
-| `docs/board/boards/04-arquitetura-tecnica.md` | `prototypes/docs/board/boards/04-arquitetura-tecnica.md` | `f39bcd8489ff984c` |
-| `docs/board/boards/05-pesquisa-e-decisoes.md` | `prototypes/docs/board/boards/05-pesquisa-e-decisoes.md` | `c38a43d09af71bf1` |
-| `docs/board/boards/07-entrega-e-arquivo.md` | `prototypes/docs/board/boards/07-entrega-e-arquivo.md` | `0a15d4b1d1b83173` |
-| `docs/board/jornadas/j1-busca-layout-desktop.png` | `prototypes/docs/board/jornadas/j1-busca-layout-desktop.png` | `b9cba196a0deaee8` |
-| `docs/board/jornadas/j3-teclado-lista-desktop.png` | `prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png` | `29fb6b7366cf6ec6` |
-| `docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | `prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | `f9eeca876214947d` |
-| `docs/board/jornadas/j5-canvas-visao-geral.png` | `prototypes/docs/board/jornadas/j5-canvas-visao-geral.png` | `f9eeca876214947d` |
-| `docs/board/jornadas/j6-mestre-320.png` | `prototypes/docs/board/jornadas/j6-mestre-320.png` | `9e7a2cb55eadb738` |
-| `docs/board/jornadas/j6-mestre-390.png` | `prototypes/docs/board/jornadas/j6-mestre-390.png` | `14f5215e0e93a455` |
-| `docs/evidence/catalog.json` | `prototypes/docs/evidence/catalog.json` | `4d2422fab5670b3e` |
-| `docs/features/README.md` | `prototypes/docs/features/README.md` | `440fe2093b1791bc` |
-| `docs/features/claude-storage.md` | `prototypes/docs/features/claude-storage.md` | `2463b6635db40a9e` |
-| `docs/features/features-index.json` | `prototypes/docs/features/features-index.json` | `779ddd4a8bcad8c2` |
-| `docs/features/grafo.md` | `prototypes/docs/features/grafo.md` | `e082d9d207074dc3` |
-| `docs/features/pdf-reader.md` | `prototypes/docs/features/pdf-reader.md` | `a89cb6c5b2ae8f64` |
-| `docs/features/questoes.md` | `prototypes/docs/features/questoes.md` | `72ca6a5cb2cafe97` |
-| `docs/features/revisao.md` | `prototypes/docs/features/revisao.md` | `816eeb9339e6347f` |
-| `docs/features/simulados.md` | `prototypes/docs/features/simulados.md` | `6c29ffabed374977` |
-| `docs/features/tipos-propriedades.md` | `prototypes/docs/features/tipos-propriedades.md` | `c16e6960b2d434ad` |
-| `docs/features/workspace.md` | `prototypes/docs/features/workspace.md` | `161a4daff263a98a` |
-| `docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `fc5f724624c0b5d7` |
-| `docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` |
-| `docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` |
-| `docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` |
-| `docs/planning/README.md` | `prototypes/docs/planning/README.md` | `6ad498215769e8b0` |
-| `docs/planning/estado-atual.md` | `prototypes/docs/planning/estado-atual.md` | `433b451fe45842e5` |
-| `docs/planning/template-feature.md` | `prototypes/docs/planning/template-feature.md` | `5eca68adc631d400` |
-| `docs/planning/template-release.md` | `prototypes/docs/planning/template-release.md` | `8c62bfeec9f5078d` |
-| `docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md` | `prototypes/docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md` | `095db601352ffe6e` |
-| `docs/reports/claude-storage-api/PR_DESCRIPTION.md` | `prototypes/docs/reports/claude-storage-api/PR_DESCRIPTION.md` | `5080b8c4c03a2a3b` |
-| `docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | `prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | `ab4dc1c31843930f` |
-| `docs/reports/claude-storage-bridge/cdp-execution-log.json` | `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` | `e2cc4de2cc6c873a` |
-| `docs/research/capacities-issue-32-2026-11-15.md` | `prototypes/docs/research/capacities-issue-32-2026-11-15.md` | `97c127b60b0af4a3` |
-| `docs/research/examtopics-inventory.md` | `prototypes/docs/research/examtopics-inventory.md` | `dec113f293e63e77` |
-| `docs/research/gran-questoes-issue-62-2026-11-15.md` | `prototypes/docs/research/gran-questoes-issue-62-2026-11-15.md` | `d0849f6b336ecc26` |
-| `docs/research/issue-156-ui-skills-audit-2026-11-15.md` | `prototypes/docs/research/issue-156-ui-skills-audit-2026-11-15.md` | `9bf0507e7505ae09` |
-| `docs/research/qconcursos-issue-31-2026-11-15.md` | `prototypes/docs/research/qconcursos-issue-31-2026-11-15.md` | `5eda52e93da984da` |
-| `docs/ux/arquitetura-informacao-navegacao.md` | `prototypes/docs/ux/arquitetura-informacao-navegacao.md` | `73a1a7086fe0225a` |
-| `docs/ux/componentes-ui-padroes-2026.md` | `prototypes/docs/ux/componentes-ui-padroes-2026.md` | `1c449574ddef1830` |
-| `docs/ux/data-visualization-dashboards-2026.md` | `prototypes/docs/ux/data-visualization-dashboards-2026.md` | `60b0414a9e7bbe5a` |
-| `docs/ux/pesquisa-20-fontes-2026-11.md` | `prototypes/docs/ux/pesquisa-20-fontes-2026-11.md` | `26383e10dc5151d7` |
-| `docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `prototypes/docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `ffb42161678f5e07` |
-| `docs/ux/ux-ui-principles.md` | `prototypes/docs/ux/ux-ui-principles.md` | `7af19006e0d62e8b` |
+| Origem (antes) | Destino (agora) | sha256 origem | sha256 atual |
+|---|---|---|---|
+| `docs/architecture/README.md` | `prototypes/docs/architecture/README.md` | `—` | `781d2d33ee471fbd` |
+| `docs/architecture/adr/0001-prototipo-estatico-sem-build.md` | `prototypes/docs/architecture/adr/0001-prototipo-estatico-sem-build.md` | `—` | `c4d561449d0c63a0` |
+| `docs/architecture/adr/0002-ia-via-capacidade-sample.md` | `prototypes/docs/architecture/adr/0002-ia-via-capacidade-sample.md` | `—` | `e0012f5658703b6c` |
+| `docs/architecture/adr/0003-persistencia-offline-first-outbox.md` | `prototypes/docs/architecture/adr/0003-persistencia-offline-first-outbox.md` | `—` | `b1e27aa42d89a2e6` |
+| `docs/architecture/adr/README.md` | `prototypes/docs/architecture/adr/README.md` | `—` | `0e1a4a04ea19ee3c` |
+| `docs/architecture/c4.md` | `prototypes/docs/architecture/c4.md` | `—` | `a945e6c5ad201ce3` |
+| `docs/architecture/dominio.md` | `prototypes/docs/architecture/dominio.md` | `—` | `269c461762517bd1` |
+| `docs/architecture/modelos.md` | `prototypes/docs/architecture/modelos.md` | `—` | `916274a4142b3865` |
+| `docs/archives/README.md` | `prototypes/docs/archives/README.md` | `04c0aec7a4342bf9` | `b0abc71ed5a48c1a` |
+| `docs/archives/REUSE-MAP.md` | `prototypes/docs/archives/REUSE-MAP.md` | `6d9b892d94cc76ef` | `a5aef158d0206a75` |
+| `docs/archives/exams-app-old-backup-dev-20261111-1903.bundle` | `prototypes/docs/archives/exams-app-old-backup-dev-20261111-1903.bundle` | `45607e086eca212c` | `45607e086eca212c` |
+| `docs/archives/exams-app-old-backup-dev-20261111-1903.md` | `prototypes/docs/archives/exams-app-old-backup-dev-20261111-1903.md` | `ac9aee9a2d184324` | `ac9aee9a2d184324` |
+| `docs/archives/exams-app-old-backup-dev-before-adr2.bundle` | `prototypes/docs/archives/exams-app-old-backup-dev-before-adr2.bundle` | `197dd3bde28bda70` | `197dd3bde28bda70` |
+| `docs/archives/exams-app-old-backup-dev-before-adr2.md` | `prototypes/docs/archives/exams-app-old-backup-dev-before-adr2.md` | `c395616b91e823dc` | `c395616b91e823dc` |
+| `docs/archives/exams-app-old-backup-old-1-dark.png` | `prototypes/docs/archives/exams-app-old-backup-old-1-dark.png` | `7193b1cbb419a070` | `7193b1cbb419a070` |
+| `docs/archives/exams-app-old-backup-old-1.bundle` | `prototypes/docs/archives/exams-app-old-backup-old-1.bundle` | `f21e9d0fec028cd1` | `f21e9d0fec028cd1` |
+| `docs/archives/exams-app-old-backup-old-1.md` | `prototypes/docs/archives/exams-app-old-backup-old-1.md` | `5ded859d91e2c125` | `5ded859d91e2c125` |
+| `docs/archives/exams-app-old-backup-old-1.png` | `prototypes/docs/archives/exams-app-old-backup-old-1.png` | `c451bc9c51f593a8` | `c451bc9c51f593a8` |
+| `docs/archives/notes-app-old-1.bundle` | `prototypes/docs/archives/notes-app-old-1.bundle` | `cecab4b509f6af00` | `cecab4b509f6af00` |
+| `docs/archives/notes-app-old-1.md` | `prototypes/docs/archives/notes-app-old-1.md` | `99fed485cc38bba2` | `99fed485cc38bba2` |
+| `docs/archives/notes-app-old-10.bundle` | `prototypes/docs/archives/notes-app-old-10.bundle` | `515858ddf88553d9` | `515858ddf88553d9` |
+| `docs/archives/notes-app-old-10.md` | `prototypes/docs/archives/notes-app-old-10.md` | `a1f4fcb43d4d13de` | `a1f4fcb43d4d13de` |
+| `docs/archives/notes-app-old-10.png` | `prototypes/docs/archives/notes-app-old-10.png` | `b4d06762abb25c51` | `b4d06762abb25c51` |
+| `docs/archives/notes-app-old-11.bundle` | `prototypes/docs/archives/notes-app-old-11.bundle` | `0a140e95c7a207ba` | `0a140e95c7a207ba` |
+| `docs/archives/notes-app-old-11.md` | `prototypes/docs/archives/notes-app-old-11.md` | `7b480882bbe54cb5` | `7b480882bbe54cb5` |
+| `docs/archives/notes-app-old-11.png` | `prototypes/docs/archives/notes-app-old-11.png` | `baca8440271e706b` | `baca8440271e706b` |
+| `docs/archives/notes-app-old-2.bundle` | `prototypes/docs/archives/notes-app-old-2.bundle` | `b4f4ea171df3207e` | `b4f4ea171df3207e` |
+| `docs/archives/notes-app-old-2.md` | `prototypes/docs/archives/notes-app-old-2.md` | `801ab8fa05ad774e` | `801ab8fa05ad774e` |
+| `docs/archives/notes-app-old-2.png` | `prototypes/docs/archives/notes-app-old-2.png` | `4022a52fe2010adc` | `4022a52fe2010adc` |
+| `docs/archives/notes-app-old-3.bundle` | `prototypes/docs/archives/notes-app-old-3.bundle` | `063a0c8345bec493` | `063a0c8345bec493` |
+| `docs/archives/notes-app-old-3.md` | `prototypes/docs/archives/notes-app-old-3.md` | `fb50a3fbcff1f379` | `fb50a3fbcff1f379` |
+| `docs/archives/notes-app-old-3.png` | `prototypes/docs/archives/notes-app-old-3.png` | `13144f04b0f75fac` | `13144f04b0f75fac` |
+| `docs/archives/notes-app-old-4.bundle` | `prototypes/docs/archives/notes-app-old-4.bundle` | `1b0bb645bd74bf01` | `1b0bb645bd74bf01` |
+| `docs/archives/notes-app-old-4.md` | `prototypes/docs/archives/notes-app-old-4.md` | `639f861c7b02c016` | `639f861c7b02c016` |
+| `docs/archives/notes-app-old-4.png` | `prototypes/docs/archives/notes-app-old-4.png` | `270be8f3de5c8e6e` | `270be8f3de5c8e6e` |
+| `docs/archives/notes-app-old-5.bundle` | `prototypes/docs/archives/notes-app-old-5.bundle` | `16c39bb02b1f55e2` | `16c39bb02b1f55e2` |
+| `docs/archives/notes-app-old-5.md` | `prototypes/docs/archives/notes-app-old-5.md` | `73f168ff7006426a` | `73f168ff7006426a` |
+| `docs/archives/notes-app-old-5.png` | `prototypes/docs/archives/notes-app-old-5.png` | `0e50099c9f448d0b` | `0e50099c9f448d0b` |
+| `docs/archives/notes-app-old-6.bundle` | `prototypes/docs/archives/notes-app-old-6.bundle` | `d96871dad75174e2` | `d96871dad75174e2` |
+| `docs/archives/notes-app-old-6.md` | `prototypes/docs/archives/notes-app-old-6.md` | `08153ecab5a5cf6d` | `08153ecab5a5cf6d` |
+| `docs/archives/notes-app-old-6.png` | `prototypes/docs/archives/notes-app-old-6.png` | `a62cfc4cbb5597bf` | `a62cfc4cbb5597bf` |
+| `docs/archives/notes-app-old-7.bundle` | `prototypes/docs/archives/notes-app-old-7.bundle` | `a522d4120ef04209` | `a522d4120ef04209` |
+| `docs/archives/notes-app-old-7.md` | `prototypes/docs/archives/notes-app-old-7.md` | `d60135ff5cbdc318` | `d60135ff5cbdc318` |
+| `docs/archives/notes-app-old-7.png` | `prototypes/docs/archives/notes-app-old-7.png` | `88dc852f64f0e36f` | `88dc852f64f0e36f` |
+| `docs/archives/notes-app-old-8.bundle` | `prototypes/docs/archives/notes-app-old-8.bundle` | `96d4f98fad7ecc72` | `96d4f98fad7ecc72` |
+| `docs/archives/notes-app-old-8.md` | `prototypes/docs/archives/notes-app-old-8.md` | `37d68231f1206e10` | `37d68231f1206e10` |
+| `docs/archives/notes-app-old-8.png` | `prototypes/docs/archives/notes-app-old-8.png` | `28c96152aa1ba68a` | `28c96152aa1ba68a` |
+| `docs/archives/notes-app-old-9.bundle` | `prototypes/docs/archives/notes-app-old-9.bundle` | `cf6ae6b75439da13` | `cf6ae6b75439da13` |
+| `docs/archives/notes-app-old-9.md` | `prototypes/docs/archives/notes-app-old-9.md` | `9b7621c5d575682b` | `9b7621c5d575682b` |
+| `docs/archives/notes-app-old-9.png` | `prototypes/docs/archives/notes-app-old-9.png` | `8dab82e9af58e5e8` | `8dab82e9af58e5e8` |
+| `docs/archives/notes-app-old.bundle` | `prototypes/docs/archives/notes-app-old.bundle` | `3183366dd5a29e9c` | `3183366dd5a29e9c` |
+| `docs/archives/notes-app-old.md` | `prototypes/docs/archives/notes-app-old.md` | `253f2e0090325c8b` | `253f2e0090325c8b` |
+| `docs/auditorias/231-skills-m3-apple.md` | `prototypes/docs/auditorias/231-skills-m3-apple.md` | `29e52dc95cb44735` | `29e52dc95cb44735` |
+| `docs/board/FONTES.md` | `prototypes/docs/board/FONTES.md` | `e771092ac01f5869` | `c12ae8b5f01b3441` |
+| `docs/board/README.md` | `prototypes/docs/board/README.md` | `e078491fd7a46586` | `b098f7b22066d0f5` |
+| `docs/board/RELATORIO-REESTRUTURACAO.md` | `prototypes/docs/board/RELATORIO-REESTRUTURACAO.md` | `9b77748c623979f1` | `8cb1375efc61668b` |
+| `docs/board/boards/00-mapa-geral.md` | `prototypes/docs/board/boards/00-mapa-geral.md` | `f3681ef128cf3453` | `0eec9bc87e8256f7` |
+| `docs/board/boards/01-produto-e-dominio.md` | `prototypes/docs/board/boards/01-produto-e-dominio.md` | `cad4f52d333737dc` | `88dab8b77c3fbc5e` |
+| `docs/board/boards/02-workspace-e-ux.md` | `prototypes/docs/board/boards/02-workspace-e-ux.md` | `cb4bb2a976c9519e` | `1314cbd36e8abe81` |
+| `docs/board/boards/03-fluxos-de-estudo.md` | `prototypes/docs/board/boards/03-fluxos-de-estudo.md` | `3bff7c57a1fbbee3` | `0c15fceeaa4b00bc` |
+| `docs/board/boards/04-arquitetura-tecnica.md` | `prototypes/docs/board/boards/04-arquitetura-tecnica.md` | `7648a21aa833de76` | `f39bcd8489ff984c` |
+| `docs/board/boards/05-pesquisa-e-decisoes.md` | `prototypes/docs/board/boards/05-pesquisa-e-decisoes.md` | `f1eaefe4a214ca97` | `ec02631e0a1d27f6` |
+| `docs/board/boards/07-entrega-e-arquivo.md` | `prototypes/docs/board/boards/07-entrega-e-arquivo.md` | `77bf8d21a2b45bc7` | `0a15d4b1d1b83173` |
+| `docs/board/jornadas/j1-busca-layout-desktop.png` | `prototypes/docs/board/jornadas/j1-busca-layout-desktop.png` | `b9cba196a0deaee8` | `b9cba196a0deaee8` |
+| `docs/board/jornadas/j3-teclado-lista-desktop.png` | `prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png` | `29fb6b7366cf6ec6` | `29fb6b7366cf6ec6` |
+| `docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | `prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | `f9eeca876214947d` | `f9eeca876214947d` |
+| `docs/board/jornadas/j5-canvas-visao-geral.png` | `prototypes/docs/board/jornadas/j5-canvas-visao-geral.png` | `f9eeca876214947d` | `f9eeca876214947d` |
+| `docs/board/jornadas/j6-mestre-320.png` | `prototypes/docs/board/jornadas/j6-mestre-320.png` | `9e7a2cb55eadb738` | `9e7a2cb55eadb738` |
+| `docs/board/jornadas/j6-mestre-390.png` | `prototypes/docs/board/jornadas/j6-mestre-390.png` | `14f5215e0e93a455` | `14f5215e0e93a455` |
+| `docs/evidence/catalog.json` | `prototypes/docs/evidence/catalog.json` | `65496ff0cab4c1f4` | `9ac5e4cc0cf251ab` |
+| `docs/features/README.md` | `prototypes/docs/features/README.md` | `—` | `440fe2093b1791bc` |
+| `docs/features/claude-storage.md` | `prototypes/docs/features/claude-storage.md` | `—` | `2463b6635db40a9e` |
+| `docs/features/features-index.json` | `prototypes/docs/features/features-index.json` | `—` | `779ddd4a8bcad8c2` |
+| `docs/features/grafo.md` | `prototypes/docs/features/grafo.md` | `—` | `e082d9d207074dc3` |
+| `docs/features/pdf-reader.md` | `prototypes/docs/features/pdf-reader.md` | `—` | `a89cb6c5b2ae8f64` |
+| `docs/features/questoes.md` | `prototypes/docs/features/questoes.md` | `—` | `72ca6a5cb2cafe97` |
+| `docs/features/revisao.md` | `prototypes/docs/features/revisao.md` | `—` | `816eeb9339e6347f` |
+| `docs/features/simulados.md` | `prototypes/docs/features/simulados.md` | `—` | `6c29ffabed374977` |
+| `docs/features/tipos-propriedades.md` | `prototypes/docs/features/tipos-propriedades.md` | `—` | `c16e6960b2d434ad` |
+| `docs/features/workspace.md` | `prototypes/docs/features/workspace.md` | `—` | `161a4daff263a98a` |
+| `docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `b319c833fb22484a` | `9fb296fef9833f7c` |
+| `docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` | `a896897c9f260712` |
+| `docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` | `47d238bdd77ab739` |
+| `docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` | `f28acadc407e927e` |
+| `docs/planning/README.md` | `prototypes/docs/planning/README.md` | `—` | `6ad498215769e8b0` |
+| `docs/planning/estado-atual.md` | `prototypes/docs/planning/estado-atual.md` | `—` | `433b451fe45842e5` |
+| `docs/planning/template-feature.md` | `prototypes/docs/planning/template-feature.md` | `—` | `5eca68adc631d400` |
+| `docs/planning/template-release.md` | `prototypes/docs/planning/template-release.md` | `—` | `8c62bfeec9f5078d` |
+| `docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md` | `prototypes/docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md` | `095db601352ffe6e` | `095db601352ffe6e` |
+| `docs/reports/claude-storage-api/PR_DESCRIPTION.md` | `prototypes/docs/reports/claude-storage-api/PR_DESCRIPTION.md` | `5080b8c4c03a2a3b` | `5080b8c4c03a2a3b` |
+| `docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | `prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | `04217e9bdb68ec53` | `ab4dc1c31843930f` |
+| `docs/reports/claude-storage-bridge/cdp-execution-log.json` | `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` | `e2cc4de2cc6c873a` | `e2cc4de2cc6c873a` |
+| `docs/research/capacities-issue-32-2026-11-15.md` | `prototypes/docs/research/capacities-issue-32-2026-11-15.md` | `97c127b60b0af4a3` | `97c127b60b0af4a3` |
+| `docs/research/examtopics-inventory.md` | `prototypes/docs/research/examtopics-inventory.md` | `3131832f99dfda4e` | `dec113f293e63e77` |
+| `docs/research/gran-questoes-issue-62-2026-11-15.md` | `prototypes/docs/research/gran-questoes-issue-62-2026-11-15.md` | `d0849f6b336ecc26` | `d0849f6b336ecc26` |
+| `docs/research/issue-156-ui-skills-audit-2026-11-15.md` | `prototypes/docs/research/issue-156-ui-skills-audit-2026-11-15.md` | `9bf0507e7505ae09` | `9bf0507e7505ae09` |
+| `docs/research/qconcursos-issue-31-2026-11-15.md` | `prototypes/docs/research/qconcursos-issue-31-2026-11-15.md` | `5eda52e93da984da` | `249e8cf304dc9482` |
+| `docs/ux/arquitetura-informacao-navegacao.md` | `prototypes/docs/ux/arquitetura-informacao-navegacao.md` | `73a1a7086fe0225a` | `47e32548d106c919` |
+| `docs/ux/componentes-ui-padroes-2026.md` | `prototypes/docs/ux/componentes-ui-padroes-2026.md` | `77ed47c583a509b8` | `1c449574ddef1830` |
+| `docs/ux/data-visualization-dashboards-2026.md` | `prototypes/docs/ux/data-visualization-dashboards-2026.md` | `b8e55ee4469056a6` | `60b0414a9e7bbe5a` |
+| `docs/ux/pesquisa-20-fontes-2026-11.md` | `prototypes/docs/ux/pesquisa-20-fontes-2026-11.md` | `a8c22c7d741772da` | `26383e10dc5151d7` |
+| `docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `prototypes/docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `057face29253cac1` | `ffb42161678f5e07` |
+| `docs/ux/ux-ui-principles.md` | `prototypes/docs/ux/ux-ui-principles.md` | `75f0ce8ad9a31c42` | `7af19006e0d62e8b` |
 
 ## Segunda etapa (2026-11-16): consolidação de pesquisas e análises em docs/research/
 
-| Origem (antes) | Destino (agora) | sha256 (atual) |
-|---|---|---|
-| `prototypes/analises/analise-examtopics.md` | `prototypes/docs/research/analises/analise-examtopics.md` | `36181db0f67f98de` |
-| `prototypes/analises/analise-qconcursos.md` | `prototypes/docs/research/analises/analise-qconcursos.md` | `243cdf6b43df6c13` |
-| `prototypes/docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `9fb296fef9833f7c` |
-| `prototypes/docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` |
-| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` |
-| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` |
+| Origem (antes) | Destino (agora) | sha256 origem | sha256 atual |
+|---|---|---|---|
+| `prototypes/analises/analise-examtopics.md` | `prototypes/docs/research/analises/analise-examtopics.md` | `36181db0f67f98de` | `36181db0f67f98de` |
+| `prototypes/analises/analise-qconcursos.md` | `prototypes/docs/research/analises/analise-qconcursos.md` | `243cdf6b43df6c13` | `243cdf6b43df6c13` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `—` | `9fb296fef9833f7c` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `—` | `a896897c9f260712` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `—` | `47d238bdd77ab739` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `—` | `f28acadc407e927e` |
