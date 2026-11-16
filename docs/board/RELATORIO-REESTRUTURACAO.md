@@ -51,4 +51,4 @@
 - PR #254 (navegação): https://github.com/ianmaciel7/exams-app/pull/254
 - PR #256 (catálogo de evidências, de outra thread): https://github.com/ianmaciel7/exams-app/pull/256
 - PR #257 (evidências antes/depois): https://github.com/ianmaciel7/exams-app/pull/257
-- PR desta etapa (fases 6 e 7): ver abaixo.
+- PR #258 (fontes e relatório, fases 6 e 7): https://github.com/ianmaciel7/exams-app/pull/258
