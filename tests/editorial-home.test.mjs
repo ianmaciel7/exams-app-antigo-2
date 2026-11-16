@@ -11,12 +11,12 @@ const recoveryStart=html.indexOf('const ERROR_REVIEW_DAY=');
 const recoveryEnd=html.indexOf('function histMeta(',recoveryStart);
 assert.ok(recoveryStart>=0&&recoveryEnd>recoveryStart,'history recovery helpers found');
 const source=html.slice(recoveryStart,recoveryEnd)+'\n'+html.slice(from,until);
-function run({questions=[],docs=[],history=[]}={}){
+function run({questions=[],docs=[],history=[],dueCards=[]}={}){
   const state=new Map();const calls=[],sims=[];
   const env={
     space:'dataprev',questionBank:{questoes:[]},loadQuestions:()=>Promise.resolve(),showObjs:()=>{},location:{hash:'#/espaco'},view:{addEventListener(){}},
     store:{get:k=>state.get(k),set:(k,v)=>state.set(k,v)},docsOf:()=>docs,
-    qObjs:()=>questions,qSel:q=>q.selected||null,histAll:()=>history,
+    qObjs:()=>questions,qSel:q=>q.selected||null,histAll:()=>history,srsDueCards:()=>dueCards,
     edicoesOf:()=>[],cargosOf:()=>[],CONCURSOS:[{sp:'dataprev',id:'dataprev',t:'Concurso de TI'}],
     isT:()=>false,examDateISO:()=>null,daysTo:()=>null,
     wOf:q=>q.materia==='Conhecimentos Específicos'?2.5:1,
@@ -49,7 +49,7 @@ test('metrics come only from actual question and history records',()=>{
   ];
   const {markup}=run({questions,history});
   assert.match(markup,/>2<\/strong><span>Questões<\/span>/);
-  assert.match(markup,/>1<\/strong><span>Para revisar<\/span>/);
+  assert.match(markup,/>0<\/strong><span>Para revisar<\/span>/,'wrong answer recorded now is not due until tomorrow');
   assert.match(markup,/50% de acerto/);
   assert.match(markup,/Questão 1/);
   assert.match(markup,/Questão 2/);
@@ -59,5 +59,25 @@ test('zero initial history is represented without false computed exam scores',()
   const {markup}=run({questions:[],history:[]});
   assert.match(markup,/Sem respostas hoje/);
   assert.match(markup,/Sem questões cadastradas/);
-  assert.match(markup,/nenhuma questão incorreta pendente/);
+  assert.match(markup,/Nenhuma revisão vencida hoje/);
+});
+
+test('Home combines real due SRS cards with confirmed error-recovery tasks, not all errors (#58)',()=>{
+  const now=Date.now();
+  const questions=[
+    {id:'q1',n:1,conc:'dataprev',materia:'Direito',assunto:'Artigo',gabarito:'B',selected:'A'},
+    {id:'q2',n:2,conc:'dataprev',materia:'Direito',assunto:'Outro',gabarito:'B',selected:'A'}
+  ];
+  const history=[
+    {q:'q1',conc:'dataprev',m:'Direito',ok:false,t:now-3*86400000,a:'A'},
+    {q:'q2',conc:'dataprev',m:'Direito',ok:false,t:now,a:'A'}
+  ];
+  const {markup}=run({questions,history,dueCards:[{id:'card-1'},{id:'card-2'}]});
+  assert.match(markup,/>3<\/strong><span>Para revisar<\/span>/);
+  assert.match(markup,/class="eh-review-number">3<\/strong>/);
+  assert.match(markup,/2 cartões SRS vencidos/);
+  assert.match(markup,/1 questão com recuperação vencida/);
+  assert.match(markup,/2 questões pendentes de recuperação/);
+  assert.match(markup,/href="#\/revisao">Abrir revisão espaçada/);
+  assert.match(markup,/href="#\/questoes\/erradas">Abrir caderno de erros/);
 });
