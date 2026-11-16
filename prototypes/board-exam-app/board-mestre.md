@@ -65,6 +65,7 @@ Prints, arquivos, testes e homologações. Cada card indica o que foi realmente 
 
 | Card | Estado | Blocos |
 | --- | --- | --- |
+| Antes/depois: páginas de objeto (Cargo, Concurso, Edição, Tipo PDF) | evidência | ![antes-depois-cargo.png](assets/evidence/antes-depois-cargo.png) ![antes-depois-concurso.png](assets/evidence/antes-depois-concurso.png) ![antes-depois-edicao.png](assets/evidence/antes-depois-edicao.png) ![antes-depois-tipo-pdf.png](assets/evidence/antes-depois-tipo-pdf.png) |
 | Prints do Ian e feedback | evidência | `e300` |
 | Arquivos do projeto | evidência | `e363` |
 | Evidências do low-chrome (#97) | validado | `e993` |

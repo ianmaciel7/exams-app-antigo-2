@@ -69,8 +69,8 @@ function render(){
     if(!cards.length)continue;total+=cards.length;
     html+=`<section class="area" id="area-${esc(a.id)}"><h2>${esc(a.id)} — ${esc(a.name)}</h2><p>${esc(a.summary)}</p><div class="grid">`;
     for(const c of cards){
-      const first=c.blocks[0];
-      html+=`<article class="card"><h3>${esc(c.name)}</h3><div class="meta"><span class="tag">${esc(c.status)}</span><span class="tag">${c.blocks.length} bloco(s)</span></div>${view==='grid'?`<p class="meta" style="margin:0">${esc(snippet(first))}</p>`:''}<div class="meta">${c.blocks.map(b=>`<a class="btn open" href="index.html#${esc(b)}">Abrir ${esc(b)} no canvas</a>`).join(' ')}</div></article>`}
+      const first=c.blocks[0]||'';
+      html+=`<article class="card"><h3>${esc(c.name)}</h3><div class="meta"><span class="tag">${esc(c.status)}</span><span class="tag">${c.blocks.length} bloco(s)</span></div>${view==='grid'?`<p class="meta" style="margin:0">${esc(snippet(first))}</p>`:''}${(c.images||[]).map(i=>`<a href="${esc(i)}" target="_blank" rel="noopener"><img src="${esc(i)}" alt="${esc(i.split('/').pop())}" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:8px"></a>`).join('')}<div class="meta">${c.blocks.map(b=>`<a class="btn open" href="index.html#${esc(b)}">Abrir ${esc(b)} no canvas</a>`).join(' ')}</div></article>`}
     html+='</div></section>'}
   main.innerHTML=html||'<p class="empty">Nenhum card com esses filtros.</p>';
   $('status').textContent=`${total} card(s)`;

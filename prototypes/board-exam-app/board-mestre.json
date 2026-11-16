@@ -3,67 +3,290 @@
   "note": "Índice compacto. Não contém conteúdo: aponta para blocos existentes do board.json por ID estável. Não mover nem apagar blocos do canvas; para adicionar um bloco, inclua aqui o ID dele.",
   "areas": [
     {
-      "id": "01", "name": "Discovery & Research",
+      "id": "01",
+      "name": "Discovery & Research",
       "summary": "Concorrentes, referências e pesquisas que motivaram o produto.",
       "cards": [
-        {"name": "Referências QConcursos", "blocks": ["e108"], "status": "pesquisa"},
-        {"name": "Referências ExamTopics", "blocks": ["e116"], "status": "pesquisa"},
-        {"name": "Referências Readwise", "blocks": ["e119"], "status": "pesquisa"},
-        {"name": "Dossiê QConcursos (funcional)", "blocks": ["e900"], "status": "pesquisa"},
-        {"name": "Dossiê Readwise Reader e SRS", "blocks": ["e1090"], "status": "pesquisa"},
-        {"name": "Matriz de decisões extraída dos sites", "blocks": ["e1150"], "status": "decisão"},
-        {"name": "Auditoria UI/UX", "blocks": ["e600"], "status": "pesquisa"}
+        {
+          "name": "Referências QConcursos",
+          "blocks": [
+            "e108"
+          ],
+          "status": "pesquisa"
+        },
+        {
+          "name": "Referências ExamTopics",
+          "blocks": [
+            "e116"
+          ],
+          "status": "pesquisa"
+        },
+        {
+          "name": "Referências Readwise",
+          "blocks": [
+            "e119"
+          ],
+          "status": "pesquisa"
+        },
+        {
+          "name": "Dossiê QConcursos (funcional)",
+          "blocks": [
+            "e900"
+          ],
+          "status": "pesquisa"
+        },
+        {
+          "name": "Dossiê Readwise Reader e SRS",
+          "blocks": [
+            "e1090"
+          ],
+          "status": "pesquisa"
+        },
+        {
+          "name": "Matriz de decisões extraída dos sites",
+          "blocks": [
+            "e1150"
+          ],
+          "status": "decisão"
+        },
+        {
+          "name": "Auditoria UI/UX",
+          "blocks": [
+            "e600"
+          ],
+          "status": "pesquisa"
+        }
       ]
     },
     {
-      "id": "02", "name": "Product & UX",
+      "id": "02",
+      "name": "Product & UX",
       "summary": "Funcionalidades por jornada do usuário, layout e diretrizes.",
       "cards": [
-        {"name": "Layout de três painéis", "blocks": ["e500"], "status": "implementado"},
-        {"name": "Estrutura Espaço → Objeto → Tipo", "blocks": ["e52"], "status": "implementado"},
-        {"name": "Diretrizes de UI/UX", "blocks": ["e162"], "status": "implementado"},
-        {"name": "Questões e simulados", "blocks": ["e1155"], "status": "implementado"},
-        {"name": "Cadernos e queries de questões", "blocks": ["e1188"], "status": "implementado"},
-        {"name": "Filtros avançados", "blocks": ["e1208"], "status": "implementado"},
-        {"name": "Painel de propriedades", "blocks": ["e504"], "status": "proposto"},
-        {"name": "Dashboard central de estudos", "blocks": ["e506"], "status": "proposto"},
-        {"name": "Revisão diária", "blocks": ["e1465"], "status": "implementado"},
-        {"name": "Leitor PDF e anotações", "blocks": ["e1477", "e1177"], "status": "implementado"},
-        {"name": "Responsividade da home", "blocks": ["e1339"], "status": "implementado"}
+        {
+          "name": "Layout de três painéis",
+          "blocks": [
+            "e500"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Estrutura Espaço → Objeto → Tipo",
+          "blocks": [
+            "e52"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Diretrizes de UI/UX",
+          "blocks": [
+            "e162"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Questões e simulados",
+          "blocks": [
+            "e1155"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Cadernos e queries de questões",
+          "blocks": [
+            "e1188"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Filtros avançados",
+          "blocks": [
+            "e1208"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Painel de propriedades",
+          "blocks": [
+            "e504"
+          ],
+          "status": "proposto"
+        },
+        {
+          "name": "Dashboard central de estudos",
+          "blocks": [
+            "e506"
+          ],
+          "status": "proposto"
+        },
+        {
+          "name": "Revisão diária",
+          "blocks": [
+            "e1465"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Leitor PDF e anotações",
+          "blocks": [
+            "e1477",
+            "e1177"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Responsividade da home",
+          "blocks": [
+            "e1339"
+          ],
+          "status": "implementado"
+        }
       ]
     },
     {
-      "id": "03", "name": "Software Architecture",
+      "id": "03",
+      "name": "Software Architecture",
       "summary": "Modelo de domínio, tipos, decisões técnicas e estado.",
       "cards": [
-        {"name": "Hierarquia de tipos", "blocks": ["e99", "e104"], "status": "implementado"},
-        {"name": "Glossário das entidades", "blocks": ["e95"], "status": "implementado"},
-        {"name": "Decisões de modelagem", "blocks": ["e152"], "status": "aprovado"},
-        {"name": "Camada de IA", "blocks": ["e410"], "status": "implementado"},
-        {"name": "Isolamento de grafo por espaço", "blocks": ["e1407"], "status": "validado"},
-        {"name": "Máquina de estados de carregamento", "blocks": ["e1450"], "status": "implementado"},
-        {"name": "Storage bridge (prova de conceito)", "blocks": ["e1371"], "status": "proposto"}
+        {
+          "name": "Hierarquia de tipos",
+          "blocks": [
+            "e99",
+            "e104"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Glossário das entidades",
+          "blocks": [
+            "e95"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Decisões de modelagem",
+          "blocks": [
+            "e152"
+          ],
+          "status": "aprovado"
+        },
+        {
+          "name": "Camada de IA",
+          "blocks": [
+            "e410"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Isolamento de grafo por espaço",
+          "blocks": [
+            "e1407"
+          ],
+          "status": "validado"
+        },
+        {
+          "name": "Máquina de estados de carregamento",
+          "blocks": [
+            "e1450"
+          ],
+          "status": "implementado"
+        },
+        {
+          "name": "Storage bridge (prova de conceito)",
+          "blocks": [
+            "e1371"
+          ],
+          "status": "proposto"
+        }
       ]
     },
     {
-      "id": "04", "name": "Delivery & Roadmap",
+      "id": "04",
+      "name": "Delivery & Roadmap",
       "summary": "Versões, roadmap e issues entregues.",
       "cards": [
-        {"name": "Roadmap de versões", "blocks": ["e154"], "status": "aprovado"},
-        {"name": "Versão 0.1.0", "blocks": ["e4"], "status": "substituído"},
-        {"name": "Versão 0.1.1", "blocks": ["e149"], "status": "em desenvolvimento"},
-        {"name": "Infraestrutura de agentes", "blocks": ["e1248"], "status": "implementado"}
+        {
+          "name": "Roadmap de versões",
+          "blocks": [
+            "e154"
+          ],
+          "status": "aprovado"
+        },
+        {
+          "name": "Versão 0.1.0",
+          "blocks": [
+            "e4"
+          ],
+          "status": "substituído"
+        },
+        {
+          "name": "Versão 0.1.1",
+          "blocks": [
+            "e149"
+          ],
+          "status": "em desenvolvimento"
+        },
+        {
+          "name": "Infraestrutura de agentes",
+          "blocks": [
+            "e1248"
+          ],
+          "status": "implementado"
+        }
       ]
     },
     {
-      "id": "05", "name": "Evidence & Quality",
+      "id": "05",
+      "name": "Evidence & Quality",
       "summary": "Prints, arquivos, testes e homologações. Cada card indica o que foi realmente verificado.",
       "cards": [
-        {"name": "Prints do Ian e feedback", "blocks": ["e300"], "status": "evidência"},
-        {"name": "Arquivos do projeto", "blocks": ["e363"], "status": "evidência"},
-        {"name": "Evidências do low-chrome (#97)", "blocks": ["e993"], "status": "validado"},
-        {"name": "Evidências dos 7 gaps", "blocks": ["e1300"], "status": "evidência"},
-        {"name": "Homologação final", "blocks": ["e1440"], "status": "validado"}
+        {
+          "name": "Antes/depois: páginas de objeto (Cargo, Concurso, Edição, Tipo PDF)",
+          "blocks": [],
+          "status": "evidência",
+          "images": [
+            "assets/evidence/antes-depois-cargo.png",
+            "assets/evidence/antes-depois-concurso.png",
+            "assets/evidence/antes-depois-edicao.png",
+            "assets/evidence/antes-depois-tipo-pdf.png"
+          ],
+          "origem": "/mnt/project-files/prints/redesign-paginas-objeto/ (capturas enviadas pelo Ian)"
+        },
+        {
+          "name": "Prints do Ian e feedback",
+          "blocks": [
+            "e300"
+          ],
+          "status": "evidência"
+        },
+        {
+          "name": "Arquivos do projeto",
+          "blocks": [
+            "e363"
+          ],
+          "status": "evidência"
+        },
+        {
+          "name": "Evidências do low-chrome (#97)",
+          "blocks": [
+            "e993"
+          ],
+          "status": "validado"
+        },
+        {
+          "name": "Evidências dos 7 gaps",
+          "blocks": [
+            "e1300"
+          ],
+          "status": "evidência"
+        },
+        {
+          "name": "Homologação final",
+          "blocks": [
+            "e1440"
+          ],
+          "status": "validado"
+        }
       ]
     }
   ]
