@@ -34,7 +34,7 @@ All agents working in this repository must keep the codebase and the live Claude
 
 ## Planning board, evidence capture, and memory preservation (MANDATORY)
 
-- **Mandatory rule — Zero Information Loss:** Everything captured as evidence during any task — including browser screenshots, live reference app inspections (e.g., Capacities, QConcursos, Readwise, Readwise Reader), historical branch/archive comparisons (`docs/archives/`), measured DOM/CSS metrics, UI/UX regressions, and architectural decisions — **MUST be immediately persisted in two places**:
+- **Mandatory rule — Zero Information Loss:** Everything captured as evidence during any task — including browser screenshots, live reference app inspections (e.g., Capacities, QConcursos, Readwise, Readwise Reader), historical branch/archive comparisons (`prototypes/docs/archives/`), measured DOM/CSS metrics, UI/UX regressions, and architectural decisions — **MUST be immediately persisted in two places**:
   1. **The Planning Board:** Add structured cards/containers and image references to `prototypes/board-exam-app/board.json`, copy all screenshot/evidence files into `prototypes/board-exam-app/assets/`, and regenerate `prototypes/board-exam-app/BOARD.md` using `npm run board`.
   2. **GitHub Issues & Pull Requests:** Open or update corresponding GitHub Issues (`gh issue create` / `gh issue comment`) and Pull Requests (`gh pr create`) documenting the evidence, file paths, and acceptance criteria, and land the board updates into `dev` via PR so no evidence or context is ever lost between sessions or AI assistants.
 - `board.json` is the source of truth; never edit `BOARD.md` by hand. Regenerate it with `npm run board`.
@@ -108,7 +108,7 @@ Do not open `index.html` with `file://`: the app fetches PDFs and JSON, which ne
 - Before finishing a UI change, scan the affected interface files for emoji and pictographic symbols.
 
 - Design and planning material: `prototypes/README.md`.
-- Archived legacy code is in `docs/archives/` (see `docs/archives/REUSE-MAP.md` on the `chore/project-tooling` branch).
+- Archived legacy code is in `prototypes/docs/archives/` (see `prototypes/docs/archives/REUSE-MAP.md` on the `chore/project-tooling` branch).
 
 ## Recovering context and session history across AI agents
 
@@ -161,7 +161,7 @@ When continuing work across different AI agents or recovering context from past 
 
 ## UX/UI — contrato de implementação para agentes (MANDATORY)
 
-**Antes de desenhar ou alterar uma tela, leia [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md) e [docs/ux/arquitetura-informacao-navegacao.md](docs/ux/arquitetura-informacao-navegacao.md). Para criar ou alterar animações, leia também [MOTION.md](MOTION.md).** O catálogo distingue normas, estudos, heurísticas e padrões: não transforme uma heurística em lei universal. Preserve todas as políticas de sincronização, board.json e ícones SVG deste arquivo.
+**Antes de desenhar ou alterar uma tela, leia [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md) e [prototypes/docs/ux/arquitetura-informacao-navegacao.md](prototypes/docs/ux/arquitetura-informacao-navegacao.md). Para criar ou alterar animações, leia também [MOTION.md](MOTION.md).** O catálogo distingue normas, estudos, heurísticas e padrões: não transforme uma heurística em lei universal. Preserve todas as políticas de sincronização, board.json e ícones SVG deste arquivo.
 
 ### Navegação e tarefas
 1. **MUST** oferecer caminhos descobríveis para as tarefas primárias: Questões, Simulados e Revisão; não exigir conhecer Tipos de Objeto.
@@ -217,12 +217,12 @@ When continuing work across different AI agents or recovering context from past 
 29. **MUST** registrar evidências visuais reais em board.json, regenerar BOARD.md com npm run board e vincular issues/PRs conforme a política acima.
 30. **AVOID** declarar conformidade WCAG, superioridade sobre concorrentes ou melhoria de métricas sem medição verificável.
 
-**Fontes-base:** [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/), [10 heurísticas de Nielsen](https://www.nngroup.com/articles/ten-usability-heuristics/), [GOV.UK Design System](https://design-system.service.gov.uk/patterns/), [USWDS](https://designsystem.digital.gov/components/step-indicator/) e o catálogo com fontes independentes em docs/ux/ux-ui-principles.md.
+**Fontes-base:** [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/), [10 heurísticas de Nielsen](https://www.nngroup.com/articles/ten-usability-heuristics/), [GOV.UK Design System](https://design-system.service.gov.uk/patterns/), [USWDS](https://designsystem.digital.gov/components/step-indicator/) e o catálogo com fontes independentes em prototypes/docs/ux/ux-ui-principles.md.
 
 <!-- UX-LAWS-CATALOG:START -->
 ## Catálogo de leis, heurísticas e normas de UI/UX — referência obrigatória
 
-Este catálogo fornece os **nomes originais** (em inglês, quando publicados assim), traduções e descrições curtas para que agentes fundamentem decisões de UI/UX. **Antes de desenhar, alterar ou auditar uma tela**, consultar este catálogo, as regras obrigatórias anteriores deste AGENTS.md e os dossiês [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md) e [docs/ux/arquitetura-informacao-navegacao.md](docs/ux/arquitetura-informacao-navegacao.md). Não substituir a evidência do board e das issues por citações teóricas.
+Este catálogo fornece os **nomes originais** (em inglês, quando publicados assim), traduções e descrições curtas para que agentes fundamentem decisões de UI/UX. **Antes de desenhar, alterar ou auditar uma tela**, consultar este catálogo, as regras obrigatórias anteriores deste AGENTS.md e os dossiês [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md) e [prototypes/docs/ux/arquitetura-informacao-navegacao.md](prototypes/docs/ux/arquitetura-informacao-navegacao.md). Não substituir a evidência do board e das issues por citações teóricas.
 
 **Grau de autoridade:** Laws of UX é um catálogo editorial de 30 leis/efeitos/modelos/heurísticas — nem todos são leis científicas. Gestalt são princípios perceptivos sem rol oficial único. Nielsen e Shneiderman são conjuntos de heurísticas. ISO são normas (observar edição, escopo e licenciamento). WCAG contém critérios de sucesso testáveis. Boas práticas de design systems **não** são requisitos normativos por si sós.
 
@@ -230,8 +230,8 @@ Este catálogo fornece os **nomes originais** (em inglês, quando publicados ass
 
 ### Pesquisa Profunda — 20 bibliotecas de referência (14/11/2026)
 
-- **MUST** consultar [docs/ux/pesquisa-20-fontes-2026-11.md](docs/ux/pesquisa-20-fontes-2026-11.md) ao pesquisar novas leis/princípios ou ao justificar decisões de UI/UX; o documento reúne os **20 URLs solicitados**, síntese aplicada, matriz de testes e limitações de cobertura.
-- **MUST** usar as **30 entradas de Laws of UX**, as demais famílias e as **86 entradas aplicadas transcritas integralmente nas seções abaixo**, com [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md) como espelho de manutenção. A repetição neste AGENTS.md é intencional para leitura autossuficiente por agentes.
+- **MUST** consultar [prototypes/docs/ux/pesquisa-20-fontes-2026-11.md](prototypes/docs/ux/pesquisa-20-fontes-2026-11.md) ao pesquisar novas leis/princípios ou ao justificar decisões de UI/UX; o documento reúne os **20 URLs solicitados**, síntese aplicada, matriz de testes e limitações de cobertura.
+- **MUST** usar as **30 entradas de Laws of UX**, as demais famílias e as **86 entradas aplicadas transcritas integralmente nas seções abaixo**, com [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md) como espelho de manutenção. A repetição neste AGENTS.md é intencional para leitura autossuficiente por agentes.
 - **MUST** distinguir uma norma obrigatória de um estudo, modelo psicológico, heurística, catálogo agregador e padrão de plataforma. Uma URL listada não comprova que todas as entradas daquele site foram verificadas.
 - **MUST** testar tarefas reais (descobrir Questões, resolver, simular, retomar e revisar) antes de declarar sucesso de uma recomendação; documentar comportamento observado, estados de erro/loading e limites.
 - **AVOID** aplicar indiscriminadamente "7 itens", "3 cliques", "400 ms", "tudo na mesma página", "somente 1 CTA" ou "proibido usar bordas". Decisões dependem de contexto, foco, acessibilidade, dados e testes.
@@ -278,7 +278,7 @@ Este catálogo fornece os **nomes originais** (em inglês, quando publicados ass
 | **Goodhart's Law** | Advertência da economia sobre métricas transformadas em metas; avaliar HEART/experimentos sem otimizar retenção, tempo de tela ou cliques em detrimento da tarefa. | [Registro da formulação original e atribuições — Cambridge](https://www.damtp.cam.ac.uk/user/mem2/papers/LHCE/goodhart.html) | **Não é lei quantitativa de usabilidade**; evitar atribuir a Goodhart a reformulação posterior de Marilyn Strathern como citação literal dele. |
 | **Campbell's Law** | Pesquisa sobre distorção de indicadores sociais sob incentivos; complementar a cautela com métricas de sucesso dos estudantes. | [Campbell, *Assessing the impact of planned social change* (1979)](https://doi.org/10.1016/0149-7189(79)90048-X) | **Não é critério WCAG nem lei de layout**; relação histórica com Goodhart sem tratá-los como sinônimos precisos. |
 
-**Não misturar com efeitos:** **Endowed Progress Effect** (Nunes & Drèze, 2006, [artigo original](https://doi.org/10.1086/500480)) é um efeito experimental, **não lei**; no Exam App não fabricar progresso, conquistas ou conclusão para manipular motivação. Outros itens dos catálogos, como *Change Blindness, Banner Blindness, Stroop Effect, Satisficing, Survivorship Bias, Default Effect* e *Automation Bias*, exigem classificação própria, fonte e deduplicação. O levantamento de todas as entradas dos 20 sites ainda **não está concluído** conforme [síntese e limitações](docs/ux/pesquisa-20-fontes-2026-11.md).
+**Não misturar com efeitos:** **Endowed Progress Effect** (Nunes & Drèze, 2006, [artigo original](https://doi.org/10.1086/500480)) é um efeito experimental, **não lei**; no Exam App não fabricar progresso, conquistas ou conclusão para manipular motivação. Outros itens dos catálogos, como *Change Blindness, Banner Blindness, Stroop Effect, Satisficing, Survivorship Bias, Default Effect* e *Automation Bias*, exigem classificação própria, fonte e deduplicação. O levantamento de todas as entradas dos 20 sites ainda **não está concluído** conforme [síntese e limitações](prototypes/docs/ux/pesquisa-20-fontes-2026-11.md).
 
 #### 0.3. Nomes populares com “Law” que **não** entram no índice estrito de leis empíricas
 
@@ -469,7 +469,7 @@ Fonte normativa: https://www.w3.org/TR/WCAG22/ . Consultar **cada critério de s
 **Precedência:** acessibilidade verificável, integridade de dados, segurança e sucesso de tarefas prevalecem sobre heurísticas estéticas. Não generalizar heurísticas como leis determinísticas nem alegar testes ou conformidade sem evidências.
 ### 11. Catálogo aplicado integral — 86 entradas com fonte e exceções (espelhado no AGENTS.md)
 
-**Obrigatório para agentes:** as **86 entradas abaixo estão presentes integralmente neste próprio arquivo**, com classe, definição, regra para o Exam App, limites e fonte. São leis, modelos, heurísticas, padrões, normas, métricas e métodos de pesquisa — **não 86 leis científicas**. Este espelho é intencional para agentes que só recebem AGENTS.md como contexto. Documento de origem e manutenção: [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md). Atualizar ambos quando modificar qualquer entrada; preservar os 30 itens Laws of UX, as demais famílias e normas já listadas acima.
+**Obrigatório para agentes:** as **86 entradas abaixo estão presentes integralmente neste próprio arquivo**, com classe, definição, regra para o Exam App, limites e fonte. São leis, modelos, heurísticas, padrões, normas, métricas e métodos de pesquisa — **não 86 leis científicas**. Este espelho é intencional para agentes que só recebem AGENTS.md como contexto. Documento de origem e manutenção: [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md). Atualizar ambos quando modificar qualquer entrada; preservar os 30 itens Laws of UX, as demais famílias e normas já listadas acima.
 
 #### 11.1. Cognição, decisão e percepção
 
@@ -786,7 +786,7 @@ As 20 URLs estão **dentro do AGENTS.md**, não apenas em documento externo. **A
 
 ### 16. Auditoria geral de UI/UX para 2026 — princípios, normas e padrões adicionais
 
-**Data da revisão: 14/11/2026. Escopo:** navegação, visualização de dados/grafo, design inclusivo, pesquisa, métricas, internacionalização, responsividade e acessibilidade (não apenas formulários). **Classificação obrigatória:** princípios de Design Universal, mantras de visualização, frameworks de métricas, design systems e diretrizes governamentais **não são novas leis científicas**; critérios WCAG são requisitos normativos quando aplicáveis ao nível declarado; ISO exige considerar texto integral licenciado e escopo. Não duplicar como novidade as leis de Fitts/Hick/Jakob, as dez heurísticas de Nielsen, Gestalt, Shneiderman (Eight Golden Rules), a lista Laws of UX ou os 86 itens aplicados anteriores. Espelhar esta seção em [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md); diretrizes visuais/operacionais em [DESIGN.md](DESIGN.md).
+**Data da revisão: 14/11/2026. Escopo:** navegação, visualização de dados/grafo, design inclusivo, pesquisa, métricas, internacionalização, responsividade e acessibilidade (não apenas formulários). **Classificação obrigatória:** princípios de Design Universal, mantras de visualização, frameworks de métricas, design systems e diretrizes governamentais **não são novas leis científicas**; critérios WCAG são requisitos normativos quando aplicáveis ao nível declarado; ISO exige considerar texto integral licenciado e escopo. Não duplicar como novidade as leis de Fitts/Hick/Jakob, as dez heurísticas de Nielsen, Gestalt, Shneiderman (Eight Golden Rules), a lista Laws of UX ou os 86 itens aplicados anteriores. Espelhar esta seção em [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md); diretrizes visuais/operacionais em [DESIGN.md](DESIGN.md).
 
 #### 16.1. Seven Principles of Universal Design — sete nomes originais
 
@@ -948,12 +948,12 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 4. **SHOULD** usar Cognitive Walkthrough para avaliar primeiro uso de Questões, Simulados, Revisão, PDF e Explorar; medir resultados de uso e complementar com evidência do board/issue.
 5. **SHOULD** aplicar Information Foraging Theory ao nome dos destinos, prévia de conteúdo, hierarquia e pistas para busca/volta; não mostrar todas as propriedades por padrão.
 6. **MUST** registrar riscos de fallback/erro em gráficos e leitor PDF, sem inventar funcionalidade offline/no-JS ou declarar acessibilidade apenas por link de norma. A implementação continua sujeita a testes.
-7. **MUST** preservar as regras visuais e de estados em [DESIGN.md](DESIGN.md) e sincronizar os nomes e as fontes com [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md).
+7. **MUST** preservar as regras visuais e de estados em [DESIGN.md](DESIGN.md) e sincronizar os nomes e as fontes com [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md).
 
 
 ### 18. Avaliação e infraestrutura de design 2026 — complementos oficiais
 
-**Classificação:** os documentos abaixo **não são leis científicas de UI/UX**. São metodologia de avaliação W3C, formato de testes W3C, especificação comunitária de tokens, rascunho futuro de acessibilidade e capacidade de CSS. Foram conferidos em documentação publicada até **14/11/2026**, inclusive Context7 para DTCG e APG. Não declarar conformidade, implementação ou suporte sem evidência real; ver o [DESIGN.md](DESIGN.md) e o catálogo de [princípios de UX](docs/ux/ux-ui-principles.md).
+**Classificação:** os documentos abaixo **não são leis científicas de UI/UX**. São metodologia de avaliação W3C, formato de testes W3C, especificação comunitária de tokens, rascunho futuro de acessibilidade e capacidade de CSS. Foram conferidos em documentação publicada até **14/11/2026**, inclusive Context7 para DTCG e APG. Não declarar conformidade, implementação ou suporte sem evidência real; ver o [DESIGN.md](DESIGN.md) e o catálogo de [princípios de UX](prototypes/docs/ux/ux-ui-principles.md).
 
 | Nome original publicado | Status em 2026 | Utilidade para o Exam App / cuidado | Fonte oficial |
 |---|---|---|---|
@@ -1024,7 +1024,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 ### 20. Estrutura de páginas e layout — evidências científicas e guias atuais (2026)
 
-**Escopo:** esta seção responde à escolha de **hierarquia de conteúdo, proximidade, ordem, distribuição, painéis, colunas e modo de apresentação**. Não existe uma lei científica universal que obrigue layout em F, grid de 12/16 colunas, sidebar, CTA acima da dobra ou número fixo de painéis. **Leis de Fitts, Hick–Hyman e Gestalt já constam das seções 0–2**; não duplicá-las nem chamar guias de design systems de leis. Além dos princípios, consultar [DESIGN.md §8.23](DESIGN.md), [arquitetura da informação](docs/ux/arquitetura-informacao-navegacao.md) e [catálogo de UX](docs/ux/ux-ui-principles.md).
+**Escopo:** esta seção responde à escolha de **hierarquia de conteúdo, proximidade, ordem, distribuição, painéis, colunas e modo de apresentação**. Não existe uma lei científica universal que obrigue layout em F, grid de 12/16 colunas, sidebar, CTA acima da dobra ou número fixo de painéis. **Leis de Fitts, Hick–Hyman e Gestalt já constam das seções 0–2**; não duplicá-las nem chamar guias de design systems de leis. Além dos princípios, consultar [DESIGN.md §8.23](DESIGN.md), [arquitetura da informação](prototypes/docs/ux/arquitetura-informacao-navegacao.md) e [catálogo de UX](prototypes/docs/ux/ux-ui-principles.md).
 
 #### 20.1. Princípios e teorias com pesquisa publicada, relevantes para a composição
 
@@ -1062,7 +1062,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 ### 21. Busca visual e estrutura instrucional — revisão Context7 (14/11/2026)
 
-**Objetivo:** complementar [§20 — estrutura de páginas](AGENTS.md), [DESIGN.md §8.24](DESIGN.md) e [catálogo UX/UI](docs/ux/ux-ui-principles.md) com teoria de atenção, mensuração de desordem visual e pesquisas de organização didática. **Nenhuma das seis referências abaixo é nova lei universal de layout**. São **teorias, modelos e efeitos** em psicologia experimental e aprendizagem; investigar aplicação em tarefas reais em vez de transformar pesquisas sobre percepção em mandamentos de composição. A seção **0 — leis empíricas estritas** mantém suas categorias e não recebe estes itens.
+**Objetivo:** complementar [§20 — estrutura de páginas](AGENTS.md), [DESIGN.md §8.24](DESIGN.md) e [catálogo UX/UI](prototypes/docs/ux/ux-ui-principles.md) com teoria de atenção, mensuração de desordem visual e pesquisas de organização didática. **Nenhuma das seis referências abaixo é nova lei universal de layout**. São **teorias, modelos e efeitos** em psicologia experimental e aprendizagem; investigar aplicação em tarefas reais em vez de transformar pesquisas sobre percepção em mandamentos de composição. A seção **0 — leis empíricas estritas** mantém suas categorias e não recebe estes itens.
 
 #### 21.1. Atenção visual, hierarquia e busca (três referências)
 
@@ -1100,7 +1100,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 ### 22. Padrões de componentes UI 2026 — inventário oficial e leis relacionadas
 
-**Fonte obrigatória para criar/revisar componentes:** [docs/ux/componentes-ui-padroes-2026.md](docs/ux/componentes-ui-padroes-2026.md). Inventaria **30 padrões publicados no W3C WAI-ARIA APG** (de Accordion a Window Splitter), principais padrões de Material 3/Primer/React Aria e primitivas HTML/CSS atuais. **Padrões não são leis UX.** As leis e relações científicas continuam separadas nas seções 0–2; este complemento **mapeia** onde se aplicam, sem apresentar "30 novas leis".
+**Fonte obrigatória para criar/revisar componentes:** [prototypes/docs/ux/componentes-ui-padroes-2026.md](prototypes/docs/ux/componentes-ui-padroes-2026.md). Inventaria **30 padrões publicados no W3C WAI-ARIA APG** (de Accordion a Window Splitter), principais padrões de Material 3/Primer/React Aria e primitivas HTML/CSS atuais. **Padrões não são leis UX.** As leis e relações científicas continuam separadas nas seções 0–2; este complemento **mapeia** onde se aplicam, sem apresentar "30 novas leis".
 
 #### 22.1. Escolha semântica de componentes por tarefa
 
@@ -1125,7 +1125,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 #### 22.3. Contrato obrigatório para agentes de componentes
 
-1. **MUST** consultar o [inventário de 30 padrões](docs/ux/componentes-ui-padroes-2026.md) antes de criar componente complexo e registrar **padrão escolhido, motivo, estados, semântica, teclado, foco, pointer/touch, feedback e fallback**. A origem pode ser W3C/HTML/design system; **não** chamá-la de lei científica.
+1. **MUST** consultar o [inventário de 30 padrões](prototypes/docs/ux/componentes-ui-padroes-2026.md) antes de criar componente complexo e registrar **padrão escolhido, motivo, estados, semântica, teclado, foco, pointer/touch, feedback e fallback**. A origem pode ser W3C/HTML/design system; **não** chamá-la de lei científica.
 2. **MUST** distinguir **Link de Button**, **Tabs de rotas**, **Menu de navegação**, **Tooltip de Popover**, **Table de Grid**, **Switch de Checkbox**, **Meter de Progress**, **Tree de grafo relacional**, e **modal de painel não modal**; consultar fonte primária específica antes de implementar ARIA.
 3. **MUST** conferir **nome, função, estados, área clicável, foco visível, teclado, hover/focus tooltip, reduced motion, leitor de tela quando pertinente e mobile/zoom**. O padrão APG é orientação técnica, não prova de conformidade WCAG.
 4. **MUST** preservar seleção, foco, filtros, estado pendente e continuidade entre panes, responsive, abertura/fechamento de overlays e atualizações assíncronas. A aplicação deve controlar persistência, cancelamento, erro e recuperação.
@@ -1135,7 +1135,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 ### 23. Taxonomia de componentes e variantes de dialogs — pesquisa 2026
 
-**Consulta obrigatória** ao [catálogo de 28 famílias de componentes e variantes de dialogs](docs/ux/taxonomia-componentes-e-dialogs-2026.md), além do [inventário dos 30 padrões W3C APG](docs/ux/componentes-ui-padroes-2026.md), antes de desenhar, alterar ou auditar qualquer widget composto. **Não confundir:** lei científica de UX/HCI, heurística/modelo, padrão semântico WAI-ARIA, variante de design system, composição visual e primitiva HTML.
+**Consulta obrigatória** ao [catálogo de 28 famílias de componentes e variantes de dialogs](prototypes/docs/ux/taxonomia-componentes-e-dialogs-2026.md), além do [inventário dos 30 padrões W3C APG](prototypes/docs/ux/componentes-ui-padroes-2026.md), antes de desenhar, alterar ou auditar qualquer widget composto. **Não confundir:** lei científica de UX/HCI, heurística/modelo, padrão semântico WAI-ARIA, variante de design system, composição visual e primitiva HTML.
 
 - **MUST** classificar o componente por **tarefa, semântica, apresentação e estado**; escolher HTML nativo ou padrão APG apropriado antes do estilo. Usar fontes oficiais do catálogo, sem instalar nova biblioteca apenas porque um padrão existe.
 - **MUST** decidir explicitamente entre **Dialog, AlertDialog, Non-modal Dialog, Popover, Menu, Combobox, SelectPanel, Sheet ou página**. Dialog de configurações com navegação interna não é AlertDialog; uma grade visual de tiles não é Listbox sem contrato de seleção.
@@ -1150,7 +1150,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 <!-- DESIGN-SYSTEM-INTEGRATION:START -->
 ## Material 3 Expressive + Apple HIG — contrato de integração para agentes (14/11/2026)
 
-**Leitura obrigatória em alterações de interface:** [DESIGN.md](DESIGN.md) é a autoridade interna para aparência, componentes e tokens; [MOTION.md](MOTION.md) é a autoridade interna para animação e física; este `AGENTS.md` é a autoridade para execução, evidências e critérios de aceite. Complementar com [arquitetura de informação](docs/ux/arquitetura-informacao-navegacao.md), [princípios de UX/UI](docs/ux/ux-ui-principles.md), documentação oficial [Material Design 3](https://m3.material.io/) e [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/). **Não substituir silenciosamente** tokens, navegação ou comportamento existentes pelo visual de outra plataforma.
+**Leitura obrigatória em alterações de interface:** [DESIGN.md](DESIGN.md) é a autoridade interna para aparência, componentes e tokens; [MOTION.md](MOTION.md) é a autoridade interna para animação e física; este `AGENTS.md` é a autoridade para execução, evidências e critérios de aceite. Complementar com [arquitetura de informação](prototypes/docs/ux/arquitetura-informacao-navegacao.md), [princípios de UX/UI](prototypes/docs/ux/ux-ui-principles.md), documentação oficial [Material Design 3](https://m3.material.io/) e [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/). **Não substituir silenciosamente** tokens, navegação ou comportamento existentes pelo visual de outra plataforma.
 
 ### Hierarquia de autoridade, fontes e modo de decisão
 
@@ -1186,7 +1186,7 @@ Estas são **16 entradas adicionais** de sucesso WCAG, além das já documentada
 
 Antes de concluir uma mudança visual/interativa, o agente **MUST**:
 - Conferir `origin/dev` **no início e no fim**; preservar mudanças concorrentes; abrir PR para `dev` conforme o fluxo do projeto.
-- Levantar tarefa/problema, registrar baseline (DOM/ARIA, screenshot ou gravação/GIF onde movimento importar), URL/viewport/tema e comparar com evidências existentes em `docs/`, `prototypes/`, issues e `docs/archives/`.
+- Levantar tarefa/problema, registrar baseline (DOM/ARIA, screenshot ou gravação/GIF onde movimento importar), URL/viewport/tema e comparar com evidências existentes em `prototypes/docs/`, `prototypes/`, issues e `prototypes/docs/archives/`.
 - Registrar decisão de design: qual padrão interno foi mantido, qual princípio M3/HIG foi **adaptado**, qual alternativa foi rejeitada e por quê. Anotar fontes primárias e as referências comunitárias quando úteis.
 - Validar teclado, leitor de tela onde possível, claro/escuro, touch/desktop, zoom, motion normal/reduzido, ações repetidas, navegação de volta, carregamento lento e erros. Para protótipos, verificar console e executar testes existentes relevantes.
 - Publicar antes/depois com texto reconstrutível e evidência no board (`board.json` e assets), regenerando `BOARD.md` com `npm run board` quando a tarefa envolva UI real. **Mudança apenas documental** não exige screenshot inventado.
@@ -1224,7 +1224,7 @@ Para cada alteração de **formulário, navegação, componente, efeito ou tema*
 <!-- DATAVIZ-AGENTS-2026:START -->
 ## Data Visualization e dashboards — contrato obrigatório para agentes (2026)
 
-**Leitura obrigatória em tarefas de KPI, dashboard, relatório, gráfico ou grafo:** [docs/ux/data-visualization-dashboards-2026.md](docs/ux/data-visualization-dashboards-2026.md), além de [docs/ux/ux-ui-principles.md](docs/ux/ux-ui-principles.md), [DESIGN.md](DESIGN.md) e, para visualização com animação, [MOTION.md](MOTION.md). O catálogo original de leis/heurísticas deste arquivo continua sendo a referência geral; **não multiplicar “leis” fictícias por tipo de gráfico**. A skill do plugin privado `especialista-ui-ux` é fonte adicional de orientação, não dependência de execução nem ferramenta instalada no repositório.
+**Leitura obrigatória em tarefas de KPI, dashboard, relatório, gráfico ou grafo:** [prototypes/docs/ux/data-visualization-dashboards-2026.md](prototypes/docs/ux/data-visualization-dashboards-2026.md), além de [prototypes/docs/ux/ux-ui-principles.md](prototypes/docs/ux/ux-ui-principles.md), [DESIGN.md](DESIGN.md) e, para visualização com animação, [MOTION.md](MOTION.md). O catálogo original de leis/heurísticas deste arquivo continua sendo a referência geral; **não multiplicar “leis” fictícias por tipo de gráfico**. A skill do plugin privado `especialista-ui-ux` é fonte adicional de orientação, não dependência de execução nem ferramenta instalada no repositório.
 
 ### Regra de produto e dados
 
@@ -1241,7 +1241,7 @@ Para cada alteração de **formulário, navegação, componente, efeito ou tema*
 ### Workflow e critérios de entrega
 
 1. Inspecionar a branch **dev** atual e os protótipos/evidências antes de mudar código; diferenciar documentação, implementação, teste e publicação.
-2. Registrar definição das métricas, hipótese de visualização, alternativa textual, escopo de filtros e casos-limite no PR/issue; consultar o [guia especializado](docs/ux/data-visualization-dashboards-2026.md).
+2. Registrar definição das métricas, hipótese de visualização, alternativa textual, escopo de filtros e casos-limite no PR/issue; consultar o [guia especializado](prototypes/docs/ux/data-visualization-dashboards-2026.md).
 3. Em mudanças reais de interface, validar comportamento e dados no navegador, gerar evidências verificáveis no board conforme as regras anteriores, documentar antes/depois e efeitos da mudança.
 4. Entregar PR para `dev` com teste/resultado verificável e, ao final, inspecionar novamente o estado remoto da `dev`; merge squash apenas quando checks e proteção permitirem.
 5. Para protótipo HTML/CSS/JS, não introduzir React/Next.js ou Power BI sem requisito. Para React/Next.js futuro, conferir a stack e os pacotes instalados antes de escolher D3/Recharts/ECharts etc.

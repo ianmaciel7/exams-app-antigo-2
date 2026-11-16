@@ -7,7 +7,7 @@
       "id": "01",
       "name": "Produto & domínio",
       "summary": "Modelo de domínio, tipos, propriedades, relações e decisões de produto.",
-      "board": "docs/board/boards/01-produto-e-dominio.md",
+      "board": "prototypes/docs/board/boards/01-produto-e-dominio.md",
       "documents": [
         {
           "title": "Board original completo",
@@ -16,12 +16,12 @@
         },
         {
           "title": "Pesquisa Capacities",
-          "path": "docs/research/capacities-issue-32-2026-11-15.md",
+          "path": "prototypes/docs/research/capacities-issue-32-2026-11-15.md",
           "role": "Referência oficial sobre objetos, tipos e propriedades."
         },
         {
           "title": "Arquitetura da informação",
-          "path": "docs/ux/arquitetura-informacao-navegacao.md",
+          "path": "prototypes/docs/ux/arquitetura-informacao-navegacao.md",
           "role": "Distingue jornadas de tipos de objeto."
         }
       ],
@@ -80,41 +80,41 @@
       "id": "02",
       "name": "Workspace & UX",
       "summary": "Navegação, layout, painéis, propriedades, grafo, responsividade e interação.",
-      "board": "docs/board/boards/02-workspace-e-ux.md",
+      "board": "prototypes/docs/board/boards/02-workspace-e-ux.md",
       "documents": [
         {
           "title": "Arquitetura da informação e navegação",
-          "path": "docs/ux/arquitetura-informacao-navegacao.md",
+          "path": "prototypes/docs/ux/arquitetura-informacao-navegacao.md",
           "role": "Rotas, jornadas e hierarquia de páginas."
         },
         {
           "title": "Leis e princípios UX/UI",
-          "path": "docs/ux/ux-ui-principles.md",
+          "path": "prototypes/docs/ux/ux-ui-principles.md",
           "role": "Catálogo de princípios e critérios."
         },
         {
           "title": "Padrões de componentes UI",
-          "path": "docs/ux/componentes-ui-padroes-2026.md",
+          "path": "prototypes/docs/ux/componentes-ui-padroes-2026.md",
           "role": "Inventário de padrões verificáveis."
         },
         {
           "title": "Taxonomia de componentes e dialogs",
-          "path": "docs/ux/taxonomia-componentes-e-dialogs-2026.md",
+          "path": "prototypes/docs/ux/taxonomia-componentes-e-dialogs-2026.md",
           "role": "Variantes e semântica de componentes."
         },
         {
           "title": "Data Visualization e dashboards",
-          "path": "docs/ux/data-visualization-dashboards-2026.md",
+          "path": "prototypes/docs/ux/data-visualization-dashboards-2026.md",
           "role": "Métricas, gráficos e dashboards."
         },
         {
           "title": "Pesquisa UX — 20 fontes",
-          "path": "docs/ux/pesquisa-20-fontes-2026-11.md",
+          "path": "prototypes/docs/ux/pesquisa-20-fontes-2026-11.md",
           "role": "Síntese de referências."
         },
         {
           "title": "Auditoria Material 3 e Apple",
-          "path": "docs/auditorias/231-skills-m3-apple.md",
+          "path": "prototypes/docs/auditorias/231-skills-m3-apple.md",
           "role": "Auditoria de design systems."
         }
       ],
@@ -237,26 +237,26 @@
       "id": "03",
       "name": "Fluxos de estudo",
       "summary": "Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs.",
-      "board": "docs/board/boards/03-fluxos-de-estudo.md",
+      "board": "prototypes/docs/board/boards/03-fluxos-de-estudo.md",
       "documents": [
         {
           "title": "Estratégia de questões — #230",
-          "path": "docs/pesquisas/230-estrategia-questoes/README.md",
+          "path": "prototypes/docs/pesquisas/230-estrategia-questoes/README.md",
           "role": "Consolidação do fluxo e pendências."
         },
         {
           "title": "Pesquisa QConcursos — #31",
-          "path": "docs/research/qconcursos-issue-31-2026-11-15.md",
+          "path": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md",
           "role": "Filtros, cadernos e simulados."
         },
         {
           "title": "Inventário ExamTopics",
-          "path": "docs/research/examtopics-inventory.md",
+          "path": "prototypes/docs/research/examtopics-inventory.md",
           "role": "Banco, questões e tópicos."
         },
         {
           "title": "Gran Questões — #62",
-          "path": "docs/research/gran-questoes-issue-62-2026-11-15.md",
+          "path": "prototypes/docs/research/gran-questoes-issue-62-2026-11-15.md",
           "role": "Evidências públicas e critérios pendentes."
         },
         {
@@ -354,21 +354,21 @@
       "id": "04",
       "name": "Arquitetura técnica",
       "summary": "Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes.",
-      "board": "docs/board/boards/04-arquitetura-tecnica.md",
+      "board": "prototypes/docs/board/boards/04-arquitetura-tecnica.md",
       "documents": [
         {
           "title": "Claude Pro Storage API",
-          "path": "docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md",
+          "path": "prototypes/docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md",
           "role": "Fila, proxy, segurança e homologação."
         },
         {
           "title": "Investigação Storage Bridge",
-          "path": "docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
+          "path": "prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
           "role": "Experimentos e limites da sandbox."
         },
         {
           "title": "Fontes de verdade do board",
-          "path": "docs/board/FONTES.md",
+          "path": "prototypes/docs/board/FONTES.md",
           "role": "Responsabilidades e sincronização."
         }
       ],
@@ -427,36 +427,36 @@
       "id": "05",
       "name": "Pesquisa & benchmarks",
       "summary": "Fontes externas, análises de concorrentes, dossiês e sínteses de referência.",
-      "board": "docs/board/boards/05-pesquisa-e-decisoes.md",
+      "board": "prototypes/docs/board/boards/05-pesquisa-e-decisoes.md",
       "documents": [
         {
           "title": "Capacities — #32",
-          "path": "docs/research/capacities-issue-32-2026-11-15.md",
+          "path": "prototypes/docs/research/capacities-issue-32-2026-11-15.md",
           "role": "Fatos oficiais e lacunas."
         },
         {
           "title": "ExamTopics — inventário",
-          "path": "docs/research/examtopics-inventory.md",
+          "path": "prototypes/docs/research/examtopics-inventory.md",
           "role": "Sitemap e funcionalidades observadas."
         },
         {
           "title": "QConcursos — #31",
-          "path": "docs/research/qconcursos-issue-31-2026-11-15.md",
+          "path": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md",
           "role": "Observações e critérios pendentes."
         },
         {
           "title": "Gran Questões — #62",
-          "path": "docs/research/gran-questoes-issue-62-2026-11-15.md",
+          "path": "prototypes/docs/research/gran-questoes-issue-62-2026-11-15.md",
           "role": "Evidências públicas."
         },
         {
           "title": "Auditoria UI skills — #156",
-          "path": "docs/research/issue-156-ui-skills-audit-2026-11-15.md",
+          "path": "prototypes/docs/research/issue-156-ui-skills-audit-2026-11-15.md",
           "role": "Material 3, Apple e limites."
         },
         {
           "title": "Pesquisa UX — 20 fontes",
-          "path": "docs/ux/pesquisa-20-fontes-2026-11.md",
+          "path": "prototypes/docs/ux/pesquisa-20-fontes-2026-11.md",
           "role": "Síntese de referências."
         },
         {
@@ -541,26 +541,26 @@
       "id": "06",
       "name": "Evidências & qualidade",
       "summary": "Capturas, antes/depois, resultados de testes e rastreabilidade verificável.",
-      "board": "docs/board/boards/06-evidencias-e-qualidade.md",
+      "board": "prototypes/docs/board/boards/06-evidencias-e-qualidade.md",
       "documents": [
         {
           "title": "Catálogo de evidências",
-          "path": "docs/evidence/CATALOG.md",
+          "path": "prototypes/docs/evidence/CATALOG.md",
           "role": "Índice navegável das mídias."
         },
         {
           "title": "Catálogo estruturado",
-          "path": "docs/evidence/catalog.json",
+          "path": "prototypes/docs/evidence/catalog.json",
           "role": "Hashes, duplicatas, órfãos e referências."
         },
         {
           "title": "Galeria de evidências",
-          "path": "docs/evidence/gallery.html",
+          "path": "prototypes/docs/evidence/gallery.html",
           "role": "Visualização filtrável."
         },
         {
           "title": "Relatório de reestruturação",
-          "path": "docs/board/RELATORIO-REESTRUTURACAO.md",
+          "path": "prototypes/docs/board/RELATORIO-REESTRUTURACAO.md",
           "role": "Histórico, validações e limitações."
         }
       ],
@@ -595,7 +595,7 @@
       "id": "07",
       "name": "Entrega & arquivo",
       "summary": "Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas.",
-      "board": "docs/board/boards/07-entrega-e-arquivo.md",
+      "board": "prototypes/docs/board/boards/07-entrega-e-arquivo.md",
       "documents": [
         {
           "title": "README de protótipos",
@@ -604,22 +604,22 @@
         },
         {
           "title": "Catálogo de branches arquivadas",
-          "path": "docs/archives/README.md",
+          "path": "prototypes/docs/archives/README.md",
           "role": "Índice dos bundles e snapshots."
         },
         {
           "title": "Mapa de reutilização",
-          "path": "docs/archives/REUSE-MAP.md",
+          "path": "prototypes/docs/archives/REUSE-MAP.md",
           "role": "Candidatos e limites de reutilização."
         },
         {
           "title": "Fontes de verdade",
-          "path": "docs/board/FONTES.md",
+          "path": "prototypes/docs/board/FONTES.md",
           "role": "Governança do board."
         },
         {
           "title": "Relatório da reestruturação",
-          "path": "docs/board/RELATORIO-REESTRUTURACAO.md",
+          "path": "prototypes/docs/board/RELATORIO-REESTRUTURACAO.md",
           "role": "Histórico das fases anteriores."
         }
       ],

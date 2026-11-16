@@ -51,6 +51,6 @@ flowchart LR
 
 - [Central de boards](../README.md)
 - [Fontes de verdade](../FONTES.md)
-- [Canvas original](../../../prototypes/board-exam-app/BOARD.md)
-- [Dados do canvas](../../../prototypes/board-exam-app/board.json)
+- [Canvas original](../../../board-exam-app/BOARD.md)
+- [Dados do canvas](../../../board-exam-app/board.json)
 - [Catálogo de evidências](../../evidence/CATALOG.md)

@@ -36,15 +36,15 @@ flowchart TB
 
 ## Documentos
 
-- [BOARD.md — conteúdo completo](../../../prototypes/board-exam-app/BOARD.md)
+- [BOARD.md — conteúdo completo](../../../board-exam-app/BOARD.md)
 - [Pesquisa Capacities — tipos e propriedades](../../research/capacities-issue-32-2026-11-15.md)
 - [Arquitetura da informação](../../ux/arquitetura-informacao-navegacao.md)
 
 ## Blocos originais
 
-- [e52 — Espaço, Objeto e Tipo](../../../prototypes/board-exam-app/index.html#e52)
-- [e104 — Tipos e relações](../../../prototypes/board-exam-app/index.html#e104)
-- [e99 — Hierarquia de tipos](../../../prototypes/board-exam-app/index.html#e99)
-- [e95 — Glossário](../../../prototypes/board-exam-app/index.html#e95)
-- [e152 — Decisões de modelagem](../../../prototypes/board-exam-app/index.html#e152)
-- [e1150 — Matriz de decisões](../../../prototypes/board-exam-app/index.html#e1150)
+- [e52 — Espaço, Objeto e Tipo](../../../board-exam-app/index.html#e52)
+- [e104 — Tipos e relações](../../../board-exam-app/index.html#e104)
+- [e99 — Hierarquia de tipos](../../../board-exam-app/index.html#e99)
+- [e95 — Glossário](../../../board-exam-app/index.html#e95)
+- [e152 — Decisões de modelagem](../../../board-exam-app/index.html#e152)
+- [e1150 — Matriz de decisões](../../../board-exam-app/index.html#e1150)

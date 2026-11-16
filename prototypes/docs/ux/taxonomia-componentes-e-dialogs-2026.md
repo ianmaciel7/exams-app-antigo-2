@@ -1,6 +1,6 @@
 # Taxonomia de componentes de UI, dialogs e padrões de interação — 2026
 
-> Pesquisa de 14/11/2026. Fontes: Context7 (W3C WAI-ARIA APG, Material Design 3, Adobe React Aria) e documentação primária adicional (IBM Carbon, GitHub Primer, MDN, Apple HIG, Atlassian, GOV.UK, USWDS). **É um inventário de famílias e variantes, não uma lista de leis científicas e nem a alegação de que todos os sistemas de design usam os mesmos nomes.** Documento complementar a [30 padrões W3C APG](componentes-ui-padroes-2026.md), [leis e princípios](ux-ui-principles.md), [AGENTS.md](../../AGENTS.md) e [DESIGN.md](../../DESIGN.md).
+> Pesquisa de 14/11/2026. Fontes: Context7 (W3C WAI-ARIA APG, Material Design 3, Adobe React Aria) e documentação primária adicional (IBM Carbon, GitHub Primer, MDN, Apple HIG, Atlassian, GOV.UK, USWDS). **É um inventário de famílias e variantes, não uma lista de leis científicas e nem a alegação de que todos os sistemas de design usam os mesmos nomes.** Documento complementar a [30 padrões W3C APG](componentes-ui-padroes-2026.md), [leis e princípios](ux-ui-principles.md), [AGENTS.md](../../../AGENTS.md) e [DESIGN.md](../../../DESIGN.md).
 
 ## 1. Modelo de classificação: não misturar quatro eixos
 
@@ -162,7 +162,7 @@ Leis, heurísticas e padrões devem permanecer em **índices separados**. A deci
 
 ## 7. Pontos concretos a auditar no protótipo atual da dev
 
-Fonte: [prototypes/exam-app-0.1.1/index.html](../../prototypes/exam-app-0.1.1/index.html) consultado na dev em 14/11/2026.
+Fonte: [prototypes/exam-app-0.1.1/index.html](../../exam-app-0.1.1/index.html) consultado na dev em 14/11/2026.
 
 | Código/função atual | Comparação com a taxonomia | Estado |
 |---|---|---|

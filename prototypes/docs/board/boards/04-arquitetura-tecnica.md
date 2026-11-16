@@ -35,9 +35,9 @@ flowchart TB
 
 ## Blocos originais
 
-- [e410 — Camada de IA](../../../prototypes/board-exam-app/index.html#e410)
-- [e1248 — Infraestrutura de agentes](../../../prototypes/board-exam-app/index.html#e1248)
-- [e1371 — Storage Bridge PoC](../../../prototypes/board-exam-app/index.html#e1371)
-- [e1440 — Storage homologado](../../../prototypes/board-exam-app/index.html#e1440)
-- [e1407 — Isolamento do grafo](../../../prototypes/board-exam-app/index.html#e1407)
-- [e1450 — Máquina de estados de carregamento](../../../prototypes/board-exam-app/index.html#e1450)
+- [e410 — Camada de IA](../../../board-exam-app/index.html#e410)
+- [e1248 — Infraestrutura de agentes](../../../board-exam-app/index.html#e1248)
+- [e1371 — Storage Bridge PoC](../../../board-exam-app/index.html#e1371)
+- [e1440 — Storage homologado](../../../board-exam-app/index.html#e1440)
+- [e1407 — Isolamento do grafo](../../../board-exam-app/index.html#e1407)
+- [e1450 — Máquina de estados de carregamento](../../../board-exam-app/index.html#e1450)

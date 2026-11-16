@@ -1,441 +1,14 @@
 {
   "versao_schema": 1,
-  "gerado_em": "2026-11-16T19:05:29Z",
+  "gerado_em": "2026-11-16T21:38:11Z",
   "resumo": {
-    "midias": 356,
-    "orfaos": 17,
-    "duplicatas_grupos": 18,
+    "midias": 366,
+    "orfaos": 23,
+    "duplicatas_grupos": 19,
     "testes_json": 16,
     "pares_antes_depois": 32
   },
   "evidencias": [
-    {
-      "id": "EV-FA55075E",
-      "caminho": "docs/archives/exams-app-old-backup-old-1-dark.png",
-      "sha256": "7193b1cbb419a070257a4d9d879c4edb68e5775de71ce6636c67bd9bffe59aa7",
-      "bytes": 23509,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo, tema escuro",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Exams app old backup old 1 dark.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/exams-app-old-backup-old-1.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-BA7BA825",
-      "caminho": "docs/archives/exams-app-old-backup-old-1.png",
-      "sha256": "c451bc9c51f593a8e80c65f00039e7328ab5d1aa600b69e5b43ed846b6e65d31",
-      "bytes": 22853,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Exams app old backup old 1.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/exams-app-old-backup-old-1.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-68798296",
-      "caminho": "docs/archives/notes-app-old-10.png",
-      "sha256": "b4d06762abb25c516cf175f3f4a50de7525d1e67ddb5a88915a08b26efc34fa5",
-      "bytes": 72632,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 10.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-10.md",
-        "prototypes/board-exam-app/BOARD.md",
-        "prototypes/board-exam-app/board.json"
-      ],
-      "no_board_json": true,
-      "status_integridade": "duplicata",
-      "duplicatas": [
-        "prototypes/board-exam-app/assets/archive_notes_app_old_10_recall_home.png"
-      ],
-      "canonica": false,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-1CA1E346",
-      "caminho": "docs/archives/notes-app-old-11.png",
-      "sha256": "baca8440271e706be3c53c6b32dee596aedd90d9b34ca6839c0f885e35bd2bed",
-      "bytes": 23640,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 11.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-11.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-07BC7C45",
-      "caminho": "docs/archives/notes-app-old-2.png",
-      "sha256": "4022a52fe2010adcf260b1840e01404b5e80eced74a34fa9c61a0435d2e3471d",
-      "bytes": 111779,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 2.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-2.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-2F20CEB7",
-      "caminho": "docs/archives/notes-app-old-3.png",
-      "sha256": "13144f04b0f75fac8fb3557dc94528c6b5273e5826186bb990e633ef18f590c5",
-      "bytes": 53003,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 3.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-3.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "duplicata",
-      "duplicatas": [
-        "prototypes/board-exam-app/assets/archive_notes_app_old_3_capacities_shell.png"
-      ],
-      "canonica": false,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-6601AA2B",
-      "caminho": "docs/archives/notes-app-old-4.png",
-      "sha256": "270be8f3de5c8e6eada524a8a85bc2ffd44a64299b4b384688cf36c3b6a19810",
-      "bytes": 87163,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 4.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-4.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "duplicata",
-      "duplicatas": [
-        "prototypes/board-exam-app/assets/archive_notes_app_old_4_capacities_shell.png"
-      ],
-      "canonica": false,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-059EE4CF",
-      "caminho": "docs/archives/notes-app-old-5.png",
-      "sha256": "0e50099c9f448d0b1bc7404761a7983338ab51cda4844aa4d7f26397b986851b",
-      "bytes": 46387,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 5.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-5.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-F2B0C376",
-      "caminho": "docs/archives/notes-app-old-6.png",
-      "sha256": "a62cfc4cbb5597bf12ae08d5b6247596be380d7feb9e669e5d097cfaa2922ba3",
-      "bytes": 50925,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 6.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-6.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-B681834A",
-      "caminho": "docs/archives/notes-app-old-7.png",
-      "sha256": "88dc852f64f0e36f390de5417c5811800b19c6603af272089fe1bf10ce9a07ab",
-      "bytes": 63525,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 7.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-7.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-6EC2786C",
-      "caminho": "docs/archives/notes-app-old-8.png",
-      "sha256": "28c96152aa1ba68ae4136ab845ba1f23cbcb81f1baa34e9ac955a17a1387b4f3",
-      "bytes": 58592,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 8.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-8.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
-    {
-      "id": "EV-8822E0C4",
-      "caminho": "docs/archives/notes-app-old-9.png",
-      "sha256": "8dab82e9af58e5e89c0f2d0ca536e8f940f907e59582ae12b14ca7e597b97754",
-      "bytes": 40814,
-      "data": "2026-11-13",
-      "origem": "Arquivo: versão histórica",
-      "tipo": "evidência externa",
-      "ambiente": "protótipo",
-      "estado_momento": null,
-      "funcionalidade": "Versões arquivadas",
-      "contexto": "Notes app old 9.",
-      "finalidade": "Registrar captura para referência ou validação",
-      "vinculos": {
-        "issue": null,
-        "issue_url": null,
-        "pesquisa": {
-          "titulo": "Catálogo de versões arquivadas",
-          "caminho": "docs/archives/README.md"
-        },
-        "decisao": null,
-        "pr": null,
-        "board_elemento": null
-      },
-      "referenciado_em": [
-        "docs/archives/README.md",
-        "docs/archives/notes-app-old-9.md"
-      ],
-      "no_board_json": false,
-      "status_integridade": "ok",
-      "duplicatas": [],
-      "canonica": true,
-      "orfao": false,
-      "par_antes_depois": null
-    },
     {
       "id": "EV-1E71F373",
       "caminho": "prototypes/board-exam-app/assets/02126f3b520aaad9b5c9577b472379a8.png",
@@ -1083,7 +656,7 @@
       "no_board_json": false,
       "status_integridade": "ok",
       "duplicatas": [
-        "docs/archives/notes-app-old-10.png"
+        "prototypes/docs/archives/notes-app-old-10.png"
       ],
       "canonica": true,
       "orfao": false,
@@ -1116,7 +689,7 @@
       "no_board_json": false,
       "status_integridade": "ok",
       "duplicatas": [
-        "docs/archives/notes-app-old-3.png"
+        "prototypes/docs/archives/notes-app-old-3.png"
       ],
       "canonica": true,
       "orfao": false,
@@ -1149,7 +722,7 @@
       "no_board_json": false,
       "status_integridade": "ok",
       "duplicatas": [
-        "docs/archives/notes-app-old-4.png"
+        "prototypes/docs/archives/notes-app-old-4.png"
       ],
       "canonica": true,
       "orfao": false,
@@ -1607,7 +1180,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1642,7 +1215,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1677,7 +1250,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1711,7 +1284,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1745,7 +1318,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1779,7 +1352,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1813,7 +1386,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1847,7 +1420,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1881,7 +1454,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1915,7 +1488,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1949,7 +1522,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -1983,7 +1556,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -2017,7 +1590,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -2051,7 +1624,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -2085,7 +1658,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa Capacities",
-          "caminho": "docs/research/capacities-issue-32-2026-11-15.md"
+          "caminho": "prototypes/docs/research/capacities-issue-32-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -2248,8 +1821,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "docs/reports/claude-storage-api/PR_DESCRIPTION.md",
         "prototypes/board-exam-app/BOARD.md",
+        "prototypes/docs/reports/claude-storage-api/PR_DESCRIPTION.md",
         "tests/claude-storage-api-poc/e2e-sync.test.mjs"
       ],
       "no_board_json": false,
@@ -2315,8 +1888,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
         "prototypes/board-exam-app/BOARD.md",
+        "prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
         "tests/claude-storage-bridge-poc/cdp-runner.mjs"
       ],
       "no_board_json": false,
@@ -2384,8 +1957,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "docs/reports/claude-storage-api/PR_DESCRIPTION.md",
         "prototypes/board-exam-app/BOARD.md",
+        "prototypes/docs/reports/claude-storage-api/PR_DESCRIPTION.md",
         "tests/claude-storage-api-poc/e2e-sync.test.mjs"
       ],
       "no_board_json": false,
@@ -2451,8 +2024,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
         "prototypes/board-exam-app/BOARD.md",
+        "prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
         "tests/claude-storage-bridge-poc/cdp-runner.mjs"
       ],
       "no_board_json": false,
@@ -2461,6 +2034,130 @@
         "prototypes/board-exam-app/assets/claude-storage-bridge/evidence-iframe-csp-blocked.png"
       ],
       "canonica": false,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-FD467126",
+      "caminho": "prototypes/board-exam-app/assets/evidence/antes-depois-cargo.png",
+      "sha256": "5c9eb2cebfce9a8af9b5fe235ee704aa0db12062866b711ee7d081f383109942",
+      "bytes": 204260,
+      "data": "2026-11-16",
+      "origem": "Board: captura de assets",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Tipos de objeto e propriedades",
+      "contexto": "Antes depois cargo.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "scripts/build-evidence-catalog.py"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-CC160D5D",
+      "caminho": "prototypes/board-exam-app/assets/evidence/antes-depois-concurso.png",
+      "sha256": "5dabd59830a8c63f9065fc5d771841f1b540353234a55cfa01a9a6fd9293c03a",
+      "bytes": 309849,
+      "data": "2026-11-16",
+      "origem": "Board: captura de assets",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "Antes depois concurso.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "scripts/build-evidence-catalog.py"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-6756EAA7",
+      "caminho": "prototypes/board-exam-app/assets/evidence/antes-depois-edicao.png",
+      "sha256": "7b7598ff07e3801ecca1db1e48f23632b954894d3096784a68764ac3f738db70",
+      "bytes": 250274,
+      "data": "2026-11-16",
+      "origem": "Board: captura de assets",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "Antes depois edicao.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "scripts/build-evidence-catalog.py"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-E15D23EE",
+      "caminho": "prototypes/board-exam-app/assets/evidence/antes-depois-tipo-pdf.png",
+      "sha256": "9638cc76be0b1a6984fe9f8143b3b1b1c848b58aeb5a9c6eaf20e951ab62c58e",
+      "bytes": 183303,
+      "data": "2026-11-16",
+      "origem": "Board: captura de assets",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "PDF Reader",
+      "contexto": "Antes depois tipo pdf.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "scripts/build-evidence-catalog.py"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
       "orfao": false,
       "par_antes_depois": null
     },
@@ -2482,7 +2179,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa ExamTopics",
-          "caminho": "docs/research/examtopics-inventory.md"
+          "caminho": "prototypes/docs/research/examtopics-inventory.md"
         },
         "decisao": null,
         "pr": null,
@@ -2516,7 +2213,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa ExamTopics",
-          "caminho": "docs/research/examtopics-inventory.md"
+          "caminho": "prototypes/docs/research/examtopics-inventory.md"
         },
         "decisao": null,
         "pr": null,
@@ -2550,7 +2247,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa ExamTopics",
-          "caminho": "docs/research/examtopics-inventory.md"
+          "caminho": "prototypes/docs/research/examtopics-inventory.md"
         },
         "decisao": null,
         "pr": null,
@@ -2582,7 +2279,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa ExamTopics",
-          "caminho": "docs/research/examtopics-inventory.md"
+          "caminho": "prototypes/docs/research/examtopics-inventory.md"
         },
         "decisao": null,
         "pr": null,
@@ -2617,7 +2314,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa ExamTopics",
-          "caminho": "docs/research/examtopics-inventory.md"
+          "caminho": "prototypes/docs/research/examtopics-inventory.md"
         },
         "decisao": null,
         "pr": null,
@@ -7800,7 +7497,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -7837,7 +7534,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -7871,7 +7568,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -7906,7 +7603,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -7941,7 +7638,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -7975,7 +7672,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8010,7 +7707,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8044,7 +7741,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8078,7 +7775,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8110,7 +7807,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8145,7 +7842,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8179,7 +7876,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8213,7 +7910,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8248,7 +7945,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8284,7 +7981,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8321,7 +8018,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8357,7 +8054,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8393,7 +8090,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8428,7 +8125,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8462,7 +8159,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8497,7 +8194,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8529,7 +8226,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8566,7 +8263,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8600,7 +8297,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8637,7 +8334,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8671,7 +8368,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8706,7 +8403,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8740,7 +8437,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8774,7 +8471,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8808,7 +8505,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8840,7 +8537,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8872,7 +8569,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8908,7 +8605,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8940,7 +8637,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -8972,7 +8669,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9004,7 +8701,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9036,7 +8733,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9071,7 +8768,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9105,7 +8802,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9137,7 +8834,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9172,7 +8869,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9207,7 +8904,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9241,7 +8938,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -9277,7 +8974,7 @@
         "issue_url": null,
         "pesquisa": {
           "titulo": "Pesquisa QConcursos",
-          "caminho": "docs/research/qconcursos-issue-31-2026-11-15.md"
+          "caminho": "prototypes/docs/research/qconcursos-issue-31-2026-11-15.md"
         },
         "decisao": null,
         "pr": null,
@@ -11922,15 +11619,614 @@
       "canonica": true,
       "orfao": false,
       "par_antes_depois": null
+    },
+    {
+      "id": "EV-F7CAEAD5",
+      "caminho": "prototypes/docs/archives/exams-app-old-backup-old-1-dark.png",
+      "sha256": "7193b1cbb419a070257a4d9d879c4edb68e5775de71ce6636c67bd9bffe59aa7",
+      "bytes": 23509,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo, tema escuro",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Exams app old backup old 1 dark.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/exams-app-old-backup-old-1.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-7C8E84F6",
+      "caminho": "prototypes/docs/archives/exams-app-old-backup-old-1.png",
+      "sha256": "c451bc9c51f593a8e80c65f00039e7328ab5d1aa600b69e5b43ed846b6e65d31",
+      "bytes": 22853,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Exams app old backup old 1.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/exams-app-old-backup-old-1.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-8A7871DE",
+      "caminho": "prototypes/docs/archives/notes-app-old-10.png",
+      "sha256": "b4d06762abb25c516cf175f3f4a50de7525d1e67ddb5a88915a08b26efc34fa5",
+      "bytes": 72632,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 10.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/board-exam-app/BOARD.md",
+        "prototypes/board-exam-app/board.json",
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-10.md"
+      ],
+      "no_board_json": true,
+      "status_integridade": "duplicata",
+      "duplicatas": [
+        "prototypes/board-exam-app/assets/archive_notes_app_old_10_recall_home.png"
+      ],
+      "canonica": false,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-6BC4D901",
+      "caminho": "prototypes/docs/archives/notes-app-old-11.png",
+      "sha256": "baca8440271e706be3c53c6b32dee596aedd90d9b34ca6839c0f885e35bd2bed",
+      "bytes": 23640,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 11.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-11.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-302F67B0",
+      "caminho": "prototypes/docs/archives/notes-app-old-2.png",
+      "sha256": "4022a52fe2010adcf260b1840e01404b5e80eced74a34fa9c61a0435d2e3471d",
+      "bytes": 111779,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 2.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-2.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-9AF8008D",
+      "caminho": "prototypes/docs/archives/notes-app-old-3.png",
+      "sha256": "13144f04b0f75fac8fb3557dc94528c6b5273e5826186bb990e633ef18f590c5",
+      "bytes": 53003,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 3.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-3.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "duplicata",
+      "duplicatas": [
+        "prototypes/board-exam-app/assets/archive_notes_app_old_3_capacities_shell.png"
+      ],
+      "canonica": false,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-BD8E80EC",
+      "caminho": "prototypes/docs/archives/notes-app-old-4.png",
+      "sha256": "270be8f3de5c8e6eada524a8a85bc2ffd44a64299b4b384688cf36c3b6a19810",
+      "bytes": 87163,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 4.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-4.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "duplicata",
+      "duplicatas": [
+        "prototypes/board-exam-app/assets/archive_notes_app_old_4_capacities_shell.png"
+      ],
+      "canonica": false,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-61E69793",
+      "caminho": "prototypes/docs/archives/notes-app-old-5.png",
+      "sha256": "0e50099c9f448d0b1bc7404761a7983338ab51cda4844aa4d7f26397b986851b",
+      "bytes": 46387,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 5.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-5.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-7B65C878",
+      "caminho": "prototypes/docs/archives/notes-app-old-6.png",
+      "sha256": "a62cfc4cbb5597bf12ae08d5b6247596be380d7feb9e669e5d097cfaa2922ba3",
+      "bytes": 50925,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 6.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-6.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-6AFE8892",
+      "caminho": "prototypes/docs/archives/notes-app-old-7.png",
+      "sha256": "88dc852f64f0e36f390de5417c5811800b19c6603af272089fe1bf10ce9a07ab",
+      "bytes": 63525,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 7.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-7.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-64326BDA",
+      "caminho": "prototypes/docs/archives/notes-app-old-8.png",
+      "sha256": "28c96152aa1ba68ae4136ab845ba1f23cbcb81f1baa34e9ac955a17a1387b4f3",
+      "bytes": 58592,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 8.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-8.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-A90B6B0C",
+      "caminho": "prototypes/docs/archives/notes-app-old-9.png",
+      "sha256": "8dab82e9af58e5e89c0f2d0ca536e8f940f907e59582ae12b14ca7e597b97754",
+      "bytes": 40814,
+      "data": null,
+      "origem": "Arquivo: versão histórica",
+      "tipo": "evidência externa",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Versões arquivadas",
+      "contexto": "Notes app old 9.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": {
+          "titulo": "Catálogo de versões arquivadas",
+          "caminho": "prototypes/docs/archives/README.md"
+        },
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [
+        "prototypes/docs/archives/README.md",
+        "prototypes/docs/archives/notes-app-old-9.md"
+      ],
+      "no_board_json": false,
+      "status_integridade": "ok",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": false,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-E0D23CC7",
+      "caminho": "prototypes/docs/board/jornadas/j1-busca-layout-desktop.png",
+      "sha256": "b9cba196a0deaee8727ae58970d889e78ee843ed78b3bf30f87caec8797cbb32",
+      "bytes": 129841,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "J1 busca layout desktop.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": true,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-FAD2341F",
+      "caminho": "prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png",
+      "sha256": "29fb6b7366cf6ec6876f5487bbd875cc933b60be4a0be99a02ad19d6188288d9",
+      "bytes": 219233,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "J3 teclado lista desktop.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": true,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-6943C84A",
+      "caminho": "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png",
+      "sha256": "f9eeca876214947df4f5cee8b8fa4fd85849ab423ea1baf024cc0a3647f49b4b",
+      "bytes": 383650,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "J4 canvas foco e500 desktop.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [
+        "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png"
+      ],
+      "canonica": true,
+      "orfao": true,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-C6AAD7CD",
+      "caminho": "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png",
+      "sha256": "f9eeca876214947df4f5cee8b8fa4fd85849ab423ea1baf024cc0a3647f49b4b",
+      "bytes": 383650,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo",
+      "estado_momento": null,
+      "funcionalidade": "Não classificado",
+      "contexto": "J5 canvas visao geral.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [
+        "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png"
+      ],
+      "canonica": false,
+      "orfao": true,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-DDD7AEED",
+      "caminho": "prototypes/docs/board/jornadas/j6-mestre-320.png",
+      "sha256": "9e7a2cb55eadb73841486addde48dd90280ab7ccba3559f79ddfd95a0e390ff3",
+      "bytes": 147175,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo, viewport 320px",
+      "estado_momento": null,
+      "funcionalidade": "Workspace e navegação",
+      "contexto": "J6 mestre 320.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": true,
+      "par_antes_depois": null
+    },
+    {
+      "id": "EV-5D00EEDD",
+      "caminho": "prototypes/docs/board/jornadas/j6-mestre-390.png",
+      "sha256": "14f5215e0e93a45556f5aca7b6a527ee3987f184dee9034a319b557c85a0d9c9",
+      "bytes": 168016,
+      "data": null,
+      "origem": "Documentação",
+      "tipo": "a classificar",
+      "ambiente": "protótipo, viewport 390px",
+      "estado_momento": null,
+      "funcionalidade": "Workspace e navegação",
+      "contexto": "J6 mestre 390.",
+      "finalidade": "Registrar captura para referência ou validação",
+      "vinculos": {
+        "issue": null,
+        "issue_url": null,
+        "pesquisa": null,
+        "decisao": null,
+        "pr": null,
+        "board_elemento": null
+      },
+      "referenciado_em": [],
+      "no_board_json": false,
+      "status_integridade": "órfão",
+      "duplicatas": [],
+      "canonica": true,
+      "orfao": true,
+      "par_antes_depois": null
     }
   ],
   "testes": [
-    {
-      "id": "EV-B2D8F988",
-      "caminho": "docs/reports/claude-storage-bridge/cdp-execution-log.json",
-      "tipo": "teste executado",
-      "data": "2026-11-14"
-    },
     {
       "id": "EV-F111080F",
       "caminho": "prototypes/board-exam-app/issue120_e2e.json",
@@ -12020,6 +12316,12 @@
       "caminho": "prototypes/board-exam-app/pdf112_diagnostic.json",
       "tipo": "teste executado",
       "data": "2026-11-14"
+    },
+    {
+      "id": "EV-00EC9842",
+      "caminho": "prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json",
+      "tipo": "teste executado",
+      "data": null
     }
   ],
   "orfaos": [
@@ -12039,7 +12341,13 @@
     "prototypes/board-exam-app/assets/qconcursos_live_question_tab_cadernos_save.png",
     "prototypes/board-exam-app/assets/qconcursos_live_question_tab_comentarios.png",
     "prototypes/board-exam-app/assets/qconcursos_live_question_texto_associado.png",
-    "prototypes/board-exam-app/assets/readwise_srs_freeform_input_book_select.png"
+    "prototypes/board-exam-app/assets/readwise_srs_freeform_input_book_select.png",
+    "prototypes/docs/board/jornadas/j1-busca-layout-desktop.png",
+    "prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png",
+    "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png",
+    "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png",
+    "prototypes/docs/board/jornadas/j6-mestre-320.png",
+    "prototypes/docs/board/jornadas/j6-mestre-390.png"
   ],
   "referencias_quebradas": [
     {
@@ -12107,15 +12415,15 @@
       "referencia": "notes-app-old-10.png"
     },
     {
-      "arquivo": "docs/research/issue-156-ui-skills-audit-2026-11-15.md",
+      "arquivo": "prototypes/docs/research/issue-156-ui-skills-audit-2026-11-15.md",
       "referencia": "examples/shape-corners.svg"
     },
     {
-      "arquivo": "docs/pesquisas/230-estrategia-questoes/roteiro-captura.md",
+      "arquivo": "prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md",
       "referencia": "03-busca-filtros-aberto-desktop-20261116.png"
     },
     {
-      "arquivo": "docs/pesquisas/230-estrategia-questoes/roteiro-captura.md",
+      "arquivo": "prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md",
       "referencia": "NN-tela-estado-viewport-AAAAMMDD.png"
     },
     {
@@ -12235,19 +12543,19 @@
     {
       "canonica": "prototypes/board-exam-app/assets/archive_notes_app_old_10_recall_home.png",
       "duplicatas": [
-        "docs/archives/notes-app-old-10.png"
+        "prototypes/docs/archives/notes-app-old-10.png"
       ]
     },
     {
       "canonica": "prototypes/board-exam-app/assets/archive_notes_app_old_3_capacities_shell.png",
       "duplicatas": [
-        "docs/archives/notes-app-old-3.png"
+        "prototypes/docs/archives/notes-app-old-3.png"
       ]
     },
     {
       "canonica": "prototypes/board-exam-app/assets/archive_notes_app_old_4_capacities_shell.png",
       "duplicatas": [
-        "docs/archives/notes-app-old-4.png"
+        "prototypes/docs/archives/notes-app-old-4.png"
       ]
     },
     {
@@ -12339,6 +12647,12 @@
       "canonica": "prototypes/board-exam-app/assets/readwise_srs_preferences_email_schedule_2.png",
       "duplicatas": [
         "prototypes/board-exam-app/assets/readwise_srs_review_settings_algorithm.png"
+      ]
+    },
+    {
+      "canonica": "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png",
+      "duplicatas": [
+        "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png"
       ]
     }
   ],

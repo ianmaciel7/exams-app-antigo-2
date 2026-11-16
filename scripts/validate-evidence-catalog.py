@@ -17,8 +17,8 @@ import subprocess
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-CATALOG = os.path.join(ROOT, 'docs', 'evidence', 'catalog.json')
-GALLERY = os.path.join(ROOT, 'docs', 'evidence', 'gallery.html')
+CATALOG = os.path.join(ROOT, 'prototypes', 'docs', 'evidence', 'catalog.json')
+GALLERY = os.path.join(ROOT, 'prototypes', 'docs', 'evidence', 'gallery.html')
 TIPOS = {'evidência externa', 'captura do protótipo', 'inspeção técnica', 'teste executado', 'a classificar'}
 INTEGRIDADE = {'ok', 'duplicata', 'órfão'}
 

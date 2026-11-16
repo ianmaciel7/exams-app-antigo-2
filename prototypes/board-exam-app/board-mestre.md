@@ -6,25 +6,25 @@
 
 | Board | Escopo | Blocos | Documentos | Diagrama |
 | --- | --- | ---: | ---: | --- |
-| 01 — Produto & domínio | Modelo de domínio, tipos, propriedades, relações e decisões de produto. | 6 | 3 | [Abrir](../../docs/board/boards/01-produto-e-dominio.md) |
-| 02 — Workspace & UX | Navegação, layout, painéis, propriedades, grafo, responsividade e interação. | 14 | 7 | [Abrir](../../docs/board/boards/02-workspace-e-ux.md) |
-| 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 7 | [Abrir](../../docs/board/boards/03-fluxos-de-estudo.md) |
-| 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](../../docs/board/boards/04-arquitetura-tecnica.md) |
-| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 8 | [Abrir](../../docs/board/boards/05-pesquisa-e-decisoes.md) |
-| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 4 | [Abrir](../../docs/board/boards/06-evidencias-e-qualidade.md) |
-| 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 7 | 5 | [Abrir](../../docs/board/boards/07-entrega-e-arquivo.md) |
+| 01 — Produto & domínio | Modelo de domínio, tipos, propriedades, relações e decisões de produto. | 6 | 3 | [Abrir](../docs/board/boards/01-produto-e-dominio.md) |
+| 02 — Workspace & UX | Navegação, layout, painéis, propriedades, grafo, responsividade e interação. | 14 | 7 | [Abrir](../docs/board/boards/02-workspace-e-ux.md) |
+| 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 7 | [Abrir](../docs/board/boards/03-fluxos-de-estudo.md) |
+| 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](../docs/board/boards/04-arquitetura-tecnica.md) |
+| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 8 | [Abrir](../docs/board/boards/05-pesquisa-e-decisoes.md) |
+| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 4 | [Abrir](../docs/board/boards/06-evidencias-e-qualidade.md) |
+| 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 7 | 5 | [Abrir](../docs/board/boards/07-entrega-e-arquivo.md) |
 
 ## 01 — Produto & domínio
 
 Modelo de domínio, tipos, propriedades, relações e decisões de produto.
 
-[Abrir diagrama do board](../../docs/board/boards/01-produto-e-dominio.md)
+[Abrir diagrama do board](../docs/board/boards/01-produto-e-dominio.md)
 
 ### Documentos
 
 - [Board original completo](BOARD.md) — Fonte canônica dos blocos e especificações.
-- [Pesquisa Capacities](../../docs/research/capacities-issue-32-2026-11-15.md) — Referência oficial sobre objetos, tipos e propriedades.
-- [Arquitetura da informação](../../docs/ux/arquitetura-informacao-navegacao.md) — Distingue jornadas de tipos de objeto.
+- [Pesquisa Capacities](../docs/research/capacities-issue-32-2026-11-15.md) — Referência oficial sobre objetos, tipos e propriedades.
+- [Arquitetura da informação](../docs/ux/arquitetura-informacao-navegacao.md) — Distingue jornadas de tipos de objeto.
 
 ### Blocos do canvas original
 
@@ -41,17 +41,17 @@ Modelo de domínio, tipos, propriedades, relações e decisões de produto.
 
 Navegação, layout, painéis, propriedades, grafo, responsividade e interação.
 
-[Abrir diagrama do board](../../docs/board/boards/02-workspace-e-ux.md)
+[Abrir diagrama do board](../docs/board/boards/02-workspace-e-ux.md)
 
 ### Documentos
 
-- [Arquitetura da informação e navegação](../../docs/ux/arquitetura-informacao-navegacao.md) — Rotas, jornadas e hierarquia de páginas.
-- [Leis e princípios UX/UI](../../docs/ux/ux-ui-principles.md) — Catálogo de princípios e critérios.
-- [Padrões de componentes UI](../../docs/ux/componentes-ui-padroes-2026.md) — Inventário de padrões verificáveis.
-- [Taxonomia de componentes e dialogs](../../docs/ux/taxonomia-componentes-e-dialogs-2026.md) — Variantes e semântica de componentes.
-- [Data Visualization e dashboards](../../docs/ux/data-visualization-dashboards-2026.md) — Métricas, gráficos e dashboards.
-- [Pesquisa UX — 20 fontes](../../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
-- [Auditoria Material 3 e Apple](../../docs/auditorias/231-skills-m3-apple.md) — Auditoria de design systems.
+- [Arquitetura da informação e navegação](../docs/ux/arquitetura-informacao-navegacao.md) — Rotas, jornadas e hierarquia de páginas.
+- [Leis e princípios UX/UI](../docs/ux/ux-ui-principles.md) — Catálogo de princípios e critérios.
+- [Padrões de componentes UI](../docs/ux/componentes-ui-padroes-2026.md) — Inventário de padrões verificáveis.
+- [Taxonomia de componentes e dialogs](../docs/ux/taxonomia-componentes-e-dialogs-2026.md) — Variantes e semântica de componentes.
+- [Data Visualization e dashboards](../docs/ux/data-visualization-dashboards-2026.md) — Métricas, gráficos e dashboards.
+- [Pesquisa UX — 20 fontes](../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
+- [Auditoria Material 3 e Apple](../docs/auditorias/231-skills-m3-apple.md) — Auditoria de design systems.
 
 ### Blocos do canvas original
 
@@ -76,14 +76,14 @@ Navegação, layout, painéis, propriedades, grafo, responsividade e interação
 
 Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs.
 
-[Abrir diagrama do board](../../docs/board/boards/03-fluxos-de-estudo.md)
+[Abrir diagrama do board](../docs/board/boards/03-fluxos-de-estudo.md)
 
 ### Documentos
 
-- [Estratégia de questões — #230](../../docs/pesquisas/230-estrategia-questoes/README.md) — Consolidação do fluxo e pendências.
-- [Pesquisa QConcursos — #31](../../docs/research/qconcursos-issue-31-2026-11-15.md) — Filtros, cadernos e simulados.
-- [Inventário ExamTopics](../../docs/research/examtopics-inventory.md) — Banco, questões e tópicos.
-- [Gran Questões — #62](../../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas e critérios pendentes.
+- [Estratégia de questões — #230](../docs/pesquisas/230-estrategia-questoes/README.md) — Consolidação do fluxo e pendências.
+- [Pesquisa QConcursos — #31](../docs/research/qconcursos-issue-31-2026-11-15.md) — Filtros, cadernos e simulados.
+- [Inventário ExamTopics](../docs/research/examtopics-inventory.md) — Banco, questões e tópicos.
+- [Gran Questões — #62](../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas e critérios pendentes.
 - [Análise QConcursos](../analises/analise-qconcursos.md) — Análise funcional complementar.
 - [Análise ExamTopics](../analises/analise-examtopics.md) — Análise funcional complementar.
 - [Dossiê Readwise Reader e SRS](READWISE_DOSSIER.md) — Leitura, destaques e revisão espaçada.
@@ -106,13 +106,13 @@ Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PD
 
 Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes.
 
-[Abrir diagrama do board](../../docs/board/boards/04-arquitetura-tecnica.md)
+[Abrir diagrama do board](../docs/board/boards/04-arquitetura-tecnica.md)
 
 ### Documentos
 
-- [Claude Pro Storage API](../../docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md) — Fila, proxy, segurança e homologação.
-- [Investigação Storage Bridge](../../docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md) — Experimentos e limites da sandbox.
-- [Fontes de verdade do board](../../docs/board/FONTES.md) — Responsabilidades e sincronização.
+- [Claude Pro Storage API](../docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md) — Fila, proxy, segurança e homologação.
+- [Investigação Storage Bridge](../docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md) — Experimentos e limites da sandbox.
+- [Fontes de verdade do board](../docs/board/FONTES.md) — Responsabilidades e sincronização.
 
 ### Blocos do canvas original
 
@@ -129,16 +129,16 @@ Serviços, estado, IA, sincronização, integrações e infraestrutura de agente
 
 Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 
-[Abrir diagrama do board](../../docs/board/boards/05-pesquisa-e-decisoes.md)
+[Abrir diagrama do board](../docs/board/boards/05-pesquisa-e-decisoes.md)
 
 ### Documentos
 
-- [Capacities — #32](../../docs/research/capacities-issue-32-2026-11-15.md) — Fatos oficiais e lacunas.
-- [ExamTopics — inventário](../../docs/research/examtopics-inventory.md) — Sitemap e funcionalidades observadas.
-- [QConcursos — #31](../../docs/research/qconcursos-issue-31-2026-11-15.md) — Observações e critérios pendentes.
-- [Gran Questões — #62](../../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas.
-- [Auditoria UI skills — #156](../../docs/research/issue-156-ui-skills-audit-2026-11-15.md) — Material 3, Apple e limites.
-- [Pesquisa UX — 20 fontes](../../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
+- [Capacities — #32](../docs/research/capacities-issue-32-2026-11-15.md) — Fatos oficiais e lacunas.
+- [ExamTopics — inventário](../docs/research/examtopics-inventory.md) — Sitemap e funcionalidades observadas.
+- [QConcursos — #31](../docs/research/qconcursos-issue-31-2026-11-15.md) — Observações e critérios pendentes.
+- [Gran Questões — #62](../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas.
+- [Auditoria UI skills — #156](../docs/research/issue-156-ui-skills-audit-2026-11-15.md) — Material 3, Apple e limites.
+- [Pesquisa UX — 20 fontes](../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
 - [Análise QConcursos](../analises/analise-qconcursos.md) — Inventário local.
 - [Análise ExamTopics](../analises/analise-examtopics.md) — Inventário local.
 
@@ -159,14 +159,14 @@ Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 
 Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 
-[Abrir diagrama do board](../../docs/board/boards/06-evidencias-e-qualidade.md)
+[Abrir diagrama do board](../docs/board/boards/06-evidencias-e-qualidade.md)
 
 ### Documentos
 
-- [Catálogo de evidências](../../docs/evidence/CATALOG.md) — Índice navegável das mídias.
-- [Catálogo estruturado](../../docs/evidence/catalog.json) — Hashes, duplicatas, órfãos e referências.
-- [Galeria de evidências](../../docs/evidence/gallery.html) — Visualização filtrável.
-- [Relatório de reestruturação](../../docs/board/RELATORIO-REESTRUTURACAO.md) — Histórico, validações e limitações.
+- [Catálogo de evidências](../docs/evidence/CATALOG.md) — Índice navegável das mídias.
+- [Catálogo estruturado](../docs/evidence/catalog.json) — Hashes, duplicatas, órfãos e referências.
+- [Galeria de evidências](../docs/evidence/gallery.html) — Visualização filtrável.
+- [Relatório de reestruturação](../docs/board/RELATORIO-REESTRUTURACAO.md) — Histórico, validações e limitações.
 
 ### Blocos do canvas original
 
@@ -180,15 +180,15 @@ Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 
 Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas.
 
-[Abrir diagrama do board](../../docs/board/boards/07-entrega-e-arquivo.md)
+[Abrir diagrama do board](../docs/board/boards/07-entrega-e-arquivo.md)
 
 ### Documentos
 
 - [README de protótipos](../README.md) — Ponto de entrada para protótipos e boards.
-- [Catálogo de branches arquivadas](../../docs/archives/README.md) — Índice dos bundles e snapshots.
-- [Mapa de reutilização](../../docs/archives/REUSE-MAP.md) — Candidatos e limites de reutilização.
-- [Fontes de verdade](../../docs/board/FONTES.md) — Governança do board.
-- [Relatório da reestruturação](../../docs/board/RELATORIO-REESTRUTURACAO.md) — Histórico das fases anteriores.
+- [Catálogo de branches arquivadas](../docs/archives/README.md) — Índice dos bundles e snapshots.
+- [Mapa de reutilização](../docs/archives/REUSE-MAP.md) — Candidatos e limites de reutilização.
+- [Fontes de verdade](../docs/board/FONTES.md) — Governança do board.
+- [Relatório da reestruturação](../docs/board/RELATORIO-REESTRUTURACAO.md) — Histórico das fases anteriores.
 
 ### Blocos do canvas original
 
