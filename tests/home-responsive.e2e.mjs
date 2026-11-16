@@ -11,7 +11,7 @@ const report = { created: new Date().toISOString(), cases: [], pageErrors: [], l
   'This test covers the primary Home CTAs and layout, not every screen and drawer of Issue #132.',
 ] };
 const widths = [320, 360, 375, 390, 412, 480, 600, 768, 820, 1024, 1280, 1440];
-const url = (port) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1/index.html#/espaco';
+const url = (port) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1__index.html#/espaco';
 
 async function openAt(port, width) {
   const context = await browser.newContext({ viewport: { width, height: 850 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });

@@ -13,7 +13,7 @@ const q={
  materia:'Língua Portuguesa',enunciado:'QUESTAO DO CADERNO - Qual é a resposta?',
  alternativas:{A:'Errado',B:'Correto'},gabarito:'B',origem:'manual',criada:1763140000000,
 };
-const url=(port,route)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#'+route;
+const url=(port,route)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#'+route;
 const shot=async(page,name)=>{
  await page.screenshot({path:path.join(base,'issue75_'+name+'.png'),animations:'disabled'});
  report.scenarios.push({screenshot:'issue75_'+name+'.png',url:page.url()});

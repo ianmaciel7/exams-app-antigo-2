@@ -11,7 +11,7 @@ const report = { created: new Date().toISOString(), cases: [], pageErrors: [], l
   'This test does not establish a CPU/battery/FPS budget or full WCAG conformance.',
   'Only the global graph route is covered, not the right contextual mini-graph.',
 ] };
-const addr = 'http://127.0.0.1:8765/exam-app-0.1.1/index.html#/grafico';
+const addr = 'http://127.0.0.1:8765/exam-app-0.1.1__index.html#/grafico';
 
 async function openGraph(width) {
   const ctx = await browser.newContext({

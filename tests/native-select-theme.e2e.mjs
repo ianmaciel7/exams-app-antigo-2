@@ -11,7 +11,7 @@ const report = { browser: 'Chromium', platform: process.platform, scenarios: [],
 ] };
 const browser = await chromium.launch({ headless: true });
 
-const startUrl = 'http://127.0.0.1:8765/exam-app-0.1.1/index.html#/questoes';
+const startUrl = 'http://127.0.0.1:8765/exam-app-0.1.1__index.html#/questoes';
 
 async function start(colorScheme, viewport = { width: 1366, height: 900 }) {
   const context = await browser.newContext({ colorScheme, viewport, reducedMotion: 'reduce' });
