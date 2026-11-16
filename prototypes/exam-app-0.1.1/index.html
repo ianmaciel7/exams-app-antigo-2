@@ -4904,7 +4904,7 @@ function paintProps(d){
   const box=$('props'), o0=OV();
   const cust=typeProps(d.type).filter(x=>PROPS[x.k].custom).map(x=>{ const kind=pkOf(x.from,x.k), v=o0['cv:doc:'+d.id+'|'+x.k]; return '<div class="pi"><small>'+esc(PROPS[x.k].n)+'</small><button type="button" class="op-ed" data-edit-cv="'+esc('doc:'+d.id+'|'+x.k)+'" aria-label="Editar '+esc(PROPS[x.k].n)+'">'+cvShow(x.k,kind,v)+'</button></div>'; }).join('');
   const pages=store.get('pages:'+d.id), ed=d.edicao&&edicaoById(d.edicao);
-  box.innerHTML='<p class="ph">Sobre este documento</p><p class="doc-summary">'+esc(d.g)+(pages?' · '+pages+' páginas':'')+(ed?' · '+esc(ed.ano):'')+'</p><details><summary>Ver detalhes do arquivo</summary><div class="pgrid">'+items.map(i=>'<div class="pi"><small>'+esc(i.l)+'</small>'+chipA(i.v,i.h)+'</div>').join('')+cust+'</div></details>';
+  box.innerHTML='<p class="ph">Sobre este documento</p><p class="doc-summary">'+esc(d.g)+(pages?' · '+pages+' páginas':'')+(ed?' · '+esc(ed.ano):'')+'</p><details><summary>Ver detalhes do arquivo</summary><div class="pgrid">'+items.map(i=>'<div class="pi"><small>'+esc(i.l)+'</small>'+chipA(i.v,i.h)+'</div>').join('')+cust+inverseRowsPi(d.id)+'</div></details>';
   const open_=store.get('propsOpen'); box.hidden=!(open_===null?false:open_);
   $('propBtn').classList.toggle('on',!box.hidden); $('propBtn').setAttribute('aria-expanded',String(!box.hidden));
 }
@@ -5013,12 +5013,33 @@ function cvShow(k,kind,v){ if(v===undefined||v==='') return '<span class="op-val
   if(c==='date') return '<span class="op-val">'+esc(String(v).split('-').reverse().join('/'))+'</span>';
   if(c==='rel'){ const t=relTargets(kind[1]||'Edição').find(x=>x.id===v); return t?'<a class="chip" href="'+t.h+'">'+esc(t.t)+'</a>':'<span class="op-val op-ph">(removido)</span>'; }
   return '<span class="op-val">'+esc(v)+'</span>'; }
+// Propriedades bidirecionais (#84): uma relação gravada num objeto aparece também no alvo, como referência inversa (somente leitura).
+function inverseRels(targetId){
+  if(!targetId) return [];
+  const o=OV(), out=[];
+  Object.keys(o).forEach(key=>{
+    if(!key.startsWith('cv:')||o[key]!==targetId) return;
+    const body=key.slice(3), bar=body.lastIndexOf('|'), iid=body.slice(0,bar), k=body.slice(bar+1);
+    if(!PROPS[k]||!PROPS[k].custom) return;
+    const isDoc=iid.startsWith('doc:'), pre=isDoc?'doc':iid.slice(0,iid.indexOf(':')), id=iid.slice(iid.indexOf(':')+1);
+    const dSrc=isDoc?allDocs().find(v=>v.id===id):null;
+    const owner=typeProps(isDoc?((dSrc||{}).type||''):pre).find(x=>x.k===k);
+    if(!owner||pkOf(owner.from,k)[0]!=='rel') return;
+    let src=null;
+    if(isDoc){ if(dSrc) src={t:dSrc.t,h:'#'+dSrc.id}; }
+    else { const find={concurso:concursoById,edicao:edicaoById,cargo:cargoById}[pre]; const e=find&&find(id); if(e) src={t:e.t,h:'#/'+pre+'/'+id}; }
+    if(src) out.push({k,src});
+  });
+  return out;
+}
+const inverseRowsOp=targetId=>inverseRels(targetId).map(({k,src})=>opPropRow(PROPS[k].n+' (inverso)','<a class="chip" href="'+src.h+'">'+esc(src.t)+'</a>')).join('');
+const inverseRowsPi=targetId=>inverseRels(targetId).map(({k,src})=>'<div class="pi"><small>'+esc(PROPS[k].n)+' (inverso)</small><a class="chip" href="'+src.h+'">'+esc(src.t)+'</a></div>').join('');
 function custRows(iid){ if(!/^(concurso|edicao|cargo):/.test(iid||'')) return '';
   const t=iid.slice(0,iid.indexOf(':')), o=OV();
   return typeProps(t).filter(x=>PROPS[x.k].custom).map(x=>{ const kind=pkOf(x.from,x.k), key='cv:'+iid+'|'+x.k, v=o[key];
     const val=cvShow(x.k,kind,v);
     const inner=(kind[0]==='rel'&&v?'<span class="op-relv">'+val+'</span> ':'')+'<button type="button" class="op-ed" data-edit-cv="'+esc(iid+'|'+x.k)+'" aria-label="Editar '+esc(PROPS[x.k].n)+'">'+(kind[0]==='rel'&&v?'<span class="op-val op-ph">Alterar</span>':val)+'</button>';
-    return opPropRow(PROPS[x.k].n,inner); }).join(''); }
+    return opPropRow(PROPS[x.k].n,inner); }).join('')+inverseRowsOp(iid.slice(iid.indexOf(':')+1)); }
 const opProps=(rows,iid,inline=false)=>{
   const o=OV(); const r=rows.filter(x=>x&&(x[1]||(iid&&EMPTYOK.includes(x[0]))));
   const baseItems=r.map(([l,v])=>{ const k='prop:'+iid+'|'+l; let inner=v;
