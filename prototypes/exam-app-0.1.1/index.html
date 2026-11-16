@@ -3873,7 +3873,9 @@ nav.addEventListener('click',e=>{
     if(!queries.some(q=>q.id===queryId))return;
     tdUpdate('pdf',{tab:'all',triage:'all',query:queryId,search:''});
   }
-  wsOpenMain('#/tipo/pdf');paintNav();
+  if((location.hash||'')==='#/tipo/pdf')showObjs('/tipo/pdf');
+  else wsOpenMain('#/tipo/pdf');
+  paintNav();
 });
 function typesSec(){
   const key=space+':__types', closed=!openTypes.has(key), mine=objsOf(space);
