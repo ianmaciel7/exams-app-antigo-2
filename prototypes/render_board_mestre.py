@@ -2,7 +2,7 @@
 """Gera board-mestre.md a partir do índice temático e valida seus vínculos."""
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+ROOT = os.path.abspath(os.path.join(HERE, ".."))
 M = json.load(open(os.path.join(HERE, "board-mestre.json"), encoding="utf8"))
 errors = []
 def repo_rel(path):
@@ -19,7 +19,7 @@ for area in M["areas"]:
         lines.append("- [" + item["title"] + "](" + repo_rel(item["path"]) + ") — " + item["role"])
     lines += ["", "### Blocos do canvas original", "", "| Bloco | Tipo de conteúdo | ID |", "| --- | --- | --- |"]
     for item in area["cards"]:
-        blocks = ", ".join("[" + bid + "](index.html#" + bid + ")" for bid in item["blocks"])
+        blocks = ", ".join("[" + bid + "](board-exam-app__index.html#" + bid + ")" for bid in item["blocks"])
         lines.append("| " + item["name"] + " | " + item["kind"] + " | " + blocks + " |")
         for doc in item.get("documents", []):
             repo_rel(doc["path"])
