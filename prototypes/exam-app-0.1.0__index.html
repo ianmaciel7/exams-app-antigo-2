@@ -301,7 +301,7 @@ svg{flex:none}
 </div></div>
 <div class="toast" id="toast" role="status"><span id="toastTxt"></span><button id="toastUndo">Desfazer</button></div>
 
-<script src="pdf.min.js"></script>
+<script src="exam-app-0.1.0__pdf.min.js"></script>
 <script>
 (function(){
 const BASE_DOCS = [
@@ -460,7 +460,7 @@ async function buildIndex(){
     for(const d of docs){
       if(textIdx.has(d.id)){ idxDone++; continue; }
       try{
-        const pdf=await pdfjsLib.getDocument(d.base.data?{data:d.base.data.slice()}:'pdfs/'+d.base.f).promise;
+        const pdf=await pdfjsLib.getDocument(d.base.data?{data:d.base.data.slice()}:'exam-app-0.1.0__pdfs__'+d.base.f).promise;
         const pages=[];
         for(let i=1;i<=pdf.numPages;i++){ const tc=await (await pdf.getPage(i)).getTextContent(); const raw=tc.items.map(x=>x.str).join(' ').replace(/\s+/g,' '); pages.push({raw,n:norm(raw)}); }
         textIdx.set(d.id,pages); pdf.destroy();
@@ -542,7 +542,7 @@ function toggleTheme(){ const dark=root.dataset.theme?root.dataset.theme==='dark
 /* ---- viewer ---- */
 let cur=null, token=0, zoom=1, io=null, baseW=0;
 const hasPdf=!!window.pdfjsLib;
-if(hasPdf) pdfjsLib.GlobalWorkerOptions.workerSrc='pdf.worker.min.js';
+if(hasPdf) pdfjsLib.GlobalWorkerOptions.workerSrc='exam-app-0.1.0__pdf.worker.min.js';
 function setZoomLabel(){ $('zfit').textContent=Math.round(zoom*100)+'%'; }
 function blank(title,html){ if(cur&&cur.pdf){ try{cur.pdf.destroy();}catch(e){} } cur=null; token++;
   $('docTitle').textContent=title; $('docMeta').textContent=''; $('pg').textContent=''; $('rp').style.width='0'; $('zfit').textContent='';
@@ -557,7 +557,7 @@ async function open(d){
   if(cur&&cur.pdf){ try{cur.pdf.destroy();}catch(e){} }
   cur={d}; markCurrent();
   try{
-    const pdf=await pdfjsLib.getDocument(d.data?{data:d.data.slice()}:'pdfs/'+d.f).promise;
+    const pdf=await pdfjsLib.getDocument(d.data?{data:d.data.slice()}:'exam-app-0.1.0__pdfs__'+d.f).promise;
     if(my!==token){ pdf.destroy(); return; }
     const vp=(await pdf.getPage(1)).getViewport({scale:1});
     cur={d,pdf,w:vp.width,h:vp.height,total:pdf.numPages,rendered:new Set()};
