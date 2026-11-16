@@ -6883,7 +6883,17 @@ view.addEventListener('click',e=>{
  const sc=e.target.closest('[data-srs-save-cloze]');if(sc){const raw=view.querySelector('#srs-text').value.trim(),selected=[...view.querySelectorAll('.srs-word.selected')];if(!raw||!selected.length){toast('Cole o texto e selecione as palavras a ocultar.');return;}const words=raw.split(/(\s+)/);const ids=selected.map(x=>Number(x.dataset.srsWord)).sort((a,b)=>a-b);let out='',active=false;words.forEach((w,i)=>{if(ids.includes(i)){if(!active)out+='{{c1::';out+=w;active=true;}else{if(active)out+='}}';out+=w;active=false;}});if(active)out+='}}';saveCard('cloze',out,view.querySelector('#srs-cloze-question').value.trim(),'');return;}
  const qa=e.target.closest('[data-srs-save-qa]');if(qa){const q=view.querySelector('#srs-question').value.trim(),a=view.querySelector('#srs-answer').value.trim();if(!q||!a){toast('Informe pergunta e resposta.');return;}saveCard('qa','',q,a);return;}
  const grade=e.target.closest('[data-srs-grade]');if(grade){const el=grade.closest('[data-srs-card]');if(srsGradeCard(el.dataset.srsCard,grade.dataset.srsGrade))showReview();return;}
- const fb=e.target.closest('[data-srs-feedback]');if(fb){const choice=prompt('Ajuste de intervalo: Never, Soon, Later ou Someday');const gradeMap={'Never':'never','Soon':'soon','Later':'later','Someday':'someday'};const el=fb.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el.dataset.srsCard);if(card&&gradeMap[choice]){srsGradeCard(card.id,gradeMap[choice]);showReview();}return;}
+ const fb=e.target.closest('[data-srs-feedback]');if(fb){
+   const el=fb.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el?.dataset.srsCard);
+   if(!card)return;
+   formDialog({title:'Calibrar intervalo de revisão',text:'Escolha quando este cartão deve voltar para sua revisão diária.',
+     ok:'Aplicar intervalo',fields:[{id:'grade',label:'Quando revisar novamente?',type:'select',
+       value:card.lastGrade||'soon',
+       options:[['never','Nunca · dominar'],['soon','Em breve · 2 dias'],['later','Depois · 10 dias'],['someday','Algum dia · 45 dias']]}]})
+   .then(choice=>{if(choice&&['never','soon','later','someday'].includes(choice.grade)){
+     if(srsGradeCard(card.id,choice.grade))showReview();
+   }});return;
+ }
  const discard=e.target.closest('[data-srs-discard]');if(discard){const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===discard.dataset.srsDiscard);if(card)card.discarded=true;srsSave(d);showReview();return;}
  const saveSettings=e.target.closest('[data-srs-save-settings]');if(saveSettings){const d=srsLoad();d.goal=Number(view.querySelector('[data-srs-setting="goal"]').value);d.recency=Number(view.querySelector('[data-srs-setting="recency"]').value);d.bonus=Number(view.querySelector('[data-srs-setting="bonus"]').value);d.theme=view.querySelector('[data-srs-setting="theme"]').value.trim();srsSave(d);showReview();return;}
 });
