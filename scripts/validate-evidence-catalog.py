@@ -92,7 +92,15 @@ def main():
         novo = json.load(open(CATALOG, encoding='utf-8'))
         novo['gerado_em'] = c['gerado_em']
         if novo != c:
-            fail('catálogo desatualizado: rode scripts/build-evidence-catalog.py e faça commit')
+            diffs = [k for k in set(novo) | set(c) if novo.get(k) != c.get(k)]
+            detalhe = f' (chaves: {sorted(diffs)})'
+            if 'evidencias' in diffs:
+                for a, b in zip(c['evidencias'], novo['evidencias']):
+                    if a != b:
+                        campos = [k for k in set(a) | set(b) if a.get(k) != b.get(k)]
+                        detalhe += f" primeira diferença: {a.get('caminho')} campos {sorted(campos)}"
+                        break
+            fail('catálogo desatualizado: rode scripts/build-evidence-catalog.py e faça commit' + detalhe)
     except subprocess.CalledProcessError as err:
         fail(f'falha ao regenerar catálogo: {err.stderr.decode()[:300]}')
 
