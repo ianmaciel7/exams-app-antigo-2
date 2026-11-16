@@ -66,6 +66,29 @@ try{
       await page.locator('[data-td-tab="orgao|all"]').click();
       assert.equal(await page.locator('[data-td-layout="orgao"]').inputValue(),'list','layout persists');
       report.checks.push({width,steps:'gallery, table, Kanban, mural, embed, list, search, overview persistence'});
+
+      // Saved queries filter real objects, survive reload and can be cleared (#56).
+      await page.locator('[data-td-tab="orgao|overview"]').click();
+      await page.locator('[data-td-create-query="orgao"]').click();
+      await page.locator('#fd_nome').fill('Filtro por tipo e nome');
+      await page.locator('#fd_busca').fill('unknown:javascript');
+      await page.locator('#dlg [data-x="1"]').click();
+      assert.ok(await page.locator('#fe_busca:not([hidden])').count()>0,'malformed query rejected');
+      await page.locator('#fd_busca').fill('type:orgao AND name:sem-resultado-xyz');
+      await page.locator('#dlg [data-x="1"]').click();
+      const query=page.locator('[data-td-apply-query^="orgao|"]').filter({hasText:'Filtro por tipo e nome'});
+      await query.waitFor();
+      await query.click();
+      assert.equal(await page.locator('[data-td-item]:visible').count(),0,'AND query filters out unmatched objects');
+      assert.match(await page.locator('.td-collection-banner').innerText(),/type:orgao AND name:sem-resultado-xyz/);
+      await page.screenshot({path:path.join(assets,'issue56_saved_query_'+width+'.png'),animations:'disabled'});
+      await page.reload({waitUntil:'domcontentloaded'});
+      await page.locator('[data-td-clear-query="orgao"]').waitFor();
+      assert.equal(await page.locator('[data-td-item]:visible').count(),0,'query persists across reload');
+      await page.locator('[data-td-clear-query="orgao"]').click();
+      assert.ok(await page.locator('[data-td-item]:visible').count()>0,'clearing saved query restores objects');
+      report.checks.push({width,steps:'typed AND query validation, save, apply, reload, clear and screenshot'});
+
       if(width===1366){
         await page.goto(base+'#/tipo/questao',{waitUntil:'domcontentloaded'});
         await page.locator('.td-content').waitFor({timeout:20000});
