@@ -41,6 +41,18 @@
 </style>
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 .op-wide>.op-main{grid-column:1/-1!important}
+
+/* Object-specific controls and editable metadata, without heavy cards (#57). */
+.op-head-tools{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.op-head-tools button{border:1px solid var(--line);background:var(--side);color:var(--text);border-radius:999px;padding:6px 10px;min-height:32px;font:inherit;font-size:12px;cursor:pointer}
+.op-head-tools button:hover,.op-head-tools button:focus-visible{background:var(--hover)}
+.op-head-tools button[aria-pressed="true"]{background:var(--hover);font-weight:650}
+.op-meta{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.op-meta-chip{display:inline-flex;max-width:100%;border-radius:999px;background:var(--hover);padding:3px 9px;font-size:11px;overflow-wrap:anywhere}
+.op-meta button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;padding:4px 6px;min-height:28px;border-radius:5px;cursor:pointer}
+.op-meta button:hover,.op-meta button:focus-visible{color:var(--text);background:var(--hover)}
+@container(max-width:480px){.op-head-tools{width:100%}}
+
 .op-navn{font-size:11.5px;color:var(--muted);margin-left:3px;font-variant-numeric:tabular-nums}
 .sc-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}.sc-filters select,#scCount{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text)}.sc-count{margin-left:auto;font-size:12.5px;color:var(--muted)}
 .qf-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}.qf-wrap{position:relative}.qf-btn{gap:7px}.qf-btn svg{color:var(--muted)}
@@ -4968,8 +4980,24 @@ function opPage(o){
   const collectionHref='#/'+collectionType+'/'+String(o.iid||'').slice(collectionType.length+1);
   const assigned=hasCollections?tdCollections(collectionType).filter(c=>tdCollectionHrefs(c).includes(collectionHref)).length:0;
   const collectionTools=hasCollections?'<button type="button" class="op-collections" data-op-collections="'+esc(collectionType)+'" data-op-href="'+esc(collectionHref)+'" aria-label="Gerenciar coleções de '+esc(o.title)+'">Coleções'+(assigned?' <small>'+assigned+'</small>':'')+'</button>':'';
-  return '<article class="op'+(o.wide?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
-   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1></div>'+(o.actions?'<div class="op-actions">'+(o.actions||'')+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div></article>';
+  const isObjectHeader=/^(concurso|edicao|cargo|orgao|banca|questao):/.test(o.iid||'')&&!o.tab;
+  const widePreference=isObjectHeader&&!!store.get('object-wide:'+space+':'+o.iid);
+  const metaKey='object-meta:'+space+':'+o.iid;
+  const storedMeta=isObjectHeader?(store.get(metaKey)||{}):{};
+  const alias=String(storedMeta.alias||'').trim();
+  const tags=(Array.isArray(storedMeta.tags)?storedMeta.tags:[]).filter(x=>typeof x==='string'&&x.trim()).slice(0,8);
+  const metaRow=isObjectHeader?'<div class="op-meta" aria-label="Aliases e etiquetas do objeto">'+
+    (alias?'<span class="op-meta-chip" title="Alias">Alias: '+esc(alias)+'</span>':'')+
+    tags.map(tag=>'<span class="op-meta-chip">'+esc(tag)+'</span>').join('')+
+    '<button type="button" data-op-meta="'+esc(o.iid)+'" aria-label="Editar aliases e etiquetas">'+
+      (alias||tags.length?'Editar aliases e etiquetas':'+ Alias e etiquetas')+'</button></div>':'';
+  const headerTools=isObjectHeader?'<div class="op-head-tools" role="group" aria-label="Ações do objeto">'+
+    '<button type="button" data-op-width="'+esc(o.iid)+'" aria-pressed="'+widePreference+'" aria-label="Alternar largura da página do objeto">'+
+      (widePreference?'Largura padrão':'Largura ampla')+'</button>'+
+    '<button type="button" data-op-assistant="'+esc(o.iid)+'" aria-label="Abrir assistente no painel direito">IA</button>'+
+    '<button type="button" data-op-more="'+esc(o.iid)+'" aria-label="Mais ações do objeto">⋯</button></div>':'';
+  return '<article class="op'+((o.wide||widePreference)?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
+   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div></article>';
 }
 function opStats(){ const st=studyStats(), tot=(questionBank&&questionBank.length)||70;
   if(!st.done) return '';
@@ -5138,7 +5166,35 @@ function opTipoPage(t,T,list,sp){
   return tdTypePage(t,T,list,{overviewExtra:properties});
 }
 view.addEventListener('click',async e=>{
-  let el=e.target.closest('[data-op-collections]');
+  let el=e.target.closest('[data-op-width]');
+  if(el){const id=el.dataset.opWidth,key='object-wide:'+space+':'+id;store.set(key,!store.get(key));route(true);return;}
+  el=e.target.closest('[data-op-meta]');
+  if(el){
+    const id=el.dataset.opMeta,key='object-meta:'+space+':'+id,existing=store.get(key)||{};
+    const v=await formDialog({title:'Aliases e etiquetas',ok:'Salvar',fields:[
+      {id:'alias',label:'Alias (opcional)',value:String(existing.alias||'')},
+      {id:'tags',label:'Etiquetas separadas por vírgula',value:(Array.isArray(existing.tags)?existing.tags:[]).join(', ')}]});
+    if(!v)return;
+    const alias=String(v.alias||'').trim().slice(0,80);
+    const tags=[...new Set(String(v.tags||'').split(/[,;\n]/).map(x=>x.trim().slice(0,40)).filter(Boolean))].slice(0,8);
+    store.set(key,{alias,tags});route(true);return;
+  }
+  el=e.target.closest('[data-op-assistant]');
+  if(el){const id=el.dataset.opAssistant;rpAddTab('ia','#/'+id.replace(':','/'));return;}
+  el=e.target.closest('[data-op-more]');
+  if(el){
+    const id=el.dataset.opMore,href='#/'+id.replace(':','/');
+    miniMenu(el,[
+      {t:'Links de entrada no painel',fn:()=>rpAddTab('back',href)},
+      {t:'Conteúdo relacionado no painel',fn:()=>rpAddTab('rel',href)},
+      {t:'Editar aliases e etiquetas',fn:()=>view.querySelector('[data-op-meta]')?.click()},
+      {t:'Copiar link do objeto',fn:async()=>{
+        try{await navigator.clipboard.writeText(location.origin+location.pathname+href);toast('Link copiado');}
+        catch(_){toast('Não foi possível copiar o link');}
+      }}
+    ]);return;
+  }
+  el=e.target.closest('[data-op-collections]');
   if(el){
     const type=el.dataset.opCollections,href=el.dataset.opHref,collections=tdCollections(type);
     const items=collections.map(c=>({t:(tdCollectionHrefs(c).includes(href)?'✓ ':'')+c.name,fn:()=>{
