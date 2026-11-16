@@ -7714,6 +7714,26 @@ function srsGradeCard(id,grade,now=Date.now()){
  srsRecordActivity(d,'reviews',now);
  srsSave(d);return card;
 }
+/* Diário de Estudo (#84): daily note aggregating questions answered per local day. */
+function showDiario(){
+  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
+  const ans=getAnswers(), byDay={};
+  const qs=qObjs();
+  Object.keys(ans).forEach(k=>{
+    const a=ans[k]; if(!a||a.deleted||!a.updatedAt) return;
+    const day=srsLocalDay(a.updatedAt), q=qs.find(x=>x.n===Number(k)||x.id===k||x.id==='q'+k);
+    (byDay[day]=byDay[day]||[]).push({n:k,id:q?q.id:('q'+k),title:q&&q.enunciado?String(q.enunciado).slice(0,120):('Questão '+k),ok:!!a.correct,at:a.updatedAt});
+  });
+  const days=Object.keys(byDay).sort().reverse();
+  const today=srsLocalDay();
+  const sections=days.length?days.map(day=>{
+    const items=byDay[day].sort((x,y)=>y.at-x.at), right=items.filter(x=>x.ok).length;
+    const label=day===today?'Hoje':day;
+    return '<section class="dia-day" aria-labelledby="dia-'+day+'"><h2 id="dia-'+day+'">'+esc(label)+'</h2><p class="srs-muted">'+items.length+' questões respondidas · '+right+' certas</p><ul class="dia-list">'+items.map(x=>'<li><a href="#/'+esc(x.id)+'">'+esc(x.title)+'</a><span class="dia-res">'+(x.ok?'Certa':'Errada')+'</span></li>').join('')+'</ul></section>';
+  }).join(''):'<div class="msg"><b>Nada registrado ainda.</b><br>As questões que você responder aparecem aqui, agrupadas por dia.</div>';
+  const styles='<style>.dia-wrap{max-width:760px;margin:0 auto;padding:24px}.dia-day{padding:14px 0;border-bottom:1px solid var(--line)}.dia-day h2{font-size:16px;margin:0 0 4px}.dia-list{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}.dia-list li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px}.dia-list a{color:var(--text);text-decoration:none;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dia-list a:hover{text-decoration:underline}.dia-res{color:var(--muted);flex:none}</style>';
+  view.innerHTML=styles+'<main class="dia-wrap">'+sBreadcrumb([['Espaço','#/espaco'],['Diário de estudo','']])+sHead('Diário','Diário de estudo','Tudo o que você respondeu, agrupado por dia.')+sections+'</main>'; view.scrollTop=0;
+}
 function showReview(){
  const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
@@ -7815,6 +7835,7 @@ function route(spaceChanged){
   if(h0==='/cadernos'||h0==='/filtros'||h0.startsWith('/caderno/')){ nbRoute(h0); return; }
   if(h0==='/grafico'||h0==='/explorar'){ showGraph(); return; }
   if(h0==='/revisao'){ showReview(); return; }
+  if(h0==='/diario'){ showDiario(); return; }
   if(h0==='/quadro'){ $('spaceRow')?.removeAttribute('aria-current'); showBoard(); return; }
   if(h0.startsWith('/questoes')||h0==='/simulado'){ showStudyRoute(h0); return; }
   if(h0==='/espaco'||h0.startsWith('/nota/')||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
