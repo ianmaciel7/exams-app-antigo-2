@@ -1909,6 +1909,8 @@ a.rp-link:hover{background:var(--active)}
 @media(prefers-reduced-motion:reduce){.ws-tab,.ws-tact,.ws-tact button,.ws-tab:before{transition:none!important}}
 /* ---- painel direito: revisão ---- */
 .rp-top .rp-tabs .ws-tab{gap:7px}
+.rp-top .rp-tabs .rp-context-pin{display:inline-grid;place-items:center;flex:none;width:14px;height:14px;color:var(--muted)}
+.rp-top .rp-tabs .rp-context-pin svg{width:12px;height:12px;stroke-width:1.8}
 .rp-view.solo .rp-vb{padding-top:12px}
 .rp-vh.solo-h{height:30px;justify-content:flex-start;padding:0 6px;background:transparent;border-bottom:0}
 .rp-note.ai-only{display:block}
@@ -7522,9 +7524,11 @@ function rpPaintTabs(){
   const L=$('rpTabs');
   L.innerHTML=RP.tabs.map(t=>{
     const on=t.id===RP.active,v=t.views[0],ttl=rpTabTitle(t),full=t.views.map(vTitle).join(' + ');
-    return '<div class="ws-tab'+(on?' on':'')+'" role="tab" aria-label="'+esc(ttl)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
-      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
-      '</span><span class="ws-tt">'+esc(ttl)+'</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
+    const contextual=['graf','back','rel','internos'].includes(v.type),pinned=contextual&&!!v.ref;
+    const mode=contextual?(pinned?' · fixado':' · seguindo contexto'):'';
+    return '<div class="ws-tab'+(on?' on':'')+(pinned?' is-context-pinned':'')+'" role="tab" aria-label="'+esc(ttl+mode)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
+      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full+mode)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span>'+(pinned?'<span class="rp-context-pin" aria-hidden="true">'+IX('<path d="M16 3l5 5-3 1-4 4v4l-2 2-7-7 2-2h4l4-4zM2 22l6-6"/>')+'</span>':'')+'<button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
       '" data-rp-tabx="'+esc(t.id)+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
   }).join('');
   rpUpdateTabLayout();
