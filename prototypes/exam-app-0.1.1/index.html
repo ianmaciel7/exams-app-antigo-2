@@ -5145,6 +5145,12 @@ function tdQueryMatch(item,expression,context={}){
   return rules.reduce((result,rule,i)=>i===0?matches(rule):
     rule.join==='OR'?(result||matches(rule)):(result&&matches(rule)),false);
 }
+function tdSavedQueryMatch(item,term,context){
+  if(tdParseQuery(term))return tdQueryMatch(item,term,context);
+  // Legacy saved queries were simple text searches over title and category.
+  const old=String(term||'').trim().toLocaleLowerCase('pt-BR');
+  return !!old&&!old.includes(':')&&(item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(old);
+}
 function tdQueryContext(item){
   const iid=String(item.href||'').replace(/^#\//,'').replace('/',':');
   const meta=store.get('object-meta:'+space+':'+iid)||{};
@@ -5163,7 +5169,7 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const collections=typeColl,queries=Array.isArray(query)?query:[];
   const collection=collections.find(c=>c.id===state.collection),activeQuery=queries.find(q=>q.id===state.query);
   const collectionItems=collection?items.filter(x=>tdCollectionHrefs(collection).includes(x.href)):items;
-  const visibleItems=activeQuery?collectionItems.filter(x=>tdQueryMatch(x,activeQuery.term,tdQueryContext(x))):collectionItems;
+  const visibleItems=activeQuery?collectionItems.filter(x=>tdSavedQueryMatch(x,activeQuery.term,tdQueryContext(x))):collectionItems;
   const matching=visibleItems.filter(x=>(x.name+' '+x.detail).toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR')));
   const card=x=>'<a class="td-recent" href="'+esc(x.href)+'"><span class="td-item-icon" aria-hidden="true">'+iconSvg(x.id,OPI()[x.kind]||SI.file)+
     '</span><span><strong>'+esc(x.name)+'</strong><small>'+esc(x.detail||T.n)+'</small></span></a>';
