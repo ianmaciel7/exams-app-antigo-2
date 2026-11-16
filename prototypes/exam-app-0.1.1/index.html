@@ -5110,14 +5110,16 @@ function tdObjectsMarkup(t,items,layout,searchTerm=''){
    No eval, regex execution, or invented object metadata. */
 function tdParseQuery(expression){
   const raw=String(expression||'').trim();
-  if(!raw||raw.length>400||/(?:^|\s)(?:AND|OR)$/i.test(raw)||/\s+[^"\s]+\s+(?:name|category|type|tag|prop|link)\s*:/i.test(raw))return null;
+  if(!raw||raw.length>400||/(?:^|\s)(?:AND|OR)$/i.test(raw))return null;
   const chunks=raw.split(/\s+(AND|OR)\s+/i);
   if(chunks.length%2!==1||chunks.length>11)return null;
   const rules=[];
   for(let i=0;i<chunks.length;i+=2){
     const match=/^(name|category|type|tag|prop|link)\s*:\s*(.+)$/i.exec(chunks[i].trim());
     if(!match)return null;
-    const field=match[1].toLowerCase(),value=match[2].trim().replace(/^"(.+)"$/,'$1').trim();
+    const rawValue=match[2].trim();
+    if(!/^".*"$/.test(rawValue)&&/\s+(?:name|category|type|tag|prop|link)\s*:/i.test(rawValue))return null;
+    const field=match[1].toLowerCase(),value=rawValue.replace(/^"(.+)"$/,'$1').trim();
     if(!value||value.length>120)return null;
     rules.push({field,value,join:i?chunks[i-1].toUpperCase():null});
   }
