@@ -57,7 +57,8 @@ try {
       await page.screenshot({path:path.join(assets,'issue72_linked_note_'+width+'.png'),animations:'disabled'});
       await page.locator('[data-note-edit]').click();
       const restored=page.locator('.qo .qped');await restored.waitFor();
-      await restored.locator('[data-qped-tab$="|anotacoes"]').click();
+      const notesTab=restored.locator('[data-qped-tab$="|anotacoes"]');
+      if(await notesTab.getAttribute('aria-selected')!=='true')await notesTab.click();
       await restored.locator('[data-qped-visual-toggle]').click();
       assert.ok(await restored.locator('[data-qnote-rich] strong').count()>0,'rich note restored after navigating from graph node');
 
