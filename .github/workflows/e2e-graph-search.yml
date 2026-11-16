@@ -41,5 +41,6 @@ jobs:
           name: issue68-graph-search-evidence
           path: |
             prototypes/board-exam-app/assets/issue68_search_autofit_*.png
+            prototypes/board-exam-app/assets/issue68_hubs_*.png
             prototypes/board-exam-app/issue68_search_autofit_e2e.json
           if-no-files-found: warn

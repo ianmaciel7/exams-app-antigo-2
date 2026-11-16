@@ -7571,6 +7571,8 @@ $('rpBody').addEventListener('pointerdown',e=>{ const sp=e.target.closest('[data
 
 /* ---- Gráfico do espaço (página inteira, barra lateral) ---- */
 let GV=null; const GVK={};
+let GV_HIDE_HUBS=false;
+const graphNodeVisible=(degree,kindEnabled,hideHubs)=>kindEnabled&&(!hideHubs||degree<=40);
 function stopGV(){ if(!GV) return;
   GV.stop=true; cancelAnimationFrame(GV.raf);
   GV.ro&&GV.ro.disconnect(); GV.io&&GV.io.disconnect();
@@ -7602,15 +7604,15 @@ function buildGraph(seq){
   const g=gr(), list=[...g.N.values()]; const loading=!questionBank&&typeof loadQuestions==='function';
   if(loading) loadQuestions().then(()=>{ if(location.hash==='#/grafico') showGraph(seq); }).catch(()=>{});
   if(!list.length){ view.innerHTML='<div class="msg"><b>Nenhum objeto neste espaço ainda.</b><br>Crie um concurso na barra lateral para ver as relações aqui.</div>'; wsLoadingEnd('empty',{seq}); return; }
-  const kinds=KORD.filter(k=>list.some(n=>n.kind===k)), edgesN=list.reduce((s,n)=>s+n.out.length,0);
+  const kinds=KORD.filter(k=>list.some(n=>n.kind===k)), edgesN=list.reduce((s,n)=>s+n.out.length,0), hubCount=list.filter(n=>n.out.length+n.inn.length>40).length;
   view.innerHTML='<div class="gv" id="gv"><canvas id="gvc" tabindex="0" role="img" aria-label="Gráfico com '+list.length+' objetos e '+edgesN+' relações. Use a busca para abrir um objeto pelo teclado."></canvas>'
    +'<div class="gv-top"><div class="gv-search-wrap"><div class="rp-search gv-search">'+WI.search+'<input type="search" id="gvq" placeholder="Buscar no gráfico" aria-label="Buscar objeto no gráfico" autocomplete="off" aria-controls="gvMatchCount"></div><output id="gvMatchCount" class="gv-match-count" for="gvq" role="status" aria-live="polite"></output></div>'
    +'<div class="gv-zoom" role="group" aria-label="Zoom"><button type="button" id="gvIn" aria-label="Aproximar">'+WI.plus+'</button><button type="button" id="gvOut" aria-label="Afastar">'+WI.minus+'</button><button type="button" id="gvFit" aria-label="Ajustar à tela">'+WI.fit+'</button><button type="button" id="gvExport" aria-label="Exportar grafo como imagem PNG" title="Exportar PNG"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v4h16v-4"/></svg></button></div></div>'
-   +'<div class="gv-footer"><div class="gv-leg" role="group" aria-label="Filtrar por tipo">'+kinds.map(k=>'<button type="button" class="gv-k k-'+k+'" data-gk="'+k+'" aria-pressed="'+(GVK[k]!==false)+'"><i aria-hidden="true"></i>'+esc(kn(k))+' <span>'+list.filter(n=>n.kind===k).length+'</span></button>').join('')+'</div>'
+   +'<div class="gv-footer"><div class="gv-leg" role="group" aria-label="Filtros do grafo">'+kinds.map(k=>'<button type="button" class="gv-k k-'+k+'" data-gk="'+k+'" aria-pressed="'+(GVK[k]!==false)+'"><i aria-hidden="true"></i>'+esc(kn(k))+' <span>'+list.filter(n=>n.kind===k).length+'</span></button>').join('')+'<button type="button" class="gv-k" id="gvHubToggle" aria-pressed="'+GV_HIDE_HUBS+'" aria-label="Ocultar objetos com mais de 40 ligações" title="Ocultar nós muito conectados">Ocultar hubs <span>'+hubCount+'</span></button></div>'
    +'<div class="gv-info" aria-live="polite">'+list.length+' objetos · '+edgesN+' relações'+(loading?' · carregando questões…':'')+'</div></div><div class="gv-tip" id="gvTip" hidden></div></div>';
   wsLoadingEnd('success',{seq});
   const wrap=$('gv'), cv=$('gvc'), ctx=cv.getContext('2d');
-  const nodes=list.map((n,i)=>{ const a=i*2.399963, r=16*Math.sqrt(i+1); return {n,x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,deg:n.out.length+n.inn.length,on:GVK[n.kind]!==false}; });
+  const nodes=list.map((n,i)=>{ const a=i*2.399963, r=16*Math.sqrt(i+1),deg=n.out.length+n.inn.length; return {n,x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,deg,on:graphNodeVisible(deg,GVK[n.kind]!==false,GV_HIDE_HUBS)}; });
   const ix=new Map(nodes.map((o,i)=>[o.n.href,i])), edges=[]; nodes.forEach((o,i)=>o.n.out.forEach(([h])=>{ const j=ix.get(h); if(j!==undefined) edges.push([i,j]); }));
   /* Pairwise repulsion is O(N²): fall back to a static spiral for dense graphs. */
   const st={nodes,edges,k:1,tx:0,ty:0,hover:-1,drag:-1,alpha:1,W:0,H:0,dpr:1,stop:false,raf:0,match:null,
@@ -7760,7 +7762,23 @@ function buildGraph(seq){
   };
   gq.addEventListener('input',updateGraphSearch);
   gq.addEventListener('keydown',e=>{ if(e.key==='Enter'&&st.match&&st.match.size){ const i=[...st.match][0]; wsOpenMain(nodes[i].n.href); } else if(e.key==='Escape'){ gq.value=''; updateGraphSearch(); } });
-  wrap.querySelector('.gv-leg').addEventListener('click',e=>{ const b=e.target.closest('[data-gk]'); if(!b) return; const k=b.dataset.gk, on=b.getAttribute('aria-pressed')!=='true'; GVK[k]=on; b.setAttribute('aria-pressed',on); nodes.forEach(o=>{ if(o.n.kind===k) o.on=on; }); st.alpha=Math.max(st.alpha,.5); updateGraphSearch(); });
+  const updateGraphVisibility=()=>{
+    nodes.forEach(o=>{ o.on=graphNodeVisible(o.deg,GVK[o.n.kind]!==false,GV_HIDE_HUBS); });
+    $('gvHubToggle').setAttribute('aria-pressed',String(GV_HIDE_HUBS));
+    const visible=nodes.filter(o=>o.on).length;
+    const liveEdges=edges.filter(([i,j])=>nodes[i].on&&nodes[j].on).length;
+    wrap.querySelector('.gv-info').textContent=visible+' de '+nodes.length+' objetos visíveis · '+liveEdges+' relações';
+    st.hover=-1; st.alpha=Math.max(st.alpha,.5);
+    updateGraphSearch();
+  };
+  wrap.querySelector('.gv-leg').addEventListener('click',e=>{
+    const hub=e.target.closest('#gvHubToggle');
+    if(hub){ GV_HIDE_HUBS=!GV_HIDE_HUBS; updateGraphVisibility(); return; }
+    const b=e.target.closest('[data-gk]'); if(!b) return;
+    const k=b.dataset.gk, on=b.getAttribute('aria-pressed')!=='true';
+    GVK[k]=on; b.setAttribute('aria-pressed',String(on));
+    updateGraphVisibility();
+  });
   cv.style.cursor='grab'; }
 
 /* Question shortcuts are routed by the centralized command registry (#139). */

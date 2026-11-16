@@ -65,9 +65,17 @@ try{
       const pressed=await kind.getAttribute('aria-pressed');
       await kind.click();
       assert.notEqual(await kind.getAttribute('aria-pressed'),pressed);
+      const hub=page.locator('#gvHubToggle');
+      assert.equal(await hub.getAttribute('aria-pressed'),'false','hub suppression starts opt-in');
+      await hub.click();
+      assert.equal(await hub.getAttribute('aria-pressed'),'true','hub suppression toggles on');
+      assert.match(await page.locator('.gv-info').textContent(),/\d+ de \d+ objetos visíveis/,'visible node count updates');
+      await page.screenshot({path:path.join(assets,'issue68_hubs_'+width+'.png'),animations:'disabled'});
+      await hub.click();
+      assert.equal(await hub.getAttribute('aria-pressed'),'false','hub suppression can be disabled again');
       report.cases.push({viewportWidth:width,query,matchResult:countLabel,checks:[
         'search changes camera transformation','accessible match counter','empty state',
-        'Escape clears results','type facet remains usable'
+        'Escape clears results','type facet remains usable','hub suppression toggles and updates counts'
       ],screenshot:'issue68_search_autofit_'+width+'.png'});
     }catch(error){
       report.errors.push('viewport '+width+': '+String(error.message||error));
