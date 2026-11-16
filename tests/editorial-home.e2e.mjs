@@ -3,14 +3,14 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Desktop/mobile Chromium emulation only; physical touch/assistive technology is not validated.',
   'Counts are derived from local prototype answers and the actual loaded question bank.'
 ]};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const url='http://127.0.0.1:8765/exam-app-0.1.1/index.html#/espaco';
+const url='http://127.0.0.1:8765/exam-app-0.1.1__index.html#/espaco';
 try{
   for(const width of [390,1366]){
     const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});

@@ -19,7 +19,7 @@ try {
     const page = await context.newPage();
     page.on('pageerror', e => report.errors.push(e.message));
     try {
-      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/grafico', { waitUntil: 'domcontentloaded' });
+      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/grafico', { waitUntil: 'domcontentloaded' });
       await page.locator('#gvExport').waitFor({ timeout: 30000 });
       await page.waitForFunction(() => {
         const status = document.querySelector('.gv-info');

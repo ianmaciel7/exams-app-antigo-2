@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const report={created:new Date().toISOString(),checks:[],pageErrors:[],limitations:[
  'Chromium desktop browser local persistence; multi-device synchronization and actual study outcomes are outside this test.',
@@ -12,7 +12,7 @@ const report={created:new Date().toISOString(),checks:[],pageErrors:[],limitatio
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const context=await browser.newContext({viewport:{width:1366,height:860},reducedMotion:'reduce'});
 const page=await context.newPage();page.on('pageerror',e=>report.pageErrors.push(e.message));
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 const go=async route=>page.goto(base+route,{waitUntil:'domcontentloaded'});
 async function submitChoice(index){
   await page.locator('.qo [data-qo-ans]').nth(index).click();
