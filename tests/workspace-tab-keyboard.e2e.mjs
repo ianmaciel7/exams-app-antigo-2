@@ -19,25 +19,25 @@ try {
       let tab = page.locator('#wsTabList [data-tab].on');
       await tab.waitFor({ timeout: 15000 });
       const id = await tab.getAttribute('data-tab');
-      assert.equal(await tab.getAttribute('aria-keyshortcuts'), 'Shift+P');
-      assert.match(await tab.getAttribute('aria-description'), /Shift\+P/);
-      await tab.focus();
-      await tab.press('Shift+P');
+      assert.equal(await tab.locator('[role="tab"]').getAttribute('aria-keyshortcuts'), 'Shift+P');
+      assert.match(await tab.locator('[role="tab"]').getAttribute('aria-description'), /Shift\+P/);
+      await tab.locator('[role="tab"]').focus();
+      await tab.locator('[role="tab"]').press('Shift+P');
       tab = page.locator('#wsTabList [data-tab="' + id + '"]');
       assert.ok((await tab.getAttribute('class')).includes('pinned'));
-      assert.match(await tab.getAttribute('aria-label'), /fixada/);
-      assert.equal(await tab.evaluate(el => document.activeElement === el), true, 'focus preserved after pin');
+      assert.match(await tab.locator('[role="tab"]').getAttribute('aria-label'), /fixada/);
+      assert.equal(await tab.locator('[role="tab"]').evaluate(el => document.activeElement === el), true, 'focus preserved after pin');
       await page.screenshot({ path: path.join(assets, 'issue55_keyboard_pinned_' + width + '.png'), animations: 'disabled' });
 
-      await tab.press('Shift+P');
-      assert.doesNotMatch(await tab.getAttribute('aria-label'), /fixada/);
+      await tab.locator('[role="tab"]').press('Shift+P');
+      assert.doesNotMatch(await tab.locator('[role="tab"]').getAttribute('aria-label'), /fixada/);
       assert.ok(!(await tab.getAttribute('class')).includes('pinned'));
-      await tab.press('Shift+P');
+      await tab.locator('[role="tab"]').press('Shift+P');
       await page.reload({ waitUntil: 'domcontentloaded' });
       tab = page.locator('#wsTabList [data-tab="' + id + '"]');
       await tab.waitFor({ timeout: 15000 });
-      assert.match(await tab.getAttribute('aria-label'), /fixada/, 'pin persists after reload');
-      assert.equal(await tab.getAttribute('aria-keyshortcuts'), 'Shift+P');
+      assert.match(await tab.locator('[role="tab"]').getAttribute('aria-label'), /fixada/, 'pin persists after reload');
+      assert.equal(await tab.locator('[role="tab"]').getAttribute('aria-keyshortcuts'), 'Shift+P');
 
       const objectLink = page.locator('#view a[href^="#/"]:visible').first();
       await objectLink.waitFor({ timeout: 12000 });

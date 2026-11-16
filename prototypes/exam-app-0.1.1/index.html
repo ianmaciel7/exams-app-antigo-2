@@ -1923,6 +1923,7 @@ a.rp-link:hover{background:var(--active)}
 .ws-tab+.ws-tab:before{content:'';position:absolute;left:-3px;top:50%;width:.5px;height:18px;margin-top:-9px;background:var(--line);transition:opacity .15s ease;pointer-events:none}
 .ws-tab:hover:before,.ws-tab:hover+.ws-tab:before,.ws-tab.on:before,.ws-tab.on+.ws-tab:before{opacity:0}
 .ws-tmain{flex:1 1 0;min-width:44px;min-height:32px;height:100%;display:flex;align-items:center;gap:7px}
+.ws-tab-control{cursor:pointer;min-width:0;outline-offset:2px}.ws-tab-control:focus-visible{outline:2px solid var(--ring)}
 .ws-tabs .ws-tab .ws-tt{flex:1;min-width:0}
 .ws-tact{flex:none;width:24px;height:100%;display:flex;align-items:center;justify-content:flex-end;gap:2px;overflow:hidden;transition:width .2s ease}
 .ws-tab:hover .ws-tact,.ws-tab:focus-within .ws-tact{width:50px}
@@ -7703,7 +7704,17 @@ function wsPaint(){
   const lb=wsLabels(), hadFocus=list.contains(document.activeElement), fid=hadFocus&&document.activeElement.closest('[data-tab]')?document.activeElement.closest('[data-tab]').dataset.tab:null;
   if(ob) ob.hidden=!cramped; list.classList.toggle('cramped',cramped); list.dataset.hidden=String(n-Math.min(max,n));
   list.innerHTML=WS.tabs.slice(wsWin,wsWin+max).map(t=>{ const on=t===t0, ttl=lb[WS.tabs.indexOf(t)];
-    return '<div draggable="true" class="ws-tab'+(on?' on':'')+(t.pinned?' pinned':'')+(per<120?' narrow':'')+'" style="width:'+Math.floor(per)+'px" aria-controls="view" role="tab" aria-label="'+esc(ttl+(t.pinned?' · fixada':''))+'" aria-description="Pressione Shift+P para fixar ou desafixar esta aba" aria-keyshortcuts="Shift+P" title="'+esc(ttl+(t.pinned?' · fixada':'')+' · Shift+P fixa/desafixa')+'" id="wst-'+t.id+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+'" data-tab="'+t.id+'"><span class="ws-tmain"><span class="ws-ti" aria-hidden="true">'+kIcon(hKind(t.hist[t.i]))+'</span><span class="ws-tt">'+esc(ttl)+'</span></span><span class="ws-tact"><button type="button" class="ws-tp'+(t.pinned?' pinned':'')+'" tabindex="-1" data-tab-pin="'+t.id+'" aria-pressed="'+!!t.pinned+'" aria-label="'+(t.pinned?'Desafixar':'Fixar')+' aba '+esc(ttl)+'">'+WI_PIN+'</button>'+(one?'':'<button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-tab-close="'+t.id+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button>')+'</span></div>'; }).join('');
+    return '<div draggable="true" class="ws-tab'+(on?' on':'')+(t.pinned?' pinned':'')+(per<120?' narrow':'')+
+      '" style="width:'+Math.floor(per)+'px" data-tab="'+esc(t.id)+'">'+
+      '<span class="ws-tmain ws-tab-control" role="tab" aria-controls="view" aria-label="'+esc(ttl+(t.pinned?' · fixada':''))+
+      '" aria-description="Pressione Shift+P para fixar ou desafixar esta aba" aria-keyshortcuts="Shift+P" title="'+
+      esc(ttl+(t.pinned?' · fixada':'')+' · Shift+P fixa/desafixa')+'" id="wst-'+t.id+'" aria-selected="'+on+
+      '" tabindex="'+(on?0:-1)+'"><span class="ws-ti" aria-hidden="true">'+kIcon(hKind(t.hist[t.i]))+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span></span><span class="ws-tact"><button type="button" class="ws-tp'+
+      (t.pinned?' pinned':'')+'" tabindex="-1" data-tab-pin="'+t.id+'" aria-pressed="'+!!t.pinned+
+      '" aria-label="'+(t.pinned?'Desafixar':'Fixar')+' aba '+esc(ttl)+'">'+WI_PIN+'</button>'+
+      (one?'':'<button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-tab-close="'+t.id+
+      '" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button>')+'</span></div>'; }).join('');
   if(fid){ const el=$('wst-'+fid); el&&el.focus(); }
 }
 function wsActivate(id){ if(id===WS.active) return; const focusTab=$('wsTabList').contains(document.activeElement); const old=curTab(); old.sc[old.i]=view.scrollTop; captureUI(old); WS.active=id; wsSave(); const t=curTab(); wsPaint(); wsGo(t.hist[t.i]); if(focusTab)setTimeout(()=>$('wst-'+id)?.focus(),0); }
@@ -7718,7 +7729,7 @@ $('wsSide').onclick=()=>toggleSide();
 $('wsNewBtn').onclick=()=>openSearch(true);
 $('wsSearchBtn').onclick=()=>openSearch(false);
 function tabKeys(e,list,sel,act,del){ if(e.target.closest('button'))return; const t=e.target.closest(sel); if(!t) return; const all=[...list.querySelectorAll(sel)], i=all.indexOf(t);
-  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); const n=all[(i+(e.key==='ArrowRight'?1:-1)+all.length)%all.length]; n.focus(); }
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); const n=all[(i+(e.key==='ArrowRight'?1:-1)+all.length)%all.length]; (n.querySelector('[role="tab"]')||n).focus(); }
   else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(t); }
   else if(e.key==='Delete'||e.key==='Backspace'){ e.preventDefault(); del(t); } }
 function wsTogglePinned(id){ const t=WS.tabs.find(x=>x.id===id); if(!t) return; t.pinned=!t.pinned; wsSave(); wsPaint(); }
@@ -7801,10 +7812,14 @@ function rpPaintTabs(){
     const on=t.id===RP.active,v=t.views[0],ttl=rpTabTitle(t),full=t.views.map(vTitle).join(' + ');
     const contextual=['graf','back','rel','internos'].includes(v.type),pinned=contextual&&!!v.ref;
     const mode=contextual?(pinned?' · fixado':' · seguindo contexto'):'';
-    return '<div class="ws-tab'+(on?' on':'')+(pinned?' is-context-pinned':'')+'" role="tab" aria-label="'+esc(ttl+mode)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
-      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full+mode)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
-      '</span><span class="ws-tt">'+esc(ttl)+'</span>'+(pinned?'<span class="rp-context-pin" aria-hidden="true">'+IX('<path d="M16 3l5 5-3 1-4 4v4l-2 2-7-7 2-2h4l4-4zM2 22l6-6"/>')+'</span>':'')+'<button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
-      '" data-rp-tabx="'+esc(t.id)+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
+    return '<div class="ws-tab'+(on?' on':'')+(pinned?' is-context-pinned':'')+
+      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full+mode)+'">'+
+      '<span class="ws-tmain ws-tab-control" role="tab" aria-label="'+esc(ttl+mode)+'" aria-selected="'+on+
+      '" tabindex="'+(on?0:-1)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span>'+
+      (pinned?'<span class="rp-context-pin" aria-hidden="true">'+IX('<path d="M16 3l5 5-3 1-4 4v4l-2 2-7-7 2-2h4l4-4zM2 22l6-6"/>')+'</span>':'')+
+      '</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-rp-tabx="'+esc(t.id)+
+      '" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
   }).join('');
   rpUpdateTabLayout();
 }
@@ -8386,7 +8401,7 @@ function tabMenu(anchor,id,right){const t=(right?RP.tabs:WS.tabs).find(t=>t.id==
 {t:'Abrir no painel direito',ic:WI.panel,fn:()=>rpOpenObj(t.hist[t.i])}]);}
 for(const [list,sel,key,right] of [[$('wsTabList'),'[data-tab]','tab',false],[$('rpTabs'),'[data-rp-tab]','rpTab',true]]){
  list.addEventListener('contextmenu',e=>{const el=e.target.closest(sel);if(!el)return;e.preventDefault();tabMenu(el,el.dataset[key],right);});
- list.addEventListener('keydown',e=>{const el=e.target.closest(sel);if(!el)return;if(e.key==='Home'||e.key==='End'){e.preventDefault();const all=list.querySelectorAll(sel);all[e.key==='Home'?0:all.length-1]?.focus();}if(e.key==='F10'&&e.shiftKey){e.preventDefault();tabMenu(el,el.dataset[key],right);}});
+ list.addEventListener('keydown',e=>{const el=e.target.closest(sel);if(!el)return;if(e.key==='Home'||e.key==='End'){e.preventDefault();const all=list.querySelectorAll(sel);(all[e.key==='Home'?0:all.length-1]?.querySelector('[role="tab"]')||all[e.key==='Home'?0:all.length-1])?.focus();}if(e.key==='F10'&&e.shiftKey){e.preventDefault();tabMenu(el,el.dataset[key],right);}});
 }
 let tabDrag=null;
 $('wsTabList').addEventListener('dragstart',e=>{const el=e.target.closest('[data-tab]');if(!el)return;tabDrag=el.dataset.tab;e.dataTransfer.setData('application/x-exam-tab',tabDrag);e.dataTransfer.effectAllowed='move';});

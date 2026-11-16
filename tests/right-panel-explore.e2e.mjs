@@ -27,7 +27,7 @@ try{
 
   await page.locator('#rpBody [data-rp-new="search"]').click();
   await page.locator('#rpBody [data-ex-q]').waitFor();
-  assert.equal(await page.locator('#rpTabs [data-rp-tab].on').getAttribute('aria-label'),'Buscar','Search is a dedicated panel tab');
+  assert.equal(await page.locator('#rpTabs [data-rp-tab].on [role="tab"]').getAttribute('aria-label'),'Buscar','Search is a dedicated panel tab');
   await page.waitForFunction(()=>document.activeElement?.hasAttribute('data-ex-q'));
   await page.locator('#rpBody [data-ex-q]').fill('dataprev');
   assert.equal(await page.locator('#rpBody [data-rp-find]').evaluate(el=>el.open),true,'search tool stays open');
