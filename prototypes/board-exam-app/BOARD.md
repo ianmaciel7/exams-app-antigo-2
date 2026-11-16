@@ -2,30 +2,13 @@
 
 > Gerado de `board.json` por `board_to_md.py`. Fonte da verdade: `board.json`. Ordem de leitura: de cima para baixo, da esquerda para a direita. Cada seção corresponde a uma seção (container) do quadro.
 
-# Exam App
+## 1. Estrutura: Espaço, Objeto e Tipo de Objeto
+<!-- container e52 @ (0,0) -->
 
-### App para estudar para exames: certificações (estilo ExamTopics) ou concursos. Sem foco fixo.
 
-Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e leitor de tela; animação de entrada respeita prefers-reduced-motion. Testes: tests/collection-graph-canvas.test.mjs e tests/contextual-graph-links.test.mjs (suíte node --test verde). Limites: sem leitura NVDA/VoiceOver (#226/#234); rótulos densos se sobrepõem como antes.
-
-![imagem e985](assets/readwise_srs_review_settings_algorithm.png)
-
-![imagem e987](assets/readwise_srs_frequency_tuning_by_source.png)
-
-**Evidência 77 (Readwise SRS Algoritmo — Issue #82): Painel `Review Settings` (`Highlights Per Day`, `Highlight Recency` slider, `Bonus Highlights`)**
-
-**Evidência 78 (Readwise SRS Tuning — Issue #83): Tela `Frequency Tuning` (`/configure/tune/books`) com slider de prioridade para cada fonte/disciplina**
-
-![imagem e989](assets/readwise_srs_daily_review_completed_streak.png)
-
-![imagem e991](assets/readwise_srs_statistics_heatmap.png)
-
-**Evidência 79 (Readwise SRS Streak — Issue #83): Tela de conclusão da Revisão Diária (`6/6 reviewed today`), badge de `Streak` e botão `Review More Highlights`**
-
-**Evidência 80 (Readwise SRS Stats — Issue #83): Página `Statistics` (`/stats`) com Heatmap anual de revisões diárias, novos grifos e recordes de ofensiva**
 
 ## 8. Layout de três painéis (Three-Pane Workspace)
-<!-- container e500 @ (3300,-1000) -->
+<!-- container e500 @ (8390,0) -->
 
 > **Esquerda: sidebar**
 > navegação global, recolhível; espaços, tipos, fixados, busca e criar
@@ -54,481 +37,53 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 
 > **Roadmap**: layout de três painéis + Gráfico na sidebar entregue na 0.1.1. Pendente: refinos de fluidez e revisão do Ian.
 
-## Feito
-<!-- container e47 @ (0,230) -->
+## 32. Questões e Simulados — Issue #100: unificação dos fluxos e evidência E2E
+<!-- container e1155 @ (16780,0) -->
 
-- Leitor de PDF com sidebar, busca e menus
-- Documentos com + e ⋯ no hover (estilo Capacities)
-- Ordenar manual ou alfabético
-- Sem % de leitura nos PDFs
-- Configurações com tema e zoom
-- Espaço "Concurso de TI"
-- Quadro só com PDFs
-- Gabarito conferido e 70 questões extraídas
+Fonte: Playwright Chromium 1366×900 (DPR 1), comparação da dev anterior e da branch de PR. Screenshots produzidos por tests/study-unification.e2e.mjs. Testes: busca oficial+manual, resposta, reload, lista contextual, criar simulado pelo filtro, quantidade/tempo e status de erros. Não representam inspeção do QConcursos, Capacities ou conformidade WCAG.
 
-## Em andamento
-<!-- container e48 @ (510,230) -->
+![imagem e1157](assets/issue100_before_global.png)
 
-- Modelar as entidades do app (diagrama abaixo)
-- Adotar "tudo é um Objeto" (tipo e propriedades)
-- Decidir onde ficam as questões
-- Testar as telas no celular
-- Motion (Issue #128): loop do grafo agora respeita movimento reduzido, aba oculta, viewport e repouso; tokens CSS alinhados. QA visual e benchmarks ainda pendentes.
+![imagem e1159](assets/issue100_after_global.png)
 
-## Pendente
-<!-- container e49 @ (1020,230) -->
+ANTES: fluxo global separado da lista de objetos | PNG real: assets/issue100_before_global.png
 
-- Questões, simulado e revisão no app
-- Metas
-- Documentos de leitura com % de progresso (estilo Reader e Kindle)
-- Espaços: criar, excluir (30 dias) e exportar
-- Guardar o progresso na conta
-- Extrair os cadernos tipo 2, 3 e 4
-- Mostrar as figuras da prova junto do texto
+DEPOIS: banco unificado com filtros e status rápidos | PNG real: assets/issue100_after_global.png
 
-## 0.1.0
-<!-- container e4 @ (0,580) -->
+![imagem e1161](assets/issue100_before_manual.png)
 
-### Documentos
+![imagem e1163](assets/issue100_after_manual.png)
 
-![imagem e5](assets/inline-e5.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#edital))
+ANTES: busca de questão manual sem resultados na prática global | PNG real: assets/issue100_before_manual.png
 
-![imagem e6](assets/inline-e6.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret1))
+DEPOIS: questão manual encontrada e renderizada no mesmo fluxo | PNG real: assets/issue100_after_manual.png
 
-![imagem e7](assets/inline-e7.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret2))
+![imagem e1165](assets/issue100_before_simulado.png)
 
-![imagem e8](assets/inline-e8.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#cronograma))
+![imagem e1167](assets/issue100_after_simulado.png)
 
-![imagem e9](assets/inline-e9.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#tipo1))
+ANTES: configurador restrito à prova oficial Dataprev | PNG real: assets/issue100_before_simulado.png
 
-![imagem e10](assets/inline-e10.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#gabarito))
+DEPOIS: banco completo, quantidade, tempo e ordem configuráveis | PNG real: assets/issue100_after_simulado.png
 
-Edital de abertura
+![imagem e1169](assets/issue100_after_answer.png)
 
-1ª retificação
+![imagem e1171](assets/issue100_after_contexto.png)
 
-2ª retificação
+DEPOIS: resposta da questão manual, feedback e persistência | PNG real: assets/issue100_after_answer.png
 
-Cronograma
+DEPOIS: mesma questão manual e filtro no contexto do concurso | PNG real: assets/issue100_after_contexto.png
 
-Caderno tipo 1
+![imagem e1173](assets/issue100_after_manual_simulado.png)
 
-Gabarito preliminar
+![imagem e1175](assets/issue100_after_erros.png)
 
-### Entidades
+DEPOIS: simulado criado a partir do filtro da questão manual | PNG real: assets/issue100_after_manual_simulado.png
 
-### Protótipo versão 1
-
-> **Espaço**
-> nome e ícone
-> dono (conta)
-> isolado: nada cruza entre espaços
-> Ex.: Concurso de TI
-
-> **Documento (PDF)**
-> título
-> classe: referência (fonte de verdade, sem % de leitura) ou leitura (com % de progresso, estilo Reader e Kindle)
-> categoria: edital, retificação, cronograma, prova, gabarito
-> arquivo
-> espaço
-> progresso e posição: só em leitura
-
-![imagem e44](assets/inline-e44.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7))
-
-## 0.1.1
-<!-- container e149 @ (1580,580) -->
-
-### Protótipo 0.1.1
-
-![imagem e151](assets/inline-e151.jpg) ([abrir](https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC))
-
-Tipos de Objeto na 0.1.1:
-- Concurso, Órgão, Banca, Edição, Cargo
-- Arquivo → Documento → PDF
-- Questão, Disciplina, Simulado
-Barra lateral: seções livres ou por tipo, plural por padrão, arrastar para ordenar. Fixar só pelo menu ⋯.
-
-Filtro de questões (0.1.1): botão Filtrar com popover pesquisável, vários valores por categoria (Banca, Disciplina, Edição, Origem, Situação), chips removíveis, busca por palavra, total filtrado de total e Limpar tudo. Mesmo componente na página do tipo Questão e nas abas Questões de Concurso, Edição e Cargo.
-
-## 1. Estrutura: Espaço, Objeto e Tipo de Objeto
-<!-- container e52 @ (0,1500) -->
-
-> **Espaço (Space)**
-> nome e ícone
-> dono (conta)
-> isolado: sem links nem busca entre espaços
-> ao_abrir: onde parei, calendário ou objeto
-> excluído_em (30 dias para restaurar)
-> exportação: manual ou automática
-
-> **Objeto (Object)**
-> título
-> espaço
-> tipo de objeto
-> conteúdo (quando houver)
-> propriedades padrão: aliases, descrição, ícone, etiquetas, criado_em
-
-> **Tipo de Objeto (Object Type)**
-> nome e ícone
-> lista de definições de propriedade
-> Pode estender outro tipo e herdar suas propriedades
-> Ex.: Arquivo → Documento → PDF
-
-> **Definição de Propriedade (Property Definition)**
-> nome
-> tipo de valor: texto, número, caixa, data e hora, relação
-> origem: padrão do sistema ou adicional
-
-> **Valor de Propriedade (Property Value)**
-> objeto
-> definição
-> valor (pode ficar vazio)
-
-## 5. Referências (de onde tiramos as informações)
-<!-- container e107 @ (1580,1500) -->
-
-#227 grafo da coleção em canvas (Questão, 70 itens, 1366 px, painel direito aberto na aba Grafo). Claro e escuro: nós com --k do tipo, rótulos com contorno, zoom e reset por botões e teclado. PNG real: assets/issue227_collection_canvas_light.png e assets/issue227_collection_canvas_dark.png
-
-## 8. Análise ExamTopics → banco de questões
-<!-- container e190 @ (3200,1500) -->
-
-Análise (sem implementação). Aproveitar: busca, filtros básicos, chips ativos, total global x filtrado, paginação, por página, ordenação, estado na URL. Melhorar: unificar as duas listas de questões em um componente. Adicionar (condicionado a dados): tipo, dificuldade (derivada do desempenho), assunto, com imagem, com explicação, filtros salvos. Descartar: votos da comunidade, discussões, gabarito por votação.
-
-[Análise ExamTopics: funcionalidades para o banco de questões](https://claude.ai/artifact/5qJgzuASzvMgdcoLDqbXZP)
-
-Decisões pendentes (3): listadas no fim do documento. Nada foi alterado na 0.1.1.
-
-## 9. Análise QConcursos → banco de questões
-<!-- container e400 @ (3760,1500) -->
-
-Análise (sem implementação), coerente com a do ExamTopics. O que o QConcursos acrescenta: Cadernos (Coleção que guarda questões fixas) e Filtros salvos (Visão que guarda critérios), 5 níveis de dificuldade (derivados do desempenho do próprio usuário), exclusões (já resolvidas, em simulados, anuladas, desatualizadas), histórico (resolvidas, acertei, errei) e modalidade. Filtros: E entre categorias, OU dentro de uma; só aparecem com 2 ou mais valores. Simulado personalizado a partir de filtro ou caderno. Descartar: comentários, votos, ranking e cópia da interface.
-
-[Análise QConcursos: funcionalidades para o banco de questões](https://claude.ai/artifact/7AZNibg2dJCUmDEZb9ScLt)
-
-Decisões pendentes (4): listadas no fim do documento. Nada foi alterado na 0.1.1.
-
-## QConcursos
-<!-- container e108 @ (1604,1562) -->
-
-![imagem e109](assets/inline-e109.jpg)
-
-![imagem e110](assets/inline-e110.jpg)
-
-> **Estudo do usuário**
-> usuário tem: prova salva, resumo, pasta, caderno, anotação,
-> marcação, filtro salvo, comentário, simulado e curso
-> caderno, anotação e marcação apontam para questão
-> simulado → tentativa → resposta e resultado → estatísticas
-> curso → progresso e trilha de estudos → aula → material didático
-
-> **Conteúdo e questão**
-> concurso: segmento, órgão e banca → edital, cargo e prova
-> disciplina → assunto → questão; prova → questão
-> opcionais: área de formação e de atuação, legislação, texto associado
-> questão: modalidade, alternativas, gabarito, gabarito comentado,
-> comentários, nível, dificuldade, situação e ano
-
-![imagem e114](assets/inline-e114.jpg)
-
-> **Questão em 4 grupos**
-> metadados: prova ou concurso, disciplina e assunto, modalidade e dificuldade, situação
-> conteúdo: texto associado, enunciado, alternativas ou itens, imagens e anexos
-> correção: gabarito, explicação, comentários
-> estudo: respostas do usuário, anotações, marcações, cadernos, aulas, estatísticas
-
-## 2. Tipos de Objeto do app e suas relações (a seta aponta para o objeto relacionado)
-<!-- container e104 @ (0,2140) -->
-
-> **Etiqueta (Tag)**
-> título (o assunto)
-> sem texto livre
-> objetos com a etiqueta: automático
-> (vem da propriedade padrão etiquetas)
-
-> **Edição (Edition)**
-> concurso (relação)
-> título e ano (ex.: Dataprev 2026)
-> banca (relação)
-> tipo (rótulo): concurso ou certificação
-> documentos, cargos e provas: automático
-
-> **Coleção (Collection)**
-> título
-> tipo de objeto (relação)
-> membros: objetos desse tipo
-> manual, sem aninhar
-> visibilidade: privada ou pública
-> Ex.: caderno de questões
-
-> **Meta (Goal)**
-> tipo: nota, % de acerto, questões, revisões em dia
-> valor alvo
-> período
-> progresso
-
-> **Documento (Document)**
-> estende: Arquivo
-> classe (rótulo): referência ou leitura
-> categoria (rótulo): edital, retificação, prova...
-> leitura: local, progresso e última posição
-> idioma e nota do documento (conteúdo)
-> edição e cargo (relações)
-
-> **Prova (Exam Paper)**
-> edição (relação)
-> cargo (relação)
-> ano e data de aplicação
-> caderno: tipo 1, 2, 3 ou 4
-> questões: automático
-
-> **Simulado (Mock Exam)**
-> edição e cargo (relações)
-> ano
-> questões em ordem
-> tempo limite e modo: prova ou estudo
-> tentativas: histórico de respostas e resultado
-
-> **Disciplina (Subject)**
-> título
-> disciplina pai (relação, para o assunto)
-> ordem
-> questões: automático
-
-> **Alternativa (Option)**
-> título: texto da alternativa
-> rótulo (letra A a E)
-> imagem (opcional)
-> correta (caixa)
-> questão (relação)
-> ordem
-
-> **Questão (Question)**
-> enunciado e instrução (conteúdo)
-> formato: única, múltipla, certo/errado, lacuna
-> gabarito e anulada (caixa)
-> gabarito comentado (conteúdo)
-> dificuldade e situação (rótulos)
-> **origem (Source): Oficial, Gerada por IA ou Manual (rótulo); Oficial liga ao PDF da prova e à edição**
-> ano (número)
-> disciplina, banca, órgão, edição e cargo (relações)
-
-> **Resposta (Answer)**
-> questão (relação)
-> simulado (relação, opcional)
-> alternativa marcada
-> acertou (resultado)
-> respondida em
-
-> **Cartão de revisão (Review Card)**
-> questão de origem (relação)
-> formato: pergunta e resposta ou lacuna
-> frente e verso
-> próxima revisão
-> histórico: data e resposta
-> resposta: esqueci, difícil, bom, fácil
-
-> **Órgão (Agency)**
-> título e sigla
-> concursos: automático
-> edições: automático
-> (ex.: Dataprev)
-
-> **Concurso (Contest)**
-> título (ex.: Dataprev)
-> órgão (relação)
-> banca (relação)
-> segmento (rótulo)
-> edições: automático
-> recorrente: uma Edição por ano
-
-> **Banca (Exam Board)**
-> título (ex.: FGV)
-> concursos: automático
-> edições: automático
-
-> **Cargo (Position)**
-> edição (relação)
-> título (ex.: Analista de TI · Desenvolvimento de Software)
-> vagas, remuneração e conteúdo
-> prova e gabarito: automático
-
-Relação é escrita em um lado só (a seta sai de quem guarda); o lado de volta é automático. Edição aponta para Concurso e Cargo aponta para Edição (setas omitidas para não cruzar). Etiqueta, Meta e Arquivo não têm seta.
-Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo objeto. Verde: já é Tipo de Objeto na 0.1.1. Azul: futuro.
-
-## ExamTopics
-<!-- container e116 @ (1604,2562) -->
-
-![imagem e117](assets/inline-e117.jpg)
-
-> **Fluxo de questões**
-> fornecedor → exame → tópico → questão
-> questão tem: enunciado, imagem (exhibit),
-> alternativas ou áreas de resposta,
-> resposta sugerida, votação da comunidade e discussão
-> discussão → comentários
-> comentário tem: usuário, resposta selecionada, votos positivos
-> 
-> Já temos no modelo: fornecedor em Exame, exame → tópico → questão, alternativas.
-
-> **Questão (Question): campos da página (v109)**
-> métricas calculadas das Respostas: tentativas, acertos, erros, % de acerto, sequência, última resposta, alternativa errada mais marcada, simulados que a incluíram
-> situação (rótulo): nunca respondida, acertei, errei ou para revisar
-> para revisar e favorita (marcações)
-> anotações (conteúdo)
-> gabarito oficial (letra) com link ao PDF do gabarito
-> posição na lista e questões relacionadas por disciplina
-> falta: tempo médio, etiquetas
-
-## Readwise
-<!-- container e119 @ (1604,3102) -->
-
-![imagem e121](assets/inline-e121.jpg)
-
-![imagem e122](assets/inline-e122.jpg)
-
-![imagem e124](assets/inline-e124.jpg)
-
-> **Readwise em 4 diagramas**
-> leitura (Reader): documento, vindo de fonte ou feed RSS, tem
-> tag, destaque, anotação e progresso de leitura
-> destaque: posição, texto destacado, nota e tag
-> aprendizado (Highlights): destaque importado → anotação, tag,
-> revisão e mastery
-> biblioteca: tags, visualizações filtradas (consulta) e documentos
-> revisão: destaque → cartão mastery (pergunta e resposta ou lacuna)
-> → evento de revisão → avaliação de memorização
-> 
-> Já temos: documento de leitura com progresso, cartão de revisão, etiqueta.
-> Destaque fica só como referência por enquanto.
-
-![imagem e123](assets/inline-e123.jpg)
-
-## 3. Hierarquia de tipos (herança)
-<!-- container e99 @ (0,3340) -->
-
-> **Arquivo (File)**
-> título
-> formato (MIME)
-> tamanho
-> checksum
-
-> **Documento (Document)**
-> estende: Arquivo
-> classe: referência ou leitura
-> categoria: edital, prova...
-> progresso: só em leitura
-
-> **PDF**
-> estende: Documento
-> nº de páginas
-> camada de texto (busca)
-> modo: original ou texto
-> zoom e página atual
-
-A seta vai do tipo base para o que o estende.
-O filho herda as propriedades do pai e acrescenta as suas.
-Cada objeto tem um único tipo: o mais específico (ex.: PDF).
-
-## 4. Glossário das entidades
-<!-- container e95 @ (0,3820) -->
-
-| Termo | Significado |
-| --- | --- |
-| Espaço (Space) | Ambiente independente de uma conta. Nada cruza entre espaços: sem links nem busca. |
-| Objeto (Object) | Unidade individual de informação: título, tipo, propriedades e conteúdo. Pertence a um Espaço. |
-| Tipo de Objeto (Object Type) | Categoria do objeto (Documento, Questão, Edição...). Define quais propriedades ele tem. |
-| Título (Title) | Nome principal do objeto, o que o usuário vê. |
-| Conteúdo (Content) | Corpo principal do objeto, quando existe (ex.: anotações). |
-| Propriedade (Property) | Característica que descreve o objeto de forma estruturada. |
-| Definição de Propriedade | Diz o que a propriedade guarda (ex.: banca é texto). Compartilhada por todos os objetos do tipo. |
-| Valor de Propriedade | A informação guardada em um objeto (ex.: banca = FGV). Pode ficar vazio. |
-| Propriedade padrão (Default) | Fornecida pelo sistema: título, aliases, descrição, ícone, etiquetas e data de criação. |
-| Propriedade adicional (Normal) | Criada para o tipo: texto, número, caixa de seleção, data e hora ou relação. |
-| Relação (Relation) | Propriedade que aponta para outro objeto (ex.: Questão aponta para Edição). |
-| Tipo de Objeto Básico | Predefinido pelo sistema (ex.: Documento). Oferece estrutura padrão para documentos, sem personalização. |
-| Tipo de Objeto Personalizado | Criado pelo usuário conforme necessário (ex.: Questão, Concurso, Meta). Cada tipo guarda propriedades únicas. |
-| Nome singular e plural | Cada tipo tem nomes singular e plural (ex.: Questão / Questões, Edição / Edições) para exibição na interface. |
-| Todo Objeto possui um Tipo | Relação fundamental: cada objeto sempre pertence a exatamente um tipo, que define sua estrutura e propriedades. |
-| Tipo de Propriedade | Determina como o valor é armazenado e interpretado. Tipos: Texto, Número, Caixa de Seleção (true/false), Data e Hora, Rótulo (seleção única/múltipla), Conteúdo com Blocos, Imagem de Capa, Seleção de Objetos (para relações). |
-| Herança (Estende) | Um Tipo de Objeto pode estender outro e herdar suas propriedades, acrescentando as suas. Ex.: PDF estende Documento, que estende Arquivo. O objeto continua com um único tipo (o mais específico). |
-| Texto (Text) | Informação textual, simples ou formatada. Endereços (URL) também ficam em Texto. Ex.: autor = Maria Silva. |
-| Número (Number) | Valores numéricos: quantidades, preços, pontuações. Códigos e identificadores sem sentido de quantidade ficam em Texto. |
-| Caixa de Seleção (Checkbox) | Marcado (true) ou desmarcado (false). Desmarcado ainda é um valor, não é vazio. Ex.: acertou. |
-| Data e Hora (Datetime) | Uma data, data com horário ou intervalo de datas. Ex.: data da prova. |
-| Rótulo (Label) | Escolha entre opções predefinidas, de seleção única ou múltipla. Ex.: dificuldade = difícil. |
-| Conteúdo (Content) | Área estruturada com Blocos, não só um texto. Ex.: anotações, explicação de uma questão. |
-| Seleção de Objetos (Object Select) | Propriedade que referencia outros objetos de um tipo definido. É a forma da Relação. |
-| Alterar valor vs. definição | Mudar um valor afeta só aquele objeto. Mudar a definição (nome, tipo) afeta todos os objetos do tipo. |
-| Etiqueta (Tag) | Palavra-chave que diz sobre o que o objeto trata (ex.: #python). É um objeto de tipo próprio, reutilizável e sem texto livre. |
-| Etiqueta do objeto / do bloco | Do objeto: classifica o objeto inteiro. Do bloco: classifica um trecho do texto com #. |
-| Página da Etiqueta (Tag Page) | Lista os objetos ligados à etiqueta, de qualquer tipo. É uma visão, não um documento para escrever. |
-| Etiqueta vs. Tipo de Objeto | O tipo diz o que a informação é (Livro). A etiqueta diz sobre o que ela trata (Python). Aplicar etiqueta não move nem duplica o objeto. |
-| Coleção (Collection) | Grupo manual de objetos de um único tipo (ex.: PDFs para Estudar). Um objeto pode estar em várias coleções, sem cópia. |
-| Participação na Coleção | Liga um objeto a uma coleção. Remover o objeto da coleção não o exclui. Coleção não contém outra coleção. |
-| Coleção vs. Etiqueta | Coleção: grupo manual, de um só tipo. Etiqueta: assunto, de qualquer tipo. Coleção não é propriedade do objeto. |
-
-## 6. Decisões de modelagem (boas práticas)
-<!-- container e152 @ (0,5310) -->
-
-1. Alternativa é objeto próprio: guarda letra, texto, correta e estatística (% que marcou), como no QConcursos.
-2. Resposta pode existir sem Simulado (questão resolvida avulsa ou na revisão). Simulado é opcional.
-3. Cartão de revisão nasce de uma Questão ou de uma Nota. Um cartão por origem; guarda agendamento (próxima data, intervalo, facilidade).
-4. Concurso → Edição → Cargo. Concurso é recorrente (Dataprev), Edição é cada ano (Dataprev 2026) e Cargo guarda prova, gabarito, vagas e conteúdo. Certificação é uma Edição (AZ-104). Prova = cada caderno do Cargo.
-5. Disciplina é um tipo próprio, reaproveitado entre Edições (Português serve para vários concursos). Órgão e Banca também são tipos, não texto.
-6. Meta: métrica (acerto %, nº de questões, nota em simulado, dias seguidos), alvo, período (dia/semana/mês), prazo e escopo opcional (Edição ou Disciplina).
-7. Progresso de leitura fica no próprio Documento (só para categoria leitura). Referência não tem progresso.
-8. Sem Destaque: trecho importante vira uma Nota que aponta para o Documento (com página/posição) e pode gerar Cartão.
-9. Visualização filtrada (filtro salvo) fica para depois; Coleção já cobre o caderno manual.
-10. Questão, Disciplina e Simulado já são tipos na 0.1.1 (70 questões da Dataprev).
-
-## 7. Roadmap de versões (cada versão entrega uma camada do modelo)
-<!-- container e154 @ (0,6000) -->
-
-> **0.1.0 (feito)**
-> Protótipo 1
-> leitura e referência
-> documentos, PDF, edital e gabarito
-
-> **0.1.1 (feito)**
-> Protótipo 2
-> barra lateral com seções livres ou por tipo, nomes no plural, ordem por arrastar
-> Concurso → Edição → Cargo, Órgão e Banca como tipos
-> Cargo herda a Banca da Edição
-> Arquivo → Documento → PDF
-> Questão, Disciplina, Simulado e Resposta como tipos
-
-> **0.2.0 (quase pronta)**
-> Questões reais
-> 70 questões do Dataprev 2026 como objetos, com filtros e navegador
-> Simulado com tentativas e histórico
-> Seção Desempenho
-> Falta: gabarito por cargo
-
-> **0.3.0**
-> Organização
-> Coleção (caderno) e Etiqueta
-> disciplina e assunto
-> listas filtradas, todo item é link
-
-> **0.4.0**
-> Estudo e revisão
-> Cartão de revisão
-> Meta e estatísticas
-
-> **0.5.0**
-> Leitura
-> Documento de leitura com progresso %
-> notas a partir do Documento
-> referência sem progresso
-
-> **1.0.0**
-> Certificações e conta
-> fornecedor e edição no estilo ExamTopics
-> questões criadas pelo usuário
-> exportar e restaurar o espaço
+DEPOIS: atalho de erros inclui resposta manual incorreta | PNG real: assets/issue100_after_erros.png
 
 ## 11. Camada de IA (Claude no protótipo 0.1.1)
-<!-- container e410 @ (1580,6000) -->
+<!-- container e410 @ (25170,0) -->
 
 ### IA em 3 pontos do estudo
 
@@ -554,62 +109,13 @@ O protótipo chama o Claude direto, sem chave de API: o artefato usa a capacidad
 > **1.0.0**
 > Sugerir Disciplina e Assunto; gerar questões do próprio Documento.
 
-## 8. Diretrizes de UI/UX (aplicadas na 0.1.1)
-<!-- container e162 @ (0,6500) -->
+## 5. Referências (de onde tiramos as informações)
+<!-- container e107 @ (33560,0) -->
 
-> **Ordem de prioridade**
-> 1. Organização visual
-> 2. Acessibilidade (WCAG AA)
-> 3. Densidade e espaçamento compactos
-> 4. Estados: carregando, vazio, erro com nova tentativa
-> 5. Manter todas as funções
-> Resumo completo: referencias/diretrizes-ui-ux-2026.md
-
-> **Feito na 0.1.1**
-> Contraste ajustado nas cores de texto
-> Link de pular para o conteúdo e rótulos de navegação
-> Migalhas no lugar de caixas repetidas
-> Navegação de seções fixa no topo
-> Botão Continuar leitura (página x de y)
-> PDF com limite de tempo e botão Tentar de novo
-> Movimento reduzido respeitado
-> **Falta:** banco de questões, filtros e simulados (ainda não existem)
-
-> **2ª diretriz: estados, feedback e erros**
-> Nem todo estado é erro (vazio, sem resultados, lento)
-> Mensagem: o que houve, impacto, o que fazer
-> Toast só para evento curto; erro tem ação de recuperar
-> Sempre timeout, nunca carregamento infinito
-> Resumo: referencias/diretrizes-estados-feedback-erros.md
-
-> **Feito na 0.1.1**
-> Carregando com aviso de demora e cancelar
-> Erro de PDF explica causa e mantém o ponto de leitura
-> Tentar de novo ou ir ao Quadro
-> Documento não encontrado (link errado)
-> Busca sem resultados com dica
-> Aviso de sem conexão e de conexão de volta
-> Toasts de erro ficam mais tempo
-> **Falta:** erro inline em formulários, confirmação com diálogo próprio, estado desatualizado
-
-> **3ª diretriz: componentes e padrões de interação**
-> Escolher componente pela finalidade, não pela aparência
-> Página, dialog, alert dialog, drawer, tabs vs navegação
-> Ação destrutiva usa alert dialog com consequência clara
-> Não mexer no código só porque o documento existe
-> Resumo: referencias/diretrizes-componentes-interacao.md
-
-> **Revisão das 3 diretrizes na 0.1.1 (feita)**
-> Confirmações com alert dialog, foco seguro no cancelar e foco devolvido
-> Erro de campo inline com aria-invalid
-> Chips de filtros ativos nas questões, com contagem anunciada
-> Teclado de árvore na barra lateral
-> Contraste do botão principal e alvos de 24 px corrigidos
-> Idioma pt-BR declarado
-> **Falta:** role=tree completo, textos e datas com Intl, skeleton de carregamento
+#227 grafo da coleção em canvas (Questão, 70 itens, 1366 px, painel direito aberto na aba Grafo). Claro e escuro: nós com --k do tipo, rótulos com contorno, zoom e reset por botões e teclado. PNG real: assets/issue227_collection_canvas_light.png e assets/issue227_collection_canvas_dark.png
 
 ## 9. Prints do Ian e feedback (cada imagem com legenda e versão)
-<!-- container e300 @ (0,7700) -->
+<!-- container e300 @ (41950,0) -->
 
 ### Redesign das páginas de objeto: antes e depois (0.1.1)
 
@@ -673,8 +179,329 @@ Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro pa
 
 **Board Exam App no canvas** (visão geral, 12/11).
 
+## Feito
+<!-- container e47 @ (50340,0) -->
+
+- Leitor de PDF com sidebar, busca e menus
+- Documentos com + e ⋯ no hover (estilo Capacities)
+- Ordenar manual ou alfabético
+- Sem % de leitura nos PDFs
+- Configurações com tema e zoom
+- Espaço "Concurso de TI"
+- Quadro só com PDFs
+- Gabarito conferido e 70 questões extraídas
+
+## Sem grupo (revisar)
+<!-- container e9900 @ (58730,0) -->
+
+# Exam App
+
+### App para estudar para exames: certificações (estilo ExamTopics) ou concursos. Sem foco fixo.
+
+> **Espaço (Space)**
+> nome e ícone
+> dono (conta)
+> isolado: sem links nem busca entre espaços
+> ao_abrir: onde parei, calendário ou objeto
+> excluído_em (30 dias para restaurar)
+> exportação: manual ou automática
+
+> **Objeto (Object)**
+> título
+> espaço
+> tipo de objeto
+> conteúdo (quando houver)
+> propriedades padrão: aliases, descrição, ícone, etiquetas, criado_em
+
+> **Tipo de Objeto (Object Type)**
+> nome e ícone
+> lista de definições de propriedade
+> Pode estender outro tipo e herdar suas propriedades
+> Ex.: Arquivo → Documento → PDF
+
+> **Definição de Propriedade (Property Definition)**
+> nome
+> tipo de valor: texto, número, caixa, data e hora, relação
+> origem: padrão do sistema ou adicional
+
+> **Valor de Propriedade (Property Value)**
+> objeto
+> definição
+> valor (pode ficar vazio)
+
+> **Alternativa (Option)**
+> título: texto da alternativa
+> rótulo (letra A a E)
+> imagem (opcional)
+> correta (caixa)
+> questão (relação)
+> ordem
+
+> **Questão (Question)**
+> enunciado e instrução (conteúdo)
+> formato: única, múltipla, certo/errado, lacuna
+> gabarito e anulada (caixa)
+> gabarito comentado (conteúdo)
+> dificuldade e situação (rótulos)
+> **origem (Source): Oficial, Gerada por IA ou Manual (rótulo); Oficial liga ao PDF da prova e à edição**
+> ano (número)
+> disciplina, banca, órgão, edição e cargo (relações)
+
+> **Resposta (Answer)**
+> questão (relação)
+> simulado (relação, opcional)
+> alternativa marcada
+> acertou (resultado)
+> respondida em
+
+> **Cartão de revisão (Review Card)**
+> questão de origem (relação)
+> formato: pergunta e resposta ou lacuna
+> frente e verso
+> próxima revisão
+> histórico: data e resposta
+> resposta: esqueci, difícil, bom, fácil
+
+> **Órgão (Agency)**
+> título e sigla
+> concursos: automático
+> edições: automático
+> (ex.: Dataprev)
+
+> **Concurso (Contest)**
+> título (ex.: Dataprev)
+> órgão (relação)
+> banca (relação)
+> segmento (rótulo)
+> edições: automático
+> recorrente: uma Edição por ano
+
+> **Banca (Exam Board)**
+> título (ex.: FGV)
+> concursos: automático
+> edições: automático
+
+> **Cargo (Position)**
+> edição (relação)
+> título (ex.: Analista de TI · Desenvolvimento de Software)
+> vagas, remuneração e conteúdo
+> prova e gabarito: automático
+
+Relação é escrita em um lado só (a seta sai de quem guarda); o lado de volta é automático. Edição aponta para Concurso e Cargo aponta para Edição (setas omitidas para não cruzar). Etiqueta, Meta e Arquivo não têm seta.
+Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo objeto. Verde: já é Tipo de Objeto na 0.1.1. Azul: futuro.
+
+> **Arquivo (File)**
+> título
+> formato (MIME)
+> tamanho
+> checksum
+
+> **Documento (Document)**
+> estende: Arquivo
+> classe: referência ou leitura
+> categoria: edital, prova...
+> progresso: só em leitura
+
+> **PDF**
+> estende: Documento
+> nº de páginas
+> camada de texto (busca)
+> modo: original ou texto
+> zoom e página atual
+
+A seta vai do tipo base para o que o estende.
+O filho herda as propriedades do pai e acrescenta as suas.
+Cada objeto tem um único tipo: o mais específico (ex.: PDF).
+
+| Termo | Significado |
+| --- | --- |
+| Espaço (Space) | Ambiente independente de uma conta. Nada cruza entre espaços: sem links nem busca. |
+| Objeto (Object) | Unidade individual de informação: título, tipo, propriedades e conteúdo. Pertence a um Espaço. |
+| Tipo de Objeto (Object Type) | Categoria do objeto (Documento, Questão, Edição...). Define quais propriedades ele tem. |
+| Título (Title) | Nome principal do objeto, o que o usuário vê. |
+| Conteúdo (Content) | Corpo principal do objeto, quando existe (ex.: anotações). |
+| Propriedade (Property) | Característica que descreve o objeto de forma estruturada. |
+| Definição de Propriedade | Diz o que a propriedade guarda (ex.: banca é texto). Compartilhada por todos os objetos do tipo. |
+| Valor de Propriedade | A informação guardada em um objeto (ex.: banca = FGV). Pode ficar vazio. |
+| Propriedade padrão (Default) | Fornecida pelo sistema: título, aliases, descrição, ícone, etiquetas e data de criação. |
+| Propriedade adicional (Normal) | Criada para o tipo: texto, número, caixa de seleção, data e hora ou relação. |
+| Relação (Relation) | Propriedade que aponta para outro objeto (ex.: Questão aponta para Edição). |
+| Tipo de Objeto Básico | Predefinido pelo sistema (ex.: Documento). Oferece estrutura padrão para documentos, sem personalização. |
+| Tipo de Objeto Personalizado | Criado pelo usuário conforme necessário (ex.: Questão, Concurso, Meta). Cada tipo guarda propriedades únicas. |
+| Nome singular e plural | Cada tipo tem nomes singular e plural (ex.: Questão / Questões, Edição / Edições) para exibição na interface. |
+| Todo Objeto possui um Tipo | Relação fundamental: cada objeto sempre pertence a exatamente um tipo, que define sua estrutura e propriedades. |
+| Tipo de Propriedade | Determina como o valor é armazenado e interpretado. Tipos: Texto, Número, Caixa de Seleção (true/false), Data e Hora, Rótulo (seleção única/múltipla), Conteúdo com Blocos, Imagem de Capa, Seleção de Objetos (para relações). |
+| Herança (Estende) | Um Tipo de Objeto pode estender outro e herdar suas propriedades, acrescentando as suas. Ex.: PDF estende Documento, que estende Arquivo. O objeto continua com um único tipo (o mais específico). |
+| Texto (Text) | Informação textual, simples ou formatada. Endereços (URL) também ficam em Texto. Ex.: autor = Maria Silva. |
+| Número (Number) | Valores numéricos: quantidades, preços, pontuações. Códigos e identificadores sem sentido de quantidade ficam em Texto. |
+| Caixa de Seleção (Checkbox) | Marcado (true) ou desmarcado (false). Desmarcado ainda é um valor, não é vazio. Ex.: acertou. |
+| Data e Hora (Datetime) | Uma data, data com horário ou intervalo de datas. Ex.: data da prova. |
+| Rótulo (Label) | Escolha entre opções predefinidas, de seleção única ou múltipla. Ex.: dificuldade = difícil. |
+| Conteúdo (Content) | Área estruturada com Blocos, não só um texto. Ex.: anotações, explicação de uma questão. |
+| Seleção de Objetos (Object Select) | Propriedade que referencia outros objetos de um tipo definido. É a forma da Relação. |
+| Alterar valor vs. definição | Mudar um valor afeta só aquele objeto. Mudar a definição (nome, tipo) afeta todos os objetos do tipo. |
+| Etiqueta (Tag) | Palavra-chave que diz sobre o que o objeto trata (ex.: #python). É um objeto de tipo próprio, reutilizável e sem texto livre. |
+| Etiqueta do objeto / do bloco | Do objeto: classifica o objeto inteiro. Do bloco: classifica um trecho do texto com #. |
+| Página da Etiqueta (Tag Page) | Lista os objetos ligados à etiqueta, de qualquer tipo. É uma visão, não um documento para escrever. |
+| Etiqueta vs. Tipo de Objeto | O tipo diz o que a informação é (Livro). A etiqueta diz sobre o que ela trata (Python). Aplicar etiqueta não move nem duplica o objeto. |
+| Coleção (Collection) | Grupo manual de objetos de um único tipo (ex.: PDFs para Estudar). Um objeto pode estar em várias coleções, sem cópia. |
+| Participação na Coleção | Liga um objeto a uma coleção. Remover o objeto da coleção não o exclui. Coleção não contém outra coleção. |
+| Coleção vs. Etiqueta | Coleção: grupo manual, de um só tipo. Etiqueta: assunto, de qualquer tipo. Coleção não é propriedade do objeto. |
+
+> **Questão (Question): campos da página (v109)**
+> métricas calculadas das Respostas: tentativas, acertos, erros, % de acerto, sequência, última resposta, alternativa errada mais marcada, simulados que a incluíram
+> situação (rótulo): nunca respondida, acertei, errei ou para revisar
+> para revisar e favorita (marcações)
+> anotações (conteúdo)
+> gabarito oficial (letra) com link ao PDF do gabarito
+> posição na lista e questões relacionadas por disciplina
+> falta: tempo médio, etiquetas
+
+1. Alternativa é objeto próprio: guarda letra, texto, correta e estatística (% que marcou), como no QConcursos.
+2. Resposta pode existir sem Simulado (questão resolvida avulsa ou na revisão). Simulado é opcional.
+3. Cartão de revisão nasce de uma Questão ou de uma Nota. Um cartão por origem; guarda agendamento (próxima data, intervalo, facilidade).
+4. Concurso → Edição → Cargo. Concurso é recorrente (Dataprev), Edição é cada ano (Dataprev 2026) e Cargo guarda prova, gabarito, vagas e conteúdo. Certificação é uma Edição (AZ-104). Prova = cada caderno do Cargo.
+5. Disciplina é um tipo próprio, reaproveitado entre Edições (Português serve para vários concursos). Órgão e Banca também são tipos, não texto.
+6. Meta: métrica (acerto %, nº de questões, nota em simulado, dias seguidos), alvo, período (dia/semana/mês), prazo e escopo opcional (Edição ou Disciplina).
+7. Progresso de leitura fica no próprio Documento (só para categoria leitura). Referência não tem progresso.
+8. Sem Destaque: trecho importante vira uma Nota que aponta para o Documento (com página/posição) e pode gerar Cartão.
+9. Visualização filtrada (filtro salvo) fica para depois; Coleção já cobre o caderno manual.
+10. Questão, Disciplina e Simulado já são tipos na 0.1.1 (70 questões da Dataprev).
+
+Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e leitor de tela; animação de entrada respeita prefers-reduced-motion. Testes: tests/collection-graph-canvas.test.mjs e tests/contextual-graph-links.test.mjs (suíte node --test verde). Limites: sem leitura NVDA/VoiceOver (#226/#234); rótulos densos se sobrepõem como antes.
+
+### Extração Direta das 4 Referências (QConcursos, Capacities, Readwise Reader/SRS e ExamTopics) Cruzada com a Arquitetura do Exam App (Perguntas 1 a 14)
+
+> **Respostas Extraídas dos Sites e do Modelo do Board (Perguntas 1 a 14)**
+> 
+> **1. QConcursos — "Caderno" como Coleção fixa de questões (sem pastas nesta fase):**
+> - **No site (`elite.qconcursos.com`):** Possui `Gerar Caderno` (a partir do filtro ativo, até 1.000 questões) e a aba `Cadernos` dentro de cada questão (`+ Criar novo caderno` ou dropdown `Encontrar caderno`), além de `Caderno de Erros` automático na Central de Preparação. No QConcursos legado existiam Pastas, mas na interface moderna Elite o fluxo é plano.
+> - **Decisão no Exam App (Seções 2 e 6 do Board):** **SIM, definitivamente.** O Caderno é uma **Coleção (`Collection`)** manual de objetos do tipo `Questão`, **plana e sem aninhamento (sem pastas)** (`"Coleção não contém outra coleção"` — linha 464). Entregar na versão `0.3.0`.
+> 
+> **2. Filtros Salvos — Objeto próprio (`Visão`) na sidebar vs. Lista dentro do banco de questões:**
+> - **Nos sites:**
+>   - *QConcursos:* Fica dentro da barra de ações do banco de questões (`Salvar filtro` e `Meus filtros` lado a lado com `Gerar Caderno`).
+>   - *Readwise Reader (`/views`) e Capacities (`Queries`):* São objetos `Filtered Views` com página de gestão (`/views`) e opção de `Pin` (`Fixar na barra lateral`).
+> - **Decisão no Exam App (Seções 6, 9 e 28):** Na fase atual (MVP / `0.2.0`–`0.3.0`), funciona como **lista rápida no banco de questões** (`Salvar filtro` / `Meus filtros` + estado na URL), enquanto no modelo de domínio equivale a uma **Visão / Query salva** (que guarda critérios de filtro, diferente da `Coleção` que guarda IDs fixos) e pode ser **fixada opcionalmente na sidebar** via menu `⋯` sem obrigar página própria no MVP.
+> 
+> **3. Simulado — Nascer de filtro/coleção (quantidade e tempo configuráveis) vs. Criado manualmente do zero:**
+> - **No site (`elite.qconcursos.com`):** Nasce diretamente do botão `Criar Simulado` na barra de ações do filtro ativo (ou de um Caderno), sorteando `N` questões dos critérios selecionados com tempo configurável, além das Provas Oficiais fechadas (`Prova: SELECON - 2026`).
+> - **Decisão no Exam App (Seções 2 e 9):** Nasce de **duas formas sem cadastro manual questão-por-questão do zero**: (A) **A partir de um Filtro ou Coleção (Caderno)** definindo quantidade, tempo limite e modo (`prova` ou `estudo`); ou (B) **Diretamente de uma Prova Oficial (`Exam Paper` — ex.: Dataprev 2026 Tipo 1)** com suas 70 questões na ordem oficial.
+> 
+> **4. Resolução — Quais recursos do QConcursos entram no MVP além de responder e corrigir:**
+> - **Extraído do Card de Questão e do Study Dock (`elite.qconcursos.com`):**
+>   1. **Texto associado (`+` expansível inline):** **ENTRA NO MVP (`P0`)** — indispensável para provas da FGV/Cebraspe onde 5 a 10 questões compartilham um texto-base.
+>   2. **Eliminar alternativa (`Tesoura` / `line-through`):** **ENTRA NO MVP (`P0`)** — já modelado na UI (`opacity: 0.5` + riscado) e essencial na resolução.
+>   3. **Cronômetro e Modo Foco:** **ENTRAM NO MVP (`P1`)** — o Cronômetro já existe no modo Simulado e o Modo Foco equivale a recolher a Sidebar (`0px`, `[`) e o Painel Direito (`Ctrl+\`).
+>   4. **Folha de Respostas (Navegador 10×7) e Relatório de Desempenho (Scorecard):** **ENTRAM NO MVP (`P0` — entregues na Seção 25 / Issue #19)** — matriz 10×7 codificada por cores e scorecard pós-simulado por disciplina.
+>   5. **Anotações da Questão e Marca-texto no enunciado:** *Anotações pessoais* entram como campo `Conteúdo` da Questão (`0.3.0`); *Marca-texto multicor inline no enunciado* fica como evolução pós-MVP (`P2`).
+> 
+> **5. Comentários comunitários, aulas em vídeo e gabarito comentado de professores:**
+> - **Nos sites:** Tanto QConcursos (`Aulas 3`, `Comentários`) quanto ExamTopics (`Discussion`, `Community Vote`) possuem abas comunitárias e videoaulas.
+> - **Decisão no Exam App (Seções 8 e 9 do Board):** **Comentários comunitários, votos da comunidade, rankings e videoaulas (`Aulas`) continuam EXPLICITAMENTE FORA DO ESCOPO (Descartados).** Já o campo **`gabarito comentado`** existe no modelo da `Questão` (Seção 2, linha 306) apenas como **explicação própria do usuário ou gerada sob demanda via IA (`Explicar com IA` — Seção 11)**, sem rede social nem professores terceiros.
+> 
+> **6. Capacities — "Tipos de objeto", grafo, relações e painel direito: infraestrutura interna vs. criação livre pelo aluno:**
+> - **No site (`app.capacities.io`):** PKM genérico onde o usuário cria qualquer tipo de objeto do zero.
+> - **Decisão no Exam App (Seção 1, 2 e UX Contract Regra #1):** Os Tipos de Objeto do domínio de concursos (`Concurso`, `Edição`, `Cargo`, `Órgão`, `Banca`, `Disciplina`, `Prova`, `Questão`, `Simulado`, `Resposta`, `Documento/PDF`, `Coleção`, `Etiqueta`, `Cartão de Revisão`, `Meta`) vêm **pré-configurados como infraestrutura nativa do Exam App** (para que o aluno estude imediatamente sem precisar modelar banco de dados, cumprindo a Regra #1 do `AGENTS.md`). A criação/edição customizada de tipos pelo menu `⋯` permanece disponível como recurso avançado secundário, nunca como pré-requisito.
+> 
+> **7. Grafo — Qual tarefa concreta resolve para o aluno (prioridade vs. recurso secundário):**
+> - **No site (`app.capacities.io`):** Possui **Grafo Local no Painel Direito** (centrado no objeto aberto, com filtro de tipos e profundidade `1..4`) e **Grafo Global (`#/grafico`)** com busca e clusters.
+> - **Decisão no Exam App (Seção 26 / Issue #25):** Resolve **ambas as tarefas em níveis diferentes**:
+>   1. **Grafo Local no Painel Direito (Mais útil no dia a dia):** Permite ver imediatamente todas as questões, provas, cargos e documentos ligados a uma `Disciplina` ou `Edição` sem sair da tela atual.
+>   2. **Grafo Global (`#/grafico`):** Recurso **secundário de exploração visual** da estrutura do concurso (já entregue na `0.1.1`), subordinado às fluxos primários (`Questões`, `Simulados` e `Revisão`).
+
+> **Continuação das Respostas Extraídas dos Sites (Perguntas 8 a 14)**
+> 
+> **8. Readwise — O que a "Revisão Diária" revisa no nosso produto:**
+> - **No site (`readwise.io/dailyreview`):** Revisa Highlights de livros/artigos e cartões de Mastery (`Cloze Deletion` e `Q&A`).
+> - **Decisão no Exam App (Seções 2, 6 e 11 do Board):** Revisa uma **combinação focada em aprovação**, unificada na fila de revisão:
+>   1. **Questões erradas (`situação = errei` / Caderno de Erros)** e **Questões marcadas `para revisar`** (Seção ExamTopics v109, linha 372).
+>   2. **Cartões de Revisão (`Review Card` — Pergunta/Resposta ou Lacuna/Cloze)** gerados a partir de uma **Questão** ou de uma **Nota de Documento/PDF** (`"Cartão de revisão nasce de uma Questão ou de uma Nota"` — Seção 6, item 3).
+>   *(Highlights puros de PDF não entram soltos: conforme Seção 6 item 8, trecho importante vira Nota que pode gerar Cartão).*
+> 
+> **9. SRS — Primeira versão simples (`0.4.0`) vs. Frequência adaptativa completa do Readwise:**
+> - **No site (`readwise.io`):** Tem botões de avaliação de 4 níveis (`Never/Esqueci`, `Soon/Difícil`, `Later/Bom`, `Someday/Fácil`), `Highlights Per Day (1–15)`, `Streak` + `Heatmap (/stats)` e `Frequency Tuning` por fonte.
+> - **Decisão no Exam App (Seções 2, 7 e 32):**
+>   - **Fase 1 (`0.4.0` — MVP da Revisão):** Fila diária simples + 4 botões de avaliação no `Cartão de Revisão` (`esqueci`, `difícil`, `bom`, `fácil` — já modelados na Seção 2, linha 325) + filtro rápido `Revisar erradas` + `Streak` e estatísticas.
+>   - **Fase 2 (Evolução):** `Frequency Tuning` (sliders de prioridade por Disciplina/Peso no Edital) entra como evolução posterior quando o aluno já tiver volume de cartões.
+> 
+> **10. Leitura de PDF — Incorporar highlights, notas e exportação vs. Focar em consulta à prova/editais nesta etapa:**
+> - **No site (`read.readwise.io`):** Leitor completo com highlights, `Notebook` lateral, `Action Tags` (`.qa`, `.c1`, `.h1`), `Snapshot` de tabelas e exportação Markdown.
+> - **Decisão no Exam App (Seções 3, 6 e 7 do Board):** O modelo já separa claramente em **2 classes de Documento (`0.1.0` vs `0.5.0`)**:
+>   - **Agora (`0.1.1` / `0.2.0`):** Foco em **Documentos de Referência** (Edital, Retificações, Prova, Gabarito) — consulta rápida, busca textual, zoom e vínculo direto com as questões (sem % de leitura e sem complexidade de highlights).
+>   - **Na versão `0.5.0` (Camada de Leitura):** Entram os **Documentos de Leitura** com `% de progresso`, criação de **Notas vinculadas à página do PDF** e conversão em **Cartão de Revisão** (`Seção 6, itens 7 e 8`).
+> 
+> **11. IA — Quais capacidades entram no escopo:**
+> - **Nos sites:** Readwise tem `Ghostreader` (15 skills Jinja2 + Chat RAG); QConcursos tem gabarito comentado.
+> - **Decisão no Exam App (Seção 11 do Board — "IA em 3 pontos do estudo"):** Entram **exatamente 3 capacidades cirúrgicas** (usando `sample` do Claude quando disponível, e ocultando os botões graciosamente quando offline/sem IA):
+>   1. **Explicar questão (`Explicar com IA`):** Pós-resposta, explica por que a correta está certa e por que as outras estão erradas, com macete.
+>   2. **Gerar flashcards (`Criar cartões`):** Gera 3 cartões frente/verso ou Cloze a partir do conceito da questão.
+>   3. **Recomendar revisão (`Sugerir o que revisar`):** Analisa o `Desempenho` e aponta as disciplinas críticas com link direto para treinar.
+>   *(Classificar assunto e gerar questões a partir do PDF ficam apenas para a `1.0.0` — linha 551).*
+> 
+> **12. Importação/Exportação — Sincronizar Anki/Notion/Obsidian/Capacities vs. Exportar dados próprios (CSV/Markdown/JSON):**
+> - **No site (`readwise.io/welcome/sync` e `/export`):** Possui 32 conectores de importação e 16 de exportação OAuth porque é um hub intermediário.
+> - **Decisão no Exam App (Seções 1 e 7 do Board):** **NÃO criar conectores OAuth com terceiros (Anki/Notion/Obsidian).** Basta **exportar e restaurar o próprio Espaço** em formatos abertos (**JSON / CSV / Markdown** — previsto na `1.0.0`, linha 525), que o próprio usuário já consegue importar no Anki ou Obsidian se desejar.
+> 
+> **13. ExamTopics — Atender certificações desde o lançamento vs. Foco inicial em concurso brasileiro (Dataprev 2026):**
+> - **Decisão no Exam App (Seção 6 item 4 e Seção 7 Roadmap):**
+>   - **No modelo de dados:** Já é compatível desde o dia 1 porque `Edição` possui o rótulo `tipo: concurso | certificação` (ex.: `Dataprev 2026` vs `AZ-104`) e `Questão` suporta múltipla escolha (`Seção 2, linhas 249 e 304`).
+>   - **No lançamento e conteúdo (`0.2.0` a `0.5.0`):** O **foco inicial prático é 100% Concurso Brasileiro / Dataprev 2026** (70 questões reais da FGV, edital, cargos e provas). O pacote específico de **Certificações TI (estilo ExamTopics)** fica agendado para a **`1.0.0`** (Seção 7, linha 521).
+> 
+> **14. Criação do Índice Mestre de Rastreabilidade de Evidências no Board (`App | Captura | URL | Data | Ação Observada | Decisão | Status`):**
+> - **SIM — Implementado imediatamente abaixo (`Tabela e1154`)** neste próprio container do `board.json` e compilado em `BOARD.md`, eliminando 100% da falta de rastreabilidade entre os prints capturados e as decisões de produto.
+
+**Evidência 75 (Readwise SRS Grading — Issue #82): Resposta revelada no cartão Cloze com os 4 botões de estabilidade (`Never`, `Soon`, `Later`, `Someday`)**
+
+**Evidência 76 (Readwise SRS Edit — Issue #83): Modal de edição não-destrutiva (`Edited Highlight` vs `Original Highlight`) e campo `NOTE`**
+
+![imagem e985](assets/readwise_srs_review_settings_algorithm.png)
+
+![imagem e987](assets/readwise_srs_frequency_tuning_by_source.png)
+
+**Evidência 77 (Readwise SRS Algoritmo — Issue #82): Painel `Review Settings` (`Highlights Per Day`, `Highlight Recency` slider, `Bonus Highlights`)**
+
+**Evidência 78 (Readwise SRS Tuning — Issue #83): Tela `Frequency Tuning` (`/configure/tune/books`) com slider de prioridade para cada fonte/disciplina**
+
+![imagem e989](assets/readwise_srs_daily_review_completed_streak.png)
+
+![imagem e991](assets/readwise_srs_statistics_heatmap.png)
+
+**Evidência 79 (Readwise SRS Streak — Issue #83): Tela de conclusão da Revisão Diária (`6/6 reviewed today`), badge de `Streak` e botão `Review More Highlights`**
+
+**Evidência 80 (Readwise SRS Stats — Issue #83): Página `Statistics` (`/stats`) com Heatmap anual de revisões diárias, novos grifos e recordes de ofensiva**
+
+## QConcursos
+<!-- container e108 @ (33584,62) -->
+
+![imagem e109](assets/inline-e109.jpg)
+
+![imagem e110](assets/inline-e110.jpg)
+
+> **Estudo do usuário**
+> usuário tem: prova salva, resumo, pasta, caderno, anotação,
+> marcação, filtro salvo, comentário, simulado e curso
+> caderno, anotação e marcação apontam para questão
+> simulado → tentativa → resposta e resultado → estatísticas
+> curso → progresso e trilha de estudos → aula → material didático
+
+> **Conteúdo e questão**
+> concurso: segmento, órgão e banca → edital, cargo e prova
+> disciplina → assunto → questão; prova → questão
+> opcionais: área de formação e de atuação, legislação, texto associado
+> questão: modalidade, alternativas, gabarito, gabarito comentado,
+> comentários, nível, dificuldade, situação e ano
+
+![imagem e114](assets/inline-e114.jpg)
+
+> **Questão em 4 grupos**
+> metadados: prova ou concurso, disciplina e assunto, modalidade e dificuldade, situação
+> conteúdo: texto associado, enunciado, alternativas ou itens, imagens e anexos
+> correção: gabarito, explicação, comentários
+> estudo: respostas do usuário, anotações, marcações, cadernos, aulas, estatísticas
+
 ## 23. Especificação do Painel de Propriedades (Capacities & Obsidian Properties v1.4+)
-<!-- container e504 @ (0,8000) -->
+<!-- container e504 @ (41950,300) -->
 
 ### Modernização do Painel de Propriedades (Capacities & Obsidian Parity)
 
@@ -704,8 +531,106 @@ Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro pa
 
 ### Feedback do Ian sobre a 0.1.1 (prints do protótipo)
 
+## Em andamento
+<!-- container e48 @ (50340,410) -->
+
+- Modelar as entidades do app (diagrama abaixo)
+- Adotar "tudo é um Objeto" (tipo e propriedades)
+- Decidir onde ficam as questões
+- Testar as telas no celular
+- Motion (Issue #128): loop do grafo agora respeita movimento reduzido, aba oculta, viewport e repouso; tokens CSS alinhados. QA visual e benchmarks ainda pendentes.
+
+## 38. Infraestrutura de agentes — correção MCP (Codex, Claude e Antigravity)
+<!-- container e1248 @ (25170,660) -->
+
+### Diagnóstico P1 e correção verificável — 2026-11-14
+
+> **Escopo:** Codex, Claude Desktop e Antigravity no workspace `C:\Users\ianma\workspace\exams\dev`. Sem captura visual: evidência é a saída textual de `agents` e os arquivos de configuração materializados.
+> **Causas confirmadas (P1):**
+> 1. O projeto declarava somente `fetch`, `filesystem` e `git`; Serena não estava no conjunto MCP.
+> 2. `fetch` e `git` dependiam de `uvx`, disponível apenas no PATH da sessão.
+> 3. O Codex não confiava no projeto, podendo ignorar `.codex/config.toml`.
+> 4. CodeGraph não possui índice neste repositório (a pasta `.codegraph/` contém apenas `.gitignore`); a indexação permanece decisão explícita.
+> **Correção aplicada:**
+> - Serena foi registrado na fonte compartilhada para Codex, Claude, Claude Desktop, Gemini e Antigravity.
+> - Overrides locais chamam os caminhos absolutos de `uvx.exe` e `serena.exe` através de `cmd.exe`, mantendo a fonte versionada portátil.
+> - `agents sync` materializou `.codex/config.toml`, `.mcp.json`, `.agents/mcp_config.json`, `.gemini/settings.json` e a configuração global do Claude Desktop.
+> - O projeto foi marcado como `trusted` na configuração global do Codex.
+> **Aceite verificado:** `agents mcp test` aprovou `fetch`, `filesystem`, `git` e `serena`; `agents sync --check` não encontrou divergências; status registra quatro servidores e Codex `trusted`.
+> **Limite de teste:** os CLIs de Codex, Claude e Antigravity não estão no PATH, logo a introspecção de runtime dos apps GUI não é automatizável. Reiniciar os três apps carrega a configuração; no Claude Desktop os nomes recebem o prefixo gerenciado `agents__5c84344337b9__`.
+
+## 2. Tipos de Objeto do app e suas relações (a seta aponta para o objeto relacionado)
+<!-- container e104 @ (0,720) -->
+
+
+
+## 8. Diretrizes de UI/UX (aplicadas na 0.1.1)
+<!-- container e162 @ (8390,820) -->
+
+> **Ordem de prioridade**
+> 1. Organização visual
+> 2. Acessibilidade (WCAG AA)
+> 3. Densidade e espaçamento compactos
+> 4. Estados: carregando, vazio, erro com nova tentativa
+> 5. Manter todas as funções
+> Resumo completo: referencias/diretrizes-ui-ux-2026.md
+
+> **Feito na 0.1.1**
+> Contraste ajustado nas cores de texto
+> Link de pular para o conteúdo e rótulos de navegação
+> Migalhas no lugar de caixas repetidas
+> Navegação de seções fixa no topo
+> Botão Continuar leitura (página x de y)
+> PDF com limite de tempo e botão Tentar de novo
+> Movimento reduzido respeitado
+> **Falta:** banco de questões, filtros e simulados (ainda não existem)
+
+> **2ª diretriz: estados, feedback e erros**
+> Nem todo estado é erro (vazio, sem resultados, lento)
+> Mensagem: o que houve, impacto, o que fazer
+> Toast só para evento curto; erro tem ação de recuperar
+> Sempre timeout, nunca carregamento infinito
+> Resumo: referencias/diretrizes-estados-feedback-erros.md
+
+> **Feito na 0.1.1**
+> Carregando com aviso de demora e cancelar
+> Erro de PDF explica causa e mantém o ponto de leitura
+> Tentar de novo ou ir ao Quadro
+> Documento não encontrado (link errado)
+> Busca sem resultados com dica
+> Aviso de sem conexão e de conexão de volta
+> Toasts de erro ficam mais tempo
+> **Falta:** erro inline em formulários, confirmação com diálogo próprio, estado desatualizado
+
+> **3ª diretriz: componentes e padrões de interação**
+> Escolher componente pela finalidade, não pela aparência
+> Página, dialog, alert dialog, drawer, tabs vs navegação
+> Ação destrutiva usa alert dialog com consequência clara
+> Não mexer no código só porque o documento existe
+> Resumo: referencias/diretrizes-componentes-interacao.md
+
+> **Revisão das 3 diretrizes na 0.1.1 (feita)**
+> Confirmações com alert dialog, foco seguro no cancelar e foco devolvido
+> Erro de campo inline com aria-invalid
+> Chips de filtros ativos nas questões, com contagem anunciada
+> Teclado de árvore na barra lateral
+> Contraste do botão principal e alvos de 24 px corrigidos
+> Idioma pt-BR declarado
+> **Falta:** role=tree completo, textos e datas com Intl, skeleton de carregamento
+
+## Pendente
+<!-- container e49 @ (50340,820) -->
+
+- Questões, simulado e revisão no app
+- Metas
+- Documentos de leitura com % de progresso (estilo Reader e Kindle)
+- Espaços: criar, excluir (30 dias) e exportar
+- Guardar o progresso na conta
+- Extrair os cadernos tipo 2, 3 e 4
+- Mostrar as figuras da prova junto do texto
+
 ## 24. Dashboard Central de Estudos (#/espaco) - Especificação de UX
-<!-- container e506 @ (0,8600) -->
+<!-- container e506 @ (41950,900) -->
 
 ![imagem e313](assets/265be9aa9703f3cc57f43d3c62f96de1.png)
 
@@ -734,8 +659,163 @@ Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro pa
 
 **0.1.1 (v97): "está um pouco estranho".** Painel direito apertado, rótulos quebrando, bloco Estudar repetindo as abas. Ajustado na v98.
 
+## ExamTopics
+<!-- container e116 @ (33584,1062) -->
+
+![imagem e117](assets/inline-e117.jpg)
+
+> **Fluxo de questões**
+> fornecedor → exame → tópico → questão
+> questão tem: enunciado, imagem (exhibit),
+> alternativas ou áreas de resposta,
+> resposta sugerida, votação da comunidade e discussão
+> discussão → comentários
+> comentário tem: usuário, resposta selecionada, votos positivos
+> 
+> Já temos no modelo: fornecedor em Exame, exame → tópico → questão, alternativas.
+
+## 0.1.0
+<!-- container e4 @ (50340,1230) -->
+
+### Documentos
+
+![imagem e5](assets/inline-e5.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#edital))
+
+![imagem e6](assets/inline-e6.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret1))
+
+![imagem e7](assets/inline-e7.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret2))
+
+![imagem e8](assets/inline-e8.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#cronograma))
+
+![imagem e9](assets/inline-e9.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#tipo1))
+
+![imagem e10](assets/inline-e10.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#gabarito))
+
+> **Etiqueta (Tag)**
+> título (o assunto)
+> sem texto livre
+> objetos com a etiqueta: automático
+> (vem da propriedade padrão etiquetas)
+
+> **Edição (Edition)**
+> concurso (relação)
+> título e ano (ex.: Dataprev 2026)
+> banca (relação)
+> tipo (rótulo): concurso ou certificação
+> documentos, cargos e provas: automático
+
+> **Coleção (Collection)**
+> título
+> tipo de objeto (relação)
+> membros: objetos desse tipo
+> manual, sem aninhar
+> visibilidade: privada ou pública
+> Ex.: caderno de questões
+
+> **Meta (Goal)**
+> tipo: nota, % de acerto, questões, revisões em dia
+> valor alvo
+> período
+> progresso
+
+Edital de abertura
+
+1ª retificação
+
+2ª retificação
+
+Cronograma
+
+Caderno tipo 1
+
+Gabarito preliminar
+
+> **Documento (Document)**
+> estende: Arquivo
+> classe (rótulo): referência ou leitura
+> categoria (rótulo): edital, retificação, prova...
+> leitura: local, progresso e última posição
+> idioma e nota do documento (conteúdo)
+> edição e cargo (relações)
+
+> **Prova (Exam Paper)**
+> edição (relação)
+> cargo (relação)
+> ano e data de aplicação
+> caderno: tipo 1, 2, 3 ou 4
+> questões: automático
+
+> **Simulado (Mock Exam)**
+> edição e cargo (relações)
+> ano
+> questões em ordem
+> tempo limite e modo: prova ou estudo
+> tentativas: histórico de respostas e resultado
+
+> **Disciplina (Subject)**
+> título
+> disciplina pai (relação, para o assunto)
+> ordem
+> questões: automático
+
+### Entidades
+
+### Protótipo versão 1
+
+> **Espaço**
+> nome e ícone
+> dono (conta)
+> isolado: nada cruza entre espaços
+> Ex.: Concurso de TI
+
+> **Documento (PDF)**
+> título
+> classe: referência (fonte de verdade, sem % de leitura) ou leitura (com % de progresso, estilo Reader e Kindle)
+> categoria: edital, retificação, cronograma, prova, gabarito
+> arquivo
+> espaço
+> progresso e posição: só em leitura
+
+![imagem e44](assets/inline-e44.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7))
+
 ## 25. Telas Vitais: Navegação por Teclado, Grade Rápida e Relatório de Simulado
-<!-- container e508 @ (0,9200) -->
+<!-- container e508 @ (41950,1500) -->
+
+| App / Origem | Captura (`assets/`) | URL / Rota | Data | Ação Observada na Interface | Decisão que Informa no Exam App | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| QConcursos Elite | qconcursos_live_home_proxima_acao.png | elite.qconcursos.com (Home) | 2026-11-13 | Hero do concurso alvo + CTA "PRÓXIMA AÇÃO: Continuar estudando" e ritmo diário | Home (#/espaco) com retomada em 1 clique do último estudo/PDF e meta diária (Seção 24) | Adotar |
+| QConcursos Elite | qconcursos_live_home_caderno_erros.png | elite.qconcursos.com (Caderno de Erros) | 2026-11-13 | Agrupamento automático de questões erradas por disciplina para repetição imediata | Atalho "Revisar erradas" na Home e no Banco aplicando filtro real (situação = errei) | Adotar |
+| QConcursos Elite | qconcursos_filter_disciplina_open.png | elite.qconcursos.com/questoes | 2026-11-14 | Dropdown multiselect pesquisável com contagem por Disciplina e cascata para Assunto | Filtro unificado com busca, chips removíveis, E entre categorias e OU na mesma categoria | Adotar |
+| QConcursos Elite | qconcursos_live_filter_actions_bar.png | elite.qconcursos.com/questoes | 2026-11-14 | Barra de ações do filtro: Salvar filtro, Gerar Caderno, Meus Cadernos, Meus filtros, Criar Simulado | Caderno = Coleção fixa plana (sem pastas); Filtro salvo = Visão/Query; Simulado nasce do filtro/coleção | Adaptar |
+| QConcursos Elite | qconcursos_texto_associado_expanded.png | elite.qconcursos.com/questoes (Q1) | 2026-11-14 | Expansão inline do "Texto associado (+)" acima do enunciado sem sair da questão | Incluir toggle Texto Associado no MVP da resolução de questões (P0) | Adotar |
+| QConcursos Elite | qconcursos_alternative_scissors_struck.png | elite.qconcursos.com/questoes (Q1) | 2026-11-14 | Clique na Tesoura risca alternativa descartada (line-through + opacity 0.5) | Manter eliminação de alternativa por clique/atalho no MVP da resolução (P0) | Adotar |
+| QConcursos Elite | qconcursos_live_question_tab_estatisticas.png | elite.qconcursos.com/questoes (Aba Estatísticas) | 2026-11-13 | Gráfico Donut de % de acerto e barras A-E após clicar em Responder | Exibir estatísticas e histórico do próprio usuário na questão; descartar ranking comunitário | Adaptar |
+| QConcursos Elite | qconcursos_question_cadernos_tab.png | elite.qconcursos.com/questoes (Aba Cadernos) | 2026-11-14 | Adicionar questão individual a um Caderno existente ou "+ Criar novo caderno" | Permitir salvar questão em Coleção (Caderno) direto da tela de resolução (0.3.0) | Adotar |
+| QConcursos Elite | qconcursos_question_anotacoes_editor.png | elite.qconcursos.com/questoes (Aba Anotações) | 2026-11-14 | Editor de anotações pessoais vinculado exclusivamente à questão | Guardar anotações pessoais no campo Conteúdo da Questão (0.3.0) | Adotar |
+| QConcursos Elite | qconcursos_dock_fonte_aa_active.png | elite.qconcursos.com/questoes (Study Dock) | 2026-11-14 | Dock flutuante direito com Fonte Aa, Cronômetro, Desempenho, Modo Foco e Marca-texto | Adotar Cronômetro, Modo Foco (colapso dos painéis) e controle tipográfico; postergar marca-texto multicor | Adaptar |
+| QConcursos / ExamTopics | inline-e117.jpg | examtopics.com / elite.qconcursos.com | 2026-11-12 | Abas de Comentários da comunidade, votação de gabarito e videoaulas (Aulas 3) | Manter comentários comunitários, votos e videoaulas explicitamente fora do escopo | Descartar |
+| Capacities Live | capacities_live_main_and_local_graph.png | app.capacities.io (3-Pane Workspace) | 2026-11-13 | Shell de 3 painéis com ilhas flutuantes, Top Rail 46px e Painel Direito contextual | Usar tipos pré-definidos como infraestrutura nativa (sem exigir modelagem prévia pelo aluno) | Adaptar |
+| Capacities Live | capacities_live_local_graph_expanded.png | app.capacities.io (Grafo Local) | 2026-11-13 | Grafo local no painel direito focado no objeto ativo com filtro de tipo e profundidade | Priorizar Grafo Local para navegar relações da Disciplina/Edição; Grafo Global como secundário | Adotar |
+| Readwise Reader | readwise_reader_home_dashboard.png | read.readwise.io/home | 2026-11-14 | Dashboard com carrosséis Continue Reading, Recently Added e Quick Reads | Usar padrão de retomada imediata de leitura com barra de progresso % em Documentos de Leitura | Adotar |
+| Readwise Reader | readwise_reader_manage_views_table.png | read.readwise.io/views | 2026-11-14 | Tabela de 14 Filtered Views baseadas em queries booleanas e fixáveis na sidebar | Modelar Filtros Salvos como queries reutilizáveis sobre o banco de questões | Adaptar |
+| Readwise Reader | readwise_reader_doc2_loaded.png | read.readwise.io/new/read/... | 2026-11-14 | Leitura em 3 painéis com foco por parágrafo (j/k), Notebook lateral e menu Aa | Manter leitor de PDF focado em consulta (0.1.1/0.2.0) e adicionar Notas/Progresso na 0.5.0 | Adaptar |
+| Readwise Reader | readwise_reader_ghostreader_skills.png | read.readwise.io (Ghostreader) | 2026-11-14 | 15 skills de IA com templates Jinja2 (Quiz Me, Summarize, Explain) | Restringir IA no Exam App a 3 ações: Explicar questão, Criar cartões e Sugerir revisão (Seção 11) | Adaptar |
+| Readwise SRS | readwise_srs_daily_review_deck.png | readwise.io/dailyreview | 2026-11-13 | Fila diária de revisão com barra de progresso e 4 níveis (Never, Soon, Later, Someday) | Revisão Diária (0.4.0) combina Questões Erradas/Marcadas + Cartões gerados com 4 botões de avaliação | Adotar |
+| Readwise SRS | readwise_srs_mastery_cloze_creator.png | readwise.io/dailyreview (Mastery) | 2026-11-13 | Conversão de destaque em cartão Cloze Deletion (lacuna) ou Q&A (Pergunta/Resposta) | Suportar formato Pergunta/Resposta e Lacuna no tipo Cartão de Revisão (Seção 2) | Adotar |
+| Readwise SRS | readwise_srs_frequency_tuning_by_source.png | readwise.io/configure/tune/books | 2026-11-13 | Sliders individuais de frequência de ressurgimento por livro/fonte | Deixar ajuste fino de frequência por disciplina para fase 2 do SRS (começar com fila diária simples) | Adaptar |
+| Readwise SRS | readwise_srs_statistics_heatmap.png | readwise.io/stats | 2026-11-13 | Heatmap anual de revisões diárias e contador de Streak (ofensiva) | Incluir Streak e estatísticas de consistência na Home e página de Desempenho | Adotar |
+| Readwise SRS | readwise_srs_export_highlights_top.png | readwise.io/export & /welcome/sync | 2026-11-14 | 32 conectores de importação e 16 integrações de exportação OAuth (Obsidian, Notion, etc.) | Descartar integrações OAuth com terceiros; fornecer exportação/backup próprio em CSV/Markdown/JSON | Descartar |
+| QConcursos Elite | qconcursos_criar_simulado_config_modal.png | elite.qconcursos.com/simulados/criar | 2026-11-14 | Drawer de criação de simulado: nome, quantidade (stepper), tempo/duração e modo Real vs Prática | Fluxo unificado de Simulado: modal com tempo, quantidade e alternância entre Modo Simulado e Modo Prática (Pergunta 3) | Adotar |
+| QConcursos Elite | qconcursos_filter_assunto_tree_open.png | elite.qconcursos.com/questoes | 2026-11-14 | Popover do filtro Assunto aberto com campo Busca rápida e árvore hierárquica de 3 níveis com contadores | Filtro cascata Assunto com busca rápida interna e seleção atômica de nós sem selecionar disciplina inteira | Adotar |
+| QConcursos Elite | qconcursos_highlighter_applied.png | elite.qconcursos.com/questoes | 2026-11-14 | Seleção de texto no enunciado abrindo paleta flutuante de 4 cores e persistindo <mark> amarelo no DOM | Marca-texto flutuante direto no enunciado com persistência nas anotações do aluno (Pergunta 4) | Adotar |
+| QConcursos Elite | qconcursos_dock_resumos_paywall_modal.png | elite.qconcursos.com/questoes | 2026-11-14 | Botão Meus Resumos no dock acionando modal de paywall e upgrade de plano Pro/Ilimitado | Resumos ricos desvinculados do MVP inicial; manter apenas anotações simples por questão (Pergunta 4) | Descartar |
+| QConcursos Elite | qconcursos_desempenho_top_overview.png | elite.qconcursos.com/meu-desempenho?scope=all | 2026-11-14 | Rota global de desempenho com abas de escopo, seletor de período (Hoje, 7d, 15d, 30d, Tudo) e KPIs consolidados | Dashboard Central de Desempenho (#/espaco) com períodos pré-fixados e taxa global de aproveitamento (Pergunta 9) | Adotar |
+| QConcursos Elite | qconcursos_desempenho_charts_and_table.png | elite.qconcursos.com/meu-desempenho?scope=all | 2026-11-14 | Gráfico diário de evolução e tabela de disciplinas com barra de taxa de acerto e botão de expandir assuntos | Visualização analítica de evolução e detalhamento disciplinar no perfil de estudos | Adotar |
+| Capacities | capacities_global_graph_search_dropdown_open.png | app.capacities.io/?section=graph | 2026-11-14 | Busca secundária no topo direito do Grafo Global abrindo popover Buscar objetos com lista de resultados | Busca integrada com dropdown no grafo de entidades e tópicos do concurso (Pergunta 6/7) | Adotar |
+| Capacities | capacities_global_graph_search_node_nav.png | app.capacities.io/?section=graph | 2026-11-14 | Clique no resultado disparando transição animada de zoom (39% para 175%) centralizando o nó focalizado em branco | Centralização animada no grafo ao buscar ou navegar entre entidades de estudo | Adotar |
+| ExamTopics | examtopics_az104_question_card.png | examtopics.com/exams/microsoft/az-104/view/ | 2026-11-14 | Card da questão pública de certificação com barra de progresso (1-10 de 606), enunciado de cenário e botões de ação | Módulo de Certificações Internacionais com suporte a Case Study e formato de itens de TI (Pergunta 13) | Adaptar |
+| ExamTopics | examtopics_az104_solution_reveal.png | examtopics.com/exams/microsoft/az-104/view/ | 2026-11-14 | Botão Reveal Solution exibindo resposta correta com badge Most Voted e barra de votação comunitária (98% C) | Exibição de gabarito com percentual de concordância / confiança da IA ou estatísticas de candidatos | Adaptar |
+| Readwise SRS | readwise_srs_bookreview_highlight_actions_menu.png | readwise.io/bookreview/65206299 | 2026-11-14 | Menu secundário com 6 ações: Copy, Edit metadata, Add tags, Show more often, Show less often, Never show again | Menu de ações de cada item do SRS permitindo ao aluno acelerar ou suspender a frequência de repetição (Pergunta 9) | Adotar |
 
 ![imagem e317](assets/5e04fb915ee94b2c67a5adb37585e685.png)
 
@@ -769,56 +849,41 @@ Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro pa
 
 ![imagem e329](assets/8852061c63b37547e1c657dda371bbee.png)
 
-**0.1.1:** seta de expandir e recolher (circulada) no item Dataprev.
-
 **0.1.1:** item "2026" (Edição) dentro do Dataprev.
 
-## 26. Integração do Explorar, Grafo Contextual e Navegação Tripartida (Issue #25)
-<!-- container e510 @ (0,9800) -->
+**0.1.1:** seta de expandir e recolher (circulada) no item Dataprev.
 
-![imagem e331](assets/474678ed59f7cc5b7fbf3494dd75704f.png)
+## Readwise
+<!-- container e119 @ (33584,1602) -->
 
-### Unificação de Descoberta e Navegação Contextual (Issue #25)
+![imagem e121](assets/inline-e121.jpg)
 
-- **Explorar como Central de Descoberta**:
-  - Busca integrada, filtros dinâmicos por tipo e contagens em tempo real.
-  - Ações diretas e imediatas em cada item da listagem:
-    - Ação de grafo: abrir no Grafo Contextual direto da linha.
-    - Ação de backlinks: abrir referências relacionadas.
-    - [+] Abrir em Nova Aba.
-- **Grafo Contextual por Objeto e por Tipo**:
-  - Suporte nativo ao grafo local focado no objeto ativo e em suas relações primárias/secundárias.
-  - Suporte à visualização de subgrafos para Coleções e Tipos de Objeto ().
-- **Sincronização e Fixação de Contexto (Pin/Follow)**:
-  - Botão 'Fixar neste objeto' () para congelar a inspeção enquanto o usuário navega livremente em outras abas.
-  - Botão 'Seguir contexto' () para restaurar a sincronia automática com a aba ativa.
-- **Navegação Coerente entre os 3 Painéis**:
-  - Clique simples: abre no centro.
-  - Shift + clique: abre ou foca no painel lateral.
-  - Ctrl / Cmd + clique: abre em nova aba.
-- **Preservação Contínua no Board**:
-  - Especificação e descobertas gravadas de forma permanente no Planning Board.
+![imagem e122](assets/inline-e122.jpg)
 
-**Referência:** item com pin e ⋯ no hover.
+![imagem e124](assets/inline-e124.jpg)
 
-### Referências do Capacities (sidebar)
+> **Readwise em 4 diagramas**
+> leitura (Reader): documento, vindo de fonte ou feed RSS, tem
+> tag, destaque, anotação e progresso de leitura
+> destaque: posição, texto destacado, nota e tag
+> aprendizado (Highlights): destaque importado → anotação, tag,
+> revisão e mastery
+> biblioteca: tags, visualizações filtradas (consulta) e documentos
+> revisão: destaque → cartão mastery (pergunta e resposta ou lacuna)
+> → evento de revisão → avaliação de memorização
+> 
+> Já temos: documento de leitura com progresso, cartão de revisão, etiqueta.
+> Destaque fica só como referência por enquanto.
 
-O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, lixeira.
+![imagem e123](assets/inline-e123.jpg)
 
-![imagem e335](assets/5dd2843391f7c5827e8905be47daf12d.png)
+## 3. Hierarquia de tipos (herança)
+<!-- container e99 @ (0,1980) -->
 
-![imagem e337](assets/8d42664c47e656b5f3b9c49ea3e6b134.png)
 
-![imagem e339](assets/346da48cb8ad25f2a7857b2d30933368.png)
-
-**Capacities:** cabeçalho "Tipos de objeto" com contagem, ⋯ e +. Ian: o + deve abrir diálogo para escolher o objeto.
-
-**Capacities:** menu Ordenar manualmente ou alfabeticamente.
-
-**Capacities:** lista de tipos de objeto.
 
 ## 27. Auditoria Completa UI/UX Enterprise 2026 (Pós-PR #27 / Commit c92d2ca)
-<!-- container e600 @ (1600,11000) -->
+<!-- container e600 @ (8390,2010) -->
 
 ### Diagnóstico Especialista UI/UX Enterprise 2026 (Capacities, Linear, Raycast, Notion, QConcursos) — Issues #34 a #40 e #42
 
@@ -883,128 +948,280 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 - Progresso aparece somente em documentos de leitura; barra secundária removida do modo simulado; páginas do app usam superfície elevada arredondada.
 - UI sem emojis: ícones vetoriais semânticos substituem os pictogramas e marcas Unicode; regra Zero Emoji Policy registrada em AGENTS.md e DESIGN.md.
 
-## 28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)
-<!-- container e700 @ (3300,11000) -->
+## 26. Integração do Explorar, Grafo Contextual e Navegação Tripartida (Issue #25)
+<!-- container e510 @ (41950,2100) -->
+
+![imagem e331](assets/474678ed59f7cc5b7fbf3494dd75704f.png)
+
+### Unificação de Descoberta e Navegação Contextual (Issue #25)
+
+- **Explorar como Central de Descoberta**:
+  - Busca integrada, filtros dinâmicos por tipo e contagens em tempo real.
+  - Ações diretas e imediatas em cada item da listagem:
+    - Ação de grafo: abrir no Grafo Contextual direto da linha.
+    - Ação de backlinks: abrir referências relacionadas.
+    - [+] Abrir em Nova Aba.
+- **Grafo Contextual por Objeto e por Tipo**:
+  - Suporte nativo ao grafo local focado no objeto ativo e em suas relações primárias/secundárias.
+  - Suporte à visualização de subgrafos para Coleções e Tipos de Objeto ().
+- **Sincronização e Fixação de Contexto (Pin/Follow)**:
+  - Botão 'Fixar neste objeto' () para congelar a inspeção enquanto o usuário navega livremente em outras abas.
+  - Botão 'Seguir contexto' () para restaurar a sincronia automática com a aba ativa.
+- **Navegação Coerente entre os 3 Painéis**:
+  - Clique simples: abre no centro.
+  - Shift + clique: abre ou foca no painel lateral.
+  - Ctrl / Cmd + clique: abre em nova aba.
+- **Preservação Contínua no Board**:
+  - Especificação e descobertas gravadas de forma permanente no Planning Board.
+
+**Referência:** item com pin e ⋯ no hover.
+
+### Referências do Capacities (sidebar)
+
+O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, lixeira.
+
+![imagem e335](assets/5dd2843391f7c5827e8905be47daf12d.png)
+
+![imagem e337](assets/8d42664c47e656b5f3b9c49ea3e6b134.png)
+
+![imagem e339](assets/346da48cb8ad25f2a7857b2d30933368.png)
+
+**Capacities:** cabeçalho "Tipos de objeto" com contagem, ⋯ e +. Ian: o + deve abrir diálogo para escolher o objeto.
+
+**Capacities:** menu Ordenar manualmente ou alfabeticamente.
+
+**Capacities:** lista de tipos de objeto.
+
+## 0.1.1
+<!-- container e149 @ (50340,2190) -->
+
+### Protótipo 0.1.1
+
+![imagem e151](assets/inline-e151.jpg) ([abrir](https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC))
+
+Tipos de Objeto na 0.1.1:
+- Concurso, Órgão, Banca, Edição, Cargo
+- Arquivo → Documento → PDF
+- Questão, Disciplina, Simulado
+Barra lateral: seções livres ou por tipo, plural por padrão, arrastar para ordenar. Fixar só pelo menu ⋯.
+
+Filtro de questões (0.1.1): botão Filtrar com popover pesquisável, vários valores por categoria (Banca, Disciplina, Edição, Origem, Situação), chips removíveis, busca por palavra, total filtrado de total e Limpar tudo. Mesmo componente na página do tipo Questão e nas abas Questões de Concurso, Edição e Cargo.
+
+## 43. Prova de Conceito: Integração Claude Pro Storage Bridge (localhost vs claude.ai)
+<!-- container e1371 @ (25170,2280) -->
+
+### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)
+
+Testamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).
+
+- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.
+- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.
+- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).
+- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).
+- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.
+
+Evidência técnica registrada em prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.
+
+![imagem e1373](assets/evidence-iframe-csp-blocked.png)
+
+Evidência de execução real no Google Chrome: O navegador acusa 'Framing https://claude.ai/ violates Content Security Policy: frame-ancestors... The request has been blocked'. O iframe renderiza em branco e o canal postMessage é recusado pela Same-Origin Policy. Recomendação: Manter armazenamento local estruturado (localStorage/IndexedDB) e publicação estática via claude-artifact publish.
+
+## 4. Glossário das entidades
+<!-- container e95 @ (0,2540) -->
 
 
 
-## A. Contexto e anatomia do Capacities (texto da seção)
-<!-- container e7101 @ (3300,11000) -->
+## 34. PDF.js — diagnóstico de texto, canvas, DPR e zoom (#111 #112)
+<!-- container e1177 @ (16780,2965) -->
 
-### Anatomia Medida do Capacities Live (app.capacities.io) + Comparação com 15 Branches Históricas (notes-app-old a old-11)
+Evidência nativa do Exam App: Playwright Chromium, PDF da segunda retificação edital-2a-retificacao.pdf. Capturas reais no mesmo documento e DPR 2 (100%/200%), antes e depois do PR. Canvas fornece pixels; textLayer fornece seleção/cópia. Este teste não prova paridade com Readwise nem visualizador nativo, e não substitui Firefox/Edge. Métricas por cenário em pdf112_diagnostic.json.
 
-> **1. Arquitetura de 3 Painéis com Ilhas Flutuantes (`AppShellSurface` — Issue #47)**
-> - **Capacities Live (`app.capacities.io`) & `notes-app-old-3/4/6`:** Canvas global `--bg-back` (`#0d0e11` no Dark / `oklch(0.9856 0.0016 67)` `#faf9f7` no Light) onde repousam a Sidebar e o Top Rail de `46px`. Abaixo do Top Rail, tanto o Painel Central quanto o Painel Direito são **cartões flutuantes independentes** (`--bg-base`: `#16171a` Dark / `#ffffff` Light, `border: 1px solid rgba(255,255,255,0.07)`, `border-radius: 10px–12px`, outer gutter de `10px` e `gap: 10px` entre os cards).
-> - **Erro em `0.1.1`:** Usa `div`s chapados encostados nas bordas (`inset: 0`) com divisores retos de `1px` e paleta sépia (`#FBFAF7`/`#F4F2EC`).
-> **2. Divisão Estrita do Top Rail (`46px`) em 3 Cabeçalhos Independentes (Issue #48)**
-> - `SidebarHeader` (`283px`): contém apenas o pill do Space Switcher (`121.8x31px`) e o botão Recolher Sidebar `[◧]` (`27.1x27.1px`).
-> - `AppHeader` (Painel Central): quando a Sidebar está aberta, inicia direto em `<` `>` (`27.1x27.1px`), faixa de abas (`31-32px`), `+` Nova Aba, `[v]` overflow e `[◨]` Alternar Painel Direito. Quando a Sidebar está recolhida (`0px`), migram para o início do `AppHeader` apenas 3 botões de ícone: `[◧ Abrir sidebar]`, `[+ Novo]` e `[🔍 Buscar]`. Nunca há Space Switcher duplicado no `AppHeader` nem segunda barra `.bar`.
-> - `AppSidePanelHeader` (Painel Direito): alinhado em `y=0..46px` sobre `--bg-back`, com abas do painel (`Explorar`, `Grafo`), `+` e `[◨]`.
-> **3. Colapso Off-Canvas Real (`0px`) & Painéis Redimensionáveis (Issue #49)**
-> - No Capacities e em `notes-app-old-4`, a Sidebar recolhe 100% off-canvas (`width: 0px`), **sem o trilho residual de `56px`** (`.app.collapsed .side{width:56px}`). Possui `ResizableHandle` (`224px–384px` na Sidebar; `240px–640px` no Painel Direito, virando `Sheet` abaixo de `1024px`).
-> **4. Topo da Sidebar `[+ Novo] [🔍]` com `NewContentMenu` Pesquisável e Ações Globais de `31px` (Issue #50)**
-> - Linha horizontal dividida: botão pill `[+ Novo]` (`228.5x33px`, `border-radius: 7px`) à esquerda + botão quadrado `[🔍]` (`33x33px`) à direita. Clicar em `[+ Novo]` abre o popover `NewContentMenu` com busca focado, lista de tipos com badges `20x20px` e rodapé `↑↓ para navegar · Esc para abortar · ↵ para selecionar`. Abaixo ficam `Calendário`, `Tarefas`, `Explorar` (`31px`).
-> **5. Linhas de Tipos de Objeto (`29px`), Badges Quadrados `20x20px` (18 Tons OKLCH) e Menu `⋯` de `244-269px` (Issue #52)**
-> - Cada Tipo de Objeto usa `ObjectIconBadge` (`20x20px`, `border-radius: 5px-6px`, fundo tingido `--tone-*-bg` e texto `--tone-*-text` dos 18 tons OKLCH de `notes-app-old-6`), revelando contagem e menu `⋯` (`Abrir >`, `Criar`, `Novo a Partir do Modelo >`, `Nova Query`, `Nova Coleção`, `Fixar na Barra Lateral >`, `Configurações`, `Importar Ctrl+I`) no hover.
-> **6. Seção Utilitária Inferior & Rodapé Horizontal de Ícones (Issue #53)**
-> - Substitui o card `.user-btn` estilo Notion por `Gráfico`, `Lixeira`, `Ajuda & Recursos` colapsável e barra fixa de ícones (`27.1x27.1px`): `[👤 Perfil] [Pro] [⚙ Config] [☼/🌙 Tema] [🔄 Sync] ... [⮹ Atalhos]`.
-> **7. Contrato de Abas (`31-32px`), Painel Direito `Explorar` (Grid 3x2 + Conteúdo Relevante) e Grafo Local (Issues #54 e #55)**
-> - Painel Direito abre em `Explorar` com Grid 3×2 de cards (`Grafo`, `Links de entrada`, `Objetos internos`, `Conteúdo relacionado`, `Chat de IA`, `Buscar`) + `Conteúdo relevante` (`🔍 Encontrar mais`). No `Grafo`, usa nós quadrados coloridos do tipo e pílulas flutuantes translúcidas no rodapé (`backdrop-filter: blur(8px)`).
-> **8. Dashboard de Tipo de Objeto (`#/tipo/*`), Página de Objeto Individual e Space Home *Recall* (Issues #56, #57 e #58)**
-> - `#/tipo/*`: Header `32x32px` badge + H1 + Split Button `[+ Novo | ⌄]`, sub-abas `[⊞ Visão geral]` / `[☰ Tudo]` e Galeria de Cards em 4 colunas.
-> - Página de Objeto: `[Chip do Tipo] [⇆ Coleções]`, H1 `32px`, tags inline, propriedades compactas (sem caixa `.props-card`) com `HoverCard` de preview nos objetos referenciados e abas inferiores `[Links de entrada]` / `[Conteúdo relacionado]`.
-> - Space Home (`#/espaco`): estética editorial *Monastic Knowledge Sanctuary* de `notes-app-old-10.png` (*Recall*).
+![imagem e1179](assets/pdf112_before_dpr2_zoom1.png)
 
-## 29. Engenharia da Barra Direita & Motor de Grafo do Capacities + Central de Preparação & Questões do QConcursos Elite (Issues #64 e #66 a #72)
-<!-- container e800 @ (5000,11000) -->
+![imagem e1181](assets/pdf112_after_dpr2_zoom1.png)
 
-### Blueprint Técnico: Painel Direito & Grafo Retina 60fps (Capacities Live) + Home & Resolução de Questões (QConcursos Elite Live)
+ANTES: página e camada de texto, DPR 2 / 100% | assets/pdf112_before_dpr2_zoom1.png
 
-> **1. Remoção Definitiva do `#spTopBtn` Duplicado em `#wsTabs` (Issue #64)**
-> - O botão `[💡 Concurso de TI ↕]` (`#spTopBtn`) foi injetado dentro de `#wsTabs` por engano no commit `7edd4ac` (PR #20) porque o autor não percebeu que `.side-top` já existia na Sidebar esquerda. Mesmo quando a Sidebar é recolhida (`0px`), o Capacities **NUNCA** mostra o Space Switcher na barra de abas — exibe apenas `[◧ Expandir sidebar]`, `[+ Novo]` e `[🔍 Buscar]`. `#spTopBtn` deve ser removido do HTML/CSS/JS.
-> **2. As 6 Ferramentas Contextuais do Painel Direito, Overflow `Buscar abas` `[v]` e `ResizeObserver` (Issue #66)**
-> - No Capacities Live, a Barra Direita tem calha invisível de `8px` (`col-resize`) que aciona `ResizeObserver` no canvas em tempo real sem borrar.
-> - Quando há 5+ abas no painel direito, elas compactam para ícone e revelam o botão `[v]`, abrindo o popover `Buscar abas` (`256px`).
-> - As 6 ferramentas de `Explorar` são: `Grafo`, `Links de entrada` (com snippet do bloco), `Objetos internos` (agrupados por tipo), `Conteúdo relacionado` (com pílula `[66 | ☰ ⌄ | ☵]`), `Chat de IA` (com chip do objeto ativo) e `Buscar`.
-> **3. Motor de Grafo `<canvas>` 2D Retina (`devicePixelRatio`) & Taxonomia Visual de Nós em 3 Níveis (Issue #67)**
-> - **Por que o grafo do Capacities é muito mais responsivo:** Usa um único motor `<canvas>` 2D a 60 FPS calibrado por `window.devicePixelRatio` tanto no Painel Direito quanto no Grafo Global (substituindo o `<svg class="rp-graph">` estático do nosso protótipo).
-> - **Taxonomia em 3 Níveis:** (1) Nó Central: badge quadrado `36-42px` (`border-radius: 8px`) com ícone SVG do tipo, borda brilhante `2px` e rótulo em pílula escura (`rgba(20,20,20,0.85)`); (2) Nós Vizinhos: badges quadrados `24-28px` (`border-radius: 6px`) tingidos na cor OKLCH do Tipo de Objeto; (3) **Nós de Tags/Assuntos:** renderizados como **pílulas ovais coloridas** (`[vm group]`, `[logical container]`) com o texto dentro!
-> - **Arestas & Física:** Arestas direcionais com rótulos de relação inline (`Relação`, `Equivalente do GCP`), spotlight no hover (`opacity: 0.15` nos demais) e física de molas amortecida (*spring damping* `< 1s`).
-> **4. Barras Flutuantes de `27px` no Grafo, Popover de Filtros/Hubs, Profundidade `1..5` e Busca Auto-Zoom (Issue #68)**
-> - Pílulas inferiores de `27px` (`backdrop-filter: blur(8px)`): à esquerda `[⤢ Fit] [☊ Re-layout]`; à direita `[🔍- | 100% ⌄ | 🔍+]` e `[📥 Export PNG | 🎛 Filtros | ● Profundidade 1..5]`.
-> - Popover `[🎛]` com submenus pesquisáveis `Filtrar tipos de objeto >`, `Excluir tipos de objeto >` e checkbox `Ocultar objetos com muitos links` (evita poluição de hubs!). No Grafo Global: busca no topo com auto-zoom suave no cluster e `Reproduzir linha do tempo`.
-> **5. QConcursos Elite — Central de Preparação na Home `#/espaco` (Issue #69)**
-> - Card do Concurso com dados do edital + bloco acionável **`PRÓXIMA AÇÃO`** (`Continuar estudando →` / `Mapa do edital`), widget **`Seu ritmo hoje`** (`X questões respondidas hoje`, `Taxa de acerto`, `Taxa de erro` e barra semanal `Seg–Dom`) e seção **`Conteúdo do seu edital`** com 4 abas (`Disciplinas & Assuntos` Master-Detail, `Caderno de Questões`, `Raio-X da Banca` e `Caderno de Erros`).
-> **6. QConcursos Elite — Construtor de Filtros Avançado, Tesoura nas Alternativas e Abas Pedagógicas (Issues #70, #71 e #72)**
-> - Filtros rápidos (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`), chips `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Criar Simulado`).
-> - Card da questão com cabeçalho compacto de 2 linhas (`[1 | Q1]` + Breadcrumb; `Ano · Banca · Órgão · Prova`), toggle `Texto associado ⊕/⊖`, **botão de Tesoura (`✂️ Descartar alternativa`)** com `line-through`, confirmação em 2 etapas via botão **`[Responder]`** e barra inferior de abas pedagógicas (**`Gabarito Comentado`**, **`Estatísticas`** com Donut + Barras A–E + Histórico, **`Cadernos`** e **`Anotações`** ricas).
+DEPOIS: página e camada de texto, DPR 2 / 100% | assets/pdf112_after_dpr2_zoom1.png
 
-![imagem e805](assets/bug_spTopBtn_duplicated_lightbulb.png)
+![imagem e1183](assets/pdf112_before_dpr2_zoom2.png)
 
-![imagem e807](assets/capacities_live_right_panel_tab_overflow.png)
+![imagem e1185](assets/pdf112_after_dpr2_zoom2.png)
 
-**Evidência 21 (Bug Reportado pelo Usuário — Issue #64):** Botão duplicado `#spTopBtn` (`💡 Concurso de TI ↕`) + `#wsSide` (`[◧]`) injetado dentro de `#wsTabs` pelo commit `7edd4ac` (PR #20)
+ANTES: página e camada de texto, DPR 2 / 200% | assets/pdf112_before_dpr2_zoom2.png
 
-**Evidência 22 (Capacities Live — Issue #66):** Painel Direito com 5+ abas compactadas por ícone e popover pesquisável `Buscar abas` aberto no botão `[v]`
+DEPOIS: página e camada de texto, DPR 2 / 200% | assets/pdf112_after_dpr2_zoom2.png
 
-![imagem e809](assets/capacities_live_right_panel_related.png)
+> **Medições reais de canvas/textLayer**
+> before DPR=1 zoom=1 página=1 canvas=754×1066 CSS=754.0×1077.0 ratio=1.00 textSpans=157 status=untracked
+> before DPR=1 zoom=1.5 página=1 canvas=754×1066 CSS=754.0×1616.0 ratio=1.00 textSpans=157 status=untracked
+> before DPR=1 zoom=2 página=1 canvas=754×1066 CSS=754.0×2155.0 ratio=1.00 textSpans=157 status=untracked
+> before DPR=2 zoom=1 página=1 canvas=1508×2132 CSS=754.0×1077.0 ratio=2.00 textSpans=157 status=untracked
+> before DPR=2 zoom=1.5 página=1 canvas=1508×2132 CSS=754.0×1616.0 ratio=2.00 textSpans=157 status=untracked
+> before DPR=2 zoom=2 página=1 canvas=1508×2132 CSS=754.0×2155.0 ratio=2.00 textSpans=157 status=untracked
+> after DPR=1 zoom=1 página=1 canvas=754×1066 CSS=754.0×1077.0 ratio=1.00 textSpans=157 status=ready
+> after DPR=1 zoom=1.5 página=1 canvas=754×1066 CSS=754.0×1616.0 ratio=1.00 textSpans=157 status=ready
+> after DPR=1 zoom=2 página=1 canvas=754×1066 CSS=754.0×2155.0 ratio=1.00 textSpans=157 status=ready
+> after DPR=2 zoom=1 página=1 canvas=1508×2132 CSS=754.0×1077.0 ratio=2.00 textSpans=157 status=ready
+> after DPR=2 zoom=1.5 página=1 canvas=1508×2132 CSS=754.0×1616.0 ratio=2.00 textSpans=157 status=ready
+> after DPR=2 zoom=2 página=1 canvas=1508×2132 CSS=754.0×2155.0 ratio=2.00 textSpans=157 status=ready
 
-![imagem e811](assets/capacities_live_graph_3tier_nodes_resized.png)
+## 8. Análise ExamTopics → banco de questões
+<!-- container e190 @ (33560,3140) -->
 
-**Evidência 23 (Capacities Live — Issue #66):** Aba `Conteúdo relacionado` no Painel Direito com pílula `[66 | ☰ ⌄ | ☵]` e lista de objetos com badges quadrados `20x20px`
+Análise (sem implementação). Aproveitar: busca, filtros básicos, chips ativos, total global x filtrado, paginação, por página, ordenação, estado na URL. Melhorar: unificar as duas listas de questões em um componente. Adicionar (condicionado a dados): tipo, dificuldade (derivada do desempenho), assunto, com imagem, com explicação, filtros salvos. Descartar: votos da comunidade, discussões, gabarito por votação.
 
-**Evidência 24 (Capacities Live — Issues #66, #67):** Painel Direito redimensionado via calha (`ResizeObserver` a `150%` zoom) exibindo taxonomia em 3 níveis: badges quadrados de objetos, pílulas coloridas de tags (`vm group`, `logical container`) e rótulos nas arestas
+[Análise ExamTopics: funcionalidades para o banco de questões](https://claude.ai/artifact/5qJgzuASzvMgdcoLDqbXZP)
 
-![imagem e813](assets/capacities_live_graph_filter_popover.png)
+Decisões pendentes (3): listadas no fim do documento. Nada foi alterado na 0.1.1.
 
-![imagem e815](assets/capacities_live_global_graph_constellation.png)
+## 7. Roadmap de versões (cada versão entrega uma camada do modelo)
+<!-- container e154 @ (50340,3190) -->
 
-**Evidência 25 (Capacities Live — Issue #68):** Popover de Configurações do Grafo (`[🎛]`) com submenu pesquisável `Filtrar tipos de objeto >`, `Ocultar objetos com muitos links` e pílula de profundidade `[● 4]`
+> **0.1.0 (feito)**
+> Protótipo 1
+> leitura e referência
+> documentos, PDF, edital e gabarito
 
-**Evidência 26 (Capacities Live — Issues #67, #68):** Grafo Global (`348` nós) com agrupamento em clusters orbitais por domínio e barra de busca flutuante no topo
+> **0.1.1 (feito)**
+> Protótipo 2
+> barra lateral com seções livres ou por tipo, nomes no plural, ordem por arrastar
+> Concurso → Edição → Cargo, Órgão e Banca como tipos
+> Cargo herda a Banca da Edição
+> Arquivo → Documento → PDF
+> Questão, Disciplina, Simulado e Resposta como tipos
 
-![imagem e817](assets/capacities_live_global_graph_search_autozoom.png)
+> **0.2.0 (quase pronta)**
+> Questões reais
+> 70 questões do Dataprev 2026 como objetos, com filtros e navegador
+> Simulado com tentativas e histórico
+> Seção Desempenho
+> Falta: gabarito por cargo
 
-![imagem e819](assets/qconcursos_live_home_proxima_acao.png)
+> **0.3.0**
+> Organização
+> Coleção (caderno) e Etiqueta
+> disciplina e assunto
+> listas filtradas, todo item é link
 
-**Evidência 27 (Capacities Live — Issue #68):** Busca reativa `'Azure'` no Grafo Global atualizando contador (`306`), executando auto-zoom (`40%`) e exibindo botão de `Linha do Tempo`
+> **0.4.0**
+> Estudo e revisão
+> Cartão de revisão
+> Meta e estatísticas
 
-**Evidência 28 (QConcursos Elite Live — Issue #69):** Central de Preparação (Topo): Card do concurso com dados do edital, bloco acionável `PRÓXIMA AÇÃO` (`Continuar estudando →`) e widget `Seu ritmo hoje`
+> **0.5.0**
+> Leitura
+> Documento de leitura com progresso %
+> notas a partir do Documento
+> referência sem progresso
 
-![imagem e821](assets/qconcursos_live_home_ritmo_disciplinas.png)
+> **1.0.0**
+> Certificações e conta
+> fornecedor e edição no estilo ExamTopics
+> questões criadas pelo usuário
+> exportar e restaurar o espaço
 
-![imagem e823](assets/qconcursos_live_home_raiox_curso.png)
+## 10. Arquivos do projeto (Dataprev 2026 e referências)
+<!-- container e363 @ (50340,3730) -->
 
-**Evidência 29 (QConcursos Elite Live — Issue #69):** Cards `Taxa de acerto` / `Taxa de erro`, barra semanal `Seg–Dom` e visão Master-Detail de `Disciplinas & Assuntos` com badge `Recomendado`
+| Arquivo | O que é | Pasta do projeto |
+| --- | --- | --- |
+| Edital de abertura (DOU 03/07/2026) | Edital oficial do concurso Dataprev 2026 (FGV) | concursos/dataprev-2026/edital-dou-03-07-2026.pdf |
+| 1ª e 2ª retificações do edital | Mudanças no edital de abertura | concursos/dataprev-2026/edital-1a-retificacao.pdf, edital-2a-retificacao.pdf |
+| Cronograma | Datas do concurso | concursos/dataprev-2026/cronograma.pdf |
+| Edital completo (89 MB) | PDF que o Ian usou como referência do fluxo de prova | edital_concurso_dataprev_2026_0.pdf |
+| Provas do Analista de TI, Desenvolvimento, tipos 1 a 4 | Caderno de questões, 70 questões cada | concursos/dataprev-2026/prova-objetiva-2026-analista-ti-dev/ |
+| Gabarito preliminar FGV (13/10/2026) | PDF oficial, mais versão extraída em JSON e Markdown | concursos/dataprev-2026/gabarito/ |
+| 70 questões extraídas (tipo 1) | Enunciados, alternativas e gabarito em JSON; já usadas na 0.1.1 | concursos/dataprev-2026/questoes/dataprev-2026-analista-ti-dev-tipo1.json |
+| QConcursos, ExamTopics, Readwise e Reader | Modelos de entidades dos concorrentes (ver bloco 5) | referencias/qconcursos.md, examtopics.md, readwise-reader.md |
+| Diretrizes de UI/UX 2026 | Leis de UX, estados e erros, componentes (ver bloco 8) | referencias/diretrizes-ui-ux-2026.md, diretrizes-estados-feedback-erros.md, diretrizes-componentes-interacao.md |
+| Fonte do protótipo 0.1.1 | HTML do app e cópia antes do redesign das páginas | recuperado/prototipo-dataprev-2026/ e recuperado/versao-0.1.1-antes-redesign-paginas/ |
+| Prints do redesign (antes e depois) | 4 imagens, também no bloco 9 | prints/redesign-paginas-objeto/ |
 
-**Evidência 30 (QConcursos Elite Live — Issue #69):** Aba `Raio X do Curso` analisando incidência histórica e relevância dos assuntos na banca
+Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, já publicados como 0.1.1; fonte em recuperado/), e duas cópias idênticas dos PDFs de prova na pasta de uploads.
 
-![imagem e825](assets/qconcursos_live_home_caderno_erros.png)
+## 9. Análise QConcursos → banco de questões
+<!-- container e400 @ (33560,3880) -->
 
-![imagem e827](assets/qconcursos_live_filter_builder_top.png)
+Análise (sem implementação), coerente com a do ExamTopics. O que o QConcursos acrescenta: Cadernos (Coleção que guarda questões fixas) e Filtros salvos (Visão que guarda critérios), 5 níveis de dificuldade (derivados do desempenho do próprio usuário), exclusões (já resolvidas, em simulados, anuladas, desatualizadas), histórico (resolvidas, acertei, errei) e modalidade. Filtros: E entre categorias, OU dentro de uma; só aparecem com 2 ou mais valores. Simulado personalizado a partir de filtro ou caderno. Descartar: comentários, votos, ranking e cópia da interface.
 
-**Evidência 31 (QConcursos Elite Live — Issue #69):** Aba `Caderno de Erros` reunindo automaticamente questões erradas para revisão ativa
+[Análise QConcursos: funcionalidades para o banco de questões](https://claude.ai/artifact/7AZNibg2dJCUmDEZb9ScLt)
 
-**Evidência 32 (QConcursos Elite Live — Issue #70):** Construtor de Filtros com pílulas rápidas (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`) e checkboxes de exclusão
+Decisões pendentes (4): listadas no fim do documento. Nada foi alterado na 0.1.1.
 
-![imagem e829](assets/qconcursos_live_filter_actions_bar.png)
+## 44. Homologacao Final: Claude Pro Storage com Proxy Blindado, Fila Concorrente e Zero Data Loss
+<!-- container e1440 @ (25170,4000) -->
 
-![imagem e831](assets/qconcursos_live_question_scissors_eliminated.png)
+### Auditoria e Homologacao Completa da Sincronizacao Claude Pro <-> Exam App
 
-**Evidência 33 (QConcursos Elite Live — Issue #70):** Barra de chips ativos `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Meus Cadernos`, `Meus filtros`, `Criar Simulado`)
+- **Zero Testes Destrutivos:** e2e-sync.test.mjs corrigido para usar identificadores temporarios exclusivos por execucao (probe_e2e_*). Documentos reais (user_answers, exam_state) estao 100% blindados.
+- **Fila Outbox Concorrente:** Remocao atomica por opId confirmado pelo servidor. Operacoes enfileiradas durante envio em voo (in-flight) sao preservadas sem perda.
+- **Reconciliacao LWW por Questao:** Comparacao deterministica por versao numerica + timestamp com suporte a Tombstones (respostas excluidas nao ressuscitam).
+- **Seguranca do Proxy:** Restricao estrita de Slugs homologados, rejeicao de chamadas sem Origin/Auth, regex estrita e timeout de 15s no upstream.
+- **Artifact Publicado:** Capabilities db e user homologadas; suporte a fallback inline para execucao direta no iframe.
 
-**Evidência 34 (QConcursos Elite Live — Issue #71):** Card de Questão com cabeçalho compacto de 2 linhas, toggle `Texto associado (+)` e **Tesoura (`✂️`) riscando a alternativa D** (`line-through`)
+![imagem e1442](assets/evidence-e2e-sync-badge-active.png)
 
-![imagem e833](assets/qconcursos_live_question_answered_feedback.png)
+Evidencia de execucao real no Google Chrome: Badge SVG ativo (.synced/.syncing) no rodape lateral. Respostas de questoes, cadernos e espacos sincronizados com o Claude Pro DB (127.0.0.1:8766).
 
-![imagem e835](assets/qconcursos_live_question_tab_estatisticas.png)
+![imagem e1444](assets/evidence-claude-web-artifact-public.png)
 
-**Evidência 35 (QConcursos Elite Live — Issue #71):** Confirmação em 2 etapas via botão `Responder`, destacando a alternativa correta B em verde e exibindo a barra inferior de abas pedagógicas
+Evidencia de auditoria do Claude Web: O acesso web automatizado ao Artifact real (claude.ai/code/artifact/...) apresenta o desafio Cloudflare Turnstile (Just a moment...), enquanto a API de Frame DB via token OAuth do Claude Code no proxy conecta-se diretamente ao backend sem bloqueio.
 
-**Evidência 36 (QConcursos Elite Live — Issue #72):** Aba pedagógica `Estatísticas` aberta sob a questão: gráfico Donut (`69% de acertos`), gráfico de barras `Alternativas mais respondidas (A–E)` e `Histórico de desempenho`
+![imagem e1446](assets/evidence-homologation-clean-recovery.png)
+
+Evidencia de Homologacao: Recuperacao completa e deterministica de dados (respostas, cadernos, espacos e workspaces) em navegador limpo e virgem a partir do Claude Pro DB.
+
+Revalidação 14/11/2026: o teste integrado deve rodar serialmente (proxy singleton 127.0.0.1:8766). Lacuna corrigida: se a leitura para mesclagem falha, a mutação composta permanece no outbox e não sobrescreve o remoto. Limite explícito: o upstream não expõe escrita condicional documentada; concorrência simultânea entre dispositivos não é garantia absoluta.
+
+## 6. Decisões de modelagem (boas práticas)
+<!-- container e152 @ (0,4110) -->
+
+
+
+## 35. Cadernos e Queries de Questões — Issue #75: jornadas E2E
+<!-- container e1188 @ (16780,4585) -->
+
+Origem: testes Playwright Chromium em tests/notebooks-saved-filters.e2e.mjs. Caminhos testados: filtro -> gerar caderno, meta 80%, progresso independente das respostas globais, zerar, refazer erros, associar questão individual, Queries do Tipo Questão, filtros persistidos, retorno à primeira pendente e mobile 390px. Não representa teste moderado com usuários nem compara com QConcursos Live.
+
+![imagem e1190](assets/issue75_before_no_notebooks.png)
+
+![imagem e1192](assets/issue75_after_filter.png)
+
+ANTES — Banco de questões sem ação de Cadernos
+
+DEPOIS — Questão manual filtrada, pronta para Gerar Caderno
+
+![imagem e1194](assets/issue75_after_book_created.png)
+
+![imagem e1196](assets/issue75_after_book_answer.png)
+
+DEPOIS — Novo Caderno criado com meta de 80%
+
+DEPOIS — Resposta correta dentro do caderno; progresso 1/1
+
+![imagem e1198](assets/issue75_after_retake_errors.png)
+
+![imagem e1200](assets/issue75_after_question_member.png)
+
+DEPOIS — Refazer somente questões erradas sem apagar histórico geral
+
+DEPOIS — Inclusão avulsa da Questão 1 via painel Cadernos
+
+![imagem e1202](assets/issue75_after_saved_query.png)
+
+![imagem e1204](assets/issue75_after_continue_pending.png)
+
+DEPOIS — Filtro salvo aparece nas Queries do Tipo Questão
+
+DEPOIS — Retomada na primeira questão pendente do caderno
+
+![imagem e1206](assets/issue75_after_mobile.png)
+
+DEPOIS — Gerenciador de Cadernos em mobile 390px
 
 ## 30. Dossiê Funcional Completo: QConcursos (Todos os Botões/Dock), Readwise Reader (Hover/Popovers/PDF/TTS), Readwise SRS (Cloze/Mastery/Tuning) & Capacities Core (Issues #74 a #84)
-<!-- container e900 @ (6700,11000) -->
+<!-- container e900 @ (33560,4620) -->
 
 ### Mapeamento Funcional Exaustivo (Clique em Todos os Botões, Hovers, Modais e Motores de Estudo) — Issues #74, #75, #76, #77, #78, #79, #80, #81, #82, #83 e #84
 
@@ -1184,12 +1401,13 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e983](assets/readwise_srs_highlight_edit_and_note.png)
 
-**Evidência 75 (Readwise SRS Grading — Issue #82): Resposta revelada no cartão Cloze com os 4 botões de estabilidade (`Never`, `Soon`, `Later`, `Someday`)**
+## 33. Matriz de Decisões de Produto Extraída dos Sites (14 Perguntas) & Índice Mestre de Rastreabilidade de Evidências (Adotar / Adaptar / Descartar)
+<!-- container e1150 @ (0,4850) -->
 
-**Evidência 76 (Readwise SRS Edit — Issue #83): Modal de edição não-destrutiva (`Edited Highlight` vs `Original Highlight`) e campo `NOTE`**
+
 
 ## 31. Low-Chrome — Issue #97: evidências antes/depois por tema, largura e estado dos painéis
-<!-- container e993 @ (8500,11000) -->
+<!-- container e993 @ (41950,4986) -->
 
 ![imagem e994](assets/lowchrome_97_before_light_1366_sideopen_rightopen.png)
 
@@ -1217,13 +1435,19 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1006](assets/lowchrome_97_before_light_1366_sideclosed_rightclosed.png)
 
+![imagem e807](assets/capacities_live_right_panel_tab_overflow.png)
+
 ![imagem e1008](assets/lowchrome_97_after_light_1366_sideclosed_rightclosed.png)
 
 #97 BEFORE | light | 1366px | sidebar fechada | contexto fechado
 
+**Evidência 22 (Capacities Live — Issue #66):** Painel Direito com 5+ abas compactadas por ícone e popover pesquisável `Buscar abas` aberto no botão `[v]`
+
 #97 AFTER | light | 1366px | sidebar fechada | contexto fechado
 
 ![imagem e1010](assets/lowchrome_97_before_dark_1366_sideopen_rightopen.png)
+
+![imagem e811](assets/capacities_live_graph_3tier_nodes_resized.png)
 
 ![imagem e1012](assets/lowchrome_97_after_dark_1366_sideopen_rightopen.png)
 
@@ -1231,9 +1455,13 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 #97 AFTER | dark | 1366px | sidebar aberta | contexto aberto
 
+**Evidência 24 (Capacities Live — Issues #66, #67):** Painel Direito redimensionado via calha (`ResizeObserver` a `150%` zoom) exibindo taxonomia em 3 níveis: badges quadrados de objetos, pílulas coloridas de tags (`vm group`, `logical container`) e rótulos nas arestas
+
 ![imagem e1014](assets/lowchrome_97_before_dark_1366_sideopen_rightclosed.png)
 
 ![imagem e1016](assets/lowchrome_97_after_dark_1366_sideopen_rightclosed.png)
+
+![imagem e815](assets/capacities_live_global_graph_constellation.png)
 
 #97 BEFORE | dark | 1366px | sidebar aberta | contexto fechado
 
@@ -1241,7 +1469,11 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1018](assets/lowchrome_97_before_dark_1366_sideclosed_rightopen.png)
 
+**Evidência 26 (Capacities Live — Issues #67, #68):** Grafo Global (`348` nós) com agrupamento em clusters orbitais por domínio e barra de busca flutuante no topo
+
 ![imagem e1020](assets/lowchrome_97_after_dark_1366_sideclosed_rightopen.png)
+
+![imagem e819](assets/qconcursos_live_home_proxima_acao.png)
 
 #97 BEFORE | dark | 1366px | sidebar fechada | contexto aberto
 
@@ -1249,7 +1481,11 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1022](assets/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png)
 
+**Evidência 28 (QConcursos Elite Live — Issue #69):** Central de Preparação (Topo): Card do concurso com dados do edital, bloco acionável `PRÓXIMA AÇÃO` (`Continuar estudando →`) e widget `Seu ritmo hoje`
+
 ![imagem e1024](assets/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png)
+
+![imagem e823](assets/qconcursos_live_home_raiox_curso.png)
 
 #97 BEFORE | dark | 1366px | sidebar fechada | contexto fechado
 
@@ -1259,6 +1495,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1028](assets/lowchrome_97_after_light_1024_sideopen_rightopen.png)
 
+**Evidência 30 (QConcursos Elite Live — Issue #69):** Aba `Raio X do Curso` analisando incidência histórica e relevância dos assuntos na banca
+
+![imagem e827](assets/qconcursos_live_filter_builder_top.png)
+
 #97 BEFORE | light | 1024px | sidebar aberta | contexto aberto
 
 #97 AFTER | light | 1024px | sidebar aberta | contexto aberto
@@ -1266,6 +1506,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 ![imagem e1030](assets/lowchrome_97_before_light_1024_sideopen_rightclosed.png)
 
 ![imagem e1032](assets/lowchrome_97_after_light_1024_sideopen_rightclosed.png)
+
+**Evidência 32 (QConcursos Elite Live — Issue #70):** Construtor de Filtros com pílulas rápidas (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`) e checkboxes de exclusão
+
+![imagem e831](assets/qconcursos_live_question_scissors_eliminated.png)
 
 #97 BEFORE | light | 1024px | sidebar aberta | contexto fechado
 
@@ -1275,6 +1519,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1036](assets/lowchrome_97_after_light_1024_sideclosed_rightopen.png)
 
+**Evidência 34 (QConcursos Elite Live — Issue #71):** Card de Questão com cabeçalho compacto de 2 linhas, toggle `Texto associado (+)` e **Tesoura (`✂️`) riscando a alternativa D** (`line-through`)
+
+![imagem e835](assets/qconcursos_live_question_tab_estatisticas.png)
+
 #97 BEFORE | light | 1024px | sidebar fechada | contexto aberto
 
 #97 AFTER | light | 1024px | sidebar fechada | contexto aberto
@@ -1282,6 +1530,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 ![imagem e1038](assets/lowchrome_97_before_light_1024_sideclosed_rightclosed.png)
 
 ![imagem e1040](assets/lowchrome_97_after_light_1024_sideclosed_rightclosed.png)
+
+**Evidência 36 (QConcursos Elite Live — Issue #72):** Aba pedagógica `Estatísticas` aberta sob a questão: gráfico Donut (`69% de acertos`), gráfico de barras `Alternativas mais respondidas (A–E)` e `Histórico de desempenho`
+
+![imagem e1232](assets/issue120_after_explicit_light.png)
 
 #97 BEFORE | light | 1024px | sidebar fechada | contexto fechado
 
@@ -1291,9 +1543,13 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1044](assets/lowchrome_97_after_dark_1024_sideopen_rightopen.png)
 
+Tema claro escolhido na UI, mesmo com sistema escuro
+
 #97 BEFORE | dark | 1024px | sidebar aberta | contexto aberto
 
 #97 AFTER | dark | 1024px | sidebar aberta | contexto aberto
+
+![imagem e1236](assets/issue120_after_auto_restored.png)
 
 ![imagem e1046](assets/lowchrome_97_before_dark_1024_sideopen_rightclosed.png)
 
@@ -1301,13 +1557,19 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 #97 BEFORE | dark | 1024px | sidebar aberta | contexto fechado
 
+Retorno ao tema automatico, sem reload
+
 #97 AFTER | dark | 1024px | sidebar aberta | contexto fechado
 
 ![imagem e1050](assets/lowchrome_97_before_dark_1024_sideclosed_rightopen.png)
 
+![imagem e1240](assets/issue120_after_mobile.png)
+
 ![imagem e1052](assets/lowchrome_97_after_dark_1024_sideclosed_rightopen.png)
 
 #97 BEFORE | dark | 1024px | sidebar fechada | contexto aberto
+
+Viewport estreita de 390px com select nativo
 
 #97 AFTER | dark | 1024px | sidebar fechada | contexto aberto
 
@@ -1315,9 +1577,13 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1056](assets/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png)
 
+![imagem e1244](assets/issue120_after_dark_on_light_os.png)
+
 #97 BEFORE | dark | 1024px | sidebar fechada | contexto fechado
 
 #97 AFTER | dark | 1024px | sidebar fechada | contexto fechado
+
+Tema escuro escolhido, mesmo com sistema claro
 
 ![imagem e1058](assets/lowchrome_97_before_light_768_sideopen_rightopen.png)
 
@@ -1331,6 +1597,8 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1064](assets/lowchrome_97_after_light_768_sideopen_rightclosed.png)
 
+![imagem e1343](assets/issue132_after_320.png)
+
 #97 BEFORE | light | 768px | sidebar aberta | contexto fechado
 
 #97 AFTER | light | 768px | sidebar aberta | contexto fechado
@@ -1339,6 +1607,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1068](assets/lowchrome_97_after_light_768_sideclosed_rightopen.png)
 
+DEPOIS: 320px, ícone SVG restaurado; CTA refluindo no grid
+
+![imagem e1347](assets/issue132_after_768.png)
+
 #97 BEFORE | light | 768px | sidebar fechada | contexto aberto
 
 #97 AFTER | light | 768px | sidebar fechada | contexto aberto
@@ -1346,6 +1618,8 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 ![imagem e1070](assets/lowchrome_97_before_light_768_sideclosed_rightclosed.png)
 
 ![imagem e1072](assets/lowchrome_97_after_light_768_sideclosed_rightclosed.png)
+
+DEPOIS: 768px, ações primárias preservadas
 
 #97 BEFORE | light | 768px | sidebar fechada | contexto fechado
 
@@ -1363,6 +1637,8 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1080](assets/lowchrome_97_after_dark_768_sideopen_rightclosed.png)
 
+![imagem e1355](assets/issue128_restored_390.png)
+
 #97 BEFORE | dark | 768px | sidebar aberta | contexto fechado
 
 #97 AFTER | dark | 768px | sidebar aberta | contexto fechado
@@ -1370,6 +1646,10 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 ![imagem e1082](assets/lowchrome_97_before_dark_768_sideclosed_rightopen.png)
 
 ![imagem e1084](assets/lowchrome_97_after_dark_768_sideclosed_rightopen.png)
+
+390px, preferência alterada dinamicamente e restaurada
+
+![imagem e1359](assets/issue128_restored_1366.png)
 
 #97 BEFORE | dark | 768px | sidebar fechada | contexto aberto
 
@@ -1379,12 +1659,450 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 ![imagem e1088](assets/lowchrome_97_after_dark_768_sideclosed_rightclosed.png)
 
+1366px, controles de zoom/filtro e retorno à preferência reduzida
+
 #97 BEFORE | dark | 768px | sidebar fechada | contexto fechado
 
 #97 AFTER | dark | 768px | sidebar fechada | contexto fechado
 
+## 28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)
+<!-- container e700 @ (8390,5530) -->
+
+
+
+## A. Contexto e anatomia do Capacities (texto da seção)
+<!-- container e7101 @ (8390,5530) -->
+
+### Anatomia Medida do Capacities Live (app.capacities.io) + Comparação com 15 Branches Históricas (notes-app-old a old-11)
+
+> **1. Arquitetura de 3 Painéis com Ilhas Flutuantes (`AppShellSurface` — Issue #47)**
+> - **Capacities Live (`app.capacities.io`) & `notes-app-old-3/4/6`:** Canvas global `--bg-back` (`#0d0e11` no Dark / `oklch(0.9856 0.0016 67)` `#faf9f7` no Light) onde repousam a Sidebar e o Top Rail de `46px`. Abaixo do Top Rail, tanto o Painel Central quanto o Painel Direito são **cartões flutuantes independentes** (`--bg-base`: `#16171a` Dark / `#ffffff` Light, `border: 1px solid rgba(255,255,255,0.07)`, `border-radius: 10px–12px`, outer gutter de `10px` e `gap: 10px` entre os cards).
+> - **Erro em `0.1.1`:** Usa `div`s chapados encostados nas bordas (`inset: 0`) com divisores retos de `1px` e paleta sépia (`#FBFAF7`/`#F4F2EC`).
+> **2. Divisão Estrita do Top Rail (`46px`) em 3 Cabeçalhos Independentes (Issue #48)**
+> - `SidebarHeader` (`283px`): contém apenas o pill do Space Switcher (`121.8x31px`) e o botão Recolher Sidebar `[◧]` (`27.1x27.1px`).
+> - `AppHeader` (Painel Central): quando a Sidebar está aberta, inicia direto em `<` `>` (`27.1x27.1px`), faixa de abas (`31-32px`), `+` Nova Aba, `[v]` overflow e `[◨]` Alternar Painel Direito. Quando a Sidebar está recolhida (`0px`), migram para o início do `AppHeader` apenas 3 botões de ícone: `[◧ Abrir sidebar]`, `[+ Novo]` e `[🔍 Buscar]`. Nunca há Space Switcher duplicado no `AppHeader` nem segunda barra `.bar`.
+> - `AppSidePanelHeader` (Painel Direito): alinhado em `y=0..46px` sobre `--bg-back`, com abas do painel (`Explorar`, `Grafo`), `+` e `[◨]`.
+> **3. Colapso Off-Canvas Real (`0px`) & Painéis Redimensionáveis (Issue #49)**
+> - No Capacities e em `notes-app-old-4`, a Sidebar recolhe 100% off-canvas (`width: 0px`), **sem o trilho residual de `56px`** (`.app.collapsed .side{width:56px}`). Possui `ResizableHandle` (`224px–384px` na Sidebar; `240px–640px` no Painel Direito, virando `Sheet` abaixo de `1024px`).
+> **4. Topo da Sidebar `[+ Novo] [🔍]` com `NewContentMenu` Pesquisável e Ações Globais de `31px` (Issue #50)**
+> - Linha horizontal dividida: botão pill `[+ Novo]` (`228.5x33px`, `border-radius: 7px`) à esquerda + botão quadrado `[🔍]` (`33x33px`) à direita. Clicar em `[+ Novo]` abre o popover `NewContentMenu` com busca focado, lista de tipos com badges `20x20px` e rodapé `↑↓ para navegar · Esc para abortar · ↵ para selecionar`. Abaixo ficam `Calendário`, `Tarefas`, `Explorar` (`31px`).
+> **5. Linhas de Tipos de Objeto (`29px`), Badges Quadrados `20x20px` (18 Tons OKLCH) e Menu `⋯` de `244-269px` (Issue #52)**
+> - Cada Tipo de Objeto usa `ObjectIconBadge` (`20x20px`, `border-radius: 5px-6px`, fundo tingido `--tone-*-bg` e texto `--tone-*-text` dos 18 tons OKLCH de `notes-app-old-6`), revelando contagem e menu `⋯` (`Abrir >`, `Criar`, `Novo a Partir do Modelo >`, `Nova Query`, `Nova Coleção`, `Fixar na Barra Lateral >`, `Configurações`, `Importar Ctrl+I`) no hover.
+> **6. Seção Utilitária Inferior & Rodapé Horizontal de Ícones (Issue #53)**
+> - Substitui o card `.user-btn` estilo Notion por `Gráfico`, `Lixeira`, `Ajuda & Recursos` colapsável e barra fixa de ícones (`27.1x27.1px`): `[👤 Perfil] [Pro] [⚙ Config] [☼/🌙 Tema] [🔄 Sync] ... [⮹ Atalhos]`.
+> **7. Contrato de Abas (`31-32px`), Painel Direito `Explorar` (Grid 3x2 + Conteúdo Relevante) e Grafo Local (Issues #54 e #55)**
+> - Painel Direito abre em `Explorar` com Grid 3×2 de cards (`Grafo`, `Links de entrada`, `Objetos internos`, `Conteúdo relacionado`, `Chat de IA`, `Buscar`) + `Conteúdo relevante` (`🔍 Encontrar mais`). No `Grafo`, usa nós quadrados coloridos do tipo e pílulas flutuantes translúcidas no rodapé (`backdrop-filter: blur(8px)`).
+> **8. Dashboard de Tipo de Objeto (`#/tipo/*`), Página de Objeto Individual e Space Home *Recall* (Issues #56, #57 e #58)**
+> - `#/tipo/*`: Header `32x32px` badge + H1 + Split Button `[+ Novo | ⌄]`, sub-abas `[⊞ Visão geral]` / `[☰ Tudo]` e Galeria de Cards em 4 colunas.
+> - Página de Objeto: `[Chip do Tipo] [⇆ Coleções]`, H1 `32px`, tags inline, propriedades compactas (sem caixa `.props-card`) com `HoverCard` de preview nos objetos referenciados e abas inferiores `[Links de entrada]` / `[Conteúdo relacionado]`.
+> - Space Home (`#/espaco`): estética editorial *Monastic Knowledge Sanctuary* de `notes-app-old-10.png` (*Recall*).
+
+## B. Evidências visuais: arquitetura e barra (Capacities Live)
+<!-- container e7102 @ (8390,6440) -->
+
+![imagem e705](assets/capacities_live_3pane_explorar_grid.png)
+
+![imagem e707](assets/capacities_live_3pane_local_graph.png)
+
+**Evidência 10 (Capacities Live):** Arquitetura de 3 Painéis com Ilhas Flutuantes (`#0d0e11` canvas, `#16171a` cards, gutter `10px`), Página de Objeto e Painel Direito `Explorar` (Grid 3x2 + Conteúdo relevante) — Issues #47, #48, #54, #57
+
+**Evidência 11 (Capacities Live):** Painel Direito na aba `Grafo` com nós em badges quadrados coloridos por tipo, tags e controles flutuantes translúcidos no rodapé — Issues #38, #54
+
+![imagem e709](assets/capacities_live_collapsed_sidebar.png)
+
+![imagem e711](assets/capacities_live_new_popover.png)
+
+**Evidência 12 (Capacities Live):** Sidebar recolhida 100% off-canvas (`0px`, sem rail de 56px) com `[◧] [+ Novo] [🔍]` migrados para o início do `AppHeader` — Issues #48, #49
+
+**Evidência 13 (Capacities Live):** Linha superior `[+ Novo] [🔍]` na Sidebar e popover pesquisável `NewContentMenu` com rodapé de teclado (`↑↓`, `Esc`, `↵`) — Issue #50
+
+![imagem e713](assets/capacities_live_type_context_menu.png)
+
+![imagem e715](assets/capacities_live_type_dashboard_gallery.png)
+
+**Evidência 14 (Capacities Live):** Linhas de Tipo de Objeto de `29px` com badges quadrados `20x20px`, menu de contexto `⋯` (`244px`) e rodapé horizontal de ícones — Issues #52, #53
+
+**Evidência 15 (Capacities Live):** Dashboard de Tipo de Objeto (`Azure · 43`) com sub-abas `Visão geral`/`Tudo`, Split Button `+ Novo | v` e Galeria de Cards em 4 colunas — Issue #56
+
+## 36. Filtros avançados — Issue #70: cascata, exclusões, URL, Queries e mobile
+<!-- container e1208 @ (16780,7515) -->
+
+Evidência real: Chromium 1366×900 e mobile 390×800; Playwright tests/advanced-question-filters.e2e.mjs, branch de PR. Seletores Disciplina→Assunto, exclusões de cadernos e anuladas, estado codificado na URL, recarga, Queries e simulado filtrado. A base oficial de 70 questões não possui classificação de Assunto; o teste usa questões manuais etiquetadas, sem inventar metadados da FGV. Sem inferência de conformidade WCAG ou testes com participantes.
+
+![imagem e1210](assets/issue70_before_simple.png)
+
+![imagem e1212](assets/issue70_after_open_panel.png)
+
+ANTES: banco de questões sem construtor de filtros avançados
+
+DEPOIS: painel com facetas estruturais e regras de inclusão/exclusão
+
+![imagem e1214](assets/issue70_after_cascade.png)
+
+![imagem e1216](assets/issue70_after_exclusion.png)
+
+DEPOIS: Disciplina ativa Assunto, seleção aplicada e URL navegável
+
+DEPOIS: exclusão de questões já incluídas em caderno
+
+![imagem e1218](assets/issue70_after_reload_flags.png)
+
+![imagem e1220](assets/issue70_after_saved.png)
+
+DEPOIS: critérios persistidos após recarregar a página
+
+DEPOIS: conjunto de filtros salvo como Query de Questão
+
+![imagem e1222](assets/issue70_after_simulado_filtrado.png)
+
+![imagem e1224](assets/issue70_after_clear_defaults.png)
+
+DEPOIS: simulado criado com a seleção filtrada
+
+DEPOIS: limpar filtros restaura exclusão padrão de anuladas
+
+![imagem e1226](assets/issue70_after_mobile.png)
+
+DEPOIS: filtros avançados adaptados a 390px
+
+## 47. Graph State & Space Isolation — Issue #145: isolamento por espaço e invalidação reativa
+<!-- container e1407 @ (25170,7620) -->
+
+Implementação e Auditoria Issue #145:
+
+1. Isolamento Estrito por Espaço:
+- A função G(spId) passa a construir o subgrafo restrito às entidades nativas do espaço (concursos, edições, cargos, documentos, questões vinculadas).
+- Entidades globais de suporte (órgão, banca, disciplina) só entram no subgrafo se forem ativamente referenciadas por um objeto nativo do espaço.
+- Nenhuma entidade privada ou questão de outro espaço vaza para o grafo, contagens ou backlinks.
+
+2. Invalidação Reativa e Eliminação de Stale Cache de 400ms:
+- O hash gsig(spId) agora monitora a assinatura completa de cada entidade, vínculos ativos (órgão, banca, edição, cargo, disciplina), overrides do store ('ov') e exclusões na lixeira (trashSet).
+- Removido o bypass cego de 400ms em gr(); se gsig alterar por edição de relação ou troca de espaço, a reconstrução é imediata.
+- Cache GR_CACHE mapeado por ID de espaço, permitindo alternância instantânea entre espaços sem recálculo desnecessário e sem dados cruzados.
+
+3. Tratamento Explícito de Contexto Fixado Estrangeiro (Painel Contextual):
+- Quando uma aba lateral foi fixada em um objeto do Espaço A e o usuário altera para o Espaço B, o painel exibe aviso explícito: 'Objeto não pertence a este espaço' com botão 'Seguir contexto do espaço atual' (data-unpin).
+- Eliminação de links órfãos ou nós fantasmas quando uma entidade da extremidade é excluída.
+
+4. Testes Automatizados de Regressão:
+- Criada suíte de testes unitários em tests/graph-space-isolation.test.mjs com 5 cenários verificando:
+  * Isolamento Espaço A vs B;
+  * Alternância instantânea de espaço;
+  * Invalidação imediata por mudança de relações/metadados/overrides;
+  * Exclusão e ausência de arestas órfãs;
+  * Alerta explícito de contexto estrangeiro fixado no painel direito.
+
+## C. Comparação de branches históricas (notes-app-old)
+<!-- container e7103 @ (8390,8080) -->
+
+![imagem e717](assets/capacities_live_object_page_anatomy.png)
+
+![imagem e719](assets/archive_notes_app_old_3_capacities_shell.png)
+
+**Evidência 16 (Capacities Live):** Anatomia da Página de Objeto com painel lateral fechado: coluna centralizada (`740px`), chip de tipo, `Coleções`, tags inline, propriedades compactas e abas `Links de entrada`/`Conteúdo relacionado` — Issue #57
+
+**Evidência 17 (Archive `notes-app-old-3`):** Web Shell de paridade Capacities em Light Mode (`--bg-back`, cartões flutuantes `12px`, aba `Visão geral` de `Páginas` e painel direito `Explorar` 6 cards) — Issues #47, #54, #56
+
+![imagem e721](assets/archive_notes_app_old_4_capacities_shell.png)
+
+![imagem e723](assets/archive_notes_app_old_4_graph_sidepanel.png)
+
+**Evidência 18 (Archive `notes-app-old-4`):** `AppShell` com `ResizablePanelGroup`, `AppHeader`, `AppSidePanelHeader` e `ObjectTypeWorkspace` — Issues #47, #48, #49, #55
+
+**Evidência 19 (Archive `notes-app-old-4` `layout-current.png`):** `Visualização em grafo` no Painel Direito com controles inferiores (`Mostrar menos`, `Mostrar mais`, zoom, expandir) — Issue #54
+
+![imagem e725](assets/archive_notes_app_old_10_recall_home.png)
+
+**Evidência 20 (Archive `notes-app-old-10` Recall):** Estética editorial *Monastic Knowledge Sanctuary* para a Home do Espaço (`#/espaco`) com card Hero escuro `TODAY`, `Review today` e `Recent objects` sem emojis — Issue #58
+
+## 49. Workspace Loading State Machine — Issue #161: eliminação de timers cegos, proteção contra corrida e recuperação acessível
+<!-- container e1450 @ (25170,9460) -->
+
+### 49. Workspace Loading State Machine — Issue #161 (Auditoria e Implementação)
+
+**1. Eliminação dos Timers Cegos e do MutationObserver Genérico:**
+- Eliminado o setTimeout(() => wsLoading(false), 5000) que ocultava arbitrariamente o indicador de carregamento após 5 segundos, mascarando eventuais falhas lentas ou bloqueios de rede.
+- Eliminado o MutationObserver genérico que desativava o loading 260ms após qualquer alteração no DOM em #view, sem nenhuma garantia de que o render era final, bem-sucedido ou livre de erros.
+
+**2. Máquina de Estados do Workspace Loading:**
+- Estados canônicos implementados: idle | pending | success | empty | failed | timed-out | cancelled.
+- Monotonic Sequence Counter (wsNavSeq): cada navegação recebe um seq incremental único. Respostas assíncronas obsoletas ou requisições canceladas por navegações mais recentes (seq !== wsLoadCurrentSeq) são rejeitadas silenciosamente, blindando o app contra condições de corrida entre rotas concorrentes.
+- Sinalização explícita de conclusão:
+  * route() inicia a transição com const seq = wsLoadingStart(h0) em estado pending com prazo máximo de deadline (8s).
+  * Renderizadores de rotas (showObjs, showStudyRoute, showGraph, showBoard, showTrash, nbRoute, blank, open) sinalizam explicitamente o desfecho com wsLoadingEnd('success'), wsLoadingEnd('empty') ou wsLoadingEnd('failed').
+
+**3. Tratamento de Falhas e Timeout Recuperável:**
+- Se o carregamento expirar (deadline de 8s) ou encontrar erro crítico (ex.: PDF corrompido, rede indisponível), o estado transita para timed-out ou failed.
+- O indicador NÃO desaparece silenciosamente fingindo sucesso; ele ganha destaque visual semântico (borda de aviso âmbar ou erro carmim) e exibe banner acessível (#wsLoadBanner) com ações de recuperação:
+  * Botão primário 'Tentar novamente' (data-ws-retry) que re-executa a rota.
+  * Link de retorno seguro 'Voltar ao início' (#/espaco).
+  * Botão de dispensar aviso (data-ws-dismiss).
+
+**4. Acessibilidade (ARIA) e Modo de Movimento Reduzido (WCAG 2.2):**
+- Elemento #wsLoad gerencia role='status' em pending/success/empty e role='alert' em failed/timed-out.
+- aria-busy='true' ativo durante pending e 'false' em repouso.
+- Rótulo acessível em .ws-load-label atualizado dinamicamente para leitores de tela sem gerar poluição sonora de anúncios repetidos.
+- Suporte a prefers-reduced-motion: reduce: a animação infinita de deslocamento espacial é desativada, mantendo barra estática com transição suave de opacidade sem perda de feedback visual.
+
+**5. Testes Automatizados e Política Zero Emoji:**
+- Criada suíte de testes tests/workspace-loading-state.test.mjs com 4 testes unitários automatizados cobrindo remoção de timers cegos, classes de CSS e reduced-motion, máquina de estados com cancelamento de corrida e conformidade estrita com a Zero Emoji Policy.
+
+## D. Resoluções técnicas para o Exam App (issues #47–#58)
+<!-- container e7104 @ (8390,9720) -->
+
+> **Resolução Técnica: Top Rail de 46px em 3 Cabeçalhos & Controles Migrados (Issue #48)**
+> 
+> - **Zona 1 — SidebarHeader (`.side-top`):** Altura `46px` sobre `var(--bg-back)`, Space Switcher (`.space-btn`, `31px`) à esquerda e botão de recolher `[◧]` (`#collapse`, `27px × 27px`) à direita.
+> - **Zona 2 — AppHeader (`#wsTabs`):** Altura `46px` sobre `var(--bg-back)`:
+>   - *Sidebar Aberta (`:not(.collapsed)`):* Inicia diretamente nos botões de histórico `< >` (`.hist.ws-nav`, `28px`). `#wsSide` e controles migrados ficam estritamente ocultos (`display: none !important`).
+>   - *Sidebar Recolhida (`.app.collapsed`):* Migram para o início de `#wsTabs` antes de `< >` exatamente 3 botões compactos `27px × 27px`: `[◧ Abrir barra lateral]` (`#wsSide`), `[+ Novo]` (`#wsNewBtn`) e `[🔍 Buscar]` (`#wsSearchBtn`).
+>   - Space Switcher purgado de `#wsTabs` (sem `#spTopBtn`).
+>   - À direita: botão `[◨]` (`#rpToggle`) para alternar o painel contextual.
+> - **Zona 3 — AppSidePanelHeader (`.rp-top`):** Altura `46px` sobre `var(--bg-back)`, perfeitamente nivelado com `#wsTabs`, contendo abas contextuais, `[+]` e `[◨]` (`#rpHide`).
+> - **Eliminação da Barra Residual `.bar`:** Altura fixa removida do fluxo do layout (`height: 0; display: none; overflow: hidden;`). O leitor de PDF e a barra de progresso de leitura `.readprog` (`2px`) são exibidos apenas em documentos PDF (`.main.reading-mode`), preservando os seletores DOM (`docTitle`, `docMeta`, `propBtn`, `zfit`, `zin`, `zout`, `pg`) sem consumo de espaço global.
+
+> **Resolução Técnica: Badges Quadrados 20x20px (18 Tons OKLCH), Linhas de 29px e Menu de Contexto Completo nos Tipos de Objeto (Issue #52)**
+> 
+> - **ObjectIconBadge nos Tipos de Objeto (`.object-icon-badge`):**
+>   - Badge quadrado de `20px × 20px` com `border-radius: 5px`, borda sutil de `0.5px solid var(--badge-border)` e fundo translúcido/tingido `var(--badge-bg)`.
+>   - Ícone SVG vetorial de `13px` centralizado dentro do badge (`stroke-width: 1.8`).
+>   - Suíte completa de 18 tons OKLCH calibrada para Light Mode e Dark Mode (`--tone-amber-*` até `--tone-violet-*`).
+>   - Mapeamento semântico fiel por Tipo de Objeto: Concurso (`emerald`), Órgão (`orange`), Banca (`rose`), Edição (`blue`), Cargo (`purple`), Arquivo/Questão (`amber`), Documento (`cyan`), PDF (`red`), Disciplina (`green`), Simulado (`indigo`), Resposta (`gray`).
+> - **Linhas de Tipo de Objeto na Sidebar (`.nav .tree-line`):**
+>   - Altura estrita de `29px` (`height: 29px; min-height: 29px; box-sizing: border-box;`), `border-radius: 6px` e tipografia `14px` (`font-weight: 400`).
+>   - No hover: revela à direita a contagem tabular (`font-variant-numeric: tabular-nums`) e o botão de contexto `⋯` de `22px × 22px` (`border-radius: 6px`).
+> - **Cabeçalhos de Seção da Sidebar (`.sec-hw`):**
+>   - Altura padronizada de `28px`, fonte `12px`, `font-weight: 600`, chevron discreto com transição de rotação a -90° no colapso e controles revelados no hover (`22px × 22px`).
+>   - Linha `+ Adicionar seção` ajustada para altura de `29px` com `border-radius: 6px`.
+> - **Menu de Contexto Completo do Tipo de Objeto (`⋯`):**
+>   - Popover `.ctx` de `244px–260px` de largura com ações padronizadas do Capacities:
+>     - `Abrir tipo` (`#/tipo/{t}`)
+>     - `Criar {Tipo singular}` (`createObj(t)`)
+>     - Divisor `<hr>`
+>     - `Nova Coleção` (`csCreate(t)`)
+>     - `Nova Query` (`csCreate(t)`)
+>     - `Fixar na barra lateral` / `Desafixar da barra lateral` (`togglePinK`)
+>     - Divisor `<hr>`
+>     - `Configurações do tipo` (abre modal de edição com campos de nome no singular e no plural)
+>     - Divisor `<hr>`
+>     - `Excluir tipo de objeto` (com estilo destrutivo vermelho).
+> - **Zero Emoji Policy (Issue #42):** 100% de conformidade com ícones vetoriais SVG monocromáticos, sem nenhum emoji Unicode na interface.
+
+> **Resolução Técnica: Colapso Off-Canvas Total (0px) & ResizableHandle na Sidebar (Issue #49)**
+> 
+> - **Colapso Off-Canvas Total (0px):**
+>   - Substituição do rail residual de `56px` por recolhimento real para `0px` (`.app.collapsed .side { width: 0 !important; min-width: 0 !important; max-width: 0 !important; overflow: hidden !important; border-right: none !important; pointer-events: none; }`).
+>   - Todo o espaço horizontal é imediatamente liberado para a superfície flutuante central (`AppShellSurface` / `.main`).
+> - **Alça de Redimensionamento da Sidebar (`#sideRz`):**
+>   - Inserido elemento `.side-rz` na borda direita da sidebar (`role="separator"`, `aria-orientation="vertical"`, `tabindex="0"`, `touch-action: none`).
+>   - Drag fluído via `pointerdown` / `setPointerCapture` e atalhos de teclado `ArrowLeft` / `ArrowRight` (passos de `24px`).
+>   - Limites padronizados de `workspace-layout.ts`: mínimo `224px`, padrão `284px`, máximo `384px`.
+>   - Duplo-clique restaura a largura padrão (`284px`).
+>   - Persistência contínua em `localStorage` sob a chave `sidew`.
+>   - Estilo Capacities: linha sutil translúcida no hover / drag (`linear-gradient(90deg, transparent 5px, var(--faint) 5px, var(--faint) 7px, transparent 7px)`).
+> - **Ajustes e Breakpoints do Painel Contextual Direito (`#rpanel`):**
+>   - Limites atualizados: mínimo `240px`, padrão `420px`, máximo `640px`.
+>   - Duplo-clique em `#rpRz` restaura o padrão de `420px` e persiste sob a chave `rpw`.
+>   - Modo Overlay Sheet ativado entre `769px` e `1024px` (`matchMedia('(max-width:1024px)')`), garantindo que o painel contextual abra sobreposto sem esmagar o conteúdo central abaixo de `480px`.
+>   - Em mobile (<= `768px`), gavetas operam com scrim e redimensionamentos são desativados.
+
+> **Resolução Técnica: Substituição do Card de Usuário (.user-btn) pela Seção Ajuda & Recursos e Rodapé Horizontal de Ícones do Capacities (Issue #53)**
+> 
+> - **Substituição do Card de Usuário (.user-btn):**
+>   - Removido o card largo estilo Notion/Linear (.user-btn) contendo avatar 'I' e 'Ian / Plano pessoal' da base da barra lateral.
+>   - Eliminação de cliques extras: funções essenciais como tema, atalhos e configurações agora contam com acesso direto de 1 clique no rodapé.
+> - **Linhas Utilitárias Inferiores (.side-utils, altura 30px, ícones 16px):**
+>   - Posicionadas imediatamente acima da barra fixa inferior, com alinhamento visual rigoroso:
+>     - **Gráfico** (`#graphBtn`): abre a constelação global (`#/grafico`), com estado ativo sincronizado via `aria-current`.
+>     - **Lixeira** (`#trashBtn`): abre a gestão de itens excluídos (`#/lixeira`), com contagem e restauração contextual.
+>     - **Ajuda & Recursos** (`#sideHelpBtn`): grupo expansível com chevron indicativo e gaveta retrátil contendo:
+>       - *Primeiros Passos* (`#helpSubSteps`): modal guiado com passos rápidos de uso do Exam App.
+>       - *Documentação* (`#helpSubDocs`): acesso às especificações arquiteturais e de domínio.
+>       - *Atalhos de Teclado* (`#helpSubShortcuts`): diálogo rápido com hotkeys do sistema (Ctrl+B, Ctrl+K, Ctrl+Alt+N, J/K, F2, +/-).
+>       - *Feedback* (`#helpSubFeedback`): prompt modal para submissão de melhorias pelo usuário.
+> - **Rodapé Horizontal de Ícones do Capacities (.side-foot):**
+>   - Barra horizontal fixa de altura `38px` (`min-height: 38px`), `display: flex; align-items: center; border-top: 1px solid var(--line);`:
+>     - **Grupo esquerdo** (`gap: 4px`):
+>       1. `[Perfil / Conta]` (`#btnFootAccount`, `27px × 27px`): ícone vetorial SVG, abre popover de conta `#usPop`.
+>       2. Pill `[PRO]` (`.badge-pro`): badge compacto com tipografia 10px bold, estilo âmbar sutil do Capacities Pro.
+>       3. `[Configurações]` (`#btnFootSettings`, `27px × 27px`): abre modal com seleção de tema, zoom padrão e limpeza de dados.
+>       4. `[Alternar Tema]` (`#btnFootTheme`, `27px × 27px`): alterna instantaneamente entre Modo Claro e Escuro em 1 clique direto, com sincronização automática do glifo SVG (sol no tema escuro, lua no tema claro).
+>       5. `[Sync / Status]` (`#btnFootSync`, `27px × 27px`): status visual e feedback toast de sincronização offline/online.
+>     - **Grupo direito** (`margin-left: auto`):
+>       6. `[Atalhos de Teclado]` (`#btnFootShortcuts`, `27px × 27px`): abre diretamente a visualização de atalhos globais.
+> - **Conformidade com a Zero Emoji Policy (Issue #42):** 100% de ícones vetoriais SVG monocromáticos (`currentColor`, `stroke-width: 1.8`), sem nenhum caractere emoji Unicode em toda a estrutura.
+
+> **Resolução Técnica: Linha Superior Combinada [+ Novo] [Buscar], NewContentMenu & Ações Globais de 31px (Issue #50)**
+> 
+> - **Linha Superior Combinada (`.side-comb`):**
+>   - Localizada logo abaixo de `.side-top` (`padding: 4px 10px 8px; gap: 6px`).
+>   - Botão `[+ Novo]` (`#sideNewBtn`): `flex: 1`, altura `33px`, `border-radius: 7px`, background sutil (`var(--hover)` / `var(--active)`), ícone SVG `[+]` de `16px` e label `Novo`.
+>   - Botão `[Buscar]` (`#sideSearchBtn`): quadrado `33px × 33px`, `border-radius: 7px`, ícone SVG de lupa `16px`, atalho `(Ctrl+K)`.
+> - **Popover Pesquisável NewContentMenu (`#newMenu`):**
+>   - Abre posicionado imediatamente abaixo do botão `[+ Novo]` ao clicar ou via atalho `Ctrl+Alt+N` / `Cmd+Alt+N`.
+>   - Campo de busca instantânea com foco automático (`#newMenuIn`), filtrando tipos de objetos por nome em português ou inglês.
+>   - Lista rolável (`#newMenuList`) exibindo todos os tipos ativos do espaço com badge quadrado colorido `20x20px` (`.nm-badge.tone-type-*`), rótulo no singular e contagem de instâncias no espaço.
+>   - Navegação completa por teclado: setas `↑↓` percorrem itens com destaque visual e `scrollIntoView`, `Enter` cria o tipo selecionado (`createObj(t)`), e `Esc` fecha o menu devolvendo o foco.
+>   - Rodapé fixo com convenção Capacities: `↑↓ navegar · Esc abortar · ↵ selecionar`.
+> - **Ações Globais da Sidebar de 31px:**
+>   - Itens padronizados com altura de `31px`, `border-radius: 6px`, `font-size: 14px`, peso regular (`font-weight: 400`), espaçamento `gap: 8px` e ícones SVG vetoriais monocromáticos de `16px` (`stroke-width: 1.8`).
+>   - Entradas primárias: `Início` (`#/espaco`), `Tarefas / Revisão` (`#/revisao`), `Explorar` (`#/explorar`).
+> - **Conformidade com a Zero Emoji Policy (Issue #42):** 100% livre de emojis Unicode em tags, botões, badges e comentários.
+
+## 44. Questões contextuais — Issue #136: alternativas alinhadas e CSS compartilhado
+<!-- container e1381 @ (16780,10410) -->
+
+Restaurado após conflito de IDs introduzido pela PR #142. Causa original validada por DOM: alternativas em páginas contextuais perdiam display:flex fora de .study-shell. As quatro capturas reais da PR #141 e o relatório issue136_e2e.json documentam o antes/depois em desktop, 390px e banco global. Implementação: CSS compartilhado com :is(.study-shell,.practice-list). Não equivale à conclusão de todos os critérios da issue #136; permanecem zoom, painel lateral, navegação por teclado e demais rotas.
+
+![imagem e1383](assets/issue136_before_context_1366.png)
+
+![imagem e1375](assets/issue136_after_context_1366.png)
+
+ANTES: alternativas inline no concurso, sem estilização da lista de questões
+
+DEPOIS: alternativas em linhas/click targets, concurso no desktop
+
+![imagem e1377](assets/issue136_after_context_390.png)
+
+![imagem e1379](assets/issue136_after_global_1366.png)
+
+DEPOIS: alternativas em linhas e texto quebrando, concurso em 390px
+
+DEPOIS: banco global preserva o mesmo componente de questões
+
+## 29. Engenharia da Barra Direita & Motor de Grafo do Capacities + Central de Preparação & Questões do QConcursos Elite (Issues #64 e #66 a #72)
+<!-- container e800 @ (8390,11590) -->
+
+### Blueprint Técnico: Painel Direito & Grafo Retina 60fps (Capacities Live) + Home & Resolução de Questões (QConcursos Elite Live)
+
+> **1. Remoção Definitiva do `#spTopBtn` Duplicado em `#wsTabs` (Issue #64)**
+> - O botão `[💡 Concurso de TI ↕]` (`#spTopBtn`) foi injetado dentro de `#wsTabs` por engano no commit `7edd4ac` (PR #20) porque o autor não percebeu que `.side-top` já existia na Sidebar esquerda. Mesmo quando a Sidebar é recolhida (`0px`), o Capacities **NUNCA** mostra o Space Switcher na barra de abas — exibe apenas `[◧ Expandir sidebar]`, `[+ Novo]` e `[🔍 Buscar]`. `#spTopBtn` deve ser removido do HTML/CSS/JS.
+> **2. As 6 Ferramentas Contextuais do Painel Direito, Overflow `Buscar abas` `[v]` e `ResizeObserver` (Issue #66)**
+> - No Capacities Live, a Barra Direita tem calha invisível de `8px` (`col-resize`) que aciona `ResizeObserver` no canvas em tempo real sem borrar.
+> - Quando há 5+ abas no painel direito, elas compactam para ícone e revelam o botão `[v]`, abrindo o popover `Buscar abas` (`256px`).
+> - As 6 ferramentas de `Explorar` são: `Grafo`, `Links de entrada` (com snippet do bloco), `Objetos internos` (agrupados por tipo), `Conteúdo relacionado` (com pílula `[66 | ☰ ⌄ | ☵]`), `Chat de IA` (com chip do objeto ativo) e `Buscar`.
+> **3. Motor de Grafo `<canvas>` 2D Retina (`devicePixelRatio`) & Taxonomia Visual de Nós em 3 Níveis (Issue #67)**
+> - **Por que o grafo do Capacities é muito mais responsivo:** Usa um único motor `<canvas>` 2D a 60 FPS calibrado por `window.devicePixelRatio` tanto no Painel Direito quanto no Grafo Global (substituindo o `<svg class="rp-graph">` estático do nosso protótipo).
+> - **Taxonomia em 3 Níveis:** (1) Nó Central: badge quadrado `36-42px` (`border-radius: 8px`) com ícone SVG do tipo, borda brilhante `2px` e rótulo em pílula escura (`rgba(20,20,20,0.85)`); (2) Nós Vizinhos: badges quadrados `24-28px` (`border-radius: 6px`) tingidos na cor OKLCH do Tipo de Objeto; (3) **Nós de Tags/Assuntos:** renderizados como **pílulas ovais coloridas** (`[vm group]`, `[logical container]`) com o texto dentro!
+> - **Arestas & Física:** Arestas direcionais com rótulos de relação inline (`Relação`, `Equivalente do GCP`), spotlight no hover (`opacity: 0.15` nos demais) e física de molas amortecida (*spring damping* `< 1s`).
+> **4. Barras Flutuantes de `27px` no Grafo, Popover de Filtros/Hubs, Profundidade `1..5` e Busca Auto-Zoom (Issue #68)**
+> - Pílulas inferiores de `27px` (`backdrop-filter: blur(8px)`): à esquerda `[⤢ Fit] [☊ Re-layout]`; à direita `[🔍- | 100% ⌄ | 🔍+]` e `[📥 Export PNG | 🎛 Filtros | ● Profundidade 1..5]`.
+> - Popover `[🎛]` com submenus pesquisáveis `Filtrar tipos de objeto >`, `Excluir tipos de objeto >` e checkbox `Ocultar objetos com muitos links` (evita poluição de hubs!). No Grafo Global: busca no topo com auto-zoom suave no cluster e `Reproduzir linha do tempo`.
+> **5. QConcursos Elite — Central de Preparação na Home `#/espaco` (Issue #69)**
+> - Card do Concurso com dados do edital + bloco acionável **`PRÓXIMA AÇÃO`** (`Continuar estudando →` / `Mapa do edital`), widget **`Seu ritmo hoje`** (`X questões respondidas hoje`, `Taxa de acerto`, `Taxa de erro` e barra semanal `Seg–Dom`) e seção **`Conteúdo do seu edital`** com 4 abas (`Disciplinas & Assuntos` Master-Detail, `Caderno de Questões`, `Raio-X da Banca` e `Caderno de Erros`).
+> **6. QConcursos Elite — Construtor de Filtros Avançado, Tesoura nas Alternativas e Abas Pedagógicas (Issues #70, #71 e #72)**
+> - Filtros rápidos (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`), chips `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Criar Simulado`).
+> - Card da questão com cabeçalho compacto de 2 linhas (`[1 | Q1]` + Breadcrumb; `Ano · Banca · Órgão · Prova`), toggle `Texto associado ⊕/⊖`, **botão de Tesoura (`✂️ Descartar alternativa`)** com `line-through`, confirmação em 2 etapas via botão **`[Responder]`** e barra inferior de abas pedagógicas (**`Gabarito Comentado`**, **`Estatísticas`** com Donut + Barras A–E + Histórico, **`Cadernos`** e **`Anotações`** ricas).
+
+![imagem e805](assets/bug_spTopBtn_duplicated_lightbulb.png)
+
+**Evidência 21 (Bug Reportado pelo Usuário — Issue #64):** Botão duplicado `#spTopBtn` (`💡 Concurso de TI ↕`) + `#wsSide` (`[◧]`) injetado dentro de `#wsTabs` pelo commit `7edd4ac` (PR #20)
+
+![imagem e809](assets/capacities_live_right_panel_related.png)
+
+**Evidência 23 (Capacities Live — Issue #66):** Aba `Conteúdo relacionado` no Painel Direito com pílula `[66 | ☰ ⌄ | ☵]` e lista de objetos com badges quadrados `20x20px`
+
+![imagem e813](assets/capacities_live_graph_filter_popover.png)
+
+**Evidência 25 (Capacities Live — Issue #68):** Popover de Configurações do Grafo (`[🎛]`) com submenu pesquisável `Filtrar tipos de objeto >`, `Ocultar objetos com muitos links` e pílula de profundidade `[● 4]`
+
+![imagem e817](assets/capacities_live_global_graph_search_autozoom.png)
+
+**Evidência 27 (Capacities Live — Issue #68):** Busca reativa `'Azure'` no Grafo Global atualizando contador (`306`), executando auto-zoom (`40%`) e exibindo botão de `Linha do Tempo`
+
+![imagem e821](assets/qconcursos_live_home_ritmo_disciplinas.png)
+
+**Evidência 29 (QConcursos Elite Live — Issue #69):** Cards `Taxa de acerto` / `Taxa de erro`, barra semanal `Seg–Dom` e visão Master-Detail de `Disciplinas & Assuntos` com badge `Recomendado`
+
+![imagem e825](assets/qconcursos_live_home_caderno_erros.png)
+
+**Evidência 31 (QConcursos Elite Live — Issue #69):** Aba `Caderno de Erros` reunindo automaticamente questões erradas para revisão ativa
+
+![imagem e829](assets/qconcursos_live_filter_actions_bar.png)
+
+**Evidência 33 (QConcursos Elite Live — Issue #70):** Barra de chips ativos `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Meus Cadernos`, `Meus filtros`, `Criar Simulado`)
+
+![imagem e833](assets/qconcursos_live_question_answered_feedback.png)
+
+**Evidência 35 (QConcursos Elite Live — Issue #71):** Confirmação em 2 etapas via botão `Responder`, destacando a alternativa correta B em verde e exibindo a barra inferior de abas pedagógicas
+
+## 50. Recuperação estrita e Raio-X do Edital — Issue #76
+<!-- container e1453 @ (16780,11700) -->
+
+A recuperação só ocorre após uma nova resposta correta; abrir gabarito não altera o histórico. A coorte semanal mostra “Errou X · Recuperou Y”; a rota Caderno de Erros lista apenas pendentes. O Raio-X usa incidência de questões, pontos catalogados, cobertura e acerto da última tentativa confirmada. A cobertura deste protótipo é limitada aos assuntos presentes no catálogo; o Anexo II completo e a associação automática de PDFs não estão implementados. As capturas abaixo vieram do E2E Chromium executado nesta PR.
+
+![imagem e1455](assets/issue76_wrong_confirmed.png)
+
+![imagem e1457](assets/issue76_notebook_pending.png)
+
+ANTES: primeira resposta incorreta confirmada
+
+DEPOIS: erro pendente agrupado por semana e disciplina
+
+![imagem e1459](assets/issue76_recovered.png)
+
+![imagem e1461](assets/issue76_raiox_vertical.png)
+
+DEPOIS: recuperação após nova resposta correta
+
+DEPOIS: assuntos, prioridades e marcação persistente
+
+[PR #187 — issue #76](https://github.com/ianmaciel7/exams-app/pull/187)
+
+[E2E Chromium — run 43727853810](https://github.com/ianmaciel7/exams-app/actions/runs/43727853810)
+
+## 51. Revisão diária — cartões vinculados e provas Chromium — Issue #82
+<!-- container e1465 @ (16780,13920) -->
+
+A rota #/revisao mantém cartões Q&A e Cloze, revela respostas sob demanda, oferece TTS sem vazar a resposta antes da revelação, agenda 2/10/45 dias e domínio, configura meta e recência e preserva estado entre recargas por espaço. Grifos e comentários de questões são importados diretamente com origem rastreável e deduplicação. Capturas reais Playwright Chromium, em 390px e 1366px, validadas na PR #192. Pendências: importação dos grifos de PDF, calibração pedagógica do SRS e acessibilidade física assistiva.
+
+![imagem e1467](assets/issue82_qa_revealed_1366.png)
+
+![imagem e1469](assets/issue82_cloze_1366.png)
+
+Pergunta e resposta: revelação explícita, sem vazamento no áudio
+
+Cloze: lacuna gerada por clique e revisão com TTS
+
+![imagem e1471](assets/issue82_question_import_1366.png)
+
+![imagem e1473](assets/issue82_question_import_390.png)
+
+Grifo real da questão vira cartão vinculado sem duplicação
+
+Importação responsiva em viewport móvel de 390px
+
+[PR #192 — Daily Review](https://github.com/ianmaciel7/exams-app/pull/192)
+
+[Chromium E2E — run 43730006968](https://github.com/ianmaciel7/exams-app/actions/runs/43730006968)
+
+## 52. Leitor PDF reflow e anotações — Issue #77
+<!-- container e1477 @ (16780,16120) -->
+
+Modo PDF original e texto reflow; fonte/tamanho/entrelinha, j/k, h grifar, n nota marginal, t etiqueta, z desfazer e [ sumário. Testes Playwright desktop 1366 e mobile 390 sobre PDF de duas colunas GERADO por pdf-lib com PDF.js no navegador, com ordem esquerda→direita, persistência e limpeza entre rotas. Defeito de layout corrigido: toolbar fora do flex da página. LIMITES: não é DOU oficial real, falta OCR para escaneados, TOC semântico e projeção das anotações sobre o canvas original. Issue #77 permanece aberta.
+
+![imagem e1479](assets/issue77_reader_original_1366.png)
+
+![imagem e1481](assets/issue77_reader_text_highlight_1366.png)
+
+PDF real gerado no teste: canvas e duas colunas em tela desktop
+
+Modo texto reflow: coluna esquerda antes da direita e grifo focado
+
+![imagem e1483](assets/issue77_reader_marginalia_1366.png)
+
+![imagem e1485](assets/issue77_reader_marginalia_390.png)
+
+Nota marginal, etiqueta, sumário e restauração do modo texto
+
+Mesmo fluxo na viewport de 390px sem compressão do PDF
+
+[PR #190 — Reader](https://github.com/ianmaciel7/exams-app/pull/190)
+
+[Chromium PDF E2E](https://github.com/ianmaciel7/exams-app/actions/runs/43731298495)
+
 ## 32. Dossiê Exaustivo Zero-Information-Loss: Readwise SRS & Readwise Reader — Todas as Telas, Hovers, Modais, Templates Jinja2, Schemas CSV, Action Tags, Fontes de Import/Export e Evidências de Texto (73 Capturas Verificadas)
-<!-- container e1090 @ (10200,11000) -->
+<!-- container e1090 @ (33560,16240) -->
 
 ### Especificação Técnica Completa para Leitura por IA (Zero-Information-Loss antes do término do Trial) — Complementado por READWISE_DOSSIER.md (241 KB de DOM/Texto Bruto)
 
@@ -1541,350 +2259,33 @@ O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, l
 
 **Evidência 104 (Readwise SRS Inline Tagging Guide — Issue #79):** Guia oficial `How to Tag Your Highlights While You Read` detalhando o funcionamento de `inline tagging` e categorização em tempo de leitura
 
-## 33. Matriz de Decisões de Produto Extraída dos Sites (14 Perguntas) & Índice Mestre de Rastreabilidade de Evidências (Adotar / Adaptar / Descartar)
-<!-- container e1150 @ (12000,11000) -->
-
-### Extração Direta das 4 Referências (QConcursos, Capacities, Readwise Reader/SRS e ExamTopics) Cruzada com a Arquitetura do Exam App (Perguntas 1 a 14)
-
-> **Respostas Extraídas dos Sites e do Modelo do Board (Perguntas 1 a 14)**
-> 
-> **1. QConcursos — "Caderno" como Coleção fixa de questões (sem pastas nesta fase):**
-> - **No site (`elite.qconcursos.com`):** Possui `Gerar Caderno` (a partir do filtro ativo, até 1.000 questões) e a aba `Cadernos` dentro de cada questão (`+ Criar novo caderno` ou dropdown `Encontrar caderno`), além de `Caderno de Erros` automático na Central de Preparação. No QConcursos legado existiam Pastas, mas na interface moderna Elite o fluxo é plano.
-> - **Decisão no Exam App (Seções 2 e 6 do Board):** **SIM, definitivamente.** O Caderno é uma **Coleção (`Collection`)** manual de objetos do tipo `Questão`, **plana e sem aninhamento (sem pastas)** (`"Coleção não contém outra coleção"` — linha 464). Entregar na versão `0.3.0`.
-> 
-> **2. Filtros Salvos — Objeto próprio (`Visão`) na sidebar vs. Lista dentro do banco de questões:**
-> - **Nos sites:**
->   - *QConcursos:* Fica dentro da barra de ações do banco de questões (`Salvar filtro` e `Meus filtros` lado a lado com `Gerar Caderno`).
->   - *Readwise Reader (`/views`) e Capacities (`Queries`):* São objetos `Filtered Views` com página de gestão (`/views`) e opção de `Pin` (`Fixar na barra lateral`).
-> - **Decisão no Exam App (Seções 6, 9 e 28):** Na fase atual (MVP / `0.2.0`–`0.3.0`), funciona como **lista rápida no banco de questões** (`Salvar filtro` / `Meus filtros` + estado na URL), enquanto no modelo de domínio equivale a uma **Visão / Query salva** (que guarda critérios de filtro, diferente da `Coleção` que guarda IDs fixos) e pode ser **fixada opcionalmente na sidebar** via menu `⋯` sem obrigar página própria no MVP.
-> 
-> **3. Simulado — Nascer de filtro/coleção (quantidade e tempo configuráveis) vs. Criado manualmente do zero:**
-> - **No site (`elite.qconcursos.com`):** Nasce diretamente do botão `Criar Simulado` na barra de ações do filtro ativo (ou de um Caderno), sorteando `N` questões dos critérios selecionados com tempo configurável, além das Provas Oficiais fechadas (`Prova: SELECON - 2026`).
-> - **Decisão no Exam App (Seções 2 e 9):** Nasce de **duas formas sem cadastro manual questão-por-questão do zero**: (A) **A partir de um Filtro ou Coleção (Caderno)** definindo quantidade, tempo limite e modo (`prova` ou `estudo`); ou (B) **Diretamente de uma Prova Oficial (`Exam Paper` — ex.: Dataprev 2026 Tipo 1)** com suas 70 questões na ordem oficial.
-> 
-> **4. Resolução — Quais recursos do QConcursos entram no MVP além de responder e corrigir:**
-> - **Extraído do Card de Questão e do Study Dock (`elite.qconcursos.com`):**
->   1. **Texto associado (`+` expansível inline):** **ENTRA NO MVP (`P0`)** — indispensável para provas da FGV/Cebraspe onde 5 a 10 questões compartilham um texto-base.
->   2. **Eliminar alternativa (`Tesoura` / `line-through`):** **ENTRA NO MVP (`P0`)** — já modelado na UI (`opacity: 0.5` + riscado) e essencial na resolução.
->   3. **Cronômetro e Modo Foco:** **ENTRAM NO MVP (`P1`)** — o Cronômetro já existe no modo Simulado e o Modo Foco equivale a recolher a Sidebar (`0px`, `[`) e o Painel Direito (`Ctrl+\`).
->   4. **Folha de Respostas (Navegador 10×7) e Relatório de Desempenho (Scorecard):** **ENTRAM NO MVP (`P0` — entregues na Seção 25 / Issue #19)** — matriz 10×7 codificada por cores e scorecard pós-simulado por disciplina.
->   5. **Anotações da Questão e Marca-texto no enunciado:** *Anotações pessoais* entram como campo `Conteúdo` da Questão (`0.3.0`); *Marca-texto multicor inline no enunciado* fica como evolução pós-MVP (`P2`).
-> 
-> **5. Comentários comunitários, aulas em vídeo e gabarito comentado de professores:**
-> - **Nos sites:** Tanto QConcursos (`Aulas 3`, `Comentários`) quanto ExamTopics (`Discussion`, `Community Vote`) possuem abas comunitárias e videoaulas.
-> - **Decisão no Exam App (Seções 8 e 9 do Board):** **Comentários comunitários, votos da comunidade, rankings e videoaulas (`Aulas`) continuam EXPLICITAMENTE FORA DO ESCOPO (Descartados).** Já o campo **`gabarito comentado`** existe no modelo da `Questão` (Seção 2, linha 306) apenas como **explicação própria do usuário ou gerada sob demanda via IA (`Explicar com IA` — Seção 11)**, sem rede social nem professores terceiros.
-> 
-> **6. Capacities — "Tipos de objeto", grafo, relações e painel direito: infraestrutura interna vs. criação livre pelo aluno:**
-> - **No site (`app.capacities.io`):** PKM genérico onde o usuário cria qualquer tipo de objeto do zero.
-> - **Decisão no Exam App (Seção 1, 2 e UX Contract Regra #1):** Os Tipos de Objeto do domínio de concursos (`Concurso`, `Edição`, `Cargo`, `Órgão`, `Banca`, `Disciplina`, `Prova`, `Questão`, `Simulado`, `Resposta`, `Documento/PDF`, `Coleção`, `Etiqueta`, `Cartão de Revisão`, `Meta`) vêm **pré-configurados como infraestrutura nativa do Exam App** (para que o aluno estude imediatamente sem precisar modelar banco de dados, cumprindo a Regra #1 do `AGENTS.md`). A criação/edição customizada de tipos pelo menu `⋯` permanece disponível como recurso avançado secundário, nunca como pré-requisito.
-> 
-> **7. Grafo — Qual tarefa concreta resolve para o aluno (prioridade vs. recurso secundário):**
-> - **No site (`app.capacities.io`):** Possui **Grafo Local no Painel Direito** (centrado no objeto aberto, com filtro de tipos e profundidade `1..4`) e **Grafo Global (`#/grafico`)** com busca e clusters.
-> - **Decisão no Exam App (Seção 26 / Issue #25):** Resolve **ambas as tarefas em níveis diferentes**:
->   1. **Grafo Local no Painel Direito (Mais útil no dia a dia):** Permite ver imediatamente todas as questões, provas, cargos e documentos ligados a uma `Disciplina` ou `Edição` sem sair da tela atual.
->   2. **Grafo Global (`#/grafico`):** Recurso **secundário de exploração visual** da estrutura do concurso (já entregue na `0.1.1`), subordinado às fluxos primários (`Questões`, `Simulados` e `Revisão`).
-
-> **Continuação das Respostas Extraídas dos Sites (Perguntas 8 a 14)**
-> 
-> **8. Readwise — O que a "Revisão Diária" revisa no nosso produto:**
-> - **No site (`readwise.io/dailyreview`):** Revisa Highlights de livros/artigos e cartões de Mastery (`Cloze Deletion` e `Q&A`).
-> - **Decisão no Exam App (Seções 2, 6 e 11 do Board):** Revisa uma **combinação focada em aprovação**, unificada na fila de revisão:
->   1. **Questões erradas (`situação = errei` / Caderno de Erros)** e **Questões marcadas `para revisar`** (Seção ExamTopics v109, linha 372).
->   2. **Cartões de Revisão (`Review Card` — Pergunta/Resposta ou Lacuna/Cloze)** gerados a partir de uma **Questão** ou de uma **Nota de Documento/PDF** (`"Cartão de revisão nasce de uma Questão ou de uma Nota"` — Seção 6, item 3).
->   *(Highlights puros de PDF não entram soltos: conforme Seção 6 item 8, trecho importante vira Nota que pode gerar Cartão).*
-> 
-> **9. SRS — Primeira versão simples (`0.4.0`) vs. Frequência adaptativa completa do Readwise:**
-> - **No site (`readwise.io`):** Tem botões de avaliação de 4 níveis (`Never/Esqueci`, `Soon/Difícil`, `Later/Bom`, `Someday/Fácil`), `Highlights Per Day (1–15)`, `Streak` + `Heatmap (/stats)` e `Frequency Tuning` por fonte.
-> - **Decisão no Exam App (Seções 2, 7 e 32):**
->   - **Fase 1 (`0.4.0` — MVP da Revisão):** Fila diária simples + 4 botões de avaliação no `Cartão de Revisão` (`esqueci`, `difícil`, `bom`, `fácil` — já modelados na Seção 2, linha 325) + filtro rápido `Revisar erradas` + `Streak` e estatísticas.
->   - **Fase 2 (Evolução):** `Frequency Tuning` (sliders de prioridade por Disciplina/Peso no Edital) entra como evolução posterior quando o aluno já tiver volume de cartões.
-> 
-> **10. Leitura de PDF — Incorporar highlights, notas e exportação vs. Focar em consulta à prova/editais nesta etapa:**
-> - **No site (`read.readwise.io`):** Leitor completo com highlights, `Notebook` lateral, `Action Tags` (`.qa`, `.c1`, `.h1`), `Snapshot` de tabelas e exportação Markdown.
-> - **Decisão no Exam App (Seções 3, 6 e 7 do Board):** O modelo já separa claramente em **2 classes de Documento (`0.1.0` vs `0.5.0`)**:
->   - **Agora (`0.1.1` / `0.2.0`):** Foco em **Documentos de Referência** (Edital, Retificações, Prova, Gabarito) — consulta rápida, busca textual, zoom e vínculo direto com as questões (sem % de leitura e sem complexidade de highlights).
->   - **Na versão `0.5.0` (Camada de Leitura):** Entram os **Documentos de Leitura** com `% de progresso`, criação de **Notas vinculadas à página do PDF** e conversão em **Cartão de Revisão** (`Seção 6, itens 7 e 8`).
-> 
-> **11. IA — Quais capacidades entram no escopo:**
-> - **Nos sites:** Readwise tem `Ghostreader` (15 skills Jinja2 + Chat RAG); QConcursos tem gabarito comentado.
-> - **Decisão no Exam App (Seção 11 do Board — "IA em 3 pontos do estudo"):** Entram **exatamente 3 capacidades cirúrgicas** (usando `sample` do Claude quando disponível, e ocultando os botões graciosamente quando offline/sem IA):
->   1. **Explicar questão (`Explicar com IA`):** Pós-resposta, explica por que a correta está certa e por que as outras estão erradas, com macete.
->   2. **Gerar flashcards (`Criar cartões`):** Gera 3 cartões frente/verso ou Cloze a partir do conceito da questão.
->   3. **Recomendar revisão (`Sugerir o que revisar`):** Analisa o `Desempenho` e aponta as disciplinas críticas com link direto para treinar.
->   *(Classificar assunto e gerar questões a partir do PDF ficam apenas para a `1.0.0` — linha 551).*
-> 
-> **12. Importação/Exportação — Sincronizar Anki/Notion/Obsidian/Capacities vs. Exportar dados próprios (CSV/Markdown/JSON):**
-> - **No site (`readwise.io/welcome/sync` e `/export`):** Possui 32 conectores de importação e 16 de exportação OAuth porque é um hub intermediário.
-> - **Decisão no Exam App (Seções 1 e 7 do Board):** **NÃO criar conectores OAuth com terceiros (Anki/Notion/Obsidian).** Basta **exportar e restaurar o próprio Espaço** em formatos abertos (**JSON / CSV / Markdown** — previsto na `1.0.0`, linha 525), que o próprio usuário já consegue importar no Anki ou Obsidian se desejar.
-> 
-> **13. ExamTopics — Atender certificações desde o lançamento vs. Foco inicial em concurso brasileiro (Dataprev 2026):**
-> - **Decisão no Exam App (Seção 6 item 4 e Seção 7 Roadmap):**
->   - **No modelo de dados:** Já é compatível desde o dia 1 porque `Edição` possui o rótulo `tipo: concurso | certificação` (ex.: `Dataprev 2026` vs `AZ-104`) e `Questão` suporta múltipla escolha (`Seção 2, linhas 249 e 304`).
->   - **No lançamento e conteúdo (`0.2.0` a `0.5.0`):** O **foco inicial prático é 100% Concurso Brasileiro / Dataprev 2026** (70 questões reais da FGV, edital, cargos e provas). O pacote específico de **Certificações TI (estilo ExamTopics)** fica agendado para a **`1.0.0`** (Seção 7, linha 521).
-> 
-> **14. Criação do Índice Mestre de Rastreabilidade de Evidências no Board (`App | Captura | URL | Data | Ação Observada | Decisão | Status`):**
-> - **SIM — Implementado imediatamente abaixo (`Tabela e1154`)** neste próprio container do `board.json` e compilado em `BOARD.md`, eliminando 100% da falta de rastreabilidade entre os prints capturados e as decisões de produto.
-
-| App / Origem | Captura (`assets/`) | URL / Rota | Data | Ação Observada na Interface | Decisão que Informa no Exam App | Status |
-| --- | --- | --- | --- | --- | --- | --- |
-| QConcursos Elite | qconcursos_live_home_proxima_acao.png | elite.qconcursos.com (Home) | 2026-11-13 | Hero do concurso alvo + CTA "PRÓXIMA AÇÃO: Continuar estudando" e ritmo diário | Home (#/espaco) com retomada em 1 clique do último estudo/PDF e meta diária (Seção 24) | Adotar |
-| QConcursos Elite | qconcursos_live_home_caderno_erros.png | elite.qconcursos.com (Caderno de Erros) | 2026-11-13 | Agrupamento automático de questões erradas por disciplina para repetição imediata | Atalho "Revisar erradas" na Home e no Banco aplicando filtro real (situação = errei) | Adotar |
-| QConcursos Elite | qconcursos_filter_disciplina_open.png | elite.qconcursos.com/questoes | 2026-11-14 | Dropdown multiselect pesquisável com contagem por Disciplina e cascata para Assunto | Filtro unificado com busca, chips removíveis, E entre categorias e OU na mesma categoria | Adotar |
-| QConcursos Elite | qconcursos_live_filter_actions_bar.png | elite.qconcursos.com/questoes | 2026-11-14 | Barra de ações do filtro: Salvar filtro, Gerar Caderno, Meus Cadernos, Meus filtros, Criar Simulado | Caderno = Coleção fixa plana (sem pastas); Filtro salvo = Visão/Query; Simulado nasce do filtro/coleção | Adaptar |
-| QConcursos Elite | qconcursos_texto_associado_expanded.png | elite.qconcursos.com/questoes (Q1) | 2026-11-14 | Expansão inline do "Texto associado (+)" acima do enunciado sem sair da questão | Incluir toggle Texto Associado no MVP da resolução de questões (P0) | Adotar |
-| QConcursos Elite | qconcursos_alternative_scissors_struck.png | elite.qconcursos.com/questoes (Q1) | 2026-11-14 | Clique na Tesoura risca alternativa descartada (line-through + opacity 0.5) | Manter eliminação de alternativa por clique/atalho no MVP da resolução (P0) | Adotar |
-| QConcursos Elite | qconcursos_live_question_tab_estatisticas.png | elite.qconcursos.com/questoes (Aba Estatísticas) | 2026-11-13 | Gráfico Donut de % de acerto e barras A-E após clicar em Responder | Exibir estatísticas e histórico do próprio usuário na questão; descartar ranking comunitário | Adaptar |
-| QConcursos Elite | qconcursos_question_cadernos_tab.png | elite.qconcursos.com/questoes (Aba Cadernos) | 2026-11-14 | Adicionar questão individual a um Caderno existente ou "+ Criar novo caderno" | Permitir salvar questão em Coleção (Caderno) direto da tela de resolução (0.3.0) | Adotar |
-| QConcursos Elite | qconcursos_question_anotacoes_editor.png | elite.qconcursos.com/questoes (Aba Anotações) | 2026-11-14 | Editor de anotações pessoais vinculado exclusivamente à questão | Guardar anotações pessoais no campo Conteúdo da Questão (0.3.0) | Adotar |
-| QConcursos Elite | qconcursos_dock_fonte_aa_active.png | elite.qconcursos.com/questoes (Study Dock) | 2026-11-14 | Dock flutuante direito com Fonte Aa, Cronômetro, Desempenho, Modo Foco e Marca-texto | Adotar Cronômetro, Modo Foco (colapso dos painéis) e controle tipográfico; postergar marca-texto multicor | Adaptar |
-| QConcursos / ExamTopics | inline-e117.jpg | examtopics.com / elite.qconcursos.com | 2026-11-12 | Abas de Comentários da comunidade, votação de gabarito e videoaulas (Aulas 3) | Manter comentários comunitários, votos e videoaulas explicitamente fora do escopo | Descartar |
-| Capacities Live | capacities_live_main_and_local_graph.png | app.capacities.io (3-Pane Workspace) | 2026-11-13 | Shell de 3 painéis com ilhas flutuantes, Top Rail 46px e Painel Direito contextual | Usar tipos pré-definidos como infraestrutura nativa (sem exigir modelagem prévia pelo aluno) | Adaptar |
-| Capacities Live | capacities_live_local_graph_expanded.png | app.capacities.io (Grafo Local) | 2026-11-13 | Grafo local no painel direito focado no objeto ativo com filtro de tipo e profundidade | Priorizar Grafo Local para navegar relações da Disciplina/Edição; Grafo Global como secundário | Adotar |
-| Readwise Reader | readwise_reader_home_dashboard.png | read.readwise.io/home | 2026-11-14 | Dashboard com carrosséis Continue Reading, Recently Added e Quick Reads | Usar padrão de retomada imediata de leitura com barra de progresso % em Documentos de Leitura | Adotar |
-| Readwise Reader | readwise_reader_manage_views_table.png | read.readwise.io/views | 2026-11-14 | Tabela de 14 Filtered Views baseadas em queries booleanas e fixáveis na sidebar | Modelar Filtros Salvos como queries reutilizáveis sobre o banco de questões | Adaptar |
-| Readwise Reader | readwise_reader_doc2_loaded.png | read.readwise.io/new/read/... | 2026-11-14 | Leitura em 3 painéis com foco por parágrafo (j/k), Notebook lateral e menu Aa | Manter leitor de PDF focado em consulta (0.1.1/0.2.0) e adicionar Notas/Progresso na 0.5.0 | Adaptar |
-| Readwise Reader | readwise_reader_ghostreader_skills.png | read.readwise.io (Ghostreader) | 2026-11-14 | 15 skills de IA com templates Jinja2 (Quiz Me, Summarize, Explain) | Restringir IA no Exam App a 3 ações: Explicar questão, Criar cartões e Sugerir revisão (Seção 11) | Adaptar |
-| Readwise SRS | readwise_srs_daily_review_deck.png | readwise.io/dailyreview | 2026-11-13 | Fila diária de revisão com barra de progresso e 4 níveis (Never, Soon, Later, Someday) | Revisão Diária (0.4.0) combina Questões Erradas/Marcadas + Cartões gerados com 4 botões de avaliação | Adotar |
-| Readwise SRS | readwise_srs_mastery_cloze_creator.png | readwise.io/dailyreview (Mastery) | 2026-11-13 | Conversão de destaque em cartão Cloze Deletion (lacuna) ou Q&A (Pergunta/Resposta) | Suportar formato Pergunta/Resposta e Lacuna no tipo Cartão de Revisão (Seção 2) | Adotar |
-| Readwise SRS | readwise_srs_frequency_tuning_by_source.png | readwise.io/configure/tune/books | 2026-11-13 | Sliders individuais de frequência de ressurgimento por livro/fonte | Deixar ajuste fino de frequência por disciplina para fase 2 do SRS (começar com fila diária simples) | Adaptar |
-| Readwise SRS | readwise_srs_statistics_heatmap.png | readwise.io/stats | 2026-11-13 | Heatmap anual de revisões diárias e contador de Streak (ofensiva) | Incluir Streak e estatísticas de consistência na Home e página de Desempenho | Adotar |
-| Readwise SRS | readwise_srs_export_highlights_top.png | readwise.io/export & /welcome/sync | 2026-11-14 | 32 conectores de importação e 16 integrações de exportação OAuth (Obsidian, Notion, etc.) | Descartar integrações OAuth com terceiros; fornecer exportação/backup próprio em CSV/Markdown/JSON | Descartar |
-| QConcursos Elite | qconcursos_criar_simulado_config_modal.png | elite.qconcursos.com/simulados/criar | 2026-11-14 | Drawer de criação de simulado: nome, quantidade (stepper), tempo/duração e modo Real vs Prática | Fluxo unificado de Simulado: modal com tempo, quantidade e alternância entre Modo Simulado e Modo Prática (Pergunta 3) | Adotar |
-| QConcursos Elite | qconcursos_filter_assunto_tree_open.png | elite.qconcursos.com/questoes | 2026-11-14 | Popover do filtro Assunto aberto com campo Busca rápida e árvore hierárquica de 3 níveis com contadores | Filtro cascata Assunto com busca rápida interna e seleção atômica de nós sem selecionar disciplina inteira | Adotar |
-| QConcursos Elite | qconcursos_highlighter_applied.png | elite.qconcursos.com/questoes | 2026-11-14 | Seleção de texto no enunciado abrindo paleta flutuante de 4 cores e persistindo <mark> amarelo no DOM | Marca-texto flutuante direto no enunciado com persistência nas anotações do aluno (Pergunta 4) | Adotar |
-| QConcursos Elite | qconcursos_dock_resumos_paywall_modal.png | elite.qconcursos.com/questoes | 2026-11-14 | Botão Meus Resumos no dock acionando modal de paywall e upgrade de plano Pro/Ilimitado | Resumos ricos desvinculados do MVP inicial; manter apenas anotações simples por questão (Pergunta 4) | Descartar |
-| QConcursos Elite | qconcursos_desempenho_top_overview.png | elite.qconcursos.com/meu-desempenho?scope=all | 2026-11-14 | Rota global de desempenho com abas de escopo, seletor de período (Hoje, 7d, 15d, 30d, Tudo) e KPIs consolidados | Dashboard Central de Desempenho (#/espaco) com períodos pré-fixados e taxa global de aproveitamento (Pergunta 9) | Adotar |
-| QConcursos Elite | qconcursos_desempenho_charts_and_table.png | elite.qconcursos.com/meu-desempenho?scope=all | 2026-11-14 | Gráfico diário de evolução e tabela de disciplinas com barra de taxa de acerto e botão de expandir assuntos | Visualização analítica de evolução e detalhamento disciplinar no perfil de estudos | Adotar |
-| Capacities | capacities_global_graph_search_dropdown_open.png | app.capacities.io/?section=graph | 2026-11-14 | Busca secundária no topo direito do Grafo Global abrindo popover Buscar objetos com lista de resultados | Busca integrada com dropdown no grafo de entidades e tópicos do concurso (Pergunta 6/7) | Adotar |
-| Capacities | capacities_global_graph_search_node_nav.png | app.capacities.io/?section=graph | 2026-11-14 | Clique no resultado disparando transição animada de zoom (39% para 175%) centralizando o nó focalizado em branco | Centralização animada no grafo ao buscar ou navegar entre entidades de estudo | Adotar |
-| ExamTopics | examtopics_az104_question_card.png | examtopics.com/exams/microsoft/az-104/view/ | 2026-11-14 | Card da questão pública de certificação com barra de progresso (1-10 de 606), enunciado de cenário e botões de ação | Módulo de Certificações Internacionais com suporte a Case Study e formato de itens de TI (Pergunta 13) | Adaptar |
-| ExamTopics | examtopics_az104_solution_reveal.png | examtopics.com/exams/microsoft/az-104/view/ | 2026-11-14 | Botão Reveal Solution exibindo resposta correta com badge Most Voted e barra de votação comunitária (98% C) | Exibição de gabarito com percentual de concordância / confiança da IA ou estatísticas de candidatos | Adaptar |
-| Readwise SRS | readwise_srs_bookreview_highlight_actions_menu.png | readwise.io/bookreview/65206299 | 2026-11-14 | Menu secundário com 6 ações: Copy, Edit metadata, Add tags, Show more often, Show less often, Never show again | Menu de ações de cada item do SRS permitindo ao aluno acelerar ou suspender a frequência de repetição (Pergunta 9) | Adotar |
-
-## 32. Questões e Simulados — Issue #100: unificação dos fluxos e evidência E2E
-<!-- container e1155 @ (15000,11000) -->
-
-Fonte: Playwright Chromium 1366×900 (DPR 1), comparação da dev anterior e da branch de PR. Screenshots produzidos por tests/study-unification.e2e.mjs. Testes: busca oficial+manual, resposta, reload, lista contextual, criar simulado pelo filtro, quantidade/tempo e status de erros. Não representam inspeção do QConcursos, Capacities ou conformidade WCAG.
-
-![imagem e1157](assets/issue100_before_global.png)
-
-![imagem e1159](assets/issue100_after_global.png)
-
-ANTES: fluxo global separado da lista de objetos | PNG real: assets/issue100_before_global.png
-
-DEPOIS: banco unificado com filtros e status rápidos | PNG real: assets/issue100_after_global.png
-
-![imagem e1161](assets/issue100_before_manual.png)
-
-![imagem e1163](assets/issue100_after_manual.png)
-
-ANTES: busca de questão manual sem resultados na prática global | PNG real: assets/issue100_before_manual.png
-
-DEPOIS: questão manual encontrada e renderizada no mesmo fluxo | PNG real: assets/issue100_after_manual.png
-
-![imagem e1165](assets/issue100_before_simulado.png)
-
-![imagem e1167](assets/issue100_after_simulado.png)
-
-ANTES: configurador restrito à prova oficial Dataprev | PNG real: assets/issue100_before_simulado.png
-
-DEPOIS: banco completo, quantidade, tempo e ordem configuráveis | PNG real: assets/issue100_after_simulado.png
-
-![imagem e1169](assets/issue100_after_answer.png)
-
-![imagem e1171](assets/issue100_after_contexto.png)
-
-DEPOIS: resposta da questão manual, feedback e persistência | PNG real: assets/issue100_after_answer.png
-
-DEPOIS: mesma questão manual e filtro no contexto do concurso | PNG real: assets/issue100_after_contexto.png
-
-![imagem e1173](assets/issue100_after_manual_simulado.png)
-
-![imagem e1175](assets/issue100_after_erros.png)
-
-DEPOIS: simulado criado a partir do filtro da questão manual | PNG real: assets/issue100_after_manual_simulado.png
-
-DEPOIS: atalho de erros inclui resposta manual incorreta | PNG real: assets/issue100_after_erros.png
-
-## 34. PDF.js — diagnóstico de texto, canvas, DPR e zoom (#111 #112)
-<!-- container e1177 @ (18000,11000) -->
-
-Evidência nativa do Exam App: Playwright Chromium, PDF da segunda retificação edital-2a-retificacao.pdf. Capturas reais no mesmo documento e DPR 2 (100%/200%), antes e depois do PR. Canvas fornece pixels; textLayer fornece seleção/cópia. Este teste não prova paridade com Readwise nem visualizador nativo, e não substitui Firefox/Edge. Métricas por cenário em pdf112_diagnostic.json.
-
-![imagem e1179](assets/pdf112_before_dpr2_zoom1.png)
-
-![imagem e1181](assets/pdf112_after_dpr2_zoom1.png)
-
-ANTES: página e camada de texto, DPR 2 / 100% | assets/pdf112_before_dpr2_zoom1.png
-
-DEPOIS: página e camada de texto, DPR 2 / 100% | assets/pdf112_after_dpr2_zoom1.png
-
-![imagem e1183](assets/pdf112_before_dpr2_zoom2.png)
-
-![imagem e1185](assets/pdf112_after_dpr2_zoom2.png)
-
-ANTES: página e camada de texto, DPR 2 / 200% | assets/pdf112_before_dpr2_zoom2.png
-
-DEPOIS: página e camada de texto, DPR 2 / 200% | assets/pdf112_after_dpr2_zoom2.png
-
-> **Medições reais de canvas/textLayer**
-> before DPR=1 zoom=1 página=1 canvas=754×1066 CSS=754.0×1077.0 ratio=1.00 textSpans=157 status=untracked
-> before DPR=1 zoom=1.5 página=1 canvas=754×1066 CSS=754.0×1616.0 ratio=1.00 textSpans=157 status=untracked
-> before DPR=1 zoom=2 página=1 canvas=754×1066 CSS=754.0×2155.0 ratio=1.00 textSpans=157 status=untracked
-> before DPR=2 zoom=1 página=1 canvas=1508×2132 CSS=754.0×1077.0 ratio=2.00 textSpans=157 status=untracked
-> before DPR=2 zoom=1.5 página=1 canvas=1508×2132 CSS=754.0×1616.0 ratio=2.00 textSpans=157 status=untracked
-> before DPR=2 zoom=2 página=1 canvas=1508×2132 CSS=754.0×2155.0 ratio=2.00 textSpans=157 status=untracked
-> after DPR=1 zoom=1 página=1 canvas=754×1066 CSS=754.0×1077.0 ratio=1.00 textSpans=157 status=ready
-> after DPR=1 zoom=1.5 página=1 canvas=754×1066 CSS=754.0×1616.0 ratio=1.00 textSpans=157 status=ready
-> after DPR=1 zoom=2 página=1 canvas=754×1066 CSS=754.0×2155.0 ratio=1.00 textSpans=157 status=ready
-> after DPR=2 zoom=1 página=1 canvas=1508×2132 CSS=754.0×1077.0 ratio=2.00 textSpans=157 status=ready
-> after DPR=2 zoom=1.5 página=1 canvas=1508×2132 CSS=754.0×1616.0 ratio=2.00 textSpans=157 status=ready
-> after DPR=2 zoom=2 página=1 canvas=1508×2132 CSS=754.0×2155.0 ratio=2.00 textSpans=157 status=ready
-
-## 35. Cadernos e Queries de Questões — Issue #75: jornadas E2E
-<!-- container e1188 @ (20000,11000) -->
-
-Origem: testes Playwright Chromium em tests/notebooks-saved-filters.e2e.mjs. Caminhos testados: filtro -> gerar caderno, meta 80%, progresso independente das respostas globais, zerar, refazer erros, associar questão individual, Queries do Tipo Questão, filtros persistidos, retorno à primeira pendente e mobile 390px. Não representa teste moderado com usuários nem compara com QConcursos Live.
-
-![imagem e1190](assets/issue75_before_no_notebooks.png)
-
-![imagem e1192](assets/issue75_after_filter.png)
-
-ANTES — Banco de questões sem ação de Cadernos
-
-DEPOIS — Questão manual filtrada, pronta para Gerar Caderno
-
-![imagem e1194](assets/issue75_after_book_created.png)
-
-![imagem e1196](assets/issue75_after_book_answer.png)
-
-DEPOIS — Novo Caderno criado com meta de 80%
-
-DEPOIS — Resposta correta dentro do caderno; progresso 1/1
-
-![imagem e1198](assets/issue75_after_retake_errors.png)
-
-![imagem e1200](assets/issue75_after_question_member.png)
-
-DEPOIS — Refazer somente questões erradas sem apagar histórico geral
-
-DEPOIS — Inclusão avulsa da Questão 1 via painel Cadernos
-
-![imagem e1202](assets/issue75_after_saved_query.png)
-
-![imagem e1204](assets/issue75_after_continue_pending.png)
-
-DEPOIS — Filtro salvo aparece nas Queries do Tipo Questão
-
-DEPOIS — Retomada na primeira questão pendente do caderno
-
-![imagem e1206](assets/issue75_after_mobile.png)
-
-DEPOIS — Gerenciador de Cadernos em mobile 390px
-
-## 36. Filtros avançados — Issue #70: cascata, exclusões, URL, Queries e mobile
-<!-- container e1208 @ (22000,11000) -->
-
-Evidência real: Chromium 1366×900 e mobile 390×800; Playwright tests/advanced-question-filters.e2e.mjs, branch de PR. Seletores Disciplina→Assunto, exclusões de cadernos e anuladas, estado codificado na URL, recarga, Queries e simulado filtrado. A base oficial de 70 questões não possui classificação de Assunto; o teste usa questões manuais etiquetadas, sem inventar metadados da FGV. Sem inferência de conformidade WCAG ou testes com participantes.
-
-![imagem e1210](assets/issue70_before_simple.png)
-
-![imagem e1212](assets/issue70_after_open_panel.png)
-
-ANTES: banco de questões sem construtor de filtros avançados
-
-DEPOIS: painel com facetas estruturais e regras de inclusão/exclusão
-
-![imagem e1214](assets/issue70_after_cascade.png)
-
-![imagem e1216](assets/issue70_after_exclusion.png)
-
-DEPOIS: Disciplina ativa Assunto, seleção aplicada e URL navegável
-
-DEPOIS: exclusão de questões já incluídas em caderno
-
-![imagem e1218](assets/issue70_after_reload_flags.png)
-
-![imagem e1220](assets/issue70_after_saved.png)
-
-DEPOIS: critérios persistidos após recarregar a página
-
-DEPOIS: conjunto de filtros salvo como Query de Questão
-
-![imagem e1222](assets/issue70_after_simulado_filtrado.png)
-
-![imagem e1224](assets/issue70_after_clear_defaults.png)
-
-DEPOIS: simulado criado com a seleção filtrada
-
-DEPOIS: limpar filtros restaura exclusão padrão de anuladas
-
-![imagem e1226](assets/issue70_after_mobile.png)
-
-DEPOIS: filtros avançados adaptados a 390px
-
 ## 37. Seletores nativos — Issue #120: temas e testes Windows Chromium
-<!-- container e1228 @ (24000,11000) -->
+<!-- container e1228 @ (8390,16810) -->
 
 Capturas reais de Chromium headless executado no runner Windows. O teste valida color-scheme computado em html e select, escolha na interface, modo automatico, quatro opcoes (1/5/10/20), foco via teclado e viewport de 390px. LIMITACAO: o popup nativo do sistema pode nao aparecer em screenshots Playwright. Nao comprova contraste visual do popup no Windows; verificar manualmente antes de fechar #120.
 
 ![imagem e1230](assets/issue120_after_auto_dark.png)
 
-![imagem e1232](assets/issue120_after_explicit_light.png)
-
 Sistema escuro: tema automatico segue color-scheme escuro
-
-Tema claro escolhido na UI, mesmo com sistema escuro
 
 ![imagem e1234](assets/issue120_after_explicit_dark.png)
 
-![imagem e1236](assets/issue120_after_auto_restored.png)
-
 Tema escuro escolhido na UI
-
-Retorno ao tema automatico, sem reload
 
 ![imagem e1238](assets/issue120_after_toggle_light.png)
 
-![imagem e1240](assets/issue120_after_mobile.png)
-
 Alternancia pelo botao do rodape, sem reload
-
-Viewport estreita de 390px com select nativo
 
 ![imagem e1242](assets/issue120_after_auto_light.png)
 
-![imagem e1244](assets/issue120_after_dark_on_light_os.png)
-
 Sistema claro: tema automatico segue color-scheme claro
-
-Tema escuro escolhido, mesmo com sistema claro
 
 ![imagem e1246](assets/issue120_after_auto_light_restored.png)
 
 Retorno ao automatico com sistema claro
 
-## 38. Infraestrutura de agentes — correção MCP (Codex, Claude e Antigravity)
-<!-- container e1248 @ (26000,11000) -->
-
-### Diagnóstico P1 e correção verificável — 2026-11-14
-
-> **Escopo:** Codex, Claude Desktop e Antigravity no workspace `C:\Users\ianma\workspace\exams\dev`. Sem captura visual: evidência é a saída textual de `agents` e os arquivos de configuração materializados.
-> **Causas confirmadas (P1):**
-> 1. O projeto declarava somente `fetch`, `filesystem` e `git`; Serena não estava no conjunto MCP.
-> 2. `fetch` e `git` dependiam de `uvx`, disponível apenas no PATH da sessão.
-> 3. O Codex não confiava no projeto, podendo ignorar `.codex/config.toml`.
-> 4. CodeGraph não possui índice neste repositório (a pasta `.codegraph/` contém apenas `.gitignore`); a indexação permanece decisão explícita.
-> **Correção aplicada:**
-> - Serena foi registrado na fonte compartilhada para Codex, Claude, Claude Desktop, Gemini e Antigravity.
-> - Overrides locais chamam os caminhos absolutos de `uvx.exe` e `serena.exe` através de `cmd.exe`, mantendo a fonte versionada portátil.
-> - `agents sync` materializou `.codex/config.toml`, `.mcp.json`, `.agents/mcp_config.json`, `.gemini/settings.json` e a configuração global do Claude Desktop.
-> - O projeto foi marcado como `trusted` na configuração global do Codex.
-> **Aceite verificado:** `agents mcp test` aprovou `fetch`, `filesystem`, `git` e `serena`; `agents sync --check` não encontrou divergências; status registra quatro servidores e Codex `trusted`.
-> **Limite de teste:** os CLIs de Codex, Claude e Antigravity não estão no PATH, logo a introspecção de runtime dos apps GUI não é automatizável. Reiniciar os três apps carrega a configuração; no Claude Desktop os nomes recebem o prefixo gerenciado `agents__5c84344337b9__`.
-
 ## 39. Fechamento Integral dos 7 Gaps de Referência (Evidências Visuais e DOM de QConcursos Elite, Capacities Graph, ExamTopics e Readwise SRS)
-<!-- container e1300 @ (28000,11000) -->
+<!-- container e1300 @ (41950,17116) -->
 
 ### Visão Geral da Auditoria de Fechamento de Gaps
 Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram auditados ao vivo no navegador, sem CAPTCHAs, com extração de hierarquia de DOM e gravação de evidências de alta resolução no diretório ssets/. Todas as decisões de produto agora contam com base empírica visual e documental.
@@ -1978,53 +2379,37 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Evidência 119 (Readwise SRS Freeform Manual Import Form):** Formulário de inserção manual de citações e anotações para o motor de SRS.
 
 ## 40. Responsividade Home — Issue #132: eliminar undefined e validar CTA em 12 larguras
-<!-- container e1339 @ (30000,11000) -->
+<!-- container e1339 @ (8390,19705) -->
 
 Causa comprovada por inspeção do código: UIICON.timer era referenciado, mas não declarado, criando 'undefined' no slot de ícone. Correção: SVG inline e grid com reflow em 320px. E2E Chromium verifica 12 larguras, ícone, rótulos, bounds e navegação ao simulado. Evidência real da branch do PR, não de dispositivo Android físico. Cobertura PARCIAL de #132: não equivale a auditoria completa dos painéis, PDF e grafo.
 
 ![imagem e1341](assets/issue132_before_390.png)
 
-![imagem e1343](assets/issue132_after_320.png)
-
 ANTES: a Home exibia o texto literal 'undefined' no lugar do SVG do simulado, em 390px
-
-DEPOIS: 320px, ícone SVG restaurado; CTA refluindo no grid
 
 ![imagem e1345](assets/issue132_after_390.png)
 
-![imagem e1347](assets/issue132_after_768.png)
-
 DEPOIS: 390px, ícone SVG sem sobreposição de texto
-
-DEPOIS: 768px, ações primárias preservadas
 
 ![imagem e1349](assets/issue132_after_1280.png)
 
 DEPOIS: 1280px, alinhamento do CTA no desktop
 
 ## 41. Grafo — Issue #128: movimento reduzido e preferência dinâmica no Chromium
-<!-- container e1351 @ (32000,11000) -->
+<!-- container e1351 @ (8390,21530) -->
 
 E2E Chromium sobre o grafo global: preferencia de movimento reduzido ao abrir, ausencia de loop no repouso, zoom por teclado, filtros, mudança dinamica da preferencia e retorno ao reduzido. Medicoes: issue128_motion_e2e.json. LIMITES: somente emulacao Chromium CI; nao prova WCAG, bateria, CPU ou leitor de tela. 390px: 90 nos, 299 relacoes, canvas em 420ms (medicao unica, nao SLA) 1366px: 90 nos, 299 relacoes, canvas em 372ms (medicao unica, nao SLA)
 
 ![imagem e1353](assets/issue128_reduced_390.png)
 
-![imagem e1355](assets/issue128_restored_390.png)
-
 390px, movimento reduzido desde a montagem: canvas desenhado sem loop
-
-390px, preferência alterada dinamicamente e restaurada
 
 ![imagem e1357](assets/issue128_reduced_1366.png)
 
-![imagem e1359](assets/issue128_restored_1366.png)
-
 1366px, grafo com redução de movimento e controles interativos
 
-1366px, controles de zoom/filtro e retorno à preferência reduzida
-
 ## 42. Grafo — Issue #68: exportar imagem PNG com botão e teclado
-<!-- container e1361 @ (34000,11000) -->
+<!-- container e1361 @ (8390,22820) -->
 
 Funcionalidade realmente testada: botão exportar PNG na toolbar do grafo global, acionado por teclado Enter. O arquivo local é gerado por canvas.toDataURL sem rede, nome exam-app-grafo.png. Teste Chromium valida cabeçalho PNG, arquivo nao vazio e dimensoes de pixels iguais ao backing canvas (DPR 2). Evidencia parcial da issue #68: filtros avancados, profundidade 1..5, popovers e timeline ainda nao foram implementados aqui. Manifesto: issue68_export_e2e.json.
 
@@ -2044,48 +2429,8 @@ Botão de exportação na barra do grafo, viewport 1366px
 
 PNG real gerado no canvas desktop, pixel ratio 2
 
-## 43. Prova de Conceito: Integração Claude Pro Storage Bridge (localhost vs claude.ai)
-<!-- container e1371 @ (36000,11000) -->
-
-### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)
-
-Testamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).
-
-- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.
-- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.
-- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).
-- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).
-- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.
-
-Evidência técnica registrada em prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.
-
-![imagem e1373](assets/evidence-iframe-csp-blocked.png)
-
-Evidência de execução real no Google Chrome: O navegador acusa 'Framing https://claude.ai/ violates Content Security Policy: frame-ancestors... The request has been blocked'. O iframe renderiza em branco e o canal postMessage é recusado pela Same-Origin Policy. Recomendação: Manter armazenamento local estruturado (localStorage/IndexedDB) e publicação estática via claude-artifact publish.
-
-## 44. Questões contextuais — Issue #136: alternativas alinhadas e CSS compartilhado
-<!-- container e1381 @ (38500,11000) -->
-
-Restaurado após conflito de IDs introduzido pela PR #142. Causa original validada por DOM: alternativas em páginas contextuais perdiam display:flex fora de .study-shell. As quatro capturas reais da PR #141 e o relatório issue136_e2e.json documentam o antes/depois em desktop, 390px e banco global. Implementação: CSS compartilhado com :is(.study-shell,.practice-list). Não equivale à conclusão de todos os critérios da issue #136; permanecem zoom, painel lateral, navegação por teclado e demais rotas.
-
-![imagem e1383](assets/issue136_before_context_1366.png)
-
-![imagem e1375](assets/issue136_after_context_1366.png)
-
-ANTES: alternativas inline no concurso, sem estilização da lista de questões
-
-DEPOIS: alternativas em linhas/click targets, concurso no desktop
-
-![imagem e1377](assets/issue136_after_context_390.png)
-
-![imagem e1379](assets/issue136_after_global_1366.png)
-
-DEPOIS: alternativas em linhas e texto quebrando, concurso em 390px
-
-DEPOIS: banco global preserva o mesmo componente de questões
-
 ## 45. SpaceSwitcher — Issue #138: busca, reordenação e persistência
-<!-- container e1385 @ (40500,11000) -->
+<!-- container e1385 @ (8390,24110) -->
 
 Implementação observável: o SpaceSwitcher passa a oferecer busca por nome com normalização de acentos, estado vazio, seleção/aria-selected, drag handle e reordenação por teclado Alt+ArrowUp/Down. A ordem é salva por ID em spaceOrder, distinta dos objetos de espaço persistidos em spaces; nomes e seleção sobrevivem à recarga. Arraste por Pointer Events tem threshold de 7px, indicação de destino e cancelamento Escape/pointercancel sem mudança. E2E real Chromium: reprodução anterior, busca, criação de dois espaços, reordenação por teclado e mouse, recarga, cancelamento e viewport 390px; ver issue138_spaces_e2e.json. Limite: toque físico, leitores de tela e sincronização entre dispositivos não foram validados.
 
@@ -2109,33 +2454,8 @@ DEPOIS: arraste por Pointer Events altera ordem sem perda de contexto
 
 DEPOIS: seletor responsivo a 390 CSS px com busca e seleção por toque
 
-## 44. Homologacao Final: Claude Pro Storage com Proxy Blindado, Fila Concorrente e Zero Data Loss
-<!-- container e1440 @ (42000,11000) -->
-
-### Auditoria e Homologacao Completa da Sincronizacao Claude Pro <-> Exam App
-
-- **Zero Testes Destrutivos:** e2e-sync.test.mjs corrigido para usar identificadores temporarios exclusivos por execucao (probe_e2e_*). Documentos reais (user_answers, exam_state) estao 100% blindados.
-- **Fila Outbox Concorrente:** Remocao atomica por opId confirmado pelo servidor. Operacoes enfileiradas durante envio em voo (in-flight) sao preservadas sem perda.
-- **Reconciliacao LWW por Questao:** Comparacao deterministica por versao numerica + timestamp com suporte a Tombstones (respostas excluidas nao ressuscitam).
-- **Seguranca do Proxy:** Restricao estrita de Slugs homologados, rejeicao de chamadas sem Origin/Auth, regex estrita e timeout de 15s no upstream.
-- **Artifact Publicado:** Capabilities db e user homologadas; suporte a fallback inline para execucao direta no iframe.
-
-![imagem e1442](assets/evidence-e2e-sync-badge-active.png)
-
-Evidencia de execucao real no Google Chrome: Badge SVG ativo (.synced/.syncing) no rodape lateral. Respostas de questoes, cadernos e espacos sincronizados com o Claude Pro DB (127.0.0.1:8766).
-
-![imagem e1444](assets/evidence-claude-web-artifact-public.png)
-
-Evidencia de auditoria do Claude Web: O acesso web automatizado ao Artifact real (claude.ai/code/artifact/...) apresenta o desafio Cloudflare Turnstile (Just a moment...), enquanto a API de Frame DB via token OAuth do Claude Code no proxy conecta-se diretamente ao backend sem bloqueio.
-
-![imagem e1446](assets/evidence-homologation-clean-recovery.png)
-
-Evidencia de Homologacao: Recuperacao completa e deterministica de dados (respostas, cadernos, espacos e workspaces) em navegador limpo e virgem a partir do Claude Pro DB.
-
-Revalidação 14/11/2026: o teste integrado deve rodar serialmente (proxy singleton 127.0.0.1:8766). Lacuna corrigida: se a leitura para mesclagem falha, a mutação composta permanece no outbox e não sobrescreve o remoto. Limite explícito: o upstream não expõe escrita condicional documentada; concorrência simultânea entre dispositivos não é garantia absoluta.
-
 ## 46. Atalhos de teclado — Issue #139: registro e roteamento centralizado
-<!-- container e1397 @ (43000,11000) -->
+<!-- container e1397 @ (8390,25950) -->
 
 Roteador declarativo único para comandos globais, categorias, prioridade, chord normalizado Mod (Ctrl/Command), Alt e Shift e disponibilidade contextual. E2E Chromium valida busca Ctrl+K, alternância Ctrl+B, novo objeto Ctrl+Alt+N, proteção de campos e diálogos, janela de ajuda gerada do mesmo catálogo, sem erro JS. Capturas e medições em issue139_commands_e2e.json. Matriz E2E adicional: questão seleciona alternativa pelo atalho; campo de edição suprime a seleção; o grafo conserva o evento local e bloqueia Ctrl+B global; Ctrl+Tab não é cancelado pelo roteador. IME físico e captura das teclas reservadas pelo SO continuam dependentes de teste manual por plataforma. Evidências completas em issue139_commands_e2e.json.
 
@@ -2155,324 +2475,13 @@ DEPOIS: Ctrl+K abre busca; campo editável impede Ctrl+B global
 
 DEPOIS: Ctrl+Alt+N abre o menu Novo; digitação não sequestra atalhos
 
-## 47. Graph State & Space Isolation — Issue #145: isolamento por espaço e invalidação reativa
-<!-- container e1407 @ (45000,11000) -->
-
-Implementação e Auditoria Issue #145:
-
-1. Isolamento Estrito por Espaço:
-- A função G(spId) passa a construir o subgrafo restrito às entidades nativas do espaço (concursos, edições, cargos, documentos, questões vinculadas).
-- Entidades globais de suporte (órgão, banca, disciplina) só entram no subgrafo se forem ativamente referenciadas por um objeto nativo do espaço.
-- Nenhuma entidade privada ou questão de outro espaço vaza para o grafo, contagens ou backlinks.
-
-2. Invalidação Reativa e Eliminação de Stale Cache de 400ms:
-- O hash gsig(spId) agora monitora a assinatura completa de cada entidade, vínculos ativos (órgão, banca, edição, cargo, disciplina), overrides do store ('ov') e exclusões na lixeira (trashSet).
-- Removido o bypass cego de 400ms em gr(); se gsig alterar por edição de relação ou troca de espaço, a reconstrução é imediata.
-- Cache GR_CACHE mapeado por ID de espaço, permitindo alternância instantânea entre espaços sem recálculo desnecessário e sem dados cruzados.
-
-3. Tratamento Explícito de Contexto Fixado Estrangeiro (Painel Contextual):
-- Quando uma aba lateral foi fixada em um objeto do Espaço A e o usuário altera para o Espaço B, o painel exibe aviso explícito: 'Objeto não pertence a este espaço' com botão 'Seguir contexto do espaço atual' (data-unpin).
-- Eliminação de links órfãos ou nós fantasmas quando uma entidade da extremidade é excluída.
-
-4. Testes Automatizados de Regressão:
-- Criada suíte de testes unitários em tests/graph-space-isolation.test.mjs com 5 cenários verificando:
-  * Isolamento Espaço A vs B;
-  * Alternância instantânea de espaço;
-  * Invalidação imediata por mudança de relações/metadados/overrides;
-  * Exclusão e ausência de arestas órfãs;
-  * Alerta explícito de contexto estrangeiro fixado no painel direito.
-
-## 49. Workspace Loading State Machine — Issue #161: eliminação de timers cegos, proteção contra corrida e recuperação acessível
-<!-- container e1450 @ (48000,11000) -->
-
-### 49. Workspace Loading State Machine — Issue #161 (Auditoria e Implementação)
-
-**1. Eliminação dos Timers Cegos e do MutationObserver Genérico:**
-- Eliminado o setTimeout(() => wsLoading(false), 5000) que ocultava arbitrariamente o indicador de carregamento após 5 segundos, mascarando eventuais falhas lentas ou bloqueios de rede.
-- Eliminado o MutationObserver genérico que desativava o loading 260ms após qualquer alteração no DOM em #view, sem nenhuma garantia de que o render era final, bem-sucedido ou livre de erros.
-
-**2. Máquina de Estados do Workspace Loading:**
-- Estados canônicos implementados: idle | pending | success | empty | failed | timed-out | cancelled.
-- Monotonic Sequence Counter (wsNavSeq): cada navegação recebe um seq incremental único. Respostas assíncronas obsoletas ou requisições canceladas por navegações mais recentes (seq !== wsLoadCurrentSeq) são rejeitadas silenciosamente, blindando o app contra condições de corrida entre rotas concorrentes.
-- Sinalização explícita de conclusão:
-  * route() inicia a transição com const seq = wsLoadingStart(h0) em estado pending com prazo máximo de deadline (8s).
-  * Renderizadores de rotas (showObjs, showStudyRoute, showGraph, showBoard, showTrash, nbRoute, blank, open) sinalizam explicitamente o desfecho com wsLoadingEnd('success'), wsLoadingEnd('empty') ou wsLoadingEnd('failed').
-
-**3. Tratamento de Falhas e Timeout Recuperável:**
-- Se o carregamento expirar (deadline de 8s) ou encontrar erro crítico (ex.: PDF corrompido, rede indisponível), o estado transita para timed-out ou failed.
-- O indicador NÃO desaparece silenciosamente fingindo sucesso; ele ganha destaque visual semântico (borda de aviso âmbar ou erro carmim) e exibe banner acessível (#wsLoadBanner) com ações de recuperação:
-  * Botão primário 'Tentar novamente' (data-ws-retry) que re-executa a rota.
-  * Link de retorno seguro 'Voltar ao início' (#/espaco).
-  * Botão de dispensar aviso (data-ws-dismiss).
-
-**4. Acessibilidade (ARIA) e Modo de Movimento Reduzido (WCAG 2.2):**
-- Elemento #wsLoad gerencia role='status' em pending/success/empty e role='alert' em failed/timed-out.
-- aria-busy='true' ativo durante pending e 'false' em repouso.
-- Rótulo acessível em .ws-load-label atualizado dinamicamente para leitores de tela sem gerar poluição sonora de anúncios repetidos.
-- Suporte a prefers-reduced-motion: reduce: a animação infinita de deslocamento espacial é desativada, mantendo barra estática com transição suave de opacidade sem perda de feedback visual.
-
-**5. Testes Automatizados e Política Zero Emoji:**
-- Criada suíte de testes tests/workspace-loading-state.test.mjs com 4 testes unitários automatizados cobrindo remoção de timers cegos, classes de CSS e reduced-motion, máquina de estados com cancelamento de corrida e conformidade estrita com a Zero Emoji Policy.
-
-## 50. Recuperação estrita e Raio-X do Edital — Issue #76
-<!-- container e1453 @ (50500,11000) -->
-
-A recuperação só ocorre após uma nova resposta correta; abrir gabarito não altera o histórico. A coorte semanal mostra “Errou X · Recuperou Y”; a rota Caderno de Erros lista apenas pendentes. O Raio-X usa incidência de questões, pontos catalogados, cobertura e acerto da última tentativa confirmada. A cobertura deste protótipo é limitada aos assuntos presentes no catálogo; o Anexo II completo e a associação automática de PDFs não estão implementados. As capturas abaixo vieram do E2E Chromium executado nesta PR.
-
-![imagem e1455](assets/issue76_wrong_confirmed.png)
-
-![imagem e1457](assets/issue76_notebook_pending.png)
-
-ANTES: primeira resposta incorreta confirmada
-
-DEPOIS: erro pendente agrupado por semana e disciplina
-
-![imagem e1459](assets/issue76_recovered.png)
-
-![imagem e1461](assets/issue76_raiox_vertical.png)
-
-DEPOIS: recuperação após nova resposta correta
-
-DEPOIS: assuntos, prioridades e marcação persistente
-
-[PR #187 — issue #76](https://github.com/ianmaciel7/exams-app/pull/187)
-
-[E2E Chromium — run 43727853810](https://github.com/ianmaciel7/exams-app/actions/runs/43727853810)
-
-## 51. Revisão diária — cartões vinculados e provas Chromium — Issue #82
-<!-- container e1465 @ (52000,11000) -->
-
-A rota #/revisao mantém cartões Q&A e Cloze, revela respostas sob demanda, oferece TTS sem vazar a resposta antes da revelação, agenda 2/10/45 dias e domínio, configura meta e recência e preserva estado entre recargas por espaço. Grifos e comentários de questões são importados diretamente com origem rastreável e deduplicação. Capturas reais Playwright Chromium, em 390px e 1366px, validadas na PR #192. Pendências: importação dos grifos de PDF, calibração pedagógica do SRS e acessibilidade física assistiva.
-
-![imagem e1467](assets/issue82_qa_revealed_1366.png)
-
-![imagem e1469](assets/issue82_cloze_1366.png)
-
-Pergunta e resposta: revelação explícita, sem vazamento no áudio
-
-Cloze: lacuna gerada por clique e revisão com TTS
-
-![imagem e1471](assets/issue82_question_import_1366.png)
-
-![imagem e1473](assets/issue82_question_import_390.png)
-
-Grifo real da questão vira cartão vinculado sem duplicação
-
-Importação responsiva em viewport móvel de 390px
-
-[PR #192 — Daily Review](https://github.com/ianmaciel7/exams-app/pull/192)
-
-[Chromium E2E — run 43730006968](https://github.com/ianmaciel7/exams-app/actions/runs/43730006968)
-
-## 52. Leitor PDF reflow e anotações — Issue #77
-<!-- container e1477 @ (54000,11200) -->
-
-Modo PDF original e texto reflow; fonte/tamanho/entrelinha, j/k, h grifar, n nota marginal, t etiqueta, z desfazer e [ sumário. Testes Playwright desktop 1366 e mobile 390 sobre PDF de duas colunas GERADO por pdf-lib com PDF.js no navegador, com ordem esquerda→direita, persistência e limpeza entre rotas. Defeito de layout corrigido: toolbar fora do flex da página. LIMITES: não é DOU oficial real, falta OCR para escaneados, TOC semântico e projeção das anotações sobre o canvas original. Issue #77 permanece aberta.
-
-![imagem e1479](assets/issue77_reader_original_1366.png)
-
-![imagem e1481](assets/issue77_reader_text_highlight_1366.png)
-
-PDF real gerado no teste: canvas e duas colunas em tela desktop
-
-Modo texto reflow: coluna esquerda antes da direita e grifo focado
-
-![imagem e1483](assets/issue77_reader_marginalia_1366.png)
-
-![imagem e1485](assets/issue77_reader_marginalia_390.png)
-
-Nota marginal, etiqueta, sumário e restauração do modo texto
-
-Mesmo fluxo na viewport de 390px sem compressão do PDF
-
-[PR #190 — Reader](https://github.com/ianmaciel7/exams-app/pull/190)
-
-[Chromium PDF E2E](https://github.com/ianmaciel7/exams-app/actions/runs/43731298495)
-
-## B. Evidências visuais: arquitetura e barra (Capacities Live)
-<!-- container e7102 @ (3300,11910) -->
-
-![imagem e705](assets/capacities_live_3pane_explorar_grid.png)
-
-![imagem e707](assets/capacities_live_3pane_local_graph.png)
-
-**Evidência 10 (Capacities Live):** Arquitetura de 3 Painéis com Ilhas Flutuantes (`#0d0e11` canvas, `#16171a` cards, gutter `10px`), Página de Objeto e Painel Direito `Explorar` (Grid 3x2 + Conteúdo relevante) — Issues #47, #48, #54, #57
-
-**Evidência 11 (Capacities Live):** Painel Direito na aba `Grafo` com nós em badges quadrados coloridos por tipo, tags e controles flutuantes translúcidos no rodapé — Issues #38, #54
-
-![imagem e709](assets/capacities_live_collapsed_sidebar.png)
-
-![imagem e711](assets/capacities_live_new_popover.png)
-
-**Evidência 12 (Capacities Live):** Sidebar recolhida 100% off-canvas (`0px`, sem rail de 56px) com `[◧] [+ Novo] [🔍]` migrados para o início do `AppHeader` — Issues #48, #49
-
-**Evidência 13 (Capacities Live):** Linha superior `[+ Novo] [🔍]` na Sidebar e popover pesquisável `NewContentMenu` com rodapé de teclado (`↑↓`, `Esc`, `↵`) — Issue #50
-
-![imagem e713](assets/capacities_live_type_context_menu.png)
-
-![imagem e715](assets/capacities_live_type_dashboard_gallery.png)
-
-**Evidência 14 (Capacities Live):** Linhas de Tipo de Objeto de `29px` com badges quadrados `20x20px`, menu de contexto `⋯` (`244px`) e rodapé horizontal de ícones — Issues #52, #53
-
-**Evidência 15 (Capacities Live):** Dashboard de Tipo de Objeto (`Azure · 43`) com sub-abas `Visão geral`/`Tudo`, Split Button `+ Novo | v` e Galeria de Cards em 4 colunas — Issue #56
-
-## 10. Arquivos do projeto (Dataprev 2026 e referências)
-<!-- container e363 @ (0,12666) -->
-
-| Arquivo | O que é | Pasta do projeto |
-| --- | --- | --- |
-| Edital de abertura (DOU 03/07/2026) | Edital oficial do concurso Dataprev 2026 (FGV) | concursos/dataprev-2026/edital-dou-03-07-2026.pdf |
-| 1ª e 2ª retificações do edital | Mudanças no edital de abertura | concursos/dataprev-2026/edital-1a-retificacao.pdf, edital-2a-retificacao.pdf |
-| Cronograma | Datas do concurso | concursos/dataprev-2026/cronograma.pdf |
-| Edital completo (89 MB) | PDF que o Ian usou como referência do fluxo de prova | edital_concurso_dataprev_2026_0.pdf |
-| Provas do Analista de TI, Desenvolvimento, tipos 1 a 4 | Caderno de questões, 70 questões cada | concursos/dataprev-2026/prova-objetiva-2026-analista-ti-dev/ |
-| Gabarito preliminar FGV (13/10/2026) | PDF oficial, mais versão extraída em JSON e Markdown | concursos/dataprev-2026/gabarito/ |
-| 70 questões extraídas (tipo 1) | Enunciados, alternativas e gabarito em JSON; já usadas na 0.1.1 | concursos/dataprev-2026/questoes/dataprev-2026-analista-ti-dev-tipo1.json |
-| QConcursos, ExamTopics, Readwise e Reader | Modelos de entidades dos concorrentes (ver bloco 5) | referencias/qconcursos.md, examtopics.md, readwise-reader.md |
-| Diretrizes de UI/UX 2026 | Leis de UX, estados e erros, componentes (ver bloco 8) | referencias/diretrizes-ui-ux-2026.md, diretrizes-estados-feedback-erros.md, diretrizes-componentes-interacao.md |
-| Fonte do protótipo 0.1.1 | HTML do app e cópia antes do redesign das páginas | recuperado/prototipo-dataprev-2026/ e recuperado/versao-0.1.1-antes-redesign-paginas/ |
-| Prints do redesign (antes e depois) | 4 imagens, também no bloco 9 | prints/redesign-paginas-objeto/ |
-
-Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, já publicados como 0.1.1; fonte em recuperado/), e duas cópias idênticas dos PDFs de prova na pasta de uploads.
-
-## C. Comparação de branches históricas (notes-app-old)
-<!-- container e7103 @ (3300,13550) -->
-
-![imagem e717](assets/capacities_live_object_page_anatomy.png)
-
-![imagem e719](assets/archive_notes_app_old_3_capacities_shell.png)
-
-**Evidência 16 (Capacities Live):** Anatomia da Página de Objeto com painel lateral fechado: coluna centralizada (`740px`), chip de tipo, `Coleções`, tags inline, propriedades compactas e abas `Links de entrada`/`Conteúdo relacionado` — Issue #57
-
-**Evidência 17 (Archive `notes-app-old-3`):** Web Shell de paridade Capacities em Light Mode (`--bg-back`, cartões flutuantes `12px`, aba `Visão geral` de `Páginas` e painel direito `Explorar` 6 cards) — Issues #47, #54, #56
-
-![imagem e721](assets/archive_notes_app_old_4_capacities_shell.png)
-
-![imagem e723](assets/archive_notes_app_old_4_graph_sidepanel.png)
-
-**Evidência 18 (Archive `notes-app-old-4`):** `AppShell` com `ResizablePanelGroup`, `AppHeader`, `AppSidePanelHeader` e `ObjectTypeWorkspace` — Issues #47, #48, #49, #55
-
-**Evidência 19 (Archive `notes-app-old-4` `layout-current.png`):** `Visualização em grafo` no Painel Direito com controles inferiores (`Mostrar menos`, `Mostrar mais`, zoom, expandir) — Issue #54
-
-![imagem e725](assets/archive_notes_app_old_10_recall_home.png)
-
-**Evidência 20 (Archive `notes-app-old-10` Recall):** Estética editorial *Monastic Knowledge Sanctuary* para a Home do Espaço (`#/espaco`) com card Hero escuro `TODAY`, `Review today` e `Recent objects` sem emojis — Issue #58
-
-## D. Resoluções técnicas para o Exam App (issues #47–#58)
-<!-- container e7104 @ (3300,15190) -->
-
-> **Resolução Técnica: Top Rail de 46px em 3 Cabeçalhos & Controles Migrados (Issue #48)**
-> 
-> - **Zona 1 — SidebarHeader (`.side-top`):** Altura `46px` sobre `var(--bg-back)`, Space Switcher (`.space-btn`, `31px`) à esquerda e botão de recolher `[◧]` (`#collapse`, `27px × 27px`) à direita.
-> - **Zona 2 — AppHeader (`#wsTabs`):** Altura `46px` sobre `var(--bg-back)`:
->   - *Sidebar Aberta (`:not(.collapsed)`):* Inicia diretamente nos botões de histórico `< >` (`.hist.ws-nav`, `28px`). `#wsSide` e controles migrados ficam estritamente ocultos (`display: none !important`).
->   - *Sidebar Recolhida (`.app.collapsed`):* Migram para o início de `#wsTabs` antes de `< >` exatamente 3 botões compactos `27px × 27px`: `[◧ Abrir barra lateral]` (`#wsSide`), `[+ Novo]` (`#wsNewBtn`) e `[🔍 Buscar]` (`#wsSearchBtn`).
->   - Space Switcher purgado de `#wsTabs` (sem `#spTopBtn`).
->   - À direita: botão `[◨]` (`#rpToggle`) para alternar o painel contextual.
-> - **Zona 3 — AppSidePanelHeader (`.rp-top`):** Altura `46px` sobre `var(--bg-back)`, perfeitamente nivelado com `#wsTabs`, contendo abas contextuais, `[+]` e `[◨]` (`#rpHide`).
-> - **Eliminação da Barra Residual `.bar`:** Altura fixa removida do fluxo do layout (`height: 0; display: none; overflow: hidden;`). O leitor de PDF e a barra de progresso de leitura `.readprog` (`2px`) são exibidos apenas em documentos PDF (`.main.reading-mode`), preservando os seletores DOM (`docTitle`, `docMeta`, `propBtn`, `zfit`, `zin`, `zout`, `pg`) sem consumo de espaço global.
-
-> **Resolução Técnica: Badges Quadrados 20x20px (18 Tons OKLCH), Linhas de 29px e Menu de Contexto Completo nos Tipos de Objeto (Issue #52)**
-> 
-> - **ObjectIconBadge nos Tipos de Objeto (`.object-icon-badge`):**
->   - Badge quadrado de `20px × 20px` com `border-radius: 5px`, borda sutil de `0.5px solid var(--badge-border)` e fundo translúcido/tingido `var(--badge-bg)`.
->   - Ícone SVG vetorial de `13px` centralizado dentro do badge (`stroke-width: 1.8`).
->   - Suíte completa de 18 tons OKLCH calibrada para Light Mode e Dark Mode (`--tone-amber-*` até `--tone-violet-*`).
->   - Mapeamento semântico fiel por Tipo de Objeto: Concurso (`emerald`), Órgão (`orange`), Banca (`rose`), Edição (`blue`), Cargo (`purple`), Arquivo/Questão (`amber`), Documento (`cyan`), PDF (`red`), Disciplina (`green`), Simulado (`indigo`), Resposta (`gray`).
-> - **Linhas de Tipo de Objeto na Sidebar (`.nav .tree-line`):**
->   - Altura estrita de `29px` (`height: 29px; min-height: 29px; box-sizing: border-box;`), `border-radius: 6px` e tipografia `14px` (`font-weight: 400`).
->   - No hover: revela à direita a contagem tabular (`font-variant-numeric: tabular-nums`) e o botão de contexto `⋯` de `22px × 22px` (`border-radius: 6px`).
-> - **Cabeçalhos de Seção da Sidebar (`.sec-hw`):**
->   - Altura padronizada de `28px`, fonte `12px`, `font-weight: 600`, chevron discreto com transição de rotação a -90° no colapso e controles revelados no hover (`22px × 22px`).
->   - Linha `+ Adicionar seção` ajustada para altura de `29px` com `border-radius: 6px`.
-> - **Menu de Contexto Completo do Tipo de Objeto (`⋯`):**
->   - Popover `.ctx` de `244px–260px` de largura com ações padronizadas do Capacities:
->     - `Abrir tipo` (`#/tipo/{t}`)
->     - `Criar {Tipo singular}` (`createObj(t)`)
->     - Divisor `<hr>`
->     - `Nova Coleção` (`csCreate(t)`)
->     - `Nova Query` (`csCreate(t)`)
->     - `Fixar na barra lateral` / `Desafixar da barra lateral` (`togglePinK`)
->     - Divisor `<hr>`
->     - `Configurações do tipo` (abre modal de edição com campos de nome no singular e no plural)
->     - Divisor `<hr>`
->     - `Excluir tipo de objeto` (com estilo destrutivo vermelho).
-> - **Zero Emoji Policy (Issue #42):** 100% de conformidade com ícones vetoriais SVG monocromáticos, sem nenhum emoji Unicode na interface.
-
-> **Resolução Técnica: Colapso Off-Canvas Total (0px) & ResizableHandle na Sidebar (Issue #49)**
-> 
-> - **Colapso Off-Canvas Total (0px):**
->   - Substituição do rail residual de `56px` por recolhimento real para `0px` (`.app.collapsed .side { width: 0 !important; min-width: 0 !important; max-width: 0 !important; overflow: hidden !important; border-right: none !important; pointer-events: none; }`).
->   - Todo o espaço horizontal é imediatamente liberado para a superfície flutuante central (`AppShellSurface` / `.main`).
-> - **Alça de Redimensionamento da Sidebar (`#sideRz`):**
->   - Inserido elemento `.side-rz` na borda direita da sidebar (`role="separator"`, `aria-orientation="vertical"`, `tabindex="0"`, `touch-action: none`).
->   - Drag fluído via `pointerdown` / `setPointerCapture` e atalhos de teclado `ArrowLeft` / `ArrowRight` (passos de `24px`).
->   - Limites padronizados de `workspace-layout.ts`: mínimo `224px`, padrão `284px`, máximo `384px`.
->   - Duplo-clique restaura a largura padrão (`284px`).
->   - Persistência contínua em `localStorage` sob a chave `sidew`.
->   - Estilo Capacities: linha sutil translúcida no hover / drag (`linear-gradient(90deg, transparent 5px, var(--faint) 5px, var(--faint) 7px, transparent 7px)`).
-> - **Ajustes e Breakpoints do Painel Contextual Direito (`#rpanel`):**
->   - Limites atualizados: mínimo `240px`, padrão `420px`, máximo `640px`.
->   - Duplo-clique em `#rpRz` restaura o padrão de `420px` e persiste sob a chave `rpw`.
->   - Modo Overlay Sheet ativado entre `769px` e `1024px` (`matchMedia('(max-width:1024px)')`), garantindo que o painel contextual abra sobreposto sem esmagar o conteúdo central abaixo de `480px`.
->   - Em mobile (<= `768px`), gavetas operam com scrim e redimensionamentos são desativados.
-
-> **Resolução Técnica: Substituição do Card de Usuário (.user-btn) pela Seção Ajuda & Recursos e Rodapé Horizontal de Ícones do Capacities (Issue #53)**
-> 
-> - **Substituição do Card de Usuário (.user-btn):**
->   - Removido o card largo estilo Notion/Linear (.user-btn) contendo avatar 'I' e 'Ian / Plano pessoal' da base da barra lateral.
->   - Eliminação de cliques extras: funções essenciais como tema, atalhos e configurações agora contam com acesso direto de 1 clique no rodapé.
-> - **Linhas Utilitárias Inferiores (.side-utils, altura 30px, ícones 16px):**
->   - Posicionadas imediatamente acima da barra fixa inferior, com alinhamento visual rigoroso:
->     - **Gráfico** (`#graphBtn`): abre a constelação global (`#/grafico`), com estado ativo sincronizado via `aria-current`.
->     - **Lixeira** (`#trashBtn`): abre a gestão de itens excluídos (`#/lixeira`), com contagem e restauração contextual.
->     - **Ajuda & Recursos** (`#sideHelpBtn`): grupo expansível com chevron indicativo e gaveta retrátil contendo:
->       - *Primeiros Passos* (`#helpSubSteps`): modal guiado com passos rápidos de uso do Exam App.
->       - *Documentação* (`#helpSubDocs`): acesso às especificações arquiteturais e de domínio.
->       - *Atalhos de Teclado* (`#helpSubShortcuts`): diálogo rápido com hotkeys do sistema (Ctrl+B, Ctrl+K, Ctrl+Alt+N, J/K, F2, +/-).
->       - *Feedback* (`#helpSubFeedback`): prompt modal para submissão de melhorias pelo usuário.
-> - **Rodapé Horizontal de Ícones do Capacities (.side-foot):**
->   - Barra horizontal fixa de altura `38px` (`min-height: 38px`), `display: flex; align-items: center; border-top: 1px solid var(--line);`:
->     - **Grupo esquerdo** (`gap: 4px`):
->       1. `[Perfil / Conta]` (`#btnFootAccount`, `27px × 27px`): ícone vetorial SVG, abre popover de conta `#usPop`.
->       2. Pill `[PRO]` (`.badge-pro`): badge compacto com tipografia 10px bold, estilo âmbar sutil do Capacities Pro.
->       3. `[Configurações]` (`#btnFootSettings`, `27px × 27px`): abre modal com seleção de tema, zoom padrão e limpeza de dados.
->       4. `[Alternar Tema]` (`#btnFootTheme`, `27px × 27px`): alterna instantaneamente entre Modo Claro e Escuro em 1 clique direto, com sincronização automática do glifo SVG (sol no tema escuro, lua no tema claro).
->       5. `[Sync / Status]` (`#btnFootSync`, `27px × 27px`): status visual e feedback toast de sincronização offline/online.
->     - **Grupo direito** (`margin-left: auto`):
->       6. `[Atalhos de Teclado]` (`#btnFootShortcuts`, `27px × 27px`): abre diretamente a visualização de atalhos globais.
-> - **Conformidade com a Zero Emoji Policy (Issue #42):** 100% de ícones vetoriais SVG monocromáticos (`currentColor`, `stroke-width: 1.8`), sem nenhum caractere emoji Unicode em toda a estrutura.
-
-> **Resolução Técnica: Linha Superior Combinada [+ Novo] [Buscar], NewContentMenu & Ações Globais de 31px (Issue #50)**
-> 
-> - **Linha Superior Combinada (`.side-comb`):**
->   - Localizada logo abaixo de `.side-top` (`padding: 4px 10px 8px; gap: 6px`).
->   - Botão `[+ Novo]` (`#sideNewBtn`): `flex: 1`, altura `33px`, `border-radius: 7px`, background sutil (`var(--hover)` / `var(--active)`), ícone SVG `[+]` de `16px` e label `Novo`.
->   - Botão `[Buscar]` (`#sideSearchBtn`): quadrado `33px × 33px`, `border-radius: 7px`, ícone SVG de lupa `16px`, atalho `(Ctrl+K)`.
-> - **Popover Pesquisável NewContentMenu (`#newMenu`):**
->   - Abre posicionado imediatamente abaixo do botão `[+ Novo]` ao clicar ou via atalho `Ctrl+Alt+N` / `Cmd+Alt+N`.
->   - Campo de busca instantânea com foco automático (`#newMenuIn`), filtrando tipos de objetos por nome em português ou inglês.
->   - Lista rolável (`#newMenuList`) exibindo todos os tipos ativos do espaço com badge quadrado colorido `20x20px` (`.nm-badge.tone-type-*`), rótulo no singular e contagem de instâncias no espaço.
->   - Navegação completa por teclado: setas `↑↓` percorrem itens com destaque visual e `scrollIntoView`, `Enter` cria o tipo selecionado (`createObj(t)`), e `Esc` fecha o menu devolvendo o foco.
->   - Rodapé fixo com convenção Capacities: `↑↓ navegar · Esc abortar · ↵ selecionar`.
-> - **Ações Globais da Sidebar de 31px:**
->   - Itens padronizados com altura de `31px`, `border-radius: 6px`, `font-size: 14px`, peso regular (`font-weight: 400`), espaçamento `gap: 8px` e ícones SVG vetoriais monocromáticos de `16px` (`stroke-width: 1.8`).
->   - Entradas primárias: `Início` (`#/espaco`), `Tarefas / Revisão` (`#/revisao`), `Explorar` (`#/explorar`).
-> - **Conformidade com a Zero Emoji Policy (Issue #42):** 100% livre de emojis Unicode em tags, botões, badges e comentários.
-
 ## Relações (setas)
 
-- **Espaço** nome e ícone dono (conta) isolado: nada cruza entre espaços → **Documento (PDF)** título classe: referência (fonte de verdade, sem %
 - **Espaço (Space)** nome e ícone dono (conta) isolado: sem links nem bu → **Objeto (Object)** título espaço tipo de objeto conteúdo (quando houv
 - **Objeto (Object)** título espaço tipo de objeto conteúdo (quando houv → **Tipo de Objeto (Object Type)** nome e ícone lista de definições de p
 - **Objeto (Object)** título espaço tipo de objeto conteúdo (quando houv → **Valor de Propriedade (Property Value)** objeto definição valor (pode
 - **Tipo de Objeto (Object Type)** nome e ícone lista de definições de p → **Definição de Propriedade (Property Definition)** nome tipo de valor:
 - **Valor de Propriedade (Property Value)** objeto definição valor (pode → **Definição de Propriedade (Property Definition)** nome tipo de valor:
-- **Documento (Document)** estende: Arquivo classe (rótulo): referência  → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
-- **Prova (Exam Paper)** edição (relação) cargo (relação) ano e data de  → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
-- **Simulado (Mock Exam)** edição e cargo (relações) ano questões em ord → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
-- **Simulado (Mock Exam)** edição e cargo (relações) ano questões em ord → **Questão (Question)** enunciado e instrução (conteúdo) formato: única
-- **Disciplina (Subject)** título disciplina pai (relação, para o assunt → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
 - **Alternativa (Option)** título: texto da alternativa rótulo (letra A  → **Questão (Question)** enunciado e instrução (conteúdo) formato: única
 - **Questão (Question)** enunciado e instrução (conteúdo) formato: única → **Prova (Exam Paper)** edição (relação) cargo (relação) ano e data de 
 - **Questão (Question)** enunciado e instrução (conteúdo) formato: única → **Documento (Document)** estende: Arquivo classe (rótulo): referência 
@@ -2482,5 +2491,11 @@ Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, j�
 - **Cartão de revisão (Review Card)** questão de origem (relação) format → **Questão (Question)** enunciado e instrução (conteúdo) formato: única
 - **Concurso (Contest)** título (ex.: Dataprev) órgão (relação) banca (r → **Órgão (Agency)** título e sigla concursos: automático edições: autom
 - **Concurso (Contest)** título (ex.: Dataprev) órgão (relação) banca (r → **Banca (Exam Board)** título (ex.: FGV) concursos: automático edições
+- **Documento (Document)** estende: Arquivo classe (rótulo): referência  → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
+- **Prova (Exam Paper)** edição (relação) cargo (relação) ano e data de  → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
+- **Simulado (Mock Exam)** edição e cargo (relações) ano questões em ord → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
+- **Simulado (Mock Exam)** edição e cargo (relações) ano questões em ord → **Questão (Question)** enunciado e instrução (conteúdo) formato: única
+- **Disciplina (Subject)** título disciplina pai (relação, para o assunt → **Edição (Edition)** concurso (relação) título e ano (ex.: Dataprev 20
+- **Espaço** nome e ícone dono (conta) isolado: nada cruza entre espaços → **Documento (PDF)** título classe: referência (fonte de verdade, sem %
 - **Arquivo (File)** título formato (MIME) tamanho checksum → **Documento (Document)** estende: Arquivo classe: referência ou leitur
 - **Documento (Document)** estende: Arquivo classe: referência ou leitur → **PDF** estende: Documento nº de páginas camada de texto (busca) modo:

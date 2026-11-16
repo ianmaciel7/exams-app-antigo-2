@@ -683,6 +683,14 @@
             "e363"
           ],
           "summary": "Arquivos enviados e referências iniciais."
+        },
+        {
+          "name": "Sem grupo (revisar)",
+          "kind": "auditoria",
+          "blocks": [
+            "e9900"
+          ],
+          "summary": "Nós que não estavam dentro de nenhum container; reunidos para revisão."
         }
       ]
     }

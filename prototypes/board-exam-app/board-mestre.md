@@ -12,7 +12,7 @@
 | 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](../docs/board/boards/04-arquitetura-tecnica.md) |
 | 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 8 | [Abrir](../docs/board/boards/05-pesquisa-e-decisoes.md) |
 | 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 4 | [Abrir](../docs/board/boards/06-evidencias-e-qualidade.md) |
-| 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 7 | 5 | [Abrir](../docs/board/boards/07-entrega-e-arquivo.md) |
+| 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 8 | 5 | [Abrir](../docs/board/boards/07-entrega-e-arquivo.md) |
 
 ## 01 — Produto & domínio
 
@@ -201,3 +201,4 @@ Versões, roadmap histórico, arquivos de entrada e recuperação de branches an
 | Versão 0.1.1 | versao | [e149](index.html#e149) |
 | Roadmap original de versões | historico | [e154](index.html#e154) |
 | Arquivos de entrada do projeto | referencia | [e363](index.html#e363) |
+| Sem grupo (revisar) | auditoria | [e9900](index.html#e9900) |
