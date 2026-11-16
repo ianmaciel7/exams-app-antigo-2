@@ -1371,7 +1371,10 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .op:has(.td-content) .op-head h1{font-size:28px;word-break:normal;overflow-wrap:normal;white-space:normal;line-height:1.2}
 .op:has(.td-content) .op-head>.op-actions{margin-left:auto}
 .td-header-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.td-header-icon{border:1px solid var(--line);border-radius:8px;background:var(--side);width:32px;height:32px;color:var(--text);cursor:pointer;font-size:18px}
+.td-header-tools{display:inline-flex;overflow:hidden;align-items:center;border:1px solid var(--line);border-radius:16px;background:var(--side)}
+.td-header-icon{border:0;border-radius:0;background:transparent;width:32px;height:32px;color:var(--text);cursor:pointer;font-size:18px}
+.td-header-tools .td-header-icon+.td-header-icon{border-left:1px solid var(--line)}
+.td-header-tools .td-header-icon:hover{background:var(--hover)}
 .td-split{display:flex;align-items:stretch;overflow:hidden;border-radius:8px;border:1px solid var(--line)}
 .td-split .td-new-main{border:0;background:var(--text);color:var(--bg-base);font-weight:600;font-size:12px;padding:7px 12px;min-height:34px;text-decoration:none;display:flex;align-items:center;cursor:pointer}
 .td-split button:last-child{border:0;border-left:1px solid var(--line);background:var(--side);color:var(--text);padding:0 9px;cursor:pointer}
@@ -1391,7 +1394,13 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .td-layout-gallery .td-item,.td-layout-board .td-item,.td-layout-mural .td-item{display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:124px;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--side)}
 .td-item,.td-recent{color:var(--text);text-decoration:none}
 .td-item:hover,.td-recent:hover,.td-table-row:hover{background:var(--hover)}
-.td-item-top{display:flex;align-items:center;gap:6px}
+.td-item-top{display:flex;align-items:center;gap:6px;max-width:100%}
+.td-type-pill{display:inline-flex;align-items:center;max-width:100%;padding:4px 8px;border-radius:999px;font-size:10.5px;font-weight:650;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--badge-text,var(--text));background:var(--badge-bg,var(--hover));border:1px solid var(--badge-border,var(--line))}
+.td-card-tags{display:flex;gap:5px;flex-wrap:wrap;max-width:100%;margin-top:auto}
+.td-property-chip{display:inline-flex;max-width:100%;font-size:11px;line-height:1.3;padding:4px 8px;border-radius:999px;color:var(--badge-text,var(--muted));background:var(--badge-bg,var(--hover));border:1px solid var(--badge-border,var(--line));overflow-wrap:anywhere}
+.td-layout-list .td-type-pill{display:none}
+.td-layout-list .td-card-tags{margin-left:auto}
+.td-layout-list .td-card-tags .td-property-chip{font-size:11px}
 .td-item-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;background:var(--hover);color:var(--text);flex:none}
 .td-item-icon svg{width:17px;height:17px}
 .td-card-title{font-size:14px;font-weight:600;line-height:1.45;margin:12px 0;overflow-wrap:anywhere}
@@ -5001,8 +5010,11 @@ function tdObjectMarkup(item,layout,searchTerm=''){
   if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'>'+
     '<a href="'+esc(item.href)+'">'+main+'</a><button type="button" data-td-copy="'+esc(item.href)+'" title="Copiar link do objeto">Copiar link</button></div>';
   return '<a class="td-item" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+
-    '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span></span><span class="td-card-title">'+esc(item.name)+'</span>'+
-    '<span class="td-card-meta">'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</span></a>';
+    '<span class="td-item-top"><span class="td-item-icon" aria-hidden="true">'+iconSvg(item.id,OPI()[item.kind]||SI.file)+'</span>'+
+      '<span class="td-type-pill tone-type-'+esc(item.kind)+'">'+esc(TYPES[item.kind]?.n||item.kind)+'</span></span>'+
+    '<span class="td-card-title">'+esc(item.name)+'</span>'+
+    (item.detail?'<span class="td-card-tags"><span class="td-property-chip tone-type-'+esc(item.kind)+'">'+esc(item.detail)+'</span></span>':
+      '<span class="td-card-meta">Sem propriedades categorizadas</span>')+'</a>';
 }
 function tdObjectsMarkup(t,items,layout,searchTerm=''){
   if(!items.length)return '<p class="td-empty">Nenhum objeto deste tipo cadastrado no espaço.</p>';
@@ -5055,8 +5067,9 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
     t==='questao'?'<a class="td-new-main" href="#/concurso/dataprev/questoes">+ Nova questão</a>':
     t==='simulado'?'<a class="td-new-main" href="#/simulado">+ Novo simulado</a>':'';
   const actions='<div class="td-header-actions">'+actionHTML+
+    '<div class="td-header-tools" role="group" aria-label="Ações de pesquisa e opções do tipo">'+
     '<button type="button" class="td-header-icon" data-td-search-focus="'+esc(t)+'" aria-label="Buscar objetos">⌕</button>'+
-    '<button type="button" class="td-header-icon" data-td-more="'+esc(t)+'" aria-label="Mais ações de tipo">⋯</button>'+
+    '<button type="button" class="td-header-icon" data-td-more="'+esc(t)+'" aria-label="Mais ações de tipo">⋯</button></div>'+
     (newControl?'<div class="td-split">'+newControl+
       '<button type="button" data-td-menu="'+esc(t)+'" aria-label="Mais opções de criação">⌄</button></div>':'')+'</div>';
   return opPage({iid:'tipo:'+t,crumb:[['Espaço','#/espaco'],[T.n,'']],icon:t,
