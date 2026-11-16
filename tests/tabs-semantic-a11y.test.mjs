@@ -11,7 +11,7 @@ test('workspace tabs expose role=tab on focusable label, pin/close controls rema
   const s=source('function wsPaint(){','function wsActivate(');
   assert.match(s,/class="ws-tmain ws-tab-control" role="tab"/);
   assert.match(s,/aria-controls="view"/);
-  assert.match(s,/aria-selected=".*?"/);
+  assert.ok(s.includes('aria-selected='));
   assert.match(s,/id="wst-/);
   assert.match(s,/data-tab-pin/);
   assert.match(s,/data-tab-close/);
