@@ -3,13 +3,13 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const evidence={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Chromium desktop/mobile simulation, not a physical screen-reader or IME validation.',
   'Imported highlights are question selections and question comments; PDF annotations require reader integration.'
 ]};
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
   for(const width of [390,1366]){
