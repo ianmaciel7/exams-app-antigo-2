@@ -45,9 +45,15 @@ try{
       await page.screenshot({path:path.join(assets,'issue82_qa_revealed_'+width+'.png'),animations:'disabled'});
       await page.locator('[data-srs-grade="soon"]').first().click();
       assert.ok(await page.getByText('Tudo em dia').count()>=1,'correct grading schedules the card');
+      assert.equal(await page.locator('.srs-heat-section').count(),2,'real activity has two 91-day heatmaps');
+      assert.equal(await page.locator('.srs-heatmap .srs-day').count(),182,'review and new-card days are visible');
+      assert.match(await page.locator('.srs-activity').innerText(),/Revisões · 1 nos últimos 91 dias/);
+      assert.match(await page.locator('.srs-activity').innerText(),/Novos cartões · 1 nos últimos 91 dias/);
+      await page.screenshot({path:path.join(assets,'issue83_review_heatmap_'+width+'.png'),animations:'disabled'});
       await page.reload({waitUntil:'domcontentloaded'});
       await page.locator('.srs-wrap').waitFor();
       assert.ok(await page.getByText('Tudo em dia').count()>=1,'future due date persists after reload');
+      assert.match(await page.locator('.srs-activity').innerText(),/Revisões · 1 nos últimos 91 dias/,'review activity persists after reload');
       await page.locator('[data-srs-setting="recency"]').evaluate(el=>{el.value='0';el.dispatchEvent(new Event('input',{bubbles:true}));});
       assert.equal(await page.locator('[data-srs-setting="recency"]').inputValue(),'0');
       await page.reload({waitUntil:'domcontentloaded'});
