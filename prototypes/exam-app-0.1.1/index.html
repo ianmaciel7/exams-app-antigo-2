@@ -2902,7 +2902,7 @@ const SEC_ED=[SEC_DP26[0],{id:'cargos',t:'Cargos do concurso',fonte:_vg.fonte,kv
 BASE_ED[0].sec=SEC_ED;
 const CARGOS=[{id:'dataprev-2026-ti-dev',edicao:'dataprev-2026',type:'cargo',t:'Analista de TI · Desenvolvimento de Software',resumo:'Perfil 3 · 80 vagas imediatas e 371 no cadastro de reserva',sec:SEC_CARGO}];
 const cargoById=id=>CARGOS.find(c=>c.id===id);
-const userEd=()=>(store.get('edicoes')||[]).map(e=>({id:e.id,conc:e.conc,type:'edicao',ano:e.ano,t:(concursoById(e.conc)||{t:''}).t+' '+e.ano,info:[],hist:[]}));
+const userEd=()=>(store.get('edicoes')||[]).map(e=>({id:e.id,conc:e.conc,type:'edicao',ano:e.ano,createdAt:e.createdAt,updatedAt:e.updatedAt,t:(concursoById(e.conc)||{t:''}).t+' '+e.ano,info:[],hist:[]}));
 const OV=()=>store.get('ov')||{};
 const objPins=()=>store.get('objpins')||[];
 const isPinK=k=>objPins().includes(k);
@@ -2947,7 +2947,7 @@ const entById=(t,id)=>entsOf(t).find(e=>e.id===id);
 const findEnt=(t,n)=>{ const k=normE(n); return k&&entsOf(t).find(e=>normE(e.t)===k||(e.alias||[]).some(a=>normE(a)===k)); };
 function ensureEnt(t,n){ n=String(n||'').trim(); if(!n) return null; let e=findEnt(t,n); if(e) return e;
   const l=store.get('ents')||[]; let id=t+'-'+(normE(n).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'x'); while(entsAll().some(x=>x.id===id)||l.some(x=>x.id===id)) id+='-2';
-  e={id,type:t,t:n}; l.push(e); store.set('ents',l); return e; }
+  e={id,type:t,t:n,sp:space,createdAt:Date.now()}; l.push(e); store.set('ents',l); return e; }
 const valHref=(k,v)=>{ if((k==='orgao'||k==='banca')&&v){ const e=ensureEnt(k,v); return e?'#/'+k+'/'+e.id:'#/valor/'+k+'/'+encodeURIComponent(v); } return '#/valor/'+k+'/'+encodeURIComponent(v); };
 const CHECK='<svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg>';
 const CARET='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>';
@@ -3574,10 +3574,10 @@ function createCustomObject(kind,existing){
   }).then(v=>{
     if(!v)return;
     let obj=existing;
-    if(obj){obj.t=v.nome;obj.body=v.conteudo;}
+    if(obj){obj.t=v.nome;obj.body=v.conteudo;obj.updatedAt=Date.now();}
     else {
       const id='custom-object-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9);
-      obj={id,sp:space,type:kind,t:v.nome,body:v.conteudo};
+      obj={id,sp:space,type:kind,t:v.nome,body:v.conteudo,createdAt:Date.now()};
       customObjects.push(obj);
     }
     saveCustomObjects();paintNav();
@@ -4062,7 +4062,7 @@ async function addFiles(files){
   let lastId=null;
   for(const f of files){ if(!/pdf$/i.test(f.type)&&!/\.pdf$/i.test(f.name)) continue;
     const id='up'+Date.now()+Math.random().toString(36).slice(2,6);
-    uploads.push({id,sp:space,type:'pdf',classe:'leitura',cat:'Sem categoria',g:'Adicionados agora',t:f.name.replace(/\.pdf$/i,''),m:'só nesta sessão',data:new Uint8Array(await f.arrayBuffer())});
+    uploads.push({id,sp:space,type:'pdf',classe:'leitura',cat:'Sem categoria',g:'Adicionados agora',t:f.name.replace(/\.pdf$/i,''),m:'só nesta sessão',createdAt:Date.now(),data:new Uint8Array(await f.arrayBuffer())});
     lastId=id; }
   paintNav(); if(lastId) location.hash=lastId;
 }
@@ -4549,14 +4549,14 @@ function createObj(kind,pre){
     return formDialog({title:'Novo concurso',text:'Dê um nome ao concurso. Você adiciona edições e cargos depois.',ok:'Criar concurso',fields:[{id:'nome',label:'Nome do concurso',placeholder:'Ex.: INSS, Banco do Brasil, TRF'},{id:'orgao',list:suggest('Órgão'),label:'Órgão (opcional)',placeholder:'Ex.: Instituto Nacional do Seguro Social'}],
       validate:v=>({nome:!v.nome?'Informe o nome do concurso.':(CONCURSOS.some(c=>c.sp===sp&&!isT(c.id)&&normN(c.t)===normN(v.nome))?'Já existe um concurso com este nome. Use outro nome.':'')})}).then(v=>{ if(!v) return;
       let id='c-'+slug(v.nome); while(CONCURSOS.some(c=>c.id===id)||allEd().some(e=>e.id===id)) id+='-2';
-      const oe=v.orgao&&ensureEnt('orgao',v.orgao); const o={id,sp,type:'concurso',t:v.nome,orgao:oe?oe.t:v.orgao}; CONCURSOS.push(o); const l=store.get('userConc')||[]; l.push(o); store.set('userConc',l);
+      const oe=v.orgao&&ensureEnt('orgao',v.orgao); const o={id,sp,type:'concurso',t:v.nome,orgao:oe?oe.t:v.orgao,createdAt:Date.now()}; CONCURSOS.push(o); const l=store.get('userConc')||[]; l.push(o); store.set('userConc',l);
       goPage('#/concurso/'+id); toast('Concurso “'+v.nome+'” criado'); });
   }
   if(!concs.length){ return dialog({title:kind==='edicao'?'Crie um concurso primeiro':'Crie um concurso primeiro',text:'Edições e cargos pertencem a um concurso. Crie o primeiro concurso para continuar.',ok:'Novo concurso',cancel:'Agora não'}).then(v=>{ if(v) createObj('concurso'); }); }
   if(kind==='edicao'){
     return formDialog({title:'Nova edição',text:'Escolha o concurso e o ano da edição.',ok:'Criar edição',fields:[{id:'conc',label:'Concurso',type:'select',options:concs.map(c=>[c.id,c.t]),value:pre.conc||concs[0].id},{id:'ano',label:'Ano',placeholder:'Ex.: 2026',inputmode:'numeric'}],
       validate:v=>({ano:!/^(19|20)\d\d$/.test(v.ano)?'Informe o ano com 4 dígitos, por exemplo 2026.':(allEd().some(x=>x.conc===v.conc&&x.ano===+v.ano&&!isT(x.id))?'A edição '+v.ano+' já existe neste concurso. Informe outro ano.':'')})}).then(v=>{ if(!v) return;
-      const l=store.get('edicoes')||[]; const id=v.conc+'-'+v.ano; if(!l.some(x=>x.id===id)) l.push({id,conc:v.conc,ano:+v.ano}); store.set('edicoes',l);
+      const l=store.get('edicoes')||[]; const id=v.conc+'-'+v.ano; if(!l.some(x=>x.id===id)) l.push({id,conc:v.conc,ano:+v.ano,createdAt:Date.now()}); store.set('edicoes',l);
       goPage('#/edicao/'+id); toast('Edição '+v.ano+' criada'); });
   }
   if(kind==='cargo'){
@@ -4566,7 +4566,7 @@ function createObj(kind,pre){
     return formDialog({title:'Novo cargo',text:'Escolha a edição e informe o nome do cargo.',ok:'Criar cargo',fields:[{id:'edicao',label:'Edição',type:'select',options:eds.map(e=>[e.id,e.t]),value:e0},{id:'nome',label:'Nome do cargo',placeholder:'Ex.: Analista de TI'}],
       validate:v=>({nome:!v.nome?'Informe o nome do cargo.':(CARGOS.some(c=>c.edicao===v.edicao&&!isT(c.id)&&normN(c.t)===normN(v.nome))?'Esta edição já tem um cargo com este nome.':'')})}).then(v=>{ if(!v) return;
       let id=v.edicao+'-'+slug(v.nome); while(CARGOS.some(c=>c.id===id)) id+='-2';
-      const o={id,edicao:v.edicao,type:'cargo',t:v.nome,resumo:'',sec:[]}; CARGOS.push(o); const l=store.get('userCargos')||[]; l.push(o); store.set('userCargos',l);
+      const o={id,edicao:v.edicao,type:'cargo',t:v.nome,resumo:'',sec:[],createdAt:Date.now()}; CARGOS.push(o); const l=store.get('userCargos')||[]; l.push(o); store.set('userCargos',l);
       goPage('#/cargo/'+id); toast('Cargo “'+v.nome+'” criado'); });
   }
 }
@@ -5164,6 +5164,32 @@ function ehEnsureBank(){
   });
 }
 
+/* Recents only use documented object timestamps or confirmed answer attempts (#58).
+   An undated legacy fixture is never presented with a fabricated creation date. */
+function ehRecentEntries(objects,questions,entities,attempts,max=6){
+ const entries=new Map(),stamp=x=>{
+   if(x===undefined||x===null||x==='')return 0;
+   const n=typeof x==='string'&&!/^\d+$/.test(x)?Date.parse(x):Number(x);
+   return Number.isFinite(n)&&n>0?n:0;
+ };
+ const add=(href,title,kind,at,description)=>{
+   const when=stamp(at);
+   if(!href||!when)return;
+   const entry={href:String(href),title:String(title||'Sem título'),kind:String(kind||'arquivo'),at:when,description:String(description||'')};
+   const old=entries.get(entry.href);
+   if(!old||when>=old.at)entries.set(entry.href,entry);
+ };
+ (objects||[]).forEach(o=>add(objHref(o),o.t||o.title,o.type||'pdf',
+   o.updatedAt||o.modified||o.criada||o.createdAt,o.updatedAt?'Editado':'Criado'));
+ (questions||[]).filter(q=>q.user).forEach(q=>add('#/questao/'+q.id,qTitle(q),'questao',
+   q.updatedAt||q.modified||q.criada||q.createdAt,q.updatedAt?'Editada':'Criada'));
+ (entities||[]).forEach(e=>add('#/'+e.type+'/'+e.id,e.t,e.type,e.updatedAt||e.createdAt,
+   e.updatedAt?'Editado':'Criado'));
+ (attempts||[]).forEach(h=>add('#/questao/'+h.q,
+   (questions||[]).some(q=>q.id===h.q)?qTitle(questions.find(q=>q.id===h.q)):h.n,
+   'questao',h.t,'Respondida'));
+ return [...entries.values()].sort((a,b)=>b.at-a.at||a.href.localeCompare(b.href)).slice(0,Math.max(1,max));
+}
 function opEspacoPage(sp,mine){
   ehEnsureBank();
   const allDocs=docsOf(space),lastId=store.get('last:'+space),lastDoc=allDocs.find(d=>d.id===lastId)||null;
@@ -5288,19 +5314,18 @@ function opEspacoPage(sp,mine){
     '" aria-selected="'+(id===tabKey)+'" tabindex="'+(id===tabKey?'0':'-1')+'">'+name+'</button>').join('')+'</div>'+
     tabs.map(([id,name,body])=>'<section role="tabpanel" id="eh-panel-'+id+'" aria-labelledby="eh-tab-'+id+
       '" data-home-panel="'+id+'"'+(id===tabKey?'':' hidden')+'>'+body+'</section>').join('')+'</section>';
-  const recentMap=new Map();
-  history.slice().reverse().forEach(h=>{if(h.q&&!recentMap.has(h.q))recentMap.set(h.q,h);});
-  const recentList=[...recentMap.values()].slice(0,4).map(h=>{
-    const q=questions.find(x=>x.id===h.q),t=q?('Questão '+(q.n||q.id)):h.n;
-    return '<a href="#/questao/'+esc(h.q)+'" class="eh-recent"><span class="eh-object-ico" aria-hidden="true">'+UIICON.book+
-      '</span><span><b>'+esc(t||'Questão')+'</b><small>'+esc(h.m||'Sem disciplina')+' · '+new Date(h.t).toLocaleDateString('pt-BR')+
-      '</small></span></a>';
-  });
-  if(lastDoc)recentList.unshift('<a href="#'+esc(lastDoc.id)+'" class="eh-recent"><span class="eh-object-ico" aria-hidden="true">'+UIICON.filePlus+
-    '</span><span><b>'+esc(lastDoc.t)+'</b><small>Último documento aberto</small></span></a>');
+  const relatedGraph=gr(space).N;
+  const relatedEnts=entsAll().filter(e=>e.sp===space||relatedGraph.has('#/'+e.type+'/'+e.id));
+  const recentList=ehRecentEntries(objsOf(space),questions,relatedEnts,history).map(r=>
+    '<a href="'+esc(r.href)+'" class="eh-recent"><span class="eh-object-ico tone-type-'+esc(r.kind)+'" aria-hidden="true">'+
+    iconSvg(r.href,OPI()[r.kind]||SI.file)+'</span><span><b>'+esc(r.title)+'</b><small>'+
+    esc(r.description)+' · '+new Date(r.at).toLocaleDateString('pt-BR')+'</small></span></a>');
+  if(lastDoc&&!recentList.some(x=>x.includes('href="#'+esc(lastDoc.id)+'"')))
+    recentList.push('<a href="#'+esc(lastDoc.id)+'" class="eh-recent"><span class="eh-object-ico tone-type-pdf" aria-hidden="true">'+UIICON.filePlus+
+      '</span><span><b>'+esc(lastDoc.t)+'</b><small>Último documento aberto · data não registrada</small></span></a>');
   const recents='<section class="eh-recents"><div class="eh-section-head"><div class="eh-eyebrow">RETOMAR</div><h2>Objetos recentes</h2></div>'+
     (recentList.length?'<div class="eh-recent-list">'+recentList.slice(0,5).join('')+'</div>':
-      '<p class="eh-empty">Você ainda não abriu documentos nem respondeu questões neste espaço.</p>')+'</section>';
+      '<p class="eh-empty">Nenhuma atividade recente com data registrada neste espaço.</p>')+'</section>';
   // Preserve the existing visible, tested study entrypoints (#132).
   const studyEntries='<div class="dash-actions"><a class="dash-act-btn" href="#/questoes"><span class="dash-act-ico">'+UIICON.book+
     '</span><div class="dash-act-txt"><b>Resolver questões</b><small>Prática individual com confirmação da resposta</small></div></a>'+
