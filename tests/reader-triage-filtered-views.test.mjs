@@ -11,7 +11,7 @@ function source(a,b){
 }
 function harness(space='s1'){
   const values=new Map();
-  const ctx={space,store:{get:k=>values.get(k),set:(k,v)=>values.set(k,v)},
+  const ctx={view:{addEventListener(){}}, space,store:{get:k=>values.get(k),set:(k,v)=>values.set(k,v)},
     TYPES:{pdf:{n:'PDF'}},nodeOf:()=>null,gr:()=>({N:new Map()}),
     esc:x=>String(x??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;')};
   const script=source('const TD_LAYOUTS=','const tdKey=')+'\n'+

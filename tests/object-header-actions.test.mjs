@@ -11,13 +11,17 @@ assert.ok(start>=0&&end>start,'object page source found');
 function harness(space='test'){
   const values=new Map();
   const env={
-    space,store:{get:k=>values.get(k),set:(k,v)=>values.set(k,v)},
+    view:{addEventListener(){}}, space,store:{get:k=>values.get(k),set:(k,v)=>values.set(k,v)},
     tdCollections:()=>[],tdCollectionHrefs:()=>[],
     esc:s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
     opIcon:()=>'<span class="op-icon"></span>',opNav:()=>'',opProps:()=>'',studyOk:()=>false,OV:()=>({}),
-    nodeOf:()=>null,gr:()=>({N:new Map()}),nbrs:()=>[],kn:k=>k
+    nodeOf:()=>null,gr:()=>({N:new Map()}),nbrs:()=>[],kn:k=>k,
+    // Stub: bloco de incorporações (embedQueriesHTML) fica fora desta fatia; cabeçalho não depende dele.
+    embedQueriesHTML:()=>''
   };
-  const opPage=runInNewContext(html.slice(start,end)+'\nopPage',env);
+  // opSec é helper real da página (fora da fatia) usado por opFooterRelations.
+  const secLine=html.slice(html.indexOf('const opSec='),html.indexOf('\n',html.indexOf('const opSec=')));
+  const opPage=runInNewContext(secLine+'\n'+html.slice(start,end)+'\nopPage',env);
   return {opPage,values};
 }
 const page=(id='concurso:demo')=>({

@@ -15,7 +15,7 @@ function fixture(space='s1'){
   const c={href:'#/cargo/c',title:'Cargo C',kind:'cargo',out:[['#/edicao/b','Edição']],inn:[]};
   const n=new Map([a,b,c].map(x=>[x.href,x]));
   const env={
-    space,store:{get:key=>values.get(key),set:(key,val)=>values.set(key,val)},
+    view:{addEventListener(){}}, space,store:{get:key=>values.get(key),set:(key,val)=>values.set(key,val)},
     nodeOf:href=>n.get(href),gr:()=>({N:n}),
     nbrs:node=>{
       const all=new Set([...node.out,...node.inn].map(x=>x[0]));
