@@ -69,7 +69,7 @@ try{
       assert.equal(await hub.getAttribute('aria-pressed'),'false','hub suppression starts opt-in');
       await hub.click();
       assert.equal(await hub.getAttribute('aria-pressed'),'true','hub suppression toggles on');
-      assert.match(await page.locator('.gv-info').textContent(),/\\d+ de \\d+ objetos visíveis/,'visible node count updates');
+      assert.match(await page.locator('.gv-info').textContent(),/\d+ de \d+ objetos visíveis/,'visible node count updates');
       await page.screenshot({path:path.join(assets,'issue68_hubs_'+width+'.png'),animations:'disabled'});
       await hub.click();
       assert.equal(await hub.getAttribute('aria-pressed'),'false','hub suppression can be disabled again');
