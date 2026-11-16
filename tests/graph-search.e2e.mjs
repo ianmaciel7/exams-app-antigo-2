@@ -7,52 +7,67 @@ const assets=path.resolve('prototypes/board-exam-app/assets');
 await mkdir(assets,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],errors:[],limitations:[
-  'Chromium desktop/mobile emulation; screen reader, actual touch devices and reduced-motion animation transitions not independently certified.',
-  'This covers search auto-fit only, not all of issue #68.'
+  'Chromium desktop/mobile emulation; screen reader, physical touch and full reduced-motion transitions need separate audit.',
+  'Browser asserts the rendered search output and canvas camera redraw; the deterministic bounds geometry is covered in the Node contract.',
+  'This PR implements only search auto-fit, not all of issue #68.'
 ]};
 try{
   for(const width of [390,1366]){
     const context=await browser.newContext({viewport:{width,height:820},reducedMotion:'reduce'});
     const page=await context.newPage();
     page.on('pageerror',e=>report.errors.push(e.message));
+    await page.addInitScript(()=>{
+      window.__graphCameraTransforms=[];
+      const set=CanvasRenderingContext2D.prototype.setTransform;
+      CanvasRenderingContext2D.prototype.setTransform=function(...args){
+        if(this.canvas?.id==='gvc'&&args.length===6){
+          window.__graphCameraTransforms.push(args);
+        }
+        return set.apply(this,args);
+      };
+    });
     try{
       await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/grafico',{waitUntil:'domcontentloaded'});
-      await page.waitForFunction(()=>typeof GV!=='undefined'&&GV&&GV.nodes.length>1&&
-        !document.querySelector('.gv-info')?.textContent?.includes('carregando'),{timeout:30000});
-      const candidate=await page.evaluate(()=>{
-        const titles=GV.nodes.filter(n=>n.on&&n.n.title.length>=8).map(n=>n.n.title);
-        return titles.find(t=>titles.filter(a=>a.includes(t)).length===1)||titles[0];
-      });
-      assert.ok(candidate,'a searchable visible object exists');
-      await page.locator('#gvq').fill(candidate);
-      await page.waitForFunction(()=>!!document.getElementById('gvMatchCount')?.textContent);
-      let found=await page.evaluate(()=>({
-        count:GV.match?.size||0,
-        label:document.getElementById('gvMatchCount')?.textContent||'',
-        matches:[...(GV.match||[])].map(i=>({x:GV.nodes[i].x*GV.k+GV.tx,y:GV.nodes[i].y*GV.k+GV.ty})),
-        viewport:{width:GV.W,height:GV.H}
-      }));
-      assert.ok(found.count>=1,'search matched at least one node');
-      assert.match(found.label,/objeto(s)? encontrado(s)?/);
-      for(const p of found.matches){
-        assert.ok(p.x>=0&&p.x<=found.viewport.width,'matched node is visible horizontally');
-        assert.ok(p.y>=0&&p.y<=found.viewport.height,'matched node is visible vertically');
+      await page.locator('#gvc').waitFor({timeout:30000});
+      await page.waitForFunction(()=>{
+        const info=document.querySelector('.gv-info');
+        return !!info&&!info.textContent.includes('carregando');
+      },null,{timeout:30000});
+      const search=page.locator('#gvq');
+      const before=await page.evaluate(()=>window.__graphCameraTransforms?.slice(-1)[0]||null);
+      assert.ok(before,'global canvas has a recorded camera transform');
+      let query=null,countLabel='';
+      for(const candidate of ['Dataprev','Analista','FGV','Português','Questão']){
+        await search.fill(candidate);
+        countLabel=await page.locator('#gvMatchCount').textContent()||'';
+        if(countLabel.includes('objeto encontrado')||countLabel.includes('objetos encontrados')){
+          query=candidate;break;
+        }
       }
+      assert.ok(query,'at least one known object can be found by the graph search');
+      const after=await page.evaluate(()=>window.__graphCameraTransforms?.slice(-1)[0]||null);
+      assert.ok(after,'search rerenders the graph camera');
+      assert.notDeepEqual(after,before,'search auto-frames the matching cluster');
       await page.screenshot({path:path.join(assets,'issue68_search_autofit_'+width+'.png'),animations:'disabled'});
-      await page.locator('#gvq').fill('unfindable-graph-object-unique-2026');
+
+      await search.fill('unfindable-graph-object-unique-2026');
       assert.equal(await page.locator('#gvMatchCount').textContent(),'Nenhum objeto encontrado');
-      await page.locator('#gvq').press('Escape');
-      assert.equal(await page.locator('#gvq').inputValue(),'');
+      await search.press('Escape');
+      assert.equal(await search.inputValue(),'');
       assert.equal(await page.locator('#gvMatchCount').textContent(),'');
-      assert.equal(await page.evaluate(()=>GV.match),null);
       const kind=page.locator('.gv-leg [data-gk]').first();
       assert.ok(await kind.count(),'type filter exists');
-      const on=await kind.getAttribute('aria-pressed');
+      const pressed=await kind.getAttribute('aria-pressed');
       await kind.click();
-      assert.notEqual(await kind.getAttribute('aria-pressed'),on);
-      report.cases.push({viewportWidth:width,query:candidate,count:found.count,assertions:[
-        'matching nodes fitted into viewport','accessible match count','zero state','Escape reset','type filter'
+      assert.notEqual(await kind.getAttribute('aria-pressed'),pressed);
+      report.cases.push({viewportWidth:width,query,matchResult:countLabel,checks:[
+        'search changes camera transformation','accessible match counter','empty state',
+        'Escape clears results','type facet remains usable'
       ],screenshot:'issue68_search_autofit_'+width+'.png'});
+    }catch(error){
+      report.errors.push('viewport '+width+': '+String(error.message||error));
+      await page.screenshot({path:path.join(assets,'issue68_search_failure_'+width+'.png'),animations:'disabled'}).catch(()=>{});
+      throw error;
     }finally{await context.close();}
   }
   assert.deepEqual(report.errors,[],'No uncaught browser errors');
