@@ -22,7 +22,7 @@ Modelo de domínio, tipos, propriedades, relações e decisões de produto.
 
 ### Documentos
 
-- [Board original completo](../../prototypes/board-exam-app/BOARD.md) — Fonte canônica dos blocos e especificações.
+- [Board original completo](BOARD.md) — Fonte canônica dos blocos e especificações.
 - [Pesquisa Capacities](../../docs/research/capacities-issue-32-2026-11-15.md) — Referência oficial sobre objetos, tipos e propriedades.
 - [Arquitetura da informação](../../docs/ux/arquitetura-informacao-navegacao.md) — Distingue jornadas de tipos de objeto.
 
@@ -84,9 +84,9 @@ Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PD
 - [Pesquisa QConcursos — #31](../../docs/research/qconcursos-issue-31-2026-11-15.md) — Filtros, cadernos e simulados.
 - [Inventário ExamTopics](../../docs/research/examtopics-inventory.md) — Banco, questões e tópicos.
 - [Gran Questões — #62](../../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas e critérios pendentes.
-- [Análise QConcursos](../../prototypes/analises/analise-qconcursos.md) — Análise funcional complementar.
-- [Análise ExamTopics](../../prototypes/analises/analise-examtopics.md) — Análise funcional complementar.
-- [Dossiê Readwise Reader e SRS](../../prototypes/board-exam-app/READWISE_DOSSIER.md) — Leitura, destaques e revisão espaçada.
+- [Análise QConcursos](../analises/analise-qconcursos.md) — Análise funcional complementar.
+- [Análise ExamTopics](../analises/analise-examtopics.md) — Análise funcional complementar.
+- [Dossiê Readwise Reader e SRS](READWISE_DOSSIER.md) — Leitura, destaques e revisão espaçada.
 
 ### Blocos do canvas original
 
@@ -139,8 +139,8 @@ Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 - [Gran Questões — #62](../../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas.
 - [Auditoria UI skills — #156](../../docs/research/issue-156-ui-skills-audit-2026-11-15.md) — Material 3, Apple e limites.
 - [Pesquisa UX — 20 fontes](../../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
-- [Análise QConcursos](../../prototypes/analises/analise-qconcursos.md) — Inventário local.
-- [Análise ExamTopics](../../prototypes/analises/analise-examtopics.md) — Inventário local.
+- [Análise QConcursos](../analises/analise-qconcursos.md) — Inventário local.
+- [Análise ExamTopics](../analises/analise-examtopics.md) — Inventário local.
 
 ### Blocos do canvas original
 
@@ -184,7 +184,7 @@ Versões, roadmap histórico, arquivos de entrada e recuperação de branches an
 
 ### Documentos
 
-- [README de protótipos](../../prototypes/README.md) — Ponto de entrada para protótipos e boards.
+- [README de protótipos](../README.md) — Ponto de entrada para protótipos e boards.
 - [Catálogo de branches arquivadas](../../docs/archives/README.md) — Índice dos bundles e snapshots.
 - [Mapa de reutilização](../../docs/archives/REUSE-MAP.md) — Candidatos e limites de reutilização.
 - [Fontes de verdade](../../docs/board/FONTES.md) — Governança do board.
