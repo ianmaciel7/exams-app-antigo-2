@@ -8132,6 +8132,10 @@ function restoreUI(t){ const els=[...view.querySelectorAll('input,select,textare
 view.addEventListener('input',()=>{captureUI(curTab());wsSave();}); view.addEventListener('change',()=>{captureUI(curTab());wsSave();});
 let scrollSave; view.addEventListener('scroll',()=>{ if(wsRestoring) return; const t=curTab(); t.sc[t.i]=view.scrollTop; clearTimeout(scrollSave); scrollSave=setTimeout(wsSave,180); },{passive:true}); addEventListener('pagehide',wsSave);
 function wsGo(h){ h=h||''; if((location.hash||'')===h){ route(false); afterNav(); return; } wsSilent=true; setTimeout(()=>{ wsSilent=false; },500); location.hash=h; }
+/* Interações do usuário na view (ponteiro, teclado, digitação). Se o usuário já agiu
+   antes do restauro agendado, o snapshot antigo não pode sobrescrever a ação dele. */
+let uiTouch=0;
+['pointerdown','keydown','input','change'].forEach(ev=>view.addEventListener(ev,()=>{uiTouch++;},true));
 function afterNav(){
   const t=curTab(), h=t.hist[t.i]||'', mn=document.querySelector('.main');
   if(h!=='#/grafico'){ stopGV(); mn.classList.remove('on-graph'); }
@@ -8139,7 +8143,8 @@ function afterNav(){
   wsLoading(true); wsPaintNav(); wsPaint();
   const target=t.sc[t.i]||0;
   if(target>=0){ wsRestoring=true; [0,120,320,700].forEach((ms,k,a)=>setTimeout(()=>{ if(curTab()!==t||t.hist[t.i]!==h){ wsRestoring=false; return; } if(view.scrollHeight-view.clientHeight>=target-2&&Math.abs(view.scrollTop-target)>2) view.scrollTop=target; if(k===a.length-1) wsRestoring=false; },ms)); }
-  setTimeout(()=>{if(curTab()===t)restoreUI(t);},100); rpSoon();
+  const touchAtNav=uiTouch;
+  setTimeout(()=>{if(curTab()===t&&uiTouch===touchAtNav)restoreUI(t);},100); rpSoon();
 }
 addEventListener('hashchange',()=>{
   const t=curTab(), h=location.hash||'';
