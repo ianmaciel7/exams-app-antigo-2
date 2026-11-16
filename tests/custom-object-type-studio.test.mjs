@@ -22,7 +22,7 @@ test('new type studio uses stable IDs, keyboard preview, built-ins and optional 
   assert.match(html,/CUSTOM_TONES/);
 });
 test('custom object type navigation and editable objects are real routes, not mock cards',()=>{
-  assert.match(html,/if\(TYPES\[kind\]\?\.custom\) return createCustomObject\(kind(,null,pre\.tpl)?\)/);
+  assert.match(html,/if\(TYPES\[kind\]\?\.custom\) return createCustomObject\(kind\)/);
   assert.match(html,/#\/custom-object\//);
   assert.match(html,/data-custom-edit/);
   assert.match(html,/customObjectPage\(obj\)/);
