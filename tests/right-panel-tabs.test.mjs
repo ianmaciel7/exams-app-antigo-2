@@ -155,3 +155,37 @@ test('closing one stacked view preserves its tab and ignores unknown views (#55 
   assert.equal(h.RP.active, initialId);
   assert.equal(h.undo.length, 0);
 });
+
+test('malformed persisted contextual tabs restore Explore instead of empty panel (#54)',()=>{
+  const source=section('const RPD=()=>','const savedRpw=');
+  const restore=rp=>runInNewContext(source+'\nRP',{
+    SV:{rp}, RT:{explorar:{n:'Explorar'},graf:{n:'Gráfico'}},uid:()=>'view-seed'
+  });
+  for(const invalid of [
+    {active:'lost',tabs:[]},
+    {active:'lost',tabs:[{id:'bad',views:[{id:'x',type:'removed-type'}]}]}
+  ]){
+    const panel=restore(invalid);
+    assert.equal(panel.tabs.length,1);
+    assert.equal(panel.tabs[0].views.length,1);
+    assert.equal(panel.tabs[0].views[0].type,'explorar');
+    assert.equal(panel.active,panel.tabs[0].id);
+  }
+});
+
+test('valid persisted contextual tabs and active choice survive reload (#54)',()=>{
+  const source=section('const RPD=()=>','const savedRpw=');
+  const panel=runInNewContext(source+'\nRP',{
+    SV:{rp:{active:'keep',tabs:[{id:'keep',views:[{id:'v1',type:'graf',f:1}]}]}},
+    RT:{explorar:{n:'Explorar'},graf:{n:'Gráfico'}},uid:()=>'new-id'
+  });
+  assert.equal(panel.active,'keep');
+  assert.equal(panel.tabs[0].views[0].type,'graf');
+});
+
+test('missing pinned graph context does not masquerade as the current space (#55)',()=>{
+  const h=harness();
+  h.context.nodeOf=()=>null;
+  assert.equal(h.api.vTitle({type:'graf',ref:'#/concurso/deleted'}),'Gráfico · Objeto indisponível');
+  assert.equal(h.api.vTitle({type:'graf'}),'Gráfico · Dataprev');
+});
