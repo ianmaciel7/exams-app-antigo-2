@@ -81,6 +81,26 @@ try {
       await page.keyboard.press('Escape');
       await page.screenshot({ path: path.join(assets, 'issue57_object_header_' + width + '.png'), animations: 'disabled' });
       report.cases.push({ width, interaction: 'object width, aliases, tags, menu and reload verified' });
+
+      // Graph-backed page footer must be available without opening the right panel.
+      const relationTabs=page.locator('#view .op-link-tabs [role="tab"]');
+      assert.equal(await relationTabs.count(),2,'object has incoming/related tabs');
+      assert.equal(await relationTabs.first().getAttribute('aria-selected'),'true','backlinks active initially');
+      const incoming=page.locator('#view .op-link-panel:visible .op-link-item');
+      assert.ok(await incoming.count()>0,'native Concurso has real inbound links');
+      assert.match(await incoming.first().getAttribute('href'),/^#\/(edicao|cargo|questao|pdf)\//);
+      await relationTabs.last().click();
+      assert.equal(await relationTabs.last().getAttribute('aria-selected'),'true');
+      assert.equal(await page.locator('#view .op-link-panel:visible').count(),1,'only selected relation panel is shown');
+      await page.reload({waitUntil:'domcontentloaded'});
+      const selected=page.locator('#view .op-link-tabs [role="tab"]').last();
+      await selected.waitFor({timeout:15000});
+      assert.equal(await selected.getAttribute('aria-selected'),'true','footer selection persists');
+      await selected.press('ArrowLeft');
+      assert.equal(await page.locator('#view .op-link-tabs [role="tab"]').first().getAttribute('aria-selected'),'true',
+        'keyboard arrow selects backlinks');
+      await page.screenshot({path:path.join(assets,'issue57_object_relations_'+width+'.png'),animations:'disabled'});
+      report.cases.push({width,interaction:'backlinks, related tab, keyboard, persistence and screenshot'});
     } finally { await ctx.close(); }
   }
   assert.deepEqual(report.errors, [], 'no page JavaScript exceptions');

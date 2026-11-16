@@ -42,6 +42,22 @@
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 .op-wide>.op-main{grid-column:1/-1!important}
 
+/* Object backlinks/related footer: real graph edges, independent of right sidebar (#57). */
+.op-link-footer{grid-column:1/-1;min-width:0;padding:22px 0;margin-top:20px;border-top:1px solid var(--line)}
+.op-link-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.op-link-tabs [role="tab"]{border:0;border-radius:999px;padding:7px 12px;min-height:32px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.op-link-tabs [role="tab"][aria-selected="true"]{background:var(--hover);color:var(--text);font-weight:650}
+.op-link-tabs [role="tab"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.op-link-panel[hidden]{display:none!important}
+.op-link-empty{margin:0;color:var(--muted);font-size:13px}
+.op-link-count{opacity:.65;font-size:11px;margin-left:6px}
+.op-link-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:8px}
+.op-link-item{display:block;min-width:0;padding:10px 12px;border-radius:8px;color:var(--text);text-decoration:none;background:var(--side)}
+.op-link-item:hover,.op-link-item:focus-visible{background:var(--hover);outline-offset:2px}
+.op-link-item strong,.op-link-item small{display:block;overflow-wrap:anywhere}
+.op-link-item small{font-size:11px;color:var(--muted);margin-top:3px}
+
+
 /* Object-specific controls and editable metadata, without heavy cards (#57). */
 .op-head-tools{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .op-head-tools button{border:1px solid var(--line);background:var(--side);color:var(--text);border-radius:999px;padding:6px 10px;min-height:32px;font:inherit;font-size:12px;cursor:pointer}
@@ -4974,6 +4990,48 @@ function scopedPage(k,id,tab){
 const KL={txt:['Texto','M4 7h16M4 12h16M4 17h10'],num:['Número','M5 9h14M5 15h14M10 4 8 20M16 4l-2 16'],date:['Data','M4 6h16v14H4zM4 10h16M8 3v4M16 3v4'],sel:['Seleção','M4 6h16v12H4zM9 11l3 3 3-3'],rel:['Relação (outro objeto)','M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1']};
 const pkOf=(t,k)=>{ const o=(store.get('ptypes')||{})[t+'|'+k]; return o||PKIND[k]||['txt']; };
 const pkChip=(t,k)=>{ const [c,to]=pkOf(t,k), [lb,ph]=KL[c]||KL.txt; return '<button type="button" class="pk pk-b" data-ptype="'+esc(t+'|'+k)+'" title="Alterar o tipo da propriedade" aria-label="Tipo de '+esc(PROPS[k].n)+': '+esc(lb)+(to?' para '+esc(to):'')+'. Alterar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+ph+'"/></svg>'+esc(lb.replace(' (outro objeto)',''))+(to?' → '+esc(to):'')+'<span class="pk-c" aria-hidden="true">▾</span></button>'; };
+/* Inline object relationships use the same graph node/edge model as the contextual panel (#57).
+   No speculative links are created when graph data is missing. */
+function opFooterRelations(iid){
+  const href='#/'+String(iid||'').replace(':','/');
+  const n=nodeOf(href);
+  if(!n)return {back:[],related:[]};
+  const nodes=gr().N;
+  const back=n.inn.map(([id,label])=>{
+    const linked=nodes.get(id);return linked?{href:linked.href,title:linked.title,kind:linked.kind,detail:label}:null;
+  }).filter(Boolean).sort((a,b)=>a.title.localeCompare(b.title,'pt-BR',{numeric:true}));
+  const direct=new Set([n.href,...nbrs(n).map(x=>x.href)]),ranked=new Map();
+  nbrs(n).forEach(adj=>nbrs(adj).forEach(candidate=>{
+    if(direct.has(candidate.href))return;
+    const found=ranked.get(candidate.href)||{node:candidate,count:0,via:[]};
+    found.count++;
+    if(found.via.length<2&&!found.via.includes(adj.title))found.via.push(adj.title);
+    ranked.set(candidate.href,found);
+  }));
+  const related=[...ranked.values()]
+    .sort((a,b)=>b.count-a.count||a.node.title.localeCompare(b.node.title,'pt-BR',{numeric:true}))
+    .slice(0,12).map(({node,via})=>({href:node.href,title:node.title,kind:node.kind,detail:'via '+via.join(', ')}));
+  return {back,related};
+}
+function opConnectionFooter(iid){
+  const {back,related}=opFooterRelations(iid);
+  const selection=store.get('object-footer:'+space+':'+iid)==='related'?'related':'back';
+  const list=(items,empty)=>items.length?'<div class="op-link-list">'+items.map(item=>
+    '<a class="op-link-item" href="'+esc(item.href)+'"><strong>'+esc(item.title)+'</strong><small>'+
+    esc(kn(item.kind))+(item.detail?' · '+esc(item.detail):'')+'</small></a>').join('')+'</div>':
+    '<p class="op-link-empty">'+empty+'</p>';
+  const tabs=[['back','Links de entrada',back],['related','Conteúdo relacionado',related]];
+  const key=String(iid).replace(/[^a-zA-Z0-9-]/g,'-');
+  return '<section class="op-link-footer" aria-label="Conexões do objeto"><div class="op-link-tabs" role="tablist" aria-label="Relações do objeto">'+
+    tabs.map(([id,name,rows])=>
+      '<button type="button" role="tab" id="op-link-tab-'+key+'-'+id+'" aria-controls="op-link-panel-'+key+'-'+id+'" '+
+      'aria-selected="'+(selection===id)+'" tabindex="'+(selection===id?0:-1)+'" data-op-footer="'+esc(iid)+'|'+id+'">'+
+      name+'<span class="op-link-count">'+rows.length+'</span></button>').join('')+'</div>'+
+    '<div class="op-link-panel" role="tabpanel" id="op-link-panel-'+key+'-back" aria-labelledby="op-link-tab-'+key+'-back" '+
+    (selection==='back'?'':'hidden')+'>'+list(back,'Ainda não há links de entrada para este objeto.')+'</div>'+
+    '<div class="op-link-panel" role="tabpanel" id="op-link-panel-'+key+'-related" aria-labelledby="op-link-tab-'+key+'-related" '+
+    (selection==='related'?'':'hidden')+'>'+list(related,'Ainda não há conteúdo relacionado em dois saltos.')+'</div></section>';
+}
 function opPage(o){
   const cr=(o.crumb||[]).filter(([t,h])=>!(t==='Espaço'&&h==='#/espaco'));
   const collectionType=String(o.iid||'').split(':')[0],hasCollections=/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')&&!o.tab;
@@ -4997,7 +5055,7 @@ function opPage(o){
     '<button type="button" data-op-assistant="'+esc(o.iid)+'" aria-label="Abrir assistente no painel direito">IA</button>'+
     '<button type="button" data-op-more="'+esc(o.iid)+'" aria-label="Mais ações do objeto">⋯</button></div>':'';
   return '<article class="op'+((o.wide||widePreference)?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
-   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div></article>';
+   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?' class="op-edt" tabindex="0" role="button" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título"':'')+'>'+esc(o.title)+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div>'+(isObjectHeader?opConnectionFooter(o.iid):'')+'</article>';
 }
 function opStats(){ const st=studyStats(), tot=(questionBank&&questionBank.length)||70;
   if(!st.done) return '';
@@ -5165,8 +5223,32 @@ function opTipoPage(t,T,list,sp){
     '<button type="button" class="op-btn" data-add-prop="'+esc(t)+'">+ Adicionar propriedade</button></details>';
   return tdTypePage(t,T,list,{overviewExtra:properties});
 }
+view.addEventListener('keydown',e=>{
+  const tab=e.target.closest?.('.op-link-tabs [role="tab"]');
+  if(!tab||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+  const options=[...tab.parentElement.querySelectorAll('[role="tab"]')];
+  const ix=options.indexOf(tab);
+  const next=e.key==='Home'?0:e.key==='End'?options.length-1:
+    (ix+(e.key==='ArrowRight'?1:-1)+options.length)%options.length;
+  e.preventDefault();options[next]?.click();
+});
 view.addEventListener('click',async e=>{
-  let el=e.target.closest('[data-op-width]');
+  let el=e.target.closest('[data-op-footer]');
+  if(el){
+    const [iid,tab]=el.dataset.opFooter.split('|');
+    if(!['back','related'].includes(tab))return;
+    store.set('object-footer:'+space+':'+iid,tab);
+    const container=el.closest('.op-link-footer');
+    container?.querySelectorAll('[role="tab"]').forEach(button=>{
+      const active=button.dataset.opFooter===iid+'|'+tab;
+      button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;
+    });
+    container?.querySelectorAll('[role="tabpanel"]').forEach(panel=>{
+      panel.hidden=!panel.id.endsWith('-'+tab);
+    });
+    el.focus();return;
+  }
+  el=e.target.closest('[data-op-width]');
   if(el){const id=el.dataset.opWidth,key='object-wide:'+space+':'+id;store.set(key,!store.get(key));route(true);return;}
   el=e.target.closest('[data-op-meta]');
   if(el){
