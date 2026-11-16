@@ -5226,10 +5226,18 @@ function tdParseQuery(expression){
   if(chunks.length%2!==1||chunks.length>11)return null;
   const rules=[];
   for(let i=0;i<chunks.length;i+=2){
-    const match=/^(name|category|type|tag|prop|link)\s*:\s*(.+)$/i.exec(chunks[i].trim());
+    const token=chunks[i].trim();
+    const numeric=/^(progress|minutes)\s*(<=|>=|<|>|=)\s*(\d{1,4})$/i.exec(token);
+    if(numeric){
+      const field=numeric[1].toLowerCase(),value=Number(numeric[3]);
+      if(field==='progress'&&value>100)return null;
+      rules.push({field,value,op:numeric[2],join:i?chunks[i-1].toUpperCase():null});
+      continue;
+    }
+    const match=/^(name|category|type|tag|prop|link|in)\s*:\s*(.+)$/i.exec(token);
     if(!match)return null;
     const rawValue=match[2].trim();
-    if(!/^".*"$/.test(rawValue)&&/\s+(?:name|category|type|tag|prop|link)\s*:/i.test(rawValue))return null;
+    if(!/^".*"$/.test(rawValue)&&/\s+(?:name|category|type|tag|prop|link|in)\s*:/i.test(rawValue))return null;
     const field=match[1].toLowerCase(),value=rawValue.replace(/^"(.+)"$/,'$1').trim();
     if(!value||value.length>120)return null;
     rules.push({field,value,join:i?chunks[i-1].toUpperCase():null});
@@ -5248,6 +5256,14 @@ function tdQueryMatch(item,expression,context={}){
       case 'type':return contains(item.kind,rule.value)||contains(context.typeName,rule.value);
       case 'tag':return tags.some(tag=>contains(tag,rule.value));
       case 'link':return links.some(link=>contains(link,rule.value));
+      case 'in':return normal(context.triage||'')===normal(rule.value);
+      case 'progress':
+      case 'minutes':{
+        const n=rule.field==='progress'?context.progress:context.minutes;
+        if(!Number.isFinite(n))return false;
+        return ({'<':()=>n<rule.value,'>':()=>n>rule.value,
+          '<=':()=>n<=rule.value,'>=':()=>n>=rule.value,'=':()=>n===rule.value}[rule.op]||(()=>false))();
+      }
       case 'prop':{
         const [key,value]=rule.value.includes('=')?rule.value.split(/=(.*)/s).slice(0,2):['',rule.value];
         return props.some(([name,text])=>(!key||contains(name,key))&&contains(text,value));
@@ -5265,7 +5281,7 @@ function tdSavedQueryMatch(item,term,context){
   return !!old&&!old.includes(':')&&(item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(old);
 }
 function tdQueryContext(item){
-  const iid=String(item.href||'').replace(/^#\//,'').replace('/',':');
+  const iid=item.kind==='pdf'?'pdf:'+item.id:String(item.href||'').replace(/^#\//,'').replace('/',':');
   const meta=store.get('object-meta:'+space+':'+iid)||{};
   const node=typeof nodeOf==='function'?nodeOf(item.href):null;
   const graph=typeof gr==='function'?gr().N:new Map();
@@ -5273,7 +5289,9 @@ function tdQueryContext(item){
   const links=node?[...node.inn,...node.out].map(([h,relation])=>{
     const adjacent=graph.get(h);return [h,adjacent?.title||'',relation].join(' ');
   }):[];
-  return {tags:Array.isArray(meta.tags)?meta.tags:[],props,links,typeName:TYPES[item.kind]?.n||item.kind};
+  const metrics=item.kind==='pdf'?tdReadMetrics(item):{progress:null,minutes:null};
+  return {tags:Array.isArray(meta.tags)?meta.tags:[],props,links,typeName:TYPES[item.kind]?.n||item.kind,
+    triage:item.kind==='pdf'?tdReaderStatus(item):'',progress:metrics.progress,minutes:metrics.minutes};
 }
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
@@ -5467,11 +5485,11 @@ view.addEventListener('click',async e=>{
     const collection=el.hasAttribute('data-td-create-collection'),t=el.dataset.tdCreateCollection||el.dataset.tdCreateQuery;
     const savedKey=(collection?'typeCollections:':'typeQueries:')+space+':'+t;
     const input=await formDialog({title:collection?'Criar coleção':'Criar query',ok:'Salvar',
-      text:collection?'Agrupe objetos manualmente.':'Exemplos: name:Concurso AND tag:Revisão; prop:Ano=2026; link:Dataprev. Operadores AND/OR, avaliados da esquerda para a direita.',
+      text:collection?'Agrupe objetos manualmente.':'Exemplos: in:inbox AND type:pdf; tag:edital AND progress < 100; minutes < 15. AND/OR são avaliados da esquerda para a direita. Progressos e tempos desconhecidos não entram em comparações numéricas.',
       fields:collection?[{id:'nome',label:'Nome da coleção'}]:
         [{id:'nome',label:'Nome da query'},{id:'busca',label:'Condições (campo:valor, AND/OR)',placeholder:'category:PDF AND tag:Edital'}],
       validate:v=>({nome:!String(v.nome||'').trim()?'Nome obrigatório':'',
-        ...(collection?{}:{busca:!tdParseQuery(v.busca)?'Informe condições válidas com name:, category:, type:, tag:, prop: ou link:.':''})})});
+        ...(collection?{}:{busca:!tdParseQuery(v.busca)?'Use name:, category:, type:, tag:, prop:, link:, in: ou progress/minutes com comparador.':''})})});
     if(!input)return;
     const current=store.get(savedKey)||[];
     const next=Array.isArray(current)?current.slice():[];
