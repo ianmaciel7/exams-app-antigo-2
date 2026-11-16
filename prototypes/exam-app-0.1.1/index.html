@@ -54,6 +54,12 @@
 .td-reader-link small,.td-reader-link span{font-size:11px;color:var(--muted)}
 .td-reader-actions{display:flex;align-items:center;flex-wrap:wrap;gap:4px;max-width:100%}
 .td-reader-actions button:hover,.td-triage-filters button:hover{background:var(--hover)}
+.td-reader-nav-item{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border:0;border-radius:6px;background:transparent;color:var(--muted);text-align:left;text-decoration:none;font:inherit;font-size:12px;cursor:pointer;min-height:30px}
+.td-reader-nav-item[aria-current="page"],.td-reader-nav-item:hover,.td-reader-nav-item:focus-visible{background:var(--hover);color:var(--text)}
+.td-reader-nav-item .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.td-reader-nav-item .p{flex:none;font-size:11px}
+.td-reader-nav-sub{margin:10px 10px 4px;font-size:10px;color:var(--muted);font-weight:650}
+
 
 
 /* Object backlinks/related footer: real graph edges, independent of right sidebar (#57). */
@@ -3829,9 +3835,46 @@ function paintNav(){
   const opins=objPins().map(k=>[k,pinInfo(k)]).filter(x=>x[1]);
   let pinHtml=pinG?secHtml(pinG,false):'';
   if(opins.length){ const rows=opins.map(([k,i])=>treeNode(k,i.l,i.h,i.i,i.tone)).join(''); if(!pinHtml) pinHtml=secHtml({g:'Fixados',items:[],pinned:true},false); pinHtml=pinHtml.replace('<div class="sec-b">','<div class="sec-b">'+rows); }
-  nav.innerHTML=czSec+pinHtml+typesSec()+customSectionsHtml()+addSectionHtml();
+  nav.innerHTML=czSec+pinHtml+tdReaderNavSection()+typesSec()+customSectionsHtml()+addSectionHtml();
   applyNavOrder(); markCurrent();
 }
+/* Real PDF triage and saved-filter navigation, scoped to the current space (#81). */
+function tdReaderNavSection(){
+  const key=space+':__reader',collapsed=closedSecs.has(key),items=docsOf(space).filter(d=>d.type==='pdf');
+  const state=tdState('pdf'),onPage=(location.hash||'').startsWith('#/tipo/pdf');
+  const stages=TD_TRIAGE.filter(([s])=>s!=='all').map(([stage,label])=>{
+    const count=items.filter(d=>tdReaderStatus(d)===stage).length;
+    const current=onPage&&state.triage===stage&&!state.query;
+    return '<button type="button" class="td-reader-nav-item" data-nav-reader-stage="'+stage+'"'+(current?' aria-current="page"':'')+
+      '><span class="t">'+esc(label)+'</span><span class="p">'+count+'</span></button>';
+  }).join('');
+  const saved=store.get('typeQueries:'+space+':pdf'),queries=Array.isArray(saved)?saved:[];
+  const views=queries.map(q=>
+    '<button type="button" class="td-reader-nav-item" data-nav-reader-query="'+esc(q.id)+'"'+
+    (onPage&&state.query===q.id?' aria-current="page"':'')+' title="'+esc(q.term)+'">'+
+    '<span class="t">'+esc(q.name)+'</span><span class="p">↗</span></button>').join('');
+  return '<section class="sec'+(collapsed?' closed':'')+'" data-seckey="'+esc(key)+'">'+
+    secHead(key,'Leituras',collapsed,items.length,'group')+
+    '<div class="sec-b"'+(collapsed?' hidden':'')+'>'+
+    '<a class="td-reader-nav-item" href="#/tipo/pdf">Todos os documentos</a>'+stages+
+    (queries.length?'<p class="td-reader-nav-sub">Visões filtradas</p>'+views:'')+
+    '</div></section>';
+}
+nav.addEventListener('click',e=>{
+  const action=e.target.closest?.('[data-nav-reader-stage],[data-nav-reader-query]');
+  if(!action)return;
+  e.preventDefault();e.stopPropagation();
+  const stage=action.dataset.navReaderStage,queryId=action.dataset.navReaderQuery;
+  if(stage){
+    if(!TD_TRIAGE.some(([id])=>id===stage))return;
+    tdUpdate('pdf',{tab:'all',triage:stage,query:'',search:''});
+  }else{
+    const saved=store.get('typeQueries:'+space+':pdf'),queries=Array.isArray(saved)?saved:[];
+    if(!queries.some(q=>q.id===queryId))return;
+    tdUpdate('pdf',{tab:'all',triage:'all',query:queryId,search:''});
+  }
+  wsOpenMain('#/tipo/pdf');paintNav();
+});
 function typesSec(){
   const key=space+':__types', closed=!openTypes.has(key), mine=objsOf(space);
   const TI=TYI();
@@ -5374,7 +5417,7 @@ view.addEventListener('click',async e=>{
   if(el){
     const id=el.dataset.tdMove,target=el.dataset.tdTarget;
     if(!TD_TRIAGE.some(([key])=>key===target&&key!=='all'))return;
-    store.set(tdReaderKey(id),target);showObjs('/tipo/pdf');return;
+    store.set(tdReaderKey(id),target);paintNav();showObjs('/tipo/pdf');return;
   }
   el=e.target.closest('[data-td-triage]');
   if(el){
@@ -5494,7 +5537,7 @@ view.addEventListener('click',async e=>{
     const current=store.get(savedKey)||[];
     const next=Array.isArray(current)?current.slice():[];
     next.push({id:'td-'+Date.now().toString(36),name:String(input.nome).trim(),term:collection?'':String(input.busca||'').trim(),...(collection?{members:[]}:{})});
-    store.set(savedKey,next);showObjs('/tipo/'+t);return;
+    store.set(savedKey,next);paintNav();showObjs('/tipo/'+t);return;
   }
   if(el=e.target.closest('[data-td-apply-query]')){
     const [t,id]=el.dataset.tdApplyQuery.split('|'),saved=store.get('typeQueries:'+space+':'+t)||[],q=saved.find(x=>x.id===id);
@@ -5510,7 +5553,7 @@ view.addEventListener('keydown',e=>{
   const row=e.target.closest?.('.td-reader-row');
   if(!row||e.target!==row)return; // Never hijack typing, links, or button keypresses.
   e.preventDefault();store.set(tdReaderKey(row.dataset.tdReaderId),e.key.toLowerCase()==='e'?'archive':'later');
-  showObjs('/tipo/pdf');
+  paintNav();showObjs('/tipo/pdf');
 });
 view.addEventListener('change',e=>{
   const l=e.target.closest('[data-td-layout]'),o=e.target.closest('[data-td-sort]');
