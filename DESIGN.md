@@ -836,7 +836,7 @@ Referência central: [docs/ux/taxonomia-componentes-e-dialogs-2026.md](docs/ux/t
 
 **Escolha por superfície:** FormDialog para pequenas alterações, Confirmation/AlertDialog para ações importantes, Danger Modal para exclusões irreversíveis, Picker para escolher referência/ícone/data, Wizard ou página para fluxos longos, Popover não modal para ajustes breves, Side/Bottom Sheet para contexto e largura estreita. Usar nomenclatura da fonte canônica e não confundir variantes de apresentação com modalidades.
 
-## 9. Referências catalogadas — 21 candidatos a skills + 1 agregador (auditoria em andamento)
+## 9. Referências catalogadas — 21 candidatos a skills + 1 agregador (leitura pública em 2026-11-16)
 
 Os 22 itens abaixo são **21 candidatos a skills e 1 agregador comunitário (M09)**; **não correspondem a 22 SKILL.md individuais verificados**, e não são extensões oficiais de Apple ou Google. **Catalogar URL não comprova leitura integral de cada SKILL.md, README e referências internas.** Não afirmar que os 22 foram verificados ou que cada resumo corresponde ao estado atual do repositório sem registro de arquivo/revisão/data. Esta integração é uma síntese preliminar enquanto a análise aprofundada de cada fonte não estiver documentada. Alguns estão voltados a Android/SwiftUI; nem todo trecho de código se aplica a um protótipo HTML/CSS/JS. Para números ou requisitos, confrontar com a documentação oficial **vigente**.
 
@@ -865,7 +865,7 @@ Os 22 itens abaixo são **21 candidatos a skills e 1 agregador comunitário (M09
 | A11 | rshankras — Apple Design Skills | Liquid Glass, tipografia, animação, microcopy | https://github.com/rshankras/claude-code-apple-skills/tree/main/skills/design |
 | A12 | Sunwood-ai-labs — Apple HIG | Fluxo evidence-first e verificação pós-alteração | https://github.com/Sunwood-ai-labs/design-with-apple-hig |
 
-**Fontes primárias para validação:** [Material 3](https://m3.material.io/), [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/), [Apple Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/). As alegações técnicas dos skills e recomendações numéricas de terceiros devem ser revalidadas contra o arquivo original e a origem oficial antes de qualquer uso normativo. **Evidência de leitura integral dos 21 SKILL.md candidatos: não registrada nesta versão; M09 é um agregador.**
+**Fontes primárias para validação:** [Material 3](https://m3.material.io/), [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/), [Apple Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/). As alegações técnicas dos skills e recomendações numéricas de terceiros devem ser revalidadas contra o arquivo original e a origem oficial antes de qualquer uso normativo. **Status da leitura (2026-11-16, ver `docs/auditorias/231-skills-m3-apple.md`):** SKILL.md lido (frontmatter e cabeçalhos, sem leitura integral de `references/`) em 16 de 22 itens; caminho não localizado em M02, M03, M04, A08 e A09 (M03 e M04 têm README público); M09 é agregador e a origem não foi localizada. Leitura integral e SHA de commit não registrados: a API do GitHub estava bloqueada na sessão.
 
 <!-- MATERIAL-APPLE-INTEGRATION:END -->
 
