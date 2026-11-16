@@ -1,28 +1,33 @@
 # Fontes de verdade do board
 
-Este documento diz qual fonte manda em cada tipo de informação e como as representações são geradas. Não há sincronização bidirecional automática entre elas.
+Este documento define a responsabilidade de cada representação. Não há sincronização bidirecional automática com Claude Whiteboards.
 
-| Fonte | Responsabilidade | Como é atualizada | Sincronização |
+| Fonte | Responsabilidade | Atualização | Sincronização |
 | --- | --- | --- | --- |
-| `prototypes/board-exam-app/board.json` | Canvas: blocos, imagens e setas. Fonte canônica do board local. | Edição direta do JSON, em PR. | Gera `BOARD.md` (`board_to_md.py`). CI falha se `BOARD.md` estiver desatualizado. |
-| `prototypes/board-exam-app/BOARD.md` | Versão em Markdown para leitura por IA e humanos. | Nunca editar à mão. Gerado. | Regenerado pelo CI a cada PR que mexe no board. |
-| `prototypes/board-exam-app/board-mestre.json` | Índice compacto: áreas 01–05 e cards que apontam para blocos do `board.json` por ID. | Edição direta, em PR. | Gera `board-mestre.md` (`render_board_mestre.py`). Falha se algum ID não existir. |
-| `prototypes/board-exam-app/index.html` | Visualizador do canvas. Aceita `#ID` para enquadrar um bloco. | Código, em PR. | Lê `board.json` em tempo de execução. |
-| `prototypes/board-exam-app/mestre.html` | Visualizador do Board Mestre: busca, filtros, galeria e lista. | Código, em PR. | Lê `board-mestre.json` e `board.json`. |
-| `docs/evidence/catalog.json` | Catálogo de evidências (capturas, testes, órfãos, duplicatas). | `scripts/build-evidence-catalog.py`. | `scripts/validate-evidence-catalog.py` verifica se está atualizado. |
-| GitHub (issues, PRs, CI) | Execução de engenharia e status. | Pelo fluxo issue → PR contra `dev` → squash. | Não duplicar status no board à mão. |
-| Claude Whiteboards | Exploração visual. | Manual, no próprio ambiente. | **Não sincronizado.** Nenhuma alteração remota foi verificada. Qualquer cópia exige teste real de exportação ou importação antes de ser afirmada. |
+| `prototypes/board-exam-app/board.json` | Canvas original: blocos, imagens e setas. Fonte canônica. | Edição direta em PR. | Gera `BOARD.md`; CI valida integridade. |
+| `prototypes/board-exam-app/BOARD.md` | Leitura Markdown do canvas. | Gerado; não editar à mão. | `board_to_md.py`. |
+| `prototypes/board-exam-app/board-mestre.json` | Índice dos sete boards, documentos e 53 containers. | Edição direta em PR. | Gera `board-mestre.md`; cada container aparece uma vez. |
+| `prototypes/board-exam-app/board-mestre.md` | Índice Markdown para pessoas e agentes. | Gerado; não editar à mão. | `render_board_mestre.py`. |
+| `docs/board/boards/*.md` | Diagramas Mermaid e mapas de leitura por assunto. | Atualização manual. | Apontam para fontes canônicas; não duplicam conteúdo. |
+| `prototypes/board-exam-app/mestre.html` | Central visual com mapa, filtros, documentos e atalhos. | Código em PR. | Lê `board-mestre.json` e `board.json`. |
+| `prototypes/board-exam-app/index.html` | Visualizador do canvas original. | Código em PR. | Lê `board.json`; aceita `#ID`. |
+| `docs/evidence/catalog.json` | Catálogo estruturado de evidências. | `scripts/build-evidence-catalog.py`. | Validado pelo script do catálogo. |
+| GitHub (issues, PRs, CI) | Estado de execução e entrega. | Fluxo de engenharia. | Não duplicar status no board. |
+| Claude Whiteboards | Exploração visual remota. | Manual. | Não sincronizado automaticamente. |
 
-## Regras
+## Regras de manutenção
 
-1. Mudança no board começa em `board.json` ou `board-mestre.json`, nunca em `BOARD.md` ou `board-mestre.md`.
-2. Antes de abrir PR, rode `python3 -I validate_board.py`, `python3 -I render_board_mestre.py` e `python3 -I board_to_md.py`. O CI faz as mesmas checagens.
-3. Um bloco novo entra no `board.json` com ID único e estável. Depois, ele é referenciado no `board-mestre.json` pelo mesmo ID.
-4. Evidência nova: adicione o arquivo em `assets/` (ou `assets/evidence/`) e cite-o em `board-mestre.json` pelo campo `images`. Não duplique arquivos que já existem (verifique por hash).
-5. Status de issue e PR não se copiam para o board. O board diz o que existe e o que foi verificado. O GitHub diz o que foi feito.
+1. Mudanças no canvas começam em `board.json`, nunca em `BOARD.md`.
+2. Mudanças no índice começam em `board-mestre.json`, nunca em `board-mestre.md`.
+3. Cada container do canvas pertence a exatamente um board temático. Referências cruzadas são links, não cópias.
+4. Classifique por `kind` (modelo, pesquisa, evidência, fluxo, arquitetura). Não misture tipo de conteúdo com status.
+5. Feito, Em andamento e Pendente são snapshots antigos; consulte GitHub para o estado atual.
+6. Cada board temático deve ter diagrama Mermaid, documentos relacionados e links para IDs originais.
+7. Evidências precisam de proveniência; não inferir issue/PR apenas pelo nome do arquivo.
+8. Antes da PR: `python3 -I validate_board.py`, `python3 -I validate_board_index.py`, `python3 -I render_board_mestre.py` e `python3 -I board_to_md.py`.
 
-## Limites conhecidos
+## Limites
 
-- Os status dos cards em `board-mestre.json` foram classificados por mim a partir do conteúdo. Precisam de revisão humana.
-- Vínculos de evidência com funcionalidade e issue, no catálogo, são inferidos pelo nome do arquivo.
 - Não há sincronização com Claude Whiteboards.
+- O índice é uma camada de navegação; o canvas original permanece preservado e extenso.
+- Diagramas são mapas de leitura. Para status atual, use GitHub; para conteúdo integral, abra a fonte canônica.

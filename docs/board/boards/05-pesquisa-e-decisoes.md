@@ -1,0 +1,45 @@
+# 05 — Pesquisa e decisões
+
+> Separa o que foi observado em fontes externas daquilo que foi decidido para o Exam App. Benchmark não prova implementação no nosso produto.
+
+```mermaid
+flowchart LR
+  SOURCE[Fonte primária ou referência] --> OBS[Observação reproduzível]
+  OBS --> DOSSIER[Inventário ou dossiê]
+  DOSSIER --> SYNTH[Síntese comparativa]
+  SYNTH --> DECISION[Adotar - Adaptar - Descartar]
+  DECISION --> SPEC[Requisito ou especificação]
+  SPEC --> ISSUE[Issue com aceite]
+  ISSUE --> PR[PR e implementação]
+  PR --> TEST[Teste e evidência]
+```
+
+## Proveniência
+
+- Priorize documentação oficial e fontes primárias.
+- Registre data, rota, autenticação, ambiente e limites da observação.
+- Separe fato, inferência, hipótese e decisão de produto.
+- Não trate captura antiga ou branch arquivada como prova de comportamento atual.
+- Decisão de produto deve apontar para evidência e requisito.
+
+## Documentos
+
+- [Capacities — #32](../../research/capacities-issue-32-2026-11-15.md)
+- [ExamTopics — inventário](../../research/examtopics-inventory.md)
+- [QConcursos — #31](../../research/qconcursos-issue-31-2026-11-15.md)
+- [Gran Questões — #62](../../research/gran-questoes-issue-62-2026-11-15.md)
+- [Auditoria UI skills — #156](../../research/issue-156-ui-skills-audit-2026-11-15.md)
+- [Pesquisa UX — 20 fontes](../../ux/pesquisa-20-fontes-2026-11.md)
+- [Análise QConcursos](../../../prototypes/analises/analise-qconcursos.md)
+- [Análise ExamTopics](../../../prototypes/analises/analise-examtopics.md)
+
+## Blocos originais
+
+- [e107 — Fontes e referências](../../../prototypes/board-exam-app/index.html#e107)
+- [e108 — QConcursos](../../../prototypes/board-exam-app/index.html#e108)
+- [e116 — ExamTopics](../../../prototypes/board-exam-app/index.html#e116)
+- [e119 — Readwise](../../../prototypes/board-exam-app/index.html#e119)
+- [e190 — Análise ExamTopics](../../../prototypes/board-exam-app/index.html#e190)
+- [e400 — Análise QConcursos](../../../prototypes/board-exam-app/index.html#e400)
+- [e900 — Dossiê comparativo](../../../prototypes/board-exam-app/index.html#e900)
+- [e1090 — Dossiê Readwise](../../../prototypes/board-exam-app/index.html#e1090)

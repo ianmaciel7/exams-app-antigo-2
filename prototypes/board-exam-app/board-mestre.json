@@ -1,291 +1,684 @@
 {
-  "title": "Board Mestre — índice do Exam App",
-  "note": "Índice compacto. Não contém conteúdo: aponta para blocos existentes do board.json por ID estável. Não mover nem apagar blocos do canvas; para adicionar um bloco, inclua aqui o ID dele.",
+  "schema_version": 2,
+  "title": "Exam App — Central de Boards",
+  "note": "Navegação por assunto, não por etapa. Cada board temático agrupa documentos e blocos do canvas original. O conteúdo canônico permanece em board.json/BOARD.md; estes boards são mapas e índices, não cópias.",
   "areas": [
     {
       "id": "01",
-      "name": "Discovery & Research",
-      "summary": "Concorrentes, referências e pesquisas que motivaram o produto.",
+      "name": "Produto & domínio",
+      "summary": "Modelo de domínio, tipos, propriedades, relações e decisões de produto.",
+      "board": "docs/board/boards/01-produto-e-dominio.md",
+      "documents": [
+        {
+          "title": "Board original completo",
+          "path": "prototypes/board-exam-app/BOARD.md",
+          "role": "Fonte canônica dos blocos e especificações."
+        },
+        {
+          "title": "Pesquisa Capacities",
+          "path": "docs/research/capacities-issue-32-2026-11-15.md",
+          "role": "Referência oficial sobre objetos, tipos e propriedades."
+        },
+        {
+          "title": "Arquitetura da informação",
+          "path": "docs/ux/arquitetura-informacao-navegacao.md",
+          "role": "Distingue jornadas de tipos de objeto."
+        }
+      ],
       "cards": [
         {
-          "name": "Referências QConcursos",
+          "name": "Espaço → Objeto → Tipo",
+          "kind": "modelo",
           "blocks": [
-            "e108"
+            "e52"
           ],
-          "status": "pesquisa"
+          "summary": "Estrutura fundamental do workspace."
         },
         {
-          "name": "Referências ExamTopics",
+          "name": "Modelo de objetos e relações",
+          "kind": "modelo",
           "blocks": [
-            "e116"
+            "e104"
           ],
-          "status": "pesquisa"
+          "summary": "Entidades, relações e propriedades do domínio."
         },
         {
-          "name": "Referências Readwise",
+          "name": "Herança Arquivo → Documento → PDF",
+          "kind": "modelo",
           "blocks": [
-            "e119"
+            "e99"
           ],
-          "status": "pesquisa"
+          "summary": "Hierarquia e herança de propriedades."
         },
         {
-          "name": "Dossiê QConcursos (funcional)",
+          "name": "Glossário do domínio",
+          "kind": "referencia",
           "blocks": [
-            "e900"
+            "e95"
           ],
-          "status": "pesquisa"
+          "summary": "Vocabulário canônico das entidades."
         },
         {
-          "name": "Dossiê Readwise Reader e SRS",
+          "name": "Decisões de modelagem",
+          "kind": "decisao",
           "blocks": [
-            "e1090"
+            "e152"
           ],
-          "status": "pesquisa"
+          "summary": "Regras sobre relações, coleções, etiquetas e revisão."
         },
         {
-          "name": "Matriz de decisões extraída dos sites",
+          "name": "Matriz de decisões de produto",
+          "kind": "decisao",
           "blocks": [
             "e1150"
           ],
-          "status": "decisão"
-        },
-        {
-          "name": "Auditoria UI/UX",
-          "blocks": [
-            "e600"
-          ],
-          "status": "pesquisa"
+          "summary": "Adotar, adaptar ou descartar padrões observados."
         }
       ]
     },
     {
       "id": "02",
-      "name": "Product & UX",
-      "summary": "Funcionalidades por jornada do usuário, layout e diretrizes.",
+      "name": "Workspace & UX",
+      "summary": "Navegação, layout, painéis, propriedades, grafo, responsividade e interação.",
+      "board": "docs/board/boards/02-workspace-e-ux.md",
+      "documents": [
+        {
+          "title": "Arquitetura da informação e navegação",
+          "path": "docs/ux/arquitetura-informacao-navegacao.md",
+          "role": "Rotas, jornadas e hierarquia de páginas."
+        },
+        {
+          "title": "Leis e princípios UX/UI",
+          "path": "docs/ux/ux-ui-principles.md",
+          "role": "Catálogo de princípios e critérios."
+        },
+        {
+          "title": "Padrões de componentes UI",
+          "path": "docs/ux/componentes-ui-padroes-2026.md",
+          "role": "Inventário de padrões verificáveis."
+        },
+        {
+          "title": "Taxonomia de componentes e dialogs",
+          "path": "docs/ux/taxonomia-componentes-e-dialogs-2026.md",
+          "role": "Variantes e semântica de componentes."
+        },
+        {
+          "title": "Data Visualization e dashboards",
+          "path": "docs/ux/data-visualization-dashboards-2026.md",
+          "role": "Métricas, gráficos e dashboards."
+        },
+        {
+          "title": "Pesquisa UX — 20 fontes",
+          "path": "docs/ux/pesquisa-20-fontes-2026-11.md",
+          "role": "Síntese de referências."
+        },
+        {
+          "title": "Auditoria Material 3 e Apple",
+          "path": "docs/auditorias/231-skills-m3-apple.md",
+          "role": "Auditoria de design systems."
+        }
+      ],
       "cards": [
         {
-          "name": "Layout de três painéis",
+          "name": "Workspace de três painéis",
+          "kind": "arquitetura de interação",
           "blocks": [
             "e500"
           ],
-          "status": "implementado"
+          "summary": "Sidebar, área principal e painel contextual."
         },
         {
-          "name": "Estrutura Espaço → Objeto → Tipo",
-          "blocks": [
-            "e52"
-          ],
-          "status": "implementado"
-        },
-        {
-          "name": "Diretrizes de UI/UX",
+          "name": "Diretrizes gerais de UI/UX",
+          "kind": "diretriz",
           "blocks": [
             "e162"
           ],
-          "status": "implementado"
-        },
-        {
-          "name": "Questões e simulados",
-          "blocks": [
-            "e1155"
-          ],
-          "status": "implementado"
-        },
-        {
-          "name": "Cadernos e queries de questões",
-          "blocks": [
-            "e1188"
-          ],
-          "status": "implementado"
-        },
-        {
-          "name": "Filtros avançados",
-          "blocks": [
-            "e1208"
-          ],
-          "status": "implementado"
+          "summary": "Organização, acessibilidade, densidade e estados."
         },
         {
           "name": "Painel de propriedades",
+          "kind": "especificacao",
           "blocks": [
             "e504"
           ],
-          "status": "proposto"
+          "summary": "Campos tipados e edição contextual."
         },
         {
           "name": "Dashboard central de estudos",
+          "kind": "especificacao",
           "blocks": [
             "e506"
           ],
-          "status": "proposto"
+          "summary": "Home e visão resumida do estudo."
         },
         {
-          "name": "Revisão diária",
+          "name": "Explorar, grafo e navegação contextual",
+          "kind": "especificacao",
           "blocks": [
-            "e1465"
+            "e510"
           ],
-          "status": "implementado"
+          "summary": "Descoberta e navegação tripartida."
         },
         {
-          "name": "Leitor PDF e anotações",
+          "name": "Auditoria geral de UI/UX",
+          "kind": "auditoria",
           "blocks": [
-            "e1477",
-            "e1177"
+            "e600"
           ],
-          "status": "implementado"
+          "summary": "Diagnóstico visual e funcional."
         },
         {
-          "name": "Responsividade da home",
+          "name": "Capacities e branches antigas",
+          "kind": "pesquisa",
+          "blocks": [
+            "e700"
+          ],
+          "summary": "Comparação de workspace e padrões históricos."
+        },
+        {
+          "name": "Painel direito e motor de grafo",
+          "kind": "blueprint",
+          "blocks": [
+            "e800"
+          ],
+          "summary": "Painel contextual, grafo e superfícies de estudo."
+        },
+        {
+          "name": "Tema e seletores nativos",
+          "kind": "teste",
+          "blocks": [
+            "e1228"
+          ],
+          "summary": "Tema e controles nativos no Chromium Windows."
+        },
+        {
+          "name": "Responsividade da Home",
+          "kind": "teste",
           "blocks": [
             "e1339"
           ],
-          "status": "implementado"
+          "summary": "Validação em larguras móveis e desktop."
+        },
+        {
+          "name": "Movimento reduzido no grafo",
+          "kind": "teste",
+          "blocks": [
+            "e1351"
+          ],
+          "summary": "Preferência de movimento no canvas."
+        },
+        {
+          "name": "Exportação PNG do grafo",
+          "kind": "teste",
+          "blocks": [
+            "e1361"
+          ],
+          "summary": "Exportação e operação por teclado."
+        },
+        {
+          "name": "SpaceSwitcher",
+          "kind": "especificacao",
+          "blocks": [
+            "e1385"
+          ],
+          "summary": "Busca, reordenação e persistência de espaços."
+        },
+        {
+          "name": "Atalhos e roteador de comandos",
+          "kind": "especificacao",
+          "blocks": [
+            "e1397"
+          ],
+          "summary": "Comandos globais e disponibilidade contextual."
         }
       ]
     },
     {
       "id": "03",
-      "name": "Software Architecture",
-      "summary": "Modelo de domínio, tipos, decisões técnicas e estado.",
+      "name": "Fluxos de estudo",
+      "summary": "Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs.",
+      "board": "docs/board/boards/03-fluxos-de-estudo.md",
+      "documents": [
+        {
+          "title": "Estratégia de questões — #230",
+          "path": "docs/pesquisas/230-estrategia-questoes/README.md",
+          "role": "Consolidação do fluxo e pendências."
+        },
+        {
+          "title": "Pesquisa QConcursos — #31",
+          "path": "docs/research/qconcursos-issue-31-2026-11-15.md",
+          "role": "Filtros, cadernos e simulados."
+        },
+        {
+          "title": "Inventário ExamTopics",
+          "path": "docs/research/examtopics-inventory.md",
+          "role": "Banco, questões e tópicos."
+        },
+        {
+          "title": "Gran Questões — #62",
+          "path": "docs/research/gran-questoes-issue-62-2026-11-15.md",
+          "role": "Evidências públicas e critérios pendentes."
+        },
+        {
+          "title": "Análise QConcursos",
+          "path": "prototypes/analises/analise-qconcursos.md",
+          "role": "Análise funcional complementar."
+        },
+        {
+          "title": "Análise ExamTopics",
+          "path": "prototypes/analises/analise-examtopics.md",
+          "role": "Análise funcional complementar."
+        },
+        {
+          "title": "Dossiê Readwise Reader e SRS",
+          "path": "prototypes/board-exam-app/READWISE_DOSSIER.md",
+          "role": "Leitura, destaques e revisão espaçada."
+        }
+      ],
       "cards": [
         {
-          "name": "Hierarquia de tipos",
+          "name": "Navegação por teclado, grade e relatório",
+          "kind": "fluxo",
           "blocks": [
-            "e99",
-            "e104"
+            "e508"
           ],
-          "status": "implementado"
+          "summary": "Interação e estrutura de execução de prova."
         },
         {
-          "name": "Glossário das entidades",
+          "name": "Banco de questões e simulados",
+          "kind": "fluxo",
           "blocks": [
-            "e95"
+            "e1155"
           ],
-          "status": "implementado"
+          "summary": "Questões oficiais/manuais e geração de simulados."
         },
         {
-          "name": "Decisões de modelagem",
+          "name": "PDF.js: texto, canvas, DPR e zoom",
+          "kind": "diagnostico",
           "blocks": [
-            "e152"
+            "e1177"
           ],
-          "status": "aprovado"
+          "summary": "Diagnóstico técnico da renderização do PDF."
         },
         {
-          "name": "Camada de IA",
+          "name": "Cadernos e queries de questões",
+          "kind": "fluxo",
           "blocks": [
-            "e410"
+            "e1188"
           ],
-          "status": "implementado"
+          "summary": "Salvar conjuntos e retomar critérios."
         },
         {
-          "name": "Isolamento de grafo por espaço",
+          "name": "Filtros avançados",
+          "kind": "fluxo",
           "blocks": [
-            "e1407"
+            "e1208"
           ],
-          "status": "validado"
+          "summary": "Cascata, exclusões, URL, queries e mobile."
         },
         {
-          "name": "Máquina de estados de carregamento",
+          "name": "Questões contextuais",
+          "kind": "componente",
           "blocks": [
-            "e1450"
+            "e1381"
           ],
-          "status": "implementado"
+          "summary": "Questões em páginas de objetos."
         },
         {
-          "name": "Storage bridge (prova de conceito)",
+          "name": "Recuperação de erros",
+          "kind": "fluxo",
           "blocks": [
-            "e1371"
+            "e1453"
           ],
-          "status": "proposto"
+          "summary": "Recuperação após nova resposta e análise por coorte."
+        },
+        {
+          "name": "Revisão diária",
+          "kind": "fluxo",
+          "blocks": [
+            "e1465"
+          ],
+          "summary": "Cartões Q&A/Cloze e agenda."
+        },
+        {
+          "name": "PDF Reader: reflow e anotações",
+          "kind": "especificacao",
+          "blocks": [
+            "e1477"
+          ],
+          "summary": "Leitura, marcações, notas e navegação."
         }
       ]
     },
     {
       "id": "04",
-      "name": "Delivery & Roadmap",
-      "summary": "Versões, roadmap e issues entregues.",
+      "name": "Arquitetura técnica",
+      "summary": "Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes.",
+      "board": "docs/board/boards/04-arquitetura-tecnica.md",
+      "documents": [
+        {
+          "title": "Claude Pro Storage API",
+          "path": "docs/reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md",
+          "role": "Fila, proxy, segurança e homologação."
+        },
+        {
+          "title": "Investigação Storage Bridge",
+          "path": "docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
+          "role": "Experimentos e limites da sandbox."
+        },
+        {
+          "title": "Fontes de verdade do board",
+          "path": "docs/board/FONTES.md",
+          "role": "Responsabilidades e sincronização."
+        }
+      ],
       "cards": [
         {
-          "name": "Roadmap de versões",
+          "name": "Camada de IA",
+          "kind": "arquitetura",
           "blocks": [
-            "e154"
+            "e410"
           ],
-          "status": "aprovado"
-        },
-        {
-          "name": "Versão 0.1.0",
-          "blocks": [
-            "e4"
-          ],
-          "status": "substituído"
-        },
-        {
-          "name": "Versão 0.1.1",
-          "blocks": [
-            "e149"
-          ],
-          "status": "em desenvolvimento"
+          "summary": "Assistência dentro dos fluxos de estudo."
         },
         {
           "name": "Infraestrutura de agentes",
+          "kind": "infraestrutura",
           "blocks": [
             "e1248"
           ],
-          "status": "implementado"
+          "summary": "Tooling de desenvolvimento."
+        },
+        {
+          "name": "Claude Storage Bridge — PoC",
+          "kind": "experimento",
+          "blocks": [
+            "e1371"
+          ],
+          "summary": "Experimentos localhost/Claude."
+        },
+        {
+          "name": "Claude Storage — homologação",
+          "kind": "homologacao",
+          "blocks": [
+            "e1440"
+          ],
+          "summary": "Proxy, fila concorrente e recuperação."
+        },
+        {
+          "name": "Isolamento do grafo por espaço",
+          "kind": "arquitetura",
+          "blocks": [
+            "e1407"
+          ],
+          "summary": "Subgrafo restrito ao espaço ativo."
+        },
+        {
+          "name": "Máquina de estados de carregamento",
+          "kind": "arquitetura",
+          "blocks": [
+            "e1450"
+          ],
+          "summary": "Deadline, cancelamento e recuperação."
         }
       ]
     },
     {
       "id": "05",
-      "name": "Evidence & Quality",
-      "summary": "Prints, arquivos, testes e homologações. Cada card indica o que foi realmente verificado.",
-      "cards": [
+      "name": "Pesquisa & benchmarks",
+      "summary": "Fontes externas, análises de concorrentes, dossiês e sínteses de referência.",
+      "board": "docs/board/boards/05-pesquisa-e-decisoes.md",
+      "documents": [
         {
-          "name": "Antes/depois: páginas de objeto (Cargo, Concurso, Edição, Tipo PDF)",
-          "blocks": [],
-          "status": "evidência",
-          "images": [
-            "assets/evidence/antes-depois-cargo.png",
-            "assets/evidence/antes-depois-concurso.png",
-            "assets/evidence/antes-depois-edicao.png",
-            "assets/evidence/antes-depois-tipo-pdf.png"
-          ],
-          "origem": "/mnt/project-files/prints/redesign-paginas-objeto/ (capturas enviadas pelo Ian)"
+          "title": "Capacities — #32",
+          "path": "docs/research/capacities-issue-32-2026-11-15.md",
+          "role": "Fatos oficiais e lacunas."
         },
         {
-          "name": "Prints do Ian e feedback",
+          "title": "ExamTopics — inventário",
+          "path": "docs/research/examtopics-inventory.md",
+          "role": "Sitemap e funcionalidades observadas."
+        },
+        {
+          "title": "QConcursos — #31",
+          "path": "docs/research/qconcursos-issue-31-2026-11-15.md",
+          "role": "Observações e critérios pendentes."
+        },
+        {
+          "title": "Gran Questões — #62",
+          "path": "docs/research/gran-questoes-issue-62-2026-11-15.md",
+          "role": "Evidências públicas."
+        },
+        {
+          "title": "Auditoria UI skills — #156",
+          "path": "docs/research/issue-156-ui-skills-audit-2026-11-15.md",
+          "role": "Material 3, Apple e limites."
+        },
+        {
+          "title": "Pesquisa UX — 20 fontes",
+          "path": "docs/ux/pesquisa-20-fontes-2026-11.md",
+          "role": "Síntese de referências."
+        },
+        {
+          "title": "Análise QConcursos",
+          "path": "prototypes/analises/analise-qconcursos.md",
+          "role": "Inventário local."
+        },
+        {
+          "title": "Análise ExamTopics",
+          "path": "prototypes/analises/analise-examtopics.md",
+          "role": "Inventário local."
+        }
+      ],
+      "cards": [
+        {
+          "name": "Índice de fontes e referências",
+          "kind": "referencia",
+          "blocks": [
+            "e107"
+          ],
+          "summary": "Origem das informações e capturas."
+        },
+        {
+          "name": "QConcursos — referência",
+          "kind": "benchmark",
+          "blocks": [
+            "e108"
+          ],
+          "summary": "Referência de banco, filtros e cadernos."
+        },
+        {
+          "name": "ExamTopics — referência",
+          "kind": "benchmark",
+          "blocks": [
+            "e116"
+          ],
+          "summary": "Exames, tópicos e questões."
+        },
+        {
+          "name": "Readwise — Reader e SRS",
+          "kind": "benchmark",
+          "blocks": [
+            "e119"
+          ],
+          "summary": "Leitura, destaques e revisão."
+        },
+        {
+          "name": "ExamTopics — análise e pendências",
+          "kind": "pesquisa",
+          "blocks": [
+            "e190"
+          ],
+          "summary": "Análise e decisões pendentes."
+        },
+        {
+          "name": "QConcursos — análise e pendências",
+          "kind": "pesquisa",
+          "blocks": [
+            "e400"
+          ],
+          "summary": "Análise e decisões pendentes."
+        },
+        {
+          "name": "Dossiê funcional comparativo",
+          "kind": "pesquisa",
+          "blocks": [
+            "e900"
+          ],
+          "summary": "Inventário de QConcursos, Readwise e Capacities."
+        },
+        {
+          "name": "Dossiê Readwise — inventário completo",
+          "kind": "pesquisa",
+          "blocks": [
+            "e1090"
+          ],
+          "summary": "Registro aprofundado de Reader e SRS."
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "name": "Evidências & qualidade",
+      "summary": "Capturas, antes/depois, resultados de testes e rastreabilidade verificável.",
+      "board": "docs/board/boards/06-evidencias-e-qualidade.md",
+      "documents": [
+        {
+          "title": "Catálogo de evidências",
+          "path": "docs/evidence/CATALOG.md",
+          "role": "Índice navegável das mídias."
+        },
+        {
+          "title": "Catálogo estruturado",
+          "path": "docs/evidence/catalog.json",
+          "role": "Hashes, duplicatas, órfãos e referências."
+        },
+        {
+          "title": "Galeria de evidências",
+          "path": "docs/evidence/gallery.html",
+          "role": "Visualização filtrável."
+        },
+        {
+          "title": "Relatório de reestruturação",
+          "path": "docs/board/RELATORIO-REESTRUTURACAO.md",
+          "role": "Histórico, validações e limitações."
+        }
+      ],
+      "cards": [
+        {
+          "name": "Capturas do usuário e feedback",
+          "kind": "evidencia",
           "blocks": [
             "e300"
           ],
-          "status": "evidência"
+          "summary": "Prints enviados, feedback e contexto."
         },
         {
-          "name": "Arquivos do projeto",
-          "blocks": [
-            "e363"
-          ],
-          "status": "evidência"
-        },
-        {
-          "name": "Evidências do low-chrome (#97)",
+          "name": "Low-chrome — antes e depois",
+          "kind": "evidencia",
           "blocks": [
             "e993"
           ],
-          "status": "validado"
+          "summary": "Comparação por tema, largura e estado."
         },
         {
-          "name": "Evidências dos 7 gaps",
+          "name": "Fechamento dos gaps de referência",
+          "kind": "auditoria-evidencia",
           "blocks": [
             "e1300"
           ],
-          "status": "evidência"
+          "summary": "Evidências visuais e DOM dos gaps."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "name": "Entrega & arquivo",
+      "summary": "Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas.",
+      "board": "docs/board/boards/07-entrega-e-arquivo.md",
+      "documents": [
+        {
+          "title": "README de protótipos",
+          "path": "prototypes/README.md",
+          "role": "Ponto de entrada para protótipos e boards."
         },
         {
-          "name": "Homologação final",
+          "title": "Catálogo de branches arquivadas",
+          "path": "docs/archives/README.md",
+          "role": "Índice dos bundles e snapshots."
+        },
+        {
+          "title": "Mapa de reutilização",
+          "path": "docs/archives/REUSE-MAP.md",
+          "role": "Candidatos e limites de reutilização."
+        },
+        {
+          "title": "Fontes de verdade",
+          "path": "docs/board/FONTES.md",
+          "role": "Governança do board."
+        },
+        {
+          "title": "Relatório da reestruturação",
+          "path": "docs/board/RELATORIO-REESTRUTURACAO.md",
+          "role": "Histórico das fases anteriores."
+        }
+      ],
+      "cards": [
+        {
+          "name": "Feito — coluna de status legada",
+          "kind": "historico",
           "blocks": [
-            "e1440"
+            "e47"
           ],
-          "status": "validado"
+          "summary": "Snapshot antigo; não é status atual."
+        },
+        {
+          "name": "Em andamento — coluna de status legada",
+          "kind": "historico",
+          "blocks": [
+            "e48"
+          ],
+          "summary": "Snapshot antigo; não é status atual."
+        },
+        {
+          "name": "Pendente — coluna de status legada",
+          "kind": "historico",
+          "blocks": [
+            "e49"
+          ],
+          "summary": "Snapshot antigo; não é status atual."
+        },
+        {
+          "name": "Versão 0.1.0",
+          "kind": "versao",
+          "blocks": [
+            "e4"
+          ],
+          "summary": "Registro histórico da primeira versão."
+        },
+        {
+          "name": "Versão 0.1.1",
+          "kind": "versao",
+          "blocks": [
+            "e149"
+          ],
+          "summary": "Registro histórico da versão anterior."
+        },
+        {
+          "name": "Roadmap original de versões",
+          "kind": "historico",
+          "blocks": [
+            "e154"
+          ],
+          "summary": "Roadmap de origem; confirmar contra dev."
+        },
+        {
+          "name": "Arquivos de entrada do projeto",
+          "kind": "referencia",
+          "blocks": [
+            "e363"
+          ],
+          "summary": "Arquivos enviados e referências iniciais."
         }
       ]
     }
