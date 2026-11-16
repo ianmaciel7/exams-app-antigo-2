@@ -52,7 +52,7 @@ fetch('board.json').then(r=>r.json()).then(D=>{
     else if(e.type==='table'){n=document.createElement('table');const cols=Object.entries(e.cols).sort((a,b)=>a[1].at-b[1].at);const rows=Object.entries(e.rows).sort((a,b)=>a[1].at-b[1].at);
       n.innerHTML=rows.map(([k,r],ri)=>'<tr>'+cols.map(([ck,c])=>`<${ri?'td':'th'} style="min-width:${c.w}px;max-width:${c.w}px">${inl(r[ck]||'')}</${ri?'td':'th'}>`).join('')+'</tr>').join('')}
     else if(e.type==='html'){n=document.createElement('iframe');n.sandbox='allow-scripts';n.srcdoc=e.html;n.style.border='1px solid var(--line)'}
-    if(!n)continue;n.style.left=e.x+'px';n.style.top=e.y+'px';if(e.w)n.style.width=e.w+'px';if(e.h)n.style.height=e.h+'px';world.appendChild(n);boxes[id]=n}
+    if(!n)continue;n.id=id;n.style.left=e.x+'px';n.style.top=e.y+'px';if(e.w)n.style.width=e.w+'px';if(e.h)n.style.height=e.h+'px';world.appendChild(n);boxes[id]=n}
   requestAnimationFrame(()=>{
     for(const id in boxes){const n=boxes[id],e=E[id];boxes[id]={x:e.x,y:e.y,w:n.offsetWidth,h:n.offsetHeight}}
     let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const b of Object.values(boxes)){x0=Math.min(x0,b.x);y0=Math.min(y0,b.y-30);x1=Math.max(x1,b.x+b.w);y1=Math.max(y1,b.y+b.h)}
@@ -64,10 +64,11 @@ fetch('board.json').then(r=>r.json()).then(D=>{
       const p=pt(a,e.fromSide||'right'),q=pt(b,e.toSide||'left');let d;
       if((e.fromSide||'right')==='right'||e.fromSide==='left'){const mx=(p[0]+q[0])/2;d=`M${p[0]} ${p[1]}H${mx}V${q[1]}H${q[0]}`}else{const my=(p[1]+q[1])/2;d=`M${p[0]} ${p[1]}V${my}H${q[0]}V${q[1]}`}
       const el=document.createElementNS('http://www.w3.org/2000/svg','path');el.setAttribute('d',d);el.setAttribute('fill','none');el.setAttribute('stroke','currentColor');el.setAttribute('stroke-width','2');if(e.dash)el.setAttribute('stroke-dasharray','6 5');if(e.head!=='none')el.setAttribute('marker-end','url(#ah)');svg.appendChild(el)}
-    svg.style.color='var(--ink)';world.insertBefore(svg,world.firstChild);fit()})
+    svg.style.color='var(--ink)';world.insertBefore(svg,world.firstChild);const h=decodeURIComponent(location.hash.slice(1));if(h&&boxes[h])frame(h);else fit()})
 });
 function apply(){world.style.transform=`translate(${X}px,${Y}px) scale(${S})`;document.getElementById('pct').textContent=Math.round(S*100)+'%'}
 function fit(){if(!B)return;const w=view.clientWidth,h=view.clientHeight;S=Math.min(w/(B.x1-B.x0+80),1);X=(w-(B.x1-B.x0)*S)/2-B.x0*S;Y=20-B.y0*S;apply()}
+function frame(id){const b=boxes[id],n=world.querySelector('#'+CSS.escape(id))||null;const w=view.clientWidth,h=view.clientHeight;S=Math.min(1,(w-80)/b.w,(h-80)/b.h);X=w/2-(b.x+b.w/2)*S;Y=h/2-(b.y+b.h/2)*S;apply();if(n)n.style.outline='3px solid var(--c-blue)';}
 function zoomAt(f,cx,cy){const n=Math.max(.03,Math.min(3,S*f));X=cx-(cx-X)*n/S;Y=cy-(cy-Y)*n/S;S=n;apply()}
 view.addEventListener('wheel',e=>{e.preventDefault();if(e.ctrlKey||e.metaKey)zoomAt(Math.exp(-e.deltaY*.01),e.clientX,e.clientY);else{X-=e.deltaX;Y-=e.deltaY;apply()}},{passive:false});
 let drag=null;view.addEventListener('pointerdown',e=>{if(e.target.closest('a,iframe'))return;drag={x:e.clientX-X,y:e.clientY-Y};view.classList.add('drag');view.setPointerCapture(e.pointerId)});

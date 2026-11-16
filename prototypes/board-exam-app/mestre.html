@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Board Mestre</title>
+<style>
+:root{--bg:#f4f2ec;--ink:#1c1b19;--muted:#6b675e;--line:#cfcabd;--white:#fff;--accent:#2a63c4}
+@media(prefers-color-scheme:dark){:root{--bg:#161513;--ink:#ecE9e2;--muted:#a09a8e;--line:#4a463f;--white:#2a2825;--accent:#8cb4f2}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;z-index:2}
+h1{font-size:18px;margin:0 0 8px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 220px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);font:inherit;min-height:40px}
+select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);font:inherit;min-height:40px}
+button,a.btn{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);text-decoration:none;min-height:40px;display:inline-flex;align-items:center;cursor:pointer}
+button[aria-pressed=true]{outline:2px solid var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav.areas{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+main{padding:16px;max-width:1200px;margin:0 auto}
+section.area{margin-bottom:24px}
+section.area h2{font-size:16px;margin:0 0 4px}
+section.area p{margin:0 0 10px;color:var(--muted)}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.list .grid{grid-template-columns:1fr}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:15px;margin:0}
+.meta{display:flex;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.tag{border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.card .open{align-self:flex-start}
+.empty{color:var(--muted);padding:24px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.err{color:#b4532f}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="ttl">Board Mestre</h1>
+  <div class="bar">
+    <label class="sr" for="q">Buscar cards</label>
+    <input id="q" type="search" placeholder="Buscar funcionalidade, pesquisa ou evidência" autocomplete="off">
+    <label class="sr" for="st">Filtrar por estado</label>
+    <select id="st"><option value="">Todos os estados</option></select>
+    <button id="vl" aria-pressed="false" type="button">Lista</button>
+    <button id="vg" aria-pressed="true" type="button">Galeria</button>
+  </div>
+  <nav class="areas" id="areas" aria-label="Áreas"></nav>
+</header>
+<p class="empty" id="status" style="padding:8px 16px 0;margin:0">Carregando…</p>
+<main id="main"></main>
+<script>
+const $=id=>document.getElementById(id);
+let M=null,E={},view='grid',area='',status='',q='';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function snippet(id){const e=E[id];if(!e)return '';const t=(e.text||e.title||'').replace(/[*`#>\[\]]/g,'').replace(/\s+/g,' ').trim();return t.length>160?t.slice(0,160)+'…':t}
+function allCards(){return M.areas.flatMap(a=>a.cards.map(c=>({...c,area:a})))}
+function matches(c){
+  if(area&&c.area.id!==area)return false;
+  if(status&&c.status!==status)return false;
+  if(q){const hay=(c.name+' '+c.area.name+' '+c.status+' '+c.blocks.map(snippet).join(' ')).toLowerCase();if(!hay.includes(q))return false}
+  return true}
+function render(){
+  const main=$('main');main.className=view==='list'?'list':'';
+  let html='';let total=0;
+  for(const a of M.areas){
+    if(area&&a.id!==area)continue;
+    const cards=a.cards.map(c=>({...c,area:a})).filter(matches);
+    if(!cards.length)continue;total+=cards.length;
+    html+=`<section class="area" id="area-${esc(a.id)}"><h2>${esc(a.id)} — ${esc(a.name)}</h2><p>${esc(a.summary)}</p><div class="grid">`;
+    for(const c of cards){
+      const first=c.blocks[0];
+      html+=`<article class="card"><h3>${esc(c.name)}</h3><div class="meta"><span class="tag">${esc(c.status)}</span><span class="tag">${c.blocks.length} bloco(s)</span></div>${view==='grid'?`<p class="meta" style="margin:0">${esc(snippet(first))}</p>`:''}<div class="meta">${c.blocks.map(b=>`<a class="btn open" href="index.html#${esc(b)}">Abrir ${esc(b)} no canvas</a>`).join(' ')}</div></article>`}
+    html+='</div></section>'}
+  main.innerHTML=html||'<p class="empty">Nenhum card com esses filtros.</p>';
+  $('status').textContent=`${total} card(s)`;
+}
+function setArea(id){area=id;document.querySelectorAll('#areas button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id));render()}
+Promise.all([fetch('board-mestre.json').then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('board.json').then(r=>r.json())])
+.then(([m,b])=>{M=m;E=b.elements;$('ttl').textContent=m.title;document.title=m.title;
+  const nav=$('areas');
+  nav.innerHTML=`<button type="button" data-id="" aria-pressed="true">Todas</button>`+M.areas.map(a=>`<button type="button" data-id="${esc(a.id)}" aria-pressed="false">${esc(a.id)} ${esc(a.name)}</button>`).join('');
+  nav.onclick=e=>{const b=e.target.closest('button');if(b)setArea(b.dataset.id)};
+  const sts=[...new Set(allCards().map(c=>c.status))].sort();
+  $('st').insertAdjacentHTML('beforeend',sts.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join(''));
+  $('st').onchange=e=>{status=e.target.value;render()};
+  $('q').oninput=e=>{q=e.target.value.trim().toLowerCase();render()};
+  $('vl').onclick=()=>{view='list';$('vl').setAttribute('aria-pressed','true');$('vg').setAttribute('aria-pressed','false');render()};
+  $('vg').onclick=()=>{view='grid';$('vg').setAttribute('aria-pressed','true');$('vl').setAttribute('aria-pressed','false');render()};
+  render();
+}).catch(()=>{$('status').className='err';$('status').textContent='Não foi possível carregar board-mestre.json ou board.json.'});
+</script>
+</body>
+</html>
