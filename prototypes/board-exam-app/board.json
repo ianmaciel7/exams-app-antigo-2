@@ -3174,16 +3174,16 @@
       "type": "container",
       "x": 3300,
       "y": 11000,
-      "w": 1600,
-      "h": 5800,
+      "w": 1620,
+      "h": 5940,
       "color": "white",
-      "text": "28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)"
+      "text": "28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)"
     },
     "e701": {
       "type": "text",
       "size": "large",
       "x": 3330,
-      "y": 11060,
+      "y": 11070,
       "w": 1500,
       "h": 120,
       "text": "Anatomia Medida do Capacities Live (app.capacities.io) + Comparação com 15 Branches Históricas (notes-app-old a old-11)"
@@ -3191,7 +3191,7 @@
     "e702": {
       "type": "shape",
       "x": 3330,
-      "y": 11180,
+      "y": 11190,
       "w": 1500,
       "h": 680,
       "text": "**1. Arquitetura de 3 Painéis com Ilhas Flutuantes (`AppShellSurface` — Issue #47)**\n- **Capacities Live (`app.capacities.io`) & `notes-app-old-3/4/6`:** Canvas global `--bg-back` (`#0d0e11` no Dark / `oklch(0.9856 0.0016 67)` `#faf9f7` no Light) onde repousam a Sidebar e o Top Rail de `46px`. Abaixo do Top Rail, tanto o Painel Central quanto o Painel Direito são **cartões flutuantes independentes** (`--bg-base`: `#16171a` Dark / `#ffffff` Light, `border: 1px solid rgba(255,255,255,0.07)`, `border-radius: 10px–12px`, outer gutter de `10px` e `gap: 10px` entre os cards).\n- **Erro em `0.1.1`:** Usa `div`s chapados encostados nas bordas (`inset: 0`) com divisores retos de `1px` e paleta sépia (`#FBFAF7`/`#F4F2EC`).\n**2. Divisão Estrita do Top Rail (`46px`) em 3 Cabeçalhos Independentes (Issue #48)**\n- `SidebarHeader` (`283px`): contém apenas o pill do Space Switcher (`121.8x31px`) e o botão Recolher Sidebar `[◧]` (`27.1x27.1px`).\n- `AppHeader` (Painel Central): quando a Sidebar está aberta, inicia direto em `<` `>` (`27.1x27.1px`), faixa de abas (`31-32px`), `+` Nova Aba, `[v]` overflow e `[◨]` Alternar Painel Direito. Quando a Sidebar está recolhida (`0px`), migram para o início do `AppHeader` apenas 3 botões de ícone: `[◧ Abrir sidebar]`, `[+ Novo]` e `[🔍 Buscar]`. Nunca há Space Switcher duplicado no `AppHeader` nem segunda barra `.bar`.\n- `AppSidePanelHeader` (Painel Direito): alinhado em `y=0..46px` sobre `--bg-back`, com abas do painel (`Explorar`, `Grafo`), `+` e `[◨]`.\n**3. Colapso Off-Canvas Real (`0px`) & Painéis Redimensionáveis (Issue #49)**\n- No Capacities e em `notes-app-old-4`, a Sidebar recolhe 100% off-canvas (`width: 0px`), **sem o trilho residual de `56px`** (`.app.collapsed .side{width:56px}`). Possui `ResizableHandle` (`224px–384px` na Sidebar; `240px–640px` no Painel Direito, virando `Sheet` abaixo de `1024px`).\n**4. Topo da Sidebar `[+ Novo] [🔍]` com `NewContentMenu` Pesquisável e Ações Globais de `31px` (Issue #50)**\n- Linha horizontal dividida: botão pill `[+ Novo]` (`228.5x33px`, `border-radius: 7px`) à esquerda + botão quadrado `[🔍]` (`33x33px`) à direita. Clicar em `[+ Novo]` abre o popover `NewContentMenu` com busca focado, lista de tipos com badges `20x20px` e rodapé `↑↓ para navegar · Esc para abortar · ↵ para selecionar`. Abaixo ficam `Calendário`, `Tarefas`, `Explorar` (`31px`).\n**5. Linhas de Tipos de Objeto (`29px`), Badges Quadrados `20x20px` (18 Tons OKLCH) e Menu `⋯` de `244-269px` (Issue #52)**\n- Cada Tipo de Objeto usa `ObjectIconBadge` (`20x20px`, `border-radius: 5px-6px`, fundo tingido `--tone-*-bg` e texto `--tone-*-text` dos 18 tons OKLCH de `notes-app-old-6`), revelando contagem e menu `⋯` (`Abrir >`, `Criar`, `Novo a Partir do Modelo >`, `Nova Query`, `Nova Coleção`, `Fixar na Barra Lateral >`, `Configurações`, `Importar Ctrl+I`) no hover.\n**6. Seção Utilitária Inferior & Rodapé Horizontal de Ícones (Issue #53)**\n- Substitui o card `.user-btn` estilo Notion por `Gráfico`, `Lixeira`, `Ajuda & Recursos` colapsável e barra fixa de ícones (`27.1x27.1px`): `[👤 Perfil] [Pro] [⚙ Config] [☼/🌙 Tema] [🔄 Sync] ... [⮹ Atalhos]`.\n**7. Contrato de Abas (`31-32px`), Painel Direito `Explorar` (Grid 3x2 + Conteúdo Relevante) e Grafo Local (Issues #54 e #55)**\n- Painel Direito abre em `Explorar` com Grid 3×2 de cards (`Grafo`, `Links de entrada`, `Objetos internos`, `Conteúdo relacionado`, `Chat de IA`, `Buscar`) + `Conteúdo relevante` (`🔍 Encontrar mais`). No `Grafo`, usa nós quadrados coloridos do tipo e pílulas flutuantes translúcidas no rodapé (`backdrop-filter: blur(8px)`).\n**8. Dashboard de Tipo de Objeto (`#/tipo/*`), Página de Objeto Individual e Space Home *Recall* (Issues #56, #57 e #58)**\n- `#/tipo/*`: Header `32x32px` badge + H1 + Split Button `[+ Novo | ⌄]`, sub-abas `[⊞ Visão geral]` / `[☰ Tudo]` e Galeria de Cards em 4 colunas.\n- Página de Objeto: `[Chip do Tipo] [⇆ Coleções]`, H1 `32px`, tags inline, propriedades compactas (sem caixa `.props-card`) com `HoverCard` de preview nos objetos referenciados e abas inferiores `[Links de entrada]` / `[Conteúdo relacionado]`.\n- Space Home (`#/espaco`): estética editorial *Monastic Knowledge Sanctuary* de `notes-app-old-10.png` (*Recall*)."
@@ -3199,7 +3199,7 @@
     "e705": {
       "type": "image",
       "x": 3330,
-      "y": 11900,
+      "y": 11980,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_3pane_explorar_grid"
@@ -3207,7 +3207,7 @@
     "e706": {
       "type": "text",
       "x": 3330,
-      "y": 12330,
+      "y": 12410,
       "w": 700,
       "h": 60,
       "text": "**Evidência 10 (Capacities Live):** Arquitetura de 3 Painéis com Ilhas Flutuantes (`#0d0e11` canvas, `#16171a` cards, gutter `10px`), Página de Objeto e Painel Direito `Explorar` (Grid 3x2 + Conteúdo relevante) — Issues #47, #48, #54, #57"
@@ -3215,7 +3215,7 @@
     "e707": {
       "type": "image",
       "x": 4070,
-      "y": 11900,
+      "y": 11980,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_3pane_local_graph"
@@ -3223,7 +3223,7 @@
     "e708": {
       "type": "text",
       "x": 4070,
-      "y": 12330,
+      "y": 12410,
       "w": 700,
       "h": 60,
       "text": "**Evidência 11 (Capacities Live):** Painel Direito na aba `Grafo` com nós em badges quadrados coloridos por tipo, tags e controles flutuantes translúcidos no rodapé — Issues #38, #54"
@@ -3231,7 +3231,7 @@
     "e709": {
       "type": "image",
       "x": 3330,
-      "y": 12420,
+      "y": 12500,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_collapsed_sidebar"
@@ -3239,7 +3239,7 @@
     "e710": {
       "type": "text",
       "x": 3330,
-      "y": 12850,
+      "y": 12930,
       "w": 700,
       "h": 60,
       "text": "**Evidência 12 (Capacities Live):** Sidebar recolhida 100% off-canvas (`0px`, sem rail de 56px) com `[◧] [+ Novo] [🔍]` migrados para o início do `AppHeader` — Issues #48, #49"
@@ -3247,7 +3247,7 @@
     "e711": {
       "type": "image",
       "x": 4070,
-      "y": 12420,
+      "y": 12500,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_new_popover"
@@ -3255,7 +3255,7 @@
     "e712": {
       "type": "text",
       "x": 4070,
-      "y": 12850,
+      "y": 12930,
       "w": 700,
       "h": 60,
       "text": "**Evidência 13 (Capacities Live):** Linha superior `[+ Novo] [🔍]` na Sidebar e popover pesquisável `NewContentMenu` com rodapé de teclado (`↑↓`, `Esc`, `↵`) — Issue #50"
@@ -3263,7 +3263,7 @@
     "e713": {
       "type": "image",
       "x": 3330,
-      "y": 12940,
+      "y": 13020,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_type_context_menu"
@@ -3271,7 +3271,7 @@
     "e714": {
       "type": "text",
       "x": 3330,
-      "y": 13370,
+      "y": 13450,
       "w": 700,
       "h": 60,
       "text": "**Evidência 14 (Capacities Live):** Linhas de Tipo de Objeto de `29px` com badges quadrados `20x20px`, menu de contexto `⋯` (`244px`) e rodapé horizontal de ícones — Issues #52, #53"
@@ -3279,7 +3279,7 @@
     "e715": {
       "type": "image",
       "x": 4070,
-      "y": 12940,
+      "y": 13020,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_type_dashboard_gallery"
@@ -3287,7 +3287,7 @@
     "e716": {
       "type": "text",
       "x": 4070,
-      "y": 13370,
+      "y": 13450,
       "w": 700,
       "h": 60,
       "text": "**Evidência 15 (Capacities Live):** Dashboard de Tipo de Objeto (`Azure · 43`) com sub-abas `Visão geral`/`Tudo`, Split Button `+ Novo | v` e Galeria de Cards em 4 colunas — Issue #56"
@@ -3295,7 +3295,7 @@
     "e717": {
       "type": "image",
       "x": 3330,
-      "y": 13460,
+      "y": 13620,
       "w": 700,
       "h": 420,
       "src": "/_blob/capacities_live_object_page_anatomy"
@@ -3303,7 +3303,7 @@
     "e718": {
       "type": "text",
       "x": 3330,
-      "y": 13890,
+      "y": 14050,
       "w": 700,
       "h": 60,
       "text": "**Evidência 16 (Capacities Live):** Anatomia da Página de Objeto com painel lateral fechado: coluna centralizada (`740px`), chip de tipo, `Coleções`, tags inline, propriedades compactas e abas `Links de entrada`/`Conteúdo relacionado` — Issue #57"
@@ -3311,7 +3311,7 @@
     "e719": {
       "type": "image",
       "x": 4070,
-      "y": 13460,
+      "y": 13620,
       "w": 700,
       "h": 420,
       "src": "/_blob/archive_notes_app_old_3_capacities_shell"
@@ -3319,7 +3319,7 @@
     "e720": {
       "type": "text",
       "x": 4070,
-      "y": 13890,
+      "y": 14050,
       "w": 700,
       "h": 60,
       "text": "**Evidência 17 (Archive `notes-app-old-3`):** Web Shell de paridade Capacities em Light Mode (`--bg-back`, cartões flutuantes `12px`, aba `Visão geral` de `Páginas` e painel direito `Explorar` 6 cards) — Issues #47, #54, #56"
@@ -3327,7 +3327,7 @@
     "e721": {
       "type": "image",
       "x": 3330,
-      "y": 13980,
+      "y": 14140,
       "w": 700,
       "h": 420,
       "src": "/_blob/archive_notes_app_old_4_capacities_shell"
@@ -3335,7 +3335,7 @@
     "e722": {
       "type": "text",
       "x": 3330,
-      "y": 14410,
+      "y": 14570,
       "w": 700,
       "h": 60,
       "text": "**Evidência 18 (Archive `notes-app-old-4`):** `AppShell` com `ResizablePanelGroup`, `AppHeader`, `AppSidePanelHeader` e `ObjectTypeWorkspace` — Issues #47, #48, #49, #55"
@@ -3343,7 +3343,7 @@
     "e723": {
       "type": "image",
       "x": 4070,
-      "y": 13980,
+      "y": 14140,
       "w": 700,
       "h": 420,
       "src": "/_blob/archive_notes_app_old_4_graph_sidepanel"
@@ -3351,7 +3351,7 @@
     "e724": {
       "type": "text",
       "x": 4070,
-      "y": 14410,
+      "y": 14570,
       "w": 700,
       "h": 60,
       "text": "**Evidência 19 (Archive `notes-app-old-4` `layout-current.png`):** `Visualização em grafo` no Painel Direito com controles inferiores (`Mostrar menos`, `Mostrar mais`, zoom, expandir) — Issue #54"
@@ -3359,7 +3359,7 @@
     "e725": {
       "type": "image",
       "x": 3330,
-      "y": 14500,
+      "y": 14660,
       "w": 700,
       "h": 420,
       "src": "/_blob/archive_notes_app_old_10_recall_home"
@@ -3367,7 +3367,7 @@
     "e726": {
       "type": "text",
       "x": 3330,
-      "y": 14930,
+      "y": 15090,
       "w": 700,
       "h": 60,
       "text": "**Evidência 20 (Archive `notes-app-old-10` Recall):** Estética editorial *Monastic Knowledge Sanctuary* para a Home do Espaço (`#/espaco`) com card Hero escuro `TODAY`, `Review today` e `Recent objects` sem emojis — Issue #58"
@@ -4395,7 +4395,7 @@
     "e728": {
       "type": "shape",
       "x": 4070,
-      "y": 14500,
+      "y": 15260,
       "w": 700,
       "h": 490,
       "text": "**Resolução Técnica: Top Rail de 46px em 3 Cabeçalhos & Controles Migrados (Issue #48)**\n\n- **Zona 1 — SidebarHeader (`.side-top`):** Altura `46px` sobre `var(--bg-back)`, Space Switcher (`.space-btn`, `31px`) à esquerda e botão de recolher `[◧]` (`#collapse`, `27px × 27px`) à direita.\n- **Zona 2 — AppHeader (`#wsTabs`):** Altura `46px` sobre `var(--bg-back)`:\n  - *Sidebar Aberta (`:not(.collapsed)`):* Inicia diretamente nos botões de histórico `< >` (`.hist.ws-nav`, `28px`). `#wsSide` e controles migrados ficam estritamente ocultos (`display: none !important`).\n  - *Sidebar Recolhida (`.app.collapsed`):* Migram para o início de `#wsTabs` antes de `< >` exatamente 3 botões compactos `27px × 27px`: `[◧ Abrir barra lateral]` (`#wsSide`), `[+ Novo]` (`#wsNewBtn`) e `[🔍 Buscar]` (`#wsSearchBtn`).\n  - Space Switcher purgado de `#wsTabs` (sem `#spTopBtn`).\n  - À direita: botão `[◨]` (`#rpToggle`) para alternar o painel contextual.\n- **Zona 3 — AppSidePanelHeader (`.rp-top`):** Altura `46px` sobre `var(--bg-back)`, perfeitamente nivelado com `#wsTabs`, contendo abas contextuais, `[+]` e `[◨]` (`#rpHide`).\n- **Eliminação da Barra Residual `.bar`:** Altura fixa removida do fluxo do layout (`height: 0; display: none; overflow: hidden;`). O leitor de PDF e a barra de progresso de leitura `.readprog` (`2px`) são exibidos apenas em documentos PDF (`.main.reading-mode`), preservando os seletores DOM (`docTitle`, `docMeta`, `propBtn`, `zfit`, `zin`, `zout`, `pg`) sem consumo de espaço global."
@@ -4403,7 +4403,7 @@
     "e729": {
       "type": "shape",
       "x": 4070,
-      "y": 15020,
+      "y": 15780,
       "w": 700,
       "h": 530,
       "text": "**Resolução Técnica: Colapso Off-Canvas Total (0px) & ResizableHandle na Sidebar (Issue #49)**\n\n- **Colapso Off-Canvas Total (0px):**\n  - Substituição do rail residual de `56px` por recolhimento real para `0px` (`.app.collapsed .side { width: 0 !important; min-width: 0 !important; max-width: 0 !important; overflow: hidden !important; border-right: none !important; pointer-events: none; }`).\n  - Todo o espaço horizontal é imediatamente liberado para a superfície flutuante central (`AppShellSurface` / `.main`).\n- **Alça de Redimensionamento da Sidebar (`#sideRz`):**\n  - Inserido elemento `.side-rz` na borda direita da sidebar (`role=\"separator\"`, `aria-orientation=\"vertical\"`, `tabindex=\"0\"`, `touch-action: none`).\n  - Drag fluído via `pointerdown` / `setPointerCapture` e atalhos de teclado `ArrowLeft` / `ArrowRight` (passos de `24px`).\n  - Limites padronizados de `workspace-layout.ts`: mínimo `224px`, padrão `284px`, máximo `384px`.\n  - Duplo-clique restaura a largura padrão (`284px`).\n  - Persistência contínua em `localStorage` sob a chave `sidew`.\n  - Estilo Capacities: linha sutil translúcida no hover / drag (`linear-gradient(90deg, transparent 5px, var(--faint) 5px, var(--faint) 7px, transparent 7px)`).\n- **Ajustes e Breakpoints do Painel Contextual Direito (`#rpanel`):**\n  - Limites atualizados: mínimo `240px`, padrão `420px`, máximo `640px`.\n  - Duplo-clique em `#rpRz` restaura o padrão de `420px` e persiste sob a chave `rpw`.\n  - Modo Overlay Sheet ativado entre `769px` e `1024px` (`matchMedia('(max-width:1024px)')`), garantindo que o painel contextual abra sobreposto sem esmagar o conteúdo central abaixo de `480px`.\n  - Em mobile (<= `768px`), gavetas operam com scrim e redimensionamentos são desativados."
@@ -4411,7 +4411,7 @@
     "e730": {
       "type": "shape",
       "x": 4070,
-      "y": 15580,
+      "y": 16340,
       "w": 700,
       "h": 500,
       "text": "**Resolução Técnica: Linha Superior Combinada [+ Novo] [Buscar], NewContentMenu & Ações Globais de 31px (Issue #50)**\n\n- **Linha Superior Combinada (`.side-comb`):**\n  - Localizada logo abaixo de `.side-top` (`padding: 4px 10px 8px; gap: 6px`).\n  - Botão `[+ Novo]` (`#sideNewBtn`): `flex: 1`, altura `33px`, `border-radius: 7px`, background sutil (`var(--hover)` / `var(--active)`), ícone SVG `[+]` de `16px` e label `Novo`.\n  - Botão `[Buscar]` (`#sideSearchBtn`): quadrado `33px × 33px`, `border-radius: 7px`, ícone SVG de lupa `16px`, atalho `(Ctrl+K)`.\n- **Popover Pesquisável NewContentMenu (`#newMenu`):**\n  - Abre posicionado imediatamente abaixo do botão `[+ Novo]` ao clicar ou via atalho `Ctrl+Alt+N` / `Cmd+Alt+N`.\n  - Campo de busca instantânea com foco automático (`#newMenuIn`), filtrando tipos de objetos por nome em português ou inglês.\n  - Lista rolável (`#newMenuList`) exibindo todos os tipos ativos do espaço com badge quadrado colorido `20x20px` (`.nm-badge.tone-type-*`), rótulo no singular e contagem de instâncias no espaço.\n  - Navegação completa por teclado: setas `↑↓` percorrem itens com destaque visual e `scrollIntoView`, `Enter` cria o tipo selecionado (`createObj(t)`), e `Esc` fecha o menu devolvendo o foco.\n  - Rodapé fixo com convenção Capacities: `↑↓ navegar · Esc abortar · ↵ selecionar`.\n- **Ações Globais da Sidebar de 31px:**\n  - Itens padronizados com altura de `31px`, `border-radius: 6px`, `font-size: 14px`, peso regular (`font-weight: 400`), espaçamento `gap: 8px` e ícones SVG vetoriais monocromáticos de `16px` (`stroke-width: 1.8`).\n  - Entradas primárias: `Início` (`#/espaco`), `Tarefas / Revisão` (`#/revisao`), `Explorar` (`#/explorar`).\n- **Conformidade com a Zero Emoji Policy (Issue #42):** 100% livre de emojis Unicode em tags, botões, badges e comentários."
@@ -4419,7 +4419,7 @@
     "e731": {
       "type": "shape",
       "x": 3330,
-      "y": 15020,
+      "y": 15780,
       "w": 700,
       "h": 540,
       "text": "**Resolução Técnica: Badges Quadrados 20x20px (18 Tons OKLCH), Linhas de 29px e Menu de Contexto Completo nos Tipos de Objeto (Issue #52)**\n\n- **ObjectIconBadge nos Tipos de Objeto (`.object-icon-badge`):**\n  - Badge quadrado de `20px × 20px` com `border-radius: 5px`, borda sutil de `0.5px solid var(--badge-border)` e fundo translúcido/tingido `var(--badge-bg)`.\n  - Ícone SVG vetorial de `13px` centralizado dentro do badge (`stroke-width: 1.8`).\n  - Suíte completa de 18 tons OKLCH calibrada para Light Mode e Dark Mode (`--tone-amber-*` até `--tone-violet-*`).\n  - Mapeamento semântico fiel por Tipo de Objeto: Concurso (`emerald`), Órgão (`orange`), Banca (`rose`), Edição (`blue`), Cargo (`purple`), Arquivo/Questão (`amber`), Documento (`cyan`), PDF (`red`), Disciplina (`green`), Simulado (`indigo`), Resposta (`gray`).\n- **Linhas de Tipo de Objeto na Sidebar (`.nav .tree-line`):**\n  - Altura estrita de `29px` (`height: 29px; min-height: 29px; box-sizing: border-box;`), `border-radius: 6px` e tipografia `14px` (`font-weight: 400`).\n  - No hover: revela à direita a contagem tabular (`font-variant-numeric: tabular-nums`) e o botão de contexto `⋯` de `22px × 22px` (`border-radius: 6px`).\n- **Cabeçalhos de Seção da Sidebar (`.sec-hw`):**\n  - Altura padronizada de `28px`, fonte `12px`, `font-weight: 600`, chevron discreto com transição de rotação a -90° no colapso e controles revelados no hover (`22px × 22px`).\n  - Linha `+ Adicionar seção` ajustada para altura de `29px` com `border-radius: 6px`.\n- **Menu de Contexto Completo do Tipo de Objeto (`⋯`):**\n  - Popover `.ctx` de `244px–260px` de largura com ações padronizadas do Capacities:\n    - `Abrir tipo` (`#/tipo/{t}`)\n    - `Criar {Tipo singular}` (`createObj(t)`)\n    - Divisor `<hr>`\n    - `Nova Coleção` (`csCreate(t)`)\n    - `Nova Query` (`csCreate(t)`)\n    - `Fixar na barra lateral` / `Desafixar da barra lateral` (`togglePinK`)\n    - Divisor `<hr>`\n    - `Configurações do tipo` (abre modal de edição com campos de nome no singular e no plural)\n    - Divisor `<hr>`\n    - `Excluir tipo de objeto` (com estilo destrutivo vermelho).\n- **Zero Emoji Policy (Issue #42):** 100% de conformidade com ícones vetoriais SVG monocromáticos, sem nenhum emoji Unicode na interface."
@@ -4427,7 +4427,7 @@
     "e732": {
       "type": "shape",
       "x": 3330,
-      "y": 15580,
+      "y": 16340,
       "w": 700,
       "h": 540,
       "text": "**Resolução Técnica: Substituição do Card de Usuário (.user-btn) pela Seção Ajuda & Recursos e Rodapé Horizontal de Ícones do Capacities (Issue #53)**\n\n- **Substituição do Card de Usuário (.user-btn):**\n  - Removido o card largo estilo Notion/Linear (.user-btn) contendo avatar 'I' e 'Ian / Plano pessoal' da base da barra lateral.\n  - Eliminação de cliques extras: funções essenciais como tema, atalhos e configurações agora contam com acesso direto de 1 clique no rodapé.\n- **Linhas Utilitárias Inferiores (.side-utils, altura 30px, ícones 16px):**\n  - Posicionadas imediatamente acima da barra fixa inferior, com alinhamento visual rigoroso:\n    - **Gráfico** (`#graphBtn`): abre a constelação global (`#/grafico`), com estado ativo sincronizado via `aria-current`.\n    - **Lixeira** (`#trashBtn`): abre a gestão de itens excluídos (`#/lixeira`), com contagem e restauração contextual.\n    - **Ajuda & Recursos** (`#sideHelpBtn`): grupo expansível com chevron indicativo e gaveta retrátil contendo:\n      - *Primeiros Passos* (`#helpSubSteps`): modal guiado com passos rápidos de uso do Exam App.\n      - *Documentação* (`#helpSubDocs`): acesso às especificações arquiteturais e de domínio.\n      - *Atalhos de Teclado* (`#helpSubShortcuts`): diálogo rápido com hotkeys do sistema (Ctrl+B, Ctrl+K, Ctrl+Alt+N, J/K, F2, +/-).\n      - *Feedback* (`#helpSubFeedback`): prompt modal para submissão de melhorias pelo usuário.\n- **Rodapé Horizontal de Ícones do Capacities (.side-foot):**\n  - Barra horizontal fixa de altura `38px` (`min-height: 38px`), `display: flex; align-items: center; border-top: 1px solid var(--line);`:\n    - **Grupo esquerdo** (`gap: 4px`):\n      1. `[Perfil / Conta]` (`#btnFootAccount`, `27px × 27px`): ícone vetorial SVG, abre popover de conta `#usPop`.\n      2. Pill `[PRO]` (`.badge-pro`): badge compacto com tipografia 10px bold, estilo âmbar sutil do Capacities Pro.\n      3. `[Configurações]` (`#btnFootSettings`, `27px × 27px`): abre modal com seleção de tema, zoom padrão e limpeza de dados.\n      4. `[Alternar Tema]` (`#btnFootTheme`, `27px × 27px`): alterna instantaneamente entre Modo Claro e Escuro em 1 clique direto, com sincronização automática do glifo SVG (sol no tema escuro, lua no tema claro).\n      5. `[Sync / Status]` (`#btnFootSync`, `27px × 27px`): status visual e feedback toast de sincronização offline/online.\n    - **Grupo direito** (`margin-left: auto`):\n      6. `[Atalhos de Teclado]` (`#btnFootShortcuts`, `27px × 27px`): abre diretamente a visualização de atalhos globais.\n- **Conformidade com a Zero Emoji Policy (Issue #42):** 100% de ícones vetoriais SVG monocromáticos (`currentColor`, `stroke-width: 1.8`), sem nenhum caractere emoji Unicode em toda a estrutura."
@@ -7551,7 +7551,7 @@
     "e1372": {
       "type": "text",
       "color": "white",
-      "text": "### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)\n\nTestamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).\n\n- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.\n- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.\n- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).\n- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).\n- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.\n\nEvidência técnica registrada em docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.",
+      "text": "### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)\n\nTestamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).\n\n- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.\n- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.\n- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).\n- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).\n- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.\n\nEvidência técnica registrada em prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.",
       "x": 36050,
       "y": 11080,
       "w": 1550,
@@ -8296,7 +8296,7 @@
     "e7101": {
       "type": "container",
       "x": 3300,
-      "y": 10990,
+      "y": 11000,
       "w": 1560,
       "h": 900,
       "color": "white",
@@ -8305,7 +8305,7 @@
     "e7102": {
       "type": "container",
       "x": 3300,
-      "y": 11830,
+      "y": 11910,
       "w": 1500,
       "h": 1630,
       "color": "white",
@@ -8314,7 +8314,7 @@
     "e7103": {
       "type": "container",
       "x": 3300,
-      "y": 13390,
+      "y": 13550,
       "w": 1500,
       "h": 1630,
       "color": "white",
@@ -8323,7 +8323,7 @@
     "e7104": {
       "type": "container",
       "x": 3300,
-      "y": 14430,
+      "y": 15190,
       "w": 1500,
       "h": 1720,
       "color": "white",
