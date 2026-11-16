@@ -44,12 +44,12 @@ test('toolbar buttons mutate the same per-space triage state as library filters'
   const h=setup(),n=id=>h.nodes.get(id);
   assert.equal(h.api.readerTriageMove('archive'),false,'no document open');
   h.api.setCur({d:doc,pdf:{numPages:10}});
-  n('readerLater').callbacks.click();
+  h.api.readerTriageMove('later');
   assert.equal(h.values.get('reader-triage:s1:edital'),'later');
   assert.equal(n('readerLater').getAttribute('aria-pressed'),'true');
-  n('readerShortlist').callbacks.click();
+  h.api.readerTriageMove('shortlist');
   assert.equal(h.values.get('reader-triage:s1:edital'),'shortlist');
-  n('readerArchive').callbacks.click();
+  h.api.readerTriageMove('archive');
   assert.equal(h.values.get('reader-triage:s1:edital'),'archive');
   assert.equal(n('readerArchive').getAttribute('aria-pressed'),'true');
   assert.ok(h.calls.filter(x=>x==='paint').length===3);
@@ -63,4 +63,8 @@ test('reader shortcut registry uses central guarded dispatcher and does not hija
   assert.match(html,/if\(\$\('dlg'\)\?\.classList\.contains\('on'\)\)return/);
   assert.match(html,/readerTriageSync\(null\)/);
   assert.match(html,/readerTriageSync\(d\)/);
+  assert.match(html,/bar\.innerHTML\+=readerTriageButtons\(\)/);
+  assert.match(html,/data-reader-triage/);
+  assert.match(html,/readerTriageMove\(action\.dataset\.readerTriage\)/);
+  assert.doesNotMatch(html,/<span class="reader-triage-tools" id="readerTriageTools" role="group" aria-label="Triagem do PDF aberto" hidden>/);
 });
