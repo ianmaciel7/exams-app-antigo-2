@@ -1502,9 +1502,30 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .td-column h3 small{font-size:11px}
 .td-layout-mural .td-column{background:var(--side);border-style:dashed}
 .td-layout-embed{display:flex;flex-direction:column;gap:8px}
+.emb-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.emb-card{background:var(--side);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.emb-card header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px}
+.emb-card header a{font-weight:600;color:var(--text)}
+.emb-card header small,.emb-card code{color:var(--muted,inherit);font-size:12px}
+.emb-card ul{margin:0;padding-left:18px;font-size:13px}
+.emb-card code{white-space:pre-wrap;word-break:break-word}
+.emb-actions button,.emb-form button{border:1px solid var(--line);border-radius:7px;padding:7px 10px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:12px;min-height:24px}
+.emb-form{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.emb-form label{display:flex;flex-direction:column;gap:4px;font-size:12px;flex:1 1 220px}
+.emb-form select{min-height:28px;border:1px solid var(--line);border-radius:7px;background:var(--bg-base);color:var(--text);padding:4px 6px}
 .td-embed-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--side);border:1px solid var(--line);border-radius:8px;padding:10px}
 .td-embed-item a{display:flex;align-items:center;gap:8px;min-width:0;text-decoration:none;color:var(--text)}
 .td-embed-item button{flex:none;border:1px solid var(--line);border-radius:7px;padding:7px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:11px}
+/* Incorporações vivas de questões e anotações em objetos (issue #84) */
+.embed-card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;background:var(--bg-base)}
+.embed-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}
+.embed-head a{color:var(--accent)}
+.embed-head button{border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:12px}
+.embed-add{display:grid;gap:8px;margin-top:12px}
+.embed-add fieldset{border:0;padding:0;margin:0;display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.embed-add input[type=search]{width:100%;box-sizing:border-box;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg-base);color:var(--text);font:inherit}
+.embed-add .embed-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.embed-empty{font-size:13px;color:var(--muted);margin:4px 0}
 .td-overview{display:grid;gap:24px}.td-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .td-section-head h2{font-size:14px;font-weight:650}.td-section-head button{border:1px solid var(--line);border-radius:7px;background:var(--side);padding:6px 8px;color:var(--text);cursor:pointer;font-size:12px}
 .td-recents{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:9px}
@@ -4904,7 +4925,7 @@ function paintProps(d){
   const box=$('props'), o0=OV();
   const cust=typeProps(d.type).filter(x=>PROPS[x.k].custom).map(x=>{ const kind=pkOf(x.from,x.k), v=o0['cv:doc:'+d.id+'|'+x.k]; return '<div class="pi"><small>'+esc(PROPS[x.k].n)+'</small><button type="button" class="op-ed" data-edit-cv="'+esc('doc:'+d.id+'|'+x.k)+'" aria-label="Editar '+esc(PROPS[x.k].n)+'">'+cvShow(x.k,kind,v)+'</button></div>'; }).join('');
   const pages=store.get('pages:'+d.id), ed=d.edicao&&edicaoById(d.edicao);
-  box.innerHTML='<p class="ph">Sobre este documento</p><p class="doc-summary">'+esc(d.g)+(pages?' · '+pages+' páginas':'')+(ed?' · '+esc(ed.ano):'')+'</p><details><summary>Ver detalhes do arquivo</summary><div class="pgrid">'+items.map(i=>'<div class="pi"><small>'+esc(i.l)+'</small>'+chipA(i.v,i.h)+'</div>').join('')+cust+'</div></details>';
+  box.innerHTML='<p class="ph">Sobre este documento</p><p class="doc-summary">'+esc(d.g)+(pages?' · '+pages+' páginas':'')+(ed?' · '+esc(ed.ano):'')+'</p><details><summary>Ver detalhes do arquivo</summary><div class="pgrid">'+items.map(i=>'<div class="pi"><small>'+esc(i.l)+'</small>'+chipA(i.v,i.h)+'</div>').join('')+cust+inverseRowsPi(d.id)+'</div></details>';
   const open_=store.get('propsOpen'); box.hidden=!(open_===null?false:open_);
   $('propBtn').classList.toggle('on',!box.hidden); $('propBtn').setAttribute('aria-expanded',String(!box.hidden));
 }
@@ -5013,12 +5034,33 @@ function cvShow(k,kind,v){ if(v===undefined||v==='') return '<span class="op-val
   if(c==='date') return '<span class="op-val">'+esc(String(v).split('-').reverse().join('/'))+'</span>';
   if(c==='rel'){ const t=relTargets(kind[1]||'Edição').find(x=>x.id===v); return t?'<a class="chip" href="'+t.h+'">'+esc(t.t)+'</a>':'<span class="op-val op-ph">(removido)</span>'; }
   return '<span class="op-val">'+esc(v)+'</span>'; }
+// Propriedades bidirecionais (#84): uma relação gravada num objeto aparece também no alvo, como referência inversa (somente leitura).
+function inverseRels(targetId){
+  if(!targetId) return [];
+  const o=OV(), out=[];
+  Object.keys(o).forEach(key=>{
+    if(!key.startsWith('cv:')||o[key]!==targetId) return;
+    const body=key.slice(3), bar=body.lastIndexOf('|'), iid=body.slice(0,bar), k=body.slice(bar+1);
+    if(!PROPS[k]||!PROPS[k].custom) return;
+    const isDoc=iid.startsWith('doc:'), pre=isDoc?'doc':iid.slice(0,iid.indexOf(':')), id=iid.slice(iid.indexOf(':')+1);
+    const dSrc=isDoc?allDocs().find(v=>v.id===id):null;
+    const owner=typeProps(isDoc?((dSrc||{}).type||''):pre).find(x=>x.k===k);
+    if(!owner||pkOf(owner.from,k)[0]!=='rel') return;
+    let src=null;
+    if(isDoc){ if(dSrc) src={t:dSrc.t,h:'#'+dSrc.id}; }
+    else { const find={concurso:concursoById,edicao:edicaoById,cargo:cargoById}[pre]; const e=find&&find(id); if(e) src={t:e.t,h:'#/'+pre+'/'+id}; }
+    if(src) out.push({k,src});
+  });
+  return out;
+}
+const inverseRowsOp=targetId=>inverseRels(targetId).map(({k,src})=>opPropRow(PROPS[k].n+' (inverso)','<a class="chip" href="'+src.h+'">'+esc(src.t)+'</a>')).join('');
+const inverseRowsPi=targetId=>inverseRels(targetId).map(({k,src})=>'<div class="pi"><small>'+esc(PROPS[k].n)+' (inverso)</small><a class="chip" href="'+src.h+'">'+esc(src.t)+'</a></div>').join('');
 function custRows(iid){ if(!/^(concurso|edicao|cargo):/.test(iid||'')) return '';
   const t=iid.slice(0,iid.indexOf(':')), o=OV();
   return typeProps(t).filter(x=>PROPS[x.k].custom).map(x=>{ const kind=pkOf(x.from,x.k), key='cv:'+iid+'|'+x.k, v=o[key];
     const val=cvShow(x.k,kind,v);
     const inner=(kind[0]==='rel'&&v?'<span class="op-relv">'+val+'</span> ':'')+'<button type="button" class="op-ed" data-edit-cv="'+esc(iid+'|'+x.k)+'" aria-label="Editar '+esc(PROPS[x.k].n)+'">'+(kind[0]==='rel'&&v?'<span class="op-val op-ph">Alterar</span>':val)+'</button>';
-    return opPropRow(PROPS[x.k].n,inner); }).join(''); }
+    return opPropRow(PROPS[x.k].n,inner); }).join('')+inverseRowsOp(iid.slice(iid.indexOf(':')+1)); }
 const opProps=(rows,iid,inline=false)=>{
   const o=OV(); const r=rows.filter(x=>x&&(x[1]||(iid&&EMPTYOK.includes(x[0]))));
   const baseItems=r.map(([l,v])=>{ const k='prop:'+iid+'|'+l; let inner=v;
@@ -5148,7 +5190,59 @@ function opConnectionFooter(iid){
     '<div class="op-link-panel" role="tabpanel" id="op-link-panel-'+key+'-related" aria-labelledby="op-link-tab-'+key+'-related" '+
     (selection==='related'?'':'hidden')+'>'+list(related,'Ainda não há conteúdo relacionado em dois saltos.')+'</div></section>';
 }
+/* ---- Incorporações vivas (issue #84): questões e anotações embutidas em objetos ---- */
+const EMBED_HOST_RE=/^(concurso|edicao|cargo|orgao|banca|disciplina|custom-object):/;
+const embedKey=host=>'embeds:'+space+':'+host;
+const embedList=host=>{ const v=store.get(embedKey(host)); return Array.isArray(v)?v.filter(x=>x&&(x.k==='q'||x.k==='n')&&typeof x.id==='string'):[]; };
+const embedSave=(host,list)=>store.set(embedKey(host),list);
+function embedQuestionCard(q,rm){
+  const r=qSel(q), selected=!r?(qPend[q.id]||null):null;
+  const alts=Object.entries(q.alternativas||{}).map(([l,v])=>'<button type="button" class="sc-alt'+(r?(l===q.gabarito?' good':(l===r?' bad':'')):(l===selected?' picked':''))+'" data-qo-ans="'+esc(q.id)+'|'+esc(l)+'" aria-pressed="'+(!r&&l===selected)+'"'+(r?' disabled':'')+'><kbd>'+esc(l)+'</kbd><span>'+esc(v)+'</span></button>').join('');
+  return '<article class="embed-card qo" aria-label="Questão incorporada">'+
+    '<header class="embed-head"><span>Questão · '+esc(qTitle(q))+'</span><span><a href="#/questao/'+encodeURIComponent(q.id)+'">Abrir</a> '+rm+'</span></header>'+
+    '<p class="sc-stm">'+esc(q.enunciado||'')+'</p><div class="qo-alts">'+alts+'</div>'+
+    (!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+esc(q.id)+'"'+(!selected?' disabled':'')+'>Responder</button></div>':
+      '<p class="s-note">'+(r===q.gabarito?'Resposta correta!':'Resposta incorreta. Gabarito: '+esc(q.gabarito))+'</p>')+
+    '</article>';
+}
+function embedNoteCard(q,rm){
+  const note=qFlag(q.id);
+  return '<article class="embed-card" aria-label="Anotação incorporada">'+
+    '<header class="embed-head"><span>Anotação · '+esc(qTitle(q))+'</span><span><a href="#/nota/'+encodeURIComponent(q.id)+'">Abrir</a> '+rm+'</span></header>'+
+    '<div class="qped-preview">'+(note.noteHtml?qPedSafeHtml(note.noteHtml):qPedPreview(note.note||''))+'</div></article>';
+}
+function embedSection(host){
+  const items=embedList(host), rows=[];
+  items.forEach(it=>{
+    const q=qObjs().find(x=>x.id===it.id); if(!q) return;
+    if(it.k==='n'&&!(qFlag(q.id).note||qFlag(q.id).noteHtml)) return;
+    const rm='<button type="button" data-embed-remove="'+esc(host)+'|'+esc(it.k)+'|'+esc(it.id)+'" aria-label="Remover incorporação de '+esc(qTitle(q))+'">Remover</button>';
+    rows.push(it.k==='n'?embedNoteCard(q,rm):embedQuestionCard(q,rm));
+  });
+  const form='<form class="embed-add" data-embed-form="'+esc(host)+'">'+
+    '<fieldset><legend>Incorporar como</legend>'+
+    '<label><input type="radio" name="k" value="q" checked> Questão ao vivo</label>'+
+    '<label><input type="radio" name="k" value="n"> Anotação da questão</label></fieldset>'+
+    '<label for="embedIn-'+esc(host.replace(/[^a-z0-9]/gi,'-'))+'">Número ou enunciado da questão</label>'+
+    '<div class="embed-row"><input type="search" id="embedIn-'+esc(host.replace(/[^a-z0-9]/gi,'-'))+'" name="q" autocomplete="off" placeholder="Ex.: 12 ou palavra do enunciado">'+
+    '<button type="submit" class="op-btn">Incorporar</button></div></form>';
+  return opSec('Incorporações',(rows.length?rows.join(''):'<p class="embed-empty">Nenhuma questão ou anotação incorporada. As incorporações ficam vivas: você pode responder a questão aqui.</p>')+form,{count:rows.length});
+}
+view.addEventListener('submit',e=>{
+  const f=e.target.closest&&e.target.closest('[data-embed-form]'); if(!f) return;
+  e.preventDefault();
+  const host=f.dataset.embedForm, text=String((f.querySelector('input[name=q]')||{}).value||'').trim().toLowerCase();
+  const kind=((f.querySelector('input[name=k]:checked')||{}).value==='n')?'n':'q';
+  if(!text){ toast('Digite o número ou um trecho do enunciado.'); return; }
+  const hit=qObjs().find(x=>String(x.n)===text||String(x.id).toLowerCase()===text||String(qTitle(x)).toLowerCase().includes(text)||String(x.enunciado||'').toLowerCase().includes(text));
+  if(!hit){ toast('Nenhuma questão encontrada neste espaço.'); return; }
+  if(kind==='n'&&!(qFlag(hit.id).note||qFlag(hit.id).noteHtml)){ toast('Esta questão ainda não tem anotação.'); return; }
+  const list=embedList(host);
+  if(list.some(x=>x.k===kind&&x.id===hit.id)){ toast('Já incorporado neste objeto.'); return; }
+  list.push({k:kind,id:hit.id}); embedSave(host,list); route(true);
+});
 function opPage(o){
+  if(o.iid&&EMBED_HOST_RE.test(o.iid)&&!o.tab) o=Object.assign({},o,{body:(o.body||'')+embedSection(o.iid)});
   const cr=(o.crumb||[]).filter(([t,h])=>!(t==='Espaço'&&h==='#/espaco'));
   const collectionType=String(o.iid||'').split(':')[0],hasCollections=/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')&&!o.tab;
   const collectionHref='#/'+collectionType+'/'+String(o.iid||'').slice(collectionType.length+1);
@@ -5171,7 +5265,7 @@ function opPage(o){
     '<button type="button" data-op-assistant="'+esc(o.iid)+'" aria-label="Abrir assistente no painel direito">IA</button>'+
     '<button type="button" data-op-more="'+esc(o.iid)+'" aria-label="Mais ações do objeto">⋯</button></div>':'';
   return '<article class="op'+((o.wide||widePreference)?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
-   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1>'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?'<button type="button" class="op-edt" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título">'+esc(o.title)+'</button>':esc(o.title))+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div>'+(isObjectHeader?opConnectionFooter(o.iid):'')+'</article>';
+   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1>'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?'<button type="button" class="op-edt" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título">'+esc(o.title)+'</button>':esc(o.title))+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca|disciplina):/.test(o.iid||'')?embedQueriesHTML(o.iid):'')+'</div>'+(isObjectHeader?opConnectionFooter(o.iid):'')+'</article>';
 }
 function opStats(){ const st=studyStats(), tot=(questionBank&&questionBank.length)||70;
   if(!st.done) return '';
@@ -5394,6 +5488,53 @@ function tdQueryContext(item){
   return {tags:Array.isArray(meta.tags)?meta.tags:[],props,links,typeName:TYPES[item.kind]?.n||item.kind,
     triage:item.kind==='pdf'?tdReaderStatus(item):'',progress:metrics.progress,minutes:metrics.minutes};
 }
+/* Embeddable saved queries (#84): a saved query from any type is rendered live inside an object page.
+   Storage: embeds:<space>:<iid> = [{t, qid}]. Results are recomputed on every render, never cached. */
+const embItems=t=>{
+  const list=isEntT(t)?entsOf(t).map(e=>({id:e.id,type:t,t:e.t,classe:'',cat:''})):objsOf(space).filter(d=>isA(d.type,t));
+  return tdOrder(tdItems(t,list),'name');
+};
+const embKey=iid=>'embeds:'+space+':'+iid;
+const embList=iid=>(Array.isArray(store.get(embKey(iid)))?store.get(embKey(iid)):[])
+  .filter(x=>x&&typeof x.t==='string'&&typeof x.qid==='string');
+function embedQueriesHTML(iid){
+  const embeds=embList(iid);
+  const options=Object.keys(TYPES).flatMap(k=>{
+    const qs=store.get('typeQueries:'+space+':'+k);
+    return (Array.isArray(qs)?qs:[]).filter(q=>q&&q.term).map(q=>'<option value="'+esc(k+'|'+q.id)+'">'+esc(q.name)+' ('+esc(TYPES[k]?.n||k)+')</option>');
+  });
+  const cards=embeds.map((x,i)=>{
+    const q=(store.get('typeQueries:'+space+':'+x.t)||[]).find(y=>y&&y.id===x.qid);
+    const remove='<button type="button" data-emb-remove="'+i+'" data-emb-iid="'+esc(iid)+'">Remover</button>';
+    if(!q)return '<article class="emb-card"><p class="td-empty">Query removida. '+remove+'</p></article>';
+    const hits=embItems(x.t).filter(it=>tdSavedQueryMatch(it,q.term,tdQueryContext(it)));
+    return '<article class="emb-card"><header><a href="#/tipo/'+esc(x.t)+'">'+esc(q.name)+'</a>'+
+      '<small>'+hits.length+' '+(hits.length===1?'objeto':'objetos')+' · '+esc(TYPES[x.t]?.n||x.t)+'</small></header>'+
+      '<code>'+esc(q.term)+'</code>'+
+      (hits.length?'<ul>'+hits.slice(0,8).map(h=>'<li><a href="'+esc(h.href)+'">'+esc(h.name)+'</a></li>').join('')+'</ul>':
+        '<p class="td-empty">Nenhum objeto corresponde à query agora.</p>')+
+      (hits.length>8?'<a href="#/tipo/'+esc(x.t)+'">Ver todos ('+hits.length+')</a>':'')+
+      '<div class="emb-actions">'+remove+'</div></article>';
+  }).join('');
+  const form=options.length?'<form class="emb-form" data-emb-form="'+esc(iid)+'"><label>Incorporar query salva'+
+    '<select name="q">'+options.join('')+'</select></label><button type="submit">Incorporar</button></form>':
+    '<p class="td-empty">Crie uma query de busca em um tipo de objeto para incorporá-la aqui.</p>';
+  return opSec('Visões incorporadas','<div class="emb-list">'+(cards||'<p class="td-empty">Nenhuma visão incorporada.</p>')+'</div>'+form,{count:embeds.length});
+}
+view.addEventListener('submit',e=>{
+  const form=e.target.closest?.('[data-emb-form]');if(!form)return;
+  e.preventDefault();
+  const [t,qid]=String(form.elements.q?.value||'').split('|');if(!t||!qid)return;
+  const key=embKey(form.dataset.embForm),current=embList(form.dataset.embForm);
+  if(!current.some(x=>x.t===t&&x.qid===qid))store.set(key,current.concat({t,qid}));
+  showObjs(location.hash.slice(1));
+});
+view.addEventListener('click',e=>{
+  const el=e.target.closest?.('[data-emb-remove]');if(!el)return;
+  const iid=el.dataset.embIid,index=Number(el.dataset.embRemove);
+  store.set(embKey(iid),embList(iid).filter((_,i)=>i!==index));
+  showObjs(location.hash.slice(1));
+});
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
   const recent=tdOrder(items,'recent').filter(x=>x.date>0).slice(0,6);
@@ -7256,6 +7397,7 @@ view.addEventListener('click',e=>{
    return;
  }
  const rr0=()=>showObjs(location.hash.slice(1)); const rrKeep=()=>{ const y=view.scrollTop; rr0(); view.scrollTop=y; };
+ const er=e.target.closest('[data-embed-remove]'); if(er){ const [host,k,id]=er.dataset.embedRemove.split('|'); embedSave(host,embedList(host).filter(x=>!(x.k===k&&x.id===id))); route(true); return; }
  const qa=e.target.closest('[data-qo-ans]'); if(qa){ const [id,l]=qa.dataset.qoAns.split('|'); const q=qObjs().find(x=>x.id===id); if(q&&!qSel(q)){
    qPend[id]=l; const card=qa.closest('.qo');
    card?.querySelectorAll('[data-qo-ans]').forEach(b=>{ const picked=b.dataset.qoAns.endsWith('|'+l);b.classList.toggle('picked',picked);b.setAttribute('aria-pressed',String(picked)); });
@@ -7572,6 +7714,26 @@ function srsGradeCard(id,grade,now=Date.now()){
  srsRecordActivity(d,'reviews',now);
  srsSave(d);return card;
 }
+/* Diário de Estudo (#84): daily note aggregating questions answered per local day. */
+function showDiario(){
+  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
+  const ans=getAnswers(), byDay={};
+  const qs=qObjs();
+  Object.keys(ans).forEach(k=>{
+    const a=ans[k]; if(!a||a.deleted||!a.updatedAt) return;
+    const day=srsLocalDay(a.updatedAt), q=qs.find(x=>x.n===Number(k)||x.id===k||x.id==='q'+k);
+    (byDay[day]=byDay[day]||[]).push({n:k,id:q?q.id:('q'+k),title:q&&q.enunciado?String(q.enunciado).slice(0,120):('Questão '+k),ok:!!a.correct,at:a.updatedAt});
+  });
+  const days=Object.keys(byDay).sort().reverse();
+  const today=srsLocalDay();
+  const sections=days.length?days.map(day=>{
+    const items=byDay[day].sort((x,y)=>y.at-x.at), right=items.filter(x=>x.ok).length;
+    const label=day===today?'Hoje':day;
+    return '<section class="dia-day" aria-labelledby="dia-'+day+'"><h2 id="dia-'+day+'">'+esc(label)+'</h2><p class="srs-muted">'+items.length+' questões respondidas · '+right+' certas</p><ul class="dia-list">'+items.map(x=>'<li><a href="#/'+esc(x.id)+'">'+esc(x.title)+'</a><span class="dia-res">'+(x.ok?'Certa':'Errada')+'</span></li>').join('')+'</ul></section>';
+  }).join(''):'<div class="msg"><b>Nada registrado ainda.</b><br>As questões que você responder aparecem aqui, agrupadas por dia.</div>';
+  const styles='<style>.dia-wrap{max-width:760px;margin:0 auto;padding:24px}.dia-day{padding:14px 0;border-bottom:1px solid var(--line)}.dia-day h2{font-size:16px;margin:0 0 4px}.dia-list{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}.dia-list li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px}.dia-list a{color:var(--text);text-decoration:none;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dia-list a:hover{text-decoration:underline}.dia-res{color:var(--muted);flex:none}</style>';
+  view.innerHTML=styles+'<main class="dia-wrap">'+sBreadcrumb([['Espaço','#/espaco'],['Diário de estudo','']])+sHead('Diário','Diário de estudo','Tudo o que você respondeu, agrupado por dia.')+sections+'</main>'; view.scrollTop=0;
+}
 function showReview(){
  const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
@@ -7673,6 +7835,7 @@ function route(spaceChanged){
   if(h0==='/cadernos'||h0==='/filtros'||h0.startsWith('/caderno/')){ nbRoute(h0); return; }
   if(h0==='/grafico'||h0==='/explorar'){ showGraph(); return; }
   if(h0==='/revisao'){ showReview(); return; }
+  if(h0==='/diario'){ showDiario(); return; }
   if(h0==='/quadro'){ $('spaceRow')?.removeAttribute('aria-current'); showBoard(); return; }
   if(h0.startsWith('/questoes')||h0==='/simulado'){ showStudyRoute(h0); return; }
   if(h0==='/espaco'||h0.startsWith('/nota/')||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
