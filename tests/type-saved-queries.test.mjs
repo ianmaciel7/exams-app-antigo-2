@@ -11,7 +11,7 @@ const values=new Map();
 const graph=new Map();
 const api=runInNewContext(html.slice(start,end)+
   '\n({tdParseQuery,tdQueryMatch,tdSavedQueryMatch,tdQueryContext})',{
-  space:'s1',store:{get:key=>values.get(key)},TYPES:{concurso:{n:'Concurso'}},
+  space:'s1',view:{addEventListener(){}},store:{get:key=>values.get(key)},TYPES:{concurso:{n:'Concurso'}},
   nodeOf:href=>graph.get(href)||null,gr:()=>({N:graph})
 });
 const item={href:'#/concurso/dataprev',kind:'concurso',name:'Concurso Dataprev',detail:'Tecnologia da Informação'};
