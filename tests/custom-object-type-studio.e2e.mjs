@@ -10,7 +10,7 @@ const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
   'Only browser-local HTML prototype data. No cloud sync, object query engine, SRS flashcards or production domain persistence.',
   'Chromium automation, not a substitute for physical mobile/touch and screen-reader testing.'
 ]};
-const base=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
+const base=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#/espaco';
 async function openAt(port){
   const context=await browser.newContext({viewport:{width:1366,height:880},reducedMotion:'reduce'});
   const page=await context.newPage();
