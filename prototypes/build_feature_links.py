@@ -10,9 +10,9 @@ REPO = "https://github.com/ianmaciel7/exams-app/blob/dev/"
 IMG = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
 def load(p): return json.load(open(os.path.join(ROOT, p), encoding="utf8"))
-idx = load("prototypes/docs/features/features-index.json")
-cat = load("prototypes/docs/evidence/catalog.json")
-mest = load("prototypes/board-exam-app/board-mestre.json")
+idx = load("prototypes/features-index.json")
+cat = load("prototypes/catalog.json")
+mest = load("prototypes/board-mestre.json")
 errors = []
 
 # Mapeamento explícito: valor de 'funcionalidade' do catálogo -> id de feature (curado, fonte 'inferido').
@@ -34,7 +34,7 @@ GROUP_NAMES = {
     "claude-storage": ["Claude Storage — homologação", "Claude Storage Bridge — PoC"],
 }
 # Diagramas do índice: são globais (não há vínculo feature->diagrama no índice); exibidos como contexto.
-DIAGRAM_BLOCK = {"c4-l1": ("prototypes/docs/architecture/c4.md", 0), "c4-l2": ("prototypes/docs/architecture/c4.md", 1), "er-dominio": ("prototypes/docs/architecture/dominio.md", 0)}
+DIAGRAM_BLOCK = {"c4-l1": ("prototypes/c4.md", 0), "c4-l2": ("prototypes/c4.md", 1), "er-dominio": ("prototypes/dominio.md", 0)}
 
 def mermaid_blocks(rel):
     text = open(os.path.join(ROOT, rel), encoding="utf8").read()
@@ -62,7 +62,7 @@ adr_ids = {a["id"]: a for a in idx["adrs"]}
 features = []
 for f in idx["features"]:
     fid = f["id"]
-    adrs = sorted({m for m in re.findall(r"adr/(\d{4})-", open(os.path.join(ROOT, "prototypes/docs", f["page"].split("docs/",1)[1]), encoding="utf8").read()) if m in adr_ids})
+    adrs = sorted({m for m in re.findall(r"adr/(\d{4})-", open(os.path.join(ROOT, "prototypes/docs__*", f["page"].split("docs/",1)[1]), encoding="utf8").read()) if m in adr_ids})
     ev_items = [e for e in cat["evidencias"] if FUNC_TO_FEATURE.get(e["funcionalidade"]) == fid]
     evid = []
     for e in ev_items:
@@ -77,8 +77,8 @@ for f in idx["features"]:
         else: errors.append(fid + ": grupo inexistente: " + name)
     issues = sorted(set(f["issues"]) | {e["issue"] for e in evid if e["issue"]})
     features.append({
-        "id": fid, "title": f["title"], "status": f["status"], "doc": {"path": f["page"], "url": REPO + "prototypes/docs/" + f["page"].split("docs/",1)[1], "fonte": "índice"},
-        "sintese": synthesis("prototypes/docs/" + f["page"].split("docs/",1)[1]),
+        "id": fid, "title": f["title"], "status": f["status"], "doc": {"path": f["page"], "url": REPO + "prototypes/docs__*" + f["page"].split("docs/",1)[1], "fonte": "índice"},
+        "sintese": synthesis("prototypes/docs__*" + f["page"].split("docs/",1)[1]),
         "adrs": [{"id": a, "title": adr_ids[a]["title"], "status": adr_ids[a]["status"], "fonte": "documento da feature (ID)"} for a in adrs],
         "diagramas": [{"id": d, "fonte": "global (sem vínculo por feature no índice)"} for d in DIAGRAM_BLOCK],
         "issues": [{"numero": n, "url": "https://github.com/ianmaciel7/exams-app/issues/%d" % n, "fonte": "índice ou catálogo (ID)"} for n in issues],
@@ -90,11 +90,11 @@ for f in idx["features"]:
 # Checagens: todo caminho e ID referenciado precisa existir.
 for ft in features:
     for k in ("path",): pass
-    if not os.path.isfile(os.path.join(ROOT, "prototypes/docs", ft["doc"]["path"].split("docs/",1)[1])): errors.append(ft["id"] + ": doc ausente")
+    if not os.path.isfile(os.path.join(ROOT, "prototypes/docs__*", ft["doc"]["path"].split("docs/",1)[1])): errors.append(ft["id"] + ": doc ausente")
     for e in ft["evidencias"]:
         if not os.path.isfile(os.path.join(ROOT, e["caminho"])): errors.append(ft["id"] + ": evidência ausente " + e["caminho"])
 
-out = {"schema_version": 1, "diagramas": [{"id": d["id"], "title": d["title"], "page": d["page"], "mermaid": diagram_source(d["id"])} for d in idx["diagrams"]], "source": ["prototypes/docs/features/features-index.json", "prototypes/docs/evidence/catalog.json", "prototypes/board-exam-app/board-mestre.json"],
+out = {"schema_version": 1, "diagramas": [{"id": d["id"], "title": d["title"], "page": d["page"], "mermaid": diagram_source(d["id"])} for d in idx["diagrams"]], "source": ["prototypes/features-index.json", "prototypes/catalog.json", "prototypes/board-mestre.json"],
        "unclassified": cat["resumo"], "features": features,
        "sem_feature": sum(1 for e in cat["evidencias"] if e["funcionalidade"] not in FUNC_TO_FEATURE)}
 if errors:

@@ -5,7 +5,7 @@ Cada container de topo é uma unidade: move junto todos os nós cujo retângulo 
 Colunas seguem a ordem das áreas; dentro da coluna, a ordem dos cards. Largura de coluna fixa,
 espaçamento uniforme, sem sobreposição. Nós sem container entram em "Sem grupo (revisar)".
 Gera section-layout-map.json com id, grupo, posição antiga e nova e hash do conteúdo sem coordenadas.
-Uso: python3 -I layout_columns.py  (dentro de prototypes/board-exam-app/)
+Uso: python3 -I layout_columns.py  (dentro de prototypes/board-exam-app__*)
 """
 import json, hashlib, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))

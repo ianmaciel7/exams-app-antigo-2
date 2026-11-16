@@ -61,8 +61,8 @@ Outras fontes consultadas: [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [M3 shapes
 ## Auditoria estática do protótipo e do board
 
 **Artefatos consultados em `dev@69179a5`:**
-- `prototypes/exam-app-0.1.1/index.html`, blob `965037384264ed43eeffc363ba513877cc0f71dd`, conteúdo servido: 688,260 caracteres.
-- `prototypes/board-exam-app/board.json`, blob `1cd2e9b13df26ea2408ac1fd40436eff45d234d3`, 938,831 caracteres e 764 elementos JSON.
+- `prototypes/exam-app-0.1.1__index.html`, blob `965037384264ed43eeffc363ba513877cc0f71dd`, conteúdo servido: 688,260 caracteres.
+- `prototypes/board.json`, blob `1cd2e9b13df26ea2408ac1fd40436eff45d234d3`, 938,831 caracteres e 764 elementos JSON.
 - Não houve renderização, screenshot ou execução de JS.
 
 | Área de foco | Evidência literal no HTML / CSS | Classificação e limite |

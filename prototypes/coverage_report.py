@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cobertura por container do board.json: quais elementos caem dentro de cada container.
 
-Uso: python3 -I coverage_report.py   (dentro de prototypes/board-exam-app/)
+Uso: python3 -I coverage_report.py   (dentro de prototypes/board-exam-app__*)
 Escreve board-coverage.json. Sai com erro se algum elemento não-seta ficar sem container
 quando não for ele mesmo um container.
 """

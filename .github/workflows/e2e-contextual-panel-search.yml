@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'prototypes/exam-app-0.1.1__index.html'
       - 'tests/right-panel-explore.test.mjs'
       - 'tests/right-panel-resize.test.mjs'
       - 'tests/right-panel-explore.e2e.mjs'

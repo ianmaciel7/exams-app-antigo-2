@@ -4,14 +4,14 @@
 
 ## Mapa
 
-- [00 — Mapa geral](boards/00-mapa-geral.md)
-- [01 — Produto e domínio](boards/01-produto-e-dominio.md)
-- [02 — Workspace e UX](boards/02-workspace-e-ux.md)
-- [03 — Fluxos de estudo](boards/03-fluxos-de-estudo.md)
-- [04 — Arquitetura técnica](boards/04-arquitetura-tecnica.md)
-- [05 — Pesquisa e decisões](boards/05-pesquisa-e-decisoes.md)
-- [06 — Evidências e qualidade](boards/06-evidencias-e-qualidade.md)
-- [07 — Entrega e arquivo](boards/07-entrega-e-arquivo.md)
+- [00 — Mapa geral](00-mapa-geral.md)
+- [01 — Produto e domínio](01-produto-e-dominio.md)
+- [02 — Workspace e UX](02-workspace-e-ux.md)
+- [03 — Fluxos de estudo](03-fluxos-de-estudo.md)
+- [04 — Arquitetura técnica](04-arquitetura-tecnica.md)
+- [05 — Pesquisa e decisões](05-pesquisa-e-decisoes.md)
+- [06 — Evidências e qualidade](06-evidencias-e-qualidade.md)
+- [07 — Entrega e arquivo](07-entrega-e-arquivo.md)
 
 ## Como navegar
 
@@ -26,7 +26,7 @@
 - `BOARD.md` é gerado de `board.json` e não deve ser editado manualmente.
 - `board-mestre.json` indexa os sete boards e os 53 containers; não replica o conteúdo.
 - Os diagramas organizam a leitura e apontam para documentos canônicos.
-- `prototypes/docs/evidence/catalog.json` é a fonte estruturada de mídias.
+- `prototypes/catalog.json` é a fonte estruturada de mídias.
 - Issues, PRs e CI são a fonte do estado de execução; colunas antigas de status são históricas.
 
 Não crie uma cópia de um documento que já existe. Adicione uma referência no board temático correspondente.

@@ -4,14 +4,14 @@ Este documento define a responsabilidade de cada representação. Não há sincr
 
 | Fonte | Responsabilidade | Atualização | Sincronização |
 | --- | --- | --- | --- |
-| `prototypes/board-exam-app/board.json` | Canvas original: blocos, imagens e setas. Fonte canônica. | Edição direta em PR. | Gera `BOARD.md`; CI valida integridade. |
-| `prototypes/board-exam-app/BOARD.md` | Leitura Markdown do canvas. | Gerado; não editar à mão. | `board_to_md.py`. |
-| `prototypes/board-exam-app/board-mestre.json` | Índice dos sete boards, documentos e 53 containers. | Edição direta em PR. | Gera `board-mestre.md`; cada container aparece uma vez. |
-| `prototypes/board-exam-app/board-mestre.md` | Índice Markdown para pessoas e agentes. | Gerado; não editar à mão. | `render_board_mestre.py`. |
-| `prototypes/docs/board/boards/*.md` | Diagramas Mermaid e mapas de leitura por assunto. | Atualização manual. | Apontam para fontes canônicas; não duplicam conteúdo. |
-| `prototypes/board-exam-app/mestre.html` | Central visual com mapa, filtros, documentos e atalhos. | Código em PR. | Lê `board-mestre.json` e `board.json`. |
-| `prototypes/board-exam-app/index.html` | Visualizador do canvas original. | Código em PR. | Lê `board.json`; aceita `#ID`. |
-| `prototypes/docs/evidence/catalog.json` | Catálogo estruturado de evidências. | `scripts/build-evidence-catalog.py`. | Validado pelo script do catálogo. |
+| `prototypes/board.json` | Canvas original: blocos, imagens e setas. Fonte canônica. | Edição direta em PR. | Gera `BOARD.md`; CI valida integridade. |
+| `prototypes/BOARD.md` | Leitura Markdown do canvas. | Gerado; não editar à mão. | `board_to_md.py`. |
+| `prototypes/board-mestre.json` | Índice dos sete boards, documentos e 53 containers. | Edição direta em PR. | Gera `board-mestre.md`; cada container aparece uma vez. |
+| `prototypes/board-mestre.md` | Índice Markdown para pessoas e agentes. | Gerado; não editar à mão. | `render_board_mestre.py`. |
+| `prototypes/*.md` | Diagramas Mermaid e mapas de leitura por assunto. | Atualização manual. | Apontam para fontes canônicas; não duplicam conteúdo. |
+| `prototypes/mestre.html` | Central visual com mapa, filtros, documentos e atalhos. | Código em PR. | Lê `board-mestre.json` e `board.json`. |
+| `prototypes/board-exam-app__index.html` | Visualizador do canvas original. | Código em PR. | Lê `board.json`; aceita `#ID`. |
+| `prototypes/catalog.json` | Catálogo estruturado de evidências. | `scripts/build-evidence-catalog.py`. | Validado pelo script do catálogo. |
 | GitHub (issues, PRs, CI) | Estado de execução e entrega. | Fluxo de engenharia. | Não duplicar status no board. |
 | Claude Whiteboards | Exploração visual remota. | Manual. | Não sincronizado automaticamente. |
 

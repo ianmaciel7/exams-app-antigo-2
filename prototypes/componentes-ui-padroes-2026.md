@@ -1,11 +1,11 @@
 
 # Padrões de componentes UI em 2026 — catálogo verificável e relação com leis de UX/HCI
 
-> **Revisão:** 14/11/2026. **Escopo:** referências oficiais W3C WAI-ARIA APG, HTML/MDN, Material Design 3, GitHub Primer e Adobe React Aria consultadas com Context7 e web. **Natureza:** referência documental para agentes do Exam App; não atesta que o protótipo implementa ou cumpre os padrões. **Links canônicos:** [AGENTS.md §22](../../../AGENTS.md), [DESIGN.md §8.25](../../../DESIGN.md), [catálogo de UX/UI](ux-ui-principles.md).
+> **Revisão:** 14/11/2026. **Escopo:** referências oficiais W3C WAI-ARIA APG, HTML/MDN, Material Design 3, GitHub Primer e Adobe React Aria consultadas com Context7 e web. **Natureza:** referência documental para agentes do Exam App; não atesta que o protótipo implementa ou cumpre os padrões. **Links canônicos:** [AGENTS.md §22](../AGENTS.md), [DESIGN.md §8.25](../DESIGN.md), [catálogo de UX/UI](ux-ui-principles.md).
 
 ## Critérios de classificação obrigatórios
 
-- **Lei empírica:** relação quantitativa/reprodutível com autor, domínio e limites — consultar [AGENTS.md §0](../../../AGENTS.md); não chamar comportamento de componente de lei.
+- **Lei empírica:** relação quantitativa/reprodutível com autor, domínio e limites — consultar [AGENTS.md §0](../AGENTS.md); não chamar comportamento de componente de lei.
 - **Heurística/modelo/efeito:** princípios perceptivos, modelos e descobertas como Jakob, Gestalt, Choice Overload e reconhecimento; são hipóteses de decisão a validar.
 - **Padrão WAI-ARIA APG:** contrato publicado de semântica, estados e teclado; **não é uma nova WCAG ou garantia automática de conformidade**.
 - **Componente de design system:** solução da plataforma/produto, não obrigação universal. Material 3 Android não determina implementação web; Primer React e React Aria servem como referências mesmo quando o protótipo usa HTML/CSS/JS.
@@ -103,7 +103,7 @@ Esses nomes são **padrões de produto/sistema**, não um padrão W3C por nome e
 
 ## E. Quais leis/efeitos realmente se aplicam a componentes?
 
-Este é o **mapeamento** pedido; não descobrimos uma lei científica nova para cada tipo de componente. Os nomes já constam do [AGENTS.md §§0–3](../../../AGENTS.md) e nos complementos de layout.
+Este é o **mapeamento** pedido; não descobrimos uma lei científica nova para cada tipo de componente. Os nomes já constam do [AGENTS.md §§0–3](../AGENTS.md) e nos complementos de layout.
 
 | Nome original | Classe correta | Componentes/hipóteses de aplicação | Contraexemplo/limite |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 import re
 
-text = open('prototypes/exam-app-0.1.1/index.html', encoding='utf-8').read()
+text = open('prototypes/exam-app-0.1.1__index.html', encoding='utf-8').read()
 
 ls_matches = set(re.findall(r'localStorage\.[a-zA-Z]+\([\'"]([^\'"]+)[\'"]', text))
 st_matches = set(re.findall(r'store\.[a-zA-Z]+\([\'"]([^\'"]+)[\'"]', text))

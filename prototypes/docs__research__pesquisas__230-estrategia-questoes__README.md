@@ -6,10 +6,10 @@ Este diretório reúne o que foi possível fazer **na nuvem, sem login**:
 
 | Arquivo | Conteúdo |
 |---|---|
-| [README.md](README.md) | Consolidação do relatório base, lacunas e status por item da issue |
+| [README.md](docs__research__pesquisas__230-estrategia-questoes__README.md) | Consolidação do relatório base, lacunas e status por item da issue |
 | [roteiro-captura.md](roteiro-captura.md) | Roteiro executável de capturas desktop e mobile, com URLs, passos e critérios |
 | [roteiro-usabilidade.md](roteiro-usabilidade.md) | Tarefas de usabilidade com passos, critérios de sucesso e métricas |
-| [comparacao-prototipo-dev.md](comparacao-prototipo-dev.md) | Comparação com o protótipo em `dev` (`prototypes/exam-app-0.1.1/index.html`), lida por seções |
+| [comparacao-prototipo-dev.md](comparacao-prototipo-dev.md) | Comparação com o protótipo em `dev` (`prototypes/exam-app-0.1.1__index.html`), lida por seções |
 
 Base: `/mnt/project-files/pesquisas/estrategia-questoes/relatorio-final.md` (16/11/2026).
 
@@ -42,7 +42,7 @@ Base: `/mnt/project-files/pesquisas/estrategia-questoes/relatorio-final.md` (16/
 
 1. Abrir o Estratégia Questões logado no navegador do ian-pc ou na própria conta.
 2. Seguir [roteiro-captura.md](roteiro-captura.md) e salvar as capturas com o nome indicado em cada item.
-3. Enviar as capturas no projeto (ou colocar em `prototypes/docs/research/pesquisas/230-estrategia-questoes/capturas/`) e comentar nesta issue ou na thread.
+3. Enviar as capturas no projeto (ou colocar em `prototypes/docs__research__pesquisas__230-estrategia-questoes__capturas__*`) e comentar nesta issue ou na thread.
 4. Rodar [roteiro-usabilidade.md](roteiro-usabilidade.md) com pelo menos 3 pessoas e registrar os resultados no mesmo diretório.
 
 Enquanto isso não acontece, esta issue fica aberta. Nada aqui representa captura de tela ou dado de conta logada.

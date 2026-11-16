@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convert board.json (Claude Whiteboard export) into BOARD.md, readable by any AI agent.
 
-Usage: python board_to_md.py   (run inside prototypes/board-exam-app/)
+Usage: python board_to_md.py   (run inside prototypes/board-exam-app__*)
 Inline data: images are extracted to assets/inline-<id>.<ext>; /_blob/<id> maps to assets/<id>.png.
 """
 import base64, json, os, re

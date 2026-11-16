@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { ClaudeStorageSyncEngine } from '../../prototypes/exam-app-0.1.1/js/claude-storage-sync.js';
+import { ClaudeStorageSyncEngine } from '../../prototypes/claude-storage-sync.js';
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const DEBUG_PORT_1 = 9225;
@@ -218,7 +218,7 @@ test('Homologacao Rigorosa: Claude Pro Storage <-> Exam App', async (t) => {
       // Captura screenshot da recuperacao no navegador limpo
       const ss = await cleanCDP.send('Page.captureScreenshot', { format: 'png' });
       const buffer = Buffer.from(ss.data, 'base64');
-      const outPath = path.resolve('prototypes/board-exam-app/assets/claude-storage-bridge/evidence-homologation-clean-recovery.png');
+      const outPath = path.resolve('prototypes/board-exam-app__assets__claude-storage-bridge__evidence-homologation-clean-recovery.png');
       fs.writeFileSync(outPath, buffer);
       assert.ok(buffer.length > 10000);
     } finally {

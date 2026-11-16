@@ -31,22 +31,22 @@ flowchart TB
 
 ## Documentos
 
-- [Estratégia de questões — #230](../../research/pesquisas/230-estrategia-questoes/README.md)
-- [Pesquisa QConcursos — #31](../../research/qconcursos-issue-31-2026-11-15.md)
-- [Inventário ExamTopics](../../research/examtopics-inventory.md)
-- [Gran Questões — #62](../../research/gran-questoes-issue-62-2026-11-15.md)
-- [Análise QConcursos](../../research/analises/analise-qconcursos.md)
-- [Análise ExamTopics](../../research/analises/analise-examtopics.md)
-- [Dossiê Readwise Reader e SRS](../../../board-exam-app/READWISE_DOSSIER.md)
+- [Estratégia de questões — #230](docs__research__pesquisas__230-estrategia-questoes__README.md)
+- [Pesquisa QConcursos — #31](qconcursos-issue-31-2026-11-15.md)
+- [Inventário ExamTopics](examtopics-inventory.md)
+- [Gran Questões — #62](gran-questoes-issue-62-2026-11-15.md)
+- [Análise QConcursos](analise-qconcursos.md)
+- [Análise ExamTopics](analise-examtopics.md)
+- [Dossiê Readwise Reader e SRS](READWISE_DOSSIER.md)
 
 ## Blocos originais
 
-- [e508 — Navegação, grade e relatório](../../../board-exam-app/index.html#e508)
-- [e1155 — Questões e simulados](../../../board-exam-app/index.html#e1155)
-- [e1177 — Diagnóstico PDF.js](../../../board-exam-app/index.html#e1177)
-- [e1188 — Cadernos e queries](../../../board-exam-app/index.html#e1188)
-- [e1208 — Filtros avançados](../../../board-exam-app/index.html#e1208)
-- [e1381 — Questões contextuais](../../../board-exam-app/index.html#e1381)
-- [e1453 — Recuperação](../../../board-exam-app/index.html#e1453)
-- [e1465 — Revisão diária](../../../board-exam-app/index.html#e1465)
-- [e1477 — PDF Reader](../../../board-exam-app/index.html#e1477)
+- [e508 — Navegação, grade e relatório](board-exam-app__index.html#e508)
+- [e1155 — Questões e simulados](board-exam-app__index.html#e1155)
+- [e1177 — Diagnóstico PDF.js](board-exam-app__index.html#e1177)
+- [e1188 — Cadernos e queries](board-exam-app__index.html#e1188)
+- [e1208 — Filtros avançados](board-exam-app__index.html#e1208)
+- [e1381 — Questões contextuais](board-exam-app__index.html#e1381)
+- [e1453 — Recuperação](board-exam-app__index.html#e1453)
+- [e1465 — Revisão diária](board-exam-app__index.html#e1465)
+- [e1477 — PDF Reader](board-exam-app__index.html#e1477)

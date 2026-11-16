@@ -1,6 +1,6 @@
 # Archive Reuse Map
 
-Maps what is inside `prototypes/docs/archives/*.bundle` to what the current `exams-app` can reuse.
+Maps what is inside `prototypes/*.bundle` to what the current `exams-app` can reuse.
 Built by extracting the bundles and listing their file trees (not by running their code).
 Items marked **(unverified)** come from the catalog `README.md` only.
 

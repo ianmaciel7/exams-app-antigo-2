@@ -4,8 +4,8 @@
 **Ambiente:** Windows 11 Pro, Google Chrome 157.0 (CDP Protocol), Node.js v22.19.0, Python SimpleHTTP 8765  
 **Repositório:** `C:\Users\ianma\workspace\exams\dev` (branch `dev`)  
 **Artifact Testado:** `https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC` (slug `a728ae48-3fa2-4dbf-9092-0392c90b58f7`)  
-**Evidência Visual:** `prototypes/board-exam-app/assets/evidence-iframe-csp-blocked.png` (107.897 bytes)  
-**Logs Brutos:** `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json`  
+**Evidência Visual:** `prototypes/board-exam-app__assets__evidence-iframe-csp-blocked.png` (107.897 bytes)  
+**Logs Brutos:** `prototypes/cdp-execution-log.json`  
 
 ---
 
@@ -31,17 +31,17 @@
 2. **Localização do arquivo `claude-storage-bridge-poc.zip`:**
    - Varredura executada em `C:\Users\ianma\Downloads`, `C:\Users\ianma\Desktop`, diretório do projeto e perfil do usuário.
    - **Resultado:** Arquivo zip ausente.
-   - **Ação:** Conforme diretriz da missão (*"Se não estiver disponível, informe o bloqueio e implemente uma prova de conceito equivalente"*), foi implementada uma prova de conceito limpa, tipada e modular em `tests/claude-storage-bridge-poc/` e `prototypes/claude-storage-test/`.
+   - **Ação:** Conforme diretriz da missão (*"Se não estiver disponível, informe o bloqueio e implemente uma prova de conceito equivalente"*), foi implementada uma prova de conceito limpa, tipada e modular em `tests/claude-storage-bridge-poc/` e `prototypes/claude-storage-test__*`.
 3. **Ambiente Isolado de Testes:**
-   - O protótipo principal `prototypes/exam-app-0.1.1/index.html` foi mantido **completamente intacto**, sem alteração de dados de produção nem de armazenamento de usuários.
+   - O protótipo principal `prototypes/exam-app-0.1.1__index.html` foi mantido **completamente intacto**, sem alteração de dados de produção nem de armazenamento de usuários.
    - Criados:
      - `tests/claude-storage-bridge-poc/protocol.mjs`: Protocolo de mensagens, ações e erros.
      - `tests/claude-storage-bridge-poc/server.mjs`: Responder do servidor (lado do Artifact/simulador).
      - `tests/claude-storage-bridge-poc/client.mjs`: Cliente da ponte (lado do Exam App / localhost).
      - `tests/claude-storage-bridge-poc/bridge.test.mjs`: Testes automatizados unitários em Node.js.
      - `tests/claude-storage-bridge-poc/cdp-runner.mjs`: Executor de testes reais em navegador via Chrome DevTools Protocol (CDP).
-     - `prototypes/claude-storage-test/index.html`: Laboratório de testes web interativo.
-     - `prototypes/claude-storage-test/artifact-simulation.html`: Simulação de Artifact com mock de `window.storage`.
+     - `prototypes/claude-storage-test__index.html`: Laboratório de testes web interativo.
+     - `prototypes/artifact-simulation.html`: Simulação de Artifact com mock de `window.storage`.
 4. **Verificação de Autenticação no Claude Pro:**
    - Verificado via CLI oficial Anthropic Frame (`claude-artifact whoami`): Token OAuth ativo e válido (`token found, 108 chars, ends ...58GwAA`).
 
@@ -190,10 +190,10 @@ Em cumprimento às regras da missão, foi realizada uma pesquisa aprofundada na 
 
 Em conformidade estrita com a política obrigatória de preservação de memória do projeto (**Zero Information Loss**):
 1. **Evidência Visual Capturada e Auditada:**
-   - Captura gerada: `prototypes/board-exam-app/assets/evidence-iframe-csp-blocked.png` (107.897 bytes).
+   - Captura gerada: `prototypes/board-exam-app__assets__evidence-iframe-csp-blocked.png` (107.897 bytes).
    - Verificação de integridade visual realizada via `read_file` (interface nítida com botões, matriz de status, iframe bloqueado e logs de erro completos).
 2. **Atualização do Planning Board (`board.json` e `BOARD.md`):**
-   - Adicionada **Seção 43** ao `prototypes/board-exam-app/board.json`.
+   - Adicionada **Seção 43** ao `prototypes/board.json`.
    - Elementos adicionados com geometria válida (`inside` do container) e listados no array `order`.
    - Executado `npm run board`, gerando o `BOARD.md` atualizado com a memória permanente da investigação.
 
@@ -208,11 +208,11 @@ Em conformidade estrita com a política obrigatória de preservação de memóri
 | `tests/claude-storage-bridge-poc/client.mjs` | Implementação do cliente da ponte (lado do Exam App) com controle de timeout e promessas. |
 | `tests/claude-storage-bridge-poc/bridge.test.mjs` | 5 subtestes unitários com Node.js nativo validando comunicação, operações CRUD, isolamento de chaves e timeouts. |
 | `tests/claude-storage-bridge-poc/cdp-runner.mjs` | Script de automação via Chrome DevTools Protocol para teste real no navegador, coleta de logs de rede/CSP e captura de screenshots. |
-| `prototypes/claude-storage-test/index.html` | Laboratório visual isolado para execução manual e automatizada dos testes de iframe e popup contra o Claude real. |
-| `prototypes/claude-storage-test/artifact-simulation.html` | Simulador controlado de Artifact com mock de `window.storage` para comprovar que a falha no Claude não decorre de bug lógico da ponte. |
-| `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` | Log estruturado em JSON com mensagens brutas do Console e requisições de Rede capturadas durante os testes com Chromium. |
-| `prototypes/board-exam-app/assets/evidence-iframe-csp-blocked.png` | Evidência visual do bloqueio de CSP `frame-ancestors` e da tentativa de conexão com o Claude real. |
-| `prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | Este relatório formal de auditoria técnica. |
+| `prototypes/claude-storage-test__index.html` | Laboratório visual isolado para execução manual e automatizada dos testes de iframe e popup contra o Claude real. |
+| `prototypes/artifact-simulation.html` | Simulador controlado de Artifact com mock de `window.storage` para comprovar que a falha no Claude não decorre de bug lógico da ponte. |
+| `prototypes/cdp-execution-log.json` | Log estruturado em JSON com mensagens brutas do Console e requisições de Rede capturadas durante os testes com Chromium. |
+| `prototypes/board-exam-app__assets__evidence-iframe-csp-blocked.png` | Evidência visual do bloqueio de CSP `frame-ancestors` e da tentativa de conexão com o Claude real. |
+| `prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | Este relatório formal de auditoria técnica. |
 
 ---
 

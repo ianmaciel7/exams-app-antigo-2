@@ -1,7 +1,7 @@
 # ADR 0003: Persistência offline-first com fila de saída (Outbox)
 
 - Status: vigente no código
-- Proveniência: cabeçalho de `prototypes/exam-app-0.1.1/js/claude-storage-sync.js` (SHA `9beadadd`).
+- Proveniência: cabeçalho de `prototypes/claude-storage-sync.js` (SHA `9beadadd`).
 
 ## Contexto
 O estudo precisa funcionar sem rede e não pode perder alterações. O estado remoto pode chegar fora de ordem.

@@ -2,7 +2,7 @@
 
 > **Escopo:** consolidação de achados da pesquisa solicitada em 14/11/2026, aplicada ao Exam App. **Não é inventário exaustivo** de cada página dos 20 sites, nem evidência de conformidade do protótipo.
 >
-> **Documentos canônicos:** [Catálogo de 86 itens](ux-ui-principles.md), [Arquitetura da informação e navegação](arquitetura-informacao-navegacao.md), [AGENTS.md](../../../AGENTS.md). Este relatório os **complementa**, sem duplicar o catálogo de 30 entradas de Laws of UX, 10 Gestalt, 10 Nielsen e outras famílias já transcritas no AGENTS.md.
+> **Documentos canônicos:** [Catálogo de 86 itens](ux-ui-principles.md), [Arquitetura da informação e navegação](arquitetura-informacao-navegacao.md), [AGENTS.md](../AGENTS.md). Este relatório os **complementa**, sem duplicar o catálogo de 30 entradas de Laws of UX, 10 Gestalt, 10 Nielsen e outras famílias já transcritas no AGENTS.md.
 
 ## Como interpretar a pesquisa
 
@@ -99,6 +99,6 @@ A classificação indica **a utilidade da fonte**, não certifica auditoria inte
 
 **Leis antes omitidas, agora categorizadas:** Fechner, Stevens, Piéron, Korte e Yerkes–Dodson (psicofísica/história com ressalvas); Goodhart e Campbell (leis nomeadas de outras disciplinas, não leis específicas de UI/UX). Há outras entradas a classificar separadamente como **efeitos/vieses/heurísticas**, por exemplo Endowed Progress Effect, Stroop Effect, Change Blindness, Banner Blindness, Satisficing, Default Effect, Automation Bias e Interruption Cost. Não aumentar a contagem de leis apenas por serem nomes populares ou constarem em agregadores.
 
-**Lacuna de outra conversa:** a leitura individual de **21 candidatos a skills Material 3/Apple + 1 agregador** e o teste no protótipo seguem sem evidência de conclusão, rastreados na [issue #156](https://github.com/ianmaciel7/exams-app/issues/156) e em [DESIGN.md §9](../../../DESIGN.md). Cadastrar URLs ou resumir skills **não comprova leitura integral**.
+**Lacuna de outra conversa:** a leitura individual de **21 candidatos a skills Material 3/Apple + 1 agregador** e o teste no protótipo seguem sem evidência de conclusão, rastreados na [issue #156](https://github.com/ianmaciel7/exams-app/issues/156) e em [DESIGN.md §9](../DESIGN.md). Cadastrar URLs ou resumir skills **não comprova leitura integral**.
 
 **Próxima verificação mensurável:** tabela por fonte contendo `site → entrada original → link direto → status de acesso → classe científica/normativa → estudos/fonte primária → duplicatas → presença em AGENTS.md → evidência → próximo passo`; registrar explícita e honestamente inacessíveis, JS ou paywall. Para interfaces, conferir DOM/CSS/JS, screenshots/GIF e board nas jornadas de Questões, Simulados, Revisão, sidebar, grafo, PDF, responsividade e animações. **Este ajuste de documentação não altera nem valida o protótipo.**

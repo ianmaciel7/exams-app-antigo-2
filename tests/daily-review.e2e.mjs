@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
 await mkdir(assets,{recursive:true});
 const evidence={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Chromium desktop/mobile simulation, not a physical screen-reader or IME validation.',

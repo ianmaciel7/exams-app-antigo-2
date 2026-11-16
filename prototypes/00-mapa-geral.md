@@ -49,8 +49,8 @@ flowchart LR
 
 ## Fontes canônicas
 
-- [Central de boards](../README.md)
-- [Fontes de verdade](../FONTES.md)
-- [Canvas original](../../../board-exam-app/BOARD.md)
-- [Dados do canvas](../../../board-exam-app/board.json)
-- [Catálogo de evidências](../../evidence/CATALOG.md)
+- [Central de boards](docs__board__README.md)
+- [Fontes de verdade](FONTES.md)
+- [Canvas original](BOARD.md)
+- [Dados do canvas](board.json)
+- [Catálogo de evidências](CATALOG.md)

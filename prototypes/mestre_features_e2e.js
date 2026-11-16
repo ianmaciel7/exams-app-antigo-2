@@ -1,7 +1,7 @@
 // Teste de navegador da visão de features do Board Mestre. Uso: node mestre_features_e2e.js <base-url> <dir-saida-screenshots>
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
-const base = process.argv[2] || 'http://localhost:8765/prototypes/board-exam-app/mestre.html';
+const base = process.argv[2] || 'http://localhost:8765/prototypes/mestre.html';
 const shots = process.argv[3] || '.';
 const widths = [320, 390, 768, 1366, 1920];
 (async () => {

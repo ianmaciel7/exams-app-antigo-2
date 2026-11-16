@@ -1,4 +1,4 @@
-// Renderiza todos os blocos ```mermaid de prototypes/docs/architecture, prototypes/docs/features e prototypes/docs/planning
+// Renderiza todos os blocos ```mermaid de prototypes/docs__architecture__*, prototypes/docs__features__* e prototypes/docs__planning__*
 // num Chromium headless com Mermaid fixado, e salva uma captura por diagrama.
 // Uso: node scripts/render-mermaid-check.mjs <pasta-de-capturas>
 import { readFileSync, readdirSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -21,7 +21,7 @@ function walk(dir) {
 }
 
 const blocks = [];
-for (const area of ['prototypes/docs/architecture', 'prototypes/docs/features', 'prototypes/docs/planning']) {
+for (const area of ['prototypes/docs__architecture__*', 'prototypes/docs__features__*', 'prototypes/docs__planning__*']) {
   for (const file of walk(join(root, area))) {
     const text = readFileSync(file, 'utf8');
     const re = /```mermaid\n([\s\S]*?)```/g;

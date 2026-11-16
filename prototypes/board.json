@@ -3178,7 +3178,7 @@
       "w": 1700,
       "h": 5940,
       "color": "white",
-      "text": "28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)"
+      "text": "28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs__archives__*) & Capacities Live (Issues #47 a #50 e #52 a #58)"
     },
     "e701": {
       "type": "text",
@@ -7552,7 +7552,7 @@
     "e1372": {
       "type": "text",
       "color": "white",
-      "text": "### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)\n\nTestamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).\n\n- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.\n- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.\n- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).\n- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).\n- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.\n\nEvidência técnica registrada em prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.",
+      "text": "### Veredito da Prova de Conceito: Inviável via Browser Bridge (Bloqueado por CSP e Sandbox)\n\nTestamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude Pro Storage (window.storage no Artifact a728ae48).\n\n- Testes unitários do protocolo (MessageChannel, CRUD, timeout, validação de chaves e origens): 6/6 passaram.\n- Teste de incorporação em iframe: Bloqueado pelo navegador via CSP frame-ancestors self.\n- Teste de janela autenticada (window.open): Desacoplado pelo navegador via Cross-Origin-Opener-Policy (same-origin-allow-popups).\n- Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).\n- Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.\n\nEvidência técnica registrada em prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
       "x": 5630,
       "y": 2600,
       "w": 1550,

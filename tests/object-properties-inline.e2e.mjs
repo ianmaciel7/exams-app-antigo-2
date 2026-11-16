@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root = path.resolve('prototypes/board-exam-app');
+const root = path.resolve('prototypes/board-exam-app__*');
 const assets = path.join(root, 'assets');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 57, cases: [], errors: [], limitations: [

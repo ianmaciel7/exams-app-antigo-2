@@ -1,6 +1,6 @@
 import json
 
-with open('prototypes/board-exam-app/board.json', encoding='utf-8') as f:
+with open('prototypes/board.json', encoding='utf-8') as f:
     board = json.load(f)
 
 # Container e1440 ampliado
@@ -67,7 +67,7 @@ for elem_id in ['e1440', 'e1441', 'e1442', 'e1443', 'e1444', 'e1445']:
     if elem_id not in board['order']:
         board['order'].append(elem_id)
 
-with open('prototypes/board-exam-app/board.json', 'w', encoding='utf-8') as f:
+with open('prototypes/board.json', 'w', encoding='utf-8') as f:
     json.dump(board, f, ensure_ascii=False, indent=2)
 
 print('board.json atualizado com secao 44 expandida!')

@@ -27,18 +27,18 @@ flowchart LR
 
 ## Documentos
 
-- [README de protótipos](../../../README.md)
-- [Índice de branches arquivadas](../../archives/README.md)
-- [Mapa de reutilização](../../archives/REUSE-MAP.md)
-- [Fontes de verdade](../FONTES.md)
-- [Relatório da reestruturação](../RELATORIO-REESTRUTURACAO.md)
+- [README de protótipos](README.md)
+- [Índice de branches arquivadas](docs__archives__README.md)
+- [Mapa de reutilização](REUSE-MAP.md)
+- [Fontes de verdade](FONTES.md)
+- [Relatório da reestruturação](RELATORIO-REESTRUTURACAO.md)
 
 ## Blocos originais
 
-- [e47 — Feito (histórico)](../../../board-exam-app/index.html#e47)
-- [e48 — Em andamento (histórico)](../../../board-exam-app/index.html#e48)
-- [e49 — Pendente (histórico)](../../../board-exam-app/index.html#e49)
-- [e4 — Versão 0.1.0](../../../board-exam-app/index.html#e4)
-- [e149 — Versão 0.1.1](../../../board-exam-app/index.html#e149)
-- [e154 — Roadmap original](../../../board-exam-app/index.html#e154)
-- [e363 — Arquivos do projeto](../../../board-exam-app/index.html#e363)
+- [e47 — Feito (histórico)](board-exam-app__index.html#e47)
+- [e48 — Em andamento (histórico)](board-exam-app__index.html#e48)
+- [e49 — Pendente (histórico)](board-exam-app__index.html#e49)
+- [e4 — Versão 0.1.0](board-exam-app__index.html#e4)
+- [e149 — Versão 0.1.1](board-exam-app__index.html#e149)
+- [e154 — Roadmap original](board-exam-app__index.html#e154)
+- [e363 — Arquivos do projeto](board-exam-app__index.html#e363)

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const first=html.indexOf(" const fb=e.target.closest('[data-srs-feedback]');if(fb){");
 const last=html.indexOf(" const discard=e.target.closest('[data-srs-discard]');",first);
 assert.ok(first>=0&&last>first,'real SRS Feedback event source exists');

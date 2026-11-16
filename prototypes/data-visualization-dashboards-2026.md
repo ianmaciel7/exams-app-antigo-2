@@ -6,10 +6,10 @@
 
 ## 1. Relação com os documentos já existentes
 
-- [AGENTS.md](../../../AGENTS.md): regras de agentes, evidência e fluxo PR; possui catálogo extenso de leis/teorias/heurísticas de UX.
+- [AGENTS.md](../AGENTS.md): regras de agentes, evidência e fluxo PR; possui catálogo extenso de leis/teorias/heurísticas de UX.
 - [Catálogo de leis e heurísticas UX/UI](ux-ui-principles.md): definições, fontes, exceções e o catálogo de 86 entradas, **sem supor que exista uma lista fechada de todas as leis**.
-- [DESIGN.md](../../../DESIGN.md): tokens, identidade, comportamento low-chrome, componentes e critérios visuais.
-- [MOTION.md](../../../MOTION.md): movimento reduzido, física do grafo e seus limites de performance.
+- [DESIGN.md](../DESIGN.md): tokens, identidade, comportamento low-chrome, componentes e critérios visuais.
+- [MOTION.md](../MOTION.md): movimento reduzido, física do grafo e seus limites de performance.
 - [Arquitetura de informação](arquitetura-informacao-navegacao.md): tarefas do estudante, filtros e escolha entre página, painel ou aba.
 
 **Hierarquia:** WCAG/HTML/ARIA aplicáveis e integridade dos dados > necessidades e decisões do usuário > contratos existentes do projeto > orientação de design systems > sínteses e skills de terceiros. Diretrizes de autores não são normas ou leis universais.
@@ -94,16 +94,16 @@ Antes de criar um KPI, registrar em issue/PR, documentação ou teste:
 | Reflow e ampliação | Zoom 200/400%, narrow viewport, fontes grandes; sem perda de dados essenciais | [WCAG 1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) |
 | Nomes e estado | Name/role/value para controles e anúncios de atualização quando pertinentes | [WCAG 4.1.2 / 4.1.3](https://www.w3.org/TR/WCAG22/) |
 | Alvos | Aplicar 2.5.8 (24 CSS px ou exceções) ao escopo aplicável; não confundir com diretrizes de plataforma | [WCAG 2.5.8](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) |
-| Movimento | Respeitar reduced motion, pausas e animação útil; 2.3.3 é AAA, não AA | [WCAG 2.2.2](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html), [MOTION.md](../../../MOTION.md) |
+| Movimento | Respeitar reduced motion, pausas e animação útil; 2.3.3 é AAA, não AA | [WCAG 2.2.2](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html), [MOTION.md](../MOTION.md) |
 | Tabela não basta sozinha | Resumo da tendência e insights em texto, não só dump de números | [USWDS](https://designsystem.digital.gov/components/data-visualizations/) |
 
 Para grafos: oferecer busca, seleção por teclado ou lista de nós/arestas, indicação textual das relações e foco visível. Não transformar automaticamente um grafo canvas em `role=tree` (árvore ARIA tem hierarquia e teclado específicos). Para leitores de tela, validar empiricamente, não apenas inspecionar markup.
 
 ## 7. Regras de engenharia e modelo de interação
 
-- **Protótipo atual:** `prototypes/exam-app-0.1.1/index.html` usa HTML/CSS/JS. Respeitar esta stack; não introduzir React, Next.js, D3 ou Power BI automaticamente.
+- **Protótipo atual:** `prototypes/exam-app-0.1.1__index.html` usa HTML/CSS/JS. Respeitar esta stack; não introduzir React, Next.js, D3 ou Power BI automaticamente.
 - **Futuro React/Next:** primeiro verificar bibliotecas instaladas; considerar SSR/CSR, hydration, ResizeObserver, windowing, typed data, erros de série e cores semânticas; não confundir skill com dependência npm.
-- **Grafo:** referenciar [MOTION.md](../../../MOTION.md), inclusive o guardrail provisório de até 240 nós para simulação O(N²). Performance, teclado, zoom e atualização de posição requerem teste real.
+- **Grafo:** referenciar [MOTION.md](../MOTION.md), inclusive o guardrail provisório de até 240 nós para simulação O(N²). Performance, teclado, zoom e atualização de posição requerem teste real.
 - **Streaming:** oferecer pausa, cadência legível, status de dados atrasados e descarte/agrupamento explícito; não atualizar dezenas de vezes por segundo sem razão.
 - **Formatos:** Intl/ECMA-402 para números/data/moedas conforme locale, período e timezone explicitados; internacionalizar legenda/aria-label.
 - **Segurança:** não expor dados pessoais em tooltips, logs, screenshots, exports, datasets públicos ou snapshots E2E. Sanitizar valores vindos do backend; não interpolar HTML arbitrário em rótulos.

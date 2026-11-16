@@ -4,7 +4,7 @@ Para cada pergunta, o modelo recomendado, quem usa, a fonte canônica, o custo d
 
 | Pergunta | Público | Modelo | Fonte canônica | Custo de atualização | Por que | Quando NÃO usar |
 | --- | --- | --- | --- | --- | --- | --- |
-| Como o sistema é organizado por fora? | Produto, eng. nova | C4 L1 (contexto) | Código + `prototypes/docs/architecture/c4.md` | Baixo | Mostra atores e sistemas externos sem detalhe interno | Para detalhar funções |
+| Como o sistema é organizado por fora? | Produto, eng. nova | C4 L1 (contexto) | Código + `prototypes/c4.md` | Baixo | Mostra atores e sistemas externos sem detalhe interno | Para detalhar funções |
 | Quais partes existem e como falam? | Eng. | C4 L2 (containers) | Código do protótipo | Médio | Separa runtime, armazenamento e capacidades | Quando não há separação real (o protótipo é um único HTML) |
 | Quais componentes internos? | Eng. | C4 L3 | Código verificado | Alto | Só para módulos com fronteira real | Enquanto o código é um arquivo único sem módulos |
 | Que objetos e relações existem? | Produto, eng., conteúdo | ER / tabela de tipos | `TYPES` em `index.html` | Baixo | Mostra Espaço → Objeto → Tipo e propriedades | Para regras de UI |

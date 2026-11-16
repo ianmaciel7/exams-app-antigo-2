@@ -2,7 +2,7 @@
 
 > **Status:** catálogo documental **incremental**, ampliado em 14/11/2026 por PRs de leis, princípios e padrões. **Não representa extração exaustiva dos 20 sites** nem demonstra implementação/testes de UI. **Baseline histórico da primeira versão:** `408271d7c56b088fefe9d17860a23c47731ff268` — **não é o HEAD atual da dev**; sempre consultar o commit vigente antes da auditoria. Escopo: documentação. Pesquisa de cobertura registrada na [síntese de 20 fontes](pesquisa-20-fontes-2026-11.md) e na [issue #122](https://github.com/ianmaciel7/exams-app/issues/122).
 
-**Animação e movimento:** os 12 princípios clássicos, as regras de motion para interfaces, os tokens do Exam App e os testes de movimento reduzido estão documentados em [MOTION.md](../../../MOTION.md). São princípios artísticos e práticas de interação, não 12 leis normativas de UX.
+**Animação e movimento:** os 12 princípios clássicos, as regras de motion para interfaces, os tokens do Exam App e os testes de movimento reduzido estão documentados em [MOTION.md](../MOTION.md). São princípios artísticos e práticas de interação, não 12 leis normativas de UX.
 
 ## Como usar sem transformar heurísticas em dogmas
 
@@ -16,7 +16,7 @@
 
 ## Índice estrito de leis empíricas para UI/UX (separado de heurísticas e padrões)
 
-**Para pedidos de “leis de UX/UI”**, consultar [AGENTS.md §0](../../../AGENTS.md) **antes** das listas editoriais de Laws of UX, componentes, motion e técnicas WCAG. Este índice só reúne relações científicas rastreáveis, **não transforma recomendações de design systems em leis**.
+**Para pedidos de “leis de UX/UI”**, consultar [AGENTS.md §0](../AGENTS.md) **antes** das listas editoriais de Laws of UX, componentes, motion e técnicas WCAG. Este índice só reúne relações científicas rastreáveis, **não transforma recomendações de design systems em leis**.
 
 | Lei/modelo original | Área e uso adequado | Fonte científica | Observação |
 |---|---|---|---|
@@ -32,7 +32,7 @@
 
 ### Complemento científico — percepção, movimento e métricas (revisão do histórico)
 
-Espelho de [AGENTS.md §§0.2.1–0.2.2](../../../AGENTS.md). Os nomes abaixo **não estavam no índice anterior**. A classificação evita confundir relações psicofísicas com leis gerais de UI ou normas de conformidade.
+Espelho de [AGENTS.md §§0.2.1–0.2.2](../AGENTS.md). Os nomes abaixo **não estavam no índice anterior**. A classificação evita confundir relações psicofísicas com leis gerais de UI ou normas de conformidade.
 
 | Nome original | Categoria | Fonte científica ou histórica | Limite para o Exam App |
 |---|---|---|---|
@@ -156,7 +156,7 @@ Espelho de [AGENTS.md §§0.2.1–0.2.2](../../../AGENTS.md). Os nomes abaixo **
 | 72 | Tamanho de alvo | Norma WCAG 2.2 2.5.8 AA | Alvo mínimo 24×24 CSS px ou exceção de espaçamento/equivalência. | Auditar chips e botões compactos; preferir alvos maiores quando possível. | 44×44 é critério AAA 2.5.5, não mínimo AA universal. | [Target](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum) |
 | 73 | Reflow e zoom | Norma WCAG 2.2 1.4.10 | Conteúdo deve refluir sem rolagem bidimensional indevida nas condições do critério. | Verificar resolução de questão em viewport estreita e zoom. | Algumas tabelas e gráficos têm exceção. | [WCAG](https://www.w3.org/TR/WCAG22/) |
 | 74 | Mensagens de status | Norma WCAG 2.2 4.1.3 AA | Atualizações de status são comunicadas sem roubar foco. | Anunciar resposta salva e atualização de contagem. | Alertas urgentes podem requerer padrão diferente. | [WCAG](https://www.w3.org/TR/WCAG22/), [APGAlert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) |
-| 75 | Movimento reduzido | Norma WCAG 2.2 2.3.3 AAA e preferência do usuário | Movimento disparado por interação deve poder ser desativado, salvo essencial. | Respeitar prefers-reduced-motion em CSS, JS e canvas, preservando feedback e integridade da tarefa. | Não confundir este AAA com obrigação AA geral; considerar 2.2.2 e 2.3.1 (A) quando aplicáveis. | [WCAG](https://www.w3.org/TR/WCAG22/), [MOTION.md](../../../MOTION.md) |
+| 75 | Movimento reduzido | Norma WCAG 2.2 2.3.3 AAA e preferência do usuário | Movimento disparado por interação deve poder ser desativado, salvo essencial. | Respeitar prefers-reduced-motion em CSS, JS e canvas, preservando feedback e integridade da tarefa. | Não confundir este AAA com obrigação AA geral; considerar 2.2.2 e 2.3.1 (A) quando aplicáveis. | [WCAG](https://www.w3.org/TR/WCAG22/), [MOTION.md](../MOTION.md) |
 | 76 | Cabeçalhos e rótulos | Norma WCAG 2.2 2.4.6 AA | Títulos e labels descrevem assunto ou propósito. | Título Questão 12 de 70 e botões com ação explícita. | Evitar rótulos genéricos como Ver mais sem contexto. | [WCAG](https://www.w3.org/TR/WCAG22/) |
 
 ### 8. Desempenho, ética e validação
@@ -177,7 +177,7 @@ Espelho de [AGENTS.md §§0.2.1–0.2.2](../../../AGENTS.md). Os nomes abaixo **
 
 ## Extensões sincronizadas de UX para formulários — catálogo do AGENTS.md §§13–15
 
-**Escopo:** este documento continua contendo as **86 entradas aplicadas originais**. As tabelas a seguir espelham, sem renumerar as 86, os nomes e as fontes das adições ao [AGENTS.md](../../../AGENTS.md) feitas nas seções 13, 14 e 15. **Não são 13+8+10+4+14+5 leis científicas independentes**: incluem leis empíricas, princípios, modelos, normas e orientações de implementação. Para o contrato de desenho visual e de persistência, consultar [DESIGN.md §8.10](../../../DESIGN.md).
+**Escopo:** este documento continua contendo as **86 entradas aplicadas originais**. As tabelas a seguir espelham, sem renumerar as 86, os nomes e as fontes das adições ao [AGENTS.md](../AGENTS.md) feitas nas seções 13, 14 e 15. **Não são 13+8+10+4+14+5 leis científicas independentes**: incluem leis empíricas, princípios, modelos, normas e orientações de implementação. Para o contrato de desenho visual e de persistência, consultar [DESIGN.md §8.10](../DESIGN.md).
 
 ### A. Treze leis, modelos e frameworks complementares (§13)
 
@@ -278,7 +278,7 @@ Fonte: [WCAG 2.2](https://www.w3.org/TR/WCAG22/) e [Quick Reference](https://www
 
 ## Extensões gerais verificadas para UX em 2026 — espelho da seção 16 do AGENTS.md
 
-Este índice **não altera nem renumera as 86 entradas originais** nem o inventário de leis já documentado. Ele acrescenta nomes **publicados**, nas classes corretas: modelos de visualização, princípios de inclusão, norma ISO, orientação W3C, framework de métricas, padrões governamentais e padrões de design systems. Consulte [AGENTS.md §16](../../../AGENTS.md) para as regras normativas por fluxo e [DESIGN.md §8.14](../../../DESIGN.md) para componentes, paneamento, grafo e gráficos.
+Este índice **não altera nem renumera as 86 entradas originais** nem o inventário de leis já documentado. Ele acrescenta nomes **publicados**, nas classes corretas: modelos de visualização, princípios de inclusão, norma ISO, orientação W3C, framework de métricas, padrões governamentais e padrões de design systems. Consulte [AGENTS.md §16](../AGENTS.md) para as regras normativas por fluxo e [DESIGN.md §8.14](../DESIGN.md) para componentes, paneamento, grafo e gráficos.
 
 ### G. Seven Principles of Universal Design (7)
 
@@ -388,7 +388,7 @@ Fonte: [WCAG 2.2](https://www.w3.org/TR/WCAG22/). Níveis, escopo e exceções i
 
 ### P. HCI, avaliação e widgets acessíveis — auditoria incremental Context7 (2026)
 
-Espelho resumido de [AGENTS.md §17](../../../AGENTS.md) e do contrato de implementação de [DESIGN.md §8.19](../../../DESIGN.md). Os nomes abaixo **não alteram os 86 itens do catálogo original** e representam categorias diferentes de conhecimento, sem pretensão de que sejam leis científicas novas.
+Espelho resumido de [AGENTS.md §17](../AGENTS.md) e do contrato de implementação de [DESIGN.md §8.19](../DESIGN.md). Os nomes abaixo **não alteram os 86 itens do catálogo original** e representam categorias diferentes de conhecimento, sem pretensão de que sejam leis científicas novas.
 
 | Nome original publicado | Tipo, autoria / instituição | Uso no Exam App e limite | Fonte |
 |---|---|---|---|
@@ -410,7 +410,7 @@ Espelho resumido de [AGENTS.md §17](../../../AGENTS.md) e do contrato de implem
 
 ### Q. Avaliação, testes e tokens — publicações de 2026
 
-Espelho resumido de [AGENTS.md §18](../../../AGENTS.md) e dos contratos de [DESIGN.md §§8.20–8.21](../../../DESIGN.md). **Estes itens não são leis UI/UX novas.** Diferenciar especificação, método, padrão de tecnologia e rascunho.
+Espelho resumido de [AGENTS.md §18](../AGENTS.md) e dos contratos de [DESIGN.md §§8.20–8.21](../DESIGN.md). **Estes itens não são leis UI/UX novas.** Diferenciar especificação, método, padrão de tecnologia e rascunho.
 
 | Nome oficial | Tipo e status | Aplicação / cuidado | Fonte |
 |---|---|---|---|
@@ -429,7 +429,7 @@ Espelho resumido de [AGENTS.md §18](../../../AGENTS.md) e dos contratos de [DES
 
 ### R. Animated icons, Sortable e View Transitions — padrões publicados e acessibilidade (2026)
 
-Espelho das regras em [AGENTS.md §19](../../../AGENTS.md), [DESIGN.md §8.22](../../../DESIGN.md) e [MOTION.md §6](../../../MOTION.md). Estes **não são leis universais de UX**: incluem efeitos nativos Apple, orientações Material 3, componentes e mecanismos de biblioteca, APIs Web e técnica informativa de conformidade WCAG.
+Espelho das regras em [AGENTS.md §19](../AGENTS.md), [DESIGN.md §8.22](../DESIGN.md) e [MOTION.md §6](../MOTION.md). Estes **não são leis universais de UX**: incluem efeitos nativos Apple, orientações Material 3, componentes e mecanismos de biblioteca, APIs Web e técnica informativa de conformidade WCAG.
 
 | Nome publicado | Categoria | Exemplo condicionado no Exam App | Fonte |
 |---|---|---|---|
@@ -447,7 +447,7 @@ Espelho das regras em [AGENTS.md §19](../../../AGENTS.md), [DESIGN.md §8.22](.
 
 ### S. Estrutura de páginas e layout — princípios de pesquisa e sistemas de design (2026)
 
-Espelho de [AGENTS.md §20](../../../AGENTS.md) e [DESIGN.md §8.23](../../../DESIGN.md). **A única categoria chamada estritamente de lei empírica neste catálogo continua na seção específica acima.** Os itens a seguir são **princípios experimentais, teorias e padrão observado** que orientam composição de informação; não devem ser promovidos a novas leis obrigatórias.
+Espelho de [AGENTS.md §20](../AGENTS.md) e [DESIGN.md §8.23](../DESIGN.md). **A única categoria chamada estritamente de lei empírica neste catálogo continua na seção específica acima.** Os itens a seguir são **princípios experimentais, teorias e padrão observado** que orientam composição de informação; não devem ser promovidos a novas leis obrigatórias.
 
 | Nome original publicado | Classe | Quando usar na estrutura do Exam App | Fonte original |
 |---|---|---|---|
@@ -472,7 +472,7 @@ Espelho de [AGENTS.md §20](../../../AGENTS.md) e [DESIGN.md §8.23](../../../DE
 
 ### T. Busca visual, densidade e organização didática — pesquisa complementar de layout
 
-Índice de [AGENTS.md §21](../../../AGENTS.md) e aplicação em [DESIGN.md §8.24](../../../DESIGN.md). São **modelos, teorias, princípios e efeitos empíricos**, não novas leis científicas de interface no índice estrito.
+Índice de [AGENTS.md §21](../AGENTS.md) e aplicação em [DESIGN.md §8.24](../DESIGN.md). São **modelos, teorias, princípios e efeitos empíricos**, não novas leis científicas de interface no índice estrito.
 
 | Nome original | Categoria / autores | Aplicação contextual ao Exam App | Fonte original |
 |---|---|---|---|
@@ -490,7 +490,7 @@ Espelho de [AGENTS.md §20](../../../AGENTS.md) e [DESIGN.md §8.23](../../../DE
 
 ### U. Componentes UI 2026 — padrões W3C e leis aplicáveis
 
-**Índice canônico:** [Catálogo de 30 padrões WAI-ARIA APG e componentes web atuais](componentes-ui-padroes-2026.md). Contratos operacionais: [AGENTS.md §22](../../../AGENTS.md) e [DESIGN.md §8.25](../../../DESIGN.md). Foram revisados no Context7 os padrões do **W3C APG**, **Material 3**, **GitHub Primer** e **Adobe React Aria**, além do **MDN** para recursos HTML/CSS/Web atuais. **Os 30 itens W3C não são novas leis UX.**
+**Índice canônico:** [Catálogo de 30 padrões WAI-ARIA APG e componentes web atuais](componentes-ui-padroes-2026.md). Contratos operacionais: [AGENTS.md §22](../AGENTS.md) e [DESIGN.md §8.25](../DESIGN.md). Foram revisados no Context7 os padrões do **W3C APG**, **Material 3**, **GitHub Primer** e **Adobe React Aria**, além do **MDN** para recursos HTML/CSS/Web atuais. **Os 30 itens W3C não são novas leis UX.**
 
 | Família | Nomes oficiais representativos | Leis/heurísticas que podem fundamentar uma hipótese |
 |---|---|---|
@@ -589,5 +589,5 @@ O catálogo acima cobre princípios gerais de UX/UI. Para **dashboards, KPIs, gr
 | **Visual Information-Seeking Mantra — Shneiderman (1996)** — heurística | Visão geral, filtros/zoom e detalhes sob demanda; relações e histórico quando úteis | [Artigo](https://doi.org/10.1109/VL.1996.545307) |
 | **WCAG 2.2, WAI Complex Images e USWDS** — norma/guia | Título, mensagem textual, tabela adequada, teclado, contraste e acesso aos dados | [WCAG](https://www.w3.org/TR/WCAG22/), [WAI](https://www.w3.org/WAI/tutorials/images/complex/), [USWDS](https://designsystem.digital.gov/components/data-visualizations/) |
 
-**Não existem “todas as leis de dashboard” em lista oficial.** A documentação mantém separadas leis, teorias, heurísticas, normas, padrões do design system e regras do projeto; não presume que novos princípios estejam implementados na `dev`. Para PRs de visualização, combinar este catálogo com o [contrato do AGENTS.md](../../../AGENTS.md) e [DESIGN.md](../../../DESIGN.md).
+**Não existem “todas as leis de dashboard” em lista oficial.** A documentação mantém separadas leis, teorias, heurísticas, normas, padrões do design system e regras do projeto; não presume que novos princípios estejam implementados na `dev`. Para PRs de visualização, combinar este catálogo com o [contrato do AGENTS.md](../AGENTS.md) e [DESIGN.md](../DESIGN.md).
 <!-- DATAVIZ-UX-LAWS-2026:END -->

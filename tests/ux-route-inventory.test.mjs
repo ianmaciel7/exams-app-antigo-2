@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
 
-const source = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
-const guide = readFileSync(new URL('../prototypes/docs/ux/arquitetura-informacao-navegacao.md', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
+const guide = readFileSync(new URL('../prototypes/arquitetura-informacao-navegacao.md', import.meta.url), 'utf8');
 
 test('current route inventory is grounded in actual dispatch logic', () => {
   const active = [
@@ -127,7 +127,7 @@ test('SRS merge preserves recovered-attempt ledger, contextual tabs and both evi
   assert.ok(source.includes('mergeConfirmedAttemptFallback'),'issue 76 remote recovery ledger must survive');
   assert.ok(source.includes('Alt+Shift+ArrowRight'),'issue 139 browser-safe shortcut must survive');
   assert.ok(source.includes('data-q-dock-srs'),'SRS import must survive');
-  const board=JSON.parse(readFileSync(new URL('../prototypes/board-exam-app/board.json',import.meta.url),'utf8'));
+  const board=JSON.parse(readFileSync(new URL('../prototypes/board.json',import.meta.url),'utf8'));
   const titles=Object.values(board.elements).filter(e=>e.type==='container').map(e=>e.text||'');
   assert.ok(titles.some(s=>s.includes('50. Recuperação estrita')),'issue 76 evidence remains in board');
   assert.ok(titles.some(s=>s.includes('51. Revisão diária')),'issue 82 evidence is in the board');

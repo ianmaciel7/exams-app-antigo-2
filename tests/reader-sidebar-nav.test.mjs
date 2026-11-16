@@ -3,7 +3,7 @@ import test from 'node:test';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const from=html.indexOf('function tdReaderNavSection(){');
 const to=html.indexOf("\nnav.addEventListener('click',e=>{",from);
 assert.ok(from>0&&to>from,'reader sidebar function can be isolated');

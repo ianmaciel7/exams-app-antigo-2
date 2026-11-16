@@ -71,9 +71,9 @@ jobs:
             echo "::notice ::CLAUDE_ARTIFACT_TOKEN is not configured in repository secrets. Skipping remote CI artifact sync. Local git hooks handle artifact deployment."
             exit 0
           fi
-          echo "Deploying prototypes/exam-app-0.1.1/index.html to live Claude artifact..."
+          echo "Deploying prototypes/exam-app-0.1.1__index.html to live Claude artifact..."
           uvx --from claude-artifact-cli claude-artifact publish \
             --mode patch \
             --token "$CLAUDE_TOKEN" \
             --url "https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC" \
-            prototypes/exam-app-0.1.1/index.html
+            prototypes/exam-app-0.1.1__index.html

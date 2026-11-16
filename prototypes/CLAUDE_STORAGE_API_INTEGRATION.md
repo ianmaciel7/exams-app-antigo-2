@@ -56,7 +56,7 @@ Na auditoria inicial, identificou-se que `tests/claude-storage-api-poc/e2e-sync.
 
 ## 3. Arquitetura da Fila Offline-First (ClaudeStorageSyncEngine)
 
-Implementada em `prototypes/exam-app-0.1.1/js/claude-storage-sync.js` e embutida inline como contingência em `index.html`:
+Implementada em `prototypes/claude-storage-sync.js` e embutida inline como contingência em `index.html`:
 
 - **Identidade Única (`opId`):** Cada mutação recebe um identificador imutável `op_${timestamp}_${seq}_${random}`.
 - **Transmissão Não-Bloqueante:** O envio em voo (`status: 'in-flight'`) não sobrescreve itens adicionados simultaneamente pelo usuário.

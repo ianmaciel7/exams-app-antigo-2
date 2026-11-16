@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes/board-exam-app/assets');
+const assets = path.resolve('prototypes/board-exam-app__assets__*');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 55, checks: [], errors: [] };
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });

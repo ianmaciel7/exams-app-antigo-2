@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes/board-exam-app/assets');
+const dir=path.resolve('prototypes/board-exam-app__assets__*');
 await mkdir(dir,{recursive:true});
 const report={source:'Playwright Chromium',viewport:{width:1100,height:850},scenarios:[],errors:[]};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
@@ -136,5 +136,5 @@ try{
  console.log('PDF diagnostic passed across DPR 1/2 and zoom 100/150/200, with selection/copy and synthetic-state retry.');
 }finally{
  await browser.close();
- await writeFile('prototypes/board-exam-app/pdf112_diagnostic.json',JSON.stringify({...report,generatedAt:new Date().toISOString()},null,2)+'\n');
+ await writeFile('prototypes/pdf112_diagnostic.json',JSON.stringify({...report,generatedAt:new Date().toISOString()},null,2)+'\n');
 }

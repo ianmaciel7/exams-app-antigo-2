@@ -71,41 +71,41 @@
 
 Fonte: Playwright Chromium 1366×900 (DPR 1), comparação da dev anterior e da branch de PR. Screenshots produzidos por tests/study-unification.e2e.mjs. Testes: busca oficial+manual, resposta, reload, lista contextual, criar simulado pelo filtro, quantidade/tempo e status de erros. Não representam inspeção do QConcursos, Capacities ou conformidade WCAG.
 
-![imagem e1157](assets/issue100_before_global.png)
+![imagem e1157](issue100_before_global.png)
 
-![imagem e1159](assets/issue100_after_global.png)
+![imagem e1159](issue100_after_global.png)
 
 ANTES: fluxo global separado da lista de objetos | PNG real: assets/issue100_before_global.png
 
 DEPOIS: banco unificado com filtros e status rápidos | PNG real: assets/issue100_after_global.png
 
-![imagem e1161](assets/issue100_before_manual.png)
+![imagem e1161](issue100_before_manual.png)
 
-![imagem e1163](assets/issue100_after_manual.png)
+![imagem e1163](issue100_after_manual.png)
 
 ANTES: busca de questão manual sem resultados na prática global | PNG real: assets/issue100_before_manual.png
 
 DEPOIS: questão manual encontrada e renderizada no mesmo fluxo | PNG real: assets/issue100_after_manual.png
 
-![imagem e1165](assets/issue100_before_simulado.png)
+![imagem e1165](issue100_before_simulado.png)
 
-![imagem e1167](assets/issue100_after_simulado.png)
+![imagem e1167](issue100_after_simulado.png)
 
 ANTES: configurador restrito à prova oficial Dataprev | PNG real: assets/issue100_before_simulado.png
 
 DEPOIS: banco completo, quantidade, tempo e ordem configuráveis | PNG real: assets/issue100_after_simulado.png
 
-![imagem e1169](assets/issue100_after_answer.png)
+![imagem e1169](issue100_after_answer.png)
 
-![imagem e1171](assets/issue100_after_contexto.png)
+![imagem e1171](issue100_after_contexto.png)
 
 DEPOIS: resposta da questão manual, feedback e persistência | PNG real: assets/issue100_after_answer.png
 
 DEPOIS: mesma questão manual e filtro no contexto do concurso | PNG real: assets/issue100_after_contexto.png
 
-![imagem e1173](assets/issue100_after_manual_simulado.png)
+![imagem e1173](issue100_after_manual_simulado.png)
 
-![imagem e1175](assets/issue100_after_erros.png)
+![imagem e1175](issue100_after_erros.png)
 
 DEPOIS: simulado criado a partir do filtro da questão manual | PNG real: assets/issue100_after_manual_simulado.png
 
@@ -150,27 +150,27 @@ O protótipo chama o Claude direto, sem chave de API: o artefato usa a capacidad
 
 Prints em /mnt/project-files/prints/redesign-paginas-objeto/
 
-![imagem e303](assets/467eb8f7f105cfc51e345390bbecd9c4.png)
+![imagem e303](467eb8f7f105cfc51e345390bbecd9c4.png)
 
-![imagem e305](assets/b7e3a67f5e62b599877bb5b3174ea4c0.png)
+![imagem e305](b7e3a67f5e62b599877bb5b3174ea4c0.png)
 
 Capturas enviadas por Ian durante a revisão da 0.1.1, em 12 e 13/11.
 
-![imagem e319](assets/731ecd45a56634184b7bcd8df6de8c5b.png)
+![imagem e319](731ecd45a56634184b7bcd8df6de8c5b.png)
 
-![imagem e321](assets/cc0093684c5ae6f612afbbf6b91bd674.png)
+![imagem e321](cc0093684c5ae6f612afbbf6b91bd674.png)
 
 **0.1.1:** Arquivo, Documento e PDF na árvore, com contagem.
 
 **Referência:** item fixado com pin e ⋯ ao passar o mouse.
 
-![imagem e341](assets/cf85b4fdc73d3e37137c304ff737aadc.png)
+![imagem e341](cf85b4fdc73d3e37137c304ff737aadc.png)
 
-![imagem e343](assets/c6f3efc2d1ce12dfa1331f679bdfb8a9.png)
+![imagem e343](c6f3efc2d1ce12dfa1331f679bdfb8a9.png)
 
-![imagem e345](assets/a2e193b128aa82280b9e19b8ba5920be.png)
+![imagem e345](a2e193b128aa82280b9e19b8ba5920be.png)
 
-![imagem e347](assets/785ec225c4eb1d55dbb90821ab83bfe0.png)
+![imagem e347](785ec225c4eb1d55dbb90821ab83bfe0.png)
 
 **Capacities:** Fixados com ⋯ no hover.
 
@@ -180,9 +180,9 @@ Capturas enviadas por Ian durante a revisão da 0.1.1, em 12 e 13/11.
 
 **Capacities:** sidebar, hover nos itens.
 
-![imagem e349](assets/84ae80e4902c3ad8907983654d8015b3.png)
+![imagem e349](84ae80e4902c3ad8907983654d8015b3.png)
 
-![imagem e351](assets/748153cb0d733bded9a8c682d75eb22c.png)
+![imagem e351](748153cb0d733bded9a8c682d75eb22c.png)
 
 **Capacities:** sidebar, item aberto.
 
@@ -192,11 +192,11 @@ Capturas enviadas por Ian durante a revisão da 0.1.1, em 12 e 13/11.
 
 Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro para o Board.
 
-![imagem e355](assets/9083d3341a57b970d09f1293fe724ffa.png)
+![imagem e355](9083d3341a57b970d09f1293fe724ffa.png)
 
-![imagem e357](assets/946aec4deb45e6d0b1be13525eb558b0.png)
+![imagem e357](946aec4deb45e6d0b1be13525eb558b0.png)
 
-![imagem e359](assets/b58de1eeada0232a88aed896ece2168b.png)
+![imagem e359](b58de1eeada0232a88aed896ece2168b.png)
 
 **Mesma queixa:** "Estudo Dataprev 2026" e "Protótipo Dataprev 2026" lado a lado.
 
@@ -204,7 +204,7 @@ Capturas da fase em que o Ian pediu um artefato só para o protótipo e outro pa
 
 **Antes da 0.1.0 (12/11):** lista de artefatos com cards repetidos. Ian queria um artefato só.
 
-![imagem e361](assets/f9c476ddeb52b075e841baacdff748f1.png)
+![imagem e361](f9c476ddeb52b075e841baacdff748f1.png)
 
 **Board Exam App no canvas** (visão geral, 12/11).
 
@@ -242,17 +242,17 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 
 **Evidência 76 (Readwise SRS Edit — Issue #83): Modal de edição não-destrutiva (`Edited Highlight` vs `Original Highlight`) e campo `NOTE`**
 
-![imagem e985](assets/readwise_srs_review_settings_algorithm.png)
+![imagem e985](readwise_srs_review_settings_algorithm.png)
 
-![imagem e987](assets/readwise_srs_frequency_tuning_by_source.png)
+![imagem e987](readwise_srs_frequency_tuning_by_source.png)
 
 **Evidência 77 (Readwise SRS Algoritmo — Issue #82): Painel `Review Settings` (`Highlights Per Day`, `Highlight Recency` slider, `Bonus Highlights`)**
 
 **Evidência 78 (Readwise SRS Tuning — Issue #83): Tela `Frequency Tuning` (`/configure/tune/books`) com slider de prioridade para cada fonte/disciplina**
 
-![imagem e989](assets/readwise_srs_daily_review_completed_streak.png)
+![imagem e989](readwise_srs_daily_review_completed_streak.png)
 
-![imagem e991](assets/readwise_srs_statistics_heatmap.png)
+![imagem e991](readwise_srs_statistics_heatmap.png)
 
 **Evidência 79 (Readwise SRS Streak — Issue #83): Tela de conclusão da Revisão Diária (`6/6 reviewed today`), badge de `Streak` e botão `Review More Highlights`**
 
@@ -261,9 +261,9 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 ## QConcursos
 <!-- container e108 @ (7464,62) -->
 
-![imagem e109](assets/inline-e109.jpg)
+![imagem e109](inline-e109.jpg)
 
-![imagem e110](assets/inline-e110.jpg)
+![imagem e110](inline-e110.jpg)
 
 > **Estudo do usuário**
 > usuário tem: prova salva, resumo, pasta, caderno, anotação,
@@ -279,7 +279,7 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 > questão: modalidade, alternativas, gabarito, gabarito comentado,
 > comentários, nível, dificuldade, situação e ano
 
-![imagem e114](assets/inline-e114.jpg)
+![imagem e114](inline-e114.jpg)
 
 > **Questão em 4 grupos**
 > metadados: prova ou concurso, disciplina e assunto, modalidade e dificuldade, situação
@@ -308,9 +308,9 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 
 **Edição, antes e depois** (0.1.1).
 
-![imagem e307](assets/4916231707b4b56575f007bdc921fa91.png)
+![imagem e307](4916231707b4b56575f007bdc921fa91.png)
 
-![imagem e309](assets/fc38ad7f1771ecbdbcc5341596b58f24.png)
+![imagem e309](fc38ad7f1771ecbdbcc5341596b58f24.png)
 
 **Cargo, antes e depois** (0.1.1).
 
@@ -468,9 +468,9 @@ Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo
 ## 24. Dashboard Central de Estudos (#/espaco) - Especificação de UX
 <!-- container e506 @ (9300,900) -->
 
-![imagem e313](assets/265be9aa9703f3cc57f43d3c62f96de1.png)
+![imagem e313](265be9aa9703f3cc57f43d3c62f96de1.png)
 
-![imagem e315](assets/02126f3b520aaad9b5c9577b472379a8.png)
+![imagem e315](02126f3b520aaad9b5c9577b472379a8.png)
 
 ### Reformulação da Home (#/espaco) em Dashboard de Estudos
 
@@ -563,7 +563,7 @@ Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo
 ## ExamTopics
 <!-- container e116 @ (7464,1062) -->
 
-![imagem e117](assets/inline-e117.jpg)
+![imagem e117](inline-e117.jpg)
 
 > **Fluxo de questões**
 > fornecedor → exame → tópico → questão
@@ -578,7 +578,7 @@ Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo
 ## 25. Telas Vitais: Navegação por Teclado, Grade Rápida e Relatório de Simulado
 <!-- container e508 @ (9300,1500) -->
 
-![imagem e317](assets/5e04fb915ee94b2c67a5adb37585e685.png)
+![imagem e317](5e04fb915ee94b2c67a5adb37585e685.png)
 
 ### Auditoria e Modernização de Telas Vitais (Issues #17 & #19)
 
@@ -602,13 +602,13 @@ Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo
 
 **0.1.1: página da Edição** enviada junto com o mesmo feedback.
 
-![imagem e323](assets/831c50665375ea7ebd6bb067f3e09c4e.png)
+![imagem e323](831c50665375ea7ebd6bb067f3e09c4e.png)
 
-![imagem e325](assets/245371488f6e2d39a3dc98e934d488f4.png)
+![imagem e325](245371488f6e2d39a3dc98e934d488f4.png)
 
-![imagem e327](assets/791462f4696e4cfd2e62304ca7520faf.png)
+![imagem e327](791462f4696e4cfd2e62304ca7520faf.png)
 
-![imagem e329](assets/8852061c63b37547e1c657dda371bbee.png)
+![imagem e329](8852061c63b37547e1c657dda371bbee.png)
 
 **0.1.1:** item "2026" (Edição) dentro do Dataprev.
 
@@ -619,17 +619,17 @@ Título, aliases, descrição, ícone, etiquetas e criado_em já existem em todo
 
 ### Documentos
 
-![imagem e5](assets/inline-e5.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#edital))
+![imagem e5](inline-e5.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#edital))
 
-![imagem e6](assets/inline-e6.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret1))
+![imagem e6](inline-e6.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret1))
 
-![imagem e7](assets/inline-e7.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret2))
+![imagem e7](inline-e7.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#ret2))
 
-![imagem e8](assets/inline-e8.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#cronograma))
+![imagem e8](inline-e8.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#cronograma))
 
-![imagem e9](assets/inline-e9.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#tipo1))
+![imagem e9](inline-e9.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#tipo1))
 
-![imagem e10](assets/inline-e10.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#gabarito))
+![imagem e10](inline-e10.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7#gabarito))
 
 Edital de abertura
 
@@ -661,16 +661,16 @@ Gabarito preliminar
 > espaço
 > progresso e posição: só em leitura
 
-![imagem e44](assets/inline-e44.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7))
+![imagem e44](inline-e44.jpg) ([abrir](https://claude.ai/artifact/X3QEzX9BgrXsTjySqSBnx7))
 
 ## Readwise
 <!-- container e119 @ (7464,1602) -->
 
-![imagem e121](assets/inline-e121.jpg)
+![imagem e121](inline-e121.jpg)
 
-![imagem e122](assets/inline-e122.jpg)
+![imagem e122](inline-e122.jpg)
 
-![imagem e124](assets/inline-e124.jpg)
+![imagem e124](inline-e124.jpg)
 
 > **Readwise em 4 diagramas**
 > leitura (Reader): documento, vindo de fonte ou feed RSS, tem
@@ -685,12 +685,12 @@ Gabarito preliminar
 > Já temos: documento de leitura com progresso, cartão de revisão, etiqueta.
 > Destaque fica só como referência por enquanto.
 
-![imagem e123](assets/inline-e123.jpg)
+![imagem e123](inline-e123.jpg)
 
 ## 26. Integração do Explorar, Grafo Contextual e Navegação Tripartida (Issue #25)
 <!-- container e510 @ (9300,2100) -->
 
-![imagem e331](assets/474678ed59f7cc5b7fbf3494dd75704f.png)
+![imagem e331](474678ed59f7cc5b7fbf3494dd75704f.png)
 
 ### Unificação de Descoberta e Navegação Contextual (Issue #25)
 
@@ -719,11 +719,11 @@ Gabarito preliminar
 
 O que Ian mostrou como modelo para a sidebar: tipos de objeto, ordenar, hover, lixeira.
 
-![imagem e335](assets/5dd2843391f7c5827e8905be47daf12d.png)
+![imagem e335](5dd2843391f7c5827e8905be47daf12d.png)
 
-![imagem e337](assets/8d42664c47e656b5f3b9c49ea3e6b134.png)
+![imagem e337](8d42664c47e656b5f3b9c49ea3e6b134.png)
 
-![imagem e339](assets/346da48cb8ad25f2a7857b2d30933368.png)
+![imagem e339](346da48cb8ad25f2a7857b2d30933368.png)
 
 **Capacities:** cabeçalho "Tipos de objeto" com contagem, ⋯ e +. Ian: o + deve abrir diálogo para escolher o objeto.
 
@@ -782,39 +782,39 @@ Cada objeto tem um único tipo: o mais específico (ex.: PDF).
 > **8. Home `#/espaco` e Modais (Issue #40)**
 > - KPIs com valores hardcoded (`5 dias`, `38 dias`, `5% lido`), grid 3+1 com card órfão, contraste fraco no Light Mode e falta de fechamento consistente com `Escape` em `#pal`.
 
-![imagem e610](assets/audit2026_home_dark.png)
+![imagem e610](audit2026_home_dark.png)
 
-![imagem e612](assets/audit2026_home_light.png)
+![imagem e612](audit2026_home_light.png)
 
 **Evidência 1:** Dashboard Home (#/espaco) em Dark Mode: KPIs 3+1, métricas estáticas e duplicação na topbar
 
 **Evidência 2:** Dashboard Home (#/espaco) em Light Mode: botões cinzas pesados e baixo contraste de bordas
 
-![imagem e614](assets/audit2026_cargo_props.png)
+![imagem e614](audit2026_cargo_props.png)
 
-![imagem e616](assets/audit2026_questao_expanded.png)
+![imagem e616](audit2026_questao_expanded.png)
 
 **Evidência 3:** Cargo Analista de TI (#/cargo/dataprev-2026-ti-dev): corte nos rótulos 'Cadastro de reserv' e 'Remuneração inici' no .props-card
 
 **Evidência 4:** Questão 1 (#/questao/q1): .props-card aberto por padrão com 11 linhas empurra enunciado e alternativas para fora da tela
 
-![imagem e618](assets/audit2026_questao_collapsed.png)
+![imagem e618](audit2026_questao_collapsed.png)
 
-![imagem e620](assets/audit2026_graph_collision.png)
+![imagem e620](audit2026_graph_collision.png)
 
 **Evidência 5:** Questão 1 (#/questao/q1) com .props-card recolhido: enunciado e alternativas A-D cabem imediatamente na dobra
 
 **Evidência 6:** Grafo Global (#/grafico): colisão direta entre pílulas de filtro (.gv-leg) e contador '90 objetos · 299 relações' (.gv-info)
 
-![imagem e622](assets/audit2026_simulado_exec.png)
+![imagem e622](audit2026_simulado_exec.png)
 
-![imagem e624](assets/audit2026_simulado_resultado.png)
+![imagem e624](audit2026_simulado_resultado.png)
 
 **Evidência 7:** Modo Simulado (#/simulado/exec): enunciado comprimido em ~250px ao lado da grade de 70 questões
 
 **Evidência 8:** Scorecard Pós-Simulado (#/simulado/resultado): truncamento severo dos nomes das disciplinas ('Língua Portu...', 'Raciocínio Ló...')
 
-![imagem e626](assets/audit2026_tipo_questao_wrap.png)
+![imagem e626](audit2026_tipo_questao_wrap.png)
 
 **Evidência 9:** Página Tipo Questão (#/tipo/questao): quebra do título em 3 linhas ('Qu / est / ão') e inputs radio nativos sem estilização
 
@@ -836,9 +836,9 @@ Testamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude P
 - Teste de postMessage: Inalcançável devido ao sandboxing em 3 camadas do Claude (claude.ai -> frame.claudeusercontent.com -> index.html).
 - Fechamento de aba: Canais em memória são destruídos com a aba; não há persistência autônoma.
 
-Evidência técnica registrada em prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md.
+Evidência técnica registrada em prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md
 
-![imagem e1373](assets/evidence-iframe-csp-blocked.png)
+![imagem e1373](board-exam-app__assets__evidence-iframe-csp-blocked.png)
 
 Evidência de execução real no Google Chrome: O navegador acusa 'Framing https://claude.ai/ violates Content Security Policy: frame-ancestors... The request has been blocked'. O iframe renderiza em branco e o canal postMessage é recusado pela Same-Origin Policy. Recomendação: Manter armazenamento local estruturado (localStorage/IndexedDB) e publicação estática via claude-artifact publish.
 
@@ -847,7 +847,7 @@ Evidência de execução real no Google Chrome: O navegador acusa 'Framing https
 
 ### Protótipo 0.1.1
 
-![imagem e151](assets/inline-e151.jpg) ([abrir](https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC))
+![imagem e151](inline-e151.jpg) ([abrir](https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC))
 
 Tipos de Objeto na 0.1.1:
 - Concurso, Órgão, Banca, Edição, Cargo
@@ -900,17 +900,17 @@ Filtro de questões (0.1.1): botão Filtrar com popover pesquisável, vários va
 
 Evidência nativa do Exam App: Playwright Chromium, PDF da segunda retificação edital-2a-retificacao.pdf. Capturas reais no mesmo documento e DPR 2 (100%/200%), antes e depois do PR. Canvas fornece pixels; textLayer fornece seleção/cópia. Este teste não prova paridade com Readwise nem visualizador nativo, e não substitui Firefox/Edge. Métricas por cenário em pdf112_diagnostic.json.
 
-![imagem e1179](assets/pdf112_before_dpr2_zoom1.png)
+![imagem e1179](pdf112_before_dpr2_zoom1.png)
 
-![imagem e1181](assets/pdf112_after_dpr2_zoom1.png)
+![imagem e1181](pdf112_after_dpr2_zoom1.png)
 
 ANTES: página e camada de texto, DPR 2 / 100% | assets/pdf112_before_dpr2_zoom1.png
 
 DEPOIS: página e camada de texto, DPR 2 / 100% | assets/pdf112_after_dpr2_zoom1.png
 
-![imagem e1183](assets/pdf112_before_dpr2_zoom2.png)
+![imagem e1183](pdf112_before_dpr2_zoom2.png)
 
-![imagem e1185](assets/pdf112_after_dpr2_zoom2.png)
+![imagem e1185](pdf112_after_dpr2_zoom2.png)
 
 ANTES: página e camada de texto, DPR 2 / 200% | assets/pdf112_before_dpr2_zoom2.png
 
@@ -1005,15 +1005,15 @@ Decisões pendentes (4): listadas no fim do documento. Nada foi alterado na 0.1.
 - **Seguranca do Proxy:** Restricao estrita de Slugs homologados, rejeicao de chamadas sem Origin/Auth, regex estrita e timeout de 15s no upstream.
 - **Artifact Publicado:** Capabilities db e user homologadas; suporte a fallback inline para execucao direta no iframe.
 
-![imagem e1442](assets/evidence-e2e-sync-badge-active.png)
+![imagem e1442](board-exam-app__assets__evidence-e2e-sync-badge-active.png)
 
 Evidencia de execucao real no Google Chrome: Badge SVG ativo (.synced/.syncing) no rodape lateral. Respostas de questoes, cadernos e espacos sincronizados com o Claude Pro DB (127.0.0.1:8766).
 
-![imagem e1444](assets/evidence-claude-web-artifact-public.png)
+![imagem e1444](board-exam-app__assets__evidence-claude-web-artifact-public.png)
 
 Evidencia de auditoria do Claude Web: O acesso web automatizado ao Artifact real (claude.ai/code/artifact/...) apresenta o desafio Cloudflare Turnstile (Just a moment...), enquanto a API de Frame DB via token OAuth do Claude Code no proxy conecta-se diretamente ao backend sem bloqueio.
 
-![imagem e1446](assets/evidence-homologation-clean-recovery.png)
+![imagem e1446](board-exam-app__assets__evidence-homologation-clean-recovery.png)
 
 Evidencia de Homologacao: Recuperacao completa e deterministica de dados (respostas, cadernos, espacos e workspaces) em navegador limpo e virgem a partir do Claude Pro DB.
 
@@ -1057,39 +1057,39 @@ Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, j�
 
 Origem: testes Playwright Chromium em tests/notebooks-saved-filters.e2e.mjs. Caminhos testados: filtro -> gerar caderno, meta 80%, progresso independente das respostas globais, zerar, refazer erros, associar questão individual, Queries do Tipo Questão, filtros persistidos, retorno à primeira pendente e mobile 390px. Não representa teste moderado com usuários nem compara com QConcursos Live.
 
-![imagem e1190](assets/issue75_before_no_notebooks.png)
+![imagem e1190](issue75_before_no_notebooks.png)
 
-![imagem e1192](assets/issue75_after_filter.png)
+![imagem e1192](issue75_after_filter.png)
 
 ANTES — Banco de questões sem ação de Cadernos
 
 DEPOIS — Questão manual filtrada, pronta para Gerar Caderno
 
-![imagem e1194](assets/issue75_after_book_created.png)
+![imagem e1194](issue75_after_book_created.png)
 
-![imagem e1196](assets/issue75_after_book_answer.png)
+![imagem e1196](issue75_after_book_answer.png)
 
 DEPOIS — Novo Caderno criado com meta de 80%
 
 DEPOIS — Resposta correta dentro do caderno; progresso 1/1
 
-![imagem e1198](assets/issue75_after_retake_errors.png)
+![imagem e1198](issue75_after_retake_errors.png)
 
-![imagem e1200](assets/issue75_after_question_member.png)
+![imagem e1200](issue75_after_question_member.png)
 
 DEPOIS — Refazer somente questões erradas sem apagar histórico geral
 
 DEPOIS — Inclusão avulsa da Questão 1 via painel Cadernos
 
-![imagem e1202](assets/issue75_after_saved_query.png)
+![imagem e1202](issue75_after_saved_query.png)
 
-![imagem e1204](assets/issue75_after_continue_pending.png)
+![imagem e1204](issue75_after_continue_pending.png)
 
 DEPOIS — Filtro salvo aparece nas Queries do Tipo Questão
 
 DEPOIS — Retomada na primeira questão pendente do caderno
 
-![imagem e1206](assets/issue75_after_mobile.png)
+![imagem e1206](issue75_after_mobile.png)
 
 DEPOIS — Gerenciador de Cadernos em mobile 390px
 
@@ -1118,352 +1118,352 @@ DEPOIS — Gerenciador de Cadernos em mobile 390px
 > **4. Capacities Functional Core — Object-Oriented PKM (Issue #84)**
 > - **Templates por Tipo de Objeto**, **Queries Dinâmicas Construtoras**, **Propriedades Tipadas Bidirecionais**, **Transclusão / Live Embed de Questões e Blocos** dentro de notas e **Diário de Estudo (`Daily Notes`)**.
 
-![imagem e905](assets/qconcursos_filter_disciplina_open.png)
+![imagem e905](qconcursos_filter_disciplina_open.png)
 
-![imagem e907](assets/qconcursos_filter_assunto_open.png)
+![imagem e907](qconcursos_filter_assunto_open.png)
 
 **Evidência 37 (QConcursos Botões — Issue #70): Dropdown `Disciplina` aberto com busca rápida e árvore de checkboxes**
 
 **Evidência 38 (QConcursos Botões — Issue #70): Dropdown `Assunto` em cascata hierárquica com contadores de questões**
 
-![imagem e909](assets/qconcursos_filter_banca_open.png)
+![imagem e909](qconcursos_filter_banca_open.png)
 
-![imagem e911](assets/qconcursos_filter_dificuldade_open.png)
+![imagem e911](qconcursos_filter_dificuldade_open.png)
 
 **Evidência 39 (QConcursos Botões — Issue #70): Dropdown `Banca` aberto (FGV, Cebraspe, FCC, VUNESP) com busca instantânea**
 
 **Evidência 40 (QConcursos Botões — Issue #70): Dropdown `Dificuldade` (`Muito Fácil` a `Muito Difícil`) e modal `Salvar Filtro`**
 
-![imagem e913](assets/qconcursos_salvar_filtros_modal.png)
+![imagem e913](qconcursos_salvar_filtros_modal.png)
 
-![imagem e915](assets/qconcursos_gerar_caderno_modal.png)
+![imagem e915](qconcursos_gerar_caderno_modal.png)
 
 **Evidência 41 (QConcursos Botões — Issue #75): Modal `Salvar Filtro` (novo ou atualizar existente) com resumo de pílulas ativas**
 
 **Evidência 42 (QConcursos Botões — Issue #75): Drawer `Gerar Caderno` a partir do filtro ativo (limite de até 1.000 questões)**
 
-![imagem e917](assets/qconcursos_configuracoes_questoes_drawer.png)
+![imagem e917](qconcursos_configuracoes_questoes_drawer.png)
 
-![imagem e919](assets/qconcursos_texto_associado_expanded.png)
+![imagem e919](qconcursos_texto_associado_expanded.png)
 
 **Evidência 43 (QConcursos Botões — Issue #70): Drawer `Configurações de Exibição` (mostrar apenas comentadas, ocultar alternativas descartadas)**
 
 **Evidência 44 (QConcursos Botões — Issue #71): `Texto associado (+)` expandido inline acima do enunciado da questão**
 
-![imagem e921](assets/qconcursos_alternative_scissors_struck.png)
+![imagem e921](qconcursos_alternative_scissors_struck.png)
 
-![imagem e923](assets/qconcursos_question_cadernos_tab.png)
+![imagem e923](qconcursos_question_cadernos_tab.png)
 
 **Evidência 45 (QConcursos Botões — Issue #71): Alternativa A descartada com a **Tesoura** (`line-through`, `opacity: 0.5` e tooltip `Restaurar alternativa`)**
 
 **Evidência 46 (QConcursos Botões — Issues #72, #75): Aba `Cadernos` dentro da questão para adicionar o item a um caderno de estudo**
 
-![imagem e925](assets/qconcursos_question_anotacoes_editor.png)
+![imagem e925](qconcursos_question_anotacoes_editor.png)
 
-![imagem e927](assets/qconcursos_question_notificar_erro.png)
+![imagem e927](qconcursos_question_notificar_erro.png)
 
 **Evidência 47 (QConcursos Botões — Issue #72): Aba `Anotações` com editor rich text WYSIWYG aberto na questão**
 
 **Evidência 48 (QConcursos Botões — Issue #72): Modal `Reportar Erro` com 6 pílulas estruturadas de classificação do problema**
 
-![imagem e929](assets/qconcursos_dock_fonte_aa_active.png)
+![imagem e929](qconcursos_dock_fonte_aa_active.png)
 
-![imagem e931](assets/qconcursos_dock_cronometro_open.png)
+![imagem e931](qconcursos_dock_cronometro_open.png)
 
 **Evidência 49 (QConcursos Study Dock — Issue #74): Ferramenta `Tamanho do texto (Aa)` aberta no dock lateral flutuante (`14px`, `- Menor`, `+ Maior`)**
 
 **Evidência 50 (QConcursos Study Dock — Issue #74): Ferramenta `Cronômetro` aberta no dock lateral (`45 min`, `Iniciar`, `Resetar`, `Aviso ON`)**
 
-![imagem e933](assets/qconcursos_dock_marcatexto_open.png)
+![imagem e933](qconcursos_dock_marcatexto_open.png)
 
-![imagem e935](assets/qconcursos_dock_desempenho_active.png)
+![imagem e935](qconcursos_dock_desempenho_active.png)
 
 **Evidência 51 (QConcursos Study Dock — Issue #74): Ferramenta `Marca-texto` ativa no dock lateral para grifar trechos do enunciado**
 
 **Evidência 52 (QConcursos Study Dock — Issue #74): Popover `Desempenho no Filtro` no dock lateral (Donut 39% acertos / 61% erros)**
 
-![imagem e937](assets/qconcursos_dock_modo_foco.png)
+![imagem e937](qconcursos_dock_modo_foco.png)
 
-![imagem e939](assets/qconcursos_live_question_tab_gabarito_comentado.png)
+![imagem e939](qconcursos_live_question_tab_gabarito_comentado.png)
 
 **Evidência 53 (QConcursos Study Dock — Issue #74): `Modo Foco / Zen` ativado ocultando barras globais e maximizando a leitura**
 
 **Evidência 54 (QConcursos Abas — Issue #72): Aba `Gabarito Comentado` com análise estruturada alternativa por alternativa**
 
-![imagem e941](assets/readwise_reader_inbox_triage.png)
+![imagem e941](readwise_reader_inbox_triage.png)
 
-![imagem e943](assets/readwise_reader_home_dashboard.png)
+![imagem e943](readwise_reader_home_dashboard.png)
 
 **Evidência 55 (Readwise Reader `/new` — Issue #81): Interface de 3 painéis na `Inbox` (`/new`) com lista de triagem, metadados laterais e atalhos**
 
 **Evidência 56 (Readwise Reader `/home` — Issue #81): Dashboard Home configurável com seções `Continue Reading`, `Recently Added` e `Shortlist`**
 
-![imagem e945](assets/readwise_reader_filtered_views_query.png)
+![imagem e945](readwise_reader_filtered_views_query.png)
 
-![imagem e947](assets/readwise_reader_doc2_loaded.png)
+![imagem e947](readwise_reader_doc2_loaded.png)
 
 **Evidência 57 (Readwise Reader — Issue #81): Motor de `Filtered Views` com gramática de queries booleanas (`category:pdf AND tag:edital`)**
 
 **Evidência 58 (Readwise Reader `/new/read/...` — Issue #77): Leitura em 3 painéis com Sumário à esquerda, foco por parágrafo e aba `Info` à direita**
 
-![imagem e949](assets/readwise_reader_doc2_paragraph_focus_j.png)
+![imagem e949](readwise_reader_doc2_paragraph_focus_j.png)
 
-![imagem e951](assets/readwise_reader_doc2_highlight_popover.png)
+![imagem e951](readwise_reader_doc2_highlight_popover.png)
 
 **Evidência 59 (Readwise Reader Hover/Teclado — Issue #77): Indicador azul de **Foco por Parágrafo** na margem esquerda navegável via teclas `j`/`k`**
 
 **Evidência 60 (Readwise Reader Popover — Issue #80): **Floating Highlight Popover** acima do grifo amarelo (`Delete`, `Add note`, `Add/edit tags`, `...`)**
 
-![imagem e953](assets/readwise_reader_doc2_highlight_more_dropdown.png)
+![imagem e953](readwise_reader_doc2_highlight_more_dropdown.png)
 
-![imagem e955](assets/readwise_reader_doc2_highlight_add_note.png)
+![imagem e955](readwise_reader_doc2_highlight_add_note.png)
 
 **Evidência 61 (Readwise Reader Popover — Issue #80): Menu `More (...)` do grifo (`Copy text`, `Chat about this`, `Share as image`, `View in notebook`, `Auto highlight`)**
 
 **Evidência 62 (Readwise Reader Marginalia — Issues #77, #79): Gaveta inline `Add note (n)` acoplada ao grifo com suporte a Action Tags (`.qa`, `.c1`)**
 
-![imagem e957](assets/readwise_reader_doc2_highlight_tag_picker.png)
+![imagem e957](readwise_reader_doc2_highlight_tag_picker.png)
 
-![imagem e959](assets/readwise_reader_doc2_notebook_highlights.png)
+![imagem e959](readwise_reader_doc2_notebook_highlights.png)
 
 **Evidência 63 (Readwise Reader Tags — Issue #80): Popover pesquisável `Add/edit tags (t)` sobre o destaque**
 
 **Evidência 64 (Readwise Reader Notebook — Issue #78): Aba `Notebook` no painel direito listando todos os grifos em ordem com salto em 1 clique e `Export`**
 
-![imagem e961](assets/readwise_reader_ghostreader_skills.png)
+![imagem e961](readwise_reader_ghostreader_skills.png)
 
-![imagem e963](assets/readwise_reader_appearance_menu.png)
+![imagem e963](readwise_reader_appearance_menu.png)
 
 **Evidência 65 (Readwise Reader Ghostreader — Issue #80): Copiloto IA posicional (`Ghostreader`) com as 15 skills de estudo (`Quiz Me`, `Explain from Library`, etc.)**
 
 **Evidência 66 (Readwise Reader `Aa` — Issue #77): Menu `Appearance (Aa)` com controle de tipografia, tamanho, espaçamento e largura de coluna**
 
-![imagem e965](assets/readwise_reader_doc2_tts_player.png)
+![imagem e965](readwise_reader_doc2_tts_player.png)
 
-![imagem e967](assets/readwise_reader_doc2_tts_speeds.png)
+![imagem e967](readwise_reader_doc2_tts_speeds.png)
 
 **Evidência 67 (Readwise Reader TTS — Issue #80): Player inferior persistente de **Text-to-Speech (`Listen`)** com scrubber e pulo de 15s**
 
 **Evidência 68 (Readwise Reader TTS — Issue #80): Seletor de velocidade de leitura (`0.5x` a `2x`) e vozes neurais no player TTS**
 
-![imagem e969](assets/readwise_reader_pdf_enhanced_docs.png)
+![imagem e969](readwise_reader_pdf_enhanced_docs.png)
 
-![imagem e971](assets/readwise_srs_daily_review_deck.png)
+![imagem e971](readwise_srs_daily_review_deck.png)
 
 **Evidência 69 (Readwise Reader PDF — Issues #77, #78): Documentação oficial do `Enhanced Text Mode` para PDFs e ferramenta de `Snapshotting` de tabelas**
 
 **Evidência 70 (Readwise SRS — Issue #82): Deck de `Daily Review` (`/dailyreview`) com barra de progresso, player TTS e botões `Discard`, `Master`, `Feedback`, `Keep`**
 
-![imagem e973](assets/readwise_srs_feedback_tuning_modal.png)
+![imagem e973](readwise_srs_feedback_tuning_modal.png)
 
-![imagem e975](assets/readwise_srs_mastery_cloze_creator.png)
+![imagem e975](readwise_srs_mastery_cloze_creator.png)
 
 **Evidência 71 (Readwise SRS — Issue #82): Modal de calibração `Feedback` (`Never`, `Soon`, `Later`, `Someday`) para ajuste fino do intervalo**
 
 **Evidência 72 (Readwise SRS Mastery — Issue #82): Gerador de **Cloze Deletion (`{{c1::...}}`)** em 1 clique selecionando palavras-chave do texto**
 
-![imagem e977](assets/readwise_srs_mastery_qa_creator.png)
+![imagem e977](readwise_srs_mastery_qa_creator.png)
 
-![imagem e979](assets/readwise_srs_cloze_active_recall_prompt.png)
+![imagem e979](readwise_srs_cloze_active_recall_prompt.png)
 
 **Evidência 73 (Readwise SRS Mastery — Issue #82): Gerador de **Flashcard Q&A** com botão `Use highlight text as Answer`**
 
 **Evidência 74 (Readwise SRS Active Recall — Issue #82): Cartão Cloze apresentando a lacuna `_____ (5 words)` e botão `Reveal Keyphrase`**
 
-![imagem e981](assets/readwise_srs_cloze_answer_reveal_grading.png)
+![imagem e981](readwise_srs_cloze_answer_reveal_grading.png)
 
-![imagem e983](assets/readwise_srs_highlight_edit_and_note.png)
+![imagem e983](readwise_srs_highlight_edit_and_note.png)
 
 ## 31. Low-Chrome — Issue #97: evidências antes/depois por tema, largura e estado dos painéis
 <!-- container e993 @ (9300,5106) -->
 
-![imagem e994](assets/lowchrome_97_before_light_1366_sideopen_rightopen.png)
+![imagem e994](lowchrome_97_before_light_1366_sideopen_rightopen.png)
 
-![imagem e996](assets/lowchrome_97_after_light_1366_sideopen_rightopen.png)
+![imagem e996](lowchrome_97_after_light_1366_sideopen_rightopen.png)
 
 #97 BEFORE | light | 1366px | sidebar aberta | contexto aberto
 
 #97 AFTER | light | 1366px | sidebar aberta | contexto aberto
 
-![imagem e998](assets/lowchrome_97_before_light_1366_sideopen_rightclosed.png)
+![imagem e998](lowchrome_97_before_light_1366_sideopen_rightclosed.png)
 
-![imagem e1000](assets/lowchrome_97_after_light_1366_sideopen_rightclosed.png)
+![imagem e1000](lowchrome_97_after_light_1366_sideopen_rightclosed.png)
 
 #97 BEFORE | light | 1366px | sidebar aberta | contexto fechado
 
 #97 AFTER | light | 1366px | sidebar aberta | contexto fechado
 
-![imagem e1002](assets/lowchrome_97_before_light_1366_sideclosed_rightopen.png)
+![imagem e1002](lowchrome_97_before_light_1366_sideclosed_rightopen.png)
 
-![imagem e1004](assets/lowchrome_97_after_light_1366_sideclosed_rightopen.png)
+![imagem e1004](lowchrome_97_after_light_1366_sideclosed_rightopen.png)
 
 #97 BEFORE | light | 1366px | sidebar fechada | contexto aberto
 
 #97 AFTER | light | 1366px | sidebar fechada | contexto aberto
 
-![imagem e1006](assets/lowchrome_97_before_light_1366_sideclosed_rightclosed.png)
+![imagem e1006](lowchrome_97_before_light_1366_sideclosed_rightclosed.png)
 
-![imagem e1008](assets/lowchrome_97_after_light_1366_sideclosed_rightclosed.png)
+![imagem e1008](lowchrome_97_after_light_1366_sideclosed_rightclosed.png)
 
 #97 BEFORE | light | 1366px | sidebar fechada | contexto fechado
 
 #97 AFTER | light | 1366px | sidebar fechada | contexto fechado
 
-![imagem e1010](assets/lowchrome_97_before_dark_1366_sideopen_rightopen.png)
+![imagem e1010](lowchrome_97_before_dark_1366_sideopen_rightopen.png)
 
-![imagem e1012](assets/lowchrome_97_after_dark_1366_sideopen_rightopen.png)
+![imagem e1012](lowchrome_97_after_dark_1366_sideopen_rightopen.png)
 
 #97 BEFORE | dark | 1366px | sidebar aberta | contexto aberto
 
 #97 AFTER | dark | 1366px | sidebar aberta | contexto aberto
 
-![imagem e1014](assets/lowchrome_97_before_dark_1366_sideopen_rightclosed.png)
+![imagem e1014](lowchrome_97_before_dark_1366_sideopen_rightclosed.png)
 
-![imagem e1016](assets/lowchrome_97_after_dark_1366_sideopen_rightclosed.png)
+![imagem e1016](lowchrome_97_after_dark_1366_sideopen_rightclosed.png)
 
 #97 BEFORE | dark | 1366px | sidebar aberta | contexto fechado
 
 #97 AFTER | dark | 1366px | sidebar aberta | contexto fechado
 
-![imagem e1018](assets/lowchrome_97_before_dark_1366_sideclosed_rightopen.png)
+![imagem e1018](lowchrome_97_before_dark_1366_sideclosed_rightopen.png)
 
-![imagem e1020](assets/lowchrome_97_after_dark_1366_sideclosed_rightopen.png)
+![imagem e1020](lowchrome_97_after_dark_1366_sideclosed_rightopen.png)
 
 #97 BEFORE | dark | 1366px | sidebar fechada | contexto aberto
 
 #97 AFTER | dark | 1366px | sidebar fechada | contexto aberto
 
-![imagem e1022](assets/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png)
+![imagem e1022](lowchrome_97_before_dark_1366_sideclosed_rightclosed.png)
 
-![imagem e1024](assets/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png)
+![imagem e1024](lowchrome_97_after_dark_1366_sideclosed_rightclosed.png)
 
 #97 BEFORE | dark | 1366px | sidebar fechada | contexto fechado
 
 #97 AFTER | dark | 1366px | sidebar fechada | contexto fechado
 
-![imagem e1026](assets/lowchrome_97_before_light_1024_sideopen_rightopen.png)
+![imagem e1026](lowchrome_97_before_light_1024_sideopen_rightopen.png)
 
-![imagem e1028](assets/lowchrome_97_after_light_1024_sideopen_rightopen.png)
+![imagem e1028](lowchrome_97_after_light_1024_sideopen_rightopen.png)
 
 #97 BEFORE | light | 1024px | sidebar aberta | contexto aberto
 
 #97 AFTER | light | 1024px | sidebar aberta | contexto aberto
 
-![imagem e1030](assets/lowchrome_97_before_light_1024_sideopen_rightclosed.png)
+![imagem e1030](lowchrome_97_before_light_1024_sideopen_rightclosed.png)
 
-![imagem e1032](assets/lowchrome_97_after_light_1024_sideopen_rightclosed.png)
+![imagem e1032](lowchrome_97_after_light_1024_sideopen_rightclosed.png)
 
 #97 BEFORE | light | 1024px | sidebar aberta | contexto fechado
 
 #97 AFTER | light | 1024px | sidebar aberta | contexto fechado
 
-![imagem e1034](assets/lowchrome_97_before_light_1024_sideclosed_rightopen.png)
+![imagem e1034](lowchrome_97_before_light_1024_sideclosed_rightopen.png)
 
-![imagem e1036](assets/lowchrome_97_after_light_1024_sideclosed_rightopen.png)
+![imagem e1036](lowchrome_97_after_light_1024_sideclosed_rightopen.png)
 
 #97 BEFORE | light | 1024px | sidebar fechada | contexto aberto
 
 #97 AFTER | light | 1024px | sidebar fechada | contexto aberto
 
-![imagem e1038](assets/lowchrome_97_before_light_1024_sideclosed_rightclosed.png)
+![imagem e1038](lowchrome_97_before_light_1024_sideclosed_rightclosed.png)
 
-![imagem e1040](assets/lowchrome_97_after_light_1024_sideclosed_rightclosed.png)
+![imagem e1040](lowchrome_97_after_light_1024_sideclosed_rightclosed.png)
 
 #97 BEFORE | light | 1024px | sidebar fechada | contexto fechado
 
 #97 AFTER | light | 1024px | sidebar fechada | contexto fechado
 
-![imagem e1042](assets/lowchrome_97_before_dark_1024_sideopen_rightopen.png)
+![imagem e1042](lowchrome_97_before_dark_1024_sideopen_rightopen.png)
 
-![imagem e1044](assets/lowchrome_97_after_dark_1024_sideopen_rightopen.png)
+![imagem e1044](lowchrome_97_after_dark_1024_sideopen_rightopen.png)
 
 #97 BEFORE | dark | 1024px | sidebar aberta | contexto aberto
 
 #97 AFTER | dark | 1024px | sidebar aberta | contexto aberto
 
-![imagem e1046](assets/lowchrome_97_before_dark_1024_sideopen_rightclosed.png)
+![imagem e1046](lowchrome_97_before_dark_1024_sideopen_rightclosed.png)
 
-![imagem e1048](assets/lowchrome_97_after_dark_1024_sideopen_rightclosed.png)
+![imagem e1048](lowchrome_97_after_dark_1024_sideopen_rightclosed.png)
 
 #97 BEFORE | dark | 1024px | sidebar aberta | contexto fechado
 
 #97 AFTER | dark | 1024px | sidebar aberta | contexto fechado
 
-![imagem e1050](assets/lowchrome_97_before_dark_1024_sideclosed_rightopen.png)
+![imagem e1050](lowchrome_97_before_dark_1024_sideclosed_rightopen.png)
 
-![imagem e1052](assets/lowchrome_97_after_dark_1024_sideclosed_rightopen.png)
+![imagem e1052](lowchrome_97_after_dark_1024_sideclosed_rightopen.png)
 
 #97 BEFORE | dark | 1024px | sidebar fechada | contexto aberto
 
 #97 AFTER | dark | 1024px | sidebar fechada | contexto aberto
 
-![imagem e1054](assets/lowchrome_97_before_dark_1024_sideclosed_rightclosed.png)
+![imagem e1054](lowchrome_97_before_dark_1024_sideclosed_rightclosed.png)
 
-![imagem e1056](assets/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png)
+![imagem e1056](lowchrome_97_after_dark_1024_sideclosed_rightclosed.png)
 
 #97 BEFORE | dark | 1024px | sidebar fechada | contexto fechado
 
 #97 AFTER | dark | 1024px | sidebar fechada | contexto fechado
 
-![imagem e1058](assets/lowchrome_97_before_light_768_sideopen_rightopen.png)
+![imagem e1058](lowchrome_97_before_light_768_sideopen_rightopen.png)
 
-![imagem e1060](assets/lowchrome_97_after_light_768_sideopen_rightopen.png)
+![imagem e1060](lowchrome_97_after_light_768_sideopen_rightopen.png)
 
 #97 BEFORE | light | 768px | sidebar aberta | contexto aberto
 
 #97 AFTER | light | 768px | sidebar aberta | contexto aberto
 
-![imagem e1062](assets/lowchrome_97_before_light_768_sideopen_rightclosed.png)
+![imagem e1062](lowchrome_97_before_light_768_sideopen_rightclosed.png)
 
-![imagem e1064](assets/lowchrome_97_after_light_768_sideopen_rightclosed.png)
+![imagem e1064](lowchrome_97_after_light_768_sideopen_rightclosed.png)
 
 #97 BEFORE | light | 768px | sidebar aberta | contexto fechado
 
 #97 AFTER | light | 768px | sidebar aberta | contexto fechado
 
-![imagem e1066](assets/lowchrome_97_before_light_768_sideclosed_rightopen.png)
+![imagem e1066](lowchrome_97_before_light_768_sideclosed_rightopen.png)
 
-![imagem e1068](assets/lowchrome_97_after_light_768_sideclosed_rightopen.png)
+![imagem e1068](lowchrome_97_after_light_768_sideclosed_rightopen.png)
 
 #97 BEFORE | light | 768px | sidebar fechada | contexto aberto
 
 #97 AFTER | light | 768px | sidebar fechada | contexto aberto
 
-![imagem e1070](assets/lowchrome_97_before_light_768_sideclosed_rightclosed.png)
+![imagem e1070](lowchrome_97_before_light_768_sideclosed_rightclosed.png)
 
-![imagem e1072](assets/lowchrome_97_after_light_768_sideclosed_rightclosed.png)
+![imagem e1072](lowchrome_97_after_light_768_sideclosed_rightclosed.png)
 
 #97 BEFORE | light | 768px | sidebar fechada | contexto fechado
 
 #97 AFTER | light | 768px | sidebar fechada | contexto fechado
 
-![imagem e1074](assets/lowchrome_97_before_dark_768_sideopen_rightopen.png)
+![imagem e1074](lowchrome_97_before_dark_768_sideopen_rightopen.png)
 
-![imagem e1076](assets/lowchrome_97_after_dark_768_sideopen_rightopen.png)
+![imagem e1076](lowchrome_97_after_dark_768_sideopen_rightopen.png)
 
 #97 BEFORE | dark | 768px | sidebar aberta | contexto aberto
 
 #97 AFTER | dark | 768px | sidebar aberta | contexto aberto
 
-![imagem e1078](assets/lowchrome_97_before_dark_768_sideopen_rightclosed.png)
+![imagem e1078](lowchrome_97_before_dark_768_sideopen_rightclosed.png)
 
-![imagem e1080](assets/lowchrome_97_after_dark_768_sideopen_rightclosed.png)
+![imagem e1080](lowchrome_97_after_dark_768_sideopen_rightclosed.png)
 
 #97 BEFORE | dark | 768px | sidebar aberta | contexto fechado
 
 #97 AFTER | dark | 768px | sidebar aberta | contexto fechado
 
-![imagem e1082](assets/lowchrome_97_before_dark_768_sideclosed_rightopen.png)
+![imagem e1082](lowchrome_97_before_dark_768_sideclosed_rightopen.png)
 
-![imagem e1084](assets/lowchrome_97_after_dark_768_sideclosed_rightopen.png)
+![imagem e1084](lowchrome_97_after_dark_768_sideclosed_rightopen.png)
 
 #97 BEFORE | dark | 768px | sidebar fechada | contexto aberto
 
 #97 AFTER | dark | 768px | sidebar fechada | contexto aberto
 
-![imagem e1086](assets/lowchrome_97_before_dark_768_sideclosed_rightclosed.png)
+![imagem e1086](lowchrome_97_before_dark_768_sideclosed_rightclosed.png)
 
-![imagem e1088](assets/lowchrome_97_after_dark_768_sideclosed_rightclosed.png)
+![imagem e1088](lowchrome_97_after_dark_768_sideclosed_rightclosed.png)
 
 #97 BEFORE | dark | 768px | sidebar fechada | contexto fechado
 
@@ -1589,7 +1589,7 @@ DEPOIS — Gerenciador de Cadernos em mobile 390px
 | ExamTopics | examtopics_az104_solution_reveal.png | examtopics.com/exams/microsoft/az-104/view/ | 2026-11-14 | Botão Reveal Solution exibindo resposta correta com badge Most Voted e barra de votação comunitária (98% C) | Exibição de gabarito com percentual de concordância / confiança da IA ou estatísticas de candidatos | Adaptar |
 | Readwise SRS | readwise_srs_bookreview_highlight_actions_menu.png | readwise.io/bookreview/65206299 | 2026-11-14 | Menu secundário com 6 ações: Copy, Edit metadata, Add tags, Show more often, Show less often, Never show again | Menu de ações de cada item do SRS permitindo ao aluno acelerar ou suspender a frequência de repetição (Pergunta 9) | Adotar |
 
-## 28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs/archives/) & Capacities Live (Issues #47 a #50 e #52 a #58)
+## 28. Dossiê Comparativo: Web Shell Atual (0.1.1) vs. Branches Antigas (prototypes/docs__archives__*) & Capacities Live (Issues #47 a #50 e #52 a #58)
 <!-- container e700 @ (1860,5890) -->
 
 
@@ -1624,25 +1624,25 @@ DEPOIS — Gerenciador de Cadernos em mobile 390px
 ## B. Evidências visuais: arquitetura e barra (Capacities Live)
 <!-- container e7102 @ (1860,6800) -->
 
-![imagem e705](assets/capacities_live_3pane_explorar_grid.png)
+![imagem e705](capacities_live_3pane_explorar_grid.png)
 
-![imagem e707](assets/capacities_live_3pane_local_graph.png)
+![imagem e707](capacities_live_3pane_local_graph.png)
 
 **Evidência 10 (Capacities Live):** Arquitetura de 3 Painéis com Ilhas Flutuantes (`#0d0e11` canvas, `#16171a` cards, gutter `10px`), Página de Objeto e Painel Direito `Explorar` (Grid 3x2 + Conteúdo relevante) — Issues #47, #48, #54, #57
 
 **Evidência 11 (Capacities Live):** Painel Direito na aba `Grafo` com nós em badges quadrados coloridos por tipo, tags e controles flutuantes translúcidos no rodapé — Issues #38, #54
 
-![imagem e709](assets/capacities_live_collapsed_sidebar.png)
+![imagem e709](capacities_live_collapsed_sidebar.png)
 
-![imagem e711](assets/capacities_live_new_popover.png)
+![imagem e711](capacities_live_new_popover.png)
 
 **Evidência 12 (Capacities Live):** Sidebar recolhida 100% off-canvas (`0px`, sem rail de 56px) com `[◧] [+ Novo] [🔍]` migrados para o início do `AppHeader` — Issues #48, #49
 
 **Evidência 13 (Capacities Live):** Linha superior `[+ Novo] [🔍]` na Sidebar e popover pesquisável `NewContentMenu` com rodapé de teclado (`↑↓`, `Esc`, `↵`) — Issue #50
 
-![imagem e713](assets/capacities_live_type_context_menu.png)
+![imagem e713](capacities_live_type_context_menu.png)
 
-![imagem e715](assets/capacities_live_type_dashboard_gallery.png)
+![imagem e715](capacities_live_type_dashboard_gallery.png)
 
 **Evidência 14 (Capacities Live):** Linhas de Tipo de Objeto de `29px` com badges quadrados `20x20px`, menu de contexto `⋯` (`244px`) e rodapé horizontal de ícones — Issues #52, #53
 
@@ -1653,39 +1653,39 @@ DEPOIS — Gerenciador de Cadernos em mobile 390px
 
 Evidência real: Chromium 1366×900 e mobile 390×800; Playwright tests/advanced-question-filters.e2e.mjs, branch de PR. Seletores Disciplina→Assunto, exclusões de cadernos e anuladas, estado codificado na URL, recarga, Queries e simulado filtrado. A base oficial de 70 questões não possui classificação de Assunto; o teste usa questões manuais etiquetadas, sem inventar metadados da FGV. Sem inferência de conformidade WCAG ou testes com participantes.
 
-![imagem e1210](assets/issue70_before_simple.png)
+![imagem e1210](issue70_before_simple.png)
 
-![imagem e1212](assets/issue70_after_open_panel.png)
+![imagem e1212](issue70_after_open_panel.png)
 
 ANTES: banco de questões sem construtor de filtros avançados
 
 DEPOIS: painel com facetas estruturais e regras de inclusão/exclusão
 
-![imagem e1214](assets/issue70_after_cascade.png)
+![imagem e1214](issue70_after_cascade.png)
 
-![imagem e1216](assets/issue70_after_exclusion.png)
+![imagem e1216](issue70_after_exclusion.png)
 
 DEPOIS: Disciplina ativa Assunto, seleção aplicada e URL navegável
 
 DEPOIS: exclusão de questões já incluídas em caderno
 
-![imagem e1218](assets/issue70_after_reload_flags.png)
+![imagem e1218](issue70_after_reload_flags.png)
 
-![imagem e1220](assets/issue70_after_saved.png)
+![imagem e1220](issue70_after_saved.png)
 
 DEPOIS: critérios persistidos após recarregar a página
 
 DEPOIS: conjunto de filtros salvo como Query de Questão
 
-![imagem e1222](assets/issue70_after_simulado_filtrado.png)
+![imagem e1222](issue70_after_simulado_filtrado.png)
 
-![imagem e1224](assets/issue70_after_clear_defaults.png)
+![imagem e1224](issue70_after_clear_defaults.png)
 
 DEPOIS: simulado criado com a seleção filtrada
 
 DEPOIS: limpar filtros restaura exclusão padrão de anuladas
 
-![imagem e1226](assets/issue70_after_mobile.png)
+![imagem e1226](issue70_after_mobile.png)
 
 DEPOIS: filtros avançados adaptados a 390px
 
@@ -1719,23 +1719,23 @@ Implementação e Auditoria Issue #145:
 ## C. Comparação de branches históricas (notes-app-old)
 <!-- container e7103 @ (1860,8440) -->
 
-![imagem e717](assets/capacities_live_object_page_anatomy.png)
+![imagem e717](capacities_live_object_page_anatomy.png)
 
-![imagem e719](assets/archive_notes_app_old_3_capacities_shell.png)
+![imagem e719](archive_notes_app_old_3_capacities_shell.png)
 
 **Evidência 16 (Capacities Live):** Anatomia da Página de Objeto com painel lateral fechado: coluna centralizada (`740px`), chip de tipo, `Coleções`, tags inline, propriedades compactas e abas `Links de entrada`/`Conteúdo relacionado` — Issue #57
 
 **Evidência 17 (Archive `notes-app-old-3`):** Web Shell de paridade Capacities em Light Mode (`--bg-back`, cartões flutuantes `12px`, aba `Visão geral` de `Páginas` e painel direito `Explorar` 6 cards) — Issues #47, #54, #56
 
-![imagem e721](assets/archive_notes_app_old_4_capacities_shell.png)
+![imagem e721](archive_notes_app_old_4_capacities_shell.png)
 
-![imagem e723](assets/archive_notes_app_old_4_graph_sidepanel.png)
+![imagem e723](archive_notes_app_old_4_graph_sidepanel.png)
 
 **Evidência 18 (Archive `notes-app-old-4`):** `AppShell` com `ResizablePanelGroup`, `AppHeader`, `AppSidePanelHeader` e `ObjectTypeWorkspace` — Issues #47, #48, #49, #55
 
 **Evidência 19 (Archive `notes-app-old-4` `layout-current.png`):** `Visualização em grafo` no Painel Direito com controles inferiores (`Mostrar menos`, `Mostrar mais`, zoom, expandir) — Issue #54
 
-![imagem e725](assets/archive_notes_app_old_10_recall_home.png)
+![imagem e725](archive_notes_app_old_10_recall_home.png)
 
 **Evidência 20 (Archive `notes-app-old-10` Recall):** Estética editorial *Monastic Knowledge Sanctuary* para a Home do Espaço (`#/espaco`) com card Hero escuro `TODAY`, `Review today` e `Recent objects` sem emojis — Issue #58
 
@@ -1878,17 +1878,17 @@ Implementação e Auditoria Issue #145:
 
 Restaurado após conflito de IDs introduzido pela PR #142. Causa original validada por DOM: alternativas em páginas contextuais perdiam display:flex fora de .study-shell. As quatro capturas reais da PR #141 e o relatório issue136_e2e.json documentam o antes/depois em desktop, 390px e banco global. Implementação: CSS compartilhado com :is(.study-shell,.practice-list). Não equivale à conclusão de todos os critérios da issue #136; permanecem zoom, painel lateral, navegação por teclado e demais rotas.
 
-![imagem e1383](assets/issue136_before_context_1366.png)
+![imagem e1383](issue136_before_context_1366.png)
 
-![imagem e1375](assets/issue136_after_context_1366.png)
+![imagem e1375](issue136_after_context_1366.png)
 
 ANTES: alternativas inline no concurso, sem estilização da lista de questões
 
 DEPOIS: alternativas em linhas/click targets, concurso no desktop
 
-![imagem e1377](assets/issue136_after_context_390.png)
+![imagem e1377](issue136_after_context_390.png)
 
-![imagem e1379](assets/issue136_after_global_1366.png)
+![imagem e1379](issue136_after_global_1366.png)
 
 DEPOIS: alternativas em linhas e texto quebrando, concurso em 390px
 
@@ -1918,65 +1918,65 @@ DEPOIS: banco global preserva o mesmo componente de questões
 > - Filtros rápidos (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`), chips `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Criar Simulado`).
 > - Card da questão com cabeçalho compacto de 2 linhas (`[1 | Q1]` + Breadcrumb; `Ano · Banca · Órgão · Prova`), toggle `Texto associado ⊕/⊖`, **botão de Tesoura (`✂️ Descartar alternativa`)** com `line-through`, confirmação em 2 etapas via botão **`[Responder]`** e barra inferior de abas pedagógicas (**`Gabarito Comentado`**, **`Estatísticas`** com Donut + Barras A–E + Histórico, **`Cadernos`** e **`Anotações`** ricas).
 
-![imagem e805](assets/bug_spTopBtn_duplicated_lightbulb.png)
+![imagem e805](bug_spTopBtn_duplicated_lightbulb.png)
 
-![imagem e807](assets/capacities_live_right_panel_tab_overflow.png)
+![imagem e807](capacities_live_right_panel_tab_overflow.png)
 
 **Evidência 21 (Bug Reportado pelo Usuário — Issue #64):** Botão duplicado `#spTopBtn` (`💡 Concurso de TI ↕`) + `#wsSide` (`[◧]`) injetado dentro de `#wsTabs` pelo commit `7edd4ac` (PR #20)
 
 **Evidência 22 (Capacities Live — Issue #66):** Painel Direito com 5+ abas compactadas por ícone e popover pesquisável `Buscar abas` aberto no botão `[v]`
 
-![imagem e809](assets/capacities_live_right_panel_related.png)
+![imagem e809](capacities_live_right_panel_related.png)
 
-![imagem e811](assets/capacities_live_graph_3tier_nodes_resized.png)
+![imagem e811](capacities_live_graph_3tier_nodes_resized.png)
 
 **Evidência 23 (Capacities Live — Issue #66):** Aba `Conteúdo relacionado` no Painel Direito com pílula `[66 | ☰ ⌄ | ☵]` e lista de objetos com badges quadrados `20x20px`
 
 **Evidência 24 (Capacities Live — Issues #66, #67):** Painel Direito redimensionado via calha (`ResizeObserver` a `150%` zoom) exibindo taxonomia em 3 níveis: badges quadrados de objetos, pílulas coloridas de tags (`vm group`, `logical container`) e rótulos nas arestas
 
-![imagem e813](assets/capacities_live_graph_filter_popover.png)
+![imagem e813](capacities_live_graph_filter_popover.png)
 
-![imagem e815](assets/capacities_live_global_graph_constellation.png)
+![imagem e815](capacities_live_global_graph_constellation.png)
 
 **Evidência 25 (Capacities Live — Issue #68):** Popover de Configurações do Grafo (`[🎛]`) com submenu pesquisável `Filtrar tipos de objeto >`, `Ocultar objetos com muitos links` e pílula de profundidade `[● 4]`
 
 **Evidência 26 (Capacities Live — Issues #67, #68):** Grafo Global (`348` nós) com agrupamento em clusters orbitais por domínio e barra de busca flutuante no topo
 
-![imagem e817](assets/capacities_live_global_graph_search_autozoom.png)
+![imagem e817](capacities_live_global_graph_search_autozoom.png)
 
-![imagem e819](assets/qconcursos_live_home_proxima_acao.png)
+![imagem e819](qconcursos_live_home_proxima_acao.png)
 
 **Evidência 27 (Capacities Live — Issue #68):** Busca reativa `'Azure'` no Grafo Global atualizando contador (`306`), executando auto-zoom (`40%`) e exibindo botão de `Linha do Tempo`
 
 **Evidência 28 (QConcursos Elite Live — Issue #69):** Central de Preparação (Topo): Card do concurso com dados do edital, bloco acionável `PRÓXIMA AÇÃO` (`Continuar estudando →`) e widget `Seu ritmo hoje`
 
-![imagem e821](assets/qconcursos_live_home_ritmo_disciplinas.png)
+![imagem e821](qconcursos_live_home_ritmo_disciplinas.png)
 
-![imagem e823](assets/qconcursos_live_home_raiox_curso.png)
+![imagem e823](qconcursos_live_home_raiox_curso.png)
 
 **Evidência 29 (QConcursos Elite Live — Issue #69):** Cards `Taxa de acerto` / `Taxa de erro`, barra semanal `Seg–Dom` e visão Master-Detail de `Disciplinas & Assuntos` com badge `Recomendado`
 
 **Evidência 30 (QConcursos Elite Live — Issue #69):** Aba `Raio X do Curso` analisando incidência histórica e relevância dos assuntos na banca
 
-![imagem e825](assets/qconcursos_live_home_caderno_erros.png)
+![imagem e825](qconcursos_live_home_caderno_erros.png)
 
-![imagem e827](assets/qconcursos_live_filter_builder_top.png)
+![imagem e827](qconcursos_live_filter_builder_top.png)
 
 **Evidência 31 (QConcursos Elite Live — Issue #69):** Aba `Caderno de Erros` reunindo automaticamente questões erradas para revisão ativa
 
 **Evidência 32 (QConcursos Elite Live — Issue #70):** Construtor de Filtros com pílulas rápidas (`Resolvidas`, `Não resolvidas`, `Acertei`, `Errei`), selects em cascata (`Disciplina -> Assunto`) e checkboxes de exclusão
 
-![imagem e829](assets/qconcursos_live_filter_actions_bar.png)
+![imagem e829](qconcursos_live_filter_actions_bar.png)
 
-![imagem e831](assets/qconcursos_live_question_scissors_eliminated.png)
+![imagem e831](qconcursos_live_question_scissors_eliminated.png)
 
 **Evidência 33 (QConcursos Elite Live — Issue #70):** Barra de chips ativos `Filtrar por:` e barra de ações (`Salvar filtro`, `Gerar Caderno`, `Meus Cadernos`, `Meus filtros`, `Criar Simulado`)
 
 **Evidência 34 (QConcursos Elite Live — Issue #71):** Card de Questão com cabeçalho compacto de 2 linhas, toggle `Texto associado (+)` e **Tesoura (`✂️`) riscando a alternativa D** (`line-through`)
 
-![imagem e833](assets/qconcursos_live_question_answered_feedback.png)
+![imagem e833](qconcursos_live_question_answered_feedback.png)
 
-![imagem e835](assets/qconcursos_live_question_tab_estatisticas.png)
+![imagem e835](qconcursos_live_question_tab_estatisticas.png)
 
 **Evidência 35 (QConcursos Elite Live — Issue #71):** Confirmação em 2 etapas via botão `Responder`, destacando a alternativa correta B em verde e exibindo a barra inferior de abas pedagógicas
 
@@ -1987,17 +1987,17 @@ DEPOIS: banco global preserva o mesmo componente de questões
 
 A recuperação só ocorre após uma nova resposta correta; abrir gabarito não altera o histórico. A coorte semanal mostra “Errou X · Recuperou Y”; a rota Caderno de Erros lista apenas pendentes. O Raio-X usa incidência de questões, pontos catalogados, cobertura e acerto da última tentativa confirmada. A cobertura deste protótipo é limitada aos assuntos presentes no catálogo; o Anexo II completo e a associação automática de PDFs não estão implementados. As capturas abaixo vieram do E2E Chromium executado nesta PR.
 
-![imagem e1455](assets/issue76_wrong_confirmed.png)
+![imagem e1455](issue76_wrong_confirmed.png)
 
-![imagem e1457](assets/issue76_notebook_pending.png)
+![imagem e1457](issue76_notebook_pending.png)
 
 ANTES: primeira resposta incorreta confirmada
 
 DEPOIS: erro pendente agrupado por semana e disciplina
 
-![imagem e1459](assets/issue76_recovered.png)
+![imagem e1459](issue76_recovered.png)
 
-![imagem e1461](assets/issue76_raiox_vertical.png)
+![imagem e1461](issue76_raiox_vertical.png)
 
 DEPOIS: recuperação após nova resposta correta
 
@@ -2012,17 +2012,17 @@ DEPOIS: assuntos, prioridades e marcação persistente
 
 A rota #/revisao mantém cartões Q&A e Cloze, revela respostas sob demanda, oferece TTS sem vazar a resposta antes da revelação, agenda 2/10/45 dias e domínio, configura meta e recência e preserva estado entre recargas por espaço. Grifos e comentários de questões são importados diretamente com origem rastreável e deduplicação. Capturas reais Playwright Chromium, em 390px e 1366px, validadas na PR #192. Pendências: importação dos grifos de PDF, calibração pedagógica do SRS e acessibilidade física assistiva.
 
-![imagem e1467](assets/issue82_qa_revealed_1366.png)
+![imagem e1467](issue82_qa_revealed_1366.png)
 
-![imagem e1469](assets/issue82_cloze_1366.png)
+![imagem e1469](issue82_cloze_1366.png)
 
 Pergunta e resposta: revelação explícita, sem vazamento no áudio
 
 Cloze: lacuna gerada por clique e revisão com TTS
 
-![imagem e1471](assets/issue82_question_import_1366.png)
+![imagem e1471](issue82_question_import_1366.png)
 
-![imagem e1473](assets/issue82_question_import_390.png)
+![imagem e1473](issue82_question_import_390.png)
 
 Grifo real da questão vira cartão vinculado sem duplicação
 
@@ -2094,97 +2094,97 @@ Importação responsiva em viewport móvel de 390px
 >   - `.qa [PERGUNTA?][RESPOSTA]` → cria instantaneamente um cartão Q&A de Mastery no Readwise.
 >   - `Shift + Enter` após qualquer Action Tag permite anexar uma nota explicativa normal abaixo da diretiva.
 
-![imagem e1100](assets/readwise_reader_home_dashboard.png)
+![imagem e1100](readwise_reader_home_dashboard.png)
 
-![imagem e1102](assets/readwise_reader_inbox_list.png)
+![imagem e1102](readwise_reader_inbox_list.png)
 
 **Evidência 81 (Readwise Reader `/home` Carregado — Issue #81):** Dashboard Home completo com widgets `Recently added` e `Quick reads`, capas de documentos, tempo de leitura (`6min`, `1min`) e botão `Configure` no topo direito
 
 **Evidência 82 (Readwise Reader `/new` Inbox — Issue #81):** Lista da `Library > INBOX` carregada com hover de ações rápidas (`Archive`, `Later`, `More`), aba direita `Info` com `SUMMARY` por Ghostreader e `METADATA` completo
 
-![imagem e1104](assets/readwise_reader_shortcuts_palette.png)
+![imagem e1104](readwise_reader_shortcuts_palette.png)
 
-![imagem e1106](assets/readwise_reader_manage_views_table.png)
+![imagem e1106](readwise_reader_manage_views_table.png)
 
 **Evidência 83 (Readwise Reader `Ctrl+K` / `?` — Issue #77):** Command Palette (`Search a command`) e menu flutuante de ajuda (`Help documentation`, `Keyboard shortcuts ?`, `Get browser extension`, `Get desktop app`)
 
 **Evidência 84 (Readwise Reader `/views` — Issue #81):** Tabela `Filtered views` completa com todas as 14 views nativas, coluna `QUERY` com a sintaxe exata (`category:pdf`, `minutes__lt:10`, etc.), contador de documentos e botões de editar/fixar/excluir
 
-![imagem e1108](assets/readwise_reader_ghostreader_docs_prompts_1.png)
+![imagem e1108](readwise_reader_ghostreader_docs_prompts_1.png)
 
-![imagem e1110](assets/readwise_reader_ghostreader_docs_prompts_2.png)
+![imagem e1110](readwise_reader_ghostreader_docs_prompts_2.png)
 
 **Evidência 85 (Readwise Reader Docs — Issue #80):** Documentação oficial `Default Ghostreader Prompts` detalhando o modelo padrão (`GPT-5 Mini`) e prompts `Word-Level` (`Dictionary definition`, `Encyclopedia lookup`, `Internal x-ray`)
 
 **Evidência 86 (Readwise Reader Docs — Issue #80):** Documentação `Ghostreader Prompt Customization` explicando os 4 escopos (`Document`, `Paragraph`, `Word/phrase`, `Automatic`) e anatomia do prompt de sumarização
 
-![imagem e1112](assets/readwise_reader_ghostreader_docs_jinja2.png)
+![imagem e1112](readwise_reader_ghostreader_docs_jinja2.png)
 
-![imagem e1114](assets/readwise_reader_pdf_docs_overview.png)
+![imagem e1114](readwise_reader_pdf_docs_overview.png)
 
 **Evidência 87 (Readwise Reader Docs — Issue #80):** Referência oficial `Ghostreader References` com todas as 18 variáveis Jinja2 (`document.title`, `selection.sentence`, etc.) e subrotinas (`num_tokens`, `central_sentences`)
 
 **Evidência 88 (Readwise Reader PDF Docs — Issues #77, #78):** Especificação oficial de `PDFs` no Reader: `Edit Metadata (Shift + M)`, zoom (`Ctrl/Cmd + +/-`), `Snapshotting` de tabelas/figuras, `Enhanced text mode` e download anotado (`Shift + D`)
 
-![imagem e1116](assets/readwise_reader_pdf_docs_metadata.png)
+![imagem e1116](readwise_reader_pdf_docs_metadata.png)
 
-![imagem e1118](assets/readwise_reader_doc2_hover_discover.png)
+![imagem e1118](readwise_reader_doc2_hover_discover.png)
 
 **Evidência 89 (Readwise Reader Exporting Docs — Issue #78):** Documentação oficial de exportação do `Notebook`: `Copy to clipboard (Shift + Option + C)`, `Download annotations (Shift + Option + D)` como Markdown e geração de CSV/OPML
 
 **Evidência 90 (Readwise Reader Leitura + TTS + Notebook — Issues #77, #78, #80):** Artigo aberto com foco azul no parágrafo, 2 grifos sincronizados na aba `Notebook 2`, botões `Export` / `Open` e barra inferior de TTS (`Arthur`, `1x`)
 
-![imagem e1120](assets/readwise_srs_import_sync_sources_top.png)
+![imagem e1120](readwise_srs_import_sync_sources_top.png)
 
-![imagem e1122](assets/readwise_srs_import_sync_sources_mid1.png)
+![imagem e1122](readwise_srs_import_sync_sources_mid1.png)
 
 **Evidência 91 (Readwise SRS `/welcome/sync` Topo — Issue #82):** Página `Import Highlights` mostrando fontes `Suggested` (`Kindle`, `Instapaper`, `Twitter`) e `Connected` (`Supplemental Books`, `Readwise Reader`)
 
 **Evidência 92 (Readwise SRS `/welcome/sync` Meio 1 — Issue #82):** Grade `Connect & Sync` com `Apple Books`, `Medium`, `Hypothesis`, `Goodreads`, `Library`, `Diigo`, `Snipd`, `Shortform`, `Kobo`, `BOOX`, `CrossPoint` e `Feedly`
 
-![imagem e1124](assets/readwise_srs_import_sync_sources_mid2.png)
+![imagem e1124](readwise_srs_import_sync_sources_mid2.png)
 
-![imagem e1126](assets/readwise_srs_import_upload_bottom.png)
+![imagem e1126](readwise_srs_import_upload_bottom.png)
 
 **Evidência 93 (Readwise SRS `/welcome/sync` Meio 2 — Issue #82):** Continuação de `Connect & Sync` com `Raindrop.io`, `Command`, `BookFusion`, `Moon+ Reader`, `Inoreader`, `Refind`, `Web Highlighter`, `Voicenotes` e `ChatGPT`
 
 **Evidência 94 (Readwise SRS `/welcome/sync` Rodapé — Issue #82):** Seção `Import & Upload` com `My Clippings.txt`, `Email Import`, `CSV Import`, `Freeform Input`, `Paper Books`, `Kobo Device`, `Discord Bot`, `PDF`, `Scribd`, `O'Reilly`, `Google Play` e `MCP`
 
-![imagem e1128](assets/readwise_srs_csv_import_modal.png)
+![imagem e1128](readwise_srs_csv_import_modal.png)
 
-![imagem e1130](assets/readwise_srs_export_highlights_top.png)
+![imagem e1130](readwise_srs_export_highlights_top.png)
 
 **Evidência 95 (Readwise SRS `/import_bulk` — Issue #82):** Tela `CSV Highlights` com zona de drag-and-drop (`Upload a csv file`) e especificação completa das colunas (`Highlight`, `Title`, `Author`, `URL`, `Note`, `Location`, `Date`)
 
 **Evidência 96 (Readwise SRS `/export` Topo — Issue #83):** Tela `Export Highlights` com conectores automáticos para `Notion`, `Obsidian`, `Apple Notes`, `Craft`, `Evernote`, `NotebookLM`, `Logseq`, `Tana`, `Reflect`, `Heptabase`, `RemNote` e `Mailbrew`
 
-![imagem e1132](assets/readwise_srs_export_highlights_full.png)
+![imagem e1132](readwise_srs_export_highlights_full.png)
 
-![imagem e1134](assets/readwise_srs_bookreview_deep_work_full.png)
+![imagem e1134](readwise_srs_bookreview_deep_work_full.png)
 
 **Evidência 97 (Readwise SRS `/export` Rodapé — Issue #83):** Continuação de `Export Highlights` com `OneNote`, `Roam`, `Workflowy`, `Capacities` e exportadores diretos `CSV`, `Markdown`, `Model Context Protocol (MCP)` e `CLI`
 
 **Evidência 98 (Readwise SRS `/bookreview/65206299` — Issue #83):** Tela de revisão do livro `Deep Work` (`Cal Newport`) com `+ Add Document Tags`, cards de highlights, ícone de Chat semântico no topo direito do card e barra inferior de ações
 
-![imagem e1136](assets/readwise_srs_bookreview_ai_chat.png)
+![imagem e1136](readwise_srs_bookreview_ai_chat.png)
 
-![imagem e1138](assets/readwise_srs_bookreview_chat_panel_open.png)
+![imagem e1138](readwise_srs_bookreview_chat_panel_open.png)
 
 **Evidência 99 (Readwise SRS `/chat` — Issue #83):** Copiloto `Ask your highlights anything` com seletor de modelo (`Fast` vs `Thinking`), sugestões contextuais de perguntas e busca semântica em todos os destaques
 
 **Evidência 100 (Readwise SRS Semantic Chat Prompt — Issue #83):** Disparo do botão de chat dentro de um highlight de `Deep Work`, enviando automaticamente o prompt de busca de highlights conceitualmente similares entre documentos diferentes
 
-![imagem e1140](assets/readwise_srs_preferences_email_schedule_1.png)
+![imagem e1140](readwise_srs_preferences_email_schedule_1.png)
 
-![imagem e1142](assets/readwise_srs_preferences_email_schedule_2.png)
+![imagem e1142](readwise_srs_preferences_email_schedule_2.png)
 
 **Evidência 101 (Readwise SRS `/preferences` Email — Issue #82):** Aba `Email Preferences` em `Configure` com endereço de e-mail, frequência (`once per day`), horário (`12:00am GMT -03:00`) e toggle `Use the legacy email design`
 
 **Evidência 102 (Readwise SRS `/preferences` Review Settings — Issue #82):** Aba `Review Settings` com sliders `Highlights Per Day` (`1–15`) e `Highlight Recency` (`Older–Newer`), toggles `Receive Bonus Highlights` / `Highlight Quality Filter` e `Themed Reviews`
 
-![imagem e1144](assets/readwise_srs_frequency_tuning_dropdown.png)
+![imagem e1144](readwise_srs_frequency_tuning_dropdown.png)
 
-![imagem e1146](assets/readwise_srs_inline_action_tags_guide.png)
+![imagem e1146](readwise_srs_inline_action_tags_guide.png)
 
 **Evidência 103 (Readwise SRS `/configure/tune/books` — Issue #83):** Aba `Frequency Tuning` com dropdown de categoria aberto (`Books` / `Supplemental Books`), filtro de busca e slider individual `Review Frequency` por obra
 
@@ -2195,17 +2195,17 @@ Importação responsiva em viewport móvel de 390px
 
 Modo PDF original e texto reflow; fonte/tamanho/entrelinha, j/k, h grifar, n nota marginal, t etiqueta, z desfazer e [ sumário. Testes Playwright desktop 1366 e mobile 390 sobre PDF de duas colunas GERADO por pdf-lib com PDF.js no navegador, com ordem esquerda→direita, persistência e limpeza entre rotas. Defeito de layout corrigido: toolbar fora do flex da página. LIMITES: não é DOU oficial real, falta OCR para escaneados, TOC semântico e projeção das anotações sobre o canvas original. Issue #77 permanece aberta.
 
-![imagem e1479](assets/issue77_reader_original_1366.png)
+![imagem e1479](issue77_reader_original_1366.png)
 
-![imagem e1481](assets/issue77_reader_text_highlight_1366.png)
+![imagem e1481](issue77_reader_text_highlight_1366.png)
 
 PDF real gerado no teste: canvas e duas colunas em tela desktop
 
 Modo texto reflow: coluna esquerda antes da direita e grifo focado
 
-![imagem e1483](assets/issue77_reader_marginalia_1366.png)
+![imagem e1483](issue77_reader_marginalia_1366.png)
 
-![imagem e1485](assets/issue77_reader_marginalia_390.png)
+![imagem e1485](issue77_reader_marginalia_390.png)
 
 Nota marginal, etiqueta, sumário e restauração do modo texto
 
@@ -2314,39 +2314,39 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 
 Capturas reais de Chromium headless executado no runner Windows. O teste valida color-scheme computado em html e select, escolha na interface, modo automatico, quatro opcoes (1/5/10/20), foco via teclado e viewport de 390px. LIMITACAO: o popup nativo do sistema pode nao aparecer em screenshots Playwright. Nao comprova contraste visual do popup no Windows; verificar manualmente antes de fechar #120.
 
-![imagem e1230](assets/issue120_after_auto_dark.png)
+![imagem e1230](issue120_after_auto_dark.png)
 
-![imagem e1232](assets/issue120_after_explicit_light.png)
+![imagem e1232](issue120_after_explicit_light.png)
 
 Sistema escuro: tema automatico segue color-scheme escuro
 
 Tema claro escolhido na UI, mesmo com sistema escuro
 
-![imagem e1234](assets/issue120_after_explicit_dark.png)
+![imagem e1234](issue120_after_explicit_dark.png)
 
-![imagem e1236](assets/issue120_after_auto_restored.png)
+![imagem e1236](issue120_after_auto_restored.png)
 
 Tema escuro escolhido na UI
 
 Retorno ao tema automatico, sem reload
 
-![imagem e1238](assets/issue120_after_toggle_light.png)
+![imagem e1238](issue120_after_toggle_light.png)
 
-![imagem e1240](assets/issue120_after_mobile.png)
+![imagem e1240](issue120_after_mobile.png)
 
 Alternancia pelo botao do rodape, sem reload
 
 Viewport estreita de 390px com select nativo
 
-![imagem e1242](assets/issue120_after_auto_light.png)
+![imagem e1242](issue120_after_auto_light.png)
 
-![imagem e1244](assets/issue120_after_dark_on_light_os.png)
+![imagem e1244](issue120_after_dark_on_light_os.png)
 
 Sistema claro: tema automatico segue color-scheme claro
 
 Tema escuro escolhido, mesmo com sistema claro
 
-![imagem e1246](assets/issue120_after_auto_light_restored.png)
+![imagem e1246](issue120_after_auto_light_restored.png)
 
 Retorno ao automatico com sistema claro
 
@@ -2355,23 +2355,23 @@ Retorno ao automatico com sistema claro
 
 Causa comprovada por inspeção do código: UIICON.timer era referenciado, mas não declarado, criando 'undefined' no slot de ícone. Correção: SVG inline e grid com reflow em 320px. E2E Chromium verifica 12 larguras, ícone, rótulos, bounds e navegação ao simulado. Evidência real da branch do PR, não de dispositivo Android físico. Cobertura PARCIAL de #132: não equivale a auditoria completa dos painéis, PDF e grafo.
 
-![imagem e1341](assets/issue132_before_390.png)
+![imagem e1341](issue132_before_390.png)
 
-![imagem e1343](assets/issue132_after_320.png)
+![imagem e1343](issue132_after_320.png)
 
 ANTES: a Home exibia o texto literal 'undefined' no lugar do SVG do simulado, em 390px
 
 DEPOIS: 320px, ícone SVG restaurado; CTA refluindo no grid
 
-![imagem e1345](assets/issue132_after_390.png)
+![imagem e1345](issue132_after_390.png)
 
-![imagem e1347](assets/issue132_after_768.png)
+![imagem e1347](issue132_after_768.png)
 
 DEPOIS: 390px, ícone SVG sem sobreposição de texto
 
 DEPOIS: 768px, ações primárias preservadas
 
-![imagem e1349](assets/issue132_after_1280.png)
+![imagem e1349](issue132_after_1280.png)
 
 DEPOIS: 1280px, alinhamento do CTA no desktop
 
@@ -2380,17 +2380,17 @@ DEPOIS: 1280px, alinhamento do CTA no desktop
 
 E2E Chromium sobre o grafo global: preferencia de movimento reduzido ao abrir, ausencia de loop no repouso, zoom por teclado, filtros, mudança dinamica da preferencia e retorno ao reduzido. Medicoes: issue128_motion_e2e.json. LIMITES: somente emulacao Chromium CI; nao prova WCAG, bateria, CPU ou leitor de tela. 390px: 90 nos, 299 relacoes, canvas em 420ms (medicao unica, nao SLA) 1366px: 90 nos, 299 relacoes, canvas em 372ms (medicao unica, nao SLA)
 
-![imagem e1353](assets/issue128_reduced_390.png)
+![imagem e1353](issue128_reduced_390.png)
 
-![imagem e1355](assets/issue128_restored_390.png)
+![imagem e1355](issue128_restored_390.png)
 
 390px, movimento reduzido desde a montagem: canvas desenhado sem loop
 
 390px, preferência alterada dinamicamente e restaurada
 
-![imagem e1357](assets/issue128_reduced_1366.png)
+![imagem e1357](issue128_reduced_1366.png)
 
-![imagem e1359](assets/issue128_restored_1366.png)
+![imagem e1359](issue128_restored_1366.png)
 
 1366px, grafo com redução de movimento e controles interativos
 
@@ -2401,17 +2401,17 @@ E2E Chromium sobre o grafo global: preferencia de movimento reduzido ao abrir, a
 
 Funcionalidade realmente testada: botão exportar PNG na toolbar do grafo global, acionado por teclado Enter. O arquivo local é gerado por canvas.toDataURL sem rede, nome exam-app-grafo.png. Teste Chromium valida cabeçalho PNG, arquivo nao vazio e dimensoes de pixels iguais ao backing canvas (DPR 2). Evidencia parcial da issue #68: filtros avancados, profundidade 1..5, popovers e timeline ainda nao foram implementados aqui. Manifesto: issue68_export_e2e.json.
 
-![imagem e1363](assets/issue68_graph_toolbar_390.png)
+![imagem e1363](issue68_graph_toolbar_390.png)
 
-![imagem e1365](assets/issue68_export_graph_390.png)
+![imagem e1365](issue68_export_graph_390.png)
 
 Botão de exportação na barra do grafo, viewport 390px
 
 PNG real gerado no canvas mobile, pixel ratio 2
 
-![imagem e1367](assets/issue68_graph_toolbar_1366.png)
+![imagem e1367](issue68_graph_toolbar_1366.png)
 
-![imagem e1369](assets/issue68_export_graph_1366.png)
+![imagem e1369](issue68_export_graph_1366.png)
 
 Botão de exportação na barra do grafo, viewport 1366px
 
@@ -2422,23 +2422,23 @@ PNG real gerado no canvas desktop, pixel ratio 2
 
 Implementação observável: o SpaceSwitcher passa a oferecer busca por nome com normalização de acentos, estado vazio, seleção/aria-selected, drag handle e reordenação por teclado Alt+ArrowUp/Down. A ordem é salva por ID em spaceOrder, distinta dos objetos de espaço persistidos em spaces; nomes e seleção sobrevivem à recarga. Arraste por Pointer Events tem threshold de 7px, indicação de destino e cancelamento Escape/pointercancel sem mudança. E2E real Chromium: reprodução anterior, busca, criação de dois espaços, reordenação por teclado e mouse, recarga, cancelamento e viewport 390px; ver issue138_spaces_e2e.json. Limite: toque físico, leitores de tela e sincronização entre dispositivos não foram validados.
 
-![imagem e1387](assets/issue138_before_desktop.png)
+![imagem e1387](issue138_before_desktop.png)
 
-![imagem e1389](assets/issue138_search_desktop.png)
+![imagem e1389](issue138_search_desktop.png)
 
 ANTES: seletor sem campo de busca e sem alças de reordenação no desktop
 
 DEPOIS: pesquisa incremental, nomes de espaços filtrados sem distinção de acentos
 
-![imagem e1391](assets/issue138_after_keyboard_desktop.png)
+![imagem e1391](issue138_after_keyboard_desktop.png)
 
-![imagem e1393](assets/issue138_after_drag_desktop.png)
+![imagem e1393](issue138_after_drag_desktop.png)
 
 DEPOIS: Alt + seta reordena por identidade sem trocar o espaço ativo
 
 DEPOIS: arraste por Pointer Events altera ordem sem perda de contexto
 
-![imagem e1395](assets/issue138_after_mobile_390.png)
+![imagem e1395](issue138_after_mobile_390.png)
 
 DEPOIS: seletor responsivo a 390 CSS px com busca e seleção por toque
 
@@ -2447,17 +2447,17 @@ DEPOIS: seletor responsivo a 390 CSS px com busca e seleção por toque
 
 Roteador declarativo único para comandos globais, categorias, prioridade, chord normalizado Mod (Ctrl/Command), Alt e Shift e disponibilidade contextual. E2E Chromium valida busca Ctrl+K, alternância Ctrl+B, novo objeto Ctrl+Alt+N, proteção de campos e diálogos, janela de ajuda gerada do mesmo catálogo, sem erro JS. Capturas e medições em issue139_commands_e2e.json. Matriz E2E adicional: questão seleciona alternativa pelo atalho; campo de edição suprime a seleção; o grafo conserva o evento local e bloqueia Ctrl+B global; Ctrl+Tab não é cancelado pelo roteador. IME físico e captura das teclas reservadas pelo SO continuam dependentes de teste manual por plataforma. Evidências completas em issue139_commands_e2e.json.
 
-![imagem e1399](assets/issue139_before_help.png)
+![imagem e1399](issue139_before_help.png)
 
-![imagem e1401](assets/issue139_after_help.png)
+![imagem e1401](issue139_after_help.png)
 
 ANTES: janela de ajuda com tabela fixa de seis atalhos
 
 DEPOIS: janela gerada dinamicamente a partir do registro de comandos
 
-![imagem e1403](assets/issue139_after_search.png)
+![imagem e1403](issue139_after_search.png)
 
-![imagem e1405](assets/issue139_after_new_item.png)
+![imagem e1405](issue139_after_new_item.png)
 
 DEPOIS: Ctrl+K abre busca; campo editável impede Ctrl+B global
 

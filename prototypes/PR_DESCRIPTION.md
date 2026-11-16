@@ -11,7 +11,7 @@ Esta Pull Request implementa a solução definitiva e segura para utilização d
 - **Auto-Refresh de Credenciais:** Detecta expiração do token OAuth do Claude Code (`~/.claude/.credentials.json`) e recarrega dinamicamente sem interrupção do serviço.
 - **Proteção contra Vazamento de Segredos:** Endpoint de auditoria `/api/health` e mensagens de erro totalmente sanitizados.
 
-### 2. Motor de Sincronização Offline-First (`prototypes/exam-app-0.1.1/js/claude-storage-sync.js`)
+### 2. Motor de Sincronização Offline-First (`prototypes/claude-storage-sync.js`)
 - **Fila Persistente (Outbox):** Mutações de estado de estudo são salvas imediatamente no `localStorage` e enfileiradas.
 - **Reconciliação LWW (Last-Write-Wins):** Algoritmo per-question timestamp merging para garantir convergência sem perda de progresso de estudo em resoluções concorrentes.
 - **Detecção de Ambiente Híbrido:** No Claude Artifact real, comunica-se via `claude.use('db')`; no localhost, sincroniza transparentemente via proxy HTTP (`127.0.0.1:8766`).
@@ -29,5 +29,5 @@ Esta Pull Request implementa a solução definitiva e segura para utilização d
 - `tests/claude-storage-api-poc/e2e-sync.test.mjs` (4 testes E2E com Chromium headless e DevTools Protocol validando ciclo completo de resposta, sincronização e evidência visual)
 
 ### 5. Evidências e Memória no Planning Board
-- **Seção 44** adicionada ao Planning Board (`prototypes/board-exam-app/board.json` e `BOARD.md`).
-- **Screenshot E2E validado:** `prototypes/board-exam-app/assets/evidence-e2e-sync-badge-active.png` (154.088 bytes).
+- **Seção 44** adicionada ao Planning Board (`prototypes/board.json` e `BOARD.md`).
+- **Screenshot E2E validado:** `prototypes/board-exam-app__assets__evidence-e2e-sync-badge-active.png` (154.088 bytes).

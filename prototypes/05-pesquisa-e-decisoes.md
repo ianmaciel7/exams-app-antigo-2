@@ -24,22 +24,22 @@ flowchart LR
 
 ## Documentos
 
-- [Capacities — #32](../../research/capacities-issue-32-2026-11-15.md)
-- [ExamTopics — inventário](../../research/examtopics-inventory.md)
-- [QConcursos — #31](../../research/qconcursos-issue-31-2026-11-15.md)
-- [Gran Questões — #62](../../research/gran-questoes-issue-62-2026-11-15.md)
-- [Auditoria UI skills — #156](../../research/issue-156-ui-skills-audit-2026-11-15.md)
-- [Pesquisa UX — 20 fontes](../../ux/pesquisa-20-fontes-2026-11.md)
-- [Análise QConcursos](../../research/analises/analise-qconcursos.md)
-- [Análise ExamTopics](../../research/analises/analise-examtopics.md)
+- [Capacities — #32](capacities-issue-32-2026-11-15.md)
+- [ExamTopics — inventário](examtopics-inventory.md)
+- [QConcursos — #31](qconcursos-issue-31-2026-11-15.md)
+- [Gran Questões — #62](gran-questoes-issue-62-2026-11-15.md)
+- [Auditoria UI skills — #156](issue-156-ui-skills-audit-2026-11-15.md)
+- [Pesquisa UX — 20 fontes](pesquisa-20-fontes-2026-11.md)
+- [Análise QConcursos](analise-qconcursos.md)
+- [Análise ExamTopics](analise-examtopics.md)
 
 ## Blocos originais
 
-- [e107 — Fontes e referências](../../../board-exam-app/index.html#e107)
-- [e108 — QConcursos](../../../board-exam-app/index.html#e108)
-- [e116 — ExamTopics](../../../board-exam-app/index.html#e116)
-- [e119 — Readwise](../../../board-exam-app/index.html#e119)
-- [e190 — Análise ExamTopics](../../../board-exam-app/index.html#e190)
-- [e400 — Análise QConcursos](../../../board-exam-app/index.html#e400)
-- [e900 — Dossiê comparativo](../../../board-exam-app/index.html#e900)
-- [e1090 — Dossiê Readwise](../../../board-exam-app/index.html#e1090)
+- [e107 — Fontes e referências](board-exam-app__index.html#e107)
+- [e108 — QConcursos](board-exam-app__index.html#e108)
+- [e116 — ExamTopics](board-exam-app__index.html#e116)
+- [e119 — Readwise](board-exam-app__index.html#e119)
+- [e190 — Análise ExamTopics](board-exam-app__index.html#e190)
+- [e400 — Análise QConcursos](board-exam-app__index.html#e400)
+- [e900 — Dossiê comparativo](board-exam-app__index.html#e900)
+- [e1090 — Dossiê Readwise](board-exam-app__index.html#e1090)

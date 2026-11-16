@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
 await mkdir(assets,{recursive:true});
 const report={created:new Date().toISOString(),steps:[],errors:[],limitations:[
   'Browser emulation; real assistive technology and physical touch testing not included.',

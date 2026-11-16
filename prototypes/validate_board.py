@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrity checks for board.json. Usage: python validate_board.py (run inside prototypes/board-exam-app/)."""
+"""Integrity checks for board.json. Usage: python validate_board.py (run inside prototypes/board-exam-app__*)."""
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))

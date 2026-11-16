@@ -1,6 +1,6 @@
 # Modelo de domínio (AS-IS)
 
-Fonte: constante `TYPES` em `prototypes/exam-app-0.1.1/index.html` (linha 2918), SHA `9beadadd8be27c7d99d3ecdf5b5cf099137e23cc`. Os nomes em português são os exibidos no app.
+Fonte: constante `TYPES` em `prototypes/exam-app-0.1.1__index.html` (linha 2918), SHA `9beadadd8be27c7d99d3ecdf5b5cf099137e23cc`. Os nomes em português são os exibidos no app.
 
 | Tipo | Herda de | Propriedades próprias |
 | --- | --- | --- |

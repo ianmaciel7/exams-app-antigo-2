@@ -2,7 +2,7 @@
 
 - Status: vigente
 - Data da decisão: 2026-11-13 (registrada no projeto pelo responsável do produto)
-- Proveniência: código `prototypes/exam-app-0.1.1/index.html` (chamada `window.claude.use('sample')`, linha ~7530, classe `ai-on`); botões de IA sempre visíveis desde a versão 116 da prototipagem.
+- Proveniência: código `prototypes/exam-app-0.1.1__index.html` (chamada `window.claude.use('sample')`, linha ~7530, classe `ai-on`); botões de IA sempre visíveis desde a versão 116 da prototipagem.
 
 ## Contexto
 O app precisa de funções de IA (explicar questão, criar cartões, sugerir o que revisar, assistente). Não há backend próprio nem chave de API no repositório.

@@ -8,7 +8,7 @@
 
 ## 1. Rastreamento e método
 
-Fontes internas inspecionadas na `dev`: `prototypes/exam-app-0.1.1/index.html`, `DESIGN.md`, `prototypes/docs/research/analises/analise-qconcursos.md`, `prototypes/docs/research/analises/analise-examtopics.md`, `prototypes/board-exam-app/board.json` e `BOARD.md`. Evidências da issue #97 são 48 capturas do shell em `prototypes/board-exam-app/assets/lowchrome_97_*.png` e matriz de estados em `lowchrome_97_manifest.json`.
+Fontes internas inspecionadas na `dev`: `prototypes/exam-app-0.1.1__index.html`, `DESIGN.md`, `prototypes/analise-qconcursos.md`, `prototypes/analise-examtopics.md`, `prototypes/board.json` e `BOARD.md`. Evidências da issue #97 são 48 capturas do shell em `prototypes/lowchrome_97_*.png` e matriz de estados em `lowchrome_97_manifest.json`.
 
 **Termos de status:**
 
@@ -172,11 +172,11 @@ flowchart TD
 | Produto | Observação verificável | Fonte e natureza | Transferência proposta | Limites |
 |---|---|---|---|---|
 | Qconcursos | Navegação para “Questões” direto da sidebar; filtro, resolver, corrigir, ações pós-resposta; simulado personalizado a partir de filtros | [Suporte: resolver](https://suporte.qconcursos.com/pt-BR/articles/11649035-como-resolver-questoes-na-central-de-preparacao), [filtros](https://suporte.qconcursos.com/pt-BR/articles/12118570-como-usar-os-filtros-de-questoes), [simulado](https://suporte.qconcursos.com/pt-BR/articles/11655126-como-criar-um-simulado-personalizado) — documentação oficial consultada em 14/11/2026 | Fluxos diretos e estado único de filtro | Não prova layout pixel a pixel nem disponibilidade em toda modalidade/plano |
-| ExamTopics | Revisão local de lista/paginação, navegação de questões e padrões de visibilidade | `prototypes/docs/research/analises/analise-examtopics.md` — análise interna; exemplo [página de exame](https://www.examtopics.com/exams/microsoft/az-305/view/) | Progresso claro, número/posição, anterior/próxima | **Sem captura nova nesta auditoria**; não afirmar estado atual da UI sem inspeção |
+| ExamTopics | Revisão local de lista/paginação, navegação de questões e padrões de visibilidade | `prototypes/analise-examtopics.md` — análise interna; exemplo [página de exame](https://www.examtopics.com/exams/microsoft/az-305/view/) | Progresso claro, número/posição, anterior/próxima | **Sem captura nova nesta auditoria**; não afirmar estado atual da UI sem inspeção |
 | Capacities | Tipos de objeto, dashboards de tipos, listagem “All”, propriedades, queries/collections dinâmicas | [Object types](https://docs.capacities.io/reference/content-types), [Queries](https://docs.capacities.io/reference/queries), [Collections](https://docs.capacities.io/reference/collections) — documentação oficial | Modelo de objetos e painel contextual convivem com jornadas de estudo | Algumas queries dependem do plano Pro; não inferir implementação, HTML/JS internos ou animações atuais |
 | Exam App, shell | Separadores decorativos removidos com teste de responsividade e estados de painel | [PR #103](https://github.com/ianmaciel7/exams-app/pull/103), `board.json` seção 31, 48 imagens reais Playwright do próprio protótipo | Manter UI low-chrome sem sacrificar controles | Screenshots **não** equivalem a teste moderado de UX ou auditoria WCAG |
 
-**Proveniência:** nenhuma captura nova de Qconcursos, ExamTopics ou Capacities foi realizada **nesta** execução. Não fabricar fotos, GIFs ou atributos de DOM. Ao inspecionar benchmarks futuramente, registrar URL, data, viewport, ação realizada, estado antes/depois, nome de arquivo em `prototypes/board-exam-app/assets/`, ID de elemento em `board.json` e sincronização gerada em `BOARD.md`. As evidências locais já presentes no board só sustentam as observações com procedência documentada.
+**Proveniência:** nenhuma captura nova de Qconcursos, ExamTopics ou Capacities foi realizada **nesta** execução. Não fabricar fotos, GIFs ou atributos de DOM. Ao inspecionar benchmarks futuramente, registrar URL, data, viewport, ação realizada, estado antes/depois, nome de arquivo em `prototypes/board-exam-app__assets__*`, ID de elemento em `board.json` e sincronização gerada em `BOARD.md`. As evidências locais já presentes no board só sustentam as observações com procedência documentada.
 
 ## 8. Testes com usuários — protocolo antes de impor metas
 

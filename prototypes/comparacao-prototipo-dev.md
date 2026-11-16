@@ -1,6 +1,6 @@
 # Comparação: Estratégia Questões x protótipo em `dev` (issue #230)
 
-**Arquivo lido:** `prototypes/exam-app-0.1.1/index.html` na branch `dev` (commit `e247f29`, 9.247 linhas, ~820 KB).
+**Arquivo lido:** `prototypes/exam-app-0.1.1__index.html` na branch `dev` (commit `e247f29`, 9.247 linhas, ~820 KB).
 **Método:** leitura por seções com busca por termos (`grep` com trecho curto) e leitura de faixas de linhas. O arquivo inteiro não foi carregado de uma vez.
 **Rótulos:** **Presente** (código lido), **Parcial**, **Ausente** (não encontrado nas buscas), **Não verificado**.
 

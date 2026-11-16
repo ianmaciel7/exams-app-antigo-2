@@ -198,13 +198,13 @@ test('E2E: Validacao de Sincronizacao Bidirecional no Artifact Principal e Exam 
     const ss = await cdp.send('Page.captureScreenshot', { format: 'png' });
     const buffer = Buffer.from(ss.data, 'base64');
 
-    const outputDir = path.resolve('prototypes/board-exam-app/assets/claude-storage-bridge');
+    const outputDir = path.resolve('prototypes/board-exam-app__assets__claude-storage-bridge__*');
     fs.mkdirSync(outputDir, { recursive: true });
     const ssPath = path.join(outputDir, 'evidence-e2e-sync-badge-active.png');
     fs.writeFileSync(ssPath, buffer);
 
     // Copia também para raiz de assets para o board
-    const boardAssetPath = path.resolve('prototypes/board-exam-app/assets/evidence-e2e-sync-badge-active.png');
+    const boardAssetPath = path.resolve('prototypes/board-exam-app__assets__evidence-e2e-sync-badge-active.png');
     fs.writeFileSync(boardAssetPath, buffer);
 
     assert.ok(buffer.length > 10000, 'Screenshot deve ter mais de 10 KB');

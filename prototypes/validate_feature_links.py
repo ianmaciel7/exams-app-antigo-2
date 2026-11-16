@@ -4,7 +4,7 @@ import json, os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 errors = []
-idx = json.load(open(os.path.join(ROOT, "prototypes/docs/features/features-index.json"), encoding="utf8"))
+idx = json.load(open(os.path.join(ROOT, "prototypes/features-index.json"), encoding="utf8"))
 mest = json.load(open(os.path.join(HERE, "board-mestre.json"), encoding="utf8"))
 FL = json.load(open(os.path.join(HERE, "feature-links.json"), encoding="utf8"))
 fids = {f["id"] for f in idx["features"]}
@@ -15,7 +15,7 @@ for f in FL["features"]:
         if g["blocks"][0] not in blocks: errors.append(f["id"] + ": grupo sem bloco no board-mestre: " + g["name"])
         if g.get("fonte") != "inferido": errors.append(f["id"] + ": grupo deve ser marcado inferido")
     for a in f["adrs"]:
-        if not os.path.isfile(os.path.join(ROOT, "prototypes/docs/architecture/adr", "%s" % next(x["page"].split("/")[-1] for x in idx["adrs"] if x["id"] == a["id"]))): errors.append(f["id"] + ": ADR ausente " + a["id"])
+        if not os.path.isfile(os.path.join(ROOT, "prototypes/docs__architecture__adr__*", "%s" % next(x["page"].split("/")[-1] for x in idx["adrs"] if x["id"] == a["id"]))): errors.append(f["id"] + ": ADR ausente " + a["id"])
     for e in f["evidencias"]:
         if not os.path.isfile(os.path.join(ROOT, e["caminho"])): errors.append(f["id"] + ": evidência ausente " + e["caminho"])
         if e["src"] and not os.path.isfile(os.path.normpath(os.path.join(HERE, e["src"]))): errors.append(f["id"] + ": miniatura ausente " + e["src"])

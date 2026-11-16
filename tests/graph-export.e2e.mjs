@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes/board-exam-app/assets');
+const dir = path.resolve('prototypes/board-exam-app__assets__*');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const report = { date: new Date().toISOString(), cases: [], errors: [], limits: [
@@ -58,5 +58,5 @@ try {
   console.log('Graph export E2E passed: keyboard-accessible PNG in mobile and desktop at DPR 2.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue68_export_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototypes/issue68_export_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

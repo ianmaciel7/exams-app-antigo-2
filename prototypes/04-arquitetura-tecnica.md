@@ -29,15 +29,15 @@ flowchart TB
 
 ## Documentos
 
-- [Claude Pro Storage API](../../reports/claude-storage-api/CLAUDE_STORAGE_API_INTEGRATION.md)
-- [Investigação Storage Bridge](../../reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md)
-- [Fontes de verdade do board](../FONTES.md)
+- [Claude Pro Storage API](CLAUDE_STORAGE_API_INTEGRATION.md)
+- [Investigação Storage Bridge](CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md)
+- [Fontes de verdade do board](FONTES.md)
 
 ## Blocos originais
 
-- [e410 — Camada de IA](../../../board-exam-app/index.html#e410)
-- [e1248 — Infraestrutura de agentes](../../../board-exam-app/index.html#e1248)
-- [e1371 — Storage Bridge PoC](../../../board-exam-app/index.html#e1371)
-- [e1440 — Storage homologado](../../../board-exam-app/index.html#e1440)
-- [e1407 — Isolamento do grafo](../../../board-exam-app/index.html#e1407)
-- [e1450 — Máquina de estados de carregamento](../../../board-exam-app/index.html#e1450)
+- [e410 — Camada de IA](board-exam-app__index.html#e410)
+- [e1248 — Infraestrutura de agentes](board-exam-app__index.html#e1248)
+- [e1371 — Storage Bridge PoC](board-exam-app__index.html#e1371)
+- [e1440 — Storage homologado](board-exam-app__index.html#e1440)
+- [e1407 — Isolamento do grafo](board-exam-app__index.html#e1407)
+- [e1450 — Máquina de estados de carregamento](board-exam-app__index.html#e1450)

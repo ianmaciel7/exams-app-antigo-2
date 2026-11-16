@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const begin=html.indexOf('function graphStoredMeta(sp,href,kind){');
 const end=html.indexOf('const GR_CACHE=new Map();',begin);
 assert.ok(begin>=0&&end>begin,'G read model functions are present');

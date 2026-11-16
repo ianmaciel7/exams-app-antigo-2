@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'prototypes/exam-app-0.1.1__index.html'
       - 'tests/workspace-command-router.test.mjs'
       - 'tests/workspace-command-router.e2e.mjs'
       - 'scripts/append-command-router-board.py'
@@ -47,7 +47,7 @@ jobs:
           node tests/workspace-command-router.e2e.mjs
           python3 scripts/append-command-router-board.py
           npm run board
-          grep -q '46. Atalhos de teclado' prototypes/board-exam-app/BOARD.md
+          grep -q '46. Atalhos de teclado' prototypes/BOARD.md
           echo "Chromium command evidence validated; tracked screenshots already belong to this PR."
       - name: Upload evidence
         if: always()
@@ -55,6 +55,6 @@ jobs:
         with:
           name: issue139-command-router-evidence
           path: |
-            prototypes/board-exam-app/assets/issue139_*.png
-            prototypes/board-exam-app/issue139_commands_e2e.json
+            prototypes/issue139_*.png
+            prototypes/issue139_commands_e2e.json
           if-no-files-found: warn

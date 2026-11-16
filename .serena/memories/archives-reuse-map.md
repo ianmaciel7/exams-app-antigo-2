@@ -1,6 +1,6 @@
 # Archives reuse map
 
-`prototypes/docs/archives/` holds legacy projects as git bundles (`*.bundle`) plus per-bundle `.md` docs and `.png` screenshots. Catalog: `prototypes/docs/archives/README.md`. Full reuse map: `prototypes/docs/archives/REUSE-MAP.md` (read it before porting anything).
+`prototypes/docs__archives__*` holds legacy projects as git bundles (`*.bundle`) plus per-bundle `.md` docs and `.png` screenshots. Catalog: `prototypes/docs__archives__README.md`. Full reuse map: `prototypes/REUSE-MAP.md` (read it before porting anything).
 
 All 15 bundles are extracted (no .git) into `.archive-extracted/<bundle-name>/` (git-ignored, ~476 MB, regenerable: `git clone -b <head> <bundle> <dir>` then delete `.git`). CodeGraph has a SEPARATE index there (3.8k files, 63k nodes). Query it with `codegraph_explore` passing `projectPath` = `C:\Users\ianma\workspace\exams-app\.archive-extracted` (the default project index of exams-app stays for the new code). Serena does NOT read these (no TS language server configured); use CodeGraph or Read.
 Verified: SM-2 = notes-app-old-10 `src/domain/recall.ts` (`schedule`, line 224, tested in tests/recall.test.ts). FSRS = notes-app-old-8 `src/domain/scheduler.ts`, notes-app-old-9 `src/domain/study/fsrs-scheduler.ts`, notes-app-old-11 `src/lib/fsrs/schedule-card.ts`. Ignore `.agents/skills/impeccable/scripts/live-browser.js` noise in results.
@@ -14,7 +14,7 @@ Caveat: in `exams-app-old-*` bundles branch names use dashes (`backup-old-1`), s
 - Exams App Old: exams-app-old-backup-old-1, dev-before-adr2, dev-20261111-1903 (Next.js 16, ADRs; closest to current project)
 
 ## Top reuse candidates
-- ADRs 0001-0012: exams-app-old-backup-old-1 `prototypes/docs/adr/`
+- ADRs 0001-0012: exams-app-old-backup-old-1 `prototypes/docs__adr__*`
 - Next.js 16 foundations + Vitest/Playwright: exams-app-old-backup-dev-20261111-1903
 - SM-2: notes-app-old-10 `src/domain/recall.ts` (+tests); best first port
 - Auth + i18n (next-intl): exams-app-old-backup-old-1

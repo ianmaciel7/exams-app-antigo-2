@@ -62,7 +62,7 @@ Termos oficiais descrevem Visitante, Cadastrado (ferramentas restritas e quantid
 
 ## Comparação com Exam App `dev`
 
-Arquivos remotos consultados: `prototypes/exam-app-0.1.1/index.html` (blob `965037384264ed43eeffc363ba513877cc0f71dd`) e `prototypes/exam-app-0.1.1/data/dataprev-2026-tipo1.json` (70 questões). A análise do protótipo não é evidência sobre QConcursos.
+Arquivos remotos consultados: `prototypes/exam-app-0.1.1__index.html` (blob `965037384264ed43eeffc363ba513877cc0f71dd`) e `prototypes/exam-app-0.1.1__data__dataprev-2026-tipo1.json` (70 questões). A análise do protótipo não é evidência sobre QConcursos.
 
 - O `renderPractice()` interno usa `qfHTML('study', ...)`; `qfHTML` tem campo de busca, chips, contador e lista; lista permite paginação e estados de resposta.
 - As categorias internas `QF_CATS` incluem Disciplina, Assunto, Banca, Cargo, Ano, Órgão, Modalidade, Dificuldade, Concurso, Edição, Origem e Situação. O painel avançado inclui exclusões e inclusões por dados locais. A rota pública externa, por sua vez, mostrou Área de Formação e Área de Atuação e não mostrou Concurso/Edição como facetas simples na extração observada.
@@ -74,7 +74,7 @@ Arquivos remotos consultados: `prototypes/exam-app-0.1.1/index.html` (blob `9650
 
 ## Relatórios internos prévios e divergência
 
-Na branch `dev`, [`analise-qconcursos.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/docs/research/analises/analise-qconcursos.md) e [`analise-examtopics.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/docs/research/analises/analise-examtopics.md) estão datados de 13/11/2026. A análise QConcursos relata conteúdo de suporte oficial consultado então, inclusive filtro cumulativo E, exclusões padrão, aplicar último filtro, caderno/filtro/simulado e limites. **Nesta coleta essas regras antigas não foram reconfirmadas.** A rota pública extraída em 15/11 expõe mais dimensões de filtro que a análise anterior resumia. Portanto a diferença deve ser tratada como mudança possível ou diferença de tela/segmento; não declarar comportamento atual contraditório sem executar teste.
+Na branch `dev`, [`analise-qconcursos.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/analise-qconcursos.md) e [`analise-examtopics.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/analise-examtopics.md) estão datados de 13/11/2026. A análise QConcursos relata conteúdo de suporte oficial consultado então, inclusive filtro cumulativo E, exclusões padrão, aplicar último filtro, caderno/filtro/simulado e limites. **Nesta coleta essas regras antigas não foram reconfirmadas.** A rota pública extraída em 15/11 expõe mais dimensões de filtro que a análise anterior resumia. Portanto a diferença deve ser tratada como mudança possível ou diferença de tela/segmento; não declarar comportamento atual contraditório sem executar teste.
 
 ## Matriz de cobertura e lacunas específicas
 
