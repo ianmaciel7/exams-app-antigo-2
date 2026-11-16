@@ -74,7 +74,7 @@ Arquivos remotos consultados: `prototypes/exam-app-0.1.1/index.html` (blob `9650
 
 ## Relatórios internos prévios e divergência
 
-Na branch `dev`, [`analise-qconcursos.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/analises/analise-qconcursos.md) e [`analise-examtopics.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/analises/analise-examtopics.md) estão datados de 13/11/2026. A análise QConcursos relata conteúdo de suporte oficial consultado então, inclusive filtro cumulativo E, exclusões padrão, aplicar último filtro, caderno/filtro/simulado e limites. **Nesta coleta essas regras antigas não foram reconfirmadas.** A rota pública extraída em 15/11 expõe mais dimensões de filtro que a análise anterior resumia. Portanto a diferença deve ser tratada como mudança possível ou diferença de tela/segmento; não declarar comportamento atual contraditório sem executar teste.
+Na branch `dev`, [`analise-qconcursos.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/docs/research/analises/analise-qconcursos.md) e [`analise-examtopics.md`](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/docs/research/analises/analise-examtopics.md) estão datados de 13/11/2026. A análise QConcursos relata conteúdo de suporte oficial consultado então, inclusive filtro cumulativo E, exclusões padrão, aplicar último filtro, caderno/filtro/simulado e limites. **Nesta coleta essas regras antigas não foram reconfirmadas.** A rota pública extraída em 15/11 expõe mais dimensões de filtro que a análise anterior resumia. Portanto a diferença deve ser tratada como mudança possível ou diferença de tela/segmento; não declarar comportamento atual contraditório sem executar teste.
 
 ## Matriz de cobertura e lacunas específicas
 

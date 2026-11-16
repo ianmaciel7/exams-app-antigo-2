@@ -241,7 +241,7 @@
       "documents": [
         {
           "title": "Estratégia de questões — #230",
-          "path": "prototypes/docs/pesquisas/230-estrategia-questoes/README.md",
+          "path": "prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md",
           "role": "Consolidação do fluxo e pendências."
         },
         {
@@ -261,12 +261,12 @@
         },
         {
           "title": "Análise QConcursos",
-          "path": "prototypes/analises/analise-qconcursos.md",
+          "path": "prototypes/docs/research/analises/analise-qconcursos.md",
           "role": "Análise funcional complementar."
         },
         {
           "title": "Análise ExamTopics",
-          "path": "prototypes/analises/analise-examtopics.md",
+          "path": "prototypes/docs/research/analises/analise-examtopics.md",
           "role": "Análise funcional complementar."
         },
         {
@@ -461,12 +461,12 @@
         },
         {
           "title": "Análise QConcursos",
-          "path": "prototypes/analises/analise-qconcursos.md",
+          "path": "prototypes/docs/research/analises/analise-qconcursos.md",
           "role": "Inventário local."
         },
         {
           "title": "Análise ExamTopics",
-          "path": "prototypes/analises/analise-examtopics.md",
+          "path": "prototypes/docs/research/analises/analise-examtopics.md",
           "role": "Inventário local."
         }
       ],

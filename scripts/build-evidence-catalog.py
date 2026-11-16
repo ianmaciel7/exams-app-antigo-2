@@ -293,7 +293,7 @@ def build():
 
     # Evidências em arquivos de teste (JSON): inventário separado.
     testes = []
-    for path in sorted(git('ls-files', 'prototypes/board-exam-app', 'prototypes/docs/reports', 'prototypes/analises').splitlines()):
+    for path in sorted(git('ls-files', 'prototypes/board-exam-app', 'prototypes/docs/reports', 'prototypes/docs/research/analises').splitlines()):
         if re.search(r'(_e2e|manifest|diagnostic|execution-log)\.json$', path):
             testes.append({'id': stable_id(path), 'caminho': path, 'tipo': 'teste executado', 'data': dates.get(path)})
 
