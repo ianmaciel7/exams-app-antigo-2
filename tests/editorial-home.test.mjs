@@ -11,11 +11,14 @@ const recoveryStart=html.indexOf('const ERROR_REVIEW_DAY=');
 const recoveryEnd=html.indexOf('function histMeta(',recoveryStart);
 assert.ok(recoveryStart>=0&&recoveryEnd>recoveryStart,'history recovery helpers found');
 const source=html.slice(recoveryStart,recoveryEnd)+'\n'+html.slice(from,until);
-function run({questions=[],docs=[],history=[],dueCards=[]}={}){
+function run({questions=[],docs=[],history=[],dueCards=[],objects=[],entities=[]}={}){
   const state=new Map();const calls=[],sims=[];
   const env={
     space:'dataprev',questionBank:{questoes:[]},loadQuestions:()=>Promise.resolve(),showObjs:()=>{},location:{hash:'#/espaco'},view:{addEventListener(){}},
     store:{get:k=>state.get(k),set:(k,v)=>state.set(k,v)},docsOf:()=>docs,
+    objsOf:()=>objects,entsAll:()=>entities,gr:()=>({N:new Map(entities.map(e=>['#/'+e.type+'/'+e.id,e]))}),
+    objHref:d=>d.type==='pdf'?'#'+d.id:'#/'+d.type+'/'+d.id,
+    iconSvg:()=>'<svg></svg>',OPI:()=>({}),SI:{file:'<svg></svg>'},
     qObjs:()=>questions,qSel:q=>q.selected||null,histAll:()=>history,srsDueCards:()=>dueCards,
     edicoesOf:()=>[],cargosOf:()=>[],CONCURSOS:[{sp:'dataprev',id:'dataprev',t:'Concurso de TI'}],
     isT:()=>false,examDateISO:()=>null,daysTo:()=>null,
@@ -80,4 +83,22 @@ test('Home combines real due SRS cards with confirmed error-recovery tasks, not 
   assert.match(markup,/2 questões pendentes de recuperação/);
   assert.match(markup,/href="#\/revisao">Abrir revisão espaçada/);
   assert.match(markup,/href="#\/questoes\/erradas">Abrir caderno de erros/);
+});
+
+test('editorial recent objects includes real dated custom entities and imported PDFs but no undated fixtures (#58)',()=>{
+  const now=Date.now();
+  const {markup}=run({objects:[
+    {id:'legacy',type:'concurso',t:'Histórico sem data'},
+    {id:'c1',type:'concurso',t:'Concurso recente',createdAt:now-2000},
+    {id:'custom-object-a',type:'custom-resumo',t:'Resumo novo',createdAt:now-1000},
+    {id:'pdf-new',type:'pdf',t:'PDF importado',createdAt:now}
+  ],entities:[{id:'orgao-x',type:'orgao',t:'Órgão criado',sp:'dataprev',createdAt:now-1500}]});
+  const recents=markup.slice(markup.indexOf('<section class="eh-recents">'));
+  for(const title of ['Concurso recente','Resumo novo','PDF importado','Órgão criado'])
+    assert.ok(recents.includes(title),title);
+  assert.doesNotMatch(recents,/Histórico sem data/);
+  assert.ok(recents.indexOf('PDF importado')<recents.indexOf('Resumo novo'));
+  assert.ok(recents.indexOf('Resumo novo')<recents.indexOf('Órgão criado'));
+  assert.ok(recents.includes('tone-type-custom-resumo'));
+  assert.ok(recents.includes('tone-type-orgao'));
 });
