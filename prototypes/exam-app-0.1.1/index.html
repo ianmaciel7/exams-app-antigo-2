@@ -42,6 +42,20 @@
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 .op-wide>.op-main{grid-column:1/-1!important}
 
+/* PDF triage: actual persisted reader state, no nested anchor/button elements (#81). */
+.td-triage-filters{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.td-triage-filters button,.td-reader-actions button{border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);padding:6px 10px;font:inherit;font-size:11px;cursor:pointer}
+.td-triage-filters button[aria-pressed="true"],.td-reader-actions button[aria-pressed="true"]{background:var(--hover);font-weight:650}
+.td-triage-filters small{color:var(--muted);margin-left:3px}
+.td-layout-triage{display:grid;gap:9px}
+.td-reader-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--side);padding:12px}
+.td-reader-row:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.td-reader-link{display:flex;flex-direction:column;gap:4px;flex:1 1 210px;min-width:0;text-decoration:none;color:var(--text);overflow-wrap:anywhere}
+.td-reader-link small,.td-reader-link span{font-size:11px;color:var(--muted)}
+.td-reader-actions{display:flex;align-items:center;flex-wrap:wrap;gap:4px;max-width:100%}
+.td-reader-actions button:hover,.td-triage-filters button:hover{background:var(--hover)}
+
+
 /* Object backlinks/related footer: real graph edges, independent of right sidebar (#57). */
 .op-link-footer{grid-column:1/-1;min-width:0;padding:22px 0;margin-top:20px;border-top:1px solid var(--line)}
 .op-link-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
@@ -5113,6 +5127,42 @@ function entPage(t,en){
 
 /* Type workspace: real views, stable ordering, no invented metadata (#56). */
 const TD_LAYOUTS=[['list','Lista'],['gallery','Galeria'],['table','Tabela'],['board','Kanban'],['mural','Mural'],['embed','Incorporar']];
+
+const TD_TRIAGE=[['all','Todos'],['inbox','Caixa de entrada'],['later','Ler depois'],['shortlist','Prioritários'],['archive','Arquivados']];
+const tdIsReaderType=t=>t==='pdf';
+const tdLayoutChoices=t=>tdIsReaderType(t)?TD_LAYOUTS.concat([['triage','Triagem']]):TD_LAYOUTS;
+const tdReaderKey=id=>'reader-triage:'+space+':'+id;
+function tdReaderStatus(item){
+  const value=store.get(tdReaderKey(item.id));
+  return TD_TRIAGE.some(([key])=>key!=='all'&&key===value)?value:'inbox';
+}
+function tdReadMetrics(item){
+  const saved=store.get('pos:'+item.id), total=Number(saved?.total||store.get('pages:'+item.id)||0);
+  const page=Number(saved?.page||0);
+  if(!Number.isFinite(total)||total<=0||!Number.isFinite(page)||page<=0)
+    return {progress:null,minutes:null,pages:null,remaining:null};
+  const knownTotal=Math.floor(total),knownPage=Math.max(1,Math.min(knownTotal,Math.floor(page)));
+  return {progress:Math.round(knownPage/knownTotal*100),minutes:(knownTotal-knownPage)*2,
+    pages:knownTotal,remaining:knownTotal-knownPage};
+}
+function tdReaderRow(item,search,hidden){
+  const status=tdReaderStatus(item),metrics=tdReadMetrics(item);
+  const current=TD_TRIAGE.find(([key])=>key===status)?.[1]||'Caixa de entrada';
+  const progress=metrics.progress===null?'Progresso não registrado':metrics.progress+'% lido ('+
+    (metrics.pages-metrics.remaining)+'/'+metrics.pages+' páginas)';
+  const minutes=metrics.minutes===null?'Tempo restante indisponível':'Estimativa: ~'+metrics.minutes+' min (2 min/página restante)';
+  return '<div class="td-reader-row" tabindex="0" role="group" aria-label="Triagem de '+esc(item.name)+
+    '" data-td-item data-td-reader-id="'+esc(item.id)+'" data-td-term="'+search+'"'+hidden+'>'+
+    '<a class="td-reader-link" href="'+esc(item.href)+'"><strong>'+esc(item.name)+'</strong><small>'+
+    esc(item.detail||'PDF')+' · '+esc(current)+'</small><span>'+esc(progress)+' · '+esc(minutes)+'</span></a>'+
+    '<div class="td-reader-actions" role="group" aria-label="Mover '+esc(item.name)+'">'+
+    TD_TRIAGE.filter(([key])=>key!=='all').map(([key,label])=>'<button type="button" data-td-move="'+
+      esc(item.id)+'" data-td-target="'+key+'" aria-pressed="'+(status===key)+'" aria-label="Mover '+
+      esc(item.name)+' para '+label+'">'+label+'</button>').join('')+
+    '<button type="button" data-td-tags="'+esc(item.id)+'" aria-label="Editar etiquetas de '+esc(item.name)+
+    '">Etiquetas</button></div></div>';
+}
+
 const tdKey=t=>'type-dashboard:'+space+':'+t;
 const tdCollectionKey=t=>'typeCollections:'+space+':'+t;
 const tdCollections=t=>{const x=store.get(tdCollectionKey(t))||[];return Array.isArray(x)?x:[];};
@@ -5125,8 +5175,9 @@ function tdToggleMember(t,id,href){
 function tdState(t){
   const old=store.get(tdKey(t))||{};
   return {tab:old.tab==='overview'?'overview':'all',
-    layout:TD_LAYOUTS.some(v=>v[0]===old.layout)?old.layout:(['questao','simulado','resposta'].includes(t)?'list':'gallery'),
-    search:String(old.search||''),sort:old.sort==='recent'?'recent':'name',collection:String(old.collection||''),query:String(old.query||'')};
+    layout:tdLayoutChoices(t).some(v=>v[0]===old.layout)?old.layout:(tdIsReaderType(t)?'triage':['questao','simulado','resposta'].includes(t)?'list':'gallery'),
+    search:String(old.search||''),sort:old.sort==='recent'?'recent':'name',
+    collection:String(old.collection||''),query:String(old.query||''),triage:String(old.triage||'all')};
 }
 function tdUpdate(t,patch){const next=Object.assign({},tdState(t),patch);store.set(tdKey(t),next);return next;}
 const tdItems=(t,list)=>list.map(d=>{
@@ -5143,6 +5194,7 @@ function tdObjectMarkup(item,layout,searchTerm=''){
     '<span class="td-item-text"><strong>'+esc(item.name)+'</strong><small>'+esc(item.detail||TYPES[item.kind]?.n||'Objeto')+'</small></span>';
   const search=esc((item.name+' '+item.detail).toLocaleLowerCase('pt-BR'));
   const hidden=searchTerm&&!((item.name+' '+item.detail).toLocaleLowerCase('pt-BR').includes(searchTerm.toLocaleLowerCase('pt-BR')))?' hidden':'';
+  if(layout==='triage')return tdReaderRow(item,search,hidden);
   if(layout==='table')return '<a class="td-table-row" data-td-item data-td-term="'+search+'"'+hidden+' href="'+esc(item.href)+'">'+main+
     '<span class="td-type-col">'+esc(TYPES[item.kind]?.n||item.kind)+'</span></a>';
   if(layout==='embed')return '<div class="td-embed-item" data-td-item data-td-term="'+search+'"'+hidden+'>'+
@@ -5230,7 +5282,8 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const collections=typeColl,queries=Array.isArray(query)?query:[];
   const collection=collections.find(c=>c.id===state.collection),activeQuery=queries.find(q=>q.id===state.query);
   const collectionItems=collection?items.filter(x=>tdCollectionHrefs(collection).includes(x.href)):items;
-  const visibleItems=activeQuery?collectionItems.filter(x=>tdSavedQueryMatch(x,activeQuery.term,tdQueryContext(x))):collectionItems;
+  const statusItems=tdIsReaderType(t)&&state.triage!=='all'?collectionItems.filter(x=>tdReaderStatus(x)===state.triage):collectionItems;
+  const visibleItems=activeQuery?statusItems.filter(x=>tdSavedQueryMatch(x,activeQuery.term,tdQueryContext(x))):statusItems;
   const matching=visibleItems.filter(x=>(x.name+' '+x.detail).toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR')));
   const card=x=>'<a class="td-recent" href="'+esc(x.href)+'"><span class="td-item-icon" aria-hidden="true">'+iconSvg(x.id,OPI()[x.kind]||SI.file)+
     '</span><span><strong>'+esc(x.name)+'</strong><small>'+esc(x.detail||T.n)+'</small></span></a>';
@@ -5254,13 +5307,16 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
     '<label>Buscar <input type="search" data-td-search="'+esc(t)+'" placeholder="Filtrar objetos" value="'+esc(state.search)+'" autocomplete="off"></label>'+
     '<label>Ordenar <select data-td-sort="'+esc(t)+'"><option value="name"'+(state.sort==='name'?' selected':'')+'>Nome A–Z</option>'+
        '<option value="recent"'+(state.sort==='recent'?' selected':'')+'>Mais recentes</option></select></label>'+
-    '<label>Visualização <select data-td-layout="'+esc(t)+'">'+TD_LAYOUTS.map(([id,name])=>
+    '<label>Visualização <select data-td-layout="'+esc(t)+'">'+tdLayoutChoices(t).map(([id,name])=>
       '<option value="'+id+'"'+(state.layout===id?' selected':'')+'>'+name+'</option>').join('')+'</select></label></div>';
   const collectionBanner=collection?'<div class="td-collection-banner" role="status"><span>Coleção: <strong>'+esc(collection.name)+'</strong> · '+collectionItems.length+' objetos</span><button type="button" data-td-clear-collection="'+esc(t)+'">Mostrar todos</button></div>':'';
   const queryBanner=activeQuery?'<div class="td-collection-banner" role="status"><span>Query: <strong>'+esc(activeQuery.name)+'</strong> · '+visibleItems.length+' objetos · '+esc(activeQuery.term)+'</span><button type="button" data-td-clear-query="'+esc(t)+'">Limpar query</button></div>':'';
+  const triageBar=tdIsReaderType(t)?'<div class="td-triage-filters" role="group" aria-label="Estado de leitura">'+TD_TRIAGE.map(([key,label])=>
+    '<button type="button" data-td-triage="'+esc(t)+'|'+key+'" aria-pressed="'+(state.triage===key)+'">'+label+
+    ' <small>'+items.filter(item=>key==='all'||tdReaderStatus(item)===key).length+'</small></button>').join('')+'</div>':'';
   const rendered=tdObjectsMarkup(t,visibleItems,state.layout,state.search);
   // Advanced question lists cannot bypass collection or saved-query membership.
-  const all=collectionBanner+queryBanner+controls+(richList&&state.layout==='list'&&!collection&&!activeQuery?'<div class="td-advanced">'+richList+'</div>':rendered);
+  const all=collectionBanner+queryBanner+triageBar+controls+(richList&&state.layout==='list'&&!collection&&!activeQuery?'<div class="td-advanced">'+richList+'</div>':rendered);
   const body='<div class="td-content">'+tabHead+'<section role="tabpanel" id="td-panel-overview" aria-labelledby="td-tab-overview"'+
     (state.tab==='overview'?'':' hidden')+'>'+overview+'</section><section role="tabpanel" id="td-panel-all" aria-labelledby="td-tab-all"'+
     (state.tab==='all'?'':' hidden')+'>'+all+'</section></div>';
