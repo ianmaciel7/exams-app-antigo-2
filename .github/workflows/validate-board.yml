@@ -1,0 +1,41 @@
+name: Validate board
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - 'prototypes/board-exam-app/**'
+      - '.github/workflows/validate-board.yml'
+  push:
+    branches: [dev]
+    paths:
+      - 'prototypes/board-exam-app/**'
+      - '.github/workflows/validate-board.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar integridade do board.json
+        working-directory: prototypes/board-exam-app
+        run: python3 -I validate_board.py
+      - name: Validar índice do board mestre
+        working-directory: prototypes/board-exam-app
+        run: |
+          python3 -I render_board_mestre.py
+          git diff --exit-code -- board-mestre.md || { echo 'board-mestre.md desatualizado; rode render_board_mestre.py'; exit 1; }
+      - name: Regenerar BOARD.md e verificar diff
+        working-directory: prototypes/board-exam-app
+        run: |
+          python3 -I board_to_md.py
+          if ! git diff --exit-code -- BOARD.md; then
+            echo "BOARD.md desatualizado em relação ao board.json. Rode board_to_md.py e commite."
+            exit 1
+          fi
