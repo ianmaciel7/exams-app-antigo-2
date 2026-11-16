@@ -18,13 +18,13 @@
 
 ## Evidências preservadas
 - Nenhum bloco do canvas foi movido ou apagado.
-- Os arquivos originais de `prototypes/`, `docs/archives/` e `assets/` permanecem.
+- Os arquivos originais de `prototypes/`, `prototypes/docs/archives/` e `assets/` permanecem.
 - As 4 capturas antes/depois ficam em `prototypes/board-exam-app/assets/evidence/`.
 
 ## Validações
 - `validate_board.py`: 802 elementos, 802 em `order`, sem erros (rodado em CI).
 - `render_board_mestre.py` e `board_to_md.py`: regeneração sem diferenças.
-- Chromium headless, jornadas em `docs/board/jornadas/`:
+- Chromium headless, jornadas em `prototypes/docs/board/jornadas/`:
   - J1 busca "layout": 1 card.
   - J2 filtro "implementado": 14 cards; área 03: 7 cards.
   - J3 teclado: Tab alcança o botão "Lista" em 2 toques e Enter ativa a visão (`aria-pressed=true`).
@@ -34,7 +34,7 @@
   - Nenhum erro de página.
 
 ## Limitações
-- **Claude Whiteboards: não sincronizado.** Nenhuma alteração remota foi verificada. Ver `docs/board/FONTES.md`.
+- **Claude Whiteboards: não sincronizado.** Nenhuma alteração remota foi verificada. Ver `prototypes/docs/board/FONTES.md`.
 - **Visão galeria e filtros:** entregues no visualizador do Board Mestre, não no canvas.
 - **Referências quebradas do catálogo:** a maioria aponta para capturas nunca versionadas (`issue74_*.png`, `issue55_*.png` etc.). Não há cópias no repo nem no `/mnt/project-files`. Ficam como pendência, sem substitutos inventados.
 - **Falsos positivos:** referências dentro de `pdf.min.js` são código minificado.

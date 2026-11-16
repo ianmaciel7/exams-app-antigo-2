@@ -362,7 +362,7 @@ The `.bundle` files are standard Git bundles conforming to the official Git spec
 ### 1. Verify bundle integrity
 
 ```bash
-git bundle verify docs/archives/notes-app-old-10.bundle
+git bundle verify prototypes/docs/archives/notes-app-old-10.bundle
 ```
 
 The output will confirm that the bundle is valid (`is okay`) and list its contained head reference.
@@ -370,13 +370,13 @@ The output will confirm that the bundle is valid (`is okay`) and list its contai
 ### 2. Inspect internal references
 
 ```bash
-git bundle list-heads docs/archives/notes-app-old-10.bundle
+git bundle list-heads prototypes/docs/archives/notes-app-old-10.bundle
 ```
 
 ### 3. Clone a bundle into a clean standalone repository
 
 ```bash
-git clone docs/archives/notes-app-old-10.bundle -b old-10 ./restored-notes-old-10
+git clone prototypes/docs/archives/notes-app-old-10.bundle -b old-10 ./restored-notes-old-10
 cd ./restored-notes-old-10
 git log -n 5 --oneline
 ```
@@ -384,7 +384,7 @@ git log -n 5 --oneline
 ### 4. Fetch a branch into an existing working copy
 
 ```bash
-git fetch docs/archives/notes-app-old-10.bundle old-10:history/notes-old-10
+git fetch prototypes/docs/archives/notes-app-old-10.bundle old-10:history/notes-old-10
 git checkout history/notes-old-10
 ```
 

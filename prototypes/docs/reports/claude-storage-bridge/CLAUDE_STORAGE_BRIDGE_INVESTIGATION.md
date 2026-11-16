@@ -5,7 +5,7 @@
 **Repositório:** `C:\Users\ianma\workspace\exams\dev` (branch `dev`)  
 **Artifact Testado:** `https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC` (slug `a728ae48-3fa2-4dbf-9092-0392c90b58f7`)  
 **Evidência Visual:** `prototypes/board-exam-app/assets/evidence-iframe-csp-blocked.png` (107.897 bytes)  
-**Logs Brutos:** `docs/reports/claude-storage-bridge/cdp-execution-log.json`  
+**Logs Brutos:** `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json`  
 
 ---
 
@@ -210,9 +210,9 @@ Em conformidade estrita com a política obrigatória de preservação de memóri
 | `tests/claude-storage-bridge-poc/cdp-runner.mjs` | Script de automação via Chrome DevTools Protocol para teste real no navegador, coleta de logs de rede/CSP e captura de screenshots. |
 | `prototypes/claude-storage-test/index.html` | Laboratório visual isolado para execução manual e automatizada dos testes de iframe e popup contra o Claude real. |
 | `prototypes/claude-storage-test/artifact-simulation.html` | Simulador controlado de Artifact com mock de `window.storage` para comprovar que a falha no Claude não decorre de bug lógico da ponte. |
-| `docs/reports/claude-storage-bridge/cdp-execution-log.json` | Log estruturado em JSON com mensagens brutas do Console e requisições de Rede capturadas durante os testes com Chromium. |
+| `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` | Log estruturado em JSON com mensagens brutas do Console e requisições de Rede capturadas durante os testes com Chromium. |
 | `prototypes/board-exam-app/assets/evidence-iframe-csp-blocked.png` | Evidência visual do bloqueio de CSP `frame-ancestors` e da tentativa de conexão com o Claude real. |
-| `docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | Este relatório formal de auditoria técnica. |
+| `prototypes/docs/reports/claude-storage-bridge/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md` | Este relatório formal de auditoria técnica. |
 
 ---
 

@@ -26,7 +26,7 @@
 - `BOARD.md` é gerado de `board.json` e não deve ser editado manualmente.
 - `board-mestre.json` indexa os sete boards e os 53 containers; não replica o conteúdo.
 - Os diagramas organizam a leitura e apontam para documentos canônicos.
-- `docs/evidence/catalog.json` é a fonte estruturada de mídias.
+- `prototypes/docs/evidence/catalog.json` é a fonte estruturada de mídias.
 - Issues, PRs e CI são a fonte do estado de execução; colunas antigas de status são históricas.
 
 Não crie uma cópia de um documento que já existe. Adicione uma referência no board temático correspondente.

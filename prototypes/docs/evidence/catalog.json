@@ -1,9 +1,9 @@
 {
   "versao_schema": 1,
-  "gerado_em": "2026-11-16T21:38:11Z",
+  "gerado_em": "2026-11-16T21:39:37Z",
   "resumo": {
     "midias": 366,
-    "orfaos": 23,
+    "orfaos": 17,
     "duplicatas_grupos": 19,
     "testes_json": 16,
     "pares_antes_depois": 32
@@ -11625,7 +11625,7 @@
       "caminho": "prototypes/docs/archives/exams-app-old-backup-old-1-dark.png",
       "sha256": "7193b1cbb419a070257a4d9d879c4edb68e5775de71ce6636c67bd9bffe59aa7",
       "bytes": 23509,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo, tema escuro",
@@ -11645,6 +11645,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/exams-app-old-backup-old-1.md"
       ],
       "no_board_json": false,
@@ -11659,7 +11660,7 @@
       "caminho": "prototypes/docs/archives/exams-app-old-backup-old-1.png",
       "sha256": "c451bc9c51f593a8e80c65f00039e7328ab5d1aa600b69e5b43ed846b6e65d31",
       "bytes": 22853,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11679,6 +11680,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/exams-app-old-backup-old-1.md"
       ],
@@ -11694,7 +11696,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-10.png",
       "sha256": "b4d06762abb25c516cf175f3f4a50de7525d1e67ddb5a88915a08b26efc34fa5",
       "bytes": 72632,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11716,6 +11718,7 @@
       "referenciado_em": [
         "prototypes/board-exam-app/BOARD.md",
         "prototypes/board-exam-app/board.json",
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-10.md"
       ],
@@ -11733,7 +11736,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-11.png",
       "sha256": "baca8440271e706be3c53c6b32dee596aedd90d9b34ca6839c0f885e35bd2bed",
       "bytes": 23640,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11753,6 +11756,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-11.md"
       ],
@@ -11768,7 +11772,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-2.png",
       "sha256": "4022a52fe2010adcf260b1840e01404b5e80eced74a34fa9c61a0435d2e3471d",
       "bytes": 111779,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11788,6 +11792,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-2.md"
       ],
@@ -11803,7 +11808,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-3.png",
       "sha256": "13144f04b0f75fac8fb3557dc94528c6b5273e5826186bb990e633ef18f590c5",
       "bytes": 53003,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11823,6 +11828,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-3.md"
       ],
@@ -11840,7 +11846,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-4.png",
       "sha256": "270be8f3de5c8e6eada524a8a85bc2ffd44a64299b4b384688cf36c3b6a19810",
       "bytes": 87163,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11860,6 +11866,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-4.md"
       ],
@@ -11877,7 +11884,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-5.png",
       "sha256": "0e50099c9f448d0b1bc7404761a7983338ab51cda4844aa4d7f26397b986851b",
       "bytes": 46387,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11897,6 +11904,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-5.md"
       ],
@@ -11912,7 +11920,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-6.png",
       "sha256": "a62cfc4cbb5597bf12ae08d5b6247596be380d7feb9e669e5d097cfaa2922ba3",
       "bytes": 50925,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11932,6 +11940,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-6.md"
       ],
@@ -11947,7 +11956,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-7.png",
       "sha256": "88dc852f64f0e36f390de5417c5811800b19c6603af272089fe1bf10ce9a07ab",
       "bytes": 63525,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -11967,6 +11976,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-7.md"
       ],
@@ -11982,7 +11992,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-8.png",
       "sha256": "28c96152aa1ba68ae4136ab845ba1f23cbcb81f1baa34e9ac955a17a1387b4f3",
       "bytes": 58592,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -12002,6 +12012,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-8.md"
       ],
@@ -12017,7 +12028,7 @@
       "caminho": "prototypes/docs/archives/notes-app-old-9.png",
       "sha256": "8dab82e9af58e5e89c0f2d0ca536e8f940f907e59582ae12b14ca7e597b97754",
       "bytes": 40814,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Arquivo: versão histórica",
       "tipo": "evidência externa",
       "ambiente": "protótipo",
@@ -12037,6 +12048,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md",
         "prototypes/docs/archives/README.md",
         "prototypes/docs/archives/notes-app-old-9.md"
       ],
@@ -12052,7 +12064,7 @@
       "caminho": "prototypes/docs/board/jornadas/j1-busca-layout-desktop.png",
       "sha256": "b9cba196a0deaee8727ae58970d889e78ee843ed78b3bf30f87caec8797cbb32",
       "bytes": 129841,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo",
@@ -12068,12 +12080,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -12081,7 +12095,7 @@
       "caminho": "prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png",
       "sha256": "29fb6b7366cf6ec6876f5487bbd875cc933b60be4a0be99a02ad19d6188288d9",
       "bytes": 219233,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo",
@@ -12097,12 +12111,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -12110,7 +12126,7 @@
       "caminho": "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png",
       "sha256": "f9eeca876214947df4f5cee8b8fa4fd85849ab423ea1baf024cc0a3647f49b4b",
       "bytes": 383650,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo",
@@ -12126,14 +12142,16 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [
         "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png"
       ],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -12141,7 +12159,7 @@
       "caminho": "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png",
       "sha256": "f9eeca876214947df4f5cee8b8fa4fd85849ab423ea1baf024cc0a3647f49b4b",
       "bytes": 383650,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo",
@@ -12157,14 +12175,16 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "duplicata",
       "duplicatas": [
         "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png"
       ],
       "canonica": false,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -12172,7 +12192,7 @@
       "caminho": "prototypes/docs/board/jornadas/j6-mestre-320.png",
       "sha256": "9e7a2cb55eadb73841486addde48dd90280ab7ccba3559f79ddfd95a0e390ff3",
       "bytes": 147175,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo, viewport 320px",
@@ -12188,12 +12208,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -12201,7 +12223,7 @@
       "caminho": "prototypes/docs/board/jornadas/j6-mestre-390.png",
       "sha256": "14f5215e0e93a45556f5aca7b6a527ee3987f184dee9034a319b557c85a0d9c9",
       "bytes": 168016,
-      "data": null,
+      "data": "2026-11-16",
       "origem": "Documentação",
       "tipo": "a classificar",
       "ambiente": "protótipo, viewport 390px",
@@ -12217,12 +12239,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/docs/MIGRATION-MAP.md"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     }
   ],
@@ -12321,7 +12345,7 @@
       "id": "EV-00EC9842",
       "caminho": "prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json",
       "tipo": "teste executado",
-      "data": null
+      "data": "2026-11-16"
     }
   ],
   "orfaos": [
@@ -12341,13 +12365,7 @@
     "prototypes/board-exam-app/assets/qconcursos_live_question_tab_cadernos_save.png",
     "prototypes/board-exam-app/assets/qconcursos_live_question_tab_comentarios.png",
     "prototypes/board-exam-app/assets/qconcursos_live_question_texto_associado.png",
-    "prototypes/board-exam-app/assets/readwise_srs_freeform_input_book_select.png",
-    "prototypes/docs/board/jornadas/j1-busca-layout-desktop.png",
-    "prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png",
-    "prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png",
-    "prototypes/docs/board/jornadas/j5-canvas-visao-geral.png",
-    "prototypes/docs/board/jornadas/j6-mestre-320.png",
-    "prototypes/docs/board/jornadas/j6-mestre-390.png"
+    "prototypes/board-exam-app/assets/readwise_srs_freeform_input_book_select.png"
   ],
   "referencias_quebradas": [
     {

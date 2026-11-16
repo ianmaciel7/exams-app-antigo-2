@@ -1,9 +1,9 @@
 # Catálogo de evidências
 
-Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:38:11Z. Não edite à mão: rode o script de novo.
+Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:39:37Z. Não edite à mão: rode o script de novo.
 
 - Mídias catalogadas: **366**
-- Órfãs (nenhum texto cita o arquivo): **23**
+- Órfãs (nenhum texto cita o arquivo): **17**
 - Grupos de duplicatas (mesmo conteúdo): **19**
 - Pares antes/depois: **32**
 - Resultados de teste em JSON: **16**
@@ -100,10 +100,10 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-DF990B5C | ![](../../../prototypes/board-exam-app/assets/inline-e7.jpg) | `prototypes/board-exam-app/assets/inline-e7.jpg` | a classificar | — | — | 2026-11-13 | ok |
 | EV-153C34F1 | ![](../../../prototypes/board-exam-app/assets/inline-e8.jpg) | `prototypes/board-exam-app/assets/inline-e8.jpg` | a classificar | — | — | 2026-11-13 | ok |
 | EV-7D9C4F35 | ![](../../../prototypes/board-exam-app/assets/inline-e9.jpg) | `prototypes/board-exam-app/assets/inline-e9.jpg` | a classificar | — | — | 2026-11-13 | ok |
-| EV-E0D23CC7 | ![](../../../prototypes/docs/board/jornadas/j1-busca-layout-desktop.png) | `prototypes/docs/board/jornadas/j1-busca-layout-desktop.png` | a classificar | — | — | — | órfão |
-| EV-FAD2341F | ![](../../../prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png) | `prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png` | a classificar | — | — | — | órfão |
-| EV-6943C84A | ![](../../../prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png) | `prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | a classificar | — | — | — | órfão |
-| EV-C6AAD7CD | ![](../../../prototypes/docs/board/jornadas/j5-canvas-visao-geral.png) | `prototypes/docs/board/jornadas/j5-canvas-visao-geral.png` | a classificar | — | — | — | órfão |
+| EV-E0D23CC7 | ![](../../../prototypes/docs/board/jornadas/j1-busca-layout-desktop.png) | `prototypes/docs/board/jornadas/j1-busca-layout-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-FAD2341F | ![](../../../prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png) | `prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-6943C84A | ![](../../../prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png) | `prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-C6AAD7CD | ![](../../../prototypes/docs/board/jornadas/j5-canvas-visao-geral.png) | `prototypes/docs/board/jornadas/j5-canvas-visao-geral.png` | a classificar | — | — | 2026-11-16 | duplicata |
 
 ### PDF Reader (57)
 
@@ -358,18 +358,18 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-F0964346 | ![](../../../prototypes/board-exam-app/assets/archive_notes_app_old_10_recall_home.png) | `prototypes/board-exam-app/assets/archive_notes_app_old_10_recall_home.png` | evidência externa | — | — | 2026-11-13 | ok |
 | EV-3177DE69 | ![](../../../prototypes/board-exam-app/assets/archive_notes_app_old_3_capacities_shell.png) | `prototypes/board-exam-app/assets/archive_notes_app_old_3_capacities_shell.png` | evidência externa | — | — | 2026-11-13 | ok |
 | EV-DFE4BBDC | ![](../../../prototypes/board-exam-app/assets/archive_notes_app_old_4_capacities_shell.png) | `prototypes/board-exam-app/assets/archive_notes_app_old_4_capacities_shell.png` | evidência externa | — | — | 2026-11-13 | ok |
-| EV-F7CAEAD5 | ![](../../../prototypes/docs/archives/exams-app-old-backup-old-1-dark.png) | `prototypes/docs/archives/exams-app-old-backup-old-1-dark.png` | evidência externa | — | — | — | ok |
-| EV-7C8E84F6 | ![](../../../prototypes/docs/archives/exams-app-old-backup-old-1.png) | `prototypes/docs/archives/exams-app-old-backup-old-1.png` | evidência externa | — | — | — | ok |
-| EV-8A7871DE | ![](../../../prototypes/docs/archives/notes-app-old-10.png) | `prototypes/docs/archives/notes-app-old-10.png` | evidência externa | — | — | — | duplicata |
-| EV-6BC4D901 | ![](../../../prototypes/docs/archives/notes-app-old-11.png) | `prototypes/docs/archives/notes-app-old-11.png` | evidência externa | — | — | — | ok |
-| EV-302F67B0 | ![](../../../prototypes/docs/archives/notes-app-old-2.png) | `prototypes/docs/archives/notes-app-old-2.png` | evidência externa | — | — | — | ok |
-| EV-9AF8008D | ![](../../../prototypes/docs/archives/notes-app-old-3.png) | `prototypes/docs/archives/notes-app-old-3.png` | evidência externa | — | — | — | duplicata |
-| EV-BD8E80EC | ![](../../../prototypes/docs/archives/notes-app-old-4.png) | `prototypes/docs/archives/notes-app-old-4.png` | evidência externa | — | — | — | duplicata |
-| EV-61E69793 | ![](../../../prototypes/docs/archives/notes-app-old-5.png) | `prototypes/docs/archives/notes-app-old-5.png` | evidência externa | — | — | — | ok |
-| EV-7B65C878 | ![](../../../prototypes/docs/archives/notes-app-old-6.png) | `prototypes/docs/archives/notes-app-old-6.png` | evidência externa | — | — | — | ok |
-| EV-6AFE8892 | ![](../../../prototypes/docs/archives/notes-app-old-7.png) | `prototypes/docs/archives/notes-app-old-7.png` | evidência externa | — | — | — | ok |
-| EV-64326BDA | ![](../../../prototypes/docs/archives/notes-app-old-8.png) | `prototypes/docs/archives/notes-app-old-8.png` | evidência externa | — | — | — | ok |
-| EV-A90B6B0C | ![](../../../prototypes/docs/archives/notes-app-old-9.png) | `prototypes/docs/archives/notes-app-old-9.png` | evidência externa | — | — | — | ok |
+| EV-F7CAEAD5 | ![](../../../prototypes/docs/archives/exams-app-old-backup-old-1-dark.png) | `prototypes/docs/archives/exams-app-old-backup-old-1-dark.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-7C8E84F6 | ![](../../../prototypes/docs/archives/exams-app-old-backup-old-1.png) | `prototypes/docs/archives/exams-app-old-backup-old-1.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-8A7871DE | ![](../../../prototypes/docs/archives/notes-app-old-10.png) | `prototypes/docs/archives/notes-app-old-10.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-6BC4D901 | ![](../../../prototypes/docs/archives/notes-app-old-11.png) | `prototypes/docs/archives/notes-app-old-11.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-302F67B0 | ![](../../../prototypes/docs/archives/notes-app-old-2.png) | `prototypes/docs/archives/notes-app-old-2.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-9AF8008D | ![](../../../prototypes/docs/archives/notes-app-old-3.png) | `prototypes/docs/archives/notes-app-old-3.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-BD8E80EC | ![](../../../prototypes/docs/archives/notes-app-old-4.png) | `prototypes/docs/archives/notes-app-old-4.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-61E69793 | ![](../../../prototypes/docs/archives/notes-app-old-5.png) | `prototypes/docs/archives/notes-app-old-5.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-7B65C878 | ![](../../../prototypes/docs/archives/notes-app-old-6.png) | `prototypes/docs/archives/notes-app-old-6.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-6AFE8892 | ![](../../../prototypes/docs/archives/notes-app-old-7.png) | `prototypes/docs/archives/notes-app-old-7.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-64326BDA | ![](../../../prototypes/docs/archives/notes-app-old-8.png) | `prototypes/docs/archives/notes-app-old-8.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-A90B6B0C | ![](../../../prototypes/docs/archives/notes-app-old-9.png) | `prototypes/docs/archives/notes-app-old-9.png` | evidência externa | — | — | 2026-11-16 | ok |
 
 ### Workspace e navegação (70)
 
@@ -443,8 +443,8 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-7E26062A | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideclosed_rightopen.png) | `prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-14 | ok |
 | EV-59E4DB34 | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideopen_rightclosed.png) | `prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-14 | ok |
 | EV-8420C8E7 | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideopen_rightopen.png) | `prototypes/board-exam-app/assets/lowchrome_97_before_light_768_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-14 | ok |
-| EV-DDD7AEED | ![](../../../prototypes/docs/board/jornadas/j6-mestre-320.png) | `prototypes/docs/board/jornadas/j6-mestre-320.png` | a classificar | — | — | — | órfão |
-| EV-5D00EEDD | ![](../../../prototypes/docs/board/jornadas/j6-mestre-390.png) | `prototypes/docs/board/jornadas/j6-mestre-390.png` | a classificar | — | — | — | órfão |
+| EV-DDD7AEED | ![](../../../prototypes/docs/board/jornadas/j6-mestre-320.png) | `prototypes/docs/board/jornadas/j6-mestre-320.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-5D00EEDD | ![](../../../prototypes/docs/board/jornadas/j6-mestre-390.png) | `prototypes/docs/board/jornadas/j6-mestre-390.png` | a classificar | — | — | 2026-11-16 | ok |
 
 ## Órfãos
 
@@ -465,12 +465,6 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 - `prototypes/board-exam-app/assets/qconcursos_live_question_tab_comentarios.png`
 - `prototypes/board-exam-app/assets/qconcursos_live_question_texto_associado.png`
 - `prototypes/board-exam-app/assets/readwise_srs_freeform_input_book_select.png`
-- `prototypes/docs/board/jornadas/j1-busca-layout-desktop.png`
-- `prototypes/docs/board/jornadas/j3-teclado-lista-desktop.png`
-- `prototypes/docs/board/jornadas/j4-canvas-foco-e500-desktop.png`
-- `prototypes/docs/board/jornadas/j5-canvas-visao-geral.png`
-- `prototypes/docs/board/jornadas/j6-mestre-320.png`
-- `prototypes/docs/board/jornadas/j6-mestre-390.png`
 
 ## Duplicatas (conteúdo idêntico, nenhum arquivo removido)
 
@@ -531,7 +525,7 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 - EV-E64962FA `prototypes/board-exam-app/issue82_daily_review_e2e.json` (2026-11-15)
 - EV-C684F608 `prototypes/board-exam-app/lowchrome_97_manifest.json` (2026-11-14)
 - EV-91A40BDC `prototypes/board-exam-app/pdf112_diagnostic.json` (2026-11-14)
-- EV-00EC9842 `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` (—)
+- EV-00EC9842 `prototypes/docs/reports/claude-storage-bridge/cdp-execution-log.json` (2026-11-16)
 
 ## Fora do repositório
 

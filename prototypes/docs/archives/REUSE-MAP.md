@@ -1,6 +1,6 @@
 # Archive Reuse Map
 
-Maps what is inside `docs/archives/*.bundle` to what the current `exams-app` can reuse.
+Maps what is inside `prototypes/docs/archives/*.bundle` to what the current `exams-app` can reuse.
 Built by extracting the bundles and listing their file trees (not by running their code).
 Items marked **(unverified)** come from the catalog `README.md` only.
 
@@ -22,9 +22,9 @@ Items marked **(unverified)** come from the catalog `README.md` only.
 
 | Need in exams-app | Where | Notes |
 |---|---|---|
-| Architecture decisions to carry forward | `exams-app-old-backup-old-1`: `docs/adr/0001-0012` (Next, shadcn, theming, i18n, project standards, agents, Firebase UI, Firebase auth, CI, Terraform, CD) | Read first; current repo has no ADRs yet. |
-| Next.js 16 native foundations | `exams-app-old-backup-dev-20261111-1903`: `docs/adr/0004`, `src/app/{error,global-error,not-found,loading}.tsx`, `src/instrumentation*.ts`, `src/proxy.ts`, `src/app/api/health/route.ts` | Includes tests for each. |
-| Testing setup | same bundle: `docs/adr/0006`, `vitest.config.mts`, `playwright.config.ts`, `src/test/setup.ts` | Vitest 5 + RTL + Playwright. |
+| Architecture decisions to carry forward | `exams-app-old-backup-old-1`: `prototypes/docs/adr/0001-0012` (Next, shadcn, theming, i18n, project standards, agents, Firebase UI, Firebase auth, CI, Terraform, CD) | Read first; current repo has no ADRs yet. |
+| Next.js 16 native foundations | `exams-app-old-backup-dev-20261111-1903`: `prototypes/docs/adr/0004`, `src/app/{error,global-error,not-found,loading}.tsx`, `src/instrumentation*.ts`, `src/proxy.ts`, `src/app/api/health/route.ts` | Includes tests for each. |
+| Testing setup | same bundle: `prototypes/docs/adr/0006`, `vitest.config.mts`, `playwright.config.ts`, `src/test/setup.ts` | Vitest 5 + RTL + Playwright. |
 | Env validation + flags | same bundle: `src/lib/env.ts` (+test), `src/lib/flags.ts` | |
 | CSP, headers, HTTP guards, logger, cache | `exams-app-old-backup-dev-before-adr2`: `src/lib/{csp,headers,guards,server,logger,cache,parse,format}.ts` (+tests) | Later ADR 0004 favored native APIs over wrappers, so treat these as reference, not a drop-in. |
 | Auth (sign-in, register, forgot-password, profile, MFA) | `exams-app-old-backup-old-1`: `src/app/(public)/*`, `src/app/(protected)/*`, `src/lib/{auth,dal}.ts`, `src/lib/firebase/*`, `src/app/api/auth/session/route.ts` | Server DAL + session cookie. Also MFA (SMS/TOTP) components. |

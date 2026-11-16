@@ -1,6 +1,6 @@
 # Inventário e Análise do ExamTopics — Arquitetura, UI/UX, Funcionalidades e Ecossistema
 
-- **Documento:** `docs/research/examtopics-inventory.md`
+- **Documento:** `prototypes/docs/research/examtopics-inventory.md`
 - **Issue relacionada:** #28
 - **Data da Observação:** Novembro de 2026
 - **Status:** Concluído e Integrado ao Planning Board
