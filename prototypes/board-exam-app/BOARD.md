@@ -6,6 +6,8 @@
 
 ### App para estudar para exames: certificações (estilo ExamTopics) ou concursos. Sem foco fixo.
 
+Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e leitor de tela; animação de entrada respeita prefers-reduced-motion. Testes: tests/collection-graph-canvas.test.mjs e tests/contextual-graph-links.test.mjs (suíte node --test verde). Limites: sem leitura NVDA/VoiceOver (#226/#234); rótulos densos se sobrepõem como antes.
+
 ![imagem e985](assets/readwise_srs_review_settings_algorithm.png)
 
 ![imagem e987](assets/readwise_srs_frequency_tuning_by_source.png)
@@ -185,7 +187,7 @@ Filtro de questões (0.1.1): botão Filtrar com popover pesquisável, vários va
 ## 5. Referências (de onde tiramos as informações)
 <!-- container e107 @ (1580,1500) -->
 
-
+#227 grafo da coleção em canvas (Questão, 70 itens, 1366 px, painel direito aberto na aba Grafo). Claro e escuro: nós com --k do tipo, rótulos com contorno, zoom e reset por botões e teclado. PNG real: assets/issue227_collection_canvas_light.png e assets/issue227_collection_canvas_dark.png
 
 ## 8. Análise ExamTopics → banco de questões
 <!-- container e190 @ (3200,1500) -->
@@ -2375,25 +2377,6 @@ DEPOIS: assuntos, prioridades e marcação persistente
 
 [E2E Chromium — run 43727853810](https://github.com/ianmaciel7/exams-app/actions/runs/43727853810)
 
-## 10. Arquivos do projeto (Dataprev 2026 e referências)
-<!-- container e363 @ (0,12666) -->
-
-| Arquivo | O que é | Pasta do projeto |
-| --- | --- | --- |
-| Edital de abertura (DOU 03/07/2026) | Edital oficial do concurso Dataprev 2026 (FGV) | concursos/dataprev-2026/edital-dou-03-07-2026.pdf |
-| 1ª e 2ª retificações do edital | Mudanças no edital de abertura | concursos/dataprev-2026/edital-1a-retificacao.pdf, edital-2a-retificacao.pdf |
-| Cronograma | Datas do concurso | concursos/dataprev-2026/cronograma.pdf |
-| Edital completo (89 MB) | PDF que o Ian usou como referência do fluxo de prova | edital_concurso_dataprev_2026_0.pdf |
-| Provas do Analista de TI, Desenvolvimento, tipos 1 a 4 | Caderno de questões, 70 questões cada | concursos/dataprev-2026/prova-objetiva-2026-analista-ti-dev/ |
-| Gabarito preliminar FGV (13/10/2026) | PDF oficial, mais versão extraída em JSON e Markdown | concursos/dataprev-2026/gabarito/ |
-| 70 questões extraídas (tipo 1) | Enunciados, alternativas e gabarito em JSON; já usadas na 0.1.1 | concursos/dataprev-2026/questoes/dataprev-2026-analista-ti-dev-tipo1.json |
-| QConcursos, ExamTopics, Readwise e Reader | Modelos de entidades dos concorrentes (ver bloco 5) | referencias/qconcursos.md, examtopics.md, readwise-reader.md |
-| Diretrizes de UI/UX 2026 | Leis de UX, estados e erros, componentes (ver bloco 8) | referencias/diretrizes-ui-ux-2026.md, diretrizes-estados-feedback-erros.md, diretrizes-componentes-interacao.md |
-| Fonte do protótipo 0.1.1 | HTML do app e cópia antes do redesign das páginas | recuperado/prototipo-dataprev-2026/ e recuperado/versao-0.1.1-antes-redesign-paginas/ |
-| Prints do redesign (antes e depois) | 4 imagens, também no bloco 9 | prints/redesign-paginas-objeto/ |
-
-Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, já publicados como 0.1.1; fonte em recuperado/), e duas cópias idênticas dos PDFs de prova na pasta de uploads.
-
 ## 51. Revisão diária — cartões vinculados e provas Chromium — Issue #82
 <!-- container e1465 @ (52000,11000) -->
 
@@ -2418,25 +2401,6 @@ Importação responsiva em viewport móvel de 390px
 [PR #192 — Daily Review](https://github.com/ianmaciel7/exams-app/pull/192)
 
 [Chromium E2E — run 43730006968](https://github.com/ianmaciel7/exams-app/actions/runs/43730006968)
-
-## 10. Arquivos do projeto (Dataprev 2026 e referências)
-<!-- container e363 @ (0,12666) -->
-
-| Arquivo | O que é | Pasta do projeto |
-| --- | --- | --- |
-| Edital de abertura (DOU 03/07/2026) | Edital oficial do concurso Dataprev 2026 (FGV) | concursos/dataprev-2026/edital-dou-03-07-2026.pdf |
-| 1ª e 2ª retificações do edital | Mudanças no edital de abertura | concursos/dataprev-2026/edital-1a-retificacao.pdf, edital-2a-retificacao.pdf |
-| Cronograma | Datas do concurso | concursos/dataprev-2026/cronograma.pdf |
-| Edital completo (89 MB) | PDF que o Ian usou como referência do fluxo de prova | edital_concurso_dataprev_2026_0.pdf |
-| Provas do Analista de TI, Desenvolvimento, tipos 1 a 4 | Caderno de questões, 70 questões cada | concursos/dataprev-2026/prova-objetiva-2026-analista-ti-dev/ |
-| Gabarito preliminar FGV (13/10/2026) | PDF oficial, mais versão extraída em JSON e Markdown | concursos/dataprev-2026/gabarito/ |
-| 70 questões extraídas (tipo 1) | Enunciados, alternativas e gabarito em JSON; já usadas na 0.1.1 | concursos/dataprev-2026/questoes/dataprev-2026-analista-ti-dev-tipo1.json |
-| QConcursos, ExamTopics, Readwise e Reader | Modelos de entidades dos concorrentes (ver bloco 5) | referencias/qconcursos.md, examtopics.md, readwise-reader.md |
-| Diretrizes de UI/UX 2026 | Leis de UX, estados e erros, componentes (ver bloco 8) | referencias/diretrizes-ui-ux-2026.md, diretrizes-estados-feedback-erros.md, diretrizes-componentes-interacao.md |
-| Fonte do protótipo 0.1.1 | HTML do app e cópia antes do redesign das páginas | recuperado/prototipo-dataprev-2026/ e recuperado/versao-0.1.1-antes-redesign-paginas/ |
-| Prints do redesign (antes e depois) | 4 imagens, também no bloco 9 | prints/redesign-paginas-objeto/ |
-
-Fora do Board: 2 arquivos zip com o código do protótipo (enviados em 12/11, já publicados como 0.1.1; fonte em recuperado/), e duas cópias idênticas dos PDFs de prova na pasta de uploads.
 
 ## 52. Leitor PDF reflow e anotações — Issue #77
 <!-- container e1477 @ (54000,11200) -->

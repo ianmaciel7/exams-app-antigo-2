@@ -792,7 +792,9 @@
     "e1485",
     "e1486",
     "e1487",
-    "e1488"
+    "e1488",
+    "e227_ev1",
+    "e227_ev2"
   ],
   "elements": {
     "e1": {
@@ -8260,6 +8262,24 @@
       "y": 13050,
       "w": 325,
       "h": 56
+    },
+    "e227_ev1": {
+      "type": "text",
+      "size": "small",
+      "x": 1600,
+      "y": 4470,
+      "w": 1400,
+      "h": 50,
+      "text": "#227 grafo da coleção em canvas (Questão, 70 itens, 1366 px, painel direito aberto na aba Grafo). Claro e escuro: nós com --k do tipo, rótulos com contorno, zoom e reset por botões e teclado. PNG real: assets/issue227_collection_canvas_light.png e assets/issue227_collection_canvas_dark.png"
+    },
+    "e227_ev2": {
+      "type": "text",
+      "size": "small",
+      "x": 1600,
+      "y": 4530,
+      "w": 1400,
+      "h": 50,
+      "text": "Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e leitor de tela; animação de entrada respeita prefers-reduced-motion. Testes: tests/collection-graph-canvas.test.mjs e tests/contextual-graph-links.test.mjs (suíte node --test verde). Limites: sem leitura NVDA/VoiceOver (#226/#234); rótulos densos se sobrepõem como antes."
     }
   }
 }
