@@ -8874,26 +8874,14 @@ function buildGraph(seq){
   cv.addEventListener('dblclick',e=>{ if(hit(...rel(e))<0){ fit(); invalidate(); } });
   cv.addEventListener('keydown',e=>{ const s=40; if(e.key==='+'||e.key==='='){ zoomAt(st.W/2,st.H/2,1.2); } else if(e.key==='-'){ zoomAt(st.W/2,st.H/2,1/1.2); } else if(e.key==='0'){ fit(); invalidate(); } else if(e.key==='ArrowLeft'){ st.tx+=s; invalidate(); } else if(e.key==='ArrowRight'){ st.tx-=s; invalidate(); } else if(e.key==='ArrowUp'){ st.ty+=s; invalidate(); } else if(e.key==='ArrowDown'){ st.ty-=s; invalidate(); } else return; e.preventDefault(); });
   $('gvIn').onclick=()=>zoomAt(st.W/2,st.H/2,1.3); $('gvOut').onclick=()=>zoomAt(st.W/2,st.H/2,1/1.3); $('gvFit').onclick=()=>{ fit(); invalidate(); };
-  $('gvExport').onclick=async()=>{
+  $('gvExport').onclick=()=>{
     try{
       // The canvas already contains devicePixelRatio-scaled pixels; no external service needed.
-      const blob=await new Promise((res,rej)=>cv.toBlob(b=>b?res(b):rej(new Error('PNG canvas encoding unavailable')),'image/png'));
-      const downloads=await (window.claude&&window.claude.use?window.claude.use('downloads'):null);
-      if(downloads){
-        try{
-          await downloads.save({filename:'exam-app-grafo.png',data:blob});
-          toast('Imagem do grafo exportada em PNG');
-        }catch(err){
-          if(err&&err.code==='declined') return;
-          throw err;
-        }
-        return;
-      }
-      const url=URL.createObjectURL(blob);
+      const png=cv.toDataURL('image/png');
+      if(!png.startsWith('data:image/png;base64,')) throw new Error('PNG canvas encoding unavailable');
       const a=document.createElement('a');
-      a.href=url; a.download='exam-app-grafo.png';
+      a.href=png; a.download='exam-app-grafo.png';
       document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1000);
       toast('Imagem do grafo exportada em PNG');
     }catch(err){
       console.warn('Falha ao exportar imagem do grafo',err);
