@@ -25,13 +25,17 @@ try{
   await snap('issue54_explore_chromium.png');
   report.checks.push('six contextual tools visibly rendered');
 
-  await page.locator('#rpBody [data-rp-focus-search]').click();
+  await page.locator('#rpBody [data-rp-new="search"]').click();
   await page.locator('#rpBody [data-ex-q]').waitFor();
-  assert.equal(await page.locator('#rpBody [data-ex-q]').evaluate(el=>document.activeElement===el),true,'search receives focus');
+  assert.equal(await page.locator('#rpTabs [data-rp-tab].on').getAttribute('aria-label'),'Buscar','Search is a dedicated panel tab');
+  await page.waitForFunction(()=>document.activeElement?.hasAttribute('data-ex-q'));
   await page.locator('#rpBody [data-ex-q]').fill('dataprev');
-  assert.equal(await page.locator('#rpBody [data-rp-find]').evaluate(el=>el.open),true,'search disclosure remains open');
-  report.checks.push('search disclosure and focus');
+  assert.equal(await page.locator('#rpBody [data-rp-find]').evaluate(el=>el.open),true,'search tool stays open');
+  assert.ok(await page.locator('#rpBody [data-ex-list]').count(),'contextual search has results');
+  report.checks.push('standalone Search tool, automatic focus and query');
 
+  await page.locator('#rpAdd').click();
+  await page.locator('.ws-menu [role="menuitem"]').filter({hasText:'Explorar'}).click();
   await page.locator('#rpBody [data-rp-new="internos"]').click();
   assert.ok((await page.locator('#rpTabs [data-rp-tab].on').innerText()).includes('Objetos internos'),'real internal tool activates');
   await snap('issue54_internos_chromium.png');
@@ -44,6 +48,15 @@ try{
   assert.ok((await page.locator('#rpBody .rp-relevant').count())>0,'relevant content section');
   await snap('issue54_relevant_chromium.png');
   report.checks.push('contextual relevant section after navigating entity');
+  const sideBefore=await page.locator('#rpanel').evaluate(el=>el.getBoundingClientRect().width);
+  await page.locator('#rpRz').focus();
+  await page.keyboard.press('ArrowLeft');
+  await page.waitForTimeout(180);
+  const sideAfter=await page.locator('#rpanel').evaluate(el=>el.getBoundingClientRect().width);
+  assert.ok(sideAfter>sideBefore,'keyboard resizing widens the contextual panel');
+  await snap('issue66_panel_resized_chromium.png');
+  report.checks.push('ResizeObserver-responsive contextual panel width');
+
   await page.locator('#rpAdd').click();
   await page.locator('.ws-menu [role="menuitem"]').filter({hasText:'Gráfico'}).click();
   const globalLink=page.locator('#rpBody .rp-acts a[href="#/grafico"]');
