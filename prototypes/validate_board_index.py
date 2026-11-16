@@ -2,7 +2,7 @@
 """Valida taxonomia, documentos e cobertura dos containers do canvas."""
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+ROOT = os.path.abspath(os.path.join(HERE, ".."))
 M = json.load(open(os.path.join(HERE, "board-mestre.json"), encoding="utf8"))
 E = json.load(open(os.path.join(HERE, "board.json"), encoding="utf8"))["elements"]
 errors, seen = [], []
