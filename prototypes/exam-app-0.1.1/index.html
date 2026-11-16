@@ -1166,7 +1166,9 @@ a.ot:hover{text-decoration:underline;text-underline-offset:2px}
 .op-chipv{display:inline-flex;flex-wrap:wrap;gap:6px;margin-right:4px}.op-pen{display:inline-grid;place-items:center;width:24px;height:24px;border:0;border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;opacity:0}.op-prop:hover .op-pen,.op-pen:focus-visible{opacity:1}.op-pen:hover{background:rgba(127,127,127,.14);color:var(--text)}@media(hover:none){.op-pen{opacity:1}}
 .op-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.sc-empty{padding:14px 0}.sc-empty .op-actions{margin-top:4px}
 .op-inh{margin-left:8px;font-size:12px;opacity:.6}.nav .tone-type-orgao{color:#e6a96b}.nav .tone-type-banca{color:#e68fb0}.op .t-orgao{color:#e6a96b}.op .t-banca{color:#e68fb0}
-.fd-l{display:block;margin:12px 0 0;font-size:13px;font-weight:600}.fd-i{width:100%;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:inherit;font:inherit;outline:0;margin:6px 0 2px}.fd-i:focus{border-color:var(--ring)}.fd-i[aria-invalid="true"]{border-color:#B3382A}
+.fd-l{display:block;margin:12px 0 0;font-size:13px;font-weight:600}.fd-i{width:100%;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:inherit;font:inherit;outline:0;margin:6px 0 2px}.fd-i:focus{border-color:var(--ring)}
+textarea.fd-i{height:auto;min-height:100px;padding:10px 12px;line-height:1.5;resize:vertical;white-space:pre-wrap}
+textarea.fd-i[readonly]{background:var(--side);color:var(--muted);cursor:default}.fd-i[aria-invalid="true"]{border-color:#B3382A}
 .dlg-err{margin:6px 0 0;color:#B3382A;font-size:13px}
 .dlg-err::before{content:"Erro: ";font-weight:600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dlg-err{color:#F08A78}}
@@ -4470,9 +4472,19 @@ function dialog(o){
 function formDialog(o){
   return new Promise(res=>{
     const w=$('dlg'), opener=document.activeElement;
-    const fld=f=>'<label class="fd-l" for="fd_'+f.id+'">'+esc(f.label)+'</label>'+(f.type==='select'
-      ?'<select id="fd_'+f.id+'" class="fd-i">'+f.options.map(([v,t])=>'<option value="'+esc(v)+'"'+(v===f.value?' selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'
-      :(f.list&&f.list.length?'<datalist id="dl_'+f.id+'">'+f.list.map(v=>'<option value="'+esc(v)+'">').join('')+'</datalist>':'')+'<input id="fd_'+f.id+'" class="fd-i" type="'+(f.itype||'text')+'"'+(f.list&&f.list.length?' list="dl_'+f.id+'"':'')+' autocomplete="off" placeholder="'+esc(f.placeholder||'')+'" value="'+esc(f.value||'')+'"'+(f.inputmode?' inputmode="'+f.inputmode+'"':'')+'>')+'<p class="dlg-err" id="fe_'+f.id+'" role="alert" hidden></p>';
+    const fld=f=>{
+      const id='fd_'+f.id, label='<label class="fd-l" for="'+id+'">'+esc(f.label)+'</label>';
+      const field=f.type==='select'
+        ?'<select id="'+id+'" class="fd-i">'+f.options.map(([v,t])=>'<option value="'+esc(v)+'"'+(v===f.value?' selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'
+        :f.type==='textarea'
+          ?'<textarea id="'+id+'" class="fd-i" rows="'+Math.max(2,Math.min(12,Number(f.rows)||4))+'"'+
+            (f.readonly?' readonly aria-readonly="true"':'')+'>'+esc(String(f.value||''))+'</textarea>'
+          :(f.list&&f.list.length?'<datalist id="dl_'+f.id+'">'+f.list.map(v=>'<option value="'+esc(v)+'">').join('')+'</datalist>':'')+
+            '<input id="'+id+'" class="fd-i" type="'+(f.itype||'text')+'"'+
+            (f.list&&f.list.length?' list="dl_'+f.id+'"':'')+' autocomplete="off" placeholder="'+esc(f.placeholder||'')+
+            '" value="'+esc(f.value||'')+'"'+(f.inputmode?' inputmode="'+f.inputmode+'"':'')+'>';
+      return label+field+'<p class="dlg-err" id="fe_'+f.id+'" role="alert" hidden></p>';
+    };
     w.innerHTML='<div class="dlg-box" role="dialog" aria-modal="true" aria-labelledby="dlgT"><h2 id="dlgT">'+esc(o.title)+'</h2>'+(o.text?'<p>'+esc(o.text)+'</p>':'')+o.fields.map(fld).join('')+'<div class="dlg-act"><button class="btn" data-x="0">Cancelar</button><button class="btn pri" data-x="1">'+esc(o.ok||'Criar')+'</button></div></div>';
     w.classList.add('on');
     const el=id=>$('fd_'+id);
@@ -4485,13 +4497,13 @@ function formDialog(o){
     const key=e=>{
       if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); done(null); return; }
       if(e.key==='Enter'&&document.activeElement&&document.activeElement.tagName==='INPUT'){ e.preventDefault(); e.stopPropagation(); submit(); return; }
-      if(e.key==='Tab'){ const f=[...w.querySelectorAll('input,select,button:not([disabled])')]; const i=f.indexOf(document.activeElement);
+      if(e.key==='Tab'){ const f=[...w.querySelectorAll('input,select,textarea,button:not([disabled])')]; const i=f.indexOf(document.activeElement);
         if(e.shiftKey&&i<=0){ e.preventDefault(); f[f.length-1].focus(); } else if(!e.shiftKey&&(i===f.length-1||i<0)){ e.preventDefault(); f[0].focus(); } }
     };
     document.addEventListener('keydown',key,true);
     w.onclick=e=>{ if(e.target===w) return done(null); const b=e.target.closest('[data-x]'); if(!b) return; if(b.dataset.x==='1') submit(); else done(null); };
     w.oninput=clear;
-    setTimeout(()=>{ const f0=el(o.fields[0].id); f0&&f0.focus(); },20);
+    setTimeout(()=>{ const initial=o.fields.find(f=>!f.readonly)||o.fields[0];const f0=el(initial.id); f0&&f0.focus(); },20);
   });
 }
 const slug=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'x';
@@ -6738,19 +6750,43 @@ const srsLoad=()=>{const x=store.get(srsKey());return x&&typeof x==='object'?x:{
 const srsSave=x=>store.set(srsKey(),x);
 const srsDue=(c,now=Date.now())=>!c.discarded&&!c.mastered&&(!c.dueAt||c.dueAt<=now);
 function srsEscape(s){return esc(String(s||''));}
+function srsOriginalContent(c){
+ if(typeof c.originalText==='string')return c.originalText;
+ return c.kind==='cloze'?String(c.text||'').replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):String(c.answer||'');
+}
+function srsEffectiveContent(c){
+ if(typeof c.editedText==='string'&&c.editedText.trim())return c.editedText;
+ return c.kind==='cloze'?String(c.text||''):String(c.answer||'');
+}
+function srsEditCard(id,edited,note){
+ const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===id);
+ if(!card)return null;
+ const text=String(edited||'').trim(),newNote=String(note||'').trim();
+ if(text.length>4000||newNote.length>2000)return null;
+ if(card.kind==='cloze'&&text&&!/\{\{c1::[\s\S]+?\}\}/.test(text))return null;
+ if(typeof card.originalText!=='string')card.originalText=srsOriginalContent(card);
+ const base=card.kind==='cloze'?String(card.text||''):String(card.answer||'');
+ if(text&&text!==base)card.editedText=text;else delete card.editedText;
+ card.note=newNote;srsSave(d);return card;
+}
 function srsSpeakText(c,revealed=false){
  if(!c)return '';
- if(c.kind!=='cloze')return String(c.question||'')+(revealed?' '+String(c.answer||''):'');
- return String(c.text||'').split('{{c1::').map((part,i)=>{
+ if(c.kind!=='cloze')return String(c.question||'')+(revealed?' '+srsEffectiveContent(c):'');
+ return srsEffectiveContent(c).split('{{c1::').map((part,i)=>{
    if(!i)return part;const end=part.indexOf('}}');if(end<0)return part;
    return (revealed?part.slice(0,end):'lacuna')+part.slice(end+2);
  }).join('');
 }
 function srsCardMarkup(c,revealed=false){
-  const front=c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,(m,a)=>revealed?a:'_____ ('+a.trim().split(/\s+/).length+' words)'):c.question;
+  const content=srsEffectiveContent(c);
+  const front=c.kind==='cloze'?content.replace(/\{\{c1::([\s\S]*?)\}\}/g,(m,a)=>revealed?a:'_____ ('+a.trim().split(/\s+/).length+' words)'):c.question;
   return '<article class="srs-card" data-srs-card="'+srsEscape(c.id)+'"><div class="srs-source">'+srsEscape(c.source||'Cartão pessoal')+'</div><h2>'+srsEscape(front)+'</h2>'+
-    (revealed?'<div class="srs-answer">'+srsEscape(c.kind==='cloze'?c.text.replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):c.answer)+'</div>':'<button class="op-btn" data-srs-reveal>Revelar resposta</button>')+
-    '<button class="op-btn" data-srs-speak>Ouvir cartão</button><div class="srs-grade" '+(revealed?'':'hidden')+'><button class="op-btn" data-srs-grade="never">Nunca · dominar</button><button class="op-btn" data-srs-grade="soon">Em breve</button><button class="op-btn" data-srs-grade="later">Depois</button><button class="op-btn" data-srs-grade="someday">Algum dia</button><button class="op-btn" data-srs-feedback>Feedback</button></div></article>';
+    (revealed?'<div class="srs-answer">'+srsEscape(c.kind==='cloze'?content.replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):content)+'</div>'+
+      (c.note?'<div class="srs-note"><strong>Nota pessoal</strong><p>'+srsEscape(c.note)+'</p></div>':'')
+      :'<button class="op-btn" data-srs-reveal>Revelar resposta</button>')+
+    '<button class="op-btn" data-srs-speak>Ouvir cartão</button>'+
+    '<button class="op-btn" type="button" data-srs-edit="'+srsEscape(c.id)+'">Editar destaque e nota</button>'+
+    '<div class="srs-grade" '+(revealed?'':'hidden')+'><button class="op-btn" data-srs-grade="never">Nunca · dominar</button><button class="op-btn" data-srs-grade="soon">Em breve</button><button class="op-btn" data-srs-grade="later">Depois</button><button class="op-btn" data-srs-grade="someday">Algum dia</button><button class="op-btn" data-srs-feedback>Feedback</button></div></article>';
 }
 
 /* Frequency tuning acts on the review queue, never on stored cards or due dates (#83). */
@@ -6829,7 +6865,7 @@ function srsCreateCard(kind,text,question,answer,theme='',now=Date.now(),origin=
  const d=srsLoad();d.cards=d.cards||[];
  if(origin&&origin.kind&&origin.id){const existing=d.cards.find(c=>!c.discarded&&c.sourceKind===origin.kind&&c.sourceId===origin.id);if(existing)return existing;}
  const card={id:'srs-'+now+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,theme:String(theme||'').trim(),
-   source:origin?.label||'Texto inserido manualmente',sourceRef:origin?.ref||'',sourceKind:origin?.kind||'',sourceId:origin?.id||'',createdAt:now,dueAt:now};
+   source:origin?.label||'Texto inserido manualmente',sourceRef:origin?.ref||'',sourceKind:origin?.kind||'',sourceId:origin?.id||'',originalText:kind==='cloze'?String(text||'').replace(/\{\{c1::([\s\S]*?)\}\}/g,'$1'):String(answer||''),createdAt:now,dueAt:now};
  d.cards.push(card);srsRecordActivity(d,'cards',now);srsSave(d);return card;
 }
 function srsCreateFromQuestionHighlight(q,part=''){
@@ -6921,7 +6957,7 @@ function srsGradeCard(id,grade,now=Date.now()){
 function showReview(){
  const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
- const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}.srs-activity h2{font-size:17px;margin:0 0 14px}.srs-activity h3{font-size:12px;font-weight:600;margin:14px 0 5px}.srs-activity-stats{display:flex;gap:16px;flex-wrap:wrap}.srs-activity-stats span{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}.srs-activity-stats strong{font-size:21px;color:var(--text);font-variant-numeric:tabular-nums}.srs-heatmap{display:grid;grid-auto-flow:column;grid-auto-columns:10px;grid-template-rows:repeat(7,10px);gap:4px;overflow-x:auto;padding:8px 2px;max-width:100%;width:max-content}.srs-day{display:block;width:10px;height:10px;border-radius:2px;background:var(--hover)}.srs-day[data-level="1"]{background:color-mix(in srgb,var(--accent) 25%,var(--hover))}.srs-day[data-level="2"]{background:color-mix(in srgb,var(--accent) 45%,var(--hover))}.srs-day[data-level="3"]{background:color-mix(in srgb,var(--accent) 70%,var(--hover))}.srs-day[data-level="4"]{background:var(--accent)}.srs-activity .srs-muted{margin:14px 0 0;line-height:1.55}.srs-tuning-list{display:grid;gap:10px;margin-top:12px}.srs-tune-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(130px,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:8px 0}.srs-tune-title{min-width:0}.srs-tune-title strong{display:block;overflow-wrap:anywhere;font-size:12px}.srs-tune-title small{font-size:11px;color:var(--muted)}.srs-tune-row label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:2px}.srs-tune-row input[type="range"]{width:100%;margin:0;padding:2px;cursor:pointer}.srs-tune-row output{font-size:12px;min-width:34px;font-variant-numeric:tabular-nums}.srs-tune-suggest{grid-column:1/-1;margin:0;font-size:11px;color:var(--muted)}@media(max-width:520px){.srs-tune-row{grid-template-columns:1fr auto}.srs-tune-title{grid-column:1/-1}.srs-tune-suggest{grid-column:1/-1}}</style>';
+ const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-note{margin:12px 0;padding:12px;background:var(--side);border-radius:8px;font-size:13px;line-height:1.5}.srs-note strong{font-size:11px}.srs-note p{margin:4px 0 0;white-space:pre-wrap}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}.srs-activity h2{font-size:17px;margin:0 0 14px}.srs-activity h3{font-size:12px;font-weight:600;margin:14px 0 5px}.srs-activity-stats{display:flex;gap:16px;flex-wrap:wrap}.srs-activity-stats span{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}.srs-activity-stats strong{font-size:21px;color:var(--text);font-variant-numeric:tabular-nums}.srs-heatmap{display:grid;grid-auto-flow:column;grid-auto-columns:10px;grid-template-rows:repeat(7,10px);gap:4px;overflow-x:auto;padding:8px 2px;max-width:100%;width:max-content}.srs-day{display:block;width:10px;height:10px;border-radius:2px;background:var(--hover)}.srs-day[data-level="1"]{background:color-mix(in srgb,var(--accent) 25%,var(--hover))}.srs-day[data-level="2"]{background:color-mix(in srgb,var(--accent) 45%,var(--hover))}.srs-day[data-level="3"]{background:color-mix(in srgb,var(--accent) 70%,var(--hover))}.srs-day[data-level="4"]{background:var(--accent)}.srs-activity .srs-muted{margin:14px 0 0;line-height:1.55}.srs-tuning-list{display:grid;gap:10px;margin-top:12px}.srs-tune-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(130px,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:8px 0}.srs-tune-title{min-width:0}.srs-tune-title strong{display:block;overflow-wrap:anywhere;font-size:12px}.srs-tune-title small{font-size:11px;color:var(--muted)}.srs-tune-row label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:2px}.srs-tune-row input[type="range"]{width:100%;margin:0;padding:2px;cursor:pointer}.srs-tune-row output{font-size:12px;min-width:34px;font-variant-numeric:tabular-nums}.srs-tune-suggest{grid-column:1/-1;margin:0;font-size:11px;color:var(--muted)}@media(max-width:520px){.srs-tune-row{grid-template-columns:1fr auto}.srs-tune-title{grid-column:1/-1}.srs-tune-suggest{grid-column:1/-1}}</style>';
  const queue='<section><div class="srs-head"><div><h1>Revisão diária</h1><p>'+due.length+' cartões para revisar · '+done+' de '+goal+' de hoje</p></div><div class="srs-actions"><button class="op-btn" data-srs-mode="single" aria-pressed="'+((d.mode||'single')==='single')+'">Cartão único</button><button class="op-btn" data-srs-mode="feed" aria-pressed="'+(d.mode==='feed')+'">Feed vertical</button></div></div><div class="srs-progress" role="progressbar" aria-label="Progresso diário" aria-valuenow="'+Math.min(done,goal)+'" aria-valuemax="'+goal+'"><i></i></div>'+
  (c?((d.mode==='feed'?due: [c]).map(x=>srsCardMarkup(x,false)).join('')):'<div class="srs-panel"><h2>Tudo em dia</h2><p>Não há cartões vencidos. Crie um cartão a partir de um grifo ou comentário para começar.</p></div>')+
  '<button class="op-btn" data-srs-open-create>Criar cartão</button></section>';
@@ -6944,6 +6980,23 @@ view.addEventListener('click',e=>{
  const sc=e.target.closest('[data-srs-save-cloze]');if(sc){const raw=view.querySelector('#srs-text').value.trim(),selected=[...view.querySelectorAll('.srs-word.selected')];if(!raw||!selected.length){toast('Cole o texto e selecione as palavras a ocultar.');return;}const words=raw.split(/(\s+)/);const ids=selected.map(x=>Number(x.dataset.srsWord)).sort((a,b)=>a-b);let out='',active=false;words.forEach((w,i)=>{if(ids.includes(i)){if(!active)out+='{{c1::';out+=w;active=true;}else{if(active)out+='}}';out+=w;active=false;}});if(active)out+='}}';saveCard('cloze',out,view.querySelector('#srs-cloze-question').value.trim(),'');return;}
  const qa=e.target.closest('[data-srs-save-qa]');if(qa){const q=view.querySelector('#srs-question').value.trim(),a=view.querySelector('#srs-answer').value.trim();if(!q||!a){toast('Informe pergunta e resposta.');return;}saveCard('qa','',q,a);return;}
  const grade=e.target.closest('[data-srs-grade]');if(grade){const el=grade.closest('[data-srs-card]');if(srsGradeCard(el.dataset.srsCard,grade.dataset.srsGrade))showReview();return;}
+ const edit=e.target.closest('[data-srs-edit]');if(edit){
+   const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===edit.dataset.srsEdit);
+   if(!card)return;
+   formDialog({
+     title:'Editar destaque e nota',
+     text:'O texto original permanece intacto. As alterações servem apenas para este cartão de revisão.',
+     ok:'Salvar edição',
+     fields:[
+       {id:'original',label:'Texto original (somente leitura)',type:'textarea',readonly:true,rows:4,value:srsOriginalContent(card)},
+       {id:'edited',label:card.kind==='cloze'?'Texto editado (preserve {{c1::...}})':'Texto editado',type:'textarea',rows:4,value:srsEffectiveContent(card)},
+       {id:'note',label:'Nota / mnemônico pessoal',type:'textarea',rows:3,value:card.note||''}
+     ],
+     validate:v=>({edited:v.edited.length>4000?'Máximo de 4.000 caracteres':card.kind==='cloze'&&v.edited&&!/\{\{c1::[\s\S]+?\}\}/.test(v.edited)?'Preserve uma lacuna {{c1::...}}':'',
+       note:v.note.length>2000?'Máximo de 2.000 caracteres':''})
+   }).then(value=>{if(value&&srsEditCard(card.id,value.edited,value.note))showReview();});
+   return;
+ }
  const fb=e.target.closest('[data-srs-feedback]');if(fb){
    const el=fb.closest('[data-srs-card]'),d=srsLoad(),card=(d.cards||[]).find(x=>x.id===el?.dataset.srsCard);
    if(!card)return;
