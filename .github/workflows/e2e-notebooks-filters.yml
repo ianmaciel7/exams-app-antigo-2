@@ -35,7 +35,7 @@ jobs:
           python3 -m http.server 8765 --directory prototypes >/tmp/book-after.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-book-before/prototypes >/tmp/book-before.log 2>&1 &
           sleep 2
-          curl -f http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null
+          curl -f http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
           curl -f http://127.0.0.1:8766/exam-app-0.1.1/index.html -o /dev/null
       - name: E2E notebook creation, progress, retake, membership, saved filters
         run: node tests/notebooks-saved-filters.e2e.mjs

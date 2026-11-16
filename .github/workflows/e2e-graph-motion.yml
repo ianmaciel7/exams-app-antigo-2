@@ -42,7 +42,7 @@ jobs:
           fi
           python3 -m http.server 8765 --directory prototypes >/tmp/exams-graph.log 2>&1 &
           for i in $(seq 1 20); do
-            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null; then break; fi
+            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then break; fi
             sleep 1
           done
           node tests/motion-graph.e2e.mjs

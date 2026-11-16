@@ -35,7 +35,7 @@ jobs:
         run: |
           python3 -m http.server 8765 --directory prototypes >/tmp/tab-keyboard.log 2>&1 &
           for i in $(seq 1 25); do
-            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/tab-keyboard.log
@@ -48,6 +48,6 @@ jobs:
         with:
           name: issue55-workspace-tab-keyboard-evidence
           path: |
-            prototypes/board-exam-app/assets/issue55_keyboard_*.png
-            prototypes/board-exam-app/issue55_keyboard_targets_e2e.json
+            prototypes/issue55_keyboard_*.png
+            prototypes/issue55_keyboard_targets_e2e.json
           if-no-files-found: warn
