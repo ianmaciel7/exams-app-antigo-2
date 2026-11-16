@@ -5074,7 +5074,7 @@ function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const typeColl=tdCollections(t),query=store.get('typeQueries:'+space+':'+t)||[];
   const collections=typeColl,queries=Array.isArray(query)?query:[];
   const collection=collections.find(c=>c.id===state.collection),visibleItems=collection?items.filter(x=>tdCollectionHrefs(collection).includes(x.href)):items;
-  const matching=visibleItems.filter(x=>(x.name+' '+x.detail).toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR'));
+  const matching=visibleItems.filter(x=>(x.name+' '+x.detail).toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR')));
   const card=x=>'<a class="td-recent" href="'+esc(x.href)+'"><span class="td-item-icon" aria-hidden="true">'+iconSvg(x.id,OPI()[x.kind]||SI.file)+
     '</span><span><strong>'+esc(x.name)+'</strong><small>'+esc(x.detail||T.n)+'</small></span></a>';
   const recentBody=recent.length?recent.map(card).join(''):
