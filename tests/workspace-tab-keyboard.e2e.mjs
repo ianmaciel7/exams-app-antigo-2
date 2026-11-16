@@ -1,0 +1,69 @@
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { chromium } from 'playwright';
+
+const assets = path.resolve('prototypes/board-exam-app/assets');
+await mkdir(assets, { recursive: true });
+const report = { at: new Date().toISOString(), issue: 55, cases: [], errors: [], limitations: [
+  'Chromium emulation does not replace screen-reader or physical touch validation.'
+] };
+const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+try {
+  for (const width of [390, 1366]) {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    page.on('pageerror', error => report.errors.push(error.message));
+    try {
+      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/espaco', { waitUntil: 'domcontentloaded' });
+      let tab = page.locator('#wsTabList [data-tab].on');
+      await tab.waitFor({ timeout: 15000 });
+      const id = await tab.getAttribute('data-tab');
+      assert.equal(await tab.getAttribute('aria-keyshortcuts'), 'Shift+P');
+      assert.match(await tab.getAttribute('aria-description'), /Shift\+P/);
+      await tab.focus();
+      await tab.press('Shift+P');
+      tab = page.locator('#wsTabList [data-tab="' + id + '"]');
+      assert.ok((await tab.getAttribute('class')).includes('pinned'));
+      assert.match(await tab.getAttribute('aria-label'), /fixada/);
+      assert.equal(await tab.evaluate(el => document.activeElement === el), true, 'focus preserved after pin');
+      await page.screenshot({ path: path.join(assets, 'issue55_keyboard_pinned_' + width + '.png'), animations: 'disabled' });
+
+      await tab.press('Shift+P');
+      assert.doesNotMatch(await tab.getAttribute('aria-label'), /fixada/);
+      assert.ok(!(await tab.getAttribute('class')).includes('pinned'));
+      await tab.press('Shift+P');
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      tab = page.locator('#wsTabList [data-tab="' + id + '"]');
+      await tab.waitFor({ timeout: 15000 });
+      assert.match(await tab.getAttribute('aria-label'), /fixada/, 'pin persists after reload');
+      assert.equal(await tab.getAttribute('aria-keyshortcuts'), 'Shift+P');
+
+      await page.evaluate(() => wsOpenTab('#/tipo/concurso'));
+      const close = page.locator('#wsTabList [data-tab-close]').first();
+      await close.waitFor({ timeout: 12000 });
+      const closeBox = await close.boundingBox();
+      assert.ok(closeBox && closeBox.width >= 24 && closeBox.height >= 24,
+        'main tab close target must be at least 24x24: ' + JSON.stringify(closeBox));
+      const pin = page.locator('#wsTabList [data-tab-pin]').first();
+      const pinBox = await pin.boundingBox();
+      if (pinBox) assert.ok(pinBox.width >= 24 && pinBox.height >= 24, 'visible pin target at least 24x24');
+
+      if (await page.locator('#rpToggle').isVisible()) await page.locator('#rpToggle').click();
+      const sideClose = page.locator('#rpTabs [data-rp-tabx]').first();
+      await sideClose.waitFor({ timeout: 12000 });
+      const sideBox = await sideClose.boundingBox();
+      assert.ok(sideBox && sideBox.width >= 24 && sideBox.height >= 24,
+        'contextual tab close target must be at least 24x24: ' + JSON.stringify(sideBox));
+      await page.screenshot({ path: path.join(assets, 'issue55_keyboard_targets_' + width + '.png'), animations: 'disabled' });
+
+      report.cases.push({ width, pinPersistence: true, keyboardFocusPreserved: true,
+        mainClose: { width: closeBox.width, height: closeBox.height },
+        contextualClose: { width: sideBox.width, height: sideBox.height } });
+    } finally { await context.close(); }
+  }
+  assert.deepEqual(report.errors, [], 'no uncaught browser errors');
+} finally {
+  await browser.close();
+  await writeFile('prototypes/board-exam-app/issue55_keyboard_targets_e2e.json', JSON.stringify(report, null, 2) + '\n');
+}
