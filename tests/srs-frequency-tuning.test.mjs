@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
-const start=html.indexOf('const srsKey=()=>'),end=html.indexOf('function srsLocalDay(',start);
+const start=html.indexOf('const srsKey=()=>'),end=html.indexOf('function srsActivityDays(',start);
 assert.ok(start>=0&&end>start,'SRS queue and tuning functions are present');
 const code=html.slice(start,end);
 function harness(questions=[],history=[]){
