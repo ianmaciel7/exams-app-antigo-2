@@ -30,8 +30,8 @@ flowchart LR
 - [Gran Questões — #62](../../research/gran-questoes-issue-62-2026-11-15.md)
 - [Auditoria UI skills — #156](../../research/issue-156-ui-skills-audit-2026-11-15.md)
 - [Pesquisa UX — 20 fontes](../../ux/pesquisa-20-fontes-2026-11.md)
-- [Análise QConcursos](../../../analises/analise-qconcursos.md)
-- [Análise ExamTopics](../../../analises/analise-examtopics.md)
+- [Análise QConcursos](../../research/analises/analise-qconcursos.md)
+- [Análise ExamTopics](../../research/analises/analise-examtopics.md)
 
 ## Blocos originais
 

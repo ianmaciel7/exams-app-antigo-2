@@ -80,12 +80,12 @@ Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PD
 
 ### Documentos
 
-- [Estratégia de questões — #230](../docs/pesquisas/230-estrategia-questoes/README.md) — Consolidação do fluxo e pendências.
+- [Estratégia de questões — #230](../docs/research/pesquisas/230-estrategia-questoes/README.md) — Consolidação do fluxo e pendências.
 - [Pesquisa QConcursos — #31](../docs/research/qconcursos-issue-31-2026-11-15.md) — Filtros, cadernos e simulados.
 - [Inventário ExamTopics](../docs/research/examtopics-inventory.md) — Banco, questões e tópicos.
 - [Gran Questões — #62](../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas e critérios pendentes.
-- [Análise QConcursos](../analises/analise-qconcursos.md) — Análise funcional complementar.
-- [Análise ExamTopics](../analises/analise-examtopics.md) — Análise funcional complementar.
+- [Análise QConcursos](../docs/research/analises/analise-qconcursos.md) — Análise funcional complementar.
+- [Análise ExamTopics](../docs/research/analises/analise-examtopics.md) — Análise funcional complementar.
 - [Dossiê Readwise Reader e SRS](READWISE_DOSSIER.md) — Leitura, destaques e revisão espaçada.
 
 ### Blocos do canvas original
@@ -139,8 +139,8 @@ Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 - [Gran Questões — #62](../docs/research/gran-questoes-issue-62-2026-11-15.md) — Evidências públicas.
 - [Auditoria UI skills — #156](../docs/research/issue-156-ui-skills-audit-2026-11-15.md) — Material 3, Apple e limites.
 - [Pesquisa UX — 20 fontes](../docs/ux/pesquisa-20-fontes-2026-11.md) — Síntese de referências.
-- [Análise QConcursos](../analises/analise-qconcursos.md) — Inventário local.
-- [Análise ExamTopics](../analises/analise-examtopics.md) — Inventário local.
+- [Análise QConcursos](../docs/research/analises/analise-qconcursos.md) — Inventário local.
+- [Análise ExamTopics](../docs/research/analises/analise-examtopics.md) — Inventário local.
 
 ### Blocos do canvas original
 

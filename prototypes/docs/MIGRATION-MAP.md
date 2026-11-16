@@ -84,10 +84,10 @@ Gerado em 2026-11-16 a partir da dev `9beadadd` mais PR #260 (`45bebdf`). Cada l
 | `docs/features/simulados.md` | `prototypes/docs/features/simulados.md` | `6c29ffabed374977` |
 | `docs/features/tipos-propriedades.md` | `prototypes/docs/features/tipos-propriedades.md` | `c16e6960b2d434ad` |
 | `docs/features/workspace.md` | `prototypes/docs/features/workspace.md` | `161a4daff263a98a` |
-| `docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/pesquisas/230-estrategia-questoes/README.md` | `fc5f724624c0b5d7` |
-| `docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` |
-| `docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` |
-| `docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` |
+| `docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `fc5f724624c0b5d7` |
+| `docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` |
+| `docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` |
+| `docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` |
 | `docs/planning/README.md` | `prototypes/docs/planning/README.md` | `6ad498215769e8b0` |
 | `docs/planning/estado-atual.md` | `prototypes/docs/planning/estado-atual.md` | `433b451fe45842e5` |
 | `docs/planning/template-feature.md` | `prototypes/docs/planning/template-feature.md` | `5eca68adc631d400` |
@@ -107,3 +107,14 @@ Gerado em 2026-11-16 a partir da dev `9beadadd` mais PR #260 (`45bebdf`). Cada l
 | `docs/ux/pesquisa-20-fontes-2026-11.md` | `prototypes/docs/ux/pesquisa-20-fontes-2026-11.md` | `26383e10dc5151d7` |
 | `docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `prototypes/docs/ux/taxonomia-componentes-e-dialogs-2026.md` | `ffb42161678f5e07` |
 | `docs/ux/ux-ui-principles.md` | `prototypes/docs/ux/ux-ui-principles.md` | `7af19006e0d62e8b` |
+
+## Segunda etapa (2026-11-16): consolidação de pesquisas e análises em docs/research/
+
+| Origem (antes) | Destino (agora) | sha256 (atual) |
+|---|---|---|
+| `prototypes/analises/analise-examtopics.md` | `prototypes/docs/research/analises/analise-examtopics.md` | `36181db0f67f98de` |
+| `prototypes/analises/analise-qconcursos.md` | `prototypes/docs/research/analises/analise-qconcursos.md` | `243cdf6b43df6c13` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/README.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/README.md` | `9fb296fef9833f7c` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/comparacao-prototipo-dev.md` | `a896897c9f260712` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-captura.md` | `47d238bdd77ab739` |
+| `prototypes/docs/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `prototypes/docs/research/pesquisas/230-estrategia-questoes/roteiro-usabilidade.md` | `f28acadc407e927e` |

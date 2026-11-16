@@ -1,9 +1,13 @@
 {
-  "at": "2026-11-15T15:28:14.513Z",
+  "at": "2026-11-16T21:46:38.666Z",
   "checks": [
     {
       "width": 390,
-      "case": "QA highlight-to-answer, TTS privacy, scheduling/reload, recency zero and cloze"
+      "case": "tuning by discipline, mute without deletion, persist after reload and restore"
+    },
+    {
+      "width": 390,
+      "case": "QA, TTS privacy, scheduling/reload, recency zero, cloze and modal feedback"
     },
     {
       "width": 390,
@@ -11,7 +15,11 @@
     },
     {
       "width": 1366,
-      "case": "QA highlight-to-answer, TTS privacy, scheduling/reload, recency zero and cloze"
+      "case": "tuning by discipline, mute without deletion, persist after reload and restore"
+    },
+    {
+      "width": 1366,
+      "case": "QA, TTS privacy, scheduling/reload, recency zero, cloze and modal feedback"
     },
     {
       "width": 1366,

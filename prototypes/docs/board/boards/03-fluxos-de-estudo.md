@@ -31,12 +31,12 @@ flowchart TB
 
 ## Documentos
 
-- [Estratégia de questões — #230](../../pesquisas/230-estrategia-questoes/README.md)
+- [Estratégia de questões — #230](../../research/pesquisas/230-estrategia-questoes/README.md)
 - [Pesquisa QConcursos — #31](../../research/qconcursos-issue-31-2026-11-15.md)
 - [Inventário ExamTopics](../../research/examtopics-inventory.md)
 - [Gran Questões — #62](../../research/gran-questoes-issue-62-2026-11-15.md)
-- [Análise QConcursos](../../../analises/analise-qconcursos.md)
-- [Análise ExamTopics](../../../analises/analise-examtopics.md)
+- [Análise QConcursos](../../research/analises/analise-qconcursos.md)
+- [Análise ExamTopics](../../research/analises/analise-examtopics.md)
 - [Dossiê Readwise Reader e SRS](../../../board-exam-app/READWISE_DOSSIER.md)
 
 ## Blocos originais

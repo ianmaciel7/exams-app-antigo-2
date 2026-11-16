@@ -42,7 +42,7 @@ Base: `/mnt/project-files/pesquisas/estrategia-questoes/relatorio-final.md` (16/
 
 1. Abrir o Estratégia Questões logado no navegador do ian-pc ou na própria conta.
 2. Seguir [roteiro-captura.md](roteiro-captura.md) e salvar as capturas com o nome indicado em cada item.
-3. Enviar as capturas no projeto (ou colocar em `prototypes/docs/pesquisas/230-estrategia-questoes/capturas/`) e comentar nesta issue ou na thread.
+3. Enviar as capturas no projeto (ou colocar em `prototypes/docs/research/pesquisas/230-estrategia-questoes/capturas/`) e comentar nesta issue ou na thread.
 4. Rodar [roteiro-usabilidade.md](roteiro-usabilidade.md) com pelo menos 3 pessoas e registrar os resultados no mesmo diretório.
 
 Enquanto isso não acontece, esta issue fica aberta. Nada aqui representa captura de tela ou dado de conta logada.

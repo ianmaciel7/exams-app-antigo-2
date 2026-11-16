@@ -1,9 +1,9 @@
 # Catálogo de evidências
 
-Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:40:41Z. Não edite à mão: rode o script de novo.
+Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:55:39Z. Não edite à mão: rode o script de novo.
 
-- Mídias catalogadas: **366**
-- Órfãs (nenhum texto cita o arquivo): **17**
+- Mídias catalogadas: **374**
+- Órfãs (nenhum texto cita o arquivo): **25**
 - Grupos de duplicatas (mesmo conteúdo): **19**
 - Pares antes/depois: **32**
 - Resultados de teste em JSON: **16**
@@ -167,7 +167,7 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-392001F1 | ![](../../../prototypes/board-exam-app/assets/readwise_reader_shortcuts_palette.png) | `prototypes/board-exam-app/assets/readwise_reader_shortcuts_palette.png` | evidência externa | — | — | 2026-11-14 | ok |
 | EV-1ADE03E7 | ![](../../../prototypes/board-exam-app/assets/readwise_reader_views_table.png) | `prototypes/board-exam-app/assets/readwise_reader_views_table.png` | evidência externa | — | — | 2026-11-13 | ok |
 
-### Questões e filtros (82)
+### Questões e filtros (84)
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
@@ -207,6 +207,8 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-0A2110A4 | ![](../../../prototypes/board-exam-app/assets/issue76_wrong_confirmed.png) | `prototypes/board-exam-app/assets/issue76_wrong_confirmed.png` | captura do protótipo | — | [#76](https://github.com/ianmaciel7/exams-app/issues/76) | 2026-11-15 | ok |
 | EV-3562FB56 | ![](../../../prototypes/board-exam-app/assets/issue82_cloze_1366.png) | `prototypes/board-exam-app/assets/issue82_cloze_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-15 | ok |
 | EV-7A376C71 | ![](../../../prototypes/board-exam-app/assets/issue82_cloze_390.png) | `prototypes/board-exam-app/assets/issue82_cloze_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-15 | órfão |
+| EV-35663A98 | ![](../../../prototypes/board-exam-app/assets/issue82_feedback_dialog_1366.png) | `prototypes/board-exam-app/assets/issue82_feedback_dialog_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | — | órfão |
+| EV-2008F270 | ![](../../../prototypes/board-exam-app/assets/issue82_feedback_dialog_390.png) | `prototypes/board-exam-app/assets/issue82_feedback_dialog_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | — | órfão |
 | EV-6AE8BDA2 | ![](../../../prototypes/board-exam-app/assets/issue82_qa_revealed_1366.png) | `prototypes/board-exam-app/assets/issue82_qa_revealed_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-15 | ok |
 | EV-92F2F0E2 | ![](../../../prototypes/board-exam-app/assets/issue82_qa_revealed_390.png) | `prototypes/board-exam-app/assets/issue82_qa_revealed_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-15 | órfão |
 | EV-2F9F8972 | ![](../../../prototypes/board-exam-app/assets/issue82_question_import_1366.png) | `prototypes/board-exam-app/assets/issue82_question_import_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-15 | ok |
@@ -371,7 +373,7 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-64326BDA | ![](../../../prototypes/docs/archives/notes-app-old-8.png) | `prototypes/docs/archives/notes-app-old-8.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-A90B6B0C | ![](../../../prototypes/docs/archives/notes-app-old-9.png) | `prototypes/docs/archives/notes-app-old-9.png` | evidência externa | — | — | 2026-11-16 | ok |
 
-### Workspace e navegação (70)
+### Workspace e navegação (76)
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
@@ -395,6 +397,12 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 | EV-FB8BC534 | ![](../../../prototypes/board-exam-app/assets/issue138_after_mobile_390.png) | `prototypes/board-exam-app/assets/issue138_after_mobile_390.png` | captura do protótipo | depois | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-14 | ok |
 | EV-ADA49CD7 | ![](../../../prototypes/board-exam-app/assets/issue138_before_desktop.png) | `prototypes/board-exam-app/assets/issue138_before_desktop.png` | captura do protótipo | antes | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-14 | ok |
 | EV-CDEB3174 | ![](../../../prototypes/board-exam-app/assets/issue138_search_desktop.png) | `prototypes/board-exam-app/assets/issue138_search_desktop.png` | captura do protótipo | — | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-14 | ok |
+| EV-147D8EB0 | ![](../../../prototypes/board-exam-app/assets/issue83_frequency_silent_1366.png) | `prototypes/board-exam-app/assets/issue83_frequency_silent_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
+| EV-854FDF4E | ![](../../../prototypes/board-exam-app/assets/issue83_frequency_silent_390.png) | `prototypes/board-exam-app/assets/issue83_frequency_silent_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
+| EV-311EDFA2 | ![](../../../prototypes/board-exam-app/assets/issue83_nondestructive_edit_1366.png) | `prototypes/board-exam-app/assets/issue83_nondestructive_edit_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
+| EV-BA925824 | ![](../../../prototypes/board-exam-app/assets/issue83_nondestructive_edit_390.png) | `prototypes/board-exam-app/assets/issue83_nondestructive_edit_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
+| EV-FEF1479E | ![](../../../prototypes/board-exam-app/assets/issue83_review_heatmap_1366.png) | `prototypes/board-exam-app/assets/issue83_review_heatmap_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
+| EV-724FF014 | ![](../../../prototypes/board-exam-app/assets/issue83_review_heatmap_390.png) | `prototypes/board-exam-app/assets/issue83_review_heatmap_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | — | órfão |
 | EV-4D4BC598 | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png) | `prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-14 | ok |
 | EV-25FA25D5 | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideclosed_rightopen.png) | `prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-14 | ok |
 | EV-C3F4661A | ![](../../../prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideopen_rightclosed.png) | `prototypes/board-exam-app/assets/lowchrome_97_after_dark_1024_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-14 | ok |
@@ -453,7 +461,15 @@ Galeria visual: `prototypes/docs/evidence/gallery.html` (abra o arquivo localmen
 - `prototypes/board-exam-app/assets/issue77_reader_original_390.png`
 - `prototypes/board-exam-app/assets/issue77_reader_text_highlight_390.png`
 - `prototypes/board-exam-app/assets/issue82_cloze_390.png`
+- `prototypes/board-exam-app/assets/issue82_feedback_dialog_1366.png`
+- `prototypes/board-exam-app/assets/issue82_feedback_dialog_390.png`
 - `prototypes/board-exam-app/assets/issue82_qa_revealed_390.png`
+- `prototypes/board-exam-app/assets/issue83_frequency_silent_1366.png`
+- `prototypes/board-exam-app/assets/issue83_frequency_silent_390.png`
+- `prototypes/board-exam-app/assets/issue83_nondestructive_edit_1366.png`
+- `prototypes/board-exam-app/assets/issue83_nondestructive_edit_390.png`
+- `prototypes/board-exam-app/assets/issue83_review_heatmap_1366.png`
+- `prototypes/board-exam-app/assets/issue83_review_heatmap_390.png`
 - `prototypes/board-exam-app/assets/qconcursos_dock_folha_respostas.png`
 - `prototypes/board-exam-app/assets/qconcursos_list_toolbar_options.png`
 - `prototypes/board-exam-app/assets/qconcursos_live_home_caderno_questoes_tab.png`
