@@ -5,12 +5,14 @@ on:
     paths:
       - 'prototypes/exam-app-0.1.1/index.html'
       - 'tests/editorial-home.e2e.mjs'
+      - 'tests/editorial-home.test.mjs'
       - '.github/workflows/e2e-editorial-home.yml'
   push:
     branches: [dev]
     paths:
       - 'prototypes/exam-app-0.1.1/index.html'
       - 'tests/editorial-home.e2e.mjs'
+      - 'tests/editorial-home.test.mjs'
       - '.github/workflows/e2e-editorial-home.yml'
 
 permissions:
@@ -24,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate real due-date computations
+        run: node --test tests/editorial-home.test.mjs
       - name: Install Chromium
         run: |
           npm install --no-save playwright
@@ -46,5 +50,6 @@ jobs:
           name: issues58-69-editorial-home-evidence
           path: |
             prototypes/board-exam-app/assets/issue58_69_*.png
+            prototypes/board-exam-app/assets/issue58_srs_due_home_*.png
             prototypes/board-exam-app/issues58_69_home_e2e.json
           if-no-files-found: warn

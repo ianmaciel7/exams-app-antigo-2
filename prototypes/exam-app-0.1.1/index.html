@@ -1320,7 +1320,7 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .eh-button:hover{background:var(--hover)}.eh-button.primary{background:var(--text);color:var(--bg-base);border-color:var(--text)}
 .eh-button.primary:hover{opacity:.87}
 .eh-review{display:flex;flex-direction:column}.eh-review-number{font-size:38px;line-height:1.2;margin-top:14px;font-variant-numeric:tabular-nums}
-.eh-review a,.eh-pace a,.eh-topic a,.eh-ray-row a{color:var(--text);font-size:12px}
+.eh-review a,.eh-pace a,.eh-topic a,.eh-ray-row a{color:var(--text);font-size:12px}.eh-review-links{display:flex;flex-wrap:wrap;gap:8px 16px}
 .eh-review small{font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:auto;padding-top:10px}
 .eh-pace{margin-top:16px;padding:20px 23px}
 .eh-pace-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
@@ -5173,6 +5173,9 @@ function opEspacoPage(sp,mine){
   const history=histAll().filter(h=>h.conc===space||(space==='dataprev'&&!h.conc));
   const answered=questions.filter(q=>!!qSel(q)),right=answered.filter(q=>qSel(q)===q.gabarito);
   const recovery=errorReviewSummary(questions),errors=recovery.pending.map(x=>x.q);
+  // Home shows tasks available today, not every historical wrong answer (#58).
+  const srsDueCount=srsDueCards().length,errorDueCount=recovery.due.filter(x=>x.state.open).length;
+  const reviewDueCount=srsDueCount+errorDueCount;
   const now=new Date(),startToday=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
   const startWeek=new Date(now.getFullYear(),now.getMonth(),now.getDate());
   startWeek.setDate(startWeek.getDate()-(startWeek.getDay()+6)%7);
@@ -5199,15 +5202,21 @@ function opEspacoPage(sp,mine){
     (ed?'<span class="eh-tag">'+esc(status)+'</span>':'');
   const action='<section class="eh-card eh-action"><div class="eh-eyebrow">HOJE · PRÓXIMA AÇÃO</div>'+
     '<h2>'+esc(priorityTopic||'Comece pelos fundamentos')+'</h2>'+
-    '<p>'+ (errors.length?'Você tem '+errors.length+' questão'+(errors.length===1?'':'ões')+' com erro ainda registrado. Continue a prática para reforçar o conteúdo.':
+    '<p>'+ (errors.length?'Você tem '+errors.length+' '+(errors.length===1?'questão':'questões')+' com erro ainda registrado. Continue a prática para reforçar o conteúdo.':
       answered.length?'Continue o ritmo: '+answered.length+' questões já respondidas neste espaço.':
       'Organize seu estudo começando pelas questões disponíveis ou pelos materiais cadastrados.')+'</p>'+
     '<div class="eh-actions"><a class="eh-button primary" href="'+actionHref+'">Continuar estudando</a>'+
     '<a class="eh-button" href="'+(ed?'#/edicao/'+esc(ed.id):'#/tipo/edicao')+'">Mapa do edital</a></div></section>';
   const review='<section class="eh-card eh-review"><div class="eh-eyebrow">REVISÃO DE HOJE</div>'+
-    '<strong class="eh-review-number">'+errors.length+'</strong>'+
-    '<p>'+ (errors.length?'questões com erro pendente de nova resposta correta':'nenhuma questão incorreta pendente')+'</p>'+
-    '<a href="#/questoes/erradas">Abrir caderno de erros</a><small>'+recovery.due.length+' revisão'+(recovery.due.length===1?'':'ões')+' vencida'+(recovery.due.length===1?'':'s')+'; '+recovery.recovered.length+' questão'+(recovery.recovered.length===1?'':'ões')+' recuperada'+(recovery.recovered.length===1?'':'s')+'. Agenda baseada em tentativas confirmadas.</small></section>';
+    '<strong class="eh-review-number">'+reviewDueCount+'</strong>'+
+    '<p>'+ (reviewDueCount?srsDueCount+' '+(srsDueCount===1?'cartão':'cartões')+' SRS '+(srsDueCount===1?'vencido':'vencidos')+
+      ' · '+errorDueCount+' '+(errorDueCount===1?'questão':'questões')+' com recuperação '+(errorDueCount===1?'vencida':'vencidas'):
+      'Nenhuma revisão vencida hoje. O próximo estudo continua disponível.')+'</p>'+
+    '<div class="eh-review-links"><a href="#/revisao">Abrir revisão espaçada</a>'+
+    '<a href="#/questoes/erradas">Abrir caderno de erros</a></div>'+
+    '<small>'+errors.length+' '+(errors.length===1?'questão':'questões')+' '+(errors.length===1?'pendente':'pendentes')+' de recuperação; '+
+    recovery.recovered.length+' '+(recovery.recovered.length===1?'questão':'questões')+' '+(recovery.recovered.length===1?'recuperada':'recuperadas')+
+    '. Contagem baseada em cartões vencidos e tentativas confirmadas.</small></section>';
   const week='<div class="eh-week" aria-label="Questões respondidas na semana">'+weekDays.map(x=>
     '<div class="eh-week-day'+(x.today?' today':'')+'" title="'+x.count+' respostas '+x.day+'"><div class="eh-week-bar" style="height:'+
     (x.count?Math.min(100,18+x.count*14):4)+'%" aria-hidden="true"></div><span>'+x.day+(x.today?' · Hoje':'')+'</span>'+
@@ -5300,7 +5309,7 @@ function opEspacoPage(sp,mine){
   return '<main class="home-editorial"><header class="eh-head"><div><div class="eh-eyebrow">VISÃO GERAL DO ESPAÇO</div>'+
     '<h1>'+esc(sp.name)+'</h1><div class="eh-head-tags">'+mainMeta+'</div></div>'+
     '<div class="eh-head-stats">'+card(loadedCount,'Questões')+card(String(docsCount),'Documentos')+
-    card(String(errors.length),'Para revisar')+'</div></header>'+
+    card(String(reviewDueCount),'Para revisar')+'</div></header>'+
     loadNotice+'<div class="eh-intro"><div class="eh-eyebrow">Como quer estudar agora?</div>'+studyEntries+'</div>'+
     '<div class="eh-top-grid">'+action+review+'</div>'+pace+content+recents+'</main>';
 }
