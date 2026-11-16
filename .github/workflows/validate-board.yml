@@ -36,6 +36,9 @@ jobs:
         run: |
           python3 -I render_board_mestre.py
           git diff --exit-code -- board-mestre.md || { echo 'board-mestre.md desatualizado; rode render_board_mestre.py'; exit 1; }
+      - name: Validar vínculos de features do board mestre
+        working-directory: prototypes/board-exam-app
+        run: python3 -I validate_feature_links.py
       - name: Regenerar BOARD.md e verificar diff
         working-directory: prototypes/board-exam-app
         run: |
