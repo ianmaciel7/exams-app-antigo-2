@@ -15,7 +15,7 @@ test('workspace tabs expose role=tab on focusable label, pin/close controls rema
   assert.match(s,/id="wst-/);
   assert.match(s,/data-tab-pin/);
   assert.match(s,/data-tab-close/);
-  assert.match(s,/'<\/span><span class="ws-tact">/,'pin/close should follow the closing label tag');
+  assert.match(s,/<\/span><\/span><span class="ws-tact">/,'pin/close should follow the closing label tag');
   assert.doesNotMatch(s,/data-tab=.*role="tab"/,'wrapper must not have tab role');
 });
 test('contextual tabs expose a separate focusable tab, outside close action (#55)',()=>{
