@@ -1,6 +1,6 @@
 # Catálogo de evidências
 
-Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:39:37Z. Não edite à mão: rode o script de novo.
+Gerado por `scripts/build-evidence-catalog.py` em 2026-11-16T21:40:41Z. Não edite à mão: rode o script de novo.
 
 - Mídias catalogadas: **366**
 - Órfãs (nenhum texto cita o arquivo): **17**

@@ -1,6 +1,6 @@
 {
   "versao_schema": 1,
-  "gerado_em": "2026-11-16T21:39:37Z",
+  "gerado_em": "2026-11-16T21:40:41Z",
   "resumo": {
     "midias": 366,
     "orfaos": 17,
@@ -12431,6 +12431,78 @@
     {
       "arquivo": "prototypes/board-exam-app/BOARD.md",
       "referencia": "notes-app-old-10.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/exams-app-old-backup-old-1-dark.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/exams-app-old-backup-old-1.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-10.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-11.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-2.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-3.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-4.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-5.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-6.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-7.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-8.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/archives/notes-app-old-9.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j1-busca-layout-desktop.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j3-teclado-lista-desktop.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j4-canvas-foco-e500-desktop.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j5-canvas-visao-geral.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j6-mestre-320.png"
+    },
+    {
+      "arquivo": "prototypes/docs/MIGRATION-MAP.md",
+      "referencia": "docs/board/jornadas/j6-mestre-390.png"
     },
     {
       "arquivo": "prototypes/docs/research/issue-156-ui-skills-audit-2026-11-15.md",
