@@ -42,5 +42,6 @@ test('search updates result count, focuses cluster, resets on Escape and respect
   assert.match(html,/matchCount\.textContent=st\.match\.size===0\?'Nenhum objeto encontrado'/);
   assert.match(html,/if\(frame\)\{ st\.k=frame\.k; st\.tx=frame\.tx; st\.ty=frame\.ty; \}/);
   assert.match(html,/else if\(e\.key==='Escape'\)\{ gq\.value=''; updateGraphSearch\(\); \}/);
-  assert.match(html,/st\.alpha=Math\.max\(st\.alpha,\.5\); updateGraphSearch\(\);/);
+  assert.match(html,/st\.alpha=Math\.max\(st\.alpha,\.5\);\s*updateGraphSearch\(\);/);
+  assert.match(html,/const updateGraphVisibility=\(\)=>/);
 });
