@@ -35,7 +35,7 @@ jobs:
         run: |
           python3 -m http.server 8765 --directory prototypes >/tmp/notes-graph.log 2>&1 &
           for i in $(seq 1 25); do
-            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/notes-graph.log
@@ -48,7 +48,7 @@ jobs:
         with:
           name: issue72-rich-notes-graph-evidence
           path: |
-            prototypes/board-exam-app/assets/issue72_rich_editor_*.png
-            prototypes/board-exam-app/assets/issue72_linked_note_*.png
-            prototypes/board-exam-app/issue72_rich_notes_graph_e2e.json
+            prototypes/issue72_rich_editor_*.png
+            prototypes/issue72_linked_note_*.png
+            prototypes/issue72_rich_notes_graph_e2e.json
           if-no-files-found: warn
