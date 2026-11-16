@@ -2,7 +2,7 @@
 """Convert board.json (Claude Whiteboard export) into BOARD.md, readable by any AI agent.
 
 Usage: python board_to_md.py   (run inside prototypes/board-exam-app__*)
-Inline data: images are extracted to assets/inline-<id>.<ext>; /_blob/<id> maps to assets/<id>.png.
+Inline data: images are extracted to inline-<id>.<ext>; /_blob/<id> maps to <id>.png in prototypes/.
 """
 import base64, json, os, re
 
@@ -28,11 +28,11 @@ def center(e):
 def img_path(e):
     s = e["src"]
     if s.startswith("/_blob/"):
-        return "assets/" + s[7:] + ".png"
+        return s[7:] + ".png"
     m = re.match(r"data:image/(\w+);base64,(.*)", s, re.S)
     if m:
         ext = {"jpeg": "jpg"}.get(m.group(1), m.group(1))
-        p = f"assets/inline-{e['_id']}.{ext}"
+        p = f"inline-{e['_id']}.{ext}"
         with open(os.path.join(HERE, p), "wb") as f:
             f.write(base64.b64decode(m.group(2)))
         return p
