@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 P = lambda f: os.path.join(HERE, f)
 D = json.load(open(P("board.json"), encoding="utf8")); E = D["elements"]; O = D["order"]
 M = json.load(open(P("board-mestre.json"), encoding="utf8"))
-PAD, TITLE, GX, GY, X0, Y0 = 30, 40, 160, 120, 0, 0
+PAD, TITLE, GX, GY, X0, Y0 = 30, 40, 160, 240, 0, 0
 
 def bx(v): return v["x"], v["y"], v["x"] + v.get("w", 0), v["y"] + v.get("h", 0)
 def inside(a, b):
@@ -39,18 +39,8 @@ unassigned = sorted([c for c in top if c not in order_key], key=lambda c: (conts
 units = sorted([c for c in top if c in order_key], key=lambda c: order_key[c])
 area_of = {c: order_key[c][0] for c in units}
 n_areas = len(M["areas"])
-# Sem grupo (revisar) como unidade própria
-if loose:
-    xs = [nodes[k]["x"] for k in loose]; ys = [nodes[k]["y"] for k in loose]
-    x2 = [nodes[k]["x"] + nodes[k].get("w", 0) for k in loose]; y2 = [nodes[k]["y"] + nodes[k].get("h", 0) for k in loose]
-    LG = "e9900"
-    E[LG] = {"type": "container", "x": min(xs) - PAD, "y": min(ys) - PAD - TITLE,
-             "w": max(x2) - min(xs) + 2 * PAD, "h": max(y2) - min(ys) + 2 * PAD + TITLE,
-             "color": "white", "text": "Sem grupo (revisar)"}
-    conts[LG] = E[LG]
-    for k in loose:
-        pass  # os nós soltos ficam dentro desse novo container e vão junto
-    units.append(LG); area_of[LG] = n_areas  # coluna extra
+# "Sem grupo (revisar)": nós soltos são empilhados numa coluna própria ao final (ver abaixo)
+LG = "e9900"
 units += unassigned
 for c in unassigned: area_of[c] = n_areas + 1
 
@@ -63,11 +53,13 @@ rows_by_unit = {}
 # posiciona unidades: coluna por área, empilhadas
 colx = 0
 newpos = {}
+# membros calculados ANTES de qualquer movimento, para não capturar nós já deslocados
+members_of = {c: [k for k in nodes if k != c and inside(nodes[k], conts[c])] for c in units}
 for ai in sorted(cols):
     y = Y0
     for c in cols[ai]:
         cv = conts[c]; dx = (X0 + colx) - cv["x"]; dy = y - cv["y"]
-        members = [k for k in nodes if k != c and inside(nodes[k], cv)]
+        members = members_of[c]
         for k in [c] + members:
             E[k]["x"] += dx; E[k]["y"] += dy
             newpos[k] = (E[k]["x"], E[k]["y"])
@@ -76,6 +68,19 @@ for ai in sorted(cols):
         y += cv["h"] + GY
     colx += W + GX
 
+# nós soltos: coluna final, empilhados; depois o container LG envolve exatamente eles
+if loose:
+    y = Y0; loose_sorted = sorted(loose, key=lambda k: (before[k][1], before[k][0]))
+    for k in loose_sorted:
+        v = nodes[k]; dx = (X0 + colx + PAD) - v["x"]; dy = (y + TITLE + PAD) - v["y"]
+        v["x"] += dx; v["y"] += dy; newpos[k] = (v["x"], v["y"]); y += v.get("h", 0) + GY
+    xs = [nodes[k]["x"] for k in loose]; ys = [nodes[k]["y"] for k in loose]
+    x2 = [nodes[k]["x"] + nodes[k].get("w", 0) for k in loose]; y2 = [nodes[k]["y"] + nodes[k].get("h", 0) for k in loose]
+    E[LG] = {"type": "container", "x": min(xs) - PAD, "y": min(ys) - PAD - TITLE,
+             "w": max(x2) - min(xs) + 2 * PAD, "h": max(y2) - min(ys) + 2 * PAD + TITLE,
+             "color": "white", "text": "Sem grupo (revisar)"}
+    conts[LG] = E[LG]; rows_by_unit[LG] = list(loose_sorted)
+    units.append(LG)
 # sem sobreposição entre unidades
 boxes = {c: bx(conts[c]) for c in units}
 ov = [(a, b) for i, a in enumerate(units) for b in units[i+1:]
