@@ -44,6 +44,8 @@ try{
     assert.equal(await page.locator('#rpTabs [data-rp-tab]').count(),beforeRepeat,'same view is focused instead of duplicated');
     assert.equal(await page.locator('#rpTabs [data-rp-tab].on').getAttribute('aria-label'),selected);
     await page.reload({waitUntil:'domcontentloaded'});
+    await page.locator('#rpToggle').waitFor();
+    if(await page.locator('#rpanel').isHidden())await page.locator('#rpToggle').click();
     await page.locator('#rpTabs [data-rp-tab].on').waitFor();
     assert.equal(await page.locator('#rpTabs [data-rp-tab].on').getAttribute('aria-label'),selected,'contextual tab survives refresh');
     report.cases.push({width,href,initialTabs:afterFirst,afterRepeat:beforeRepeat,selected,
