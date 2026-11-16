@@ -42,6 +42,16 @@
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 .op-wide>.op-main{grid-column:1/-1!important}
 
+/* Optional secure WYSIWYG editor for question notes (#72). */
+.qped-rich{display:block;min-height:126px;max-height:420px;overflow:auto;padding:12px;border:1px solid var(--line);border-radius:8px;color:var(--text);background:var(--side);font:inherit;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.qped-rich[hidden]{display:none!important}
+.qped-rich:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.qped-rich p,.qped-rich div{margin:0 0 6px}
+.qped-rich ul,.qped-rich ol{padding-left:24px}
+.qped-rich mark{background:var(--hover);color:var(--text)}
+.qped-format [data-qped-visual-toggle]{margin-left:auto;min-width:100px}
+
+
 /* PDF triage: actual persisted reader state, no nested anchor/button elements (#81). */
 .td-triage-filters{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .td-triage-filters button,.td-reader-actions button{border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);padding:6px 10px;font:inherit;font-size:11px;cursor:pointer}
@@ -6533,6 +6543,45 @@ function qPedStats(q){
     '<p class="qped-note">'+total+' resposta'+(total===1?'':'s')+' no histórico pessoal</p></section></div>'+
     '<section><h3>Histórico de desempenho</h3>'+timeline+'</section></div>';
 }
+/* Sanitize rich-note HTML into an explicit, attribute-free formatting subset (#72).
+   Pasted scripts, CSS, event handlers, SVG, images and embeds are never retained. */
+function qPedSafeHtml(source){
+  const template=document.createElement('template');
+  template.innerHTML=String(source||'').slice(0,20000);
+  const allowed=new Set(['p','div','br','strong','em','u','mark','ul','ol','li']);
+  const blocked=new Set(['script','style','svg','iframe','object','embed','img','video','audio','form','input','link','meta']);
+  let budget=15000;
+  const walk=(node,depth=0)=>{
+    if(depth>20||budget<=0)return '';
+    if(node.nodeType===3){
+      const text=String(node.nodeValue||'').slice(0,budget);budget-=text.length;return esc(text);
+    }
+    if(node.nodeType!==1)return '';
+    const name=node.localName?.toLowerCase()||'';
+    if(blocked.has(name))return '';
+    const inner=[...node.childNodes].map(child=>walk(child,depth+1)).join('');
+    return allowed.has(name)?name==='br'?'<br>':'<'+name+'>'+inner+'</'+name+'>':inner;
+  };
+  return [...template.content.childNodes].map(n=>walk(n)).join('');
+}
+function qPedRichFormat(editor,kind){
+  const tags={bold:'strong',italic:'em',underline:'u',mark:'mark',bullet:'ul',number:'ol'};
+  const tag=tags[kind],sel=window.getSelection();
+  if(!tag||!sel||!sel.rangeCount||!editor.contains(sel.anchorNode))return false;
+  const range=sel.getRangeAt(0),wrap=document.createElement(tag);
+  if(tag==='ul'||tag==='ol'){
+    const item=document.createElement('li');
+    if(range.collapsed)item.textContent='Item';
+    else item.appendChild(range.extractContents());
+    wrap.appendChild(item);
+  }else{
+    if(range.collapsed)wrap.textContent='texto';
+    else wrap.appendChild(range.extractContents());
+  }
+  range.deleteContents();range.insertNode(wrap);
+  sel.removeAllRanges();const next=document.createRange();next.selectNodeContents(tag==='ul'||tag==='ol'?wrap.firstElementChild:wrap);sel.addRange(next);
+  return true;
+}
 function qPedModule(q,answered=false){
   const id=q.id||('q'+q.n),current=store.get(qPedKey(id)),active=PED_TABS.some(([k])=>k===current)?current:'';
   const answer=answered?'<p class="qped-feedback">Gabarito: <strong>'+esc(q.gabarito)+'</strong>.</p>'+
@@ -6543,9 +6592,13 @@ function qPedModule(q,answered=false){
   const toolbar=[['bold','Negrito','B'],['italic','Itálico','I'],['underline','Sublinhar','U'],
     ['bullet','Lista com marcadores','•'],['number','Lista numerada','1.'],['mark','Destaque','◐']].map(([kind,title,text])=>
     '<button type="button" data-qped-format="'+kind+'" aria-label="'+title+'" title="'+title+'">'+text+'</button>').join('');
-  const note='<div class="qped-note-editor"><div class="qped-format" role="toolbar" aria-label="Formatação da anotação">'+toolbar+'</div>'+
+  const notePreview=notes.noteHtml?qPedSafeHtml(notes.noteHtml):qPedPreview(notes.note||'');
+  const note='<div class="qped-note-editor"><div class="qped-format" role="toolbar" aria-label="Formatação da anotação">'+toolbar+
+    '<button type="button" data-qped-visual-toggle="'+esc(id)+'" aria-pressed="false">Editar visualmente</button></div>'+
     '<textarea data-qnote="'+esc(id)+'" rows="6" aria-label="Anotação privada da questão">'+esc(notes.note||'')+'</textarea>'+
-    '<div class="qped-preview" data-qped-preview aria-label="Prévia da anotação">'+qPedPreview(notes.note||'')+'</div>'+'<div class="qped-note-actions"><span>Texto formatado com Markdown básico.</span><button type="button" data-qped-save="'+esc(id)+'">Salvar nota</button></div></div>';
+    '<div data-qnote-rich="'+esc(id)+'" role="textbox" aria-multiline="true" aria-label="Anotação visual rica da questão" contenteditable="true" class="qped-rich" hidden></div>'+
+    '<div class="qped-preview" data-qped-preview aria-label="Prévia da anotação">'+notePreview+'</div>'+
+    '<div class="qped-note-actions"><span data-qped-editor-hint>Markdown básico ou edição visual com formatação.</span><button type="button" data-qped-save="'+esc(id)+'">Salvar nota</button></div></div>';
   const sources='<div class="qped-sources">'+
     (q.doc?'<a href="#'+esc(q.doc)+'">Caderno oficial de questões (PDF)</a>':'')+
     (answered&&qOrig(q)==='oficial'?'<a href="#gabarito">Gabarito oficial em PDF</a>':'')+
@@ -6578,9 +6631,25 @@ view.addEventListener('click',e=>{
     const closeButton=parent.querySelector('[data-qped-close]');if(closeButton)closeButton.hidden=!next;
     if(close){const first=parent.querySelector('[data-qped-tab]');first?.focus();}return;
   }
+  const toggleVisual=e.target.closest('[data-qped-visual-toggle]');
+  if(toggleVisual){
+    const wrap=toggleVisual.closest('.qped-note-editor'),area=wrap.querySelector('[data-qnote]'),rich=wrap.querySelector('[data-qnote-rich]');
+    const next=toggleVisual.getAttribute('aria-pressed')!=='true';
+    if(next){
+      const saved=qFlag(toggleVisual.dataset.qpedVisualToggle);
+      rich.innerHTML=saved.noteHtml?qPedSafeHtml(saved.noteHtml):
+        area.value.trim()?qPedPreview(area.value):'';
+    }else area.value=rich.innerText;
+    toggleVisual.setAttribute('aria-pressed',String(next));
+    toggleVisual.textContent=next?'Editar Markdown':'Editar visualmente';
+    area.hidden=next;rich.hidden=!next;wrap.querySelector('[data-qped-preview]').hidden=next;
+    (next?rich:area).focus();return;
+  }
   const fmt=e.target.closest('[data-qped-format]');
   if(fmt){
-    const area=fmt.closest('.qped-note-editor')?.querySelector('[data-qnote]');
+    const wrap=fmt.closest('.qped-note-editor'),rich=wrap?.querySelector('[data-qnote-rich]');
+    if(rich&&!rich.hidden){qPedRichFormat(rich,fmt.dataset.qpedFormat);return;}
+    const area=wrap?.querySelector('[data-qnote]');
     if(!area)return;
     const before=area.value.slice(0,area.selectionStart),selected=area.value.slice(area.selectionStart,area.selectionEnd),
       after=area.value.slice(area.selectionEnd);
@@ -6600,9 +6669,33 @@ view.addEventListener('click',e=>{
   }
   const save=e.target.closest('[data-qped-save]');
   if(save){
-    const area=save.closest('.qped-note-editor')?.querySelector('[data-qnote]');
-    if(area){qSetFlag(save.dataset.qpedSave,{note:area.value});toast('Anotação salva');}
+    const wrap=save.closest('.qped-note-editor'),area=wrap?.querySelector('[data-qnote]'),
+      rich=wrap?.querySelector('[data-qnote-rich]'),id=save.dataset.qpedSave;
+    if(!area)return;
+    if(rich&&!rich.hidden){
+      const safe=qPedSafeHtml(rich.innerHTML);
+      const plain=rich.innerText.slice(0,10000);
+      qSetFlag(id,{note:plain,noteHtml:safe});
+      rich.innerHTML=safe;
+    }else qSetFlag(id,{note:area.value.slice(0,10000),noteHtml:''});
+    GR_CACHE.delete(space);
+    toast('Anotação salva');
   }
+});
+view.addEventListener('pointerdown',e=>{
+  const btn=e.target.closest?.('[data-qped-format]');
+  if(btn&&!btn.closest('.qped-note-editor')?.querySelector('[data-qnote-rich]')?.hidden)
+    e.preventDefault(); // Keep text selection while clicking format button.
+});
+view.addEventListener('paste',e=>{
+  const rich=e.target.closest?.('[data-qnote-rich]');if(!rich)return;
+  e.preventDefault();const text=String(e.clipboardData?.getData('text/plain')||'').slice(0,10000);
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount&&rich.contains(sel.anchorNode)){
+    const range=sel.getRangeAt(0),node=document.createTextNode(text);
+    range.deleteContents();range.insertNode(node);range.setStartAfter(node);range.collapse(true);
+    sel.removeAllRanges();sel.addRange(range);
+  }else rich.appendChild(document.createTextNode(text));
 });
 view.addEventListener('input',e=>{const area=e.target.closest('[data-qnote]');if(!area)return;const preview=area.closest('.qped-note-editor')?.querySelector('[data-qped-preview]');if(preview)preview.innerHTML=qPedPreview(area.value);});
 view.addEventListener('keydown',e=>{
