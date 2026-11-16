@@ -3856,7 +3856,7 @@ function tdReaderNavSection(){
   return '<section class="sec'+(collapsed?' closed':'')+'" data-seckey="'+esc(key)+'">'+
     secHead(key,'Leituras',collapsed,items.length,'group')+
     '<div class="sec-b"'+(collapsed?' hidden':'')+'>'+
-    '<button type="button" class="td-reader-nav-item" data-nav-reader-stage="all"'+(onPage&&state.triage==='all'&&!state.query?' aria-current="page"':'')+'>Todos os documentos</button>'+stages
+    '<button type="button" class="td-reader-nav-item" data-nav-reader-stage="all"'+(onPage&&state.triage==='all'&&!state.query?' aria-current="page"':'')+'>Todos os documentos</button>'+stages+
     (queries.length?'<p class="td-reader-nav-sub">Visões filtradas</p>'+views:'')+
     '</div></section>';
 }
