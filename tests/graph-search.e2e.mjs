@@ -33,6 +33,7 @@ try{
         const info=document.querySelector('.gv-info');
         return !!info&&!info.textContent.includes('carregando');
       },null,{timeout:30000});
+      await page.waitForFunction(()=>window.__graphCameraTransforms?.length>0,null,{timeout:10000});
       const search=page.locator('#gvq');
       const before=await page.evaluate(()=>window.__graphCameraTransforms?.slice(-1)[0]||null);
       assert.ok(before,'global canvas has a recorded camera transform');
@@ -45,6 +46,10 @@ try{
         }
       }
       assert.ok(query,'at least one known object can be found by the graph search');
+      await page.waitForFunction(previous=>{
+        const current=window.__graphCameraTransforms?.slice(-1)[0];
+        return !!current&&JSON.stringify(current)!==JSON.stringify(previous);
+      },before,{timeout:10000});
       const after=await page.evaluate(()=>window.__graphCameraTransforms?.slice(-1)[0]||null);
       assert.ok(after,'search rerenders the graph camera');
       assert.notDeepEqual(after,before,'search auto-frames the matching cluster');
