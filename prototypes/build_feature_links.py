@@ -4,10 +4,21 @@
 Vínculos inferidos (mapeamento curado de grupo e de funcionalidade) saem com fonte 'inferido'."""
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+ROOT = os.path.abspath(os.path.join(HERE, ".."))
 OUT = os.path.join(HERE, "feature-links.json")
 REPO = "https://github.com/ianmaciel7/exams-app/blob/dev/"
 IMG = (".png", ".jpg", ".jpeg", ".webp", ".gif")
+
+MAP = {}
+for line in open(os.path.join(HERE, "MIGRATION-MAP.md"), encoding="utf8"):
+    found = re.match(r"^\| \x60([^\x60]+)\x60 \| \x60([^\x60]+)\x60 \|", line)
+    if found:
+        MAP[found.group(1)] = found.group(2)
+
+def mapped(page):
+    if page not in MAP:
+        raise FileNotFoundError("caminho sem entrada no mapa de migração: " + page)
+    return MAP[page]
 
 def load(p): return json.load(open(os.path.join(ROOT, p), encoding="utf8"))
 idx = load("prototypes/features-index.json")
@@ -62,7 +73,7 @@ adr_ids = {a["id"]: a for a in idx["adrs"]}
 features = []
 for f in idx["features"]:
     fid = f["id"]
-    adrs = sorted({m for m in re.findall(r"adr/(\d{4})-", open(os.path.join(ROOT, "prototypes/docs__*", f["page"].split("docs/",1)[1]), encoding="utf8").read()) if m in adr_ids})
+    adrs = sorted({m for m in re.findall(r"(?:adr/)?(\d{4})-", open(os.path.join(ROOT, mapped(f["page"])), encoding="utf8").read()) if m in adr_ids})
     ev_items = [e for e in cat["evidencias"] if FUNC_TO_FEATURE.get(e["funcionalidade"]) == fid]
     evid = []
     for e in ev_items:
@@ -77,8 +88,8 @@ for f in idx["features"]:
         else: errors.append(fid + ": grupo inexistente: " + name)
     issues = sorted(set(f["issues"]) | {e["issue"] for e in evid if e["issue"]})
     features.append({
-        "id": fid, "title": f["title"], "status": f["status"], "doc": {"path": f["page"], "url": REPO + "prototypes/docs__*" + f["page"].split("docs/",1)[1], "fonte": "índice"},
-        "sintese": synthesis("prototypes/docs__*" + f["page"].split("docs/",1)[1]),
+        "id": fid, "title": f["title"], "status": f["status"], "doc": {"path": mapped(f["page"]), "url": REPO + mapped(f["page"]), "fonte": "índice"},
+        "sintese": synthesis(mapped(f["page"])),
         "adrs": [{"id": a, "title": adr_ids[a]["title"], "status": adr_ids[a]["status"], "fonte": "documento da feature (ID)"} for a in adrs],
         "diagramas": [{"id": d, "fonte": "global (sem vínculo por feature no índice)"} for d in DIAGRAM_BLOCK],
         "issues": [{"numero": n, "url": "https://github.com/ianmaciel7/exams-app/issues/%d" % n, "fonte": "índice ou catálogo (ID)"} for n in issues],
@@ -90,11 +101,11 @@ for f in idx["features"]:
 # Checagens: todo caminho e ID referenciado precisa existir.
 for ft in features:
     for k in ("path",): pass
-    if not os.path.isfile(os.path.join(ROOT, "prototypes/docs__*", ft["doc"]["path"].split("docs/",1)[1])): errors.append(ft["id"] + ": doc ausente")
+    if not os.path.isfile(os.path.join(ROOT, ft["doc"]["path"])): errors.append(ft["id"] + ": doc ausente")
     for e in ft["evidencias"]:
         if not os.path.isfile(os.path.join(ROOT, e["caminho"])): errors.append(ft["id"] + ": evidência ausente " + e["caminho"])
 
-out = {"schema_version": 1, "diagramas": [{"id": d["id"], "title": d["title"], "page": d["page"], "mermaid": diagram_source(d["id"])} for d in idx["diagrams"]], "source": ["prototypes/features-index.json", "prototypes/catalog.json", "prototypes/board-mestre.json"],
+out = {"schema_version": 1, "diagramas": [{"id": d["id"], "title": d["title"], "page": mapped(d["page"]), "mermaid": diagram_source(d["id"])} for d in idx["diagrams"]], "source": ["prototypes/features-index.json", "prototypes/catalog.json", "prototypes/board-mestre.json"],
        "unclassified": cat["resumo"], "features": features,
        "sem_feature": sum(1 for e in cat["evidencias"] if e["funcionalidade"] not in FUNC_TO_FEATURE)}
 if errors:
