@@ -20,6 +20,10 @@ try{
       assert.equal(await page.locator('.td-tabs [role="tab"]').count(),2);
       assert.equal(await page.locator('[data-td-item]').count()>0,true,'at least one real entity');
       assert.equal(await page.locator('.td-layout-gallery').count(),1);
+      assert.ok(await page.locator('.td-layout-gallery .td-type-pill').count()>0,'gallery has semantic type pill');
+      assert.equal(await page.locator('.td-layout-gallery .td-type-pill').first().innerText(),'Órgão');
+      assert.equal(await page.locator('.td-header-tools [role="button"]').count(),0,'toolbar uses native buttons');
+      assert.equal(await page.locator('.td-header-tools button').count(),2,'search and more share an accessible pill');
       const bb=await panel.boundingBox();assert.ok(bb&&bb.x>=-2&&bb.x+bb.width<=width+2,'panel fits viewport');
       await page.screenshot({path:path.join(assets,'issue56_type_gallery_'+width+'.png'),animations:'disabled'});
       await page.locator('[data-td-layout="orgao"]').selectOption('table');
@@ -69,6 +73,7 @@ try{
         assert.equal(await page.locator('[data-td-layout="questao"]').inputValue(),'list','rich question filter preserved');
         await page.locator('[data-td-layout="questao"]').selectOption('gallery');
         await page.locator('.td-layout-gallery [data-td-item]').first().waitFor();
+        assert.ok(await page.locator('.td-layout-gallery .td-type-pill').count()>0,'question gallery retains object type chips');
         await page.screenshot({path:path.join(assets,'issue56_questions_gallery_1366.png'),animations:'disabled'});
         report.checks.push({width,steps:'existing question filter remains functional and gallery is available'});
       }
