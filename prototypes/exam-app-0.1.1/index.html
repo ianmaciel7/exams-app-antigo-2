@@ -7003,7 +7003,11 @@ if(!WS.tabs.some(t=>t.id===WS.active)) WS.active=WS.tabs[0].id;
 const RPD=()=>({open:false,w:420,active:'t1',tabs:[{id:'t1',views:[{id:uid(),type:'explorar',f:1}]}]});
 const RP=Object.assign(RPD(),(SV.rp&&Array.isArray(SV.rp.tabs))?SV.rp:{});
 RP.tabs=RP.tabs.filter(t=>t&&t.id&&Array.isArray(t.views)); RP.tabs.forEach(t=>{ t.views=t.views.filter(v=>v&&RT[v.type]).slice(0,3); });
-RP.tabs=RP.tabs.filter(t=>t.views.length); if(!RP.tabs.some(t=>t.id===RP.active)) RP.active=RP.tabs[0]?RP.tabs[0].id:null;
+RP.tabs=RP.tabs.filter(t=>t.views.length);
+if(!RP.tabs.length){
+  // A malformed/empty saved panel must not reopen without any tabs.
+  const initial=RPD(); RP.tabs=initial.tabs; RP.active=initial.active;
+}else if(!RP.tabs.some(t=>t.id===RP.active)) RP.active=RP.tabs[0].id;
 const savedRpw=+(store.get('rpw')||RP.w);
 RP.w=Math.min(Math.max(savedRpw||420,240),640);
 function curTab(){ return (typeof WS!=='undefined'&&WS.tabs&&WS.tabs.find(t=>t.id===WS.active))||(typeof WS!=='undefined'&&WS.tabs&&WS.tabs[0])||null; }
@@ -7225,7 +7229,7 @@ function vTitle(v){
   if(v.type==='graf'){
     const n=nodeOf(v.ref||curHref());
     const fallback=(spaces.find(s=>s.id===space)||{}).name||'Espaço';
-    return RT.graf.n+' · '+(n?n.title:fallback);
+    return RT.graf.n+' · '+(n?n.title:(v.ref?'Objeto indisponível':fallback));
   }
   return RT[v.type].n;
 }
