@@ -1864,6 +1864,7 @@ a.rp-link:hover{background:var(--active)}
 .rp-graph .g-e.c{stroke:var(--faint);stroke-width:1.2}
 .rp-graph .g-n circle{fill:var(--k);stroke:var(--bg);stroke-width:2}
 .rp-graph a{cursor:pointer}
+.rp-graph-cv{display:block;width:100%;aspect-ratio:300/240;max-height:320px;border-radius:8px;cursor:pointer;touch-action:none}.rp-graph-cv:focus-visible{outline:2px solid var(--ring);outline-offset:2px}.rp-graph-list{margin:8px 0 0;font-size:12px}.rp-graph-list summary{cursor:pointer;color:var(--muted);padding:4px 0}.rp-graph-list ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 10px}.rp-graph-list a{color:var(--text)}
 .rp-graph a:hover circle,.rp-graph a:focus-visible circle{stroke:var(--text)}
 .rp-graph a:focus-visible{outline:none}
 .rp-graph .g-c text{font-weight:600;font-size:10.5px}
@@ -8490,25 +8491,14 @@ function bodyGraf(v){
     const tKind=curH.replace('#/tipo/','');
     const allT=[...gr().N.values()].filter(x=>x.kind===tKind);
     if(allT.length){
-      const W=300,H=240,R=Math.max(90,allT.length*5.5),cx=R+45,cy=R+45;
-      // Fit every collection member initially; zoom/pan remains available for dense graphs.
-      const fitW=Math.max(W,2*(R*1.2+45),2*(R+45)*W/H),fitH=fitW*H/W;
-      const startX=cx-fitW/2,startY=cy-fitH/2;
-      const pos=new Map();
-      allT.forEach((m,i)=>{
-        const a=-Math.PI/2+i*2*Math.PI/Math.max(allT.length,1);
-        pos.set(m.href,[cx+R*Math.cos(a)*1.2,cy+R*Math.sin(a)]);
-      });
-      let s='<div class="rp-graph-tools" role="group" aria-label="Controles do grafo"><button type="button" data-rpg="zoom-in" aria-label="Aproximar grafo">+</button><button type="button" data-rpg="zoom-out" aria-label="Afastar grafo">−</button><button type="button" data-rpg="left" aria-label="Mover grafo para a esquerda">←</button><button type="button" data-rpg="up" aria-label="Mover grafo para cima">↑</button><button type="button" data-rpg="down" aria-label="Mover grafo para baixo">↓</button><button type="button" data-rpg="right" aria-label="Mover grafo para a direita">→</button><button type="button" data-rpg="reset" aria-label="Centralizar grafo">⌂</button></div><svg class="rp-graph rp-graph-viewport" data-rpg-viewport data-cx="'+cx+'" data-cy="'+cy+'" data-fit-w="'+fitW+'" data-fit-h="'+fitH+'" viewBox="'+startX+' '+startY+' '+fitW+' '+fitH+'" role="group" aria-label="Subgrafo da coleção '+esc(kn(tKind))+', com '+allT.length+' itens. Use os controles para navegar.">';
-      allT.forEach(m=>{ const p=pos.get(m.href); s+='<line class="g-e c" x1="'+cx+'" y1="'+cy+'" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'"/>'; });
-      allT.forEach(m=>{
-        const p=pos.get(m.href);
-        const t=m.title.length>16?m.title.slice(0,15)+'…':m.title;
-        s+='<a href="'+esc(m.href)+'" class="g-n g-spring k-'+m.kind+'" data-sx="'+cx.toFixed(1)+'" data-sy="'+cy.toFixed(1)+'" aria-label="'+esc(m.title)+'"><title>'+esc(m.title)+'</title><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="8.5"/><text x="'+p[0].toFixed(1)+'" y="'+(p[1]+19).toFixed(1)+'" text-anchor="middle">'+esc(t)+'</text></a>';
-      });
-      s+='<a href="'+esc(curH)+'" class="g-n g-c k-'+tKind+'" aria-label="Coleção '+esc(kn(tKind))+'"><title>Coleção '+esc(kn(tKind))+'</title><circle cx="'+cx+'" cy="'+cy+'" r="14"/><text x="'+cx+'" y="'+(cy+28)+'" text-anchor="middle">'+esc(kn(tKind))+'</text></a>';
-      s+='</svg>';
-      return '<div class="rp-ctx"><span>Coleção</span><b>'+esc(kn(tKind))+' ('+allT.length+' itens)</b></div>'+s+'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>';
+      const L=collectionRingLayout(allT.length), cvKey='rpcv'+(++RP_CV_SEQ);
+      RP_CV.set(cvKey,{kind:tKind,items:allT.map((m,i)=>({href:m.href,title:m.title,x:L.pts[i][0],y:L.pts[i][1]})),cx:L.cx,cy:L.cy,fit:L.fit,view:null});
+      const list=allT.map(m=>'<li><a href="'+esc(m.href)+'">'+esc(m.title)+'</a></li>').join('');
+      return '<div class="rp-ctx"><span>Coleção</span><b>'+esc(kn(tKind))+' ('+allT.length+' itens)</b></div>'
+        +'<div class="rp-graph-cv-wrap k-'+tKind+'"><div class="rp-graph-tools" role="group" aria-label="Controles do grafo"><button type="button" data-rpg="zoom-in" aria-label="Aproximar grafo">+</button><button type="button" data-rpg="zoom-out" aria-label="Afastar grafo">−</button><button type="button" data-rpg="left" aria-label="Mover grafo para a esquerda">←</button><button type="button" data-rpg="up" aria-label="Mover grafo para cima">↑</button><button type="button" data-rpg="down" aria-label="Mover grafo para baixo">↓</button><button type="button" data-rpg="right" aria-label="Mover grafo para a direita">→</button><button type="button" data-rpg="reset" aria-label="Ajustar grafo à tela">⟲</button></div>'
+        +'<canvas class="rp-graph-cv" id="'+cvKey+'" data-rpg-cv tabindex="0" role="img" aria-label="Gráfico da coleção '+esc(kn(tKind))+' com '+allT.length+' itens. Use a lista abaixo para abrir cada item."></canvas></div>'
+        +'<details class="rp-graph-list"><summary>Lista de '+allT.length+' itens</summary><ul>'+list+'</ul></details>'
+        +'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>';
     }
   }
   if(!n) return needCtx();
@@ -8556,7 +8546,7 @@ function rpPaintBody(){ rpSig=gr().sig+'|'+curHref(); const t=rpTab(), b=$('rpBo
   b.innerHTML=t.views.map((v,i)=>(i?'<div class="rp-split" role="separator" aria-orientation="horizontal" tabindex="0" data-split="'+(i-1)+'" aria-label="Redimensionar visualizações"></div>':'')+viewHtml(v,t.views.length===1)).join('');
   b.querySelectorAll('[data-vb]').forEach(el=>{ el.scrollTop=ys[el.dataset.vb]??(viewById(el.dataset.vb)||{}).scroll??0; });
   b.querySelectorAll('[data-ai-box]').forEach(el=>{ if(aiMem[el.dataset.aiBox]) aiPaint(el.dataset.aiBox); });
-  springGraphIn(b); }
+  springGraphIn(b); initCollectionCanvases(b); }
 /* Collection graph entrance: nodes spring out from the collection centre (#227).
    Pure CSS transition on a transform; skipped under reduced motion; no state is stored. */
 function springGraphIn(root){
@@ -8566,6 +8556,66 @@ function springGraphIn(root){
     a.style.transition='none'; a.style.transform='translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px)'; });
   void root.offsetWidth;
   nodes.forEach((a,i)=>{ setTimeout(()=>{ a.style.transition='transform 620ms cubic-bezier(.34,1.45,.64,1)'; a.style.transform='translate(0px,0px)'; },i*18); });
+}
+/* Collection graph on canvas (#227). Geometry is pure and shared by draw, zoom and hit-testing. */
+const RP_CV=new Map(); let RP_CV_SEQ=0;
+function collectionRingLayout(n){
+  const R=Math.max(90,n*5.5), cx=R+45, cy=R+45;
+  const fitW=Math.max(300,2*(R*1.2+45),2*(R+45)*300/240), fitH=fitW*240/300+24; /* +24: room for labels under the bottom nodes */
+  const pts=[]; for(let i=0;i<n;i++){ const a=-Math.PI/2+i*2*Math.PI/Math.max(n,1); pts.push([cx+R*Math.cos(a)*1.2,cy+R*Math.sin(a)]); }
+  return {R,cx,cy,pts,fit:{x:cx-fitW/2,y:cy-fitH/2,w:fitW,h:fitH}};
+}
+function rpCvView(d,cv){ return d.view||d.fit; }
+function rpCvToScreen(d,cv,v){
+  const W=cv.clientWidth||300, H=cv.clientHeight||240, s=Math.min(W/v.w,H/v.h), ox=(W-v.w*s)/2, oy=(H-v.h*s)/2;
+  return {s,W,H,f:(x,y)=>[(x-v.x)*s+ox,(y-v.y)*s+oy]};
+}
+function drawCollectionCanvas(cv){
+  const d=RP_CV.get(cv.id); if(!d||!cv.isConnected) return;
+  const dpr=window.devicePixelRatio||1, cssW=cv.clientWidth||300, cssH=cv.clientHeight||240;
+  if(cv.width!==Math.round(cssW*dpr)||cv.height!==Math.round(cssH*dpr)){ cv.width=Math.round(cssW*dpr); cv.height=Math.round(cssH*dpr); }
+  const ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,cssW,cssH);
+  const cs=getComputedStyle(cv), col=(n,f)=>cs.getPropertyValue(n).trim()||f;
+  const cLine=col('--faint','#888'), cNode=col('--k','#4a60c7'), cText=col('--text','#ddd'), cBg=col('--bg','#111');
+  const v=rpCvView(d,cv), T=rpCvToScreen(d,cv,v), p=d.anim==null?1:d.anim;
+  const e=p>=1?1:1+2.70158*Math.pow(p-1,3)+1.70158*Math.pow(p-1,2);
+  const [ccx,ccy]=T.f(d.cx,d.cy);
+  ctx.font='9.5px system-ui, sans-serif'; ctx.textAlign='center'; ctx.lineWidth=1.2; ctx.strokeStyle=cLine;
+  const pos=d.items.map(it=>{ const [x,y]=T.f(d.cx+(it.x-d.cx)*e,d.cy+(it.y-d.cy)*e); return [x,y]; });
+  pos.forEach(([x,y])=>{ ctx.beginPath(); ctx.moveTo(ccx,ccy); ctx.lineTo(x,y); ctx.stroke(); });
+  d.items.forEach((it,i)=>{ const [x,y]=pos[i]; ctx.beginPath(); ctx.arc(x,y,8.5,0,Math.PI*2); ctx.fillStyle=cNode; ctx.fill(); ctx.strokeStyle=cBg; ctx.lineWidth=2; ctx.stroke();
+    const t=it.title.length>16?it.title.slice(0,15)+'…':it.title; ctx.fillStyle=cText; ctx.strokeStyle=cBg; ctx.lineWidth=3; ctx.strokeText(t,x,y+19); ctx.fillText(t,x,y+19); });
+  ctx.beginPath(); ctx.arc(ccx,ccy,14,0,Math.PI*2); ctx.fillStyle=cNode; ctx.fill();
+}
+function animateCollectionCanvas(cv){
+  const d=RP_CV.get(cv.id); if(!d) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ d.anim=null; drawCollectionCanvas(cv); return; }
+  const t0=performance.now(), dur=620; d.anim=0;
+  const step=now=>{ if(!cv.isConnected) return; d.anim=Math.min(1,(now-t0)/dur); drawCollectionCanvas(cv); if(d.anim<1) requestAnimationFrame(step); else d.anim=null; };
+  requestAnimationFrame(step);
+}
+function initCollectionCanvases(root){
+  const cvs=[...root.querySelectorAll('canvas[data-rpg-cv]')];
+  [...RP_CV.keys()].forEach(k=>{ if(!document.getElementById(k)) RP_CV.delete(k); });
+  cvs.forEach(cv=>{
+    const d=RP_CV.get(cv.id); if(!d||cv._init) return; cv._init=true;
+    cv.addEventListener('click',ev=>{
+      const r=cv.getBoundingClientRect(), v=rpCvView(d,cv), T=rpCvToScreen(d,cv,v);
+      const mx=ev.clientX-r.left, my=ev.clientY-r.top; let best=null,bd=144;
+      d.items.forEach(it=>{ const [x,y]=T.f(it.x,it.y); const q=(x-mx)*(x-mx)+(y-my)*(y-my); if(q<bd){bd=q;best=it;} });
+      if(best) location.hash=best.href.replace(/^[^#]*/,'');
+    });
+    cv.addEventListener('keydown',ev=>{ const k=ev.key, step=0.2; if(k==='+'||k==='='){ev.preventDefault();rpgCanvasAct(cv,'zoom-in');} else if(k==='-'){ev.preventDefault();rpgCanvasAct(cv,'zoom-out');} else if(k==='0'){ev.preventDefault();rpgCanvasAct(cv,'reset');} else if(/^Arrow/.test(k)){ ev.preventDefault(); rpgCanvasAct(cv,{ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'}[k]); } });
+    const ro=typeof ResizeObserver==='function'?new ResizeObserver(()=>drawCollectionCanvas(cv)):null; if(ro) ro.observe(cv);
+    animateCollectionCanvas(cv);
+  });
+}
+function rpgCanvasAct(cv,kind){
+  const d=RP_CV.get(cv.id); if(!d) return; const f=d.fit, v=rpCvView(d,cv); let nv;
+  if(kind==='reset') nv=null;
+  else if(kind==='zoom-in'||kind==='zoom-out'){ const k=kind==='zoom-in'?.8:1.25, nw=Math.max(f.w*.25,Math.min(f.w*4,v.w*k)), nh=nw*f.h/f.w; nv={x:v.x+v.w/2-nw/2,y:v.y+v.h/2-nh/2,w:nw,h:nh}; }
+  else { const st=v.w*.2, dx=kind==='left'?-st:kind==='right'?st:0, dy=kind==='up'?-st:kind==='down'?st:0; nv={x:v.x+dx,y:v.y+dy,w:v.w,h:v.h}; }
+  d.view=nv; drawCollectionCanvas(cv);
 }
 function rpPaintAll(){ gr(); rpPaintTabs(); rpPaintBody(); }
 let rpSig=null;
@@ -8681,7 +8731,8 @@ $('rpTabs').addEventListener('dblclick',e=>{ if(e.target.closest('button')) retu
 $('rpTabs').addEventListener('auxclick',e=>{ if(e.button!==1) return; const t=e.target.closest('[data-rp-tab]'); if(t){ e.preventDefault(); rpCloseTab(t.dataset.rpTab); } });
 $('rpTabs').addEventListener('contextmenu',e=>{ const t=e.target.closest('[data-rp-tab]'); if(!t) return; e.preventDefault(); e.stopImmediatePropagation(); const id=t.dataset.rpTab, one=RP.tabs.length<=1; miniMenu(t,[{t:'Empilhar ferramenta',ic:WI.stack,off:(RP.tabs.find(x=>x.id===id)?.views.length||0)>=3,fn:()=>toolMenu($('rpAdd'),k=>{rpSelect(id);rpStack(k);})},{t:'Fechar aba',ic:WI.x,fn:()=>rpCloseTab(id)},{t:'Fechar outras abas',ic:WI.x,off:one,fn:()=>rpCloseOthers(id)}]); });
 $('rpBody').addEventListener('click',e=>{ const T=e.target;
-  let graphBtn=T.closest('[data-rpg]'); if(graphBtn){ const svg=graphBtn.closest('.rp-vb')?.querySelector('[data-rpg-viewport]'); if(!svg)return; const v=svg.viewBox.baseVal, step=v.width*.2, kind=graphBtn.dataset.rpg; if(kind==='reset'){ const cx=+svg.dataset.cx,cy=+svg.dataset.cy,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240; svg.setAttribute('viewBox',(cx-fw/2)+' '+(cy-fh/2)+' '+fw+' '+fh); } else if(kind==='zoom-in'||kind==='zoom-out'){ const f=kind==='zoom-in'?.8:1.25,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240,nw=Math.max(80,Math.min(Math.max(2400,fw*2),v.width*f)),nh=nw*fh/fw,cx=v.x+v.width/2,cy=v.y+v.height/2; svg.setAttribute('viewBox',(cx-nw/2)+' '+(cy-nh/2)+' '+nw+' '+nh); } else { const dx=kind==='left'?-step:kind==='right'?step:0,dy=kind==='up'?-step:kind==='down'?step:0; svg.setAttribute('viewBox',(v.x+dx)+' '+(v.y+dy)+' '+v.width+' '+v.height); } return; }
+  let graphBtn=T.closest('[data-rpg]'); if(graphBtn&&graphBtn.closest('.rp-vb')?.querySelector('canvas[data-rpg-cv]')){ rpgCanvasAct(graphBtn.closest('.rp-vb').querySelector('canvas[data-rpg-cv]'),graphBtn.dataset.rpg); return; }
+  if(graphBtn){ const svg=graphBtn.closest('.rp-vb')?.querySelector('[data-rpg-viewport]'); if(!svg)return; const v=svg.viewBox.baseVal, step=v.width*.2, kind=graphBtn.dataset.rpg; if(kind==='reset'){ const cx=+svg.dataset.cx,cy=+svg.dataset.cy,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240; svg.setAttribute('viewBox',(cx-fw/2)+' '+(cy-fh/2)+' '+fw+' '+fh); } else if(kind==='zoom-in'||kind==='zoom-out'){ const f=kind==='zoom-in'?.8:1.25,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240,nw=Math.max(80,Math.min(Math.max(2400,fw*2),v.width*f)),nh=nw*fh/fw,cx=v.x+v.width/2,cy=v.y+v.height/2; svg.setAttribute('viewBox',(cx-nw/2)+' '+(cy-nh/2)+' '+nw+' '+nh); } else { const dx=kind==='left'?-step:kind==='right'?step:0,dy=kind==='up'?-step:kind==='down'?step:0; svg.setAttribute('viewBox',(v.x+dx)+' '+(v.y+dy)+' '+v.width+' '+v.height); } return; }
   let b=T.closest('[data-vforward]');if(b){const v=viewById(b.dataset.vforward);if(v?.future?.length){v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]);Object.assign(v,v.future.pop());wsSave();rpPaintAll();}return;}
   b=T.closest('[data-vmove]');if(b){const t=rpTab(),v=viewById(b.dataset.vmove),i=t.views.indexOf(v);miniMenu(b,[{t:'Mover para cima',off:i===0,fn:()=>{t.views.splice(i,1);t.views.splice(i-1,0,v);wsSave();rpPaintAll();}},{t:'Mover para baixo',off:i===t.views.length-1,fn:()=>{t.views.splice(i,1);t.views.splice(i+1,0,v);wsSave();rpPaintAll();}}]);return;}
   b=T.closest('[data-rp-focus-search]'); if(b){ const details=b.closest('.rp-vb')?.querySelector('[data-rp-find]'); if(details){ details.open=true; details.querySelector('[data-ex-q]')?.focus(); } return; }

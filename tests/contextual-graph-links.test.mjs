@@ -9,7 +9,8 @@ const slice=(a,b)=>{
   assert.ok(i>=0&&j>i,'script source anchors exist: '+a);
   return html.slice(i,j);
 };
-const src=slice('function bodyGraf(v){','function bodyObj(v){')+
+const src=slice('const RP_CV=new Map()','function rpCvView(')+
+  slice('function bodyGraf(v){','function bodyObj(v){')+
   '\n'+slice('function rpFromView(v,h)','const toolMenu=')+
   '\n({bodyGraf,rpFromView})';
 
@@ -83,25 +84,20 @@ function collectionGraph(count){
   return runInNewContext(src,env).bodyGraf({id:'collection'});
 }
 
-test('contextual collection graph initially fits all nodes, including dense collections (#54)',()=>{
+test('contextual collection graph (canvas) initially fits all nodes, including dense collections (#54, #227)',()=>{
+  const layoutSrc=html.slice(html.indexOf('function collectionRingLayout('),html.indexOf('function rpCvView('));
+  const layout=runInNewContext(layoutSrc+'\ncollectionRingLayout');
   for(const count of [1,3,50,120]){
     const graph=collectionGraph(count);
-    const svg=graph.match(/<svg class="rp-graph rp-graph-viewport"[^>]+>/)?.[0];
-    assert.ok(svg,'collection must have viewport SVG');
-    const values=svg.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
-    assert.ok(values&&values.length===4&&values.every(Number.isFinite),'numeric viewBox');
-    const [x0,y0,width,height]=values;
-    assert.ok(width>=300&&height>=240,'initial frame at least baseline dimensions');
-    assert.ok(Math.abs(width/height-300/240)<0.00001,'preserve ratio');
-    assert.ok(svg.includes('data-fit-w="'+width+'"')&&svg.includes('data-fit-h="'+height+'"'),'persist fitted bounds for Reset');
-    const circles=[...graph.matchAll(/<circle cx="(-?[\d.]+)" cy="(-?[\d.]+)" r="8\.5"/g)];
-    assert.equal(circles.length,count,'every collection item rendered');
-    for(const hit of circles){
-      const [cx,cy]=[Number(hit[1]),Number(hit[2])];
-      assert.ok(cx-8.5>=x0&&cx+8.5<=x0+width,'node visible horizontally');
-      assert.ok(cy-8.5>=y0&&cy+8.5<=y0+height,'node visible vertically');
+    assert.match(graph,/<canvas class="rp-graph-cv" id="rpcv\d+" data-rpg-cv/,'collection renders on canvas');
+    assert.equal((graph.match(/<li><a /g)||[]).length,count,'every collection item is listed for keyboard and screen-reader users');
+    const L=layout(count), {x,y,w,h}=L.fit;
+    assert.ok(w>=300&&h>=240,'initial frame at least baseline dimensions');
+    for(const [px,py] of L.pts){
+      assert.ok(px-8.5>=x&&px+8.5<=x+w,'node visible horizontally');
+      assert.ok(py-8.5>=y&&py+8.5<=y+h,'node visible vertically');
     }
-    if(count>=50)assert.ok(width>300,'dense graph must enlarge initial fit');
+    if(count>=50)assert.ok(w>300,'dense graph must enlarge initial fit');
   }
 });
 
