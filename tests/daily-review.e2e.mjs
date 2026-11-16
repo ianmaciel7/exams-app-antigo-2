@@ -43,6 +43,16 @@ try{
       await page.locator('[data-srs-reveal]').first().click();
       assert.match(await page.locator('.srs-answer').first().innerText(),/princípio da publicidade/);
       await page.screenshot({path:path.join(assets,'issue82_qa_revealed_'+width+'.png'),animations:'disabled'});
+      await page.locator('[data-srs-feedback]').first().click();
+      const modal=page.locator('#dlg .dlg-box');
+      await modal.waitFor();
+      assert.match(await modal.innerText(),/Calibrar intervalo de revisão/);
+      assert.equal(await modal.locator('select').count(),1);
+      assert.equal(await modal.locator('select option').count(),4);
+      await page.screenshot({path:path.join(assets,'issue82_feedback_dialog_'+width+'.png'),animations:'disabled'});
+      await modal.getByRole('button',{name:'Cancelar'}).click();
+      assert.equal(await modal.count(),0,'cancel does not modify the current card');
+      assert.ok(await page.locator('[data-srs-grade="soon"]').count()>0,'card remains gradable');
       await page.locator('[data-srs-grade="soon"]').first().click();
       assert.ok(await page.getByText('Tudo em dia').count()>=1,'correct grading schedules the card');
       assert.equal(await page.locator('.srs-heat-section').count(),2,'real activity has two 91-day heatmaps');
@@ -68,7 +78,12 @@ try{
       await page.locator('[data-srs-speak]').first().click();
       assert.match(await page.evaluate(()=>window.__spoken.at(-1)),/lacuna/);
       await page.screenshot({path:path.join(assets,'issue82_cloze_'+width+'.png'),animations:'disabled'});
-      evidence.checks.push({width,case:'QA highlight-to-answer, TTS privacy, scheduling/reload, recency zero and cloze'});
+      await page.locator('[data-srs-reveal]').first().click();
+      await page.locator('[data-srs-feedback]').first().click();
+      await page.locator('#dlg select').selectOption('later');
+      await page.locator('#dlg [data-x="1"]').click();
+      assert.ok(await page.getByText('Tudo em dia').count()>=1,'feedback grade schedules active cloze');
+      evidence.checks.push({width,case:'QA, TTS privacy, scheduling/reload, recency zero, cloze and modal feedback'});
 
       await page.goto(base+'#/questoes',{waitUntil:'domcontentloaded'});
       const link=page.locator('a[href^="#/questao/"]').first();
