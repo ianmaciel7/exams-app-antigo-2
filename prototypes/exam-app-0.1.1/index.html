@@ -1516,6 +1516,16 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .td-embed-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--side);border:1px solid var(--line);border-radius:8px;padding:10px}
 .td-embed-item a{display:flex;align-items:center;gap:8px;min-width:0;text-decoration:none;color:var(--text)}
 .td-embed-item button{flex:none;border:1px solid var(--line);border-radius:7px;padding:7px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:11px}
+/* Incorporações vivas de questões e anotações em objetos (issue #84) */
+.embed-card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;background:var(--bg-base)}
+.embed-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}
+.embed-head a{color:var(--accent)}
+.embed-head button{border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:12px}
+.embed-add{display:grid;gap:8px;margin-top:12px}
+.embed-add fieldset{border:0;padding:0;margin:0;display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.embed-add input[type=search]{width:100%;box-sizing:border-box;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg-base);color:var(--text);font:inherit}
+.embed-add .embed-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.embed-empty{font-size:13px;color:var(--muted);margin:4px 0}
 .td-overview{display:grid;gap:24px}.td-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .td-section-head h2{font-size:14px;font-weight:650}.td-section-head button{border:1px solid var(--line);border-radius:7px;background:var(--side);padding:6px 8px;color:var(--text);cursor:pointer;font-size:12px}
 .td-recents{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:9px}
@@ -5180,7 +5190,59 @@ function opConnectionFooter(iid){
     '<div class="op-link-panel" role="tabpanel" id="op-link-panel-'+key+'-related" aria-labelledby="op-link-tab-'+key+'-related" '+
     (selection==='related'?'':'hidden')+'>'+list(related,'Ainda não há conteúdo relacionado em dois saltos.')+'</div></section>';
 }
+/* ---- Incorporações vivas (issue #84): questões e anotações embutidas em objetos ---- */
+const EMBED_HOST_RE=/^(concurso|edicao|cargo|orgao|banca|disciplina|custom-object):/;
+const embedKey=host=>'embeds:'+space+':'+host;
+const embedList=host=>{ const v=store.get(embedKey(host)); return Array.isArray(v)?v.filter(x=>x&&(x.k==='q'||x.k==='n')&&typeof x.id==='string'):[]; };
+const embedSave=(host,list)=>store.set(embedKey(host),list);
+function embedQuestionCard(q,rm){
+  const r=qSel(q), selected=!r?(qPend[q.id]||null):null;
+  const alts=Object.entries(q.alternativas||{}).map(([l,v])=>'<button type="button" class="sc-alt'+(r?(l===q.gabarito?' good':(l===r?' bad':'')):(l===selected?' picked':''))+'" data-qo-ans="'+esc(q.id)+'|'+esc(l)+'" aria-pressed="'+(!r&&l===selected)+'"'+(r?' disabled':'')+'><kbd>'+esc(l)+'</kbd><span>'+esc(v)+'</span></button>').join('');
+  return '<article class="embed-card qo" aria-label="Questão incorporada">'+
+    '<header class="embed-head"><span>Questão · '+esc(qTitle(q))+'</span><span><a href="#/questao/'+encodeURIComponent(q.id)+'">Abrir</a> '+rm+'</span></header>'+
+    '<p class="sc-stm">'+esc(q.enunciado||'')+'</p><div class="qo-alts">'+alts+'</div>'+
+    (!r?'<div class="qo-confirm"><button type="button" class="op-btn pri" data-qo-submit="'+esc(q.id)+'"'+(!selected?' disabled':'')+'>Responder</button></div>':
+      '<p class="s-note">'+(r===q.gabarito?'Resposta correta!':'Resposta incorreta. Gabarito: '+esc(q.gabarito))+'</p>')+
+    '</article>';
+}
+function embedNoteCard(q,rm){
+  const note=qFlag(q.id);
+  return '<article class="embed-card" aria-label="Anotação incorporada">'+
+    '<header class="embed-head"><span>Anotação · '+esc(qTitle(q))+'</span><span><a href="#/nota/'+encodeURIComponent(q.id)+'">Abrir</a> '+rm+'</span></header>'+
+    '<div class="qped-preview">'+(note.noteHtml?qPedSafeHtml(note.noteHtml):qPedPreview(note.note||''))+'</div></article>';
+}
+function embedSection(host){
+  const items=embedList(host), rows=[];
+  items.forEach(it=>{
+    const q=qObjs().find(x=>x.id===it.id); if(!q) return;
+    if(it.k==='n'&&!(qFlag(q.id).note||qFlag(q.id).noteHtml)) return;
+    const rm='<button type="button" data-embed-remove="'+esc(host)+'|'+esc(it.k)+'|'+esc(it.id)+'" aria-label="Remover incorporação de '+esc(qTitle(q))+'">Remover</button>';
+    rows.push(it.k==='n'?embedNoteCard(q,rm):embedQuestionCard(q,rm));
+  });
+  const form='<form class="embed-add" data-embed-form="'+esc(host)+'">'+
+    '<fieldset><legend>Incorporar como</legend>'+
+    '<label><input type="radio" name="k" value="q" checked> Questão ao vivo</label>'+
+    '<label><input type="radio" name="k" value="n"> Anotação da questão</label></fieldset>'+
+    '<label for="embedIn-'+esc(host.replace(/[^a-z0-9]/gi,'-'))+'">Número ou enunciado da questão</label>'+
+    '<div class="embed-row"><input type="search" id="embedIn-'+esc(host.replace(/[^a-z0-9]/gi,'-'))+'" name="q" autocomplete="off" placeholder="Ex.: 12 ou palavra do enunciado">'+
+    '<button type="submit" class="op-btn">Incorporar</button></div></form>';
+  return opSec('Incorporações',(rows.length?rows.join(''):'<p class="embed-empty">Nenhuma questão ou anotação incorporada. As incorporações ficam vivas: você pode responder a questão aqui.</p>')+form,{count:rows.length});
+}
+view.addEventListener('submit',e=>{
+  const f=e.target.closest&&e.target.closest('[data-embed-form]'); if(!f) return;
+  e.preventDefault();
+  const host=f.dataset.embedForm, text=String((f.querySelector('input[name=q]')||{}).value||'').trim().toLowerCase();
+  const kind=((f.querySelector('input[name=k]:checked')||{}).value==='n')?'n':'q';
+  if(!text){ toast('Digite o número ou um trecho do enunciado.'); return; }
+  const hit=qObjs().find(x=>String(x.n)===text||String(x.id).toLowerCase()===text||String(qTitle(x)).toLowerCase().includes(text)||String(x.enunciado||'').toLowerCase().includes(text));
+  if(!hit){ toast('Nenhuma questão encontrada neste espaço.'); return; }
+  if(kind==='n'&&!(qFlag(hit.id).note||qFlag(hit.id).noteHtml)){ toast('Esta questão ainda não tem anotação.'); return; }
+  const list=embedList(host);
+  if(list.some(x=>x.k===kind&&x.id===hit.id)){ toast('Já incorporado neste objeto.'); return; }
+  list.push({k:kind,id:hit.id}); embedSave(host,list); route(true);
+});
 function opPage(o){
+  if(o.iid&&EMBED_HOST_RE.test(o.iid)&&!o.tab) o=Object.assign({},o,{body:(o.body||'')+embedSection(o.iid)});
   const cr=(o.crumb||[]).filter(([t,h])=>!(t==='Espaço'&&h==='#/espaco'));
   const collectionType=String(o.iid||'').split(':')[0],hasCollections=/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')&&!o.tab;
   const collectionHref='#/'+collectionType+'/'+String(o.iid||'').slice(collectionType.length+1);
@@ -7335,6 +7397,7 @@ view.addEventListener('click',e=>{
    return;
  }
  const rr0=()=>showObjs(location.hash.slice(1)); const rrKeep=()=>{ const y=view.scrollTop; rr0(); view.scrollTop=y; };
+ const er=e.target.closest('[data-embed-remove]'); if(er){ const [host,k,id]=er.dataset.embedRemove.split('|'); embedSave(host,embedList(host).filter(x=>!(x.k===k&&x.id===id))); route(true); return; }
  const qa=e.target.closest('[data-qo-ans]'); if(qa){ const [id,l]=qa.dataset.qoAns.split('|'); const q=qObjs().find(x=>x.id===id); if(q&&!qSel(q)){
    qPend[id]=l; const card=qa.closest('.qo');
    card?.querySelectorAll('[data-qo-ans]').forEach(b=>{ const picked=b.dataset.qoAns.endsWith('|'+l);b.classList.toggle('picked',picked);b.setAttribute('aria-pressed',String(picked)); });
