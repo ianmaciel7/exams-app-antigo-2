@@ -5352,7 +5352,29 @@ view.addEventListener('keydown',e=>{
   e.preventDefault();options[next]?.click();
 });
 view.addEventListener('click',async e=>{
-  let el=e.target.closest('[data-op-footer]');
+  let el=e.target.closest('[data-td-move]');
+  if(el){
+    const id=el.dataset.tdMove,target=el.dataset.tdTarget;
+    if(!TD_TRIAGE.some(([key])=>key===target&&key!=='all'))return;
+    store.set(tdReaderKey(id),target);showObjs('/tipo/pdf');return;
+  }
+  el=e.target.closest('[data-td-triage]');
+  if(el){
+    const [type,target]=el.dataset.tdTriage.split('|');
+    if(!tdIsReaderType(type)||!TD_TRIAGE.some(([key])=>key===target))return;
+    tdUpdate(type,{triage:target,tab:'all'});showObjs('/tipo/'+type);return;
+  }
+  el=e.target.closest('[data-td-tags]');
+  if(el){
+    const id=el.dataset.tdTags,key='object-meta:'+space+':pdf:'+id;
+    const existing=store.get(key)||{};
+    const v=await formDialog({title:'Etiquetas do documento',ok:'Salvar',fields:[
+      {id:'tags',label:'Etiquetas (separadas por vírgula)',value:(Array.isArray(existing.tags)?existing.tags:[]).join(', ')}]});
+    if(!v)return;
+    const tags=[...new Set(String(v.tags||'').split(/[,;\n]/).map(x=>x.trim().slice(0,40)).filter(Boolean))].slice(0,8);
+    store.set(key,{...existing,tags});showObjs('/tipo/pdf');return;
+  }
+  el=e.target.closest('[data-op-footer]');
   if(el){
     const [iid,tab]=el.dataset.opFooter.split('|');
     if(!['back','related'].includes(tab))return;
@@ -5464,6 +5486,13 @@ view.addEventListener('click',async e=>{
     const relative=el.dataset.tdCopy,link=location.origin+location.pathname+relative;
     try{await navigator.clipboard.writeText(link);toast('Link copiado');}catch(_){toast('Não foi possível copiar o link');}return;
   }
+});
+view.addEventListener('keydown',e=>{
+  if(!['e','l'].includes(e.key.toLowerCase())||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||e.isComposing)return;
+  const row=e.target.closest?.('.td-reader-row');
+  if(!row||e.target!==row)return; // Never hijack typing, links, or button keypresses.
+  e.preventDefault();store.set(tdReaderKey(row.dataset.tdReaderId),e.key.toLowerCase()==='e'?'archive':'later');
+  showObjs('/tipo/pdf');
 });
 view.addEventListener('change',e=>{
   const l=e.target.closest('[data-td-layout]'),o=e.target.closest('[data-td-sort]');
