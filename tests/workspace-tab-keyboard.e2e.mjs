@@ -43,19 +43,25 @@ try {
       await objectLink.waitFor({ timeout: 12000 });
       await objectLink.click({ modifiers: ['Control'] });
       assert.ok(await page.locator('#wsTabList [data-tab]').count() >= 2, 'Ctrl+Click opens a second workspace tab');
-      const close = page.locator('#wsTabList [data-tab-close]').first();
+      const currentTab = page.locator('#wsTabList [data-tab].on');
+      await currentTab.hover();
+      const close = currentTab.locator('[data-tab-close]');
       await close.waitFor({ timeout: 12000 });
-      const closeBox = await close.boundingBox();
+      const closeBox = await close.evaluate(el => { const r = el.getBoundingClientRect(); return { width: r.width, height: r.height }; });
       assert.ok(closeBox && closeBox.width >= 24 && closeBox.height >= 24,
         'main tab close target must be at least 24x24: ' + JSON.stringify(closeBox));
-      const pin = page.locator('#wsTabList [data-tab-pin]').first();
-      const pinBox = await pin.boundingBox();
-      if (pinBox) assert.ok(pinBox.width >= 24 && pinBox.height >= 24, 'visible pin target at least 24x24');
+      const pin = currentTab.locator('[data-tab-pin]');
+      if (await pin.isVisible()) {
+        const pinBox = await pin.evaluate(el => { const r = el.getBoundingClientRect(); return { width: r.width, height: r.height }; });
+        assert.ok(pinBox.width >= 24 && pinBox.height >= 24, 'visible pin target at least 24x24');
+      }
 
       if (await page.locator('#rpToggle').isVisible()) await page.locator('#rpToggle').click();
-      const sideClose = page.locator('#rpTabs [data-rp-tabx]').first();
+      const sideTab = page.locator('#rpTabs [data-rp-tab].on');
+      await sideTab.hover();
+      const sideClose = sideTab.locator('[data-rp-tabx]');
       await sideClose.waitFor({ timeout: 12000 });
-      const sideBox = await sideClose.boundingBox();
+      const sideBox = await sideClose.evaluate(el => { const r = el.getBoundingClientRect(); return { width: r.width, height: r.height }; });
       assert.ok(sideBox && sideBox.width >= 24 && sideBox.height >= 24,
         'contextual tab close target must be at least 24x24: ' + JSON.stringify(sideBox));
       await page.screenshot({ path: path.join(assets, 'issue55_keyboard_targets_' + width + '.png'), animations: 'disabled' });
