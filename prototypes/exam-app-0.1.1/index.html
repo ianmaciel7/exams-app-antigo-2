@@ -8659,7 +8659,7 @@ $('rpBody').addEventListener('pointerdown',e=>{ const sp=e.target.closest('[data
   rz.addEventListener('dblclick',()=>{ setW(420); wsSave(); }); }
 
 /* ---- Gráfico do espaço (página inteira, barra lateral) ---- */
-let GV=null; const GVK={}; const GV_ICON_CACHE={};
+let GV=null; const GVK={};
 let GV_HIDE_HUBS=false;
 const graphNodeVisible=(degree,kindEnabled,hideHubs)=>kindEnabled&&(!hideHubs||degree<=40);
 function stopGV(){ if(!GV) return;
@@ -8701,9 +8701,6 @@ function buildGraph(seq){
    +'<div class="gv-info" aria-live="polite">'+list.length+' objetos · '+edgesN+' relações'+(loading?' · carregando questões…':'')+'</div></div><div class="gv-tip" id="gvTip" hidden></div></div>';
   wsLoadingEnd('success',{seq});
   const wrap=$('gv'), cv=$('gvc'), ctx=cv.getContext('2d');
-  /* Kind icons are rasterised once per kind and colour from the shared WI/TYI SVG set (#227). */
-  const kindIconImg=(kind,color)=>{ const key=kind+'|'+color; GV_ICON_CACHE[key]=GV_ICON_CACHE[key]||(()=>{ const im=new Image(); const svg=(TYI()[kind]||'').replace(/currentColor/g,color).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace(/ width="16" height="16"/,'');
-      im.onload=()=>{ if(GV===st) invalidate(); }; im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg); return im; })(); return GV_ICON_CACHE[key]; };
   const nodes=list.map((n,i)=>{ const a=i*2.399963, r=16*Math.sqrt(i+1),deg=n.out.length+n.inn.length; return {n,x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,deg,on:graphNodeVisible(deg,GVK[n.kind]!==false,GV_HIDE_HUBS)}; });
   const ix=new Map(nodes.map((o,i)=>[o.n.href,i])), edges=[]; nodes.forEach((o,i)=>o.n.out.forEach(([h])=>{ const j=ix.get(h); if(j!==undefined) edges.push([i,j]); }));
   /* Pairwise repulsion is O(N²): fall back to a static spiral for dense graphs. */
@@ -8754,10 +8751,7 @@ function buildGraph(seq){
     const hv=st.hover, hn=hv>=0?new Set([hv].concat(nodes[hv].n.out.concat(nodes[hv].n.inn).map(x=>ix.get(x[0])))):null, mt=st.match;
     const lit=i=>hn?hn.has(i):(mt?mt.has(i):true);
     ctx.lineWidth=1/st.k; edges.forEach(([i,j])=>{ const p=nodes[i],q=nodes[j]; if(!p.on||!q.on) return; const on=hn?(i===hv||j===hv):true; ctx.globalAlpha=hn?(on?.85:.08):(mt?(mt.has(i)&&mt.has(j)?.78:.1):(weak(p,q)?.14:.42)); ctx.strokeStyle=on&&hn?dark:dark; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); });
-    nodes.forEach((o,i)=>{ if(!o.on) return; const on=lit(i); ctx.globalAlpha=on?1:.14; ctx.fillStyle=col(o.n); ctx.beginPath(); ctx.arc(o.x,o.y,(rad(o)+(i===hv?2:0))/Math.min(1,st.k*1.5),0,6.2832); ctx.fill(); ctx.lineWidth=1.5/st.k; ctx.strokeStyle=bg; ctx.stroke();
-      /* Vector kind icon inside the badge once it is large enough on screen (#227). */
-      const r=(rad(o)+(i===hv?2:0))/Math.min(1,st.k*1.5), ic=kindIconImg(o.n.kind,bg);
-      if(ic&&ic.complete&&ic.naturalWidth&&r*st.k>=7){ const sz=r*1.25; ctx.drawImage(ic,o.x-sz/2,o.y-sz/2,sz,sz); } });
+    nodes.forEach((o,i)=>{ if(!o.on) return; const on=lit(i); ctx.globalAlpha=on?1:.14; ctx.fillStyle=col(o.n); ctx.beginPath(); ctx.arc(o.x,o.y,(rad(o)+(i===hv?2:0))/Math.min(1,st.k*1.5),0,6.2832); ctx.fill(); ctx.lineWidth=1.5/st.k; ctx.strokeStyle=bg; ctx.stroke(); });
     ctx.textAlign='center'; ctx.textBaseline='top'; ctx.font='500 '+(11.5/st.k)+'px Inter,system-ui,sans-serif';
     const placed=[]; const labelNodes=nodes.map((o,i)=>({o,i,priority:(hn&&hn.has(i)?1e6:0)+(mt&&mt.has(i)?5e5:0)+o.deg})).filter(x=>{ const i=x.i,o=x.o; return o.on&&((hn&&hn.has(i))||(mt&&mt.has(i))||(!hn&&!mt&&(o.deg>=7||(o.n.kind!=='questao'?st.k>.9:st.k>2.2)))); }).sort((a,b)=>b.priority-a.priority);
     labelNodes.forEach(({o,i})=>{ const t=o.n.title.length>34?o.n.title.slice(0,33)+'…':o.n.title, x=o.x, y=o.y+rad(o)+3/st.k, w=ctx.measureText(t).width, h=12/st.k, box={l:x-w/2-3/st.k,r:x+w/2+3/st.k,t:y-2/st.k,b:y+h+2/st.k}; if(placed.some(p=>box.l<p.r&&box.r>p.l&&box.t<p.b&&box.b>p.t)) return; placed.push(box); ctx.globalAlpha=1; ctx.lineWidth=3/st.k; ctx.strokeStyle=bg; ctx.strokeText(t,x,y); ctx.fillStyle=dark; ctx.fillText(t,x,y); });
