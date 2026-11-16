@@ -51,7 +51,7 @@ test('Context guards refuse leaking pinned objects from another space',()=>{
   assert.match(h.bodyInternos({id:'v1'}),/Seguir contexto|select context/);
 });
 test('Search is registered as a full contextual tool in the panel and plus menu',()=>{
-  assert.match(html,/const toolMenu=.*'search'\.map\(k=>/);
+  assert.ok(html.includes("'ia','search'].map(k=>"),'Search is available in the plus menu');
   assert.match(html,/const BODY=\{explorar:bodyExplorar,search:bodySearch,back:bodyBack,internos:bodyInternos/);
   assert.match(html,/data-rp-new="rel"/);
   const search=harness().bodySearch({id:'s1',q:'Dataprev'});
