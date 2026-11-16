@@ -7455,7 +7455,7 @@ function rpTabMatches(t,type,ref){
 }
 function rpAddTab(type,ref){
   const found=RP.tabs.find(t=>rpTabMatches(t,type,ref));
-  if(found){ rpSelect(found.id); if(!rpVisible()) openRP(true); return; }
+  if(found){ rpSelect(found.id); if(!rpVisible()) openRP(true); if(type==='search') requestAnimationFrame(()=>$('rpBody').querySelector('[data-ex-q]')?.focus()); return; }
   const first=RP.tabs.length===1?RP.tabs[0]:null;
   const initial=first&&first.views.length===1&&first.views[0].type==='explorar'&&
     !first.views[0].q&&!first.views[0].kind&&!first.views[0].ref&&type!=='explorar'&&
@@ -7468,6 +7468,7 @@ function rpAddTab(type,ref){
     RP.tabs.push(t); RP.active=t.id;
   }
   wsSave(); if(!rpVisible()) openRP(true); else rpPaintAll();
+  if(type==='search') requestAnimationFrame(()=>$('rpBody').querySelector('[data-ex-q]')?.focus());
 }
 function rpStack(type,ref){ const t=rpTab(); if(!t){ rpAddTab(type,ref); return; } if(t.views.length>=3){ toast('Cada aba do painel aceita até 3 visualizações empilhadas'); return; } t.views.forEach(v=>{ v.f=1; }); const v={id:uid(),type,f:1,ref:ref||undefined};if(type==='back')t.views.unshift(v);else t.views.push(v); wsSave(); rpPaintAll(); }
 function rpCloseView(id){
