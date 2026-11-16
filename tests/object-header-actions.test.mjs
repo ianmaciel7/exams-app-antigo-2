@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
-const start=html.indexOf('function opPage(o){');
+const start=html.indexOf('function opFooterRelations(iid){');
 const end=html.indexOf('\nfunction opStats(){',start);
 assert.ok(start>=0&&end>start,'object page source found');
 
@@ -14,7 +14,8 @@ function harness(space='test'){
     space,store:{get:k=>values.get(k),set:(k,v)=>values.set(k,v)},
     tdCollections:()=>[],tdCollectionHrefs:()=>[],
     esc:s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;'),
-    opIcon:()=>'<span class="op-icon"></span>',opNav:()=>'',opProps:()=>'',studyOk:()=>false,OV:()=>({})
+    opIcon:()=>'<span class="op-icon"></span>',opNav:()=>'',opProps:()=>'',studyOk:()=>false,OV:()=>({}),
+    nodeOf:()=>null,gr:()=>({N:new Map()}),nbrs:()=>[],kn:k=>k
   };
   const opPage=runInNewContext(html.slice(start,end)+'\nopPage',env);
   return {opPage,values};
