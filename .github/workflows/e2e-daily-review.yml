@@ -8,6 +8,7 @@ on:
       - 'tests/srs-activity.test.mjs'
       - 'tests/srs-feedback-dialog.test.mjs'
       - 'tests/srs-frequency-tuning.test.mjs'
+      - 'tests/srs-nondestructive-edit.test.mjs'
       - 'tests/daily-review.e2e.mjs'
       - '.github/workflows/e2e-daily-review.yml'
   push:
@@ -30,7 +31,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test domain helpers and route contracts
-        run: node --test tests/ux-route-inventory.test.mjs tests/srs-activity.test.mjs tests/srs-feedback-dialog.test.mjs tests/srs-frequency-tuning.test.mjs
+        run: node --test tests/ux-route-inventory.test.mjs tests/srs-activity.test.mjs tests/srs-feedback-dialog.test.mjs tests/srs-frequency-tuning.test.mjs tests/srs-nondestructive-edit.test.mjs
       - name: Install Chromium
         run: |
           npm install --no-save playwright
