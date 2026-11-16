@@ -173,6 +173,9 @@ def referencias_textuais(path, corpus):
 IMG_REF = re.compile(r'([\w./~-]*?[\w-]+\.(?:png|jpe?g|gif|webp|svg))')
 
 
+TRACKED = set(git('ls-files').splitlines())
+
+
 def referencias_quebradas(corpus):
     """Imagens citadas em texto/código que não existem no repositório (exclui URLs externas)."""
     quebradas = []
@@ -183,9 +186,10 @@ def referencias_quebradas(corpus):
             if len(ref) > 120 or ref.startswith('data:') or '//' in ref or ref.startswith('.'):
                 continue
             base = os.path.dirname(os.path.join(ROOT, rel))
-            candidatos = [os.path.join(base, ref), os.path.join(ROOT, ref),
-                          os.path.join(ROOT, 'prototypes/board-exam-app/assets', os.path.basename(ref))]
-            if not any(os.path.exists(c) for c in candidatos):
+            candidatos = [os.path.relpath(os.path.join(base, ref), ROOT), ref,
+                          'prototypes/board-exam-app/assets/' + os.path.basename(ref)]
+            # Só arquivos rastreados: o resultado não pode depender de arquivos locais ignorados.
+            if not any(c.replace(os.sep, '/') in TRACKED for c in candidatos):
                 quebradas.append({'arquivo': rel, 'referencia': ref})
     return quebradas
 
