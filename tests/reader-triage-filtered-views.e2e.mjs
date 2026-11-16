@@ -23,6 +23,7 @@ try{
       const count=await rows.count();assert.ok(count>2,'actual PDF documents are shown');
       assert.equal(await page.locator('[data-td-layout="pdf"]').inputValue(),'triage');
       assert.equal(await page.locator('[data-td-triage^="pdf|"]').count(),5);
+      assert.equal(await page.locator('#nav [data-nav-reader-stage]').count(),5,'sidebar exposes four reader states plus All');
       assert.ok((await rows.first().innerText()).includes('Progresso não registrado'));
       assert.equal(await page.locator('a[href^="#/"]:visible').first().count(),1);
       await page.screenshot({path:path.join(assets,'issue81_inbox_'+width+'.png'),animations:'disabled'});
@@ -57,6 +58,7 @@ try{
       await page.locator('#dlg [data-x="1"]').click();
       await page.locator('[data-td-apply-query^="pdf|"]').filter({hasText:'Editais para ler depois'}).click();
       assert.equal(await page.locator('.td-reader-row:visible').count(),1,'saved AND query matches actual persisted state and tag');
+      assert.equal(await page.locator('#nav [data-nav-reader-query]').count(),1,'saved filtered view is exposed in the space sidebar');
       assert.equal(await page.locator('.td-reader-row:visible').first().getAttribute('data-td-reader-id'),firstId);
       await page.screenshot({path:path.join(assets,'issue81_saved_view_'+width+'.png'),animations:'disabled'});
       await page.reload({waitUntil:'domcontentloaded'});
@@ -64,7 +66,11 @@ try{
       assert.equal(await page.locator('.td-reader-row:visible').count(),1,'saved query survives reload');
       await page.locator('[data-td-clear-query="pdf"]').click();
       assert.equal(await page.locator('.td-reader-row:visible').count(),1,'manual later filter persists independently');
-      await page.locator('[data-td-triage="pdf|all"]').click();
+      if(width>768){
+        await page.locator('#nav [data-nav-reader-query]').click();
+        assert.equal(await page.locator('.td-reader-row:visible').count(),1,'sidebar saved view navigates to its real result');
+        await page.locator('#nav [data-nav-reader-stage="all"]').click();
+      }else await page.locator('[data-td-triage="pdf|all"]').click();
       assert.equal(await page.locator('.td-reader-row:visible').count(),count,'clear filters restores all documents');
       const r=await page.locator('.td-content').boundingBox();
       assert.ok(r&&r.x>=-2&&r.x+r.width<=width+2,'triage fits viewport '+width+': '+JSON.stringify(r));
