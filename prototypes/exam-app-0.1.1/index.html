@@ -1237,6 +1237,15 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .op-icon{display:grid;place-items:center;width:60px;height:60px;border-radius:16px;flex:none;background:color-mix(in srgb,currentColor 12%,transparent)}.op-icon svg{width:30px;height:30px}.op-icon img{width:34px;height:34px}
 .op-kind{display:inline-block;font-size:12.5px;color:var(--muted);text-decoration:none;border-radius:4px}a.op-kind:hover{color:var(--text);text-decoration:underline}
 .op-kind-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:28px}
+/* Keyboard and pointer preview for linked objects (#57). */
+.op-object-hovercard{position:fixed;z-index:90;width:272px;max-width:calc(100vw - 24px);box-sizing:border-box;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--pop);box-shadow:0 12px 34px rgba(0,0,0,.16);pointer-events:none;color:var(--text);font-size:13px;line-height:1.45}
+.op-object-hovercard .op-hover-type{display:block;margin-bottom:3px;font-size:11px;color:var(--muted)}
+.op-object-hovercard strong{display:block;overflow-wrap:anywhere;font-size:14px;line-height:1.35}
+.op-object-hovercard p{margin:7px 0 0;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+.op-object-hovercard dl{margin:8px 0 0;display:grid;gap:4px}
+.op-object-hovercard dl div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:8px}
+.op-object-hovercard dt{color:var(--muted);overflow-wrap:anywhere}
+.op-object-hovercard dd{margin:0;overflow-wrap:anywhere}
 .op-kind-row .op-kind{padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--accent) 11%,transparent);color:var(--text);font-weight:600}
 .op-collections{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:4px 10px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;cursor:pointer}
 .op-collections:hover,.op-collections:focus-visible{background:var(--hover);color:var(--text)}
@@ -8192,6 +8201,58 @@ function clearPreview(){clearTimeout(hoverTimer);preview?.remove();preview=null;
 function showPreview(el){const t=WS.tabs.find(t=>t.id===el.dataset.tab);if(!t||!el.isConnected)return;const lb=wsLabels()[WS.tabs.indexOf(t)];const n=nodeOf(t.hist[t.i]);preview=document.createElement('div');preview.className='ws-preview';preview.setAttribute('role','tooltip');preview.innerHTML='<b>'+esc(t.title||'Nova aba')+'</b>'+(lb!==(t.title||'Nova aba')?'<small>'+esc(lb)+'</small>':'')+'<small>'+esc(n&&n.sub?n.sub:'Espaço de trabalho · '+t.hist.length+' páginas no histórico')+'</small>'+(n&&n.text?'<p>'+esc(n.text.slice(0,140))+'</p>':'');document.body.appendChild(preview);const r=el.getBoundingClientRect();preview.style.left=Math.max(8,Math.min(r.left,innerWidth-264))+'px';preview.style.top=(r.bottom+8)+'px';}
 $('wsTabList').addEventListener('pointerover',e=>{if(e.pointerType==='touch'||tabDrag)return;const el=e.target.closest('[data-tab]');if(!el){clearPreview();return;}if(el===previewFor)return;clearPreview();previewFor=el;hoverTimer=setTimeout(()=>showPreview(el),200);});
 $('wsTabList').addEventListener('pointerleave',clearPreview);$('wsTabList').addEventListener('dragstart',clearPreview);$('wsTabList').addEventListener('click',clearPreview);
+/* Object reference previews (#57): read-only metadata from the existing graph, no invented content. */
+let opHoverTimer=0,opHoverLink=null,opHoverCard=null,opHoverTitle=null,opHoverDesc=null;
+const opHoverTarget=e=>e.target?.closest?.('.op a.chip[href^="#/"]');
+function opHoverClose(){
+  clearTimeout(opHoverTimer);opHoverTimer=0;
+  if(opHoverLink&&opHoverCard){
+    if(opHoverTitle!==null)opHoverLink.setAttribute('title',opHoverTitle);
+    if(opHoverDesc!==null)opHoverLink.setAttribute('aria-describedby',opHoverDesc);
+    else opHoverLink.removeAttribute('aria-describedby');
+  }
+  opHoverCard?.remove();opHoverCard=null;opHoverLink=null;opHoverTitle=null;opHoverDesc=null;
+}
+function opHoverShow(link){
+  if(!link?.isConnected||link!==opHoverLink)return;
+  const n=nodeOf(link.getAttribute('href'));
+  if(!n)return;
+  opHoverTitle=link.hasAttribute('title')?link.getAttribute('title'):null;
+  opHoverDesc=link.getAttribute('aria-describedby');
+  if(opHoverTitle!==null)link.removeAttribute('title');
+  const card=document.createElement('div');
+  card.id='op-object-hovercard';card.className='op-object-hovercard';card.setAttribute('role','tooltip');
+  const fields=Array.isArray(n.extra)?n.extra.filter(x=>Array.isArray(x)&&x.length>1&&x[0]&&x[1]).slice(0,3):[];
+  card.innerHTML='<span class="op-hover-type">'+esc(n.sub||n.kind||'Objeto')+'</span>'+
+    '<strong>'+esc(n.title||link.textContent.trim())+'</strong>'+
+    (n.text?'<p>'+esc(String(n.text).slice(0,180))+'</p>':'')+
+    (fields.length?'<dl>'+fields.map(x=>'<div><dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd></div>').join('')+'</dl>':'');
+  document.body.appendChild(card);
+  const r=link.getBoundingClientRect(),w=card.offsetWidth,h=card.offsetHeight;
+  card.style.left=Math.max(12,Math.min(r.left,innerWidth-w-12))+'px';
+  card.style.top=(r.bottom+8+h>innerHeight?Math.max(12,r.top-h-8):r.bottom+8)+'px';
+  link.setAttribute('aria-describedby',((opHoverDesc||'')+' '+card.id).trim());
+  opHoverCard=card;
+}
+view.addEventListener('pointerover',e=>{
+  if(e.pointerType==='touch')return;
+  const link=opHoverTarget(e);if(!link||link===opHoverLink)return;
+  opHoverClose();opHoverLink=link;opHoverTimer=setTimeout(()=>opHoverShow(link),200);
+});
+view.addEventListener('pointerout',e=>{
+  const link=opHoverTarget(e);
+  if(link&&link===opHoverLink&&!link.contains(e.relatedTarget))opHoverClose();
+});
+view.addEventListener('focusin',e=>{
+  const link=opHoverTarget(e);if(!link)return;
+  opHoverClose();opHoverLink=link;opHoverShow(link);
+});
+view.addEventListener('focusout',e=>{
+  const link=opHoverTarget(e);
+  if(link&&link===opHoverLink&&!link.contains(e.relatedTarget))opHoverClose();
+});
+view.addEventListener('scroll',opHoverClose,{passive:true});
+addEventListener('hashchange',opHoverClose);
 // Context actions work for every internal object link, including global navigation.
 document.addEventListener('contextmenu',e=>{const a=e.target.closest('a[href^="#"]');if(!a||!a.closest('#nav,#view,#props'))return;const h=a.getAttribute('href');if(!isObjHref(h))return;e.preventDefault();e.stopImmediatePropagation();miniMenu(a,[{t:'Abrir na aba atual',ic:WI.obj,fn:()=>wsOpenMain(h)},{t:'Abrir em nova aba',ic:WI.plus,fn:()=>wsOpenTab(h)},{t:'Abrir no painel direito',ic:WI.panel,fn:()=>rpOpenObj(h)}]);},true);
 
