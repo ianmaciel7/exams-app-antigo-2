@@ -15,7 +15,7 @@ try {
     const page = await context.newPage();
     page.on('pageerror', error => report.errors.push(error.message));
     try {
-      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/espaco', { waitUntil: 'domcontentloaded' });
+      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/espaco', { waitUntil: 'domcontentloaded' });
       let tab = page.locator('#wsTabList [data-tab].on');
       await tab.waitFor({ timeout: 15000 });
       const id = await tab.getAttribute('data-tab');
@@ -74,5 +74,5 @@ try {
   assert.deepEqual(report.errors, [], 'no uncaught browser errors');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue55_keyboard_targets_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototypes/issue55_keyboard_targets_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

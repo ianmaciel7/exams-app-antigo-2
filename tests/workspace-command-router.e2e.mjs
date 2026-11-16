@@ -18,7 +18,7 @@ const report={sourceDigest,cases:[],pageErrors:[],limitations:[
   'Chromium desktop automation: OS-reserved shortcuts and physical keyboard IME require manual testing.',
   'Covers global search, sidebar, new-item menu, shortcut help, the real question practice route and global graph route, editor suppression, Escape focus restoration, and non-interception of Ctrl+Tab. Physical IME and OS-level key reservation still require manual platform testing.'
 ]};
-const addr=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
+const addr=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#/espaco';
 async function snap(page,filename){
   await page.screenshot({path:path.join(evidenceDir,'issue139_'+filename+'.png'),animations:'disabled',fullPage:false});
 }
