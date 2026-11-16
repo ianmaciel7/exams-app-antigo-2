@@ -71,6 +71,26 @@ try{
       await modal.getByRole('button',{name:'Cancelar'}).click();
       assert.equal(await modal.count(),0,'cancel does not modify the current card');
       assert.ok(await page.locator('[data-srs-grade="soon"]').count()>0,'card remains gradable');
+      await page.locator('[data-srs-edit]').first().click();
+      const editDialog=page.locator('#dlg .dlg-box');
+      await editDialog.waitFor();
+      assert.equal(await editDialog.locator('#fd_original').getAttribute('readonly'),'','original highlight remains read-only');
+      assert.equal(await editDialog.locator('#fd_original').inputValue(),'O princípio da publicidade orienta a Administração.');
+      await editDialog.locator('#fd_edited').fill('Texto editado: o princípio da publicidade orienta a Administração.');
+      await editDialog.locator('#fd_note').fill('Mnemônico: transparência na administração.');
+      await page.screenshot({path:path.join(assets,'issue83_nondestructive_edit_'+width+'.png'),animations:'disabled'});
+      await editDialog.locator('[data-x="1"]').click();
+      await page.locator('.srs-card').first().waitFor();
+      assert.equal(await page.locator('.srs-answer').count(),0,'edited answer remains hidden after save');
+      await page.locator('[data-srs-reveal]').first().click();
+      assert.match(await page.locator('.srs-answer').first().innerText(),/Texto editado: o princípio/);
+      assert.match(await page.locator('.srs-note').first().innerText(),/Mnemônico: transparência/);
+      const savedHighlight=await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes('daily-review:'))
+        .flatMap(k=>JSON.parse(localStorage.getItem(k)).cards||[])
+        .find(c=>c.question==='Qual princípio rege a transparência?'));
+      assert.equal(savedHighlight.originalText,'O princípio da publicidade orienta a Administração.');
+      assert.equal(savedHighlight.answer,savedHighlight.originalText,'editing never overwrites original answer');
+      assert.match(savedHighlight.editedText,/Texto editado:/);
       await page.locator('[data-srs-grade="soon"]').first().click();
       assert.ok(await page.getByText('Tudo em dia').count()>=1,'correct grading schedules the card');
       assert.equal(await page.locator('.srs-heat-section').count(),2,'real activity has two 91-day heatmaps');
