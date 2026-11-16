@@ -5110,7 +5110,7 @@ function tdObjectsMarkup(t,items,layout,searchTerm=''){
    No eval, regex execution, or invented object metadata. */
 function tdParseQuery(expression){
   const raw=String(expression||'').trim();
-  if(!raw||raw.length>400||/(?:^|\s)(?:AND|OR)$/i.test(raw))return null;
+  if(!raw||raw.length>400||/(?:^|\s)(?:AND|OR)$/i.test(raw)||/\s+[^"\s]+\s+(?:name|category|type|tag|prop|link)\s*:/i.test(raw))return null;
   const chunks=raw.split(/\s+(AND|OR)\s+/i);
   if(chunks.length%2!==1||chunks.length>11)return null;
   const rules=[];
