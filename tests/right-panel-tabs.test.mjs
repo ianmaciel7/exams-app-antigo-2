@@ -115,7 +115,9 @@ test('contextual tab overflow preserves full tab names and no top-level stack bu
   assert.match(html,/id="rpTabSearch" type="search"/);
   assert.match(html,/function rpRenderTabMenu\(query=''\)/);
   assert.match(html,/RP\.tabs\.filter\(t=>norm\(rpTabTitle\(t\)\)\.includes\(q\)\)/);
-  assert.match(html,/classList\.toggle\('compact',RP\.tabs\.length>=5\)/);
+  assert.match(html,/function rpUpdateTabLayout\(\)/);
+  assert.match(html,/RP\.tabs\.length>=5 \|\| L\.scrollWidth>L\.clientWidth\+2/);
+  assert.match(html,/const rpLayoutObserver=new ResizeObserver/);
   assert.doesNotMatch(html,/id="rpStack"/);
   assert.doesNotMatch(html,/overflowButton\('rpOverflow'/);
   assert.doesNotMatch(html,/\$\('rpStack'\)/);
