@@ -1502,6 +1502,17 @@ a.ot{display:block;padding:3px 0;min-height:24px}
 .td-column h3 small{font-size:11px}
 .td-layout-mural .td-column{background:var(--side);border-style:dashed}
 .td-layout-embed{display:flex;flex-direction:column;gap:8px}
+.emb-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.emb-card{background:var(--side);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.emb-card header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px}
+.emb-card header a{font-weight:600;color:var(--text)}
+.emb-card header small,.emb-card code{color:var(--muted,inherit);font-size:12px}
+.emb-card ul{margin:0;padding-left:18px;font-size:13px}
+.emb-card code{white-space:pre-wrap;word-break:break-word}
+.emb-actions button,.emb-form button{border:1px solid var(--line);border-radius:7px;padding:7px 10px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:12px;min-height:24px}
+.emb-form{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.emb-form label{display:flex;flex-direction:column;gap:4px;font-size:12px;flex:1 1 220px}
+.emb-form select{min-height:28px;border:1px solid var(--line);border-radius:7px;background:var(--bg-base);color:var(--text);padding:4px 6px}
 .td-embed-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--side);border:1px solid var(--line);border-radius:8px;padding:10px}
 .td-embed-item a{display:flex;align-items:center;gap:8px;min-width:0;text-decoration:none;color:var(--text)}
 .td-embed-item button{flex:none;border:1px solid var(--line);border-radius:7px;padding:7px;background:var(--bg-base);color:var(--text);cursor:pointer;font-size:11px}
@@ -5171,7 +5182,7 @@ function opPage(o){
     '<button type="button" data-op-assistant="'+esc(o.iid)+'" aria-label="Abrir assistente no painel direito">IA</button>'+
     '<button type="button" data-op-more="'+esc(o.iid)+'" aria-label="Mais ações do objeto">⋯</button></div>':'';
   return '<article class="op'+((o.wide||widePreference)?' op-wide':'')+'">'+(cr.length>1?'<nav class="op-crumb" aria-label="Localização">'+cr.map(([t,h],i)=>i===cr.length-1?'<span aria-current="page">'+esc(t)+'</span>':'<a href="'+h+'">'+esc(t)+'</a><i aria-hidden="true">/</i>').join('')+'</nav>':'')+
-   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1>'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?'<button type="button" class="op-edt" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título">'+esc(o.title)+'</button>':esc(o.title))+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+'</div>'+(isObjectHeader?opConnectionFooter(o.iid):'')+'</article>';
+   '<header class="op-head">'+(o.logo&&!(store.get('icons')||{})[o.iid]?'<button type="button" class="op-icon op-ibtn t-concurso has-logo" data-pick-icon="'+esc(o.iid||'')+'" aria-label="Alterar ícone" title="Alterar ícone"><img src="'+o.logo+'" alt=""></button>':opIcon(o.icon,o.iid))+'<div class="op-ht"><div class="op-kind-row">'+(o.kindHref?'<a class="op-kind" href="'+o.kindHref+'">'+esc(o.kind)+'</a>':'<span class="op-kind">'+esc(o.kind)+'</span>')+collectionTools+'</div><h1>'+(/^(concurso|edicao|cargo|tipo|orgao|banca):/.test(o.iid||'')?'<button type="button" class="op-edt" data-edit-title="'+esc(o.iid)+'" title="Clique para editar o título">'+esc(o.title)+'</button>':esc(o.title))+'</h1>'+metaRow+'</div>'+(o.actions||headerTools?'<div class="op-actions">'+(o.actions||'')+headerTools+'</div>':'')+'</header>'+(/^(concurso|edicao|cargo):/.test(o.iid||'')?opNav(o.iid.split(':')[0],o.iid.split(':')[1],o.tab):'')+(o.props?'<aside class="op-side" aria-label="Propriedades do objeto">'+opProps(o.props,o.iid,true)+'</aside>':'')+'<div class="op-main">'+(!o.tab&&studyOk()&&/^(concurso:dataprev|edicao:dataprev-2026|cargo:dataprev-2026-ti-dev)$/.test(o.iid||'')?opStats():'')+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca):/.test(o.iid||'')?'<div class="op-desc'+(OV()['desc:'+o.iid]?'':' ph')+'" tabindex="0" role="button" data-edit-desc="'+esc(o.iid)+'">'+(OV()['desc:'+o.iid]?esc(OV()['desc:'+o.iid]):'Adicionar descrição ou anotações…')+'</div>':'')+o.body+(!o.tab&&/^(concurso|edicao|cargo|orgao|banca|disciplina):/.test(o.iid||'')?embedQueriesHTML(o.iid):'')+'</div>'+(isObjectHeader?opConnectionFooter(o.iid):'')+'</article>';
 }
 function opStats(){ const st=studyStats(), tot=(questionBank&&questionBank.length)||70;
   if(!st.done) return '';
@@ -5394,6 +5405,53 @@ function tdQueryContext(item){
   return {tags:Array.isArray(meta.tags)?meta.tags:[],props,links,typeName:TYPES[item.kind]?.n||item.kind,
     triage:item.kind==='pdf'?tdReaderStatus(item):'',progress:metrics.progress,minutes:metrics.minutes};
 }
+/* Embeddable saved queries (#84): a saved query from any type is rendered live inside an object page.
+   Storage: embeds:<space>:<iid> = [{t, qid}]. Results are recomputed on every render, never cached. */
+const embItems=t=>{
+  const list=isEntT(t)?entsOf(t).map(e=>({id:e.id,type:t,t:e.t,classe:'',cat:''})):objsOf(space).filter(d=>isA(d.type,t));
+  return tdOrder(tdItems(t,list),'name');
+};
+const embKey=iid=>'embeds:'+space+':'+iid;
+const embList=iid=>(Array.isArray(store.get(embKey(iid)))?store.get(embKey(iid)):[])
+  .filter(x=>x&&typeof x.t==='string'&&typeof x.qid==='string');
+function embedQueriesHTML(iid){
+  const embeds=embList(iid);
+  const options=Object.keys(TYPES).flatMap(k=>{
+    const qs=store.get('typeQueries:'+space+':'+k);
+    return (Array.isArray(qs)?qs:[]).filter(q=>q&&q.term).map(q=>'<option value="'+esc(k+'|'+q.id)+'">'+esc(q.name)+' ('+esc(TYPES[k]?.n||k)+')</option>');
+  });
+  const cards=embeds.map((x,i)=>{
+    const q=(store.get('typeQueries:'+space+':'+x.t)||[]).find(y=>y&&y.id===x.qid);
+    const remove='<button type="button" data-emb-remove="'+i+'" data-emb-iid="'+esc(iid)+'">Remover</button>';
+    if(!q)return '<article class="emb-card"><p class="td-empty">Query removida. '+remove+'</p></article>';
+    const hits=embItems(x.t).filter(it=>tdSavedQueryMatch(it,q.term,tdQueryContext(it)));
+    return '<article class="emb-card"><header><a href="#/tipo/'+esc(x.t)+'">'+esc(q.name)+'</a>'+
+      '<small>'+hits.length+' '+(hits.length===1?'objeto':'objetos')+' · '+esc(TYPES[x.t]?.n||x.t)+'</small></header>'+
+      '<code>'+esc(q.term)+'</code>'+
+      (hits.length?'<ul>'+hits.slice(0,8).map(h=>'<li><a href="'+esc(h.href)+'">'+esc(h.name)+'</a></li>').join('')+'</ul>':
+        '<p class="td-empty">Nenhum objeto corresponde à query agora.</p>')+
+      (hits.length>8?'<a href="#/tipo/'+esc(x.t)+'">Ver todos ('+hits.length+')</a>':'')+
+      '<div class="emb-actions">'+remove+'</div></article>';
+  }).join('');
+  const form=options.length?'<form class="emb-form" data-emb-form="'+esc(iid)+'"><label>Incorporar query salva'+
+    '<select name="q">'+options.join('')+'</select></label><button type="submit">Incorporar</button></form>':
+    '<p class="td-empty">Crie uma query de busca em um tipo de objeto para incorporá-la aqui.</p>';
+  return opSec('Visões incorporadas','<div class="emb-list">'+(cards||'<p class="td-empty">Nenhuma visão incorporada.</p>')+'</div>'+form,{count:embeds.length});
+}
+view.addEventListener('submit',e=>{
+  const form=e.target.closest?.('[data-emb-form]');if(!form)return;
+  e.preventDefault();
+  const [t,qid]=String(form.elements.q?.value||'').split('|');if(!t||!qid)return;
+  const key=embKey(form.dataset.embForm),current=embList(form.dataset.embForm);
+  if(!current.some(x=>x.t===t&&x.qid===qid))store.set(key,current.concat({t,qid}));
+  showObjs(location.hash.slice(1));
+});
+view.addEventListener('click',e=>{
+  const el=e.target.closest?.('[data-emb-remove]');if(!el)return;
+  const iid=el.dataset.embIid,index=Number(el.dataset.embRemove);
+  store.set(embKey(iid),embList(iid).filter((_,i)=>i!==index));
+  showObjs(location.hash.slice(1));
+});
 function tdTypePage(t,T,list,{richList='',overviewExtra='',actionHTML=''}={}){
   const state=tdState(t),items=tdOrder(tdItems(t,list),state.sort);
   const recent=tdOrder(items,'recent').filter(x=>x.date>0).slice(0,6);
