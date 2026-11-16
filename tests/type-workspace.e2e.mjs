@@ -99,6 +99,33 @@ try{
         assert.ok(await page.locator('.td-layout-gallery .td-type-pill').count()>0,'question gallery retains object type chips');
         await page.screenshot({path:path.join(assets,'issue56_questions_gallery_1366.png'),animations:'disabled'});
         report.checks.push({width,steps:'existing question filter remains functional and gallery is available'});
+
+        // Verify typed saved queries against actual entity tags, graph properties and links (#56).
+        await page.goto(base+'#/concurso/dataprev',{waitUntil:'domcontentloaded'});
+        await page.locator('#view [data-op-meta="concurso:dataprev"]').click();
+        await page.locator('#fd_tags').fill('Prioridade de estudo, Revisão');
+        await page.locator('#dlg [data-x="1"]').click();
+        await page.goto(base+'#/tipo/concurso',{waitUntil:'domcontentloaded'});
+        const saveTyped=async(type,name,expression)=>{
+          await page.locator('[data-td-tab="'+type+'|overview"]').click();
+          await page.locator('[data-td-create-query="'+type+'"]').click();
+          await page.locator('#fd_nome').fill(name);
+          await page.locator('#fd_busca').fill(expression);
+          await page.locator('#dlg [data-x="1"]').click();
+          await page.locator('[data-td-apply-query^="'+type+'|"]').filter({hasText:name}).click();
+          await page.locator('[data-td-clear-query="'+type+'"]').waitFor();
+        };
+        await saveTyped('concurso','Filtro real por etiqueta','tag:Prioridade de estudo');
+        assert.ok(await page.locator('[data-td-item]:visible').count()>0,'tag query uses persisted object metadata');
+        await page.screenshot({path:path.join(assets,'issue56_real_tag_query_1366.png'),animations:'disabled'});
+        await page.goto(base+'#/tipo/edicao',{waitUntil:'domcontentloaded'});
+        await saveTyped('edicao','Filtro por ano','prop:Ano=2026');
+        assert.ok(await page.locator('[data-td-item]:visible').count()>0,'property query finds edition with actual year');
+        await page.goto(base+'#/tipo/cargo',{waitUntil:'domcontentloaded'});
+        await saveTyped('cargo','Filtro por vínculo','link:Dataprev');
+        assert.ok(await page.locator('[data-td-item]:visible').count()>0,'link query uses real graph relationships');
+        report.checks.push({width,steps:'real tag, year property and graph link queries'});
+
       }
     }finally{await ctx.close();}
   }
