@@ -171,7 +171,11 @@
           "name": "Capacities e branches antigas",
           "kind": "pesquisa",
           "blocks": [
-            "e700"
+            "e700",
+            "e7101",
+            "e7102",
+            "e7103",
+            "e7104"
           ],
           "summary": "Comparação de workspace e padrões históricos."
         },

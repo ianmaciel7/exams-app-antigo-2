@@ -231,6 +231,10 @@
     "e626",
     "e627",
     "e700",
+    "e7101",
+    "e7102",
+    "e7103",
+    "e7104",
     "e701",
     "e702",
     "e705",
@@ -8288,6 +8292,42 @@
       "w": 1400,
       "h": 50,
       "text": "Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e leitor de tela; animação de entrada respeita prefers-reduced-motion. Testes: tests/collection-graph-canvas.test.mjs e tests/contextual-graph-links.test.mjs (suíte node --test verde). Limites: sem leitura NVDA/VoiceOver (#226/#234); rótulos densos se sobrepõem como antes."
+    },
+    "e7101": {
+      "type": "container",
+      "x": 3300,
+      "y": 10990,
+      "w": 1560,
+      "h": 900,
+      "color": "white",
+      "text": "A. Contexto e anatomia do Capacities (texto da seção)"
+    },
+    "e7102": {
+      "type": "container",
+      "x": 3300,
+      "y": 11830,
+      "w": 1500,
+      "h": 1630,
+      "color": "white",
+      "text": "B. Evidências visuais: arquitetura e barra (Capacities Live)"
+    },
+    "e7103": {
+      "type": "container",
+      "x": 3300,
+      "y": 13390,
+      "w": 1500,
+      "h": 1630,
+      "color": "white",
+      "text": "C. Comparação de branches históricas (notes-app-old)"
+    },
+    "e7104": {
+      "type": "container",
+      "x": 3300,
+      "y": 14430,
+      "w": 1500,
+      "h": 1720,
+      "color": "white",
+      "text": "D. Resoluções técnicas para o Exam App (issues #47–#58)"
     }
   }
 }

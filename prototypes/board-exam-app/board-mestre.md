@@ -63,7 +63,7 @@ Navegação, layout, painéis, propriedades, grafo, responsividade e interação
 | Dashboard central de estudos | especificacao | [e506](index.html#e506) |
 | Explorar, grafo e navegação contextual | especificacao | [e510](index.html#e510) |
 | Auditoria geral de UI/UX | auditoria | [e600](index.html#e600) |
-| Capacities e branches antigas | pesquisa | [e700](index.html#e700) |
+| Capacities e branches antigas | pesquisa | [e700](index.html#e700), [e7101](index.html#e7101), [e7102](index.html#e7102), [e7103](index.html#e7103), [e7104](index.html#e7104) |
 | Painel direito e motor de grafo | blueprint | [e800](index.html#e800) |
 | Tema e seletores nativos | teste | [e1228](index.html#e1228) |
 | Responsividade da Home | teste | [e1339](index.html#e1339) |
