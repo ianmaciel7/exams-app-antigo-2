@@ -12,10 +12,15 @@ lines = [f"# {M['title']}", "", f"> {M['note']}", ""]
 for a in M["areas"]:
     lines += [f"## {a['id']} — {a['name']}", "", a["summary"], "", "| Card | Estado | Blocos |", "| --- | --- | --- |"]
     for c in a["cards"]:
+        for img in c.get("images", []):
+            if not os.path.exists(os.path.join(HERE, img)):
+                errors.append(f"{a['id']} / {c['name']}: imagem ausente {img}")
         for b in c["blocks"]:
             if b not in E:
                 errors.append(f"{a['id']} / {c['name']}: bloco {b} inexistente em board.json")
         refs = ", ".join(f"`{b}`" for b in c["blocks"])
+        if c.get("images"):
+            refs = " ".join(f"![{os.path.basename(i)}]({i})" for i in c["images"])
         lines.append(f"| {c['name']} | {c['status']} | {refs} |")
     lines.append("")
 
