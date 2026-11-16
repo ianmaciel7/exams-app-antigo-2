@@ -66,3 +66,20 @@ test('empty states cannot masquerade as mock objects, XSS is escaped',()=>{
   assert.doesNotMatch(result.body,/<script>alert/);
   assert.match(result.body,/&lt;script>/);
 });
+
+test('gallery cards use semantic object-type pills and only factual category chips (#56)',()=>{
+  const {api}=setup();
+  api.tdUpdate('nota',{layout:'gallery'});
+  const result=api.tdTypePage('nota',{n:'Nota',custom:true},objects());
+  assert.equal((result.body.match(/class="td-type-pill tone-type-nota"/g)||[]).length,3);
+  assert.equal((result.body.match(/class="td-property-chip tone-type-nota"/g)||[]).length,3);
+  assert.match(result.body,/class="td-card-tags"/);
+  assert.match(result.body,/Prática/);
+  assert.match(result.actions,/class="td-header-tools" role="group"/);
+  assert.match(result.actions,/data-td-search-focus="nota"/);
+  assert.match(result.actions,/data-td-more="nota"/);
+
+  const minimal=api.tdTypePage('nota',{n:'Nota',custom:true},[{id:'empty',type:'nota',t:'Sem tag'}]);
+  assert.match(minimal.body,/Sem propriedades categorizadas/);
+  assert.doesNotMatch(minimal.body,/class="td-property-chip[^"]*">Sem propriedades/);
+});
