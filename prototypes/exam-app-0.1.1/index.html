@@ -6756,7 +6756,7 @@ function srsCreateCard(kind,text,question,answer,theme='',now=Date.now(),origin=
  if(origin&&origin.kind&&origin.id){const existing=d.cards.find(c=>!c.discarded&&c.sourceKind===origin.kind&&c.sourceId===origin.id);if(existing)return existing;}
  const card={id:'srs-'+now+'-'+Math.random().toString(36).slice(2,8),kind,text,question,answer,theme:String(theme||'').trim(),
    source:origin?.label||'Texto inserido manualmente',sourceRef:origin?.ref||'',sourceKind:origin?.kind||'',sourceId:origin?.id||'',createdAt:now,dueAt:now};
- d.cards.push(card);srsSave(d);return card;
+ d.cards.push(card);srsRecordActivity(d,'cards',now);srsSave(d);return card;
 }
 function srsCreateFromQuestionHighlight(q,part=''){
  if(!q)return null;
@@ -6775,6 +6775,65 @@ function srsCreateFromQuestionHighlight(q,part=''){
  return null;
 }
 function srsLocalDay(t=Date.now()){const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function srsRecordActivity(d,category,now=Date.now()){
+ if(category!=='reviews'&&category!=='cards')return;
+ const activity=d.activity&&typeof d.activity==='object'?d.activity:{};
+ const raw=activity[category],ledger=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};
+ const day=srsLocalDay(now);
+ ledger[day]=Math.min(1000000,Math.max(0,Math.floor(Number(ledger[day])||0))+1);
+ activity[category]=ledger;d.activity=activity;
+}
+function srsActivityDays(activity,now=Date.now(),length=91){
+ const anchor=new Date(now);anchor.setHours(12,0,0,0);
+ const metric=(kind,key)=>{
+   const value=Number(activity&&activity[kind]&&activity[kind][key]);
+   return Number.isFinite(value)?Math.max(0,Math.floor(value)):0;
+ };
+ const dates=[];
+ for(let i=Math.max(1,length)-1;i>=0;i--){
+   const date=new Date(anchor);date.setDate(anchor.getDate()-i);
+   const key=srsLocalDay(date.getTime());
+   dates.push({day:key,reviews:metric('reviews',key),cards:metric('cards',key)});
+ }
+ return dates;
+}
+function srsReviewStreak(ledger,now=Date.now()){
+ const valid=Object.keys(ledger||{}).filter(key=>{
+   if(!/^\d{4}-\d{2}-\d{2}$/.test(key)||Number(ledger[key])<=0)return false;
+   const [year,month,day]=key.split('-').map(Number);
+   return srsLocalDay(new Date(year,month-1,day,12).getTime())===key;
+ }).sort();
+ let longest=0,run=0,previous=null;
+ for(const key of valid){
+   if(previous){
+     const [year,month,day]=previous.split('-').map(Number);
+     const next=new Date(year,month-1,day+1,12);
+     run=srsLocalDay(next.getTime())===key?run+1:1;
+   }else run=1;
+   longest=Math.max(longest,run);previous=key;
+ }
+ const yesterday=new Date(now);yesterday.setHours(12,0,0,0);yesterday.setDate(yesterday.getDate()-1);
+ const current=previous&&(previous===srsLocalDay(now)||previous===srsLocalDay(yesterday.getTime()))?run:0;
+ return {current,longest,reviewedDays:valid.length};
+}
+function srsActivityMarkup(d,now=Date.now()){
+ const activity=d.activity||{},days=srsActivityDays(activity,now);
+ const streak=srsReviewStreak(activity.reviews,now);
+ const colors=count=>Math.min(4,Math.ceil(Math.max(0,count)/3));
+ const heat=(kind,label)=>{
+   const total=days.reduce((sum,x)=>sum+x[kind],0);
+   return '<div class="srs-heat-section"><h3>'+label+' · '+total+' nos últimos 91 dias</h3>'+
+     '<div class="srs-heatmap" role="img" aria-label="'+label+': mapa diário dos últimos 91 dias. '+total+' registros.">'+
+     days.map(x=>'<span class="srs-day" data-level="'+colors(x[kind])+'" data-srs-day="'+x.day+'" title="'+x.day+': '+x[kind]+' '+label.toLowerCase()+'"></span>').join('')+
+     '</div></div>';
+ };
+ return '<section class="srs-panel srs-activity"><h2>Atividade de estudo</h2>'+
+   '<div class="srs-activity-stats"><span><strong>'+streak.current+'</strong> dias de sequência atual</span>'+
+   '<span><strong>'+streak.longest+'</strong> melhor sequência</span>'+
+   '<span><strong>'+streak.reviewedDays+'</strong> dias com revisões</span></div>'+
+   heat('reviews','Revisões')+heat('cards','Novos cartões')+
+   '<p class="srs-muted">Histórico local registrado a partir desta versão. Não são estimadas atividades passadas.</p></section>';
+}
 function srsGradeCard(id,grade,now=Date.now()){
  const d=srsLoad(),card=(d.cards||[]).find(x=>x.id===id);
  if(!card||!['never','soon','later','someday'].includes(grade))return null;
@@ -6782,19 +6841,20 @@ function srsGradeCard(id,grade,now=Date.now()){
  if(grade==='never'){card.mastered=true;card.dueAt=null;}else card.dueAt=now+days[grade]*86400000;
  card.lastGrade=grade;
  const day=srsLocalDay(now);if(d.doneDay!==day){d.doneDay=day;d.done=0;}d.done=(d.done||0)+1;
+ srsRecordActivity(d,'reviews',now);
  srsSave(d);return card;
 }
 function showReview(){
  const d=srsLoad(),cards=d.cards||[],due=srsDueCards(),c=due[0],done=Math.max(0,(d.doneDay===srsLocalDay()?d.done||0:0)),goal=Math.max(5,Number(d.goal)||6);
  document.querySelector('.main').classList.remove('on-board','on-graph'); $('boardBtn')?.removeAttribute('aria-current');
- const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}</style>';
+ const styles='<style>.srs-wrap{max-width:920px;margin:0 auto;padding:24px}.srs-head,.srs-row,.srs-grade,.srs-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.srs-head{justify-content:space-between}.srs-progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:12px 0}.srs-progress i{display:block;height:100%;background:var(--accent);width:'+Math.min(100,done/goal*100)+'%}.srs-card,.srs-panel{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--bg-base)}.srs-card h2{font-size:22px;line-height:1.5}.srs-answer{padding:14px;border-left:3px solid var(--accent);margin:14px 0}.srs-grade{margin-top:14px}.srs-panel input,.srs-panel textarea{width:100%;box-sizing:border-box;padding:9px;margin:5px 0 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg-base);color:var(--text)}.srs-word{display:inline-block;padding:5px 3px;border:0;background:transparent;color:inherit;cursor:pointer}.srs-word.selected{background:color-mix(in srgb,var(--accent) 28%,transparent)}.srs-source,.srs-muted{color:var(--text-secondary);font-size:13px}.srs-activity h2{font-size:17px;margin:0 0 14px}.srs-activity h3{font-size:12px;font-weight:600;margin:14px 0 5px}.srs-activity-stats{display:flex;gap:16px;flex-wrap:wrap}.srs-activity-stats span{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}.srs-activity-stats strong{font-size:21px;color:var(--text);font-variant-numeric:tabular-nums}.srs-heatmap{display:grid;grid-auto-flow:column;grid-auto-columns:10px;grid-template-rows:repeat(7,10px);gap:4px;overflow-x:auto;padding:8px 2px;max-width:100%;width:max-content}.srs-day{display:block;width:10px;height:10px;border-radius:2px;background:var(--hover)}.srs-day[data-level="1"]{background:color-mix(in srgb,var(--accent) 25%,var(--hover))}.srs-day[data-level="2"]{background:color-mix(in srgb,var(--accent) 45%,var(--hover))}.srs-day[data-level="3"]{background:color-mix(in srgb,var(--accent) 70%,var(--hover))}.srs-day[data-level="4"]{background:var(--accent)}.srs-activity .srs-muted{margin:14px 0 0;line-height:1.55}</style>';
  const queue='<section><div class="srs-head"><div><h1>Revisão diária</h1><p>'+due.length+' cartões para revisar · '+done+' de '+goal+' de hoje</p></div><div class="srs-actions"><button class="op-btn" data-srs-mode="single" aria-pressed="'+((d.mode||'single')==='single')+'">Cartão único</button><button class="op-btn" data-srs-mode="feed" aria-pressed="'+(d.mode==='feed')+'">Feed vertical</button></div></div><div class="srs-progress" role="progressbar" aria-label="Progresso diário" aria-valuenow="'+Math.min(done,goal)+'" aria-valuemax="'+goal+'"><i></i></div>'+
  (c?((d.mode==='feed'?due: [c]).map(x=>srsCardMarkup(x,false)).join('')):'<div class="srs-panel"><h2>Tudo em dia</h2><p>Não há cartões vencidos. Crie um cartão a partir de um grifo ou comentário para começar.</p></div>')+
  '<button class="op-btn" data-srs-open-create>Criar cartão</button></section>';
  const create='<details class="srs-panel" id="srs-create"><summary><strong>Criar cartão de estudo</strong></summary><p class="srs-muted">Cole um grifo do PDF ou comentário de questão abaixo; o texto fica guardado neste navegador.</p><label>Texto do grifo ou comentário<textarea id="srs-text" rows="4" placeholder="Cole aqui o texto de origem"></textarea></label><div class="srs-actions"><button class="op-btn" data-srs-tab="cloze">Cloze Deletion</button><button class="op-btn" data-srs-tab="qa">Pergunta e resposta</button></div><div id="srs-cloze"><p>Selecione palavras para ocultar:</p><div id="srs-token-area"></div><label>Pergunta<textarea id="srs-cloze-question" rows="2" placeholder="Contexto opcional"></textarea></label><button class="op-btn" data-srs-save-cloze>Salvar cloze</button></div><div id="srs-qa" hidden><label>Pergunta<input id="srs-question" placeholder="Digite uma pergunta"></label><label>Resposta<textarea id="srs-answer" rows="3"></textarea></label><button class="op-btn" data-srs-use-highlight>Usar texto de origem como resposta</button><button class="op-btn" data-srs-save-qa>Salvar cartão Q&amp;A</button></div></details>';
  const settings='<details class="srs-panel"><summary><strong>Configurações da revisão</strong></summary><label>Cartões por dia: <output id="srs-goal-value">'+goal+'</output><input type="range" min="5" max="20" value="'+goal+'" data-srs-setting="goal"></label><label>Recência (0 = antigos, 100 = recentes): <output id="srs-recency-value">'+((d.recency===undefined?50:d.recency))+'</output><input type="range" min="0" max="100" value="'+(d.recency===undefined?50:d.recency)+'" data-srs-setting="recency"></label><label>Cartões bônus: <input type="number" min="0" max="10" value="'+(d.bonus||0)+'" data-srs-setting="bonus"></label><label>Disciplina/tag do cartão<input id="srs-card-theme" placeholder="Ex.: Direito Constitucional"></label><label>Sessão temática por disciplina/tag<input data-srs-setting="theme" value="'+srsEscape(d.theme||'')+'" placeholder="Ex.: Direito Constitucional"></label><button class="op-btn" data-srs-save-settings>Salvar configurações</button></details>';
  const history='<details class="srs-panel"><summary><strong>Cartões ativos ('+cards.filter(x=>!x.discarded&&!x.mastered).length+')</strong></summary>'+cards.map(x=>'<div class="srs-row"><span>'+srsEscape(x.kind==='cloze'?x.text:x.question)+'</span><button class="op-btn" data-srs-discard="'+srsEscape(x.id)+'">Descartar</button></div>').join('')+'</details>';
- view.innerHTML=styles+'<main class="srs-wrap">'+queue+create+settings+history+'</main>'; view.scrollTop=0;
+ view.innerHTML=styles+'<main class="srs-wrap">'+queue+create+settings+srsActivityMarkup(d)+history+'</main>'; view.scrollTop=0;
  const src=view.querySelector('#srs-text'); const renderTokens=()=>{const area=view.querySelector('#srs-token-area');if(!area)return;area.innerHTML=(src.value||'').split(/(\s+)/).map((w,i)=>w.trim()?'<button type="button" class="srs-word" data-srs-word="'+i+'">'+srsEscape(w)+'</button>':srsEscape(w)).join('');}; src?.addEventListener('input',renderTokens);
 }
 
