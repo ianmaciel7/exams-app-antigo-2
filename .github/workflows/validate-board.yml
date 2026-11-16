@@ -25,9 +25,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validar integridade do board.json
+      - name: Validar integridade do canvas original
         working-directory: prototypes/board-exam-app
         run: python3 -I validate_board.py
+      - name: Validar taxonomia, documentos e cobertura dos boards
+        working-directory: prototypes/board-exam-app
+        run: python3 -I validate_board_index.py
       - name: Validar índice do board mestre
         working-directory: prototypes/board-exam-app
         run: |

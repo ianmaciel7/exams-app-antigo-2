@@ -1,30 +1,30 @@
 #!/usr/bin/env python3
-"""Gera board-mestre.md a partir de board-mestre.json e valida que todo ID de bloco existe em board.json.
-Uso: python3 -I render_board_mestre.py (dentro de prototypes/board-exam-app/). Exit 1 se houver ID inexistente."""
+"""Gera board-mestre.md a partir do índice temático e valida seus vínculos."""
 import json, os, sys
-
 HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 M = json.load(open(os.path.join(HERE, "board-mestre.json"), encoding="utf8"))
-E = json.load(open(os.path.join(HERE, "board.json"), encoding="utf8"))["elements"]
-
 errors = []
-lines = [f"# {M['title']}", "", f"> {M['note']}", ""]
-for a in M["areas"]:
-    lines += [f"## {a['id']} — {a['name']}", "", a["summary"], "", "| Card | Estado | Blocos |", "| --- | --- | --- |"]
-    for c in a["cards"]:
-        for img in c.get("images", []):
-            if not os.path.exists(os.path.join(HERE, img)):
-                errors.append(f"{a['id']} / {c['name']}: imagem ausente {img}")
-        for b in c["blocks"]:
-            if b not in E:
-                errors.append(f"{a['id']} / {c['name']}: bloco {b} inexistente em board.json")
-        refs = ", ".join(f"`{b}`" for b in c["blocks"])
-        if c.get("images"):
-            refs = " ".join(f"![{os.path.basename(i)}]({i})" for i in c["images"])
-        lines.append(f"| {c['name']} | {c['status']} | {refs} |")
-    lines.append("")
-
+def repo_rel(path):
+    full = os.path.join(ROOT, path)
+    if not os.path.isfile(full):
+        errors.append("arquivo referenciado não existe: " + path)
+    return os.path.relpath(full, HERE).replace(os.sep, "/")
+lines = ["# " + M["title"], "", "> " + M["note"], "", "## Visão geral", "", "| Board | Escopo | Blocos | Documentos | Diagrama |", "| --- | --- | ---: | ---: | --- |"]
+for area in M["areas"]:
+    lines.append("| " + area["id"] + " — " + area["name"] + " | " + area["summary"] + " | " + str(len(area["cards"])) + " | " + str(len(area["documents"])) + " | [Abrir](" + repo_rel(area["board"]) + ") |")
+for area in M["areas"]:
+    lines += ["", "## " + area["id"] + " — " + area["name"], "", area["summary"], "", "[Abrir diagrama do board](" + repo_rel(area["board"]) + ")", "", "### Documentos", ""]
+    for item in area["documents"]:
+        lines.append("- [" + item["title"] + "](" + repo_rel(item["path"]) + ") — " + item["role"])
+    lines += ["", "### Blocos do canvas original", "", "| Bloco | Tipo de conteúdo | ID |", "| --- | --- | --- |"]
+    for item in area["cards"]:
+        blocks = ", ".join("[" + bid + "](index.html#" + bid + ")" for bid in item["blocks"])
+        lines.append("| " + item["name"] + " | " + item["kind"] + " | " + blocks + " |")
+        for doc in item.get("documents", []):
+            repo_rel(doc["path"])
 if errors:
-    print("\n".join(errors)); print(f"FALHOU: {len(errors)}"); sys.exit(1)
-open(os.path.join(HERE, "board-mestre.md"), "w", encoding="utf8").write("\n".join(lines))
-print("OK: board-mestre.md gerado; todos os IDs existem em board.json")
+    print("\n".join(errors)); print("FALHOU: " + str(len(errors))); sys.exit(1)
+with open(os.path.join(HERE, "board-mestre.md"), "w", encoding="utf8") as f:
+    f.write("\n".join(lines) + "\n")
+print("OK: board-mestre.md gerado com " + str(len(M["areas"])) + " boards temáticos.")
