@@ -784,6 +784,8 @@ svg{flex:none}
 .nm-badge.tone-type-resposta{color:var(--object-resposta);background:rgba(85,98,122,.1)}
 .nm-item .nm-t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nm-item .nm-cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;flex:none}
+.nm-item.nm-tpl{padding-left:40px;height:28px;font-size:12.5px;color:var(--muted)}
+.nm-item.nm-tpl .nm-badge{display:none}
 .nm-empty{padding:16px 12px;font-size:12.5px;color:var(--muted);text-align:center}
 .nm-foot{padding:6px 10px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);background:var(--side);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
 .nm-foot kbd{font-size:10px;padding:1px 4px;border-radius:3px;background:var(--hover);border:1px solid var(--line);font-family:inherit;font-weight:500}
@@ -3220,18 +3222,27 @@ function renderNewMenu(){
     const en=norm(TYPES[t].en||'');
     return name.includes(q) || en.includes(q);
   });
-  newMenuItems=filtered;
+  /* Itens do menu: cada tipo (criação em branco) seguido, se personalizado, dos seus modelos. */
+  const items=[];
+  allTypes.forEach(t=>{
+    const typeOk=filtered.includes(t);
+    if(typeOk) items.push({t,tpl:null});
+    if(TYPES[t].custom) OBJECT_TEMPLATES.forEach(tp=>{ if(typeOk||!q||norm(tp.n).includes(q)) items.push({t,tpl:tp}); });
+  });
+  newMenuItems=items;
   const list=$('newMenuList');
   if(!list) return;
-  if(!filtered.length){
+  if(!items.length){
     list.innerHTML='<div class="nm-empty">Nenhum tipo de objeto encontrado para “'+esc(raw)+'”.</div>';
     return;
   }
-  list.innerHTML=filtered.map((t,idx)=>{
-    const cnt=getObjectTypeCount(t);
+  list.innerHTML=items.map((it,idx)=>{
+    const t=it.t;
     const icon=TI[t]||SI.file;
     const sel=idx===newMenuSel?' sel':'';
-    return '<button type="button" class="nm-item'+sel+'" role="option" id="nm-opt-'+idx+'" data-type="'+t+'" data-idx="'+idx+'" aria-selected="'+(idx===newMenuSel)+'"><span class="nm-badge tone-type-'+t+customToneClass(t)+'" aria-hidden="true">'+icon+'</span><span class="nm-t">'+esc(TYPES[t].n)+'</span><span class="nm-cnt">'+cnt+'</span></button>';
+    const label=it.tpl?'Modelo · '+esc(it.tpl.n):esc(TYPES[t].n);
+    const cnt=it.tpl?'':getObjectTypeCount(t);
+    return '<button type="button" class="nm-item'+(it.tpl?' nm-tpl':'')+sel+'" role="option" id="nm-opt-'+idx+'" data-idx="'+idx+'" aria-selected="'+(idx===newMenuSel)+'"><span class="nm-badge tone-type-'+t+customToneClass(t)+'" aria-hidden="true">'+icon+'</span><span class="nm-t">'+label+'</span><span class="nm-cnt">'+cnt+'</span></button>';
   }).join('');
   markNewMenuSel();
 }
@@ -3250,9 +3261,10 @@ function markNewMenuSel(){
   });
 }
 
-function selectNewMenuItem(t){
+function selectNewMenuItem(it){
+  if(!it) return;
   closePops();
-  createObj(t);
+  createObj(it.t,it.tpl?{tpl:it.tpl}:{});
 }
 
 function openNewMenu(){
@@ -3312,7 +3324,7 @@ $('newMenuIn')?.addEventListener('keydown',e=>{
 });
 $('newMenuList')?.addEventListener('click',e=>{
   const b=e.target.closest('.nm-item');
-  if(b&&b.dataset.type) selectNewMenuItem(b.dataset.type);
+  if(b&&b.dataset.idx!==undefined) selectNewMenuItem(newMenuItems[+b.dataset.idx]);
 });
 $('newMenuList')?.addEventListener('mousemove',e=>{
   const b=e.target.closest('.nm-item');
@@ -3655,14 +3667,20 @@ function customTypeForm(preset){
     toast('Tipo “'+v.nome+'” criado');
   });
 }
-function createCustomObject(kind,existing){
+/* Modelos de objeto (issue #84): aplicados ao criar um objeto de tipo personalizado pelo menu + Novo. */
+const OBJECT_TEMPLATES=[
+  {id:'fichamento-lei',n:'Fichamento de lei seca',body:'Dispositivo legal:\n\nJurisprudência (STF/STJ):\n\nPegadinhas da banca:\n\nQuestões vinculadas:'},
+  {id:'resumo-topico',n:'Resumo de tópico',body:'Conceitos-chave:\n\nPontos de atenção:\n\nQuestões vinculadas:'},
+  {id:'nota-estudo',n:'Nota de estudo',body:'Ideia principal:\n\nFontes:\n\nPróximos passos:'}
+];
+function createCustomObject(kind,existing,tpl){
   const type=TYPES[kind];if(!type?.custom)return;
   return formDialog({
     title:(existing?'Editar ':'Novo ')+type.n,
     ok:existing?'Salvar alterações':'Criar '+type.n,
     fields:[
-      {id:'nome',label:'Título',value:existing?.t||'',placeholder:'Dê um título a este objeto'},
-      {id:'conteudo',label:'Conteúdo (texto simples)',value:existing?.body||'',placeholder:'Resumo do estudo'}
+      {id:'nome',label:'Título',value:existing?.t||(tpl?tpl.n:''),placeholder:'Dê um título a este objeto'},
+      {id:'conteudo',type:'textarea',rows:6,label:'Conteúdo (texto simples)',value:existing?.body??(tpl?.body||''),placeholder:'Resumo do estudo'}
     ],
     validate:v=>({nome:v.nome.trim().length<2||v.nome.length>120?'Informe título de 2 a 120 caracteres.':''})
   }).then(v=>{
@@ -4711,7 +4729,7 @@ function createEnt(t){ return formDialog({title:t==='orgao'?'Novo órgão':t==='
   validate:v=>({nome:!v.nome?'Informe o nome.':(findEnt(t,v.nome)?'Já existe um objeto com este nome.':'')})}).then(v=>{ if(!v) return; const e=ensureEnt(t,v.nome); paintNav(); location.hash='#/'+t+'/'+e.id; toast('“'+v.nome+'” criado'); }); }
 function createObj(kind,pre){
   pre=pre||{}; const sp=space;
-  if(TYPES[kind]?.custom) return createCustomObject(kind);
+  if(TYPES[kind]?.custom) return createCustomObject(kind,null,pre.tpl);
   if(isEntT(kind)) return createEnt(kind);
   const concs=CONCURSOS.filter(c=>c.sp===sp&&!isT(c.id));
   const goPage=h=>{ paintNav(); if(location.hash===h) route(true); else location.hash=h; };
