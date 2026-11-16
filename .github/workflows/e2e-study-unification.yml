@@ -35,7 +35,7 @@ jobs:
           python3 -m http.server 8765 --directory prototypes >/tmp/exams-after-server.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-before/prototypes >/tmp/exams-before-server.log 2>&1 &
           sleep 2
-          curl -f http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null
+          curl -f http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
           curl -f http://127.0.0.1:8766/exam-app-0.1.1/index.html -o /dev/null
       - name: Verify real user journeys and capture before/after evidence
         run: node tests/study-unification.e2e.mjs
