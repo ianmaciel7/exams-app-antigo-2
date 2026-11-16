@@ -15,7 +15,7 @@ test('workspace tabs expose role=tab on focusable label, pin/close controls rema
   assert.match(s,/id="wst-/);
   assert.match(s,/data-tab-pin/);
   assert.match(s,/data-tab-close/);
-  assert.match(s,/<\/span><\/span><span class="ws-tact">/,'pin/close should follow the closing label tag');
+  assert.match(s,/<\/span><\/span><span class="ws-tact" aria-hidden="true">/,'pin/close should follow the closing label tag and stay out of the AT tree');
   assert.doesNotMatch(s,/data-tab=.*role="tab"/,'wrapper must not have tab role');
 });
 test('contextual tabs expose a separate focusable tab, outside close action (#55)',()=>{
@@ -23,7 +23,7 @@ test('contextual tabs expose a separate focusable tab, outside close action (#55
   assert.match(s,/data-rp-tab=/);
   assert.match(s,/class="ws-tmain ws-tab-control" role="tab"/);
   assert.match(s,/aria-selected=/);
-  assert.match(s,/'<\/span><button type="button" class="ws-tx"/);
+  assert.match(s,/<span style="display:contents" aria-hidden="true"><button type="button" class="ws-tx" tabindex="-1"/);
   assert.match(s,/data-rp-tabx/);
 });
 test('keyboard changes focus to actual tab control instead of presentation wrapper (#55)',()=>{
