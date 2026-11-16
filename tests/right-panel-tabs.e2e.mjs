@@ -24,14 +24,14 @@ try {
     await openGraph();
     assert.equal(await tabs.count(), 1, 'first graph replaces the pristine Explore tab');
     let selected = page.locator('#rpTabs [data-rp-tab].on');
-    assert.match(await selected.getAttribute('aria-label'), /Gráfico.*Dataprev.*seguindo contexto/i);
+    assert.match(await selected.locator('[role="tab"]').getAttribute('aria-label'), /Gráfico.*Dataprev.*seguindo contexto/i);
     assert.equal(await selected.locator('.rp-context-pin').count(), 0);
     report.checks.push('Following-context graph is announced and has no pin badge');
     await page.screenshot({ path: path.join(assets, 'issue55_graph_follow.png'), animations: 'disabled' });
 
     await page.locator('#rpBody [data-pin-to-ctx]').first().click();
     selected = page.locator('#rpTabs [data-rp-tab].on');
-    assert.match(await selected.getAttribute('aria-label'), /Gráfico.*Dataprev.*fixado/i);
+    assert.match(await selected.locator('[role="tab"]').getAttribute('aria-label'), /Gráfico.*Dataprev.*fixado/i);
     assert.match(await selected.getAttribute('title'), /fixado/i);
     assert.equal(await selected.locator('.rp-context-pin').count(), 1);
     report.checks.push('Pin immediately updates tab accessibility name, tooltip and visible badge');
@@ -39,15 +39,15 @@ try {
 
     await page.goto(base + '#/cargo/dataprev-2026-ti-dev', { waitUntil: 'domcontentloaded' });
     selected = page.locator('#rpTabs [data-rp-tab].on');
-    assert.match(await selected.getAttribute('aria-label'), /Dataprev.*fixado/i, 'pinned context survives navigation');
+    assert.match(await selected.locator('[role="tab"]').getAttribute('aria-label'), /Dataprev.*fixado/i, 'pinned context survives navigation');
     await page.locator('#rpBody [data-unpin]').first().click();
-    assert.match(await selected.getAttribute('aria-label'), /Gráfico.*seguindo contexto/i);
-    assert.doesNotMatch(await selected.getAttribute('aria-label'), /fixado/i);
+    assert.match(await selected.locator('[role="tab"]').getAttribute('aria-label'), /Gráfico.*seguindo contexto/i);
+    assert.doesNotMatch(await selected.locator('[role="tab"]').getAttribute('aria-label'), /fixado/i);
     assert.equal(await selected.locator('.rp-context-pin').count(), 0);
     report.checks.push('Unpin switches graph to current context without stale pinned badge');
     await page.reload({ waitUntil: 'domcontentloaded' });
     selected = page.locator('#rpTabs [data-rp-tab].on');
-    assert.match(await selected.getAttribute('aria-label'), /seguindo contexto/i);
+    assert.match(await selected.locator('[role="tab"]').getAttribute('aria-label'), /seguindo contexto/i);
     await openGraph();
     assert.equal(await tabs.count(), 1, 'opening the same following graph focuses its existing tab');
     report.checks.push('Following mode survives refresh and graph reopening deduplicates');
