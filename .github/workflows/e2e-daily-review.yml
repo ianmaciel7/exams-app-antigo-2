@@ -40,7 +40,7 @@ jobs:
         run: |
           python3 -m http.server 8765 --directory prototypes >/tmp/daily-review.log 2>&1 &
           for i in $(seq 1 25); do
-            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/daily-review.log

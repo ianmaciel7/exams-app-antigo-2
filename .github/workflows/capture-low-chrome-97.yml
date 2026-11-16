@@ -37,7 +37,7 @@ jobs:
           python3 -m http.server 8765 --directory prototypes >/tmp/after-server.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-base/prototypes >/tmp/before-server.log 2>&1 &
           sleep 2
-          curl --fail http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null
+          curl --fail http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
           curl --fail http://127.0.0.1:8766/exam-app-0.1.1/index.html -o /dev/null
       - name: Capture paired states and verify absence of decorative borders
         run: node scripts/capture-low-chrome-97.mjs
