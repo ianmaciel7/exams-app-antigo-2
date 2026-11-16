@@ -11,7 +11,7 @@ const DEBUG_PORT_1 = 9225;
 const DEBUG_PORT_2 = 9226;
 const PROXY_PORT = 8766;
 const MAIN_SLUG = 'a728ae48-3fa2-4dbf-9092-0392c90b58f7';
-const APP_URL = 'http://localhost:8765/exam-app-0.1.1/index.html';
+const APP_URL = 'http://localhost:8765/exam-app-0.1.1__index.html';
 const ORIGIN_HEADER = { 'Origin': 'http://localhost:8765' };
 
 class CDPClient {

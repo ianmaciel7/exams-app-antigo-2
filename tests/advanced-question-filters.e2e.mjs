@@ -17,7 +17,7 @@ const manual=[
     enunciado:'QUESTAO FILTRO REST - Qual arquitetura aplicar?',
     alternativas:{A:'Correto',B:'Incorreto'},gabarito:'A',origem:'manual',anulada:true,criada:1763140000001},
 ];
-const url=(port,hash)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#'+hash;
+const url=(port,hash)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#'+hash;
 async function pageFor(port){
   const context=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
   const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
