@@ -39,7 +39,10 @@ try {
       assert.match(await tab.getAttribute('aria-label'), /fixada/, 'pin persists after reload');
       assert.equal(await tab.getAttribute('aria-keyshortcuts'), 'Shift+P');
 
-      await page.evaluate(() => wsOpenTab('#/tipo/concurso'));
+      const objectLink = page.locator('#view a[href^="#/"]:visible').first();
+      await objectLink.waitFor({ timeout: 12000 });
+      await objectLink.click({ modifiers: ['Control'] });
+      assert.ok(await page.locator('#wsTabList [data-tab]').count() >= 2, 'Ctrl+Click opens a second workspace tab');
       const close = page.locator('#wsTabList [data-tab-close]').first();
       await close.waitFor({ timeout: 12000 });
       const closeBox = await close.boundingBox();
