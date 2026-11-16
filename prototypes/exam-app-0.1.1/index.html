@@ -5129,7 +5129,36 @@ function opTipoPage(t,T,list,sp){
   return tdTypePage(t,T,list,{overviewExtra:properties});
 }
 view.addEventListener('click',async e=>{
-  let el=e.target.closest('[data-td-tab]');
+  let el=e.target.closest('[data-op-collections]');
+  if(el){
+    const type=el.dataset.opCollections,href=el.dataset.opHref,collections=tdCollections(type);
+    const items=collections.map(c=>({t:(tdCollectionHrefs(c).includes(href)?'✓ ':'')+c.name,fn:()=>{
+      const was=tdCollectionHrefs(c).includes(href);
+      tdToggleMember(type,c.id,href);route(true);
+      toast(was?'Removido da coleção '+c.name:'Adicionado à coleção '+c.name);
+    }}));
+    if(items.length)items.push({sep:true});
+    items.push({t:'+ Criar coleção',fn:async()=>{
+      const v=await formDialog({title:'Criar coleção de '+(TYPES[type]?.n||type),ok:'Criar e adicionar',
+        fields:[{id:'nome',label:'Nome da coleção'}],
+        validate:x=>({nome:!String(x.nome||'').trim()?'Nome obrigatório':''})});
+      if(!v)return;
+      const name=String(v.nome).trim();
+      if(tdCollections(type).some(c=>c.name.toLocaleLowerCase('pt-BR')===name.toLocaleLowerCase('pt-BR'))){toast('Essa coleção já existe');return;}
+      store.set(tdCollectionKey(type),tdCollections(type).concat({id:'td-'+uid(),name,term:'',members:[href]}));
+      route(true);toast('Adicionado à coleção '+name);
+    }});
+    miniMenu(el,items);return;
+  }
+  if(el=e.target.closest('[data-td-open-collection]')){
+    const [type,id]=el.dataset.tdOpenCollection.split('|');
+    tdUpdate(type,{tab:'all',collection:id,search:''});showObjs('/tipo/'+type);return;
+  }
+  if(el=e.target.closest('[data-td-clear-collection]')){
+    const type=el.dataset.tdClearCollection;
+    tdUpdate(type,{collection:'',search:''});showObjs('/tipo/'+type);return;
+  }
+  el=e.target.closest('[data-td-tab]');
   if(el){const [t,id]=el.dataset.tdTab.split('|');tdUpdate(t,{tab:id});showObjs('/tipo/'+t);return;}
   if(el=e.target.closest('[data-td-menu],[data-td-more]')){
     const t=el.dataset.tdMenu||el.dataset.tdMore;miniMenu(el,[
