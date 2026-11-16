@@ -1684,6 +1684,8 @@ button.td-saved{cursor:pointer}.td-saved small{color:var(--muted)}
 .rp-note{margin:0 0 10px;font-size:12.5px;color:var(--muted);line-height:1.5}
 .rp-search{display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:var(--pop);color:var(--muted);margin:0 0 8px}
 .rp-search:focus-within{border-color:var(--ring)}
+.rp-search-tool .rp-explore-search{border:0;padding-top:0}
+.rp-search-tool .rp-explore-search>summary{font-weight:600;color:var(--text)}
 .rp-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:13px;color:var(--text)}
 .rp-search svg{width:15px;height:15px;flex:none}
 
@@ -6928,7 +6930,7 @@ const WI={x:IX('<path d="M6 6l12 12M18 6L6 18"/>',2),plus:IX('<path d="M12 5v14M
   panel:IX('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M15 4v16"/>'),stack:IX('<rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/>'),
   out:IX('<path d="M7 17L17 7M9 7h8v8"/>'),left:IX('<path d="M15 6l-6 6 6 6"/>'),side:IX('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/>'),
   minus:IX('<path d="M5 12h14"/>',2),fit:IX('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')};
-const RT={explorar:{n:'Explorar',ic:WI.search},graf:{n:'Gráfico',ic:WI.graph},back:{n:'Links de entrada',ic:WI.back},internos:{n:'Objetos internos',ic:WI.obj},rel:{n:'Conteúdo relacionado',ic:WI.rel},ia:{n:'Chat de IA',ic:WI.spark},obj:{n:'Objeto',ic:WI.obj}};
+const RT={explorar:{n:'Explorar',ic:WI.search},graf:{n:'Gráfico',ic:WI.graph},back:{n:'Links de entrada',ic:WI.back},internos:{n:'Objetos internos',ic:WI.obj},rel:{n:'Conteúdo relacionado',ic:WI.rel},ia:{n:'Chat de IA',ic:WI.spark},search:{n:'Buscar',ic:WI.search},obj:{n:'Objeto',ic:WI.obj}};
 const KORD=['concurso','edicao','cargo','pdf','questao','orgao','banca','disciplina'];
 const kn=k=>TYPES[k]?TYPES[k].n:k;
 const kIcon=k=>k==='grafico'?WI.graph:(TYI()[k]||(k==='espaco'?SI.collection:SI.file));
@@ -7242,18 +7244,14 @@ function rpTabTitle(t){
   return t.views.length>1&&t.views.every(x=>['back','rel','internos'].includes(x.type))?
     'Contexto':vTitle(v)+(t.views.length>1?' +'+(t.views.length-1):'');
 }
-function rpPaintTabs(){
-  gr();
+function rpUpdateTabLayout(){
   const L=$('rpTabs');
-  L.classList.toggle('compact',RP.tabs.length>=5);
-  L.innerHTML=RP.tabs.map(t=>{
-    const on=t.id===RP.active,v=t.views[0],ttl=rpTabTitle(t),full=t.views.map(vTitle).join(' + ');
-    return '<div class="ws-tab'+(on?' on':'')+'" role="tab" aria-label="'+esc(ttl)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
-      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
-      '</span><span class="ws-tt">'+esc(ttl)+'</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
-      '" data-rp-tabx="'+esc(t.id)+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
-  }).join('');
-  const overflow=RP.tabs.length>=5||L.scrollWidth>L.clientWidth+2;
+  if(!L || !rpVisible()) return;
+  // Measure uncompressed widths first, otherwise an earlier narrow state may stick.
+  L.classList.remove('compact');
+  const compact=RP.tabs.length>=5 || L.scrollWidth>L.clientWidth+2;
+  L.classList.toggle('compact',compact);
+  const overflow=compact || L.scrollWidth>L.clientWidth+2;
   $('rpOverflow').hidden=!overflow;
   if(!overflow)rpCloseOverflowMenu(false);
   else if(!$('rpTabMenu').hidden)rpRenderTabMenu($('rpTabSearch').value);
@@ -7263,6 +7261,18 @@ function rpPaintTabs(){
     if(a<L.scrollLeft)L.scrollLeft=a-4;
     else if(b>L.scrollLeft+L.clientWidth)L.scrollLeft=b-L.clientWidth+4;
   }
+}
+function rpPaintTabs(){
+  gr();
+  const L=$('rpTabs');
+  L.innerHTML=RP.tabs.map(t=>{
+    const on=t.id===RP.active,v=t.views[0],ttl=rpTabTitle(t),full=t.views.map(vTitle).join(' + ');
+    return '<div class="ws-tab'+(on?' on':'')+'" role="tab" aria-label="'+esc(ttl)+'" aria-selected="'+on+'" tabindex="'+(on?0:-1)+
+      '" data-rp-tab="'+esc(t.id)+'" title="'+esc(full)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+
+      '" data-rp-tabx="'+esc(t.id)+'" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
+  }).join('');
+  rpUpdateTabLayout();
 }
 const rpRow=(n,sub)=>{
   return '<div class="rp-item-row">'+
@@ -7278,7 +7288,7 @@ const rpRow=(n,sub)=>{
   '</div>';
 };
 const rpEmpty=(t,s,extra)=>'<div class="rp-empty"><b>'+esc(t)+'</b>'+esc(s||'')+(extra||'')+'</div>';
-const toolBtns=(cls)=>'<div class="rp-tools">'+['explorar','graf','back','internos','rel','ia'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
+const toolBtns=(cls)=>'<div class="rp-tools">'+['explorar','graf','back','internos','rel','ia','search'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
 function ctxBar(v,n){
   if(v.ref&&!n) return '<div class="rp-ctx"><span>Objeto de outro espaço</span><button type="button" class="rp-link" data-unpin="'+v.id+'">Seguir contexto</button></div>';
   if(!v.ref&&!n) return '';
@@ -7292,15 +7302,24 @@ function ctxBar(v,n){
 }
 const needCtx=()=>{const m=/^#\/tipo\/([^/]+)/.exec(curHref()); if(m)return rpEmpty('Tipo de objeto: '+kn(m[1]),'Você está vendo a coleção deste tipo. Selecione um objeto para consultar seus backlinks e conteúdo relacionado.'); return rpEmpty('Contexto do workspace','Selecione um objeto na área principal para consultar suas relações. As abas laterais permanecem disponíveis.');};
 /* Contextual explorer launcher: real tools, not decorative placeholders (#54, #66). */
-function bodyExplorar(v){
+function rpSearchBlock(v,expanded=false){
   const all=[...gr().N.values()], kinds=KORD.filter(k=>all.some(n=>n.kind===k));
   const filter=v.kind?'Filtro: '+kn(v.kind):'Filtrar por tipo';
+  return '<details class="rp-explore-search" data-rp-find'+((expanded||v.q||v.kind)?' open':'')+'><summary>Buscar objetos no espaço</summary>'+
+    '<div class="rp-search">'+WI.search+'<input type="search" id="ex-'+v.id+'" data-ex-q="'+v.id+
+    '" placeholder="Buscar no espaço" aria-label="Buscar no espaço" value="'+esc(v.q||'')+'" autocomplete="off"></div>'+
+    '<details class="rp-filters"'+(v.kind?' open':'')+'><summary><span data-ex-filter-label>'+esc(filter)+'</span></summary>'+
+    '<div class="rp-chips" role="group" aria-label="Filtrar por tipo" data-ex-chips>'+exChips(v,kinds)+'</div></details>'+
+    '<div class="rp-list" data-ex-list>'+exRows(v)+'</div></details>';
+}
+function bodySearch(v){return '<section class="rp-search-tool" aria-label="Buscar objetos">'+rpSearchBlock(v,true)+'</section>'; }
+function bodyExplorar(v){
   const tools=[['graf','Grafo',RT.graf.ic],['back','Links de entrada',RT.back.ic],
     ['internos','Objetos internos',RT.internos.ic],['rel','Conteúdo relacionado',RT.rel.ic],
     ['ia','Chat de IA',RT.ia.ic],['search','Buscar',WI.search]];
   const launch='<section class="rp-launch" aria-label="Ferramentas contextuais"><h2>Explorar</h2><div class="rp-launch-grid">'+
     tools.map(([key,label,ic])=>'<button type="button" class="rp-launch-btn" '+
-      (key==='search'?'data-rp-focus-search':'data-rp-new="'+key+'"')+
+      'data-rp-new="'+key+'"'+
       ' aria-label="'+esc(label)+'"><span class="rp-launch-icon" aria-hidden="true">'+ic+'</span><span>'+esc(label)+'</span></button>').join('')+
     '</div></section>';
   const n=vNode(v),linked=n?nbrs(n).slice(0,6):[];
@@ -7310,13 +7329,7 @@ function bodyExplorar(v){
     (linked.length?'<div class="rp-list">'+linked.map(x=>rpRow(x)).join('')+'</div>':
       '<p class="rp-note">Nenhuma relação direta disponível neste contexto.</p>')+
     '</section>';
-  const search='<details class="rp-explore-search" data-rp-find'+((v.q||v.kind)?' open':'')+'><summary>Buscar objetos no espaço</summary>'+
-    '<div class="rp-search">'+WI.search+'<input type="search" id="ex-'+v.id+'" data-ex-q="'+v.id+
-    '" placeholder="Buscar no espaço" aria-label="Buscar no espaço" value="'+esc(v.q||'')+'" autocomplete="off"></div>'+
-    '<details class="rp-filters"'+(v.kind?' open':'')+'><summary><span data-ex-filter-label>'+esc(filter)+'</span></summary>'+
-    '<div class="rp-chips" role="group" aria-label="Filtrar por tipo" data-ex-chips>'+exChips(v,kinds)+'</div></details>'+
-    '<div class="rp-list" data-ex-list>'+exRows(v)+'</div></details>';
-  return launch+relevant+search;
+  return launch+relevant+rpSearchBlock(v);
 }
 const exChips=(v,kinds)=>['']. concat(kinds).map(k=>'<button type="button" class="rp-chip" data-ex-kind="'+k+'" aria-pressed="'+((v.kind||'')===k)+'">'+(k?esc(kn(k)):'Tudo')+'</button>').join('');
 function exRows(v){ const q=norm(String(v.q||'')), all=[...gr().N.values()].filter(n=>(!v.kind||n.kind===v.kind)&&(!q||norm(n.title+' '+n.sub).includes(q)));
@@ -7410,7 +7423,7 @@ function bodyIa(v){ const m=/^#\/questao\/(.+)$/.exec(curHref()||''), q=m&&nodeO
    +'<p class="rp-note ai-only">'+(q?'Questão em foco: <b>'+esc(q.title)+'</b>':'Abra uma questão na área principal para explicá-la ou criar cartões a partir dela.')+'</p>'
    +(m?aiRow(decodeURIComponent(m[1])):'')
    +'<div class="ai-row ai-only">'+(m?'':'<p class="ai-hint">'+AI_WHY+'</p>')+'<button type="button" class="op-btn ai-btn" data-ai="plan">'+aiSpark+' Sugerir o que revisar</button><div class="ai-boxes">'+aiBox('plan')+'</div></div></div>'; }
-const BODY={explorar:bodyExplorar,back:bodyBack,internos:bodyInternos,rel:bodyRel,graf:bodyGraf,obj:bodyObj,ia:bodyIa};
+const BODY={explorar:bodyExplorar,search:bodySearch,back:bodyBack,internos:bodyInternos,rel:bodyRel,graf:bodyGraf,obj:bodyObj,ia:bodyIa};
 function viewHtml(v,solo){ const T=RT[v.type], nav=(v.hist&&v.hist.length)||(v.future&&v.future.length);
   if(solo&&!nav) return '<section class="rp-view solo" data-v="'+v.id+'" style="flex-grow:1" aria-label="'+esc(vTitle(v))+'"><div class="rp-vb" data-vb="'+v.id+'">'+BODY[v.type](v)+'</div></section>';
   if(solo) return '<section class="rp-view solo" data-v="'+v.id+'" style="flex-grow:1" aria-label="'+esc(vTitle(v))+'"><header class="rp-vh solo-h">'
@@ -7485,7 +7498,7 @@ function rpCloseOthers(id){ const snap=RP.tabs.slice(), act=RP.active, keep=RP.t
 function rpOpenObj(h){ if(!isObjHref(h)) return; const found=RP.tabs.find(t=>(!t.sp||t.sp===space)&&t.views.some(v=>v.type==='obj'&&v.ref===h)); if(found){rpSelect(found.id);openRP(true);return;} rpCapture();rpAddTab('obj',h); }
 function rpFromView(v,h){ if(!v) return; if(v.type==='explorar'||v.type==='obj'){ v.future=[];v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]).slice(-20); v.type='obj'; v.ref=h; wsSave(); rpPaintBody(); rpPaintTabs(); } else if(v.type==='graf'){ // Clicking a neighbor navigates the center; pinning is explicit only.
   wsOpenMain(h); if(MQT.matches) openRP(false); } else rpOpenObj(h); }
-const toolMenu=(anchor,fn)=>miniMenu(anchor,['explorar','graf','back','internos','rel','ia'].map(k=>({t:RT[k].n,ic:RT[k].ic,fn:()=>fn(k)})));
+const toolMenu=(anchor,fn)=>miniMenu(anchor,['explorar','graf','back','internos','rel','ia','search'].map(k=>({t:RT[k].n,ic:RT[k].ic,fn:()=>fn(k)})));
 $('rpAdd').onclick=e=>toolMenu(e.currentTarget,k=>rpAddTab(k));
 function rpRenderTabMenu(query=''){
   const q=norm(query),items=RP.tabs.filter(t=>norm(rpTabTitle(t)).includes(q));
@@ -7528,6 +7541,14 @@ document.addEventListener('pointerdown',e=>{
   if(!menu.hidden&&!menu.contains(e.target)&&!trigger.contains(e.target))rpCloseOverflowMenu(false);
 });
 
+// Keep contextual tabs responsive to width changes from drags, viewport and sidebars.
+if(window.ResizeObserver){
+  const rpLayoutObserver=new ResizeObserver(()=>{
+    if(rpVisible()) rpUpdateTabLayout();
+  });
+  rpLayoutObserver.observe($('rpanel'));
+  rpLayoutObserver.observe($('rpTabs'));
+}
 $('rpTabs').addEventListener('keydown',e=>tabKeys(e,$('rpTabs'),'[data-rp-tab]',t=>rpSelect(t.dataset.rpTab),t=>rpCloseTab(t.dataset.rpTab)));
 $('rpTabs').addEventListener('click',e=>{ const x=e.target.closest('[data-rp-tabx]'); if(x){ rpCloseTab(x.dataset.rpTabx); return; } const t=e.target.closest('[data-rp-tab]'); if(t) rpSelect(t.dataset.rpTab); });
 $('rpTabs').addEventListener('dblclick',e=>{ if(e.target.closest('button')) return; const t=e.target.closest('[data-rp-tab]'); if(t) rpCloseTab(t.dataset.rpTab); });
