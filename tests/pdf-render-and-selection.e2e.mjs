@@ -16,7 +16,7 @@ async function launch(version,port,dpr){
  const page=await context.newPage();
  const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#ret2',{waitUntil:'domcontentloaded',timeout:30000});
+ await page.goto('http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#ret2',{waitUntil:'domcontentloaded',timeout:30000});
  await page.locator('.page[data-p="1"] canvas').waitFor({timeout:45000});
  return {page,context,errors,version,port,dpr};
 }

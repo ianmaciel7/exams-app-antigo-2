@@ -3,14 +3,14 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app__*'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const report={created:new Date().toISOString(),steps:[],errors:[],limitations:[
   'Browser emulation; real assistive technology and physical touch testing not included.',
   'Statistics use personal saved attempts, not crowd answer distributions or global platform data.'
 ]};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 const context=await browser.newContext({viewport:{width:1366,height:870},reducedMotion:'reduce'});
 const page=await context.newPage();
 page.on('pageerror',e=>report.errors.push(e.message));

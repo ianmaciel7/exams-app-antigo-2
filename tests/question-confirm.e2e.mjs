@@ -3,8 +3,8 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app__*');
-const assets=path.join(root,'assets');
+const root=path.resolve('prototypes');
+const assets=root;
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Desktop Chromium only; physical keyboard screen-reader announcement must be tested separately.',
@@ -14,7 +14,7 @@ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const context=await browser.newContext({viewport:{width:1366,height:900},reducedMotion:'reduce'});
 const page=await context.newPage();
 page.on('pageerror',e=>report.errors.push(e.message));
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 try {
   await page.goto(base+'#/questoes',{waitUntil:'domcontentloaded'});
   const link=page.locator('a[href^="#/questao/"]').first();
