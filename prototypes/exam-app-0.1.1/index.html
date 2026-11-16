@@ -6616,6 +6616,10 @@ function qPedModule(q,answered=false){
       '" aria-labelledby="qped-tab-'+esc(id)+'-'+key+'"'+(active===key?'':' hidden')+'>'+panels[key]+'</div>').join('')+'</section>';
 }
 view.addEventListener('click',e=>{
+  const edit=e.target.closest('[data-note-edit]');
+  if(edit)store.set(qPedKey(edit.dataset.noteEdit),'anotacoes');
+});
+view.addEventListener('click',e=>{
   const tab=e.target.closest('[data-qped-tab]'),close=e.target.closest('[data-qped-close]');
   if(tab||close){
     const parent=(tab||close).closest('[data-qped]'),id=parent?.dataset.qped;
@@ -6902,7 +6906,7 @@ function showObjs(h0,seq){
   const R=(l,inner)=>'<div class="pi"><small>'+esc(l)+'</small>'+inner+'</div>';
   const scTab=(parts[3]==='questoes'||parts[3]==='simulado')?parts[3]:'';
   const scOk=scTab&&((cc&&parts[1]==='concurso')||(ee&&parts[1]==='edicao')||(parts[1]==='cargo'&&CARGOS.find(x=>x.id===parts[2]&&!isT(x.id))));
-  const needQ=!questionBank&&(parts[1]==='questao'||(parts[1]==='tipo'&&parts[2]==='questao')||parts[1]==='disciplina');
+  const needQ=!questionBank&&(parts[1]==='nota'||parts[1]==='questao'||(parts[1]==='tipo'&&parts[2]==='questao')||parts[1]==='disciplina');
   if(needQ){
     title='Questões'; meta=sp.name; html='<div class="s-surface s-empty" role="status" aria-live="polite" style="margin-top:20px">Abrindo questões…</div>'; loadQuestions().then(()=>{ if(location.hash.slice(1)===h0) showObjs(h0,seq); }).catch(e=>{ if(location.hash.slice(1)===h0){ studyError(e,'#/espaco'); wsLoadingEnd('failed',{seq,error:e.message}); } });
   } else if(scOk){
@@ -6926,6 +6930,22 @@ function showObjs(h0,seq){
     html=newEdicaoPage(ee,docs,c);
   } else if(parts[1]==='questao'&&qObjs().find(q=>q.id===parts[2])){
     const q=qObjs().find(x=>x.id===parts[2]); title=qTitle(q); meta='Questão · '+sp.name; html=questaoPage(q);
+  } else if(parts[1]==='nota'){
+    let id='';try{id=decodeURIComponent(parts.slice(2).join('/'));}catch(_){}
+    const href='#/nota/'+encodeURIComponent(id),node=gr().N.get(href);
+    if(!node||node.kind!=='nota'){
+      title='Anotação indisponível';meta='Anotação · '+sp.name;
+      html='<p class="op-empty">Esta anotação não existe neste espaço.</p>';
+    }else{
+      const note=qFlag(id),q=qObjs().find(item=>item.id===id);
+      title=node.title;meta='Anotação · '+sp.name;
+      const body='<div class="qped-preview" role="region" aria-label="Texto da anotação">'+
+        (note.noteHtml?qPedSafeHtml(note.noteHtml):qPedPreview(note.note||''))+'</div>'+
+        '<div class="qped-note-actions"><a href="#/questao/'+encodeURIComponent(id)+'" data-note-edit="'+esc(id)+'">Editar na questão</a></div>';
+      html=opPage({iid:'nota:'+id,crumb:[['Espaço','#/espaco'],['Questão','#/questao/'+encodeURIComponent(id)],['Anotação','']],
+        icon:'file',kind:'Anotação',title,props:[['Questão','<a class="chip" href="#/questao/'+encodeURIComponent(id)+'">'+esc(q?qTitle(q):'Questão')+'</a>']],
+        body:opSec('Anotação',body)});
+    }
   } else if(parts[1]==='tentativa'&&simsAll().find(x=>x.id===parts[2])){
     const x=simsAll().find(y=>y.id===parts[2]); title='Simulado de '+fmtDT(x.at); meta='Simulado · '+sp.name; html=tentativaPage(x);
   } else if(parts[1]==='resposta'&&respById(parts[2])){
@@ -7609,7 +7629,7 @@ function route(spaceChanged){
   if(h0==='/revisao'){ showReview(); return; }
   if(h0==='/quadro'){ $('spaceRow')?.removeAttribute('aria-current'); showBoard(); return; }
   if(h0.startsWith('/questoes')||h0==='/simulado'){ showStudyRoute(h0); return; }
-  if(h0==='/espaco'||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
+  if(h0==='/espaco'||h0.startsWith('/nota/')||h0.startsWith('/concurso/')||h0.startsWith('/questao/')||h0.startsWith('/tentativa/')||h0.startsWith('/resposta/')||h0.startsWith('/disciplina/')||h0.startsWith('/edicao/')||h0.startsWith('/cargo/')||h0.startsWith('/tipo/')||h0.startsWith('/custom-object/')||h0.startsWith('/valor/')||h0.startsWith('/orgao/')||h0.startsWith('/banca/')){ showObjs(h0); return; }
   document.querySelector('.main').classList.remove('on-board'); $('boardBtn')?.removeAttribute('aria-current'); $('spaceRow')?.removeAttribute('aria-current');
   const list=docsOf(space);
   if(!list.length){ blank(spaces.find(x=>x.id===space).name,'Este espaço ainda não tem objetos.<br><button class="cta" data-addv>+ Adicionar PDF</button>'); return; }
@@ -7704,8 +7724,8 @@ const WI={x:IX('<path d="M6 6l12 12M18 6L6 18"/>',2),plus:IX('<path d="M12 5v14M
   out:IX('<path d="M7 17L17 7M9 7h8v8"/>'),left:IX('<path d="M15 6l-6 6 6 6"/>'),side:IX('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/>'),
   minus:IX('<path d="M5 12h14"/>',2),fit:IX('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')};
 const RT={explorar:{n:'Explorar',ic:WI.search},graf:{n:'Gráfico',ic:WI.graph},back:{n:'Links de entrada',ic:WI.back},internos:{n:'Objetos internos',ic:WI.obj},rel:{n:'Conteúdo relacionado',ic:WI.rel},ia:{n:'Chat de IA',ic:WI.spark},search:{n:'Buscar',ic:WI.search},obj:{n:'Objeto',ic:WI.obj}};
-const KORD=['concurso','edicao','cargo','pdf','questao','orgao','banca','disciplina'];
-const kn=k=>TYPES[k]?TYPES[k].n:k;
+const KORD=['concurso','edicao','cargo','pdf','questao','nota','orgao','banca','disciplina'];
+const kn=k=>k==='nota'?'Anotação':TYPES[k]?TYPES[k].n:k;
 const kIcon=k=>k==='grafico'?WI.graph:(TYI()[k]||(k==='espaco'?SI.collection:SI.file));
 function hKind(h){ h=String(h||'').replace(/^#/,''); if(!h) return 'pdf'; const p=h.split('/'); if(p[0]!=='') return 'pdf'; const k=p[1]; if(k==='espaco'||k==='quadro') return 'espaco'; if(k==='tipo') return p[2]||'arquivo'; if(k==='valor') return 'arquivo'; if(k==='simulado'||k==='tentativa') return 'simulado'; if(k==='lixeira') return 'arquivo'; return k; }
 
@@ -7746,6 +7766,14 @@ function G(spId){
   eds.forEach(e=>cargosOf(e.id).filter(c=>!isT(c.id)).forEach(c=>add('#/cargo/'+c.id,c.t,'cargo','Cargo',c.resumo?[['Resumo',c.resumo]]:[])));
   docs.forEach(d=>add('#'+d.id,d.t,'pdf',d.g||'PDF',[['Categoria',d.cat],['Descrição',d.m]].filter(x=>x[1])));
   qList.forEach(q=>add('#/questao/'+q.id,qTitle(q),'questao',q.materia||'Questão',[],String(q.enunciado||'').replace(/\s+/g,' ').slice(0,420)));
+  // Notes are first-class linked child objects, created only from actual saved question notes (#72).
+  qList.forEach(q=>{
+    const note=typeof qFlag==='function'?qFlag(q.id):{},text=String(note.note||'').trim();
+    if(!text)return;
+    const href='#/nota/'+encodeURIComponent(q.id);
+    add(href,'Anotação · '+qTitle(q),'nota',q.materia||'Questão',[['Questão',qTitle(q)]],text.slice(0,420));
+    link(href,'#/questao/'+q.id,'Questão');
+  });
 
   // 2. Vínculos e entidades de suporte (apenas as referenciadas pelo espaço)
   concs.forEach(c=>{ const o=findEnt('orgao',concOrgaoName(c)); if(o&&!isT(o.id)){ addEnt(o); link('#/concurso/'+c.id,eh(o),'Órgão'); } });
@@ -7778,9 +7806,10 @@ const gsig=(spId)=>{
     const edsSet=new Set(eds.map(e=>e.id));
     const qList=qObjs().filter(q=>!isT(q.id)&&((q.sp===sp)||(q.conc&&(concursoById(q.conc)||{}).sp===sp)||(q.ed&&edsSet.has(q.ed))||(!q.ed&&!q.user&&sp==='dataprev')));
     const qSig=qList.map(q=>q.id+':'+qTitle(q)+':'+(q.ed||'')+':'+(q.cg||'')+':'+(q.materia||'')+':'+(q.banca||'')).join(';');
+    const notesSig=qList.map(q=>q.id+':'+String((typeof qFlag==='function'?qFlag(q.id).note:'')||'').slice(0,420)).join(';');
     const trSig=(typeof trashSet!=='undefined'&&trashSet)?[...trashSet].sort().join(','):'';
     const ovSig=typeof store!=='undefined'&&store.get?JSON.stringify(store.get('ov')||{}):'';
-    return [sp,cSig,eSig,cgSig,dSig,qSig,trSig,ovSig].join('~');
+    return [sp,cSig,eSig,cgSig,dSig,qSig,notesSig,trSig,ovSig].join('~');
   }catch(e){ return sp+'~'+Math.random(); }
 };
 const gr=(spId,force)=>{
