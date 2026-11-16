@@ -49,6 +49,23 @@ try{
       assert.equal(await page.locator('.eh-review a[href="#/questoes/erradas"]').count(),1);
       await page.screenshot({path:path.join(assets,'issue58_srs_due_home_'+width+'.png'),animations:'disabled'});
       report.checks.push({width,case:'due SRS card created in actual UI appears in Home without fake pending errors'});
+      await page.goto(url.replace('#/espaco','#/tipo/orgao'),{waitUntil:'domcontentloaded'});
+      await page.locator('[data-new="orgao"]').waitFor();
+      await page.locator('[data-new="orgao"]').click();
+      await page.locator('#dlg #fd_nome').waitFor();
+      const newOrg='Órgão recente '+width;
+      await page.locator('#dlg #fd_nome').fill(newOrg);
+      await page.locator('#dlg [data-x="1"]').click();
+      await page.waitForURL(/#\/orgao\//);
+      await page.goto(url,{waitUntil:'domcontentloaded'});
+      await page.locator('.eh-recents').waitFor();
+      assert.ok((await page.locator('.eh-recents').innerText()).includes(newOrg),
+        'new real Organization entity appears in recently changed objects');
+      const orgRow=page.locator('.eh-recents .eh-recent').filter({hasText:newOrg});
+      assert.equal(await orgRow.count(),1);
+      assert.match(await orgRow.getAttribute('href'),/#\/orgao\//);
+      await page.screenshot({path:path.join(assets,'issue58_real_recent_objects_'+width+'.png'),animations:'disabled'});
+      report.checks.push({width,case:'new Organization entity timestamp persists in recent objects with semantic link'});
       await page.locator('#eh-tab-raiox').click();
       assert.equal(await page.locator('#eh-panel-raiox').isVisible(),true,'Raio-X tab activated');
       await page.locator('#eh-tab-raiox').press('ArrowRight');
