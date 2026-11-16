@@ -32,6 +32,14 @@ async function gotoType(page,name){
   await row.first().click();
 }
 try{
+  const before=await openAt(8766);
+  try{
+    await before.page.locator('#nav [data-sec-add][data-kind="types"]').click();
+    assert.equal(await before.page.locator('#studioSearch').count(),0,'old flow lacks type-studio search');
+    await snap(before.page,'before_desktop');
+    report.cases.push({phase:'before',screenshot:'issue140_before_desktop.png',search:false});
+  }finally{await before.context.close();}
+
   const {context,page}=await openAt(8765);
   try{
     await studio(page);
@@ -86,8 +94,7 @@ try{
     assert.ok((await page.locator('.custom-object-body').innerText()).includes('licitações'),'edit survived reload');
     await page.goto(base(8765).replace('#/espaco','#/tipo/custom-nota-juridica'));
     await page.locator('.op-head h1').waitFor();
-    await page.locator('a[href*="#/custom-object/"]').first().waitFor({state:'attached',timeout:15000});
-    assert.ok((await page.locator('a[href*="#/custom-object/"]').allTextContents()).some(t=>t.includes('Lei 14.133')),'type dashboard lists saved objects');
+    assert.ok((await page.locator('.op-list').innerText()).includes('Lei 14.133'),'type dashboard lists saved objects');
     await snap(page,'after_reload');
     report.cases.push({phase:'after',step:'persist-after-reload',screenshot:'issue140_after_reload.png'});
 
