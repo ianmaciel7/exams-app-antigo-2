@@ -94,7 +94,9 @@ test('closing last tab restores Explore and undo restores original tab', () => {
 
 test('context-aware headers and pinned graph changes refresh the tab strip', () => {
   assert.match(html, /const on=t.id===RP.active,v=t.views\[0\],ttl=rpTabTitle\(t\),full=t.views.map\(vTitle\).join\(' \+ '\)/);
-  assert.match(html, /title="'\+esc\(full\)\+'/);
+  assert.match(html, /title="'\+esc\(full\+mode\)\+'/);
+  assert.match(html, /const mode=contextual\?\(pinned\?' · fixado':' · seguindo contexto'\):'';/);
+  assert.match(html, /class=\\"rp-context-pin\\"/);
   assert.match(html, /else if\(v\.type==='graf'\)\{ \/\/ Clicking a neighbor navigates the center/);
   assert.match(html, /wsOpenMain\(h\); if\(MQT\.matches\) openRP\(false\);/);
 });
