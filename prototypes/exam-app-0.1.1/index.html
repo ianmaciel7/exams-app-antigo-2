@@ -7328,7 +7328,7 @@ let opHoverTimer=0,opHoverLink=null,opHoverCard=null,opHoverTitle=null,opHoverDe
 const opHoverTarget=e=>e.target?.closest?.('.op a.chip[href^="#/"]');
 function opHoverClose(){
   clearTimeout(opHoverTimer);opHoverTimer=0;
-  if(opHoverLink){
+  if(opHoverLink&&opHoverCard){
     if(opHoverTitle!==null)opHoverLink.setAttribute('title',opHoverTitle);
     if(opHoverDesc!==null)opHoverLink.setAttribute('aria-describedby',opHoverDesc);
     else opHoverLink.removeAttribute('aria-describedby');
