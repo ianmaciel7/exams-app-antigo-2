@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><link rel="icon" type="image/x-icon" href="exam-app-0.1.1__favicon.ico"><link rel="shortcut icon" type="image/x-icon" href="exam-app-0.1.1__favicon.ico"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>
 /* Exam App motion tokens (MOTION.md); extended and spring are opt-in. */
 :root{
   --motion-duration-instant:60ms;
@@ -2257,8 +2257,8 @@ a.rp-link:hover{background:var(--active)}
 </div></div>
 <div class="toast" id="toast" role="status"><span id="toastTxt"></span><button id="toastUndo">Desfazer</button></div>
 
-<script src="pdf.min.js"></script>
-<script src="js/claude-storage-sync.js"></script>
+<script src="exam-app-0.1.1__pdf.min.js"></script>
+<script src="claude-storage-sync.js"></script>
 <script>
 if(typeof ClaudeStorageSyncEngine==="undefined"){
 /**
@@ -3936,7 +3936,7 @@ function paintNav(){
   const czKey=space+':__conc', czClosed=closedSecs.has(czKey);
   const czAll=CONCURSOS.filter(c=>c.sp===space&&!isT(c.id));
   const czSec='<div class="sec'+(czClosed?' closed':'')+'" data-seckey="'+esc(czKey)+'">'+secHead(czKey,'Concursos',czClosed,czAll.length,'conc','Novo concurso')+'<div class="sec-b">'+
-    sortList(czAll,navSort('conc'),c=>c.t,c=>CONCURSOS.indexOf(c)).map(cz=>treeNode('concurso:'+cz.id,cz.t,'#/concurso/'+cz.id,cz.id==='dataprev'?'<img src="assets/dataprev-symbol.svg" alt="">':SI.collection,cz.id==='dataprev'?'tone-brand':'tone-type-concurso',sortList(edicoesOf(space).filter(e=>e.conc===cz.id),navSort('conc'),e=>String(e.ano),e=>e.ano).map(e=>
+    sortList(czAll,navSort('conc'),c=>c.t,c=>CONCURSOS.indexOf(c)).map(cz=>treeNode('concurso:'+cz.id,cz.t,'#/concurso/'+cz.id,cz.id==='dataprev'?'<img src="dataprev-symbol.svg" alt="">':SI.collection,cz.id==='dataprev'?'tone-brand':'tone-type-concurso',sortList(edicoesOf(space).filter(e=>e.conc===cz.id),navSort('conc'),e=>String(e.ano),e=>e.ano).map(e=>
       treeNode('edicao:'+e.id,String(e.ano),'#/edicao/'+e.id,SI.calendar,'tone-edition',cargosOf(e.id).map(c=>
         treeNode('cargo:'+c.id,c.t,'#/cargo/'+c.id,SI.briefcase,'tone-cargo')
       ).join(''))
@@ -4214,7 +4214,7 @@ async function buildIndex(){
     for(const d of docs){
       if(textIdx.has(d.id)){ idxDone++; continue; }
       try{
-        const pdf=await pdfjsLib.getDocument(d.base.data?{data:d.base.data.slice()}:'pdfs/'+d.base.f).promise;
+        const pdf=await pdfjsLib.getDocument(d.base.data?{data:d.base.data.slice()}:'exam-app-0.1.1__pdfs__'+d.base.f).promise;
         const pages=[];
         for(let i=1;i<=pdf.numPages;i++){ const tc=await (await pdf.getPage(i)).getTextContent(); const raw=tc.items.map(x=>x.str).join(' ').replace(/\s+/g,' '); pages.push({raw,n:norm(raw)}); }
         textIdx.set(d.id,pages); pdf.destroy();
@@ -4348,7 +4348,7 @@ function readerTriageMove(stage){
 }
 
 const hasPdf=!!window.pdfjsLib;
-if(hasPdf) pdfjsLib.GlobalWorkerOptions.workerSrc='pdf.worker.min.js';
+if(hasPdf) pdfjsLib.GlobalWorkerOptions.workerSrc='exam-app-0.1.1__pdf.worker.min.js';
 function setZoomLabel(){ $('zfit').textContent=Math.round(zoom*100)+'%'; }
 function blank(title,html,seq){ cleanupReader(); $('props').hidden=true; document.querySelector('.main').classList.remove('reading-mode'); if(cur&&cur.pdf){ try{cur.pdf.destroy();}catch(e){} } cur=null; token++;readerTriageSync(null);
   $('docTitle').textContent=title; $('docMeta').textContent=''; $('pg').textContent=''; $('rp').style.width='0'; $('zfit').textContent='';
@@ -4375,7 +4375,7 @@ async function open(d,seq){
   if(rpVisible()) openRP(false);
   paintProps(d);
   try{
-    const pdf=await Promise.race([pdfjsLib.getDocument(d.data?{data:d.data.slice()}:'pdfs/'+d.f).promise,new Promise((_,rj)=>setTimeout(()=>rj(new Error('timeout')),25000))]);
+    const pdf=await Promise.race([pdfjsLib.getDocument(d.data?{data:d.data.slice()}:'exam-app-0.1.1__pdfs__'+d.f).promise,new Promise((_,rj)=>setTimeout(()=>rj(new Error('timeout')),25000))]);
     if(my!==token || (seq && seq!==wsLoadCurrentSeq)){ pdf.destroy(); return; }
     const vp=(await pdf.getPage(1)).getViewport({scale:1});
     cur={d,pdf,w:vp.width,h:vp.height,total:pdf.numPages,rendered:new Set()};
@@ -5210,7 +5210,7 @@ function scBody(k,id,tab,kind,title){
 }
 function scopedPage(k,id,tab){
   let t,kind,crumb,icon,logo='';
-  if(k==='concurso'){const c=concursoById(id);t=c.t;kind='Concurso';icon='concurso';logo=id==='dataprev'?'assets/dataprev-symbol.svg':'';crumb=[['Espaço','#/espaco'],[c.t,'#/concurso/'+id],[tab==='questoes'?'Questões':'Simulado','']];}
+  if(k==='concurso'){const c=concursoById(id);t=c.t;kind='Concurso';icon='concurso';logo=id==='dataprev'?'dataprev-symbol.svg':'';crumb=[['Espaço','#/espaco'],[c.t,'#/concurso/'+id],[tab==='questoes'?'Questões':'Simulado','']];}
   else if(k==='edicao'){const e=edicaoById(id),c=concursoById(e.conc);t=e.t;kind='Edição';icon='edicao';crumb=[['Espaço','#/espaco'],[c.t,'#/concurso/'+c.id],[String(e.ano),'#/edicao/'+id],[tab==='questoes'?'Questões':'Simulado','']];}
   else {const g=cargoById(id),e=edicaoById(g.edicao),c=concursoById(e.conc);t=g.t;kind='Cargo';icon='cargo';crumb=[['Espaço','#/espaco'],[c.t,'#/concurso/'+c.id],[String(e.ano),'#/edicao/'+e.id],[g.t,'#/cargo/'+id],[tab==='questoes'?'Questões':'Simulado','']];}
   return opPage({iid:k+':'+id,tab,wide:true,crumb,icon,logo,kind,kindHref:'#/tipo/'+k,title:t,body:scBody(k,id,tab,kind,t)});
@@ -5351,7 +5351,7 @@ function newConcursoPage(cc,eds,docs){
   const e0=eds[0], st=e0?cxStatus(e0):null;
   const props=[['Tipo',chipA('Concurso','#/tipo/concurso')],['Órgão',cc.orgao?chipA(cc.orgao,valHref('orgao',cc.orgao)):''],['Banca',e0&&e0.banca?chipA(e0.banca,valHref('banca',e0.banca)):''],['Situação',st?opTxt(st.main+(st.sub?' · '+st.sub:'')):'']];
   const edBody=eds.length?opList(eds.map(e=>{ const cs=cargosOf(e.id), sp=cxStatus(e); return {icon:'edicao',iid:'edicao:'+e.id,title:e.t,meta:(e.banca||'Banca não informada')+' · '+cs.length+(cs.length===1?' cargo':' cargos')+(sp.prova?' · prova '+brDate(sp.prova[0]):''),href:'#/edicao/'+e.id}; })):opEmpty('Nenhuma edição cadastrada.');
-  return opPage({iid:'concurso:'+cc.id,crumb:[['Espaço','#/espaco'],[cc.t,'']],icon:'concurso',logo:cc.id==='dataprev'?'assets/dataprev-symbol.svg':'',kind:'Concurso',kindHref:'#/tipo/concurso',title:cc.t,props,
+  return opPage({iid:'concurso:'+cc.id,crumb:[['Espaço','#/espaco'],[cc.t,'']],icon:'concurso',logo:cc.id==='dataprev'?'dataprev-symbol.svg':'',kind:'Concurso',kindHref:'#/tipo/concurso',title:cc.t,props,
     body:opSec('Histórico de edições',edBody+(eds.length<2?'<p class="op-note">As edições anteriores e futuras deste concurso aparecem aqui, da mais recente para a mais antiga. Use “Nova edição” para registrar outro ano.</p>':''),{count:eds.length,action:'<button class="op-btn" data-new="edicao" data-conc="'+cc.id+'">+ Nova edição</button>'})+(eds.length&&cc.id==='dataprev'?studyRows('concurso',cc.id):'')+perfSec(h=>h.conc===cc.id)+opSec('Documentos',docs.length?opList(eds.flatMap(e=>docRows(docs.filter(d=>d.edicao===e.id)).map(r=>Object.assign(r,{tail:String(e.ano)})))):opEmpty('Nenhum documento.'),{count:docs.length})});
 }
 function newEdicaoPage(ee,docs,c){
@@ -8524,7 +8524,7 @@ function bodyObj(v){ const m=/^#\/tipo\/([^/]+)/.exec(v.ref||''); if(m){const ro
   const props=n.extra.map(([l,val])=>'<dt>'+esc(l)+'</dt><dd><span class="rp-link">'+esc(val)+'</span></dd>').join('')+Object.keys(groups).map(l=>'<dt>'+esc(l)+'</dt><dd>'+groups[l].map(m=>'<a class="rp-link" href="'+esc(m.href)+'">'+esc(m.title)+'</a>').join('')+'</dd>').join('');
   const inn=n.inn.map(([h,l])=>gr().N.get(h)).filter(Boolean);
   return '<div class="rp-h"><span class="rp-ri k-'+n.kind+'" aria-hidden="true">'+kIcon(n.kind)+'</span><div><h3>'+esc(n.title)+'</h3><small>'+esc(n.sub||kn(n.kind))+'</small></div></div>'
-   +(n.kind==='pdf'?'<iframe title="'+esc(n.title)+'" src="pdfs/'+esc((docsOf(space).find(d=>'#'+d.id===n.href)||{}).f||'')+'" style="width:100%;height:55vh;border:1px solid var(--line);border-radius:8px"></iframe>':'')
+   +(n.kind==='pdf'?'<iframe title="'+esc(n.title)+'" src="exam-app-0.1.1__pdfs__'+esc((docsOf(space).find(d=>'#'+d.id===n.href)||{}).f||'')+'" style="width:100%;height:55vh;border:1px solid var(--line);border-radius:8px"></iframe>':'')
    +(n.text?'<p class="rp-text">'+esc(n.text)+(n.text.length>=420?'…':'')+'</p>':'')+(props?'<dl class="rp-props">'+props+'</dl>':'')
    +'<div class="rp-acts"><button type="button" class="rp-btn pri" data-vmain="'+esc(n.href)+'">'+WI.out+' Abrir na área principal</button><button type="button" class="rp-btn" data-vtab="'+esc(n.href)+'">'+WI.plus+' Nova aba</button></div>'
    +(inn.length?'<div class="rp-sec">Citado por '+inn.length+'</div><div class="rp-list">'+inn.slice(0,8).map(m=>rpRow(m)).join('')+(inn.length>8?'<div class="rp-more">e mais '+(inn.length-8)+'</div>':'')+'</div>':''); }
