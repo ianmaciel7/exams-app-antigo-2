@@ -5202,20 +5202,20 @@ function opEspacoPage(sp,mine){
     (ed?'<span class="eh-tag">'+esc(status)+'</span>':'');
   const action='<section class="eh-card eh-action"><div class="eh-eyebrow">HOJE · PRÓXIMA AÇÃO</div>'+
     '<h2>'+esc(priorityTopic||'Comece pelos fundamentos')+'</h2>'+
-    '<p>'+ (errors.length?'Você tem '+errors.length+' questão'+(errors.length===1?'':'ões')+' com erro ainda registrado. Continue a prática para reforçar o conteúdo.':
+    '<p>'+ (errors.length?'Você tem '+errors.length+' '+(errors.length===1?'questão':'questões')+' com erro ainda registrado. Continue a prática para reforçar o conteúdo.':
       answered.length?'Continue o ritmo: '+answered.length+' questões já respondidas neste espaço.':
       'Organize seu estudo começando pelas questões disponíveis ou pelos materiais cadastrados.')+'</p>'+
     '<div class="eh-actions"><a class="eh-button primary" href="'+actionHref+'">Continuar estudando</a>'+
     '<a class="eh-button" href="'+(ed?'#/edicao/'+esc(ed.id):'#/tipo/edicao')+'">Mapa do edital</a></div></section>';
   const review='<section class="eh-card eh-review"><div class="eh-eyebrow">REVISÃO DE HOJE</div>'+
     '<strong class="eh-review-number">'+reviewDueCount+'</strong>'+
-    '<p>'+ (reviewDueCount?srsDueCount+' cartão'+(srsDueCount===1?'':'ões')+' SRS vencido'+(srsDueCount===1?'':'s')+
-      ' · '+errorDueCount+' questão'+(errorDueCount===1?'':'ões')+' com recuperação vencida'+(errorDueCount===1?'':'s'):
+    '<p>'+ (reviewDueCount?srsDueCount+' '+(srsDueCount===1?'cartão':'cartões')+' SRS '+(srsDueCount===1?'vencido':'vencidos')+
+      ' · '+errorDueCount+' '+(errorDueCount===1?'questão':'questões')+' com recuperação '+(errorDueCount===1?'vencida':'vencidas'):
       'Nenhuma revisão vencida hoje. O próximo estudo continua disponível.')+'</p>'+
     '<div class="eh-review-links"><a href="#/revisao">Abrir revisão espaçada</a>'+
     '<a href="#/questoes/erradas">Abrir caderno de erros</a></div>'+
-    '<small>'+errors.length+' questão'+(errors.length===1?'':'ões')+' pendente'+(errors.length===1?'':'s')+' de recuperação; '+
-    recovery.recovered.length+' questão'+(recovery.recovered.length===1?'':'ões')+' recuperada'+(recovery.recovered.length===1?'':'s')+
+    '<small>'+errors.length+' '+(errors.length===1?'questão':'questões')+' '+(errors.length===1?'pendente':'pendentes')+' de recuperação; '+
+    recovery.recovered.length+' '+(recovery.recovered.length===1?'questão':'questões')+' '+(recovery.recovered.length===1?'recuperada':'recuperadas')+
     '. Contagem baseada em cartões vencidos e tentativas confirmadas.</small></section>';
   const week='<div class="eh-week" aria-label="Questões respondidas na semana">'+weekDays.map(x=>
     '<div class="eh-week-day'+(x.today?' today':'')+'" title="'+x.count+' respostas '+x.day+'"><div class="eh-week-bar" style="height:'+
