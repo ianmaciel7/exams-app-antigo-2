@@ -8276,10 +8276,10 @@ function wsPaint(){
       '" aria-description="Pressione Shift+P para fixar ou desafixar esta aba" aria-keyshortcuts="Shift+P" title="'+
       esc(ttl+(t.pinned?' · fixada':'')+' · Shift+P fixa/desafixa')+'" id="wst-'+t.id+'" aria-selected="'+on+
       '" tabindex="'+(on?0:-1)+'"><span class="ws-ti" aria-hidden="true">'+kIcon(hKind(t.hist[t.i]))+
-      '</span><span class="ws-tt">'+esc(ttl)+'</span></span><span class="ws-tact"><button type="button" class="ws-tp'+
+      '</span><span class="ws-tt">'+esc(ttl)+'</span></span><span class="ws-tact" aria-hidden="true"><button type="button" class="ws-tp'+
       (t.pinned?' pinned':'')+'" tabindex="-1" data-tab-pin="'+t.id+'" aria-pressed="'+!!t.pinned+
       '" aria-label="'+(t.pinned?'Desafixar':'Fixar')+' aba '+esc(ttl)+'">'+WI_PIN+'</button>'+
-      (one?'':'<button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-tab-close="'+t.id+
+      (one?'':'<button type="button" class="ws-tx" tabindex="-1" data-tab-close="'+t.id+
       '" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button>')+'</span></div>'; }).join('');
   if(fid){ const el=$('wst-'+fid); el&&el.focus(); }
 }
@@ -8384,8 +8384,8 @@ function rpPaintTabs(){
       '" tabindex="'+(on?0:-1)+'"><span class="ws-ti" aria-hidden="true">'+RT[v.type].ic+
       '</span><span class="ws-tt">'+esc(ttl)+'</span>'+
       (pinned?'<span class="rp-context-pin" aria-hidden="true">'+IX('<path d="M16 3l5 5-3 1-4 4v4l-2 2-7-7 2-2h4l4-4zM2 22l6-6"/>')+'</span>':'')+
-      '</span><button type="button" class="ws-tx" tabindex="'+(on?0:-1)+'" data-rp-tabx="'+esc(t.id)+
-      '" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></div>';
+      '</span><span style="display:contents" aria-hidden="true"><button type="button" class="ws-tx" tabindex="-1" data-rp-tabx="'+esc(t.id)+
+      '" aria-label="Fechar aba '+esc(ttl)+'">'+WI.x+'</button></span></div>';
   }).join('');
   rpUpdateTabLayout();
 }
