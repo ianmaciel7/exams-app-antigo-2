@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 const html=readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html',import.meta.url),'utf8');
 const start=html.indexOf('const TD_LAYOUTS='),end=html.indexOf('function opValorPage(',start);
 assert.ok(start>=0&&end>start,'type dashboard extracted from real source');
-const code=html.slice(start,end)+'\n({tdTypePage,tdState,tdUpdate,tdObjectsMarkup,tdItems,tdOrder})';
+const code=html.slice(start,end)+'\n({tdTypePage,tdState,tdUpdate,tdObjectsMarkup,tdItems,tdOrder,tdCollections,tdCollectionHrefs,tdToggleMember})';
 function setup(){
  const state=new Map(),listeners=[];
  const env={space:'test',store:{get:k=>state.get(k),set:(k,v)=>state.set(k,v)},
@@ -82,4 +82,47 @@ test('gallery cards use semantic object-type pills and only factual category chi
   const minimal=api.tdTypePage('nota',{n:'Nota',custom:true},[{id:'empty',type:'nota',t:'Sem tag'}]);
   assert.match(minimal.body,/Sem propriedades categorizadas/);
   assert.doesNotMatch(minimal.body,/class="td-property-chip[^"]*">Sem propriedades/);
+});
+
+
+test('collections accept object membership without losing older saved collections (#56 #57)',()=>{
+  const {api,state}=setup();
+  state.set('typeCollections:test:nota',[
+    {id:'c1',name:'Revisão',term:''},
+    {id:'c2',name:'Outra',members:['#/custom-object/2']}
+  ]);
+  assert.equal(api.tdCollectionHrefs(api.tdCollections('nota')[0]).length,0,'legacy records without members remain valid');
+  api.tdToggleMember('nota','c1','#/custom-object/1');
+  assert.equal(api.tdCollectionHrefs(api.tdCollections('nota')[0]).length,1);
+  assert.equal(api.tdCollectionHrefs(api.tdCollections('nota')[0])[0],'#/custom-object/1');
+  assert.equal(api.tdCollectionHrefs(api.tdCollections('nota')[1])[0],'#/custom-object/2','unrelated collections are unchanged');
+  api.tdToggleMember('nota','c1','#/custom-object/1');
+  assert.equal(api.tdCollectionHrefs(api.tdCollections('nota')[0]).length,0,'second toggle removes member');
+});
+
+test('opening a saved collection filters the All view to actual members, with clear control (#56)',()=>{
+  const {api,state}=setup();
+  state.set('typeCollections:test:nota',[{id:'c1',name:'Só álgebra',members:['#/custom-object/1']}]);
+  api.tdUpdate('nota',{tab:'all',layout:'gallery',collection:'c1'});
+  const page=api.tdTypePage('nota',{n:'Nota',custom:true},objects());
+  assert.match(page.body,/data-td-open-collection="nota\|c1"/);
+  assert.match(page.body,/data-td-clear-collection="nota"/);
+  assert.match(page.body,/data-td-count>1</);
+  assert.equal((page.body.match(/class="td-card-title"/g)||[]).length,1);
+  assert.match(page.body,/td-card-title">Álgebra/);
+  assert.equal(api.tdState('nota').collection,'c1');
+  api.tdUpdate('nota',{collection:''});
+  const unfiltered=api.tdTypePage('nota',{n:'Nota',custom:true},objects());
+  assert.equal((unfiltered.body.match(/class="td-card-title"/g)||[]).length,3);
+});
+
+test('collection state is specific to space and type; unknown/legacy filters are safe (#56)',()=>{
+  const {api,state}=setup();
+  state.set('typeCollections:test:nota',[{id:'legacy',name:'Antiga'}]);
+  api.tdUpdate('nota',{tab:'all',collection:'legacy'});
+  const legacy=api.tdTypePage('nota',{n:'Nota',custom:true},objects());
+  assert.match(legacy.body,/data-td-count>0</);
+  assert.match(legacy.body,/Nenhum objeto deste tipo cadastrado/);
+  assert.equal(api.tdCollections('simulado').length,0,'other type does not inherit collections');
+  assert.ok(!state.has('typeCollections:another-space:nota'));
 });
