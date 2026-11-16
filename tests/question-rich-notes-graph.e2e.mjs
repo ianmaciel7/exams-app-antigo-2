@@ -35,10 +35,18 @@ try {
       });
       await ped.locator('[data-qped-format="bold"]').click();
       assert.ok(await rich.locator('strong').count()>=1,'real strong markup surrounds selected phrase');
-      const sanitized=await page.evaluate(()=>window.qPedSafeHtml(
-        '<p><img src="x" onerror="alert(1)"><strong style="color:red" onclick="alert(2)">Legal</strong><script>alert(3)</script></p>'));
-      assert.ok(sanitized.includes('<strong>Legal</strong>'));
-      assert.ok(!sanitized.includes('<img')&&!sanitized.includes('onclick')&&!sanitized.includes('<script'));
+      // Paste a literal HTML-looking payload; the rich editor must accept text only,
+      // and must never instantiate an image/script element from the clipboard.
+      await rich.evaluate(el=>{
+        const sel=window.getSelection(),range=document.createRange();
+        range.selectNodeContents(el);range.collapse(false);
+        sel.removeAllRanges();sel.addRange(range);
+        const data=new DataTransfer();
+        data.setData('text/plain',' <img src=x onerror=alert(1)>');
+        el.dispatchEvent(new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData:data}));
+      });
+      assert.equal(await rich.locator('img,script').count(),0,'clipboard markup is never parsed into DOM nodes');
+      assert.match(await rich.innerText(),/<img src=x onerror=alert\(1\)>/);
       await ped.locator('[data-qped-save]').click();
       await page.screenshot({path:path.join(assets,'issue72_rich_editor_'+width+'.png'),animations:'disabled'});
       await page.goto(base+'#/nota/'+encodeURIComponent(id),{waitUntil:'domcontentloaded'});
