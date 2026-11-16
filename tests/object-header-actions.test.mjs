@@ -65,7 +65,7 @@ test('actions wire to real saved state, dialogs, right panel and context menus',
   for(const fragment of [
     "store.set(key,!store.get(key));route(true)",
     "title:'Aliases e etiquetas'",
-    "store.set(key,{alias,tags});route(true)",
+    "store.set(key,{alias,tags});GR_CACHE.delete(space);route(true)",
     "rpAddTab('ia'",
     "rpAddTab('back',href)",
     "rpAddTab('rel',href)",

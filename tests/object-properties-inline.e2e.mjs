@@ -69,6 +69,8 @@ try {
       await page.locator('#fd_tags').fill('Lei seca, Revisão, Lei seca');
       await page.locator('#dlg [data-x="1"]').click();
       await page.waitForFunction(() => document.querySelector('#view .op-meta')?.textContent?.includes('Apelido do concurso'));
+      await page.waitForFunction(() => document.querySelectorAll('#view .op-meta .op-meta-chip').length===3,
+        null,{timeout:12000});
       assert.equal(await page.locator('#view .op-meta .op-meta-chip').count(), 3,
         'one alias and two deduplicated tags');
       await page.reload({ waitUntil: 'domcontentloaded' });

@@ -5463,7 +5463,7 @@ view.addEventListener('click',async e=>{
     if(!v)return;
     const alias=String(v.alias||'').trim().slice(0,80);
     const tags=[...new Set(String(v.tags||'').split(/[,;\n]/).map(x=>x.trim().slice(0,40)).filter(Boolean))].slice(0,8);
-    store.set(key,{alias,tags});route(true);return;
+    store.set(key,{alias,tags});GR_CACHE.delete(space);route(true);return;
   }
   el=e.target.closest('[data-op-assistant]');
   if(el){const id=el.dataset.opAssistant;rpAddTab('ia','#/'+id.replace(':','/'));return;}
@@ -7617,8 +7617,26 @@ const kIcon=k=>k==='grafico'?WI.graph:(TYI()[k]||(k==='espaco'?SI.collection:SI.
 function hKind(h){ h=String(h||'').replace(/^#/,''); if(!h) return 'pdf'; const p=h.split('/'); if(p[0]!=='') return 'pdf'; const k=p[1]; if(k==='espaco'||k==='quadro') return 'espaco'; if(k==='tipo') return p[2]||'arquivo'; if(k==='valor') return 'arquivo'; if(k==='simulado'||k==='tentativa') return 'simulado'; if(k==='lixeira') return 'arquivo'; return k; }
 
 /* ---- grafo de objetos do espaço (usado no painel e na página Gráfico) ---- */
+/* Object aliases/tags are projected into the graph read model, not separate fake nodes (#57). */
+function graphStoredMeta(sp,href,kind){
+  const id=String(href||'').startsWith('#/')?
+    String(href).slice(2).replace('/',':'):String(kind||'pdf')+':'+String(href||'').replace(/^#/,'');
+  const m=store.get('object-meta:'+sp+':'+id)||{};
+  return {alias:typeof m.alias==='string'?m.alias.trim().slice(0,80):'',
+    tags:Array.isArray(m.tags)?m.tags.filter(x=>typeof x==='string'&&x.trim()).map(x=>x.trim().slice(0,40)).slice(0,8):[]};
+}
+function graphSearchText(n){return [n.title,n.sub,n.alias,(n.tags||[]).join(' '),n.text].join(' ');}
 function G(spId){
-  const sp=spId||space, N=new Map(), add=(href,title,kind,sub,extra,text)=>{ if(!href) return null; if(!N.has(href)) N.set(href,{href,title:String(title||'Sem título'),kind,sub:sub||'',extra:extra||[],text:text||'',out:[],inn:[]}); return N.get(href); };
+  const sp=spId||space, N=new Map(), add=(href,title,kind,sub,extra,text)=>{
+    if(!href)return null;
+    if(!N.has(href)){
+      const m=graphStoredMeta(sp,href,kind);
+      const details=(Array.isArray(extra)?extra:[]).concat(m.alias?[['Alias',m.alias]]:[],m.tags.length?[['Etiquetas',m.tags.join(', ')]]:[]);
+      N.set(href,{href,title:String(title||'Sem título'),kind,sub:sub||'',alias:m.alias,tags:m.tags,
+        extra:details,text:text||'',out:[],inn:[]});
+    }
+    return N.get(href);
+  };
   const link=(a,b,l)=>{ const A=N.get(a),B=b&&N.get(b); if(!A||!B||A===B) return; if(A.out.some(x=>x[0]===b&&x[1]===l)) return; A.out.push([b,l]); B.inn.push([a,l]); };
   const eh=e=>e?'#/'+e.type+'/'+e.id:null, guard=f=>{ try{ f(); }catch(err){ if(typeof console!=='undefined'&&console.warn) console.warn('[G] err:', err); } };
   const addEnt=e=>{ if(!e||isT(e.id)) return null; return add('#/'+e.type+'/'+e.id,e.t,e.type,kn(e.type)); };
@@ -8029,7 +8047,7 @@ function bodyExplorar(v){
   return launch+relevant+rpSearchBlock(v);
 }
 const exChips=(v,kinds)=>['']. concat(kinds).map(k=>'<button type="button" class="rp-chip" data-ex-kind="'+k+'" aria-pressed="'+((v.kind||'')===k)+'">'+(k?esc(kn(k)):'Tudo')+'</button>').join('');
-function exRows(v){ const q=norm(String(v.q||'')), all=[...gr().N.values()].filter(n=>(!v.kind||n.kind===v.kind)&&(!q||norm(n.title+' '+n.sub).includes(q)));
+function exRows(v){ const q=norm(String(v.q||'')), all=[...gr().N.values()].filter(n=>(!v.kind||n.kind===v.kind)&&(!q||norm(graphSearchText(n)).includes(q)));
   all.sort((a,b)=>KORD.indexOf(a.kind)-KORD.indexOf(b.kind)||a.title.localeCompare(b.title,'pt-BR',{numeric:true}));
   if(!all.length) return '<div class="rp-empty">'+(q?'<b>Nada encontrado para “'+esc(v.q)+'”</b>Tente outra palavra ou outro tipo.':'<b>Nenhum objeto ainda</b>Crie um concurso na barra lateral.')+'</div>';
   const rows=all.slice(0,80), groups=new Map(), tot={}; all.forEach(n=>{ tot[n.kind]=(tot[n.kind]||0)+1; }); rows.forEach(n=>{ const g=groups.get(n.kind)||[]; g.push(n); groups.set(n.kind,g); });
@@ -8478,7 +8496,7 @@ function buildGraph(seq){
     const q=norm(gq.value.trim());
     if(!q){ st.match=null; matchCount.textContent=''; focusSearch(); return; }
     st.match=new Set();
-    nodes.forEach((o,i)=>{ if(o.on&&norm(o.n.title+' '+(o.n.sub||'')).includes(q)) st.match.add(i); });
+    nodes.forEach((o,i)=>{ if(o.on&&norm(graphSearchText(o.n)).includes(q)) st.match.add(i); });
     matchCount.textContent=st.match.size===0?'Nenhum objeto encontrado':st.match.size+(st.match.size===1?' objeto encontrado':' objetos encontrados');
     focusSearch();
   };
