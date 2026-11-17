@@ -4,7 +4,7 @@
 - **Original Branch:** `old-7`
 - **Commit SHA:** `e5d9048aabb480605e357c2d2a00e82fc4c24c3d`
 - **GitHub Reference:** [Commit e5d9048 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-7)
-- **Git Bundle:** [notes-app-old-7.bundle](notes-app-old-7.bundle)
+- **Git Bundle:** [notes-app-old-7.bundle](archive/backups/notes-app/notes-app-old-7.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-7.bundle
-git clone notes-app-old-7.bundle -b old-7 ./restored-notes-app-old-7
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-7.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-7.bundle -b old-7 ./restored-notes-app-old-7
 ```
