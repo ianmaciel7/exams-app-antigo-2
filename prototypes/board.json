@@ -835,7 +835,9 @@
     "e17022",
     "e17023",
     "e17024",
-    "e17025"
+    "e17025",
+    "e17278",
+    "e17279"
   ],
   "elements": {
     "e1": {
@@ -8614,6 +8616,23 @@
       "h": 185,
       "wrap": 1610,
       "text": "COBERTURA DE EVIDÊNCIAS\n57 registros com fonte textual/DOM ou inspeção estática e decisão de produto. Cinco capturas antigas mostram apenas alguns estados AZ-104; não são 57 screenshots. Áreas logadas, PRO, imagens novas e execução E2E continuam pendentes. Não tratar ausência de screenshot como funcionalidade inexistente."
+    },
+    "e17278": {
+      "type": "container",
+      "x": 18000,
+      "y": 0,
+      "w": 1700,
+      "h": 800,
+      "color": "white",
+      "text": "Issue #278 — fase 0: baseline e publicação bloqueada"
+    },
+    "e17279": {
+      "type": "text",
+      "x": 18040,
+      "y": 80,
+      "w": 1600,
+      "h": 650,
+      "text": "#278: preparação implementada; migração NÃO iniciada.\nBaseline dev c9356bb: 1.150 arquivos, 961 em prototypes; SHA-256 e destinos propostos em issue278-inventory.json.\n214 testes Node PASS; cinco hashes divergentes no mapa antigo são problemas anteriores. Cobertura recalculada: 59 containers, 754 nós, 754 cobertos (baseline commitada antiga: 57/727/713).\nHold de publicação Claude, mirror e writers de evidência. PR da proteção deve entrar primeiro em dev. Nenhum deploy executado.\nRelatório: issue278-migration.md; comandos: issue278-baseline.json; dependências: issue278-dependencies.json.\nNão é validação visual/E2E. Migração de paths, testes de browser e Windows 11 permanecem pendentes.\nhttps://github.com/ianmaciel7/exams-app/issues/278"
     }
   }
 }

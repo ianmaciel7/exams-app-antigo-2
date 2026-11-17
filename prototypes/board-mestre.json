@@ -379,6 +379,11 @@
           "title": "Fontes de verdade do board",
           "path": "prototypes/FONTES.md",
           "role": "Responsabilidades e sincronização."
+        },
+        {
+          "title": "Issue 278 — baseline e publicação bloqueada",
+          "path": "prototypes/issue278-migration.md",
+          "role": "Fase preparatória; requisitos restantes explícitos."
         }
       ],
       "cards": [
@@ -429,6 +434,20 @@
             "e1450"
           ],
           "summary": "Deadline, cancelamento e recuperação."
+        },
+        {
+          "name": "Migração segura do protótipo — issue 278",
+          "kind": "arquitetura",
+          "blocks": [
+            "e17278"
+          ],
+          "summary": "Fase 0: inventário e hold; migração não iniciada.",
+          "documents": [
+            {
+              "title": "Relatório e sequência de migração",
+              "path": "prototypes/issue278-migration.md"
+            }
+          ]
         }
       ]
     },
