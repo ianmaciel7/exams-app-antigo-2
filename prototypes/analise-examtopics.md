@@ -1,6 +1,8 @@
+> **ATENÇÃO — Versão histórica (13/11/2026):** as expressões “hoje”, “falta” e “não existem” abaixo descrevem um snapshot antigo da 0.1.1, e não os recursos correntes na branch `dev`. A [auditoria de 17/11/2026](examtopics-auditoria-2026-11-17.md) é a referência atual para decisões de release. As propostas antigas foram preservadas, sem apagá-las.
+
 # Análise ExamTopics: funcionalidades para o banco de questões
 
-*Análise sobre a 0.1.1 (v105), 13/11/2026. Nada foi implementado nem alterado no protótipo.*
+*Análise histórica sobre a 0.1.1 (v105), 13/11/2026. Não é diagnóstico da branch atual. A inspeção de 17/11/2026 já confirma a existência de componente de filtros unificado, chips, paginação, filtros salvos e estado na URL na `dev`. O documento mais recente é [auditoria comparativa de 17/11/2026](examtopics-auditoria-2026-11-17.md).*
 
 ## Resumo
 
