@@ -15,7 +15,7 @@ async function open(port, route, width) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
   page.on('pageerror', e => result.errors.push(e.message));
-  await page.goto('http://127.0.0.1:' + port + '/exam-app-0.1.1__index.html#' + route, { waitUntil: 'domcontentloaded' });
+  await page.goto('http://127.0.0.1:' + port + (String(port) === '8766' ? '/exam-app-0.1.1/index.html' : '/exam-app-0.1.1__index.html') + '#' + route, { waitUntil: 'domcontentloaded' });
   await page.locator('.qf-list .s-option').first().waitFor({ timeout: 30000 });
   return { context, page };
 }
