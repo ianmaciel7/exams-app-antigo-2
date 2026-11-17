@@ -24,6 +24,9 @@ flowchart LR
 
 ## Documentos
 
+- [Auditoria ExamTopics × dev — 17/11/2026](examtopics-auditoria-2026-11-17.md) — Fontes oficiais, controles DOM, limitações, decisões e gaps.
+- [Manifesto de evidências ExamTopics — 17/11/2026](examtopics-auditoria-evidencias-2026-11-17.json) — URLs observadas e cinco capturas anteriores (sem mídia nova).
+
 - [Capacities — #32](capacities-issue-32-2026-11-15.md)
 - [ExamTopics — inventário](examtopics-inventory.md)
 - [QConcursos — #31](qconcursos-issue-31-2026-11-15.md)
