@@ -4,7 +4,7 @@
 - **Original Branch:** `old`
 - **Commit SHA:** `e2234be59ba61a717884f829037cb8be268e5c6c`
 - **GitHub Reference:** [Commit e2234be on GitHub](https://github.com/ianmaciel7/notes-app/tree/old)
-- **Git Bundle:** [notes-app-old.bundle](notes-app-old.bundle)
+- **Git Bundle:** [notes-app-old.bundle](archive/backups/notes-app/notes-app-old.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@ _No screenshot available: this version served as an internal alignment checkpoin
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old.bundle
-git clone notes-app-old.bundle -b old ./restored-notes-app-old
+git bundle verify prototype/archive/backups/notes-app/notes-app-old.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old.bundle -b old ./restored-notes-app-old
 ```
