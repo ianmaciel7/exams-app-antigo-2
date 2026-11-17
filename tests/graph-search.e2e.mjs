@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets=path.resolve('prototypes');
+const assets=path.resolve('prototype');
 await mkdir(assets,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],errors:[],limitations:[
@@ -86,5 +86,5 @@ try{
   assert.deepEqual(report.errors,[],'No uncaught browser errors');
 }finally{
   await browser.close();
-  await writeFile('prototypes/issue68_search_autofit_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototype/issue68_search_autofit_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

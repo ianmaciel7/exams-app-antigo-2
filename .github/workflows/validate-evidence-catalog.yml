@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/**'
+      - 'prototype/**'
       - 'scripts/build-evidence-catalog.py'
       - 'scripts/validate-evidence-catalog.py'
       - 'tests/test_evidence_catalog_dates.py'
@@ -12,7 +12,7 @@ on:
   push:
     branches: [dev]
     paths:
-      - 'prototypes/**'
+      - 'prototype/**'
       - 'scripts/build-evidence-catalog.py'
       - 'scripts/validate-evidence-catalog.py'
       - '.github/workflows/validate-evidence-catalog.yml'

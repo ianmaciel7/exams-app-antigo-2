@@ -7,7 +7,7 @@ import sys
 from urllib.parse import unquote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-MAP = ROOT / "prototypes" / "MIGRATION-MAP.md"
+MAP = ROOT / "prototype" / "MIGRATION-MAP.md"
 ROW = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \| `(?:[0-9a-f]+|—)` \| `([0-9a-f]{16})` \|", re.M)
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 errors = []

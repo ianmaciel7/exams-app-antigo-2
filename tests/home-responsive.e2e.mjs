@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes');
+const assets = path.resolve('prototype');
 await mkdir(assets, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const report = { created: new Date().toISOString(), cases: [], pageErrors: [], limitations: [
@@ -90,5 +90,5 @@ try {
   console.log('Responsive primary Home CTAs: genuine before/after and 12 widths PASS.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/issue132_home_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototype/issue132_home_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

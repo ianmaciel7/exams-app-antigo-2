@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototype/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 
 test('linked object preview uses existing graph object metadata only (#57)', () => {
   assert.match(html, /const n=nodeOf\(link\.getAttribute\('href'\)\)/);

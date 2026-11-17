@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const extract=(begin,end)=>{
   const a=html.indexOf(begin),b=html.indexOf(end,a+begin.length);
   assert.ok(a>=0&&b>a,'source region '+begin);

@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const dir = path.resolve('prototypes/board-exam-app__assets__*');
+const dir = path.resolve('prototype/board-exam-app__assets__*');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const results = [];
@@ -71,7 +71,7 @@ try {
 } finally {
   await browser.close();
 }
-await writeFile('prototypes/lowchrome_97_manifest.json', JSON.stringify({ recordedAt: new Date().toISOString(), states: results, errors }, null, 2) + '\n');
+await writeFile('prototype/lowchrome_97_manifest.json', JSON.stringify({ recordedAt: new Date().toISOString(), states: results, errors }, null, 2) + '\n');
 console.log('Captured ' + results.length + ' screenshots, errors: ' + errors.length);
 console.log('Before/after primary:', results.filter(x => x.width === 1366 && x.theme === 'light' && x.side && x.right));
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }

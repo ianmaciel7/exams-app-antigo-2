@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
       - 'tests/question-confirm.test.mjs'
@@ -18,7 +18,7 @@ on:
   push:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/study-navigation.test.mjs'
       - 'tests/workspace-command-router.test.mjs'
       - 'tests/question-confirm.test.mjs'

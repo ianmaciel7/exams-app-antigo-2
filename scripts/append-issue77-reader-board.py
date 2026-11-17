@@ -2,7 +2,7 @@
 """Record independently verified PDF.js Chromium screenshots in the planning board."""
 from pathlib import Path
 import json,os,struct
-root=Path(__file__).resolve().parents[1]/"prototypes"/"board-exam-app"
+root=Path(__file__).resolve().parents[1]/"prototype"/"board-exam-app"
 board_path=root/"board.json"
 board=json.loads(board_path.read_text(encoding="utf8"))
 els,order=board["elements"],board["order"]

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes');
+const dir=path.resolve('prototype');
 await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
@@ -109,5 +109,5 @@ try{
   }finally{await context.close();}
 }finally{
   await browser.close();
-  await writeFile('prototypes/issue140_type_studio_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototype/issue140_type_studio_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

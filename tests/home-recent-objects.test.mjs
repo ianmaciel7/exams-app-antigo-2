@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const from=html.indexOf('function ehRecentEntries(');
 const to=html.indexOf('function opEspacoPage(',from);
 assert.ok(from>=0&&to>from,'home recent records extraction exists');
