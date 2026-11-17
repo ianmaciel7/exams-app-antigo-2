@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'prototypes/exam-app-0.1.1__index.html'
       - 'tests/notebooks-saved-filters.e2e.mjs'
       - 'scripts/append-question-notebooks-board.py'
       - '.github/workflows/e2e-notebooks-filters.yml'
@@ -35,7 +35,7 @@ jobs:
           python3 -m http.server 8765 --directory prototypes >/tmp/book-after.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-book-before/prototypes >/tmp/book-before.log 2>&1 &
           sleep 2
-          curl -f http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null
+          curl -f http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
           curl -f http://127.0.0.1:8766/exam-app-0.1.1/index.html -o /dev/null
       - name: E2E notebook creation, progress, retake, membership, saved filters
         run: node tests/notebooks-saved-filters.e2e.mjs
@@ -45,20 +45,20 @@ jobs:
         with:
           name: issue75-notebooks-evidence
           path: |
-            prototypes/board-exam-app/assets/issue75_*.png
-            prototypes/board-exam-app/issue75_e2e.json
+            prototypes/issue75_*.png
+            prototypes/issue75_e2e.json
           if-no-files-found: warn
       - name: Append verified screenshots and regenerate Board Markdown
         run: |
           python3 scripts/append-question-notebooks-board.py
           npm run board
-          grep -q '35. Cadernos e Queries de Questões' prototypes/board-exam-app/BOARD.md
+          grep -q '35. Cadernos e Queries de Questões' prototypes/BOARD.md
       - name: Persist evidence in branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md prototypes/board-exam-app/issue75_e2e.json
-          git add prototypes/board-exam-app/assets/issue75_*.png
+          git add prototypes/board.json prototypes/BOARD.md prototypes/issue75_e2e.json
+          git add prototypes/issue75_*.png
           if ! git diff --cached --quiet; then
             git commit -m "test(cadernos): persist Issue #75 Chromium evidence in planning board"
             git push origin HEAD:${{ github.head_ref }}

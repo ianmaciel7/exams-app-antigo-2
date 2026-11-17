@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const evidenceDir = path.resolve('prototypes/board-exam-app/assets');
+const evidenceDir = path.resolve('prototypes');
 await mkdir(evidenceDir, { recursive: true });
 const report = { browser: 'Chromium', platform: process.platform, scenarios: [], errors: [], limitations: [
   'Native OS popup content may not be included in Playwright screenshots.',
@@ -11,7 +11,7 @@ const report = { browser: 'Chromium', platform: process.platform, scenarios: [],
 ] };
 const browser = await chromium.launch({ headless: true });
 
-const startUrl = 'http://127.0.0.1:8765/exam-app-0.1.1/index.html#/questoes';
+const startUrl = 'http://127.0.0.1:8765/exam-app-0.1.1__index.html#/questoes';
 
 async function start(colorScheme, viewport = { width: 1366, height: 900 }) {
   const context = await browser.newContext({ colorScheme, viewport, reducedMotion: 'reduce' });
@@ -86,5 +86,5 @@ try {
   console.log('Native selector theme regression: 9 theme/OS/viewport scenarios + values 1/5/10/20 passed.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue120_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototypes/issue120_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

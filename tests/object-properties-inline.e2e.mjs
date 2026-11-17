@@ -3,14 +3,14 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root = path.resolve('prototypes/board-exam-app');
-const assets = path.join(root, 'assets');
+const root = path.resolve('prototypes');
+const assets = root;
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 57, cases: [], errors: [], limitations: [
   'Headless Chromium responsive emulation; full Capacities comparison and assistive-technology audit remain pending.'
 ] };
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
-const url = 'http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const url = 'http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 try {
   for (const width of [390, 1366]) {
     const ctx = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });

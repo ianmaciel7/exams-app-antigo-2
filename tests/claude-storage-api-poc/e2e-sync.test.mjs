@@ -9,7 +9,7 @@ const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const DEBUG_PORT = 9223;
 const PROXY_PORT = 8766;
 const MAIN_SLUG = 'a728ae48-3fa2-4dbf-9092-0392c90b58f7';
-const APP_URL = 'http://localhost:8765/exam-app-0.1.1/index.html';
+const APP_URL = 'http://localhost:8765/exam-app-0.1.1__index.html';
 const ORIGIN_HEADER = { 'Origin': 'http://localhost:8765' };
 
 // Identificador exclusivo por execucao para isolamento absoluto e prevencao de exclusao de dados reais
@@ -198,13 +198,13 @@ test('E2E: Validacao de Sincronizacao Bidirecional no Artifact Principal e Exam 
     const ss = await cdp.send('Page.captureScreenshot', { format: 'png' });
     const buffer = Buffer.from(ss.data, 'base64');
 
-    const outputDir = path.resolve('prototypes/board-exam-app/assets/claude-storage-bridge');
+    const outputDir = path.resolve('prototypes');
     fs.mkdirSync(outputDir, { recursive: true });
     const ssPath = path.join(outputDir, 'evidence-e2e-sync-badge-active.png');
     fs.writeFileSync(ssPath, buffer);
 
     // Copia também para raiz de assets para o board
-    const boardAssetPath = path.resolve('prototypes/board-exam-app/assets/evidence-e2e-sync-badge-active.png');
+    const boardAssetPath = path.resolve('prototypes/board-exam-app__assets__evidence-e2e-sync-badge-active.png');
     fs.writeFileSync(boardAssetPath, buffer);
 
     assert.ok(buffer.length > 10000, 'Screenshot deve ter mais de 10 KB');

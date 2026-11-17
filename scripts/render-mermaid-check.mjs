@@ -1,7 +1,7 @@
-// Renderiza todos os blocos ```mermaid de prototypes/docs/architecture, prototypes/docs/features e prototypes/docs/planning
+// Renderiza os blocos Mermaid dos documentos achatados (arquitetura, features, planejamento)
 // num Chromium headless com Mermaid fixado, e salva uma captura por diagrama.
 // Uso: node scripts/render-mermaid-check.mjs <pasta-de-capturas>
-import { readFileSync, readdirSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join, relative, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -13,21 +13,20 @@ const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const MERMAID = 'https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js';
 
-function walk(dir) {
-  return readdirSync(dir).flatMap((n) => {
-    const p = join(dir, n);
-    return statSync(p).isDirectory() ? walk(p) : p.endsWith('.md') ? [p] : [];
-  });
-}
-
+// Use the migration map: flattened files no longer live in nested documentation folders.
+const mapFile = join(root, 'prototypes', 'MIGRATION-MAP.md');
+const mapText = readFileSync(mapFile, 'utf8');
+const rows = [...mapText.matchAll(/^\| \x60([^\x60]+)\x60 \| \x60([^\x60]+)\x60 \|/gm)];
+const sourcePrefixes = ['docs/architecture/', 'docs/features/', 'docs/planning/'];
 const blocks = [];
-for (const area of ['prototypes/docs/architecture', 'prototypes/docs/features', 'prototypes/docs/planning']) {
-  for (const file of walk(join(root, area))) {
-    const text = readFileSync(file, 'utf8');
-    const re = /```mermaid\n([\s\S]*?)```/g;
-    let m, i = 0;
-    while ((m = re.exec(text))) blocks.push({ file: relative(root, file), n: ++i, code: m[1] });
-  }
+for (const [, source, destination] of rows) {
+  if (!sourcePrefixes.some(prefix => source.startsWith(prefix)) || !destination.endsWith('.md')) continue;
+  const file = join(root, destination);
+  if (!existsSync(file)) throw new Error('Arquivo do mapa ausente: ' + destination);
+  const md = readFileSync(file, 'utf8');
+  const re = /\x60{3}mermaid\n([\s\S]*?)\x60{3}/g;
+  let m, i = 0;
+  while ((m = re.exec(md))) blocks.push({ file: relative(root, file), n: ++i, code: m[1] });
 }
 if (!blocks.length) { console.error('Nenhum bloco Mermaid encontrado.'); process.exit(1); }
 

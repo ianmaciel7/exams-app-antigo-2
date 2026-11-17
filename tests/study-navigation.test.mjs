@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { Script } from 'node:vm';
 
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
   .filter((match) => !/\bsrc\s*=/.test(match[1]) && !/application\/json/.test(match[1]));
 const source = scripts.map((match) => match[2]).join('\n');

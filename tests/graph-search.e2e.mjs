@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets=path.resolve('prototypes/board-exam-app/assets');
+const assets=path.resolve('prototypes');
 await mkdir(assets,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],errors:[],limitations:[
@@ -27,7 +27,7 @@ try{
       };
     });
     try{
-      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/grafico',{waitUntil:'domcontentloaded'});
+      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/grafico',{waitUntil:'domcontentloaded'});
       await page.locator('#gvc').waitFor({timeout:30000});
       await page.waitForFunction(()=>{
         const info=document.querySelector('.gv-info');
@@ -86,5 +86,5 @@ try{
   assert.deepEqual(report.errors,[],'No uncaught browser errors');
 }finally{
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue68_search_autofit_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototypes/issue68_search_autofit_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

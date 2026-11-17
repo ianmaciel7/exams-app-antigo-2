@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ClaudeStorageSyncEngine } from '../prototypes/exam-app-0.1.1/js/claude-storage-sync.js';
+import { ClaudeStorageSyncEngine } from '../prototypes/claude-storage-sync.js';
 
 // Polyfill minimalista de localStorage em memoria para Node.js
 class MockLocalStorage {

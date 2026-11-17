@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes/board-exam-app/assets');
+const dir = path.resolve('prototypes');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const report = { date: new Date().toISOString(), cases: [], errors: [], limits: [
@@ -19,7 +19,7 @@ try {
     const page = await context.newPage();
     page.on('pageerror', e => report.errors.push(e.message));
     try {
-      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/grafico', { waitUntil: 'domcontentloaded' });
+      await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/grafico', { waitUntil: 'domcontentloaded' });
       await page.locator('#gvExport').waitFor({ timeout: 30000 });
       await page.waitForFunction(() => {
         const status = document.querySelector('.gv-info');
@@ -58,5 +58,5 @@ try {
   console.log('Graph export E2E passed: keyboard-accessible PNG in mobile and desktop at DPR 2.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue68_export_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototypes/issue68_export_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

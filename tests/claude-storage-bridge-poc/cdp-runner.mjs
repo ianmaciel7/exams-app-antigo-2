@@ -170,14 +170,14 @@ async function run() {
     const ss = await cdp.send('Page.captureScreenshot', { format: 'png' });
     const buffer = Buffer.from(ss.data, 'base64');
 
-    const outputDirAssets = path.resolve('prototypes/board-exam-app/assets/claude-storage-bridge');
+    const outputDirAssets = path.resolve('prototypes');
     fs.mkdirSync(outputDirAssets, { recursive: true });
     const ssPath = path.join(outputDirAssets, 'evidence-iframe-csp-blocked.png');
     fs.writeFileSync(ssPath, buffer);
     console.log(`[CDP] Screenshot salvo em: ${ssPath} (${buffer.length} bytes)`);
 
     // Salvar relatório estruturado
-    const reportDir = path.resolve('prototypes/docs/reports/claude-storage-bridge');
+    const reportDir = path.resolve('prototypes');
     fs.mkdirSync(reportDir, { recursive: true });
     const reportData = {
       timestamp: new Date().toISOString(),

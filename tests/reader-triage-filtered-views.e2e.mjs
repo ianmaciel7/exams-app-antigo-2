@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Chromium responsive emulation is not a physical touch or screen-reader audit.',
@@ -11,7 +11,7 @@ const report={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Reading percentage is omitted where no real saved reading position exists.'
 ]};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html#/tipo/pdf';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html#/tipo/pdf';
 try{
   for(const width of [390,1366]){
     const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});

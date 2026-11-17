@@ -3,11 +3,11 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes/board-exam-app/assets');
+const assets = path.resolve('prototypes');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 55, checks: [], errors: [] };
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
-const base = 'http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base = 'http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 try {
   const context = await browser.newContext({ viewport: { width: 1366, height: 900 }, reducedMotion: 'reduce' });
   try {
@@ -56,5 +56,5 @@ try {
   } finally { await context.close(); }
 } finally {
   await browser.close();
-  await writeFile(path.resolve('prototypes/board-exam-app/issue55_graph_e2e.json'), JSON.stringify(report, null, 2) + '\n');
+  await writeFile(path.resolve('prototypes/issue55_graph_e2e.json'), JSON.stringify(report, null, 2) + '\n');
 }

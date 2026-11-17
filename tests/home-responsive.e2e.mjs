@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes/board-exam-app/assets');
+const assets = path.resolve('prototypes');
 await mkdir(assets, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const report = { created: new Date().toISOString(), cases: [], pageErrors: [], limitations: [
@@ -11,7 +11,7 @@ const report = { created: new Date().toISOString(), cases: [], pageErrors: [], l
   'This test covers the primary Home CTAs and layout, not every screen and drawer of Issue #132.',
 ] };
 const widths = [320, 360, 375, 390, 412, 480, 600, 768, 820, 1024, 1280, 1440];
-const url = (port) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1/index.html#/espaco';
+const url = (port) => 'http://127.0.0.1:' + port + '/exam-app-0.1.1__index.html#/espaco';
 
 async function openAt(port, width) {
   const context = await browser.newContext({ viewport: { width, height: 850 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
@@ -90,5 +90,5 @@ try {
   console.log('Responsive primary Home CTAs: genuine before/after and 12 widths PASS.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue132_home_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototypes/issue132_home_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

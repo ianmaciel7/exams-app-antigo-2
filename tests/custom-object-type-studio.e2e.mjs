@@ -3,14 +3,14 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes/board-exam-app/assets');
+const dir=path.resolve('prototypes');
 await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
   'Only browser-local HTML prototype data. No cloud sync, object query engine, SRS flashcards or production domain persistence.',
   'Chromium automation, not a substitute for physical mobile/touch and screen-reader testing.'
 ]};
-const base=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
+const base=port=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#/espaco';
 async function openAt(port){
   const context=await browser.newContext({viewport:{width:1366,height:880},reducedMotion:'reduce'});
   const page=await context.newPage();
@@ -109,5 +109,5 @@ try{
   }finally{await context.close();}
 }finally{
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue140_type_studio_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototypes/issue140_type_studio_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

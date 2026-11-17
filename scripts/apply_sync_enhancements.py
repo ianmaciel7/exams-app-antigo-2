@@ -1,7 +1,7 @@
-with open('prototypes/exam-app-0.1.1/js/claude-storage-sync.js', encoding='utf-8') as f:
+with open('prototypes/claude-storage-sync.js', encoding='utf-8') as f:
     engine_code = f.read()
 
-with open('prototypes/exam-app-0.1.1/index.html', encoding='utf-8') as f:
+with open('prototypes/exam-app-0.1.1__index.html', encoding='utf-8') as f:
     html = f.read()
 
 # 1. Inline fallback de ClaudeStorageSyncEngine
@@ -50,7 +50,7 @@ new_qo = """ const qa=e.target.closest('[data-qo-ans]'); if(qa){ const [id,l]=qa
 assert old_qo in html, 'old_qo not found'
 html = html.replace(old_qo, new_qo, 1)
 
-with open('prototypes/exam-app-0.1.1/index.html', 'w', encoding='utf-8') as f:
+with open('prototypes/exam-app-0.1.1__index.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
 print('index.html atualizado com sucesso!')

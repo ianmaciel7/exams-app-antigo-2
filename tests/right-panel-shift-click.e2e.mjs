@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const assets=path.resolve('prototypes/board-exam-app/assets');
+const assets=path.resolve('prototypes');
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),cases:[],errors:[],limitations:[
  'Headless Chromium mobile/desktop emulation; physical touch and assistive technology not independently assessed.'
@@ -15,7 +15,7 @@ try{
   const page=await ctx.newPage();
   page.on('pageerror',e=>report.errors.push(e.message));
   try{
-    await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/espaco',{waitUntil:'domcontentloaded'});
+    await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/espaco',{waitUntil:'domcontentloaded'});
     await page.locator('#rpToggle').waitFor();
     if(await page.locator('#rpanel').isHidden())await page.locator('#rpToggle').click();
     await page.locator('#rpBody .rp-launch-grid').waitFor();
@@ -58,5 +58,5 @@ try{
  assert.deepEqual(report.errors,[],'no unhandled browser errors');
 }finally{
  await browser.close();
- await writeFile('prototypes/board-exam-app/issue55_shift_click_e2e.json',JSON.stringify(report,null,2)+'\n');
+ await writeFile('prototypes/issue55_shift_click_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

@@ -3,13 +3,13 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app'),assets=path.join(root,'assets');
+const root=path.resolve('prototypes'),assets=root;
 await mkdir(assets,{recursive:true});
 const evidence={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Chromium desktop/mobile simulation, not a physical screen-reader or IME validation.',
   'Imported highlights are question selections and question comments; PDF annotations require reader integration.'
 ]};
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
   for(const width of [390,1366]){
@@ -80,6 +80,15 @@ try{
       await editDialog.locator('#fd_note').fill('Mnemônico: transparência na administração.');
       await page.screenshot({path:path.join(assets,'issue83_nondestructive_edit_'+width+'.png'),animations:'disabled'});
       await editDialog.locator('[data-x="1"]').click();
+      // The dialog saves through a Promise callback. Wait for both edited fields
+      // to persist before revealing the next card; a visible card may be stale.
+      await page.waitForFunction(() => {
+        const card=Object.keys(localStorage).filter(k=>k.includes('daily-review:'))
+          .flatMap(k=>JSON.parse(localStorage.getItem(k)||'{}').cards||[])
+          .find(c=>c.question==='Qual princípio rege a transparência?');
+        return card?.editedText==='Texto editado: o princípio da publicidade orienta a Administração.' &&
+          card?.note==='Mnemônico: transparência na administração.';
+      },null,{timeout:10000});
       await page.locator('.srs-card').first().waitFor();
       assert.equal(await page.locator('.srs-answer').count(),0,'edited answer remains hidden after save');
       await page.locator('[data-srs-reveal]').first().click();

@@ -3,14 +3,14 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app');
-const assets=path.join(root,'assets');await mkdir(assets,{recursive:true});
+const root=path.resolve('prototypes');
+const assets=root;await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:['Desktop Chromium only; actual IME and screen reader need additional manual verification.']};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const context=await browser.newContext({viewport:{width:1366,height:850},reducedMotion:'reduce'});
 const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
 try{
-  await page.goto('http://127.0.0.1:8765/exam-app-0.1.1/index.html#/espaco',{waitUntil:'domcontentloaded'});
+  await page.goto('http://127.0.0.1:8765/exam-app-0.1.1__index.html#/espaco',{waitUntil:'domcontentloaded'});
   await page.locator('#rpToggle').waitFor();
   if(await page.locator('#rpanel').isHidden())await page.locator('#rpToggle').click();
   await page.locator('#rpBody').waitFor();

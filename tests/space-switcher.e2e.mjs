@@ -3,14 +3,14 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const output = path.resolve('prototypes/board-exam-app/assets');
+const output = path.resolve('prototypes');
 await mkdir(output,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),cases:[],pageErrors:[],limitations:[
   'Chromium pointer/keyboard and mobile emulation tested; physical touch hardware and a screen reader were not tested.',
   'Scope is the space switcher only; the app still stores spaces in browser-local storage, not a cloud database.'
 ]};
-const url=(port)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1/index.html#/espaco';
+const url=(port)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#/espaco';
 const afterPort=8765,beforePort=8766;
 async function capture(page,filename){
   await page.screenshot({path:path.join(output,'issue138_'+filename+'.png'),animations:'disabled',fullPage:false});
@@ -113,5 +113,5 @@ try {
   console.log('SpaceSwitcher: searchable, keyboard reordering, pointer drag and cancel, persisted order and mobile PASS');
 }finally{
  await context.close(); await browser.close();
- await writeFile('prototypes/board-exam-app/issue138_spaces_e2e.json',JSON.stringify(report,null,2)+'\n');
+ await writeFile('prototypes/issue138_spaces_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

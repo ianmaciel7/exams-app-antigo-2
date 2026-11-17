@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 
 // Runs the actual graph scheduler source in a tiny DOM/rAF harness.
 // This is not a substitute for real-browser, accessibility or performance tests.
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 const start = html.indexOf("  st.motionMQ=matchMedia('(prefers-reduced-motion: reduce)');");
 const end = html.indexOf('  const hit=(px,py)=>', start);
 assert.ok(start >= 0 && end > start, 'graph scheduler anchors exist');

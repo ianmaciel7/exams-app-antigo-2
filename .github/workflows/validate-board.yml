@@ -4,14 +4,12 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/board-exam-app/**'
-      - 'prototypes/docs/board/**'
+      - 'prototypes/**'
       - '.github/workflows/validate-board.yml'
   push:
     branches: [dev]
     paths:
-      - 'prototypes/board-exam-app/**'
-      - 'prototypes/docs/board/**'
+      - 'prototypes/**'
       - '.github/workflows/validate-board.yml'
 
 permissions:
@@ -26,21 +24,21 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validar integridade do canvas original
-        working-directory: prototypes/board-exam-app
+        working-directory: prototypes
         run: python3 -I validate_board.py
       - name: Validar taxonomia, documentos e cobertura dos boards
-        working-directory: prototypes/board-exam-app
+        working-directory: prototypes
         run: python3 -I validate_board_index.py
       - name: Validar índice do board mestre
-        working-directory: prototypes/board-exam-app
+        working-directory: prototypes
         run: |
           python3 -I render_board_mestre.py
           git diff --exit-code -- board-mestre.md || { echo 'board-mestre.md desatualizado; rode render_board_mestre.py'; exit 1; }
       - name: Validar vínculos de features do board mestre
-        working-directory: prototypes/board-exam-app
+        working-directory: prototypes
         run: python3 -I validate_feature_links.py
       - name: Regenerar BOARD.md e verificar diff
-        working-directory: prototypes/board-exam-app
+        working-directory: prototypes
         run: |
           python3 -I board_to_md.py
           if ! git diff --exit-code -- BOARD.md; then

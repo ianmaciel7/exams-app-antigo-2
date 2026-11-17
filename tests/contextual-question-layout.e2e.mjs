@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes/board-exam-app/assets');
+const dir = path.resolve('prototypes');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const result = { date: new Date().toISOString(), cases: [], errors: [], limitations: [
@@ -15,7 +15,7 @@ async function open(port, route, width) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
   page.on('pageerror', e => result.errors.push(e.message));
-  await page.goto('http://127.0.0.1:' + port + '/exam-app-0.1.1/index.html#' + route, { waitUntil: 'domcontentloaded' });
+  await page.goto('http://127.0.0.1:' + port + (String(port) === '8766' ? '/exam-app-0.1.1/index.html' : '/exam-app-0.1.1__index.html') + '#' + route, { waitUntil: 'domcontentloaded' });
   await page.locator('.qf-list .s-option').first().waitFor({ timeout: 30000 });
   return { context, page };
 }
@@ -78,5 +78,5 @@ try {
   console.log('Contextual question presentation: baseline reproduced, options stacked at 1366/390 and global flow functional.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/board-exam-app/issue136_e2e.json', JSON.stringify(result, null, 2) + '\n');
+  await writeFile('prototypes/issue136_e2e.json', JSON.stringify(result, null, 2) + '\n');
 }

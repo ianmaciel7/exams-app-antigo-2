@@ -3,8 +3,8 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root=path.resolve('prototypes/board-exam-app');
-const assets=path.join(root,'assets');
+const root=path.resolve('prototypes');
+const assets=root;
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:[
   'Headless desktop Chromium only; real screen-reader and touch-device interaction remain to be verified.',
@@ -14,7 +14,7 @@ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const context=await browser.newContext({viewport:{width:1366,height:850},reducedMotion:'reduce'});
 const page=await context.newPage();
 page.on('pageerror',e=>report.errors.push(e.message));
-const base='http://127.0.0.1:8765/exam-app-0.1.1/index.html';
+const base='http://127.0.0.1:8765/exam-app-0.1.1__index.html';
 const snap=async name=>page.screenshot({path:path.join(assets,name),animations:'disabled'});
 try{
   await page.goto(base+'#/espaco',{waitUntil:'domcontentloaded'});

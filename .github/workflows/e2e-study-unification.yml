@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'prototypes/exam-app-0.1.1__index.html'
       - 'tests/study-unification.e2e.mjs'
       - 'scripts/append-study-unification-board.py'
       - '.github/workflows/e2e-study-unification.yml'
@@ -35,7 +35,7 @@ jobs:
           python3 -m http.server 8765 --directory prototypes >/tmp/exams-after-server.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-before/prototypes >/tmp/exams-before-server.log 2>&1 &
           sleep 2
-          curl -f http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null
+          curl -f http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
           curl -f http://127.0.0.1:8766/exam-app-0.1.1/index.html -o /dev/null
       - name: Verify real user journeys and capture before/after evidence
         run: node tests/study-unification.e2e.mjs
@@ -44,20 +44,20 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: issue-100-before-after
-          path: prototypes/board-exam-app/assets/issue100_*.png
+          path: prototypes/issue100_*.png
           if-no-files-found: warn
       - name: Verify screenshot sizes, append board and regenerate Markdown
         run: |
           python3 scripts/append-study-unification-board.py
           npm run board
-          grep -q "32. Questões e Simulados" prototypes/board-exam-app/BOARD.md
-          grep -q "issue100_after_manual.png" prototypes/board-exam-app/BOARD.md
+          grep -q "32. Questões e Simulados" prototypes/BOARD.md
+          grep -q "issue100_after_manual.png" prototypes/BOARD.md
       - name: Persist evidence in PR branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prototypes/board-exam-app/board.json prototypes/board-exam-app/BOARD.md
-          git add prototypes/board-exam-app/assets/issue100_*.png
+          git add prototypes/board.json prototypes/BOARD.md
+          git add prototypes/issue100_*.png
           if ! git diff --cached --quiet; then
             git commit -m "test(e2e): persist issue #100 visual evidence in planning board"
             git push origin HEAD:${{ github.head_ref }}

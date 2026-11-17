@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1/index.html'
+      - 'prototypes/exam-app-0.1.1__index.html'
       - 'tests/graph-search-fit.test.mjs'
       - 'tests/graph-search.e2e.mjs'
       - '.github/workflows/e2e-graph-search.yml'
@@ -30,7 +30,7 @@ jobs:
           set -euo pipefail
           python3 -m http.server 8765 --directory prototypes >/tmp/exams-search.log 2>&1 &
           for i in $(seq 1 20); do
-            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1/index.html -o /dev/null; then break; fi
+            if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then break; fi
             sleep 1
           done
           node tests/graph-search.e2e.mjs
@@ -40,7 +40,7 @@ jobs:
         with:
           name: issue68-graph-search-evidence
           path: |
-            prototypes/board-exam-app/assets/issue68_search_autofit_*.png
-            prototypes/board-exam-app/assets/issue68_hubs_*.png
-            prototypes/board-exam-app/issue68_search_autofit_e2e.json
+            prototypes/issue68_search_autofit_*.png
+            prototypes/issue68_hubs_*.png
+            prototypes/issue68_search_autofit_e2e.json
           if-no-files-found: warn

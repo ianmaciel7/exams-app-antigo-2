@@ -18,8 +18,8 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PORT_HTTP = 8765
 PORT_PROXY = 8766
-URL_APP = f"http://localhost:{PORT_HTTP}/exam-app-0.1.1/index.html"
-URL_BOARD = f"http://localhost:{PORT_HTTP}/board-exam-app/index.html"
+URL_APP = f"http://localhost:{PORT_HTTP}/exam-app-0.1.1__index.html"
+URL_BOARD = f"http://localhost:{PORT_HTTP}/board-exam-app__index.html"
 
 def log(msg=""):
     print(msg, flush=True)

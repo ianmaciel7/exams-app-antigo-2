@@ -20,7 +20,7 @@ Esta skill descreve o protocolo padrão para orquestrar a resolução autônoma,
 1. Utilizar a ferramenta `invoke_subagent` passando múltiplos subagentes na lista `Subagents`:
    - `Model: 'flash'` (alta velocidade e eficiência para tarefas bem especificadas).
    - `Role: 'Issue <N> Specialist'`
-   - `Prompt`: Deve conter o número da issue, título, requisitos funcionais exatos, referências históricas (`prototypes/docs/archives/`) ou de design, e regras mandatórias do repositório.
+   - `Prompt`: Deve conter o número da issue, título, requisitos funcionais exatos, referências históricas (`prototypes/docs__archives__*`) ou de design, e regras mandatórias do repositório.
 2. Cada subagente deve criar uma branch temática `fix/<tema>-issue-<N>`, comitar suas alterações, opcionalmente abrir o PR e reportar o resultado detalhado ao orquestrador.
 
 ## 3. Protocolo de Auditoria do Orquestrador (Quality Gate)
@@ -35,7 +35,7 @@ Para CADA subagente que reportar conclusão, o orquestrador DEVE verificar:
    - Executar scanner regex `[\U00010000-\U0010ffff]` no código-fonte alterado.
    - Garantir 0 emojis Unicode na interface do usuário (usar apenas ícones vetoriais SVG monocromáticos com `currentColor` e `stroke-width="1.8"`).
 4. **Planning Board & Governança (Zero Information Loss):**
-   - Garantir que decisões arquiteturais e evidências visuais estejam registradas em `prototypes/board-exam-app/board.json`.
+   - Garantir que decisões arquiteturais e evidências visuais estejam registradas em `prototypes/board.json`.
    - Regenerar documentação com `npm run board`.
 
 ## 4. Resolução de PRs e Fechamento de Issues

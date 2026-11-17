@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 
 // Collection graph (#tipo/...) rendered on canvas (#227). Pure geometry is run from the shipped source.
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 const begin = html.indexOf('function collectionRingLayout(');
 const end = html.indexOf('function rpCvView(', begin);
 assert.ok(begin >= 0 && end > begin, 'collectionRingLayout anchors exist');
