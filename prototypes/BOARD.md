@@ -258,6 +258,140 @@ Critérios: clique no nó abre o objeto; lista de itens (details) para teclado e
 
 **Evidência 80 (Readwise SRS Stats — Issue #83): Página `Statistics` (`/stats`) com Heatmap anual de revisões diárias, novos grifos e recordes de ofensiva**
 
+## 40. Evidências ExamTopics — catálogo completo, fontes, comparativo dev e capturas (17/11/2026)
+<!-- container e17000 @ (14920,0) -->
+
+### Evidências ExamTopics — inventário integral (17/11/2026)
+**57 observações rastreadas** · 16 fontes públicas/históricas · 5 capturas históricas existentes.
+Cada achado traz ID ET-E, estado de comprovação, fonte, comparação com a `dev` e decisão. Registro real no board de Evidências, não apenas link em Pesquisa.
+**Limite:** DOM público e código estático; sem sessão logada, sem screenshot novo, sem E2E reexecutado.
+
+[EVIDÊNCIAS: dossiê completo (57 registros)](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/evidencias-examtopics-2026-11-17.md)
+
+[Manifesto estruturado (JSON)](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-evidencias-2026-11-17.json)
+
+[Galeria e mídia histórica](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/gallery.html)
+
+### Catálogo (7 registros)
+- **ET-E01** Lista de fornecedores de certificação — observado; fonte ET-01, ET-02
+- **ET-E02** Listagem de exames por fornecedor — observado; fonte ET-01, ET-02
+- **ET-E03** Pesquisa por nome ou código de exame — observado; fonte ET-01
+- **ET-E04** Rótulo de exame popular — observado; fonte ET-02
+- **ET-E05** Página de detalhes de exame — observado; fonte ET-03
+- **ET-E06** Contagem de questões do exame — observado; fonte ET-03, ET-04
+- **ET-E07** Data de atualização do banco — observado; fonte ET-04
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Questões (9 registros)
+- **ET-E08** Questão identificada por número e tópico — observado; fonte ET-04, ET-05
+- **ET-E09** Enunciado e alternativas com letras — observado; fonte ET-04, ET-05
+- **ET-E10** Paginação por página de questões — observado; fonte ET-04
+- **ET-E11** Intervalo X–Y e total de N questões — observado; fonte ET-04
+- **ET-E12** Navegação anterior e próxima página — observado; fonte ET-04
+- **ET-E13** Revelar ou ocultar solução/gabarito — observado; fonte ET-04
+- **ET-E14** Resposta sugerida apresentada após revelar — observado; fonte ET-04
+- **ET-E15** Enunciado com diagramas e imagens (exhibits) — observado; fonte ET-04
+- **ET-E16** Cenários e estudos de caso nos enunciados — observado; fonte ET-04
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Comunidade (9 registros)
+- **ET-E17** Alternativa mais votada indicada — observado; fonte ET-04
+- **ET-E18** Distribuição percentual de votos por alternativa — observado; fonte ET-04
+- **ET-E19** Discussão individual por questão — observado; fonte ET-08
+- **ET-E20** Comentários de usuários — observado; fonte ET-08, ET-09
+- **ET-E21** Respostas/réplicas em discussões — observado; fonte ET-08
+- **ET-E22** Alternativa escolhida em comentário — observado; fonte ET-08
+- **ET-E23** Votos/curtidas em comentários — observado; fonte ET-08
+- **ET-E24** Denunciar comentário — observado; fonte ET-08
+- **ET-E25** Identificação do autor e data da postagem — observado; fonte ET-08
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Conta e acesso (7 registros)
+- **ET-E26** Login por email e senha — formulário observado; fonte ET-10
+- **ET-E27** Cadastro com apelido, email e senha — formulário observado; fonte ET-11
+- **ET-E28** Verificação de email no fluxo de cadastro — fluxo descrito publicamente; fonte ET-10, ET-11
+- **ET-E29** Recuperação de senha — formulário observado; fonte ET-10
+- **ET-E30** Reenvio de verificação/ativação — fluxo descrito publicamente; fonte ET-10, ET-11
+- **ET-E31** Exigência de login para avançar da primeira página de AZ-900 — observado; fonte ET-06, ET-07
+- **ET-E32** Oferta de salvar histórico de navegação ao cadastrar — texto da interface observado; fonte ET-06
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Premium e conteúdo (8 registros)
+- **ET-E33** Contributor Access por exame — oferta pública; fonte ET-03, ET-12
+- **ET-E34** ExamTopics PRO com ativação de até dez exames — oferta pública; fonte ET-12
+- **ET-E35** Oferta de atualizações durante prazo contratado — oferta pública; fonte ET-12
+- **ET-E36** PRO promete navegação sem CAPTCHA/MFA — oferta pública; fonte ET-12
+- **ET-E37** PRO anuncia discussões integradas — oferta pública; fonte ET-12
+- **ET-E38** Aquisição separada de PDF de questões e respostas — oferta pública; fonte ET-03, ET-13
+- **ET-E39** Checkout de produto digital e termos — formulário/oferta; fonte ET-13, ET-14
+- **ET-E40** Blog e conteúdo sobre certificações — observado; fonte ET-15
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Não confirmado no ExamTopics (9 registros)
+- **ET-E41** Filtro de questões por ano e dificuldade — não identificado no acesso público; fonte ET-04
+- **ET-E42** Filtro de questões por tipo ou situação da resposta — não identificado no acesso público; fonte ET-04
+- **ET-E43** Filtros múltiplos, chips, filtros salvos — não identificado no acesso público; fonte ET-04
+- **ET-E44** Pesquisa pelo texto de questões — não identificado no acesso público; fonte ET-04
+- **ET-E45** Resposta interativa corrigida automaticamente — não identificado no acesso público; fonte ET-04
+- **ET-E46** Drag-and-drop e hotspot executáveis no navegador — não verificado; imagens/cenários não provam interação; fonte ET-04
+- **ET-E47** Simulado cronometrado, configurador e score final — não identificado no acesso público; fonte ET-03, ET-04
+- **ET-E48** Histórico de tentativas e dashboard pessoal — não verificado em conta autenticada; fonte ET-06
+- **ET-E49** Favoritos, flashcards e revisão espaçada — não identificado no acesso público; fonte ET-04
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Comparação dev (8 registros)
+- **ET-E50** Filtro Disciplina > Assunto e demais critérios — evidência estática do código dev; fonte DEV-01
+- **ET-E51** Chips, limpar filtros e sincronizar URL — evidência estática do código dev; fonte DEV-01
+- **ET-E52** Cadernos, favoritos e filtros salvos — evidência estática do código dev; fonte DEV-01
+- **ET-E53** Simulado com timer, correção e resultado — evidência estática do código dev; fonte DEV-01
+- **ET-E54** Exhibits acessíveis em todos contextos de questões — sem E2E específico nesta auditoria; fonte DEV-01
+- **ET-E55** Tipos de resposta múltiplas, hotspot, drag-drop — sem implementação interativa localizada; fonte DEV-01
+- **ET-E56** Fornecedor > certificação > exame e metadados de versão — não localizado como catálogo próprio; fonte DEV-01
+- **ET-E57** Conta real e sincronização multi-dispositivo — não homologados nesta auditoria; fonte DEV-01
+
+**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+
+### Galeria de capturas reais preexistentes (AZ-104)
+As cinco imagens abaixo já estavam no repositório; não são screenshots novos nem prova do estado atual de AZ-900. O catálogo de evidências guarda hashes, datas do registro e links históricos. A quinta captura (paginação/rodapé) foi agora anexada visualmente ao board.
+
+![imagem e17013](examtopics_az104_header_and_overview.png) ([abrir](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_header_and_overview.png))
+
+![imagem e17015](examtopics_az104_question_card.png) ([abrir](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_question_card.png))
+
+**EX-IMG-01** — Cabeçalho e visão geral; captura AZ-104 histórica.
+Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_header_and_overview.png).
+
+**EX-IMG-02** — Card da questão; captura AZ-104 histórica.
+Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_question_card.png).
+
+![imagem e17017](examtopics_az104_solution_reveal.png) ([abrir](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_solution_reveal.png))
+
+![imagem e17019](examtopics_az104_discussion_modal.png) ([abrir](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_discussion_modal.png))
+
+**EX-IMG-03** — Revelação do gabarito e votação; captura AZ-104 histórica.
+Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_solution_reveal.png).
+
+**EX-IMG-04** — Discussão e votos; captura AZ-104 histórica.
+Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_discussion_modal.png).
+
+![imagem e17021](examtopics_az104_pagination_and_footer.png) ([abrir](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_pagination_and_footer.png))
+
+**EX-IMG-05** — Paginação e rodapé; captura AZ-104 histórica.
+Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_pagination_and_footer.png).
+
+### O que ainda exige evidência nova
+1. Fluxo autenticado gratuito e confirmação do histórico persistido.
+2. Recursos efetivamente entregues no PRO/Contributor (ofertas não são execução).
+3. Screenshots novos desktop/tablet/mobile com URL, viewport, data e proveniência.
+4. E2E executados na branch dev, acessibilidade e tipos especiais de questão.
+5. Diferenciar formatos exibidos como imagem dos controles drag/drop/hotspot efetivamente interativos.
+
 ## QConcursos
 <!-- container e108 @ (7464,62) -->
 
