@@ -4,9 +4,9 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {PDFDocument,StandardFonts,rgb} from 'pdf-lib';
 import {chromium} from 'playwright';
 
-const pdfdir=path.resolve('prototypes/exam-app-0.1.1__pdfs__*');
+const pdfdir=path.resolve('prototypes');
 await mkdir(pdfdir,{recursive:true});
-const out=path.join(pdfdir,'edital-dou-03-07-2026.pdf');
+const out=path.join(pdfdir,'exam-app-0.1.1__pdfs__edital-dou-03-07-2026.pdf');
 const pdf=await PDFDocument.create(),pg=pdf.addPage([612,792]),font=await pdf.embedFont(StandardFonts.Helvetica);
 const left=[
  'CAPITULO 1 NORMAS GERAIS.', 'O concurso possui inscricoes abertas.',
