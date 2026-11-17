@@ -1,6 +1,6 @@
 {
   "versao_schema": 1,
-  "gerado_em": "2026-11-17T00:09:16Z",
+  "gerado_em": "2026-11-17T00:12:18Z",
   "resumo": {
     "midias": 374,
     "orfaos": 0,
@@ -1389,7 +1389,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/feature-links.json"
       ],
       "no_board_json": false,
@@ -1423,7 +1422,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/PR_DESCRIPTION.md",
         "prototypes/feature-links.json",
         "tests/claude-storage-api-poc/e2e-sync.test.mjs"
@@ -1459,7 +1457,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/feature-links.json"
       ],
       "no_board_json": false,
@@ -1491,7 +1488,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
         "prototypes/feature-links.json"
       ],

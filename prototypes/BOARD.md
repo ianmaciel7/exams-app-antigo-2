@@ -838,7 +838,7 @@ Testamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude P
 
 Evidência técnica registrada em prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md
 
-![imagem e1373](evidence-iframe-csp-blocked.png)
+![imagem e1373](board-exam-app__assets__evidence-iframe-csp-blocked.png)
 
 Evidência de execução real no Google Chrome: O navegador acusa 'Framing https://claude.ai/ violates Content Security Policy: frame-ancestors... The request has been blocked'. O iframe renderiza em branco e o canal postMessage é recusado pela Same-Origin Policy. Recomendação: Manter armazenamento local estruturado (localStorage/IndexedDB) e publicação estática via claude-artifact publish.
 
@@ -1005,15 +1005,15 @@ Decisões pendentes (4): listadas no fim do documento. Nada foi alterado na 0.1.
 - **Seguranca do Proxy:** Restricao estrita de Slugs homologados, rejeicao de chamadas sem Origin/Auth, regex estrita e timeout de 15s no upstream.
 - **Artifact Publicado:** Capabilities db e user homologadas; suporte a fallback inline para execucao direta no iframe.
 
-![imagem e1442](evidence-e2e-sync-badge-active.png)
+![imagem e1442](board-exam-app__assets__evidence-e2e-sync-badge-active.png)
 
 Evidencia de execucao real no Google Chrome: Badge SVG ativo (.synced/.syncing) no rodape lateral. Respostas de questoes, cadernos e espacos sincronizados com o Claude Pro DB (127.0.0.1:8766).
 
-![imagem e1444](evidence-claude-web-artifact-public.png)
+![imagem e1444](board-exam-app__assets__evidence-claude-web-artifact-public.png)
 
 Evidencia de auditoria do Claude Web: O acesso web automatizado ao Artifact real (claude.ai/code/artifact/...) apresenta o desafio Cloudflare Turnstile (Just a moment...), enquanto a API de Frame DB via token OAuth do Claude Code no proxy conecta-se diretamente ao backend sem bloqueio.
 
-![imagem e1446](evidence-homologation-clean-recovery.png)
+![imagem e1446](board-exam-app__assets__evidence-homologation-clean-recovery.png)
 
 Evidencia de Homologacao: Recuperacao completa e deterministica de dados (respostas, cadernos, espacos e workspaces) em navegador limpo e virgem a partir do Claude Pro DB.
 
@@ -2225,7 +2225,7 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Abertura do drawer/modal lateral de configuração de simulados (/simulados/criar) acionado a partir da busca filtrada de questões.
 **Parâmetros de UI**: Permite configurar Nome do Simulado, Quantidade de Questões (input com stepper/máximo permitido pelo filtro), Tempo / Duração (em minutos ou sem limite) e chave de alternância entre Modo Simulado Real (sem gabarito imediato, cronômetro regressivo) e Modo Prática (feedback imediato a cada questão respondida). Validação de questões mínimas bloqueia envio caso filtro resulte em zero itens.
 
-*(imagem vetorial e1303)*
+![imagem e1303](qconcursos_criar_simulado_config_modal.png)
 
 **Evidência 105 (QConcursos Criar Simulado Modal):** Configuração completa de simulado com título, quantidade de questões, tempo limite e modo de execução.
 
@@ -2233,7 +2233,7 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Clique no seletor de Assunto após filtrar Disciplina: Direito Constitucional.
 **Parâmetros de UI**: Popover suspenso contendo barra de Busca rápida interna e árvore hierárquica expansível de 3 níveis de profundidade, com checkboxes individuais e indicadores numéricos de volume de questões por nó (e.g., Direitos Individuais (1.240)). Permite seleção atômica de sub-tópicos sem selecionar a disciplina inteira.
 
-*(imagem vetorial e1306)*
+![imagem e1306](qconcursos_filter_assunto_tree_open.png)
 
 **Evidência 106 (QConcursos Filtro Assunto Tree Open):** Árvore hierárquica aberta com busca rápida, expansão de nós e checkboxes com contagem de questões.
 
@@ -2241,11 +2241,11 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Seleção de trecho de texto no enunciado da questão e inspeção do botão Meus Resumos no dock inferior direito.
 **Parâmetros de UI**: Ao selecionar texto no enunciado, surge uma paleta flutuante (bubble toolbar) com 4 cores vibrantes (Amarelo, Verde, Rosa, Azul) e ícone de lixeira para remover marcação. A marcação amarela é aplicada diretamente na tag <mark> do DOM. O botão Meus Resumos abre modal de paywall exigindo plano Pro/Ilimitado, confirmando que resumos ricos não são do plano básico.
 
-*(imagem vetorial e1309)*
+![imagem e1309](qconcursos_highlighter_applied.png)
 
 **Evidência 107 (QConcursos Marca-Texto Aplicado):** Trecho do enunciado destacado em amarelo com paleta flutuante ativa.
 
-*(imagem vetorial e1311)*
+![imagem e1311](qconcursos_dock_resumos_paywall_modal.png)
 
 **Evidência 108 (QConcursos Meus Resumos Paywall):** Modal de bloqueio de plano para criação e edição de resumos integrados às questões.
 
@@ -2253,15 +2253,15 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Acesso à rota consolidada de desempenho com escopo geral e filtros temporais.
 **Parâmetros de UI**: Topo com abas de escopo (Geral, Disciplinas, Bancas, Órgãos), seletor de período (Hoje, Últimos 7 dias, Últimos 15 dias, Últimos 30 dias, Desde o início), KPIs agregados (Total resolvidas, Acertos, Erros, % de Aproveitamento), gráfico de evolução temporal (spline chart diário) e tabela hierárquica por disciplina com barras de acerto/erro e botão de expansão de assuntos.
 
-*(imagem vetorial e1314)*
+![imagem e1314](qconcursos_desempenho_top_overview.png)
 
 **Evidência 109 (QConcursos Desempenho Top KPIs):** Cartões de métricas consolidadas, taxa de acerto global e seletor de período temporal.
 
-*(imagem vetorial e1316)*
+![imagem e1316](qconcursos_desempenho_charts_and_table.png)
 
 **Evidência 110 (QConcursos Desempenho Gráficos e Tabela):** Gráfico de evolução de estudos e tabela de disciplinas com taxa de aproveitamento.
 
-*(imagem vetorial e1318)*
+![imagem e1318](qconcursos_desempenho_disciplina_expanded.png)
 
 **Evidência 111 (QConcursos Desempenho Disciplina Expandida):** Detalhamento de assuntos e tópicos internos com percentual de acertos individual.
 
@@ -2269,11 +2269,11 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Execução de busca no Grafo Global (?section=graph) e clique em nó do resultado.
 **Parâmetros de UI**: O Grafo Global roda em WebGL Canvas. A busca secundária no canto superior direito abre o popover Buscar objetos com lista de nós correspondentes (Azure Virtual Machine Scale Sets, etc.). Ao clicar no item, o menu se fecha, a viewport realiza uma transição suave animada de pan e zoom (indo de 39% para 175%), centralizando o nó focalizado em branco com seu anel de cor de tipo (verde-azulado/teal) e rótulo permanente.
 
-*(imagem vetorial e1321)*
+![imagem e1321](capacities_global_graph_search_dropdown_open.png)
 
 **Evidência 112 (Capacities Grafo Dropdown de Busca):** Popover Buscar objetos aberto com lista de entidades do espaço de trabalho.
 
-*(imagem vetorial e1323)*
+![imagem e1323](capacities_global_graph_search_node_nav.png)
 
 **Evidência 113 (Capacities Grafo Nó Centralizado com Zoom):** Transição de zoom para 175% centralizando o nó alvo e destacando conexões de 1º grau.
 
@@ -2281,19 +2281,19 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Auditoria da página pública de certificação Microsoft AZ-104 (/exams/microsoft/az-104/view/).
 **Parâmetros de UI**: Sem CAPTCHA. Cabeçalho com paginação (Página 1 de 61, Questões 1-10 de 606) e barra de progresso. Card da questão com barra de título azul (Question #1 Topic 1), enunciado do cenário e alternativas com letras. Botão Reveal Solution abre a resposta correta (Correct Answer: C) com badge Most Voted e barra de distribuição da votação da comunidade (B: 2%, C: 98%). Botão Discussion 126 abre modal completo com votos dos membros (Selected Answer: C) e argumentos técnicos detalhados.
 
-*(imagem vetorial e1326)*
+![imagem e1326](examtopics_az104_header_and_overview.png)
 
 **Evidência 114 (ExamTopics Header & Paginação):** Cabeçalho da certificação AZ-104 com paginação, progresso de questões e menu.
 
-*(imagem vetorial e1328)*
+![imagem e1328](examtopics_az104_question_card.png)
 
 **Evidência 115 (ExamTopics Question Card Inicial):** Card da questão com enunciado, alternativas e botões Reveal Solution e Discussion.
 
-*(imagem vetorial e1330)*
+![imagem e1330](examtopics_az104_solution_reveal.png)
 
 **Evidência 116 (ExamTopics Solution Reveal com Voto Comunitário):** Resposta revelada com badge Most Voted e barra comparativa de 98% da comunidade.
 
-*(imagem vetorial e1332)*
+![imagem e1332](examtopics_az104_discussion_modal.png)
 
 **Evidência 117 (ExamTopics Discussion Modal):** Discussão comunitária com justificativas técnicas, votos por alternativa e upvotes.
 
@@ -2301,11 +2301,11 @@ Todos os 7 gaps de produto e de fluxo identificados na sessão anterior foram au
 **Ação Observada**: Abertura do menu de contexto de 3 pontos do highlight em /bookreview/65206299 e auditoria da tela de importação manual /import_freeform.
 **Parâmetros de UI**: O menu secundário do highlight expõe exatamente 6 ações: Copy highlight text, Edit document metadata, Add document tags, Show this doc more often, Show this doc less often e Never show this doc again. A tela /import_freeform oferece formulário em duas colunas para inserção rápida de destaques sem arquivo (Quote, Page, Notes, Tags).
 
-*(imagem vetorial e1335)*
+![imagem e1335](readwise_srs_bookreview_highlight_actions_menu.png)
 
 **Evidência 118 (Readwise SRS Highlight Actions Menu):** Menu suspenso de 6 ações de ajuste de frequência, metadados e tags do destaque.
 
-*(imagem vetorial e1337)*
+![imagem e1337](readwise_srs_freeform_input_highlight_form.png)
 
 **Evidência 119 (Readwise SRS Freeform Manual Import Form):** Formulário de inserção manual de citações e anotações para o motor de SRS.
 
