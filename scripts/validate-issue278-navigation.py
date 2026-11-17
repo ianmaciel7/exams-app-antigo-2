@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate #278 phase 2B paths, Git blobs and the Claude publication hold."""
+"""Validate #278 phases 2B/2C paths, Git blobs and the Claude publication hold."""
 import json
 from pathlib import Path
 import re
@@ -26,7 +26,9 @@ def main():
         errors.append("Case-insensitive current destination collision")
     moved = [x for x in entries if x.get("current_path", x["path"]) != x["path"]]
     summary = data.get("migration_summary", {})
-    if summary.get("moved_exact_git_blob") != len(moved) or summary.get("remaining_legacy_canonical") != len(entries)-len(moved):
+    if summary.get("moved_exact_git_blob") != sum(x.get("state") == "moved-exact-git-blob" for x in moved) or
+        summary.get("moved_exact_git_bundle") != sum(x.get("state") == "moved-exact-git-bundle" for x in moved) or
+        summary.get("remaining_legacy_canonical") != len(entries)-len(moved):
         errors.append("Moved/remaining manifest totals differ")
     empty_sha = "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
     for entry in entries:
@@ -35,10 +37,17 @@ def main():
         if not source.startswith("prototype/") or source.count("/") != 1:
             errors.append("Unexpected baseline source: "+source)
         if current != source:
-            if (entry.get("state") != "moved-exact-git-blob" or
-                not re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",current) or
-                current != entry["future_path"] or entry["bytes"] != 0 or
-                entry["git_blob_sha"] != empty_sha):
+            marker = (
+                entry.get("state") == "moved-exact-git-blob"
+                and re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",current)
+                and entry["bytes"] == 0 and entry["git_blob_sha"] == empty_sha
+            )
+            bundle = (
+                entry.get("state") == "moved-exact-git-bundle"
+                and source.endswith(".bundle")
+                and re.fullmatch(r"prototype/archive/backups/(?:exams-app|notes-app)/[^/]+\.bundle",current)
+            )
+            if not (marker or bundle) or current != entry["future_path"]:
                 errors.append("Unreviewed physical migration: "+source)
         elif entry.get("state") != "legacy-path-canonical":
             errors.append("Incorrect legacy state: "+source)
@@ -50,7 +59,8 @@ def main():
         path = name.decode("utf-8", "surrogateescape").replace("\\", "/")
         if path.startswith("prototype/") and (
             path.count("/") == 1 or
-            re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",path)
+            re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",path) or
+            re.fullmatch(r"prototype/archive/backups/(?:exams-app|notes-app)/[^/]+\.bundle",path)
         ):
             tracked[path] = metadata.decode("ascii").split()[1]
     expected = {x.get("current_path", x["path"]): x["git_blob_sha"] for x in entries}

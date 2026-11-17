@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "issue": 278,
-  "phase": "2b-evidence-zero-byte-marker-move",
+  "phase": "2c-history-bundles",
   "baseline_commit": "6848c309bfc67e086f81c7e09abe8c83ca643230",
   "count": 969,
   "scope": "all direct tracked file children of prototype/ before phase 2A",
-  "state": "partial-migration-208-physical-moves",
+  "state": "partial-migration-223-physical-moves",
   "hash_method": "git_blob_sha; full SHA-256 maintained in the immutable previous baseline and rename receipt",
   "notes": [
-    "Baseline from phase 2A records all 969 canonical files; path remains immutable historical source",
-    "208 empty evidence marker placeholders have moved to their pre-reviewed future_path without changing Git blob SHA",
-    "761 other canonical files remain at legacy path; future_path remains proposed for those files",
-    "No active HTML, JavaScript, PDF, image, data, artifact, or integration source is moved or published"
+    "Baseline path is immutable; current_path is actual location",
+    "208 empty marker files and 15 binary Git bundles moved without re-encoding",
+    "746 files remain at legacy locations",
+    "Publication and mirror remain disabled"
   ],
   "groups": {
     "boards": 891,
@@ -4159,7 +4159,8 @@
       "future_path": "prototype/archive/backups/exams-app/exams-app-old-backup-dev-20261111-1903.bundle",
       "git_blob_sha": "481d24075b81e50d1c1986b235c705bf2586df33",
       "bytes": 247258,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/exams-app/exams-app-old-backup-dev-20261111-1903.bundle"
     },
     {
       "path": "prototype/exams-app-old-backup-dev-20261111-1903.md",
@@ -4173,7 +4174,8 @@
       "future_path": "prototype/archive/backups/exams-app/exams-app-old-backup-dev-before-adr2.bundle",
       "git_blob_sha": "7fd14ae5c91da40e7b214c5c1f2f072ae071e0aa",
       "bytes": 172066,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/exams-app/exams-app-old-backup-dev-before-adr2.bundle"
     },
     {
       "path": "prototype/exams-app-old-backup-dev-before-adr2.md",
@@ -4194,7 +4196,8 @@
       "future_path": "prototype/archive/backups/exams-app/exams-app-old-backup-old-1.bundle",
       "git_blob_sha": "460d4c95bc62ce238896e837c5a1df0e8ec9a492",
       "bytes": 2816794,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/exams-app/exams-app-old-backup-old-1.bundle"
     },
     {
       "path": "prototype/exams-app-old-backup-old-1.md",
@@ -5713,7 +5716,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-1.bundle",
       "git_blob_sha": "d2851254406589c28213218de71e1a3be15822cb",
       "bytes": 24026,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-1.bundle"
     },
     {
       "path": "prototype/notes-app-old-1.md",
@@ -5727,7 +5731,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-10.bundle",
       "git_blob_sha": "7414b3e5e6345c0f58536795f810d1d71f899f77",
       "bytes": 4917677,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-10.bundle"
     },
     {
       "path": "prototype/notes-app-old-10.md",
@@ -5748,7 +5753,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-11.bundle",
       "git_blob_sha": "1286b0af5d68cd62ee742f42d6001533985eb050",
       "bytes": 3268223,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-11.bundle"
     },
     {
       "path": "prototype/notes-app-old-11.md",
@@ -5769,7 +5775,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-2.bundle",
       "git_blob_sha": "6da0671670e7cfa290809acf0e8afefb6b30c71f",
       "bytes": 37349710,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-2.bundle"
     },
     {
       "path": "prototype/notes-app-old-2.md",
@@ -5790,7 +5797,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-3.bundle",
       "git_blob_sha": "6756afb65c890a5f43540bb41a6dd90bcc1a9750",
       "bytes": 1291691,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-3.bundle"
     },
     {
       "path": "prototype/notes-app-old-3.md",
@@ -5811,7 +5819,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-4.bundle",
       "git_blob_sha": "0981eb2bb2ffc12242f5ac1109fbd9a73393f880",
       "bytes": 11169545,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-4.bundle"
     },
     {
       "path": "prototype/notes-app-old-4.md",
@@ -5832,7 +5841,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-5.bundle",
       "git_blob_sha": "c5efd7b705b074995b0bac6500edecf393b98f94",
       "bytes": 15165783,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-5.bundle"
     },
     {
       "path": "prototype/notes-app-old-5.md",
@@ -5853,7 +5863,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-6.bundle",
       "git_blob_sha": "717b4e438f1743f3e5967c4dfb04899233662963",
       "bytes": 5487301,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-6.bundle"
     },
     {
       "path": "prototype/notes-app-old-6.md",
@@ -5874,7 +5885,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-7.bundle",
       "git_blob_sha": "0cf3ab0a9fbc474b632d21c1ebe42491a86072c9",
       "bytes": 5175373,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-7.bundle"
     },
     {
       "path": "prototype/notes-app-old-7.md",
@@ -5895,7 +5907,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-8.bundle",
       "git_blob_sha": "88123200ecbcaff02a17064f96bc06af9c91bf1a",
       "bytes": 7053659,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-8.bundle"
     },
     {
       "path": "prototype/notes-app-old-8.md",
@@ -5916,7 +5929,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old-9.bundle",
       "git_blob_sha": "af823ef8c5655e4ced0744f0639b14d1f06221c6",
       "bytes": 4940004,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old-9.bundle"
     },
     {
       "path": "prototype/notes-app-old-9.md",
@@ -5937,7 +5951,8 @@
       "future_path": "prototype/archive/backups/notes-app/notes-app-old.bundle",
       "git_blob_sha": "ce7b5fc380f2a2d1a84a176858879c0e5c82c353",
       "bytes": 2309793,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-bundle",
+      "current_path": "prototype/archive/backups/notes-app/notes-app-old.bundle"
     },
     {
       "path": "prototype/notes-app-old.md",
@@ -7013,9 +7028,9 @@
   ],
   "migration_summary": {
     "moved_exact_git_blob": 208,
-    "remaining_legacy_canonical": 761,
+    "moved_exact_git_bundle": 15,
+    "remaining_legacy_canonical": 746,
     "source_count": 969,
-    "empty_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
-    "source_head": "b5a93e65b3c4643487801abeb37e15df7a8bc3c7"
+    "source_head": "b6ece41f0568c94c6ccb7655e8e973f926801afc"
   }
 }
