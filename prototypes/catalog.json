@@ -2206,6 +2206,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/board.json",
         "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
