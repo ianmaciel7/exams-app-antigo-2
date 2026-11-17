@@ -229,6 +229,19 @@ def load_corpus():
         for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, base)):
             dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != 'assets']
             for fn in filenames:
+                # #278: the navigation indexes list planned paths, not actual
+                # uses of images. Counting them as references changes orphan
+                # status and silently corrupts the evidence catalog.
+                relative_dir = os.path.relpath(dirpath, ROOT).replace(os.sep, '/')
+                if fn == 'phase2-navigation-map.json':
+                    continue
+                if fn == 'README.md' and (
+                    relative_dir.startswith('prototype/boards')
+                    or relative_dir in {
+                        'prototype/archive', 'prototype/tools', 'prototype/app'
+                    }
+                ):
+                    continue
                 if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototype' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json', 'issue278-inventory.json', 'issue278-dependencies.json', 'issue278-baseline.json', 'issue278-coverage-baseline.json', 'issue278-rename-receipt.json', 'issue278-before-rename.json'}:
                     continue  # índices/manifestos gerados não demonstram uso visual da mídia
                 if re.search(r'\.(md|json|html|py|mjs|js|yml)$', fn):
