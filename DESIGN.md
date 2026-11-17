@@ -396,7 +396,7 @@ Checklist básico: foco na ordem certa, foco não oculto por sticky UI; ícones 
 
 - Capturar **antes e depois** por viewport, tema, estado, navegação e conteúdo representativo. Para animação relevante capturar vídeo/GIF e narrar o comportamento em texto.
 - Validar **foco, teclado, touch e leitor de tela** quando possível, inclusive sem mouse e em viewport estreita.
-- Comparar com a implementação `dev`, evidências de `prototypes/docs__*`, `prototypes/` e `prototypes/docs__archives__*`, não só com screenshots de sites externos.
+- Comparar com a implementação `dev`, evidências de `prototype/docs__*`, `prototype/` e `prototype/docs__archives__*`, não só com screenshots de sites externos.
 - Registrar *trade-offs*: performance, densidade, acessibilidade e convenção da plataforma. Citar fonte oficial/skill no PR.
 - Critérios de qualidade: sem CTAs mortos, abas duplicadas, ação primária perdida, contornos decorativos em excesso, scroll jumping, loading infinito ou gesto sem alternativa.
 - Não declarar que a aplicação está "conforme Apple/M3" porque um token, radius ou efeito se parece com referência.
@@ -543,7 +543,7 @@ As lacunas registradas aqui não comprovam falha do protótipo: são requisitos 
 
 ### 8.14 UX geral — layout adaptativo, grafo e visualização acessível (revisão 2026)
 
-Esta seção traduz [AGENTS.md §16](AGENTS.md) e [prototypes/ux-ui-principles.md](prototypes/ux-ui-principles.md) em contratos de design. **Nenhuma regra é proposta apenas por ser tendência de 2026**: validar em tarefa, viewport, modalidade de interação e dados. Material 3 e React Aria são referências para adaptação; o protótipo continua HTML/CSS/JS e não exige adicionar bibliotecas.
+Esta seção traduz [AGENTS.md §16](AGENTS.md) e [prototype/ux-ui-principles.md](prototype/ux-ui-principles.md) em contratos de design. **Nenhuma regra é proposta apenas por ser tendência de 2026**: validar em tarefa, viewport, modalidade de interação e dados. Material 3 e React Aria são referências para adaptação; o protótipo continua HTML/CSS/JS e não exige adicionar bibliotecas.
 
 #### 8.14.1. Material 3 Adaptive Design — composição por contexto, não apenas por largura
 
@@ -745,7 +745,7 @@ Fontes: [Apple — Symbols](https://developer.apple.com/documentation/symbols), 
 
 ### 8.23 Estrutura de páginas — decisões orientadas por tarefa e evidência (Context7 2026)
 
-As leis empíricas, princípios cognitivos e padrões documentados em [AGENTS.md §20](AGENTS.md) e no [catálogo UX/UI](prototypes/ux-ui-principles.md) orientam **o motivo** da composição, não impõem aparência universal. A arquitetura de navegação por jornada já está em [prototypes/arquitetura-informacao-navegacao.md](prototypes/arquitetura-informacao-navegacao.md). **Não criar nova biblioteca CSS nem migrar para Material 3/Carbon/USWDS automaticamente**.
+As leis empíricas, princípios cognitivos e padrões documentados em [AGENTS.md §20](AGENTS.md) e no [catálogo UX/UI](prototype/ux-ui-principles.md) orientam **o motivo** da composição, não impõem aparência universal. A arquitetura de navegação por jornada já está em [prototype/arquitetura-informacao-navegacao.md](prototype/arquitetura-informacao-navegacao.md). **Não criar nova biblioteca CSS nem migrar para Material 3/Carbon/USWDS automaticamente**.
 
 | Tipo de página / tarefa | Conteúdo primário | Conteúdo secundário e relação espacial | Regra de adaptação / teste |
 |---|---|---|---|
@@ -773,7 +773,7 @@ As leis empíricas, princípios cognitivos e padrões documentados em [AGENTS.md
 
 ### 8.24 Atenção visual, densidade e apresentação didática — aplicação da pesquisa (2026)
 
-Complementa [AGENTS.md §21](AGENTS.md) e [catálogo UX/UI §T](prototypes/ux-ui-principles.md). As referências científicas aqui são **teorias, modelos e efeitos**, não leis de layout universais. Context7 confirmou os guias de largura de linha do USWDS, densidade do Carbon e estratégias de painéis do Material 3. **Não instalar nem substituir CSS/tokens do protótipo** só por estas fontes.
+Complementa [AGENTS.md §21](AGENTS.md) e [catálogo UX/UI §T](prototype/ux-ui-principles.md). As referências científicas aqui são **teorias, modelos e efeitos**, não leis de layout universais. Context7 confirmou os guias de largura de linha do USWDS, densidade do Carbon e estratégias de painéis do Material 3. **Não instalar nem substituir CSS/tokens do protótipo** só por estas fontes.
 
 | Superfície | Problema a investigar | Decisão de design como hipótese verificável | Teste de aceite |
 |---|---|---|---|
@@ -797,7 +797,7 @@ Complementa [AGENTS.md §21](AGENTS.md) e [catálogo UX/UI §T](prototypes/ux-ui
 
 ### 8.25 Componentes de interface 2026 — semântica, estados e anatomia
 
-**Referência canônica:** [prototypes/componentes-ui-padroes-2026.md](prototypes/componentes-ui-padroes-2026.md) (30 padrões APG e bibliotecas oficiais), com contrato para agentes em [AGENTS.md §22](AGENTS.md). **Padrão de UI não é lei empírica**. Semântica HTML/APG determina comportamento, componentes M3/Primer/React Aria orientam a solução, e leis de Fitts/Hick–Hyman/Steering/Gestalt só fundamentam hipóteses de interação. A implementação atual é um protótipo HTML/CSS/JS: não instalar bibliotecas sem justificativa.
+**Referência canônica:** [prototype/componentes-ui-padroes-2026.md](prototype/componentes-ui-padroes-2026.md) (30 padrões APG e bibliotecas oficiais), com contrato para agentes em [AGENTS.md §22](AGENTS.md). **Padrão de UI não é lei empírica**. Semântica HTML/APG determina comportamento, componentes M3/Primer/React Aria orientam a solução, e leis de Fitts/Hick–Hyman/Steering/Gestalt só fundamentam hipóteses de interação. A implementação atual é um protótipo HTML/CSS/JS: não instalar bibliotecas sem justificativa.
 
 | Componente / aparência | Contrato para o Exam App | Estados e testes obrigatórios |
 |---|---|---|
@@ -825,7 +825,7 @@ Fontes: [W3C APG — 30 padrões](https://www.w3.org/WAI/ARIA/apg/patterns/), [P
 
 ### 8.26 Variantes de componentes, dialogs e Settings Hub — 2026
 
-Referência central: [prototypes/taxonomia-componentes-e-dialogs-2026.md](prototypes/taxonomia-componentes-e-dialogs-2026.md). Organiza **28 famílias** de componentes e variantes de Dialog/AlertDialog/Popover/Sheet/Picker/Settings Hub por **tarefa, semântica, apresentação e estados**. Complementa [AGENTS.md §23](AGENTS.md) e o [catálogo W3C APG de 30 padrões](prototypes/componentes-ui-padroes-2026.md), não os substitui. **Nenhuma variante de produto é uma lei científica de UX.**
+Referência central: [prototype/taxonomia-componentes-e-dialogs-2026.md](prototype/taxonomia-componentes-e-dialogs-2026.md). Organiza **28 famílias** de componentes e variantes de Dialog/AlertDialog/Popover/Sheet/Picker/Settings Hub por **tarefa, semântica, apresentação e estados**. Complementa [AGENTS.md §23](AGENTS.md) e o [catálogo W3C APG de 30 padrões](prototype/componentes-ui-padroes-2026.md), não os substitui. **Nenhuma variante de produto é uma lei científica de UX.**
 
 **Exemplo visual: Settings Hub de Tipos de Objetos (imagem de referência):**
 - **Desktop:** dialog de configurações com fundo dimmed, navegação categorizada/busca à esquerda e título/descrição/grade de objetos à direita; fechar acessível. Padrão de composição de produto, não role SettingsDialog/AlertDialog.
@@ -865,14 +865,14 @@ Os 22 itens abaixo são **21 candidatos a skills e 1 agregador comunitário (M09
 | A11 | rshankras — Apple Design Skills | Liquid Glass, tipografia, animação, microcopy | https://github.com/rshankras/claude-code-apple-skills/tree/main/skills/design |
 | A12 | Sunwood-ai-labs — Apple HIG | Fluxo evidence-first e verificação pós-alteração | https://github.com/Sunwood-ai-labs/design-with-apple-hig |
 
-**Fontes primárias para validação:** [Material 3](https://m3.material.io/), [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/), [Apple Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/). As alegações técnicas dos skills e recomendações numéricas de terceiros devem ser revalidadas contra o arquivo original e a origem oficial antes de qualquer uso normativo. **Status da leitura (2026-11-16, ver `prototypes/231-skills-m3-apple.md`):** SKILL.md lido (frontmatter e cabeçalhos, sem leitura integral de `references/`) em 16 de 22 itens; caminho não localizado em M02, M03, M04, A08 e A09 (M03 e M04 têm README público); M09 é agregador e a origem não foi localizada. Leitura integral e SHA de commit não registrados: a API do GitHub estava bloqueada na sessão.
+**Fontes primárias para validação:** [Material 3](https://m3.material.io/), [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/), [Apple Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/). As alegações técnicas dos skills e recomendações numéricas de terceiros devem ser revalidadas contra o arquivo original e a origem oficial antes de qualquer uso normativo. **Status da leitura (2026-11-16, ver `prototype/231-skills-m3-apple.md`):** SKILL.md lido (frontmatter e cabeçalhos, sem leitura integral de `references/`) em 16 de 22 itens; caminho não localizado em M02, M03, M04, A08 e A09 (M03 e M04 têm README público); M09 é agregador e a origem não foi localizada. Leitura integral e SHA de commit não registrados: a API do GitHub estava bloqueada na sessão.
 
 <!-- MATERIAL-APPLE-INTEGRATION:END -->
 
 <!-- DATAVIZ-DESIGN-2026:START -->
 ## 10. Data Visualization e dashboards — design system aplicado (2026)
 
-**Referência especializada:** [prototypes/data-visualization-dashboards-2026.md](prototypes/data-visualization-dashboards-2026.md). Este capítulo **complementa**, sem substituir, as diretrizes de gráficos da seção 8.14.3, os tokens atuais, a filosofia low-chrome e a distinção entre normas, princípios empíricos e heurísticas.
+**Referência especializada:** [prototype/data-visualization-dashboards-2026.md](prototype/data-visualization-dashboards-2026.md). Este capítulo **complementa**, sem substituir, as diretrizes de gráficos da seção 8.14.3, os tokens atuais, a filosofia low-chrome e a distinção entre normas, princípios empíricos e heurísticas.
 
 ### 10.1 Linguagem visual e hierarquia
 

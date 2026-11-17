@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const assets=path.resolve('prototypes');
+const assets=path.resolve('prototype');
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),cases:[],errors:[],limitations:[
  'Headless Chromium mobile/desktop emulation; physical touch and assistive technology not independently assessed.'
@@ -58,5 +58,5 @@ try{
  assert.deepEqual(report.errors,[],'no unhandled browser errors');
 }finally{
  await browser.close();
- await writeFile('prototypes/issue55_shift_click_e2e.json',JSON.stringify(report,null,2)+'\n');
+ await writeFile('prototype/issue55_shift_click_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

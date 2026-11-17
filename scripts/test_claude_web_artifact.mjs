@@ -90,7 +90,7 @@ async function run() {
     // Captura screenshot da pagina do Artifact
     const ss = await cdp.send('Page.captureScreenshot', { format: 'png' });
     const buffer = Buffer.from(ss.data, 'base64');
-    const outPath = path.resolve('prototypes/board-exam-app__assets__claude-storage-bridge__evidence-claude-web-artifact-public.png');
+    const outPath = path.resolve('prototype/board-exam-app__assets__claude-storage-bridge__evidence-claude-web-artifact-public.png');
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, buffer);
     console.log(`[Test] Screenshot do Artifact Claude salvo: ${outPath} (${buffer.length} bytes)`);

@@ -3,14 +3,14 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/reader-triage-filtered-views.test.mjs'
       - 'tests/reader-triage-filtered-views.e2e.mjs'
       - '.github/workflows/e2e-reader-triage.yml'
   push:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/reader-triage-filtered-views.test.mjs'
       - 'tests/reader-triage-filtered-views.e2e.mjs'
       - '.github/workflows/e2e-reader-triage.yml'
@@ -33,7 +33,7 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Start prototype
         run: |
-          python3 -m http.server 8765 --directory prototypes >/tmp/reader-triage.log 2>&1 &
+          python3 -m http.server 8765 --directory prototype >/tmp/reader-triage.log 2>&1 &
           for i in $(seq 1 25); do
             if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then exit 0; fi
             sleep 1
@@ -48,6 +48,6 @@ jobs:
         with:
           name: issue81-reader-triage-evidence
           path: |
-            prototypes/issue81_*.png
-            prototypes/issue81_reader_triage_e2e.json
+            prototype/issue81_*.png
+            prototype/issue81_reader_triage_e2e.json
           if-no-files-found: warn

@@ -3,14 +3,14 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/right-panel-explore.e2e.mjs'
       - 'tests/right-panel-tab-overflow.e2e.mjs'
       - '.github/workflows/e2e-right-panel-explore.yml'
   push:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/right-panel-explore.e2e.mjs'
       - 'tests/right-panel-tab-overflow.e2e.mjs'
       - '.github/workflows/e2e-right-panel-explore.yml'
@@ -33,7 +33,7 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Start local prototype
         run: |
-          python3 -m http.server 8765 --directory prototypes >/tmp/explore.log 2>&1 &
+          python3 -m http.server 8765 --directory prototype >/tmp/explore.log 2>&1 &
           for i in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then exit 0; fi
             sleep 1
@@ -50,8 +50,8 @@ jobs:
         with:
           name: issues54-55-contextual-panel-evidence
           path: |
-            prototypes/issue54_*.png
-            prototypes/issue54_explore_e2e.json
-            prototypes/issue55_*.png
-            prototypes/issue55_tabs_e2e.json
+            prototype/issue54_*.png
+            prototype/issue54_explore_e2e.json
+            prototype/issue55_*.png
+            prototype/issue55_tabs_e2e.json
           if-no-files-found: warn

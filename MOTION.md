@@ -126,7 +126,7 @@ O grafo de conhecimento oferece manipulação direta de nós, filtros, zoom e co
 
 ### 3.1 Modelo efetivamente implementado
 
-No protótipo `prototypes/exam-app-0.1.1__index.html`, `tick()` implementa uma **integração explícita de velocidade e posição semelhante a Euler**, com amortecimento; **não é Velocity Verlet**. Os parâmetros são heurísticos de layout, não simulação física dimensionalmente calibrada.
+No protótipo `prototype/exam-app-0.1.1__index.html`, `tick()` implementa uma **integração explícita de velocidade e posição semelhante a Euler**, com amortecimento; **não é Velocity Verlet**. Os parâmetros são heurísticos de layout, não simulação física dimensionalmente calibrada.
 
 1. **Repulsão entre pares**: percorre pares de nós visíveis, ignora distâncias maiores que o limite do código e calcula força inversamente proporcional a `distância² + 280`, escalada por `alpha` e grau dos nós; também aplica separação quando há sobreposição.
 2. **Atração de arestas**: ajusta velocidade dos nós conectados segundo a diferença entre distância atual e alvo, ponderada por grau e `alpha`; arestas classificadas como fracas são ignoradas na atração.

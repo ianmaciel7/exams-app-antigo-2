@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const root=path.resolve('prototypes'),assets=root;
+const root=path.resolve('prototype'),assets=root;
 await mkdir(assets,{recursive:true});
 const report={created:new Date().toISOString(),checks:[],errors:[],
   limitations:['Responsive Chromium emulation; not a physical device or screen reader.',

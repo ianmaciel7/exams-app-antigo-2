@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { ClaudeStorageSyncEngine } from '../../prototypes/claude-storage-sync.js';
+import { ClaudeStorageSyncEngine } from '../../prototype/claude-storage-sync.js';
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const DEBUG_PORT_1 = 9225;
@@ -99,7 +99,7 @@ test('Homologacao Rigorosa: Claude Pro Storage <-> Exam App', async (t) => {
       const ping = await fetch(APP_URL);
       if (!ping.ok) throw new Error();
     } catch (e) {
-      devServerProc = spawn('python', ['-m', 'http.server', '8765', '--directory', 'prototypes'], {
+      devServerProc = spawn('python', ['-m', 'http.server', '8765', '--directory', 'prototype'], {
         stdio: 'ignore'
       });
       for (let i = 0; i < 20; i++) {
@@ -218,7 +218,7 @@ test('Homologacao Rigorosa: Claude Pro Storage <-> Exam App', async (t) => {
       // Captura screenshot da recuperacao no navegador limpo
       const ss = await cleanCDP.send('Page.captureScreenshot', { format: 'png' });
       const buffer = Buffer.from(ss.data, 'base64');
-      const outPath = path.resolve('prototypes/board-exam-app__assets__claude-storage-bridge__evidence-homologation-clean-recovery.png');
+      const outPath = path.resolve('prototype/board-exam-app__assets__claude-storage-bridge__evidence-homologation-clean-recovery.png');
       fs.writeFileSync(outPath, buffer);
       assert.ok(buffer.length > 10000);
     } finally {

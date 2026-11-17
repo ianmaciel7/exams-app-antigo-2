@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'scripts/capture-low-chrome-97.mjs'
       - 'scripts/append-low-chrome-board.py'
       - '.github/workflows/capture-low-chrome-97.yml'
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   screenshots:
-    if: github.head_ref == 'fix/low-chrome-shell-97' && github.event.pull_request.head.repo.full_name == github.repository
+    if: false # Issue #278: evidence-writing automation paused
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -34,7 +34,7 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           git worktree add --detach /tmp/exams-base "$BASE_SHA"
-          python3 -m http.server 8765 --directory prototypes >/tmp/after-server.log 2>&1 &
+          python3 -m http.server 8765 --directory prototype >/tmp/after-server.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-base/prototypes >/tmp/before-server.log 2>&1 &
           sleep 2
           curl --fail http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null
@@ -44,12 +44,12 @@ jobs:
       - name: Append screenshots to board and regenerate Markdown
         run: |
           python3 scripts/append-low-chrome-board.py
-          python3 prototypes/board_to_md.py
+          python3 prototype/board_to_md.py
       - name: Commit evidence back to PR branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prototypes/board.json prototypes/BOARD.md prototypes/lowchrome_97_manifest.json
-          git add prototypes/lowchrome_97_*.png
+          git add prototype/board.json prototype/BOARD.md prototype/lowchrome_97_manifest.json
+          git add prototype/lowchrome_97_*.png
           git commit -m "test(ui): add 48 before/after screenshots and board evidence for #97"
           git push origin HEAD:${{ github.head_ref }}

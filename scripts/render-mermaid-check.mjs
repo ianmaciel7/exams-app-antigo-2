@@ -14,7 +14,7 @@ const { chromium } = require('playwright');
 const MERMAID = 'https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js';
 
 // Use the migration map: flattened files no longer live in nested documentation folders.
-const mapFile = join(root, 'prototypes', 'MIGRATION-MAP.md');
+const mapFile = join(root, 'prototype', 'MIGRATION-MAP.md');
 const mapText = readFileSync(mapFile, 'utf8');
 const rows = [...mapText.matchAll(/^\| \x60([^\x60]+)\x60 \| \x60([^\x60]+)\x60 \|/gm)];
 const sourcePrefixes = ['docs/architecture/', 'docs/features/', 'docs/planning/'];

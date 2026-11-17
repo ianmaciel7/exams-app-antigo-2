@@ -3,13 +3,13 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/*.test.mjs'
       - '.github/workflows/domain-node-smoke.yml'
   push:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/*.test.mjs'
       - '.github/workflows/domain-node-smoke.yml'
 permissions:

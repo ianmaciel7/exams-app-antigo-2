@@ -7,14 +7,14 @@ import sys
 from urllib.parse import unquote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-MAP = ROOT / "prototypes" / "MIGRATION-MAP.md"
+MAP = ROOT / "prototype" / "MIGRATION-MAP.md"
 AREAS = ("docs/architecture/", "docs/features/", "docs/planning/")
 ROW = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \|", re.M)
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 errors = []
 
 if not MAP.is_file():
-    sys.exit("Mapa de migração ausente: prototypes/MIGRATION-MAP.md")
+    sys.exit("Mapa de migração ausente: prototype/MIGRATION-MAP.md")
 mapped = ROW.findall(MAP.read_text(encoding="utf-8"))
 for area in AREAS:
     pages = [ROOT / target for source, target in mapped if source.startswith(area)]

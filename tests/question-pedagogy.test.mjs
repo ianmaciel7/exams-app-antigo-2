@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const start=html.indexOf('/* Pedagogical tab surface shared by question object');
 const end=html.indexOf('function questaoPage(q){',start);
 assert.ok(start>=0&&end>start,'real pedagogy functions found');

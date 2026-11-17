@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 test('SpaceSwitcher migrates legacy spaces without renaming/reidentifying entities',()=>{
   assert.match(html,/persistedSpaceOrder=store\.get\('spaceOrder'\)/);
   assert.match(html,/store\.set\('spaceOrder',spaces\.map\(s=>s\.id\)\)/);
