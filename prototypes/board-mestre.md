@@ -180,7 +180,7 @@ Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 | Capturas do usuário e feedback | evidencia | [e300](board-exam-app__index.html#e300) |
 | Low-chrome — antes e depois | evidencia | [e993](board-exam-app__index.html#e993) |
 | Fechamento dos gaps de referência | auditoria-evidencia | [e1300](board-exam-app__index.html#e1300) |
-| ExamTopics — evidências integrais | evidencia-pesquisa | [e17000](board-exam-app__index.html#e17000) |
+| ExamTopics — evidências integrais | auditoria-evidencia | [e17000](board-exam-app__index.html#e17000) |
 
 ## 07 — Entrega & arquivo
 
