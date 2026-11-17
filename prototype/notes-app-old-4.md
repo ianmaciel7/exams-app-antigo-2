@@ -4,7 +4,7 @@
 - **Original Branch:** `old-4`
 - **Commit SHA:** `2839f410e3f696cfcf1d92a48849275c1016776b`
 - **GitHub Reference:** [Commit 2839f41 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-4)
-- **Git Bundle:** [notes-app-old-4.bundle](notes-app-old-4.bundle)
+- **Git Bundle:** [notes-app-old-4.bundle](archive/backups/notes-app/notes-app-old-4.bundle)
 
 ## Purpose & Summary
 
@@ -31,6 +31,6 @@ A full-featured notes workspace introducing rich block editing with TipTap, drag
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-4.bundle
-git clone notes-app-old-4.bundle -b old-4 ./restored-notes-app-old-4
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-4.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-4.bundle -b old-4 ./restored-notes-app-old-4
 ```
