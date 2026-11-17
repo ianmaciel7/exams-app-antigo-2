@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 test('custom object types only hydrate after local store exists and before properties restore',()=>{
   const store=html.indexOf('const store={'),types=html.indexOf('const storedCustomTypes=');
   const props=html.indexOf("(store.get('cprops')||[]).forEach");

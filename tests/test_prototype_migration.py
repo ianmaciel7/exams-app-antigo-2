@@ -47,44 +47,48 @@ class InventoryTests(unittest.TestCase):
             self.assertEqual(category,'unapproved-historical-app')
         self.assertEqual(inventory.destination('prototypes/02-workspace-e-ux.md')[0],
                          'prototype/boards/02-design/index.md')
-    def test_phase0_preserves_all_original_prototype_files_and_binary_hashes(self):
-        manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
-        intentional={'prototypes/board.json','prototypes/BOARD.md',
-                     'prototypes/board-mestre.json','prototypes/board-mestre.md'}
-        files=[e for e in manifest['files'] if e['source'].startswith('prototypes/')]
-        self.assertEqual(len(files),961)
-        original=dict((path,data) for path,data,_ in inventory.git_bytes(manifest['baseline_commit']))
-        for entry in files:
-            target=ROOT/entry['source']
-            self.assertTrue(target.is_file(),entry['source'])
-            if entry['source'] not in intentional:
-                data=target.read_bytes()
-                # Git for Windows may materialize textual LF as CRLF. Accept
-                # only that exact reversible checkout conversion; binary bytes
-                # and all other content differences still fail.
-                baseline=original[entry['source']]
-                try: baseline.decode('utf-8');textual=b'\0' not in baseline
-                except UnicodeDecodeError: textual=False
-                if os.name=='nt' and textual and b'\r\n' not in baseline and data==baseline.replace(b'\n',b'\r\n'):
-                    data=baseline
-                self.assertEqual(hashlib.sha256(data).hexdigest(),entry['sha256'],entry['source'])
+    def test_migration_preserves_every_source_file_with_reviewed_hashes(self):
+        receipt=json.loads((ROOT/'prototype/issue278-rename-receipt.json').read_text(encoding='utf-8'))
+        self.assertEqual(len(receipt['files']),receipt['source_count'])
+        self.assertEqual(len({e['source'] for e in receipt['files']}),receipt['source_count'])
+        self.assertEqual(len({e['destination'].casefold() for e in receipt['files']}),receipt['source_count'])
+        for entry in receipt['files']:
+            target=ROOT/entry['destination']
+            self.assertTrue(target.is_file(),entry['destination'])
+            data=target.read_bytes()
+            # Normalize only Git's Windows text checkout conversion.
+            if os.name=='nt' and entry['text_utf8']:
+                data=data.replace(b'\r\n',b'\n')
+            self.assertEqual(hashlib.sha256(data).hexdigest(),entry['after_lf_sha256'] if os.name=='nt' and entry['text_utf8'] else entry['after_sha256'],entry['destination'])
+            if not entry['text_utf8']:
+                self.assertEqual(entry['before_sha256'],entry['after_sha256'],entry['destination'])
+        self.assertFalse((ROOT/'prototypes').exists())
+
     def test_generated_inventories_are_not_visual_evidence_references(self):
         builder=module('build-evidence-catalog.py')
         corpus=builder.load_corpus()
-        for name in ['inventory','dependencies','baseline','coverage-baseline']:
-            self.assertNotIn('prototypes/issue278-'+name+'.json',corpus)
-        self.assertIn('prototypes/board.json',set(corpus))
+        for name in ['inventory','dependencies','baseline','coverage-baseline','rename-receipt','before-rename']:
+            self.assertNotIn('prototype/issue278-'+name+'.json',corpus)
+        self.assertIn('prototype/board.json',set(corpus))
+
+    def test_evidence_identity_dates_and_hashes_survive_prefix_rename(self):
+        old=json.loads(subprocess.check_output(['git','show','d586ba33a33e3d11f1d863732dc6e4cf8632342b:prototypes/catalog.json'],cwd=ROOT))
+        current=json.loads((ROOT/'prototype/catalog.json').read_text(encoding='utf-8'))
+        by_path={e['caminho']:e for e in current['evidencias']}
+        for entry in old['evidencias']:
+            moved=by_path[entry['caminho'].replace('prototypes/','prototype/',1)]
+            for key in ['id','sha256','data']:self.assertEqual(moved[key],entry[key],entry['caminho'])
 
     def test_existing_canvas_elements_and_order_are_preserved(self):
-        manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
+        manifest=json.loads((ROOT/'prototype/issue278-inventory.json').read_text(encoding='utf-8'))
         raw=subprocess.check_output(['git','show',manifest['baseline_commit']+':prototypes/board.json'],cwd=ROOT)
-        old=json.loads(raw);current=json.loads((ROOT/'prototypes/board.json').read_text(encoding='utf-8'))
-        for key,value in old['elements'].items():self.assertEqual(current['elements'][key],value,key)
+        old=json.loads(raw);current=json.loads((ROOT/'prototype/board.json').read_text(encoding='utf-8'))
+        for key,value in old['elements'].items():self.assertEqual(current['elements'][key],json.loads(json.dumps(value,ensure_ascii=False).replace('prototypes/','prototype/')),key)
         self.assertEqual(current['order'][:len(old['order'])],old['order'])
         self.assertIn('e17000',current['elements'])
 
     def test_full_source_tree_and_hashes_are_reproducible(self):
-        manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
+        manifest=json.loads((ROOT/'prototype/issue278-inventory.json').read_text(encoding='utf-8'))
         with patch.dict(os.environ,{'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'core.autocrlf','GIT_CONFIG_VALUE_0':'true'}):
             actual=inventory.snapshot(manifest['baseline_commit'])
         self.assertEqual(actual,manifest)

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const slice=(a,b)=>{
   const i=html.indexOf(a),j=html.indexOf(b,i+a.length);
   assert.ok(i>=0&&j>i,'script source anchors exist: '+a);
@@ -102,7 +102,7 @@ test('contextual collection graph (canvas) initially fits all nodes, including d
 });
 
 test('contextual graph Reset and zoom preserve dynamically fitted viewport (#54)',()=>{
-  const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+  const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
   assert.match(html,/fw=\+svg\.dataset\.fitW\|\|300,fh=\+svg\.dataset\.fitH\|\|240/);
   assert.match(html,/Math\.max\(2400,fw\*2\)/,'zoom-out allows the original large extent');
   assert.match(html,/nh=nw\*fh\/fw/,'zoom preserves frame aspect ratio');

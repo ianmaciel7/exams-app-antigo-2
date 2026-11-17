@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes');
+const assets = path.resolve('prototype');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 55, cases: [], errors: [], limitations: [
   'Chromium emulation does not replace screen-reader or physical touch validation.'
@@ -74,5 +74,5 @@ try {
   assert.deepEqual(report.errors, [], 'no uncaught browser errors');
 } finally {
   await browser.close();
-  await writeFile('prototypes/issue55_keyboard_targets_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototype/issue55_keyboard_targets_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

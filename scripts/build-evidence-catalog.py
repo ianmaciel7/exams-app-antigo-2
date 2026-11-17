@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera o catálogo central de evidências do repositório.
 
-Saídas (em prototypes/):
+Saídas (em prototype/):
   - catalog.json  : fonte estruturada (ids estáveis, vínculos, classificações)
   - CATALOG.md    : índice navegável em Markdown
   - gallery.html  : galeria com miniaturas, ampliação e comparação antes/depois
@@ -24,21 +24,21 @@ from collections import defaultdict
 from datetime import datetime, timezone
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-OUT = os.path.join(ROOT, 'prototypes')
+OUT = os.path.join(ROOT, 'prototype')
 REPO_URL = 'https://github.com/ianmaciel7/exams-app'
 MEDIA_RE = re.compile(r'\.(png|jpe?g|gif|webp)$', re.I)
 SKIP_DIRS = {'.git', 'node_modules'}
 
 # Diretórios escaneados (relativos à raiz). Assets do board e arquivos arquivados.
-SCAN_DIRS = ['prototypes']
+SCAN_DIRS = ['prototype']
 
 PESQUISA = {
-    'capacities': ('Pesquisa Capacities', 'prototypes/capacities-issue-32-2026-11-15.md'),
-    'qconcursos': ('Pesquisa QConcursos', 'prototypes/qconcursos-issue-31-2026-11-15.md'),
-    'examtopics': ('Pesquisa ExamTopics', 'prototypes/examtopics-inventory.md'),
-    'readwise': ('Dossiê Readwise', 'prototypes/READWISE_DOSSIER.md'),
-    'notes-app-old': ('Catálogo de versões arquivadas', 'prototypes/docs__archives__README.md'),
-    'exams-app-old': ('Catálogo de versões arquivadas', 'prototypes/docs__archives__README.md'),
+    'capacities': ('Pesquisa Capacities', 'prototype/capacities-issue-32-2026-11-15.md'),
+    'qconcursos': ('Pesquisa QConcursos', 'prototype/qconcursos-issue-31-2026-11-15.md'),
+    'examtopics': ('Pesquisa ExamTopics', 'prototype/examtopics-inventory.md'),
+    'readwise': ('Dossiê Readwise', 'prototype/READWISE_DOSSIER.md'),
+    'notes-app-old': ('Catálogo de versões arquivadas', 'prototype/docs__archives__README.md'),
+    'exams-app-old': ('Catálogo de versões arquivadas', 'prototype/docs__archives__README.md'),
 }
 
 FUNCAO_RULES = [
@@ -56,13 +56,13 @@ FUNCAO_RULES = [
 ]
 
 ORIGEM = [
-    (r'^prototypes/[0-9a-f]{32}\.png$', 'Board: upload embutido (hash)'),
-    (r'^prototypes/inline-e\d+\.jpg$', 'Board: imagem inline do elemento'),
-    (r'^prototypes/board-exam-app__assets__claude-storage-bridge__', 'Teste: ponte de armazenamento Claude'),
-    (r'^prototypes/board-exam-app__assets__', 'Board: captura de assets'),
-    (r'^prototypes/exam-app-0\.1\.\d__', 'Protótipo: versão publicada'),
-    (r'^prototypes/docs__archives__', 'Arquivo: versão histórica'),
-    (r'^prototypes/docs__', 'Documentação'),
+    (r'^prototype/[0-9a-f]{32}\.png$', 'Board: upload embutido (hash)'),
+    (r'^prototype/inline-e\d+\.jpg$', 'Board: imagem inline do elemento'),
+    (r'^prototype/board-exam-app__assets__claude-storage-bridge__', 'Teste: ponte de armazenamento Claude'),
+    (r'^prototype/board-exam-app__assets__', 'Board: captura de assets'),
+    (r'^prototype/exam-app-0\.1\.\d__', 'Protótipo: versão publicada'),
+    (r'^prototype/docs__archives__', 'Arquivo: versão histórica'),
+    (r'^prototype/docs__', 'Documentação'),
 ]
 
 
@@ -117,6 +117,8 @@ def evidence_date(path, sha, prior, git_dates):
 
 
 def stable_id(path):
+    if path.startswith('prototype/'):
+        path = 'prototypes/' + path[len('prototype/'):]
     return 'EV-' + hashlib.sha256(path.encode()).hexdigest()[:8].upper()
 
 
@@ -129,9 +131,9 @@ def pick(rules, text, default):
 
 def classify_tipo(path):
     name = os.path.basename(path).lower()
-    if path.startswith('prototypes/docs__archives__') or re.match(r'(capacities|qconcursos|examtopics|readwise|archive_|notes_app)', name):
+    if path.startswith('prototype/docs__archives__') or re.match(r'(capacities|qconcursos|examtopics|readwise|archive_|notes_app)', name):
         return 'evidência externa'
-    if re.match(r'(lowchrome_97|pdf112|issue120_e2e)', name) or path.startswith('prototypes/board-exam-app__assets__claude-storage-bridge__'):
+    if re.match(r'(lowchrome_97|pdf112|issue120_e2e)', name) or path.startswith('prototype/board-exam-app__assets__claude-storage-bridge__'):
         return 'teste executado'
     if re.match(r'audit2026', name):
         return 'inspeção técnica'
@@ -207,14 +209,14 @@ def referencias_quebradas(corpus):
     """Imagens citadas em texto/código que não existem no repositório (exclui URLs externas)."""
     quebradas = []
     for rel, text in corpus.items():
-        if rel == 'prototypes/board.json':
+        if rel == 'prototype/board.json':
             continue
         for ref in sorted(set(IMG_REF.findall(text))):
             if len(ref) > 120 or ref.startswith('data:') or '//' in ref or ref.startswith('.'):
                 continue
             base = os.path.dirname(os.path.join(ROOT, rel))
             candidatos = [os.path.relpath(os.path.join(base, ref), ROOT), ref,
-                          'prototypes/' + os.path.basename(ref), 'prototypes/board-exam-app__assets__' + os.path.basename(ref)]
+                          'prototype/' + os.path.basename(ref), 'prototype/board-exam-app__assets__' + os.path.basename(ref)]
             # Só arquivos rastreados: o resultado não pode depender de arquivos locais ignorados.
             if not any(c.replace(os.sep, '/') in TRACKED for c in candidatos):
                 quebradas.append({'arquivo': rel, 'referencia': ref})
@@ -223,11 +225,11 @@ def referencias_quebradas(corpus):
 
 def load_corpus():
     corpus = {}
-    for base in ['prototypes', 'scripts', 'tests', '.github']:
+    for base in ['prototype', 'scripts', 'tests', '.github']:
         for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, base)):
             dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != 'assets']
             for fn in filenames:
-                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototypes' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json', 'issue278-inventory.json', 'issue278-dependencies.json', 'issue278-baseline.json', 'issue278-coverage-baseline.json'}:
+                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototype' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json', 'issue278-inventory.json', 'issue278-dependencies.json', 'issue278-baseline.json', 'issue278-coverage-baseline.json', 'issue278-rename-receipt.json', 'issue278-before-rename.json'}:
                     continue  # índices/manifestos gerados não demonstram uso visual da mídia
                 if re.search(r'\.(md|json|html|py|mjs|js|yml)$', fn):
                     p = os.path.join(dirpath, fn)
@@ -243,7 +245,7 @@ def build():
     dates = last_commit_dates()
     previous_media, previous_tests = previous_catalog_dates()
     corpus = load_corpus()
-    board_json = open(os.path.join(ROOT, 'prototypes/board.json'), encoding='utf-8').read()
+    board_json = open(os.path.join(ROOT, 'prototype/board.json'), encoding='utf-8').read()
 
     items = []
     for scan in SCAN_DIRS:
@@ -296,7 +298,7 @@ def build():
         if len(group) > 1:
             outros = [p for p in group if p != e['caminho']]
             e['duplicatas'] = outros
-            e['canonica'] = e['caminho'] == sorted(group, key=lambda p: (not p.startswith('prototypes/board-exam-app__assets__'), p))[0]
+            e['canonica'] = e['caminho'] == sorted(group, key=lambda p: (not p.startswith('prototype/board-exam-app__assets__'), p))[0]
         else:
             e['duplicatas'] = []
             e['canonica'] = True
@@ -322,13 +324,13 @@ def build():
 
     # Evidências em arquivos de teste (JSON): inventário separado.
     testes = []
-    for path in sorted(git('ls-files', 'prototypes/*.json').splitlines()):
+    for path in sorted(git('ls-files', 'prototype/*.json').splitlines()):
         if re.search(r'(_e2e|manifest|diagnostic|execution-log)\.json$', path):
             testes.append({'id': stable_id(path), 'caminho': path, 'tipo': 'teste executado', 'data': previous_tests.get(path) or dates.get(path)})
 
     orfaos = [e['caminho'] for e in entries if e['orfao']]
     quebradas = referencias_quebradas(corpus)
-    duplicatas = [{'canonica': g[0], 'duplicatas': g[1:]} for g in by_sha.values() if len(g) > 1 for g in [sorted(g, key=lambda p: (not p.startswith('prototypes/board-exam-app__assets__'), p))]]
+    duplicatas = [{'canonica': g[0], 'duplicatas': g[1:]} for g in by_sha.values() if len(g) > 1 for g in [sorted(g, key=lambda p: (not p.startswith('prototype/board-exam-app__assets__'), p))]]
 
     catalogo = {
         'versao_schema': 1,
@@ -376,7 +378,7 @@ def write_markdown(c):
         f'- Pares antes/depois: **{c["resumo"]["pares_antes_depois"]}**',
         f'- Resultados de teste em JSON: **{c["resumo"]["testes_json"]}**',
         '',
-        'Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub mostra o código-fonte HTML).',
+        'Galeria visual: `prototype/gallery.html` (abra o arquivo localmente; o GitHub mostra o código-fonte HTML).',
         '',
         '## Como ler',
         '',

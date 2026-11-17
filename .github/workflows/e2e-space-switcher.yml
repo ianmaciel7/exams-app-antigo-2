@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/space-switcher.test.mjs'
       - 'tests/space-switcher.e2e.mjs'
       - 'scripts/append-space-switcher-board.py'
@@ -36,12 +36,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if test -f prototypes/issue138_spaces_e2e.json; then
+          if test -f prototype/issue138_spaces_e2e.json; then
             echo 'Genuine screenshots already versioned; do not create new captures.'
             exit 0
           fi
           git worktree add --detach /tmp/exams-before-138 b410b044cac80819d952744b29072744d6df59b9
-          python3 -m http.server 8765 --directory prototypes >/tmp/exams-after-138.log 2>&1 &
+          python3 -m http.server 8765 --directory prototype >/tmp/exams-after-138.log 2>&1 &
           python3 -m http.server 8766 --directory /tmp/exams-before-138/prototypes >/tmp/exams-before-138.log 2>&1 &
           for i in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null &&
@@ -51,11 +51,11 @@ jobs:
           node tests/space-switcher.e2e.mjs
           python3 scripts/append-space-switcher-board.py
           npm run board
-          grep -q '44. SpaceSwitcher' prototypes/BOARD.md
+          grep -q '44. SpaceSwitcher' prototype/BOARD.md
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prototypes/board.json prototypes/BOARD.md prototypes/issue138_spaces_e2e.json
-          git add prototypes/issue138_*.png
+          git add prototype/board.json prototype/BOARD.md prototype/issue138_spaces_e2e.json
+          git add prototype/issue138_*.png
           if ! git diff --cached --quiet; then
             git commit -m 'test(sidebar): persist Issue #138 real SpaceSwitcher evidence'
             git push origin "HEAD:${{ github.head_ref }}"
@@ -66,6 +66,6 @@ jobs:
         with:
           name: issue138-space-switcher
           path: |
-            prototypes/issue138_*.png
-            prototypes/issue138_spaces_e2e.json
+            prototype/issue138_*.png
+            prototype/issue138_spaces_e2e.json
           if-no-files-found: warn

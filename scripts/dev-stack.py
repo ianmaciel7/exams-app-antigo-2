@@ -42,7 +42,7 @@ def main():
 
     # 1. Servidor HTTP
     http_proc = subprocess.Popen(
-        [py_exe, "-m", "http.server", str(PORT_HTTP), "--directory", "prototypes"],
+        [py_exe, "-m", "http.server", str(PORT_HTTP), "--directory", "prototype"],
         cwd=str(REPO_ROOT),
         env=env
     )

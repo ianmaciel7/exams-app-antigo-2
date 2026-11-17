@@ -17,8 +17,8 @@ import subprocess
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-CATALOG = os.path.join(ROOT, 'prototypes', 'catalog.json')
-GALLERY = os.path.join(ROOT, 'prototypes', 'gallery.html')
+CATALOG = os.path.join(ROOT, 'prototype', 'catalog.json')
+GALLERY = os.path.join(ROOT, 'prototype', 'gallery.html')
 TIPOS = {'evidência externa', 'captura do protótipo', 'inspeção técnica', 'teste executado', 'a classificar'}
 INTEGRIDADE = {'ok', 'duplicata', 'órfão'}
 
@@ -38,6 +38,8 @@ def sha256_file(path):
 
 
 def stable_id(path):
+    if path.startswith('prototype/'):
+        path = 'prototypes/' + path[len('prototype/'):]
     return 'EV-' + hashlib.sha256(path.encode()).hexdigest()[:8].upper()
 
 

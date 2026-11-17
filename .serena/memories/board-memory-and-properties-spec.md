@@ -1,7 +1,7 @@
 # Regra de Memória no Board e Redesenho de Propriedades
 
 ## 1. Regra Mandatória de Preservação no Board
-Todas as informações, fotos, evidências, descobertas, decisões visuais e memórias levantadas durante o trabalho no projeto Exam App DEVEM ser guardadas no board (`prototypes/board.json` / `BOARD.md` e pasta `assets/`). Qualquer informação importante DEVE ser registrada e persistida no board.
+Todas as informações, fotos, evidências, descobertas, decisões visuais e memórias levantadas durante o trabalho no projeto Exam App DEVEM ser guardadas no board (`prototype/board.json` / `BOARD.md` e pasta `assets/`). Qualquer informação importante DEVE ser registrada e persistida no board.
 
 ## 2. Redesenho do Painel de Propriedades (Capacities & Obsidian)
 - A seção/painel de propriedades deve abandonar `<dl><dt><dd>` estático e cru.

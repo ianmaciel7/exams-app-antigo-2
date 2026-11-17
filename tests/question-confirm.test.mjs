@@ -2,7 +2,7 @@ import { runInNewContext as vmRunInNewContext } from 'node:vm';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const section=(from,to)=>{const i=html.indexOf(from),j=html.indexOf(to,i+from.length);assert.ok(i>=0&&j>i);return html.slice(i,j);};
 const page=section('function questaoPage(q){','function ');
 const handlers=section("view.addEventListener('keydown',e=>{","const rr0=");

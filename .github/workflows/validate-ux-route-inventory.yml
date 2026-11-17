@@ -4,9 +4,9 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/arquitetura-informacao-navegacao.md'
+      - 'prototype/arquitetura-informacao-navegacao.md'
       - 'tests/ux-route-inventory.test.mjs'
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - '.github/workflows/validate-ux-route-inventory.yml'
 
 permissions:

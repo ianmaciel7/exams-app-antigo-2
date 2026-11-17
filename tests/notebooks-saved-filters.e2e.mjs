@@ -3,7 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const base=path.resolve('prototypes');
+const base=path.resolve('prototype');
 await mkdir(base,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const errors=[];
@@ -131,5 +131,5 @@ try{
  console.log('Notebooks E2E passed: create from filtered bank, goal, independent attempts, retake errors, assignment, saved Queries, resume and mobile.');
 }finally{
  await browser.close();
- await writeFile('prototypes/issue75_e2e.json',JSON.stringify(report,null,2)+'\n');
+ await writeFile('prototype/issue75_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

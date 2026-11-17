@@ -4,8 +4,8 @@
   "scripts": {
     "start": "python scripts/dev-stack.py",
     "start:open": "python scripts/dev-stack.py --open",
-    "dev": "python -m http.server 8765 --directory prototypes",
-    "board": "python prototypes/board_to_md.py",
+    "dev": "python -m http.server 8765 --directory prototype",
+    "board": "python prototype/board_to_md.py",
     "test:motion": "node --test tests/motion-graph.test.mjs",
     "proxy": "python services/proxy/claude_storage_proxy.py",
     "sync:artifact": "python scripts/claude-sync-gate.py",

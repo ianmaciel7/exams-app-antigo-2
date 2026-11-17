@@ -3,18 +3,18 @@ name: Validate docs architecture
 on:
   pull_request:
     paths:
-      - "prototypes/**"
-      - "prototypes/**"
-      - "prototypes/**"
+      - "prototype/**"
+      - "prototype/**"
+      - "prototype/**"
       - "scripts/validate-docs-architecture.py"
       - "scripts/render-mermaid-check.mjs"
       - ".github/workflows/validate-docs-architecture.yml"
   push:
     branches: [dev]
     paths:
-      - "prototypes/**"
-      - "prototypes/**"
-      - "prototypes/**"
+      - "prototype/**"
+      - "prototype/**"
+      - "prototype/**"
 
 permissions:
   contents: read

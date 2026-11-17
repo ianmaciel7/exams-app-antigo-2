@@ -5,11 +5,11 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const evidenceDir=path.resolve('prototypes');
+const evidenceDir=path.resolve('prototype');
 await mkdir(evidenceDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const sourceDigest=createHash('sha256').update([
-  'prototypes/exam-app-0.1.1__index.html',
+  'prototype/exam-app-0.1.1__index.html',
   'tests/workspace-command-router.test.mjs',
   'tests/workspace-command-router.e2e.mjs',
   '.github/workflows/e2e-workspace-command-router.yml'
@@ -170,5 +170,5 @@ try{
   }finally{await ctx.close();}
 }finally{
   await browser.close();
-  await writeFile('prototypes/issue139_commands_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototype/issue139_commands_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

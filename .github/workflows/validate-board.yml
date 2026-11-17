@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/**'
+      - 'prototype/**'
       - '.github/workflows/validate-board.yml'
   push:
     branches: [dev]
     paths:
-      - 'prototypes/**'
+      - 'prototype/**'
       - '.github/workflows/validate-board.yml'
 
 permissions:

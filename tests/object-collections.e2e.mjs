@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root = path.resolve('prototypes');
+const root = path.resolve('prototype');
 const assets = root;
 await mkdir(assets, { recursive: true });
 const report = {

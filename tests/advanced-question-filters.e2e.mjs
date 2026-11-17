@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes');
+const dir=path.resolve('prototype');
 await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),events:[],errors:[]};
@@ -127,5 +127,5 @@ try{
   console.log('Advanced filters: cascading Disciplina->Assunto, URL flags, saved Queries, exclude notebook, mobile, filtered simulation E2E PASSED.');
 }finally{
   await browser.close();
-  await writeFile('prototypes/issue70_e2e.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('prototype/issue70_e2e.json',JSON.stringify(report,null,2)+'\n');
 }

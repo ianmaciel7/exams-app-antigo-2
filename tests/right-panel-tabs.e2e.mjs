@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes');
+const assets = path.resolve('prototype');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 55, checks: [], errors: [] };
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
@@ -56,5 +56,5 @@ try {
   } finally { await context.close(); }
 } finally {
   await browser.close();
-  await writeFile(path.resolve('prototypes/issue55_graph_e2e.json'), JSON.stringify(report, null, 2) + '\n');
+  await writeFile(path.resolve('prototype/issue55_graph_e2e.json'), JSON.stringify(report, null, 2) + '\n');
 }

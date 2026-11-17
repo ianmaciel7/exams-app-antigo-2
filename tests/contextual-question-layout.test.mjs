@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototype/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 test('contextual and global question cards share one rendering implementation', () => {
   assert.match(html, /function renderPracticeList\(filtered,key\)/);
   assert.match(html, /qfHTML\([\s\S]*?renderList:renderPracticeList/);
