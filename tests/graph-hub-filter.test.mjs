@@ -37,7 +37,7 @@ test('hub toggle updates nodes, edges, live counts and search without losing sta
   };
   let click,updates=0;
   const wrap={querySelector:sel=>sel==='.gv-leg'?{addEventListener:(type,fn)=>{click=fn;}}:info};
-  const scope={nodes,edges,st,GVK:{concurso:true,questao:true},GV_HIDE_HUBS:false,
+  const scope={nodes,edges,st,GVK:{concurso:true,questao:true},GV_HIDE_HUBS:false,GV_DEPTH:5,GV_FOCUS:null,gvReach:()=>null,
     graphNodeVisible:predicate,$:()=>hubButton,wrap,updateGraphSearch:()=>updates++};
   runInNewContext(code,scope);
   assert.equal(typeof click,'function','event listener installed');
