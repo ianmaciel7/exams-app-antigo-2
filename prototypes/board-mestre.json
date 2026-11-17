@@ -620,7 +620,7 @@
         },
         {
           "name": "ExamTopics — evidências integrais",
-          "kind": "evidencia-pesquisa",
+          "kind": "auditoria-evidencia",
           "blocks": [
             "e17000"
           ],
