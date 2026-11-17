@@ -65,6 +65,8 @@ class InventoryTests(unittest.TestCase):
         for e in bundles:
             actual=subprocess.check_output(['git','hash-object',str(ROOT/e['current_path'])],cwd=ROOT,text=True).strip()
             self.assertEqual(actual,e['git_blob_sha'],e['current_path'])
+            verification=subprocess.run(['git','bundle','verify',str(ROOT/e['current_path'])],cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(verification.returncode,0,e['current_path']+': '+verification.stderr)
 
         self.assertEqual(len(receipt['files']),receipt['source_count'])
         self.assertEqual(len({e['source'] for e in receipt['files']}),receipt['source_count'])
