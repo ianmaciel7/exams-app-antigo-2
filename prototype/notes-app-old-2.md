@@ -4,7 +4,7 @@
 - **Original Branch:** `old-2`
 - **Commit SHA:** `7d14209252e47bf4449ec953928c2ef711f0642e`
 - **GitHub Reference:** [Commit 7d14209 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-2)
-- **Git Bundle:** [notes-app-old-2.bundle](notes-app-old-2.bundle)
+- **Git Bundle:** [notes-app-old-2.bundle](archive/backups/notes-app/notes-app-old-2.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@ A workspace prototype heavily inspired by Capacities, organizing knowledge into 
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-2.bundle
-git clone notes-app-old-2.bundle -b old-2 ./restored-notes-app-old-2
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-2.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-2.bundle -b old-2 ./restored-notes-app-old-2
 ```
