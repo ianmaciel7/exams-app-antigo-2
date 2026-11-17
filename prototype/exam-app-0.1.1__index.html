@@ -8795,6 +8795,8 @@ $('rpBody').addEventListener('pointerdown',e=>{ const sp=e.target.closest('[data
 /* ---- Gráfico do espaço (página inteira, barra lateral) ---- */
 let GV=null; const GVK={}; const GV_ICON_CACHE={};
 let GV_HIDE_HUBS=false;
+let GV_DEPTH=5, GV_FOCUS=null;
+const GV_BAR_SVG={exp:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v4h16v-4"/></svg>',filt:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h10"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg>',relay:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2.05-4.95M19 4v4h-4"/></svg>'};
 const graphNodeVisible=(degree,kindEnabled,hideHubs)=>kindEnabled&&(!hideHubs||degree<=40);
 function stopGV(){ if(!GV) return;
   GV.stop=true; cancelAnimationFrame(GV.raf);
