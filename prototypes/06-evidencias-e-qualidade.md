@@ -24,6 +24,9 @@ flowchart TB
 
 ## Documentos
 
+- [Manifesto de evidências ExamTopics — 17/11/2026](examtopics-auditoria-evidencias-2026-11-17.json) — Fontes públicas e capturas históricas, sem alegar novos screenshots ou E2E executado.
+- [Auditoria funcional ExamTopics × dev](examtopics-auditoria-2026-11-17.md) — Rastreabilidade observação → código → decisão.
+
 - [Catálogo Markdown](CATALOG.md)
 - [Catálogo JSON](catalog.json)
 - [Galeria](gallery.html)
