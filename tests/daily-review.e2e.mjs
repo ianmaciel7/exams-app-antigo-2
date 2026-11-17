@@ -80,6 +80,15 @@ try{
       await editDialog.locator('#fd_note').fill('Mnemônico: transparência na administração.');
       await page.screenshot({path:path.join(assets,'issue83_nondestructive_edit_'+width+'.png'),animations:'disabled'});
       await editDialog.locator('[data-x="1"]').click();
+      // The dialog saves through a Promise callback. Wait for both edited fields
+      // to persist before revealing the next card; a visible card may be stale.
+      await page.waitForFunction(() => {
+        const card=Object.keys(localStorage).filter(k=>k.includes('daily-review:'))
+          .flatMap(k=>JSON.parse(localStorage.getItem(k)||'{}').cards||[])
+          .find(c=>c.question==='Qual princípio rege a transparência?');
+        return card?.editedText==='Texto editado: o princípio da publicidade orienta a Administração.' &&
+          card?.note==='Mnemônico: transparência na administração.';
+      },null,{timeout:10000});
       await page.locator('.srs-card').first().waitFor();
       assert.equal(await page.locator('.srs-answer').count(),0,'edited answer remains hidden after save');
       await page.locator('[data-srs-reveal]').first().click();
