@@ -60,6 +60,7 @@ try{
       await search.press('Escape');
       assert.equal(await search.inputValue(),'');
       assert.equal(await page.locator('#gvMatchCount').textContent(),'');
+      await page.locator('#gvFilters').click();
       const kind=page.locator('.gv-leg [data-gk]').first();
       assert.ok(await kind.count(),'type filter exists');
       const pressed=await kind.getAttribute('aria-pressed');
