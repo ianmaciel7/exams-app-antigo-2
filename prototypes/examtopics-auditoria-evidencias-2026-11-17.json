@@ -1106,5 +1106,6 @@
     "Testes E2E e leitor de tela nesta auditoria"
   ],
   "report": "prototypes/evidencias-examtopics-2026-11-17.md",
-  "related_issue": "https://github.com/ianmaciel7/exams-app/issues/28"
+  "related_issue": "https://github.com/ianmaciel7/exams-app/issues/28",
+  "board_container_id": "e17000"
 }
