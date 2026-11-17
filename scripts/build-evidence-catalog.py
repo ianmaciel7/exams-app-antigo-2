@@ -89,6 +89,33 @@ def last_commit_dates():
     return dates
 
 
+def previous_catalog_dates():
+    """Keep original evidence dates stable across squash merges and rebases.
+
+    A Git squash rewrites the latest commit for every migrated asset, even when
+    its bytes are unchanged. Cached dates are used only for identical media
+    content (path + sha256). Test journals retain their recorded catalog date.
+    """
+    try:
+        with open(os.path.join(OUT, 'catalog.json'), encoding='utf-8') as f:
+            old = json.load(f)
+    except (OSError, ValueError):
+        return {}, {}
+    media = {e['caminho']: e for e in old.get('evidencias', [])
+             if isinstance(e, dict) and e.get('caminho')}
+    tests = {e['caminho']: e.get('data') for e in old.get('testes', [])
+             if isinstance(e, dict) and e.get('caminho')}
+    return media, tests
+
+
+def evidence_date(path, sha, prior, git_dates):
+    """Refresh dates only when a new image path/content is introduced."""
+    old = prior.get(path, {})
+    if old.get('sha256') == sha and old.get('data'):
+        return old['data']
+    return git_dates.get(path)
+
+
 def stable_id(path):
     return 'EV-' + hashlib.sha256(path.encode()).hexdigest()[:8].upper()
 
@@ -213,6 +240,7 @@ def load_corpus():
 
 def build():
     dates = last_commit_dates()
+    previous_media, previous_tests = previous_catalog_dates()
     corpus = load_corpus()
     board_json = open(os.path.join(ROOT, 'prototypes/board.json'), encoding='utf-8').read()
 
@@ -240,7 +268,7 @@ def build():
             'caminho': path,
             'sha256': sha,
             'bytes': os.path.getsize(full),
-            'data': dates.get(path),
+            'data': evidence_date(path, sha, previous_media, dates),
             'origem': pick(ORIGEM, path, 'Repositório'),
             'tipo': classify_tipo(path),
             'ambiente': classify_ambiente(path),
@@ -295,7 +323,7 @@ def build():
     testes = []
     for path in sorted(git('ls-files', 'prototypes/*.json').splitlines()):
         if re.search(r'(_e2e|manifest|diagnostic|execution-log)\.json$', path):
-            testes.append({'id': stable_id(path), 'caminho': path, 'tipo': 'teste executado', 'data': dates.get(path)})
+            testes.append({'id': stable_id(path), 'caminho': path, 'tipo': 'teste executado', 'data': previous_tests.get(path) or dates.get(path)})
 
     orfaos = [e['caminho'] for e in entries if e['orfao']]
     quebradas = referencias_quebradas(corpus)
