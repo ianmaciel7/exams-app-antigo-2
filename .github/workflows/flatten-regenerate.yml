@@ -1,4 +1,5 @@
 name: Regenerate flattened prototype indexes
+# regeneration attempt after restoring complete Python catalog builder
 
 on:
   push:
