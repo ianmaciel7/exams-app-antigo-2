@@ -4,7 +4,7 @@
 - **Original Branch:** `backup/dev-before-adr2`
 - **Commit SHA:** `1db80ad136bbab8720637fbd33315d08bf6a5def`
 - **GitHub Reference:** [Commit 1db80ad on GitHub](https://github.com/ianmaciel7/exams-app-old/tree/backup/dev-before-adr2)
-- **Git Bundle:** [exams-app-old-backup-dev-before-adr2.bundle](exams-app-old-backup-dev-before-adr2.bundle)
+- **Git Bundle:** [exams-app-old-backup-dev-before-adr2.bundle](archive/backups/exams-app/exams-app-old-backup-dev-before-adr2.bundle)
 
 ## Purpose & Summary
 
@@ -32,6 +32,6 @@ _No screenshot available: this version focused on HTTP security policies, runtim
 ## Restoration Instructions
 
 ```bash
-git bundle verify exams-app-old-backup-dev-before-adr2.bundle
-git clone exams-app-old-backup-dev-before-adr2.bundle -b backup-dev-before-adr2 ./restored-exams-app-old-backup-dev-before-adr2
+git bundle verify prototype/archive/backups/exams-app/exams-app-old-backup-dev-before-adr2.bundle
+git clone prototype/archive/backups/exams-app/exams-app-old-backup-dev-before-adr2.bundle -b backup-dev-before-adr2 ./restored-exams-app-old-backup-dev-before-adr2
 ```
