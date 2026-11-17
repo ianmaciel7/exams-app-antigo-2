@@ -272,90 +272,133 @@ Cada achado traz ID ET-E, estado de comprovação, fonte, comparação com a `de
 
 [Galeria e mídia histórica](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/gallery.html)
 
-### Catálogo (7 registros)
-- **ET-E01** Lista de fornecedores de certificação — observado; fonte ET-01, ET-02
-- **ET-E02** Listagem de exames por fornecedor — observado; fonte ET-01, ET-02
-- **ET-E03** Pesquisa por nome ou código de exame — observado; fonte ET-01
-- **ET-E04** Rótulo de exame popular — observado; fonte ET-02
-- **ET-E05** Página de detalhes de exame — observado; fonte ET-03
-- **ET-E06** Contagem de questões do exame — observado; fonte ET-03, ET-04
-- **ET-E07** Data de atualização do banco — observado; fonte ET-04
+Catálogo (7 registros)
+• ET-E01 — Lista de fornecedores de certificação
+  ExamTopics: observado · Fonte: ET-01, ET-02 · Dev: não localizado · Decisão: adiar
+• ET-E02 — Listagem de exames por fornecedor
+  ExamTopics: observado · Fonte: ET-01, ET-02 · Dev: parcial · Decisão: adaptar
+• ET-E03 — Pesquisa por nome ou código de exame
+  ExamTopics: observado · Fonte: ET-01 · Dev: parcial · Decisão: condicionar a certificações
+• ET-E04 — Rótulo de exame popular
+  ExamTopics: observado · Fonte: ET-02 · Dev: não verificado · Decisão: opcional
+• ET-E05 — Página de detalhes de exame
+  ExamTopics: observado · Fonte: ET-03 · Dev: parcial · Decisão: adaptar
+• ET-E06 — Contagem de questões do exame
+  ExamTopics: observado · Fonte: ET-03, ET-04 · Dev: no código · Decisão: manter
+• ET-E07 — Data de atualização do banco
+  ExamTopics: observado · Fonte: ET-04 · Dev: parcial · Decisão: proveniência/atualização
 
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+Questões (9 registros)
+• ET-E08 — Questão identificada por número e tópico
+  ExamTopics: observado · Fonte: ET-04, ET-05 · Dev: no código · Decisão: manter
+• ET-E09 — Enunciado e alternativas com letras
+  ExamTopics: observado · Fonte: ET-04, ET-05 · Dev: no código · Decisão: manter
+• ET-E10 — Paginação por página de questões
+  ExamTopics: observado · Fonte: ET-04 · Dev: no código · Decisão: manter
+• ET-E11 — Intervalo X–Y e total de N questões
+  ExamTopics: observado · Fonte: ET-04 · Dev: no código · Decisão: manter
+• ET-E12 — Navegação anterior e próxima página
+  ExamTopics: observado · Fonte: ET-04 · Dev: no código · Decisão: manter
+• ET-E13 — Revelar ou ocultar solução/gabarito
+  ExamTopics: observado · Fonte: ET-04 · Dev: no código · Decisão: adaptar
+• ET-E14 — Resposta sugerida apresentada após revelar
+  ExamTopics: observado · Fonte: ET-04 · Dev: no código · Decisão: preferir oficial
+• ET-E15 — Enunciado com diagramas e imagens (exhibits)
+  ExamTopics: observado · Fonte: ET-04 · Dev: parcial · Decisão: aprofundar E2E
+• ET-E16 — Cenários e estudos de caso nos enunciados
+  ExamTopics: observado · Fonte: ET-04 · Dev: parcial · Decisão: separar contexto/tipo
 
-### Questões (9 registros)
-- **ET-E08** Questão identificada por número e tópico — observado; fonte ET-04, ET-05
-- **ET-E09** Enunciado e alternativas com letras — observado; fonte ET-04, ET-05
-- **ET-E10** Paginação por página de questões — observado; fonte ET-04
-- **ET-E11** Intervalo X–Y e total de N questões — observado; fonte ET-04
-- **ET-E12** Navegação anterior e próxima página — observado; fonte ET-04
-- **ET-E13** Revelar ou ocultar solução/gabarito — observado; fonte ET-04
-- **ET-E14** Resposta sugerida apresentada após revelar — observado; fonte ET-04
-- **ET-E15** Enunciado com diagramas e imagens (exhibits) — observado; fonte ET-04
-- **ET-E16** Cenários e estudos de caso nos enunciados — observado; fonte ET-04
+Comunidade (9 registros)
+• ET-E17 — Alternativa mais votada indicada
+  ExamTopics: observado · Fonte: ET-04 · Dev: fora do escopo · Decisão: não copiar
+• ET-E18 — Distribuição percentual de votos por alternativa
+  ExamTopics: observado · Fonte: ET-04 · Dev: fora do escopo · Decisão: não copiar
+• ET-E19 — Discussão individual por questão
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: adaptar para justificativas
+• ET-E20 — Comentários de usuários
+  ExamTopics: observado · Fonte: ET-08, ET-09 · Dev: fora do escopo · Decisão: não copiar
+• ET-E21 — Respostas/réplicas em discussões
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: não copiar
+• ET-E22 — Alternativa escolhida em comentário
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: não copiar
+• ET-E23 — Votos/curtidas em comentários
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: não copiar
+• ET-E24 — Denunciar comentário
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: não copiar
+• ET-E25 — Identificação do autor e data da postagem
+  ExamTopics: observado · Fonte: ET-08 · Dev: fora do escopo · Decisão: não copiar
 
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+Conta e acesso (7 registros)
+• ET-E26 — Login por email e senha
+  ExamTopics: formulário observado · Fonte: ET-10 · Dev: não homologado · Decisão: futuro
+• ET-E27 — Cadastro com apelido, email e senha
+  ExamTopics: formulário observado · Fonte: ET-11 · Dev: não homologado · Decisão: futuro
+• ET-E28 — Verificação de email no fluxo de cadastro
+  ExamTopics: fluxo descrito publicamente · Fonte: ET-10, ET-11 · Dev: não homologado · Decisão: futuro
+• ET-E29 — Recuperação de senha
+  ExamTopics: formulário observado · Fonte: ET-10 · Dev: não homologado · Decisão: futuro
+• ET-E30 — Reenvio de verificação/ativação
+  ExamTopics: fluxo descrito publicamente · Fonte: ET-10, ET-11 · Dev: não homologado · Decisão: futuro
+• ET-E31 — Exigência de login para avançar da primeira página de AZ-900
+  ExamTopics: observado · Fonte: ET-06, ET-07 · Dev: não implementado · Decisão: não copiar bloqueio
+• ET-E32 — Oferta de salvar histórico de navegação ao cadastrar
+  ExamTopics: texto da interface observado · Fonte: ET-06 · Dev: parcial · Decisão: persistência multi-conta pendente
 
-### Comunidade (9 registros)
-- **ET-E17** Alternativa mais votada indicada — observado; fonte ET-04
-- **ET-E18** Distribuição percentual de votos por alternativa — observado; fonte ET-04
-- **ET-E19** Discussão individual por questão — observado; fonte ET-08
-- **ET-E20** Comentários de usuários — observado; fonte ET-08, ET-09
-- **ET-E21** Respostas/réplicas em discussões — observado; fonte ET-08
-- **ET-E22** Alternativa escolhida em comentário — observado; fonte ET-08
-- **ET-E23** Votos/curtidas em comentários — observado; fonte ET-08
-- **ET-E24** Denunciar comentário — observado; fonte ET-08
-- **ET-E25** Identificação do autor e data da postagem — observado; fonte ET-08
+Premium e conteúdo (8 registros)
+• ET-E33 — Contributor Access por exame
+  ExamTopics: oferta pública · Fonte: ET-03, ET-12 · Dev: fora do escopo · Decisão: não copiar
+• ET-E34 — ExamTopics PRO com ativação de até dez exames
+  ExamTopics: oferta pública · Fonte: ET-12 · Dev: fora do escopo · Decisão: não copiar
+• ET-E35 — Oferta de atualizações durante prazo contratado
+  ExamTopics: oferta pública · Fonte: ET-12 · Dev: fora do escopo · Decisão: não copiar
+• ET-E36 — PRO promete navegação sem CAPTCHA/MFA
+  ExamTopics: oferta pública · Fonte: ET-12 · Dev: fora do escopo · Decisão: não copiar
+• ET-E37 — PRO anuncia discussões integradas
+  ExamTopics: oferta pública · Fonte: ET-12 · Dev: fora do escopo · Decisão: não copiar
+• ET-E38 — Aquisição separada de PDF de questões e respostas
+  ExamTopics: oferta pública · Fonte: ET-03, ET-13 · Dev: fora do escopo · Decisão: não copiar
+• ET-E39 — Checkout de produto digital e termos
+  ExamTopics: formulário/oferta · Fonte: ET-13, ET-14 · Dev: fora do escopo · Decisão: não copiar
+• ET-E40 — Blog e conteúdo sobre certificações
+  ExamTopics: observado · Fonte: ET-15 · Dev: não localizado · Decisão: opcional
 
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+Não confirmado no ExamTopics (9 registros)
+• ET-E41 — Filtro de questões por ano e dificuldade
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código · Decisão: não atribuir ao concorrente
+• ET-E42 — Filtro de questões por tipo ou situação da resposta
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código · Decisão: não atribuir ao concorrente
+• ET-E43 — Filtros múltiplos, chips, filtros salvos
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código · Decisão: diferencial
+• ET-E44 — Pesquisa pelo texto de questões
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código · Decisão: diferencial
+• ET-E45 — Resposta interativa corrigida automaticamente
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código · Decisão: diferencial
+• ET-E46 — Drag-and-drop e hotspot executáveis no navegador
+  ExamTopics: não verificado; imagens/cenários não provam interação · Fonte: ET-04 · Dev: não localizado · Decisão: pesquisar quando houver dados
+• ET-E47 — Simulado cronometrado, configurador e score final
+  ExamTopics: não identificado no acesso público · Fonte: ET-03, ET-04 · Dev: no código · Decisão: diferencial
+• ET-E48 — Histórico de tentativas e dashboard pessoal
+  ExamTopics: não verificado em conta autenticada · Fonte: ET-06 · Dev: no código · Decisão: não atribuir ao concorrente
+• ET-E49 — Favoritos, flashcards e revisão espaçada
+  ExamTopics: não identificado no acesso público · Fonte: ET-04 · Dev: no código (Exam App) · Decisão: não atribuir ao concorrente
 
-### Conta e acesso (7 registros)
-- **ET-E26** Login por email e senha — formulário observado; fonte ET-10
-- **ET-E27** Cadastro com apelido, email e senha — formulário observado; fonte ET-11
-- **ET-E28** Verificação de email no fluxo de cadastro — fluxo descrito publicamente; fonte ET-10, ET-11
-- **ET-E29** Recuperação de senha — formulário observado; fonte ET-10
-- **ET-E30** Reenvio de verificação/ativação — fluxo descrito publicamente; fonte ET-10, ET-11
-- **ET-E31** Exigência de login para avançar da primeira página de AZ-900 — observado; fonte ET-06, ET-07
-- **ET-E32** Oferta de salvar histórico de navegação ao cadastrar — texto da interface observado; fonte ET-06
-
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
-
-### Premium e conteúdo (8 registros)
-- **ET-E33** Contributor Access por exame — oferta pública; fonte ET-03, ET-12
-- **ET-E34** ExamTopics PRO com ativação de até dez exames — oferta pública; fonte ET-12
-- **ET-E35** Oferta de atualizações durante prazo contratado — oferta pública; fonte ET-12
-- **ET-E36** PRO promete navegação sem CAPTCHA/MFA — oferta pública; fonte ET-12
-- **ET-E37** PRO anuncia discussões integradas — oferta pública; fonte ET-12
-- **ET-E38** Aquisição separada de PDF de questões e respostas — oferta pública; fonte ET-03, ET-13
-- **ET-E39** Checkout de produto digital e termos — formulário/oferta; fonte ET-13, ET-14
-- **ET-E40** Blog e conteúdo sobre certificações — observado; fonte ET-15
-
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
-
-### Não confirmado no ExamTopics (9 registros)
-- **ET-E41** Filtro de questões por ano e dificuldade — não identificado no acesso público; fonte ET-04
-- **ET-E42** Filtro de questões por tipo ou situação da resposta — não identificado no acesso público; fonte ET-04
-- **ET-E43** Filtros múltiplos, chips, filtros salvos — não identificado no acesso público; fonte ET-04
-- **ET-E44** Pesquisa pelo texto de questões — não identificado no acesso público; fonte ET-04
-- **ET-E45** Resposta interativa corrigida automaticamente — não identificado no acesso público; fonte ET-04
-- **ET-E46** Drag-and-drop e hotspot executáveis no navegador — não verificado; imagens/cenários não provam interação; fonte ET-04
-- **ET-E47** Simulado cronometrado, configurador e score final — não identificado no acesso público; fonte ET-03, ET-04
-- **ET-E48** Histórico de tentativas e dashboard pessoal — não verificado em conta autenticada; fonte ET-06
-- **ET-E49** Favoritos, flashcards e revisão espaçada — não identificado no acesso público; fonte ET-04
-
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
-
-### Comparação dev (8 registros)
-- **ET-E50** Filtro Disciplina > Assunto e demais critérios — evidência estática do código dev; fonte DEV-01
-- **ET-E51** Chips, limpar filtros e sincronizar URL — evidência estática do código dev; fonte DEV-01
-- **ET-E52** Cadernos, favoritos e filtros salvos — evidência estática do código dev; fonte DEV-01
-- **ET-E53** Simulado com timer, correção e resultado — evidência estática do código dev; fonte DEV-01
-- **ET-E54** Exhibits acessíveis em todos contextos de questões — sem E2E específico nesta auditoria; fonte DEV-01
-- **ET-E55** Tipos de resposta múltiplas, hotspot, drag-drop — sem implementação interativa localizada; fonte DEV-01
-- **ET-E56** Fornecedor > certificação > exame e metadados de versão — não localizado como catálogo próprio; fonte DEV-01
-- **ET-E57** Conta real e sincronização multi-dispositivo — não homologados nesta auditoria; fonte DEV-01
-
-**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57.
+Comparação dev (8 registros)
+• ET-E50 — Filtro Disciplina > Assunto e demais critérios
+  ExamTopics: evidência estática do código dev · Fonte: DEV-01 · Dev: no código · Decisão: manter
+• ET-E51 — Chips, limpar filtros e sincronizar URL
+  ExamTopics: evidência estática do código dev · Fonte: DEV-01 · Dev: no código · Decisão: manter
+• ET-E52 — Cadernos, favoritos e filtros salvos
+  ExamTopics: evidência estática do código dev · Fonte: DEV-01 · Dev: no código · Decisão: manter
+• ET-E53 — Simulado com timer, correção e resultado
+  ExamTopics: evidência estática do código dev · Fonte: DEV-01 · Dev: no código · Decisão: manter
+• ET-E54 — Exhibits acessíveis em todos contextos de questões
+  ExamTopics: sem E2E específico nesta auditoria · Fonte: DEV-01 · Dev: parcial · Decisão: testar
+• ET-E55 — Tipos de resposta múltiplas, hotspot, drag-drop
+  ExamTopics: sem implementação interativa localizada · Fonte: DEV-01 · Dev: não localizado · Decisão: futuro
+• ET-E56 — Fornecedor > certificação > exame e metadados de versão
+  ExamTopics: não localizado como catálogo próprio · Fonte: DEV-01 · Dev: não localizado · Decisão: futuro
+• ET-E57 — Conta real e sincronização multi-dispositivo
+  ExamTopics: não homologados nesta auditoria · Fonte: DEV-01 · Dev: parcial · Decisão: futuro
 
 ### Galeria de capturas reais preexistentes (AZ-104)
 As cinco imagens abaixo já estavam no repositório; não são screenshots novos nem prova do estado atual de AZ-900. O catálogo de evidências guarda hashes, datas do registro e links históricos. A quinta captura (paginação/rodapé) foi agora anexada visualmente ao board.
@@ -391,6 +434,29 @@ Captura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/b
 3. Screenshots novos desktop/tablet/mobile com URL, viewport, data e proveniência.
 4. E2E executados na branch dev, acessibilidade e tipos especiais de questão.
 5. Diferenciar formatos exibidos como imagem dos controles drag/drop/hotspot efetivamente interativos.
+
+FONTES OFICIAIS, com acesso direto (16 URLs)
+[ET-01 · Catálogo geral](https://www.examtopics.com/exams/) — público
+[ET-02 · Exames Google](https://www.examtopics.com/exams/google/) — público
+[ET-03 · Exame AZ-900](https://www.examtopics.com/exams/microsoft/az-900/) — público
+[ET-04 · Banco AZ-900](https://www.examtopics.com/exams/microsoft/az-900/view/) — público
+[ET-05 · Banco AWS CLF-C02](https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner-clf-c02/view/) — público
+[ET-06 · AZ-900 página 2](https://www.examtopics.com/exams/microsoft/az-900/view/2/) — tela de login pública
+[ET-07 · AZ-900 página 30](https://www.examtopics.com/exams/microsoft/az-900/view/30/) — tela de login pública
+[ET-08 · Discussão AZ-900](https://www.examtopics.com/discussions/microsoft/view/93155-exam-az-900-topic-1-question-401-discussion/) — público
+[ET-09 · Discussões Microsoft](https://www.examtopics.com/discussions/microsoft/) — público
+[ET-10 · Login](https://www.examtopics.com/login/) — formulário público
+[ET-11 · Cadastro](https://www.examtopics.com/signup/) — formulário público
+[ET-12 · ExamTopics PRO](https://www.examtopics.com/unlimited/) — oferta pública; benefícios não testados
+[ET-13 · Checkout PRO](https://www.examtopics.com/pro/) — oferta pública
+[ET-14 · Termos](https://www.examtopics.com/terms/) — público
+[ET-15 · Blog](https://www.examtopics.com/news/) — público
+[ET-16 · Catálogo histórico AZ-104](https://www.examtopics.com/exams/microsoft/az-104/view/) — referência para capturas históricas; não reverificado nesta auditoria
+
+ET-16 é referência de capturas históricas, não inspeção atual.
+
+COBERTURA DE EVIDÊNCIAS
+57 registros com fonte textual/DOM ou inspeção estática e decisão de produto. Cinco capturas antigas mostram apenas alguns estados AZ-104; não são 57 screenshots. Áreas logadas, PRO, imagens novas e execução E2E continuam pendentes. Não tratar ausência de screenshot como funcionalidade inexistente.
 
 ## QConcursos
 <!-- container e108 @ (7464,62) -->
