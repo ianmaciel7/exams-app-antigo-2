@@ -71,6 +71,12 @@ class InventoryTests(unittest.TestCase):
             self.assertNotIn('prototype/issue278-'+name+'.json',corpus)
         self.assertIn('prototype/board.json',set(corpus))
 
+    def test_workflow_working_directories_exist_after_rename(self):
+        for path in (ROOT/'.github/workflows').glob('*.yml'):
+            for value in re.findall(r'(?m)^\s*working-directory:\s*([^\n]+)',path.read_text(encoding='utf-8')):
+                value=value.strip().strip('"').strip("'")
+                if '${{' not in value:self.assertTrue((ROOT/value).is_dir(),str(path)+': '+value)
+
     def test_evidence_identity_dates_and_hashes_survive_prefix_rename(self):
         old=json.loads(subprocess.check_output(['git','show','d586ba33a33e3d11f1d863732dc6e4cf8632342b:prototypes/catalog.json'],cwd=ROOT))
         current=json.loads((ROOT/'prototype/catalog.json').read_text(encoding='utf-8'))

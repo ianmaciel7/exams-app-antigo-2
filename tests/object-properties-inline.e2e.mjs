@@ -65,6 +65,9 @@ try {
         'per-object width preference persists');
 
       await page.locator('#view [data-op-meta]').click();
+      // formDialog sets initial focus asynchronously; wait before filling
+      // another field so its focus callback cannot steal typed metadata.
+      await page.waitForFunction(() => document.activeElement?.id === 'fd_alias');
       await page.locator('#fd_alias').fill('Apelido do concurso');
       await page.locator('#fd_tags').fill('Lei seca, Revisão, Lei seca');
       await page.locator('#dlg [data-x="1"]').click();
