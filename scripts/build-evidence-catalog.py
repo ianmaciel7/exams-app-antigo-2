@@ -233,7 +233,7 @@ def load_corpus():
                     p = os.path.join(dirpath, fn)
                     try:
                         with open(p, encoding='utf-8', errors='ignore') as source:
-                            corpus[os.path.relpath(p, ROOT)] = source.read()
+                            corpus[os.path.relpath(p, ROOT).replace(os.sep, '/')] = source.read()
                     except OSError:
                         pass
     return corpus
