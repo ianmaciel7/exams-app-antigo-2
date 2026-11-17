@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes');
+const dir = path.resolve('prototype');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const result = { date: new Date().toISOString(), cases: [], errors: [], limitations: [
@@ -78,5 +78,5 @@ try {
   console.log('Contextual question presentation: baseline reproduced, options stacked at 1366/390 and global flow functional.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/issue136_e2e.json', JSON.stringify(result, null, 2) + '\n');
+  await writeFile('prototype/issue136_e2e.json', JSON.stringify(result, null, 2) + '\n');
 }

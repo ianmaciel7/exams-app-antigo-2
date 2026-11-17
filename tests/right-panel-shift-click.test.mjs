@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 const begin=html.indexOf('const a=T.closest(\'a[href^="#"]\'); if(a){');
 const end=html.indexOf("  const ai=T.closest('[data-ai]');",begin);
 assert.ok(begin>=0&&end>begin,'real panel link handler is present');

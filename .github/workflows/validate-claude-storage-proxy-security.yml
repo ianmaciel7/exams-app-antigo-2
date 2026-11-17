@@ -36,5 +36,5 @@ jobs:
       - name: Ensure private endpoint is not described as supported API
         shell: bash
         run: |
-          grep -q 'API privada e não documentada' prototypes/CLAUDE_STORAGE_API_INTEGRATION.md
-          ! grep -q 'u_MtER6w_6FV6qblJiQR8Zpg' prototypes/CLAUDE_STORAGE_API_INTEGRATION.md
+          grep -q 'API privada e não documentada' prototype/CLAUDE_STORAGE_API_INTEGRATION.md
+          ! grep -q 'u_MtER6w_6FV6qblJiQR8Zpg' prototype/CLAUDE_STORAGE_API_INTEGRATION.md

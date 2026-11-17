@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/native-select-theme.e2e.mjs'
       - '.github/workflows/e2e-native-select-theme.yml'
       - 'scripts/append-native-select-board.py'
@@ -36,7 +36,7 @@ jobs:
       - name: Serve static Exam App prototype
         shell: pwsh
         run: |
-          Start-Process -FilePath python -ArgumentList '-m http.server 8765 --directory prototypes' -RedirectStandardOutput "$env:RUNNER_TEMP\exam-server.log" -RedirectStandardError "$env:RUNNER_TEMP\exam-server.err" -PassThru | Out-Null
+          Start-Process -FilePath python -ArgumentList '-m http.server 8765 --directory prototype' -RedirectStandardOutput "$env:RUNNER_TEMP\exam-server.log" -RedirectStandardError "$env:RUNNER_TEMP\exam-server.err" -PassThru | Out-Null
           $ready = $false
           for ($i = 0; $i -lt 20; $i++) {
             try {
@@ -54,8 +54,8 @@ jobs:
         with:
           name: issue120-native-select-windows-chromium
           path: |
-            prototypes/issue120_*.png
-            prototypes/issue120_e2e.json
+            prototype/issue120_*.png
+            prototype/issue120_e2e.json
           if-no-files-found: warn
 
       - name: Register verified screenshots in board and generate BOARD.md
@@ -65,14 +65,14 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Invalid evidence or board append failure' }
           npm run board
           if ($LASTEXITCODE -ne 0) { throw 'Board generator failure' }
-          if (-not (Select-String -Path 'prototypes/BOARD.md' -Pattern '37. Seletores nativos' -SimpleMatch)) { throw 'Issue #120 missing from generated board' }
+          if (-not (Select-String -Path 'prototype/BOARD.md' -Pattern '37. Seletores nativos' -SimpleMatch)) { throw 'Issue #120 missing from generated board' }
       - name: Persist verified E2E evidence to PR branch
         shell: pwsh
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prototypes/board.json prototypes/BOARD.md prototypes/issue120_e2e.json
-          git add 'prototypes/issue120_*.png'
+          git add prototype/board.json prototype/BOARD.md prototype/issue120_e2e.json
+          git add 'prototype/issue120_*.png'
           git diff --cached --quiet
           if ($LASTEXITCODE -ne 0) {
             git commit -m "test(ui): persist Windows Chromium select theme evidence in board (#120)"

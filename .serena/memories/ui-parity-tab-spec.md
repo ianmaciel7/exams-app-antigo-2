@@ -2,7 +2,7 @@
 
 ## Context & Thread Origin
 - **Source Thread:** Claude Code Cloud session `chan_013qMDV6HM5kW8Z4atVzkN6s` (message `cmsg_013qMDV6HM5kW8Z4atVzkN6s298qSTZuxaWSzzduMnxzFg`).
-- **Goal:** UI Parity & Tab System refinement for `prototypes/exam-app-0.1.1__index.html` based on legacy specifications in `prototypes/docs__archives__*` (specifically bundle `notes-app-old-4`).
+- **Goal:** UI Parity & Tab System refinement for `prototype/exam-app-0.1.1__index.html` based on legacy specifications in `prototype/docs__archives__*` (specifically bundle `notes-app-old-4`).
 - **Repository Location:** `C:\Users\ianma\workspace\exams\dev` on branch `dev`.
 
 ## UI Parity Findings (from notes-app-old-4)

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const root=path.resolve('prototypes');
+const root=path.resolve('prototype');
 const assets=root;await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),checks:[],errors:[],limitations:['Desktop Chromium only; actual IME and screen reader need additional manual verification.']};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});

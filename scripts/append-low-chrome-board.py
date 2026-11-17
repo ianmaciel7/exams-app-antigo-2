@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-root = Path(__file__).resolve().parents[1] / "prototypes" / "board-exam-app"
+root = Path(__file__).resolve().parents[1] / "prototype" / "board-exam-app"
 board_path = root / "board.json"
 data = json.loads(board_path.read_text(encoding="utf-8"))
 elements = data["elements"]

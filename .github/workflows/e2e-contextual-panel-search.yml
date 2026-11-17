@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [dev]
     paths:
-      - 'prototypes/exam-app-0.1.1__index.html'
+      - 'prototype/exam-app-0.1.1__index.html'
       - 'tests/right-panel-explore.test.mjs'
       - 'tests/right-panel-resize.test.mjs'
       - 'tests/right-panel-explore.e2e.mjs'
@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m http.server 8765 --directory prototypes >/tmp/exams-panel.log 2>&1 &
+          python3 -m http.server 8765 --directory prototype >/tmp/exams-panel.log 2>&1 &
           for i in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:8765/exam-app-0.1.1__index.html -o /dev/null; then break; fi
             sleep 1
@@ -43,9 +43,9 @@ jobs:
         with:
           name: contextual-panel-66-evidence
           path: |
-            prototypes/issue54_explore_e2e.json
-            prototypes/issue55_tabs_e2e.json
-            prototypes/issue54_*chromium.png
-            prototypes/issue55_*chromium.png
-            prototypes/issue66_*chromium.png
+            prototype/issue54_explore_e2e.json
+            prototype/issue55_tabs_e2e.json
+            prototype/issue54_*chromium.png
+            prototype/issue55_*chromium.png
+            prototype/issue66_*chromium.png
           if-no-files-found: warn

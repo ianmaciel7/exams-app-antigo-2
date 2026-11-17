@@ -7,7 +7,7 @@ on:
       - 'scripts/prototype-migration-inventory.py'
       - 'scripts/claude-sync-gate.py'
       - 'tests/test_prototype_migration.py'
-      - 'prototypes/issue278-*'
+      - 'prototype/issue278-*'
       - '.github/**'
       - '.githooks/**'
       - 'package.json'

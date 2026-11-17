@@ -3,7 +3,7 @@ import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes');
+const dir = path.resolve('prototype');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const manual = {

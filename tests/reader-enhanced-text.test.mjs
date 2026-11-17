@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-const html = readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../prototype/exam-app-0.1.1__index.html', import.meta.url), 'utf8');
 const marker = 'let readerTextMode=false';
 const markerAt = html.indexOf(marker);
 assert.notEqual(markerAt, -1, 'reader enhancement code is present');
@@ -60,7 +60,7 @@ test('reader controls are cleaned up on navigation and global keys respect activ
 test('reader toolbar does not squeeze PDF canvas and all three board proof sections survive merge',()=>{
  assert.match(readerScript,/view\.parentElement\.before\(bar\)/,'toolbar must be outside horizontal PDF flex row');
  assert.match(readerScript,/readerUndo=\[\]/,'new document must clear stale undo history');
- const board=JSON.parse(readFileSync(new URL('../prototypes/board.json',import.meta.url),'utf8'));
+ const board=JSON.parse(readFileSync(new URL('../prototype/board.json',import.meta.url),'utf8'));
  const names=Object.values(board.elements).filter(e=>e.type==='container').map(e=>e.text||'');
  for(const title of ['50. Recuperação estrita','51. Revisão diária','52. Leitor PDF'])
    assert.ok(names.some(s=>s.includes(title)),title+' must survive merge');

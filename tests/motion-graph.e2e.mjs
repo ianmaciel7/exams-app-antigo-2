@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir = path.resolve('prototypes');
+const dir = path.resolve('prototype');
 await mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const report = { created: new Date().toISOString(), cases: [], pageErrors: [], limitations: [
@@ -121,5 +121,5 @@ try {
   console.log('Global graph: reduced-motion, idle, keyboard, filters and dynamic preference E2E PASS.');
 } finally {
   await browser.close();
-  await writeFile('prototypes/issue128_motion_e2e.json', JSON.stringify(report, null, 2) + '\n');
+  await writeFile('prototype/issue128_motion_e2e.json', JSON.stringify(report, null, 2) + '\n');
 }

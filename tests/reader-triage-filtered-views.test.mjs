@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 
-const html=readFileSync(new URL('../prototypes/exam-app-0.1.1__index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../prototype/exam-app-0.1.1__index.html',import.meta.url),'utf8');
 function source(a,b){
   const i=html.indexOf(a),j=html.indexOf(b,i+a.length);
   assert.ok(i>=0&&j>i,'source anchors: '+a);

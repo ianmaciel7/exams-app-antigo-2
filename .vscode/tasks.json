@@ -24,7 +24,7 @@
     {
       "label": "Iniciar Servidor HTTP do Protótipo (Porta 8765)",
       "type": "shell",
-      "command": "python -m http.server 8765 --directory prototypes",
+      "command": "python -m http.server 8765 --directory prototype",
       "isBackground": true,
       "problemMatcher": {
         "pattern": {

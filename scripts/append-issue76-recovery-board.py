@@ -5,7 +5,7 @@ import os
 import struct
 from pathlib import Path
 
-root=Path(__file__).resolve().parents[1]/"prototypes"/"board-exam-app"
+root=Path(__file__).resolve().parents[1]/"prototype"/"board-exam-app"
 boardpath=root/"board.json"
 board=json.loads(boardpath.read_text(encoding="utf-8"))
 els,order=board["elements"],board["order"]
