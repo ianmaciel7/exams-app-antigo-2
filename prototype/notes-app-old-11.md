@@ -4,7 +4,7 @@
 - **Original Branch:** `old-11`
 - **Commit SHA:** `f513fc91cdebd0adf8ba708d8108f9808af698c6`
 - **GitHub Reference:** [Commit f513fc9 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-11)
-- **Git Bundle:** [notes-app-old-11.bundle](notes-app-old-11.bundle)
+- **Git Bundle:** [notes-app-old-11.bundle](archive/backups/notes-app/notes-app-old-11.bundle)
 
 ## Purpose & Summary
 
@@ -32,6 +32,6 @@ A foundation focusing on Firebase Auth and Firestore with Space switching, inter
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-11.bundle
-git clone notes-app-old-11.bundle -b old-11 ./restored-notes-app-old-11
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-11.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-11.bundle -b old-11 ./restored-notes-app-old-11
 ```
