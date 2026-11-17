@@ -4,7 +4,7 @@
 - **Original Branch:** `backup/dev-20261111-1903`
 - **Commit SHA:** `a8d9797ed47bd8d2e2987e12d7bb478841c78671`
 - **GitHub Reference:** [Commit a8d9797 on GitHub](https://github.com/ianmaciel7/exams-app-old/tree/backup/dev-20261111-1903)
-- **Git Bundle:** [exams-app-old-backup-dev-20261111-1903.bundle](exams-app-old-backup-dev-20261111-1903.bundle)
+- **Git Bundle:** [exams-app-old-backup-dev-20261111-1903.bundle](archive/backups/exams-app/exams-app-old-backup-dev-20261111-1903.bundle)
 
 ## Purpose & Summary
 
@@ -32,6 +32,6 @@ _No screenshot available: this version focused on MDX compilation, bundle analys
 ## Restoration Instructions
 
 ```bash
-git bundle verify exams-app-old-backup-dev-20261111-1903.bundle
-git clone exams-app-old-backup-dev-20261111-1903.bundle -b backup-dev-20261111-1903 ./restored-exams-app-old-backup-dev-20261111-1903
+git bundle verify prototype/archive/backups/exams-app/exams-app-old-backup-dev-20261111-1903.bundle
+git clone prototype/archive/backups/exams-app/exams-app-old-backup-dev-20261111-1903.bundle -b backup-dev-20261111-1903 ./restored-exams-app-old-backup-dev-20261111-1903
 ```
