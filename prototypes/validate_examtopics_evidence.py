@@ -108,8 +108,8 @@ for record in checks:
     item_text = texts
     check(record["exam_app"]["state"] in item_text,
           f"{record['id']}: status da dev não aparece no canvas")
-check("57 registros" in dossier or "57 achados" in dossier,
-      "dossiê deixou de informar cobertura completa")
+check(all(row["id"] in dossier for row in checks),
+      "dossiê deixou de cobrir os registros do manifesto")
 
 check("<!-- container e17000 @ (14920,0) -->" in markdown_board,
       "board Markdown não inclui e17000")
