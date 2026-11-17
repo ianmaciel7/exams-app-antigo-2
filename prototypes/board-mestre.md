@@ -9,7 +9,7 @@
 | 01 — Produto & domínio | Modelo de domínio, tipos, propriedades, relações e decisões de produto. | 6 | 3 | [Abrir](01-produto-e-dominio.md) |
 | 02 — Workspace & UX | Navegação, layout, painéis, propriedades, grafo, responsividade e interação. | 14 | 7 | [Abrir](02-workspace-e-ux.md) |
 | 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 8 | [Abrir](03-fluxos-de-estudo.md) |
-| 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](04-arquitetura-tecnica.md) |
+| 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 7 | 4 | [Abrir](04-arquitetura-tecnica.md) |
 | 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 9 | [Abrir](05-pesquisa-e-decisoes.md) |
 | 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 4 | 7 | [Abrir](06-evidencias-e-qualidade.md) |
 | 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 8 | 5 | [Abrir](07-entrega-e-arquivo.md) |
@@ -114,6 +114,7 @@ Serviços, estado, IA, sincronização, integrações e infraestrutura de agente
 - [Claude Pro Storage API](CLAUDE_STORAGE_API_INTEGRATION.md) — Fila, proxy, segurança e homologação.
 - [Investigação Storage Bridge](CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md) — Experimentos e limites da sandbox.
 - [Fontes de verdade do board](FONTES.md) — Responsabilidades e sincronização.
+- [Issue 278 — baseline e publicação bloqueada](issue278-migration.md) — Fase preparatória; requisitos restantes explícitos.
 
 ### Blocos do canvas original
 
@@ -125,6 +126,7 @@ Serviços, estado, IA, sincronização, integrações e infraestrutura de agente
 | Claude Storage — homologação | homologacao | [e1440](board-exam-app__index.html#e1440) |
 | Isolamento do grafo por espaço | arquitetura | [e1407](board-exam-app__index.html#e1407) |
 | Máquina de estados de carregamento | arquitetura | [e1450](board-exam-app__index.html#e1450) |
+| Migração segura do protótipo — issue 278 | arquitetura | [e17278](board-exam-app__index.html#e17278) |
 
 ## 05 — Pesquisa & benchmarks
 

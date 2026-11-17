@@ -2,6 +2,17 @@
 
 Exam App: study app for exams (certifications and Brazilian public-service exams).
 
+## Issue #278 — temporary migration override
+
+During the migration to `prototype/`, **do not publish the Claude Artifact,
+mirror Claude branches, or run automatic evidence commit/push jobs**. This rule
+overrides the synchronization instructions below until a separate reviewed change
+verifies source paths, destination, capabilities and rollback. `.github/prototype-migration.json`
+records the hold. `npm run sync:artifact` fails closed; `sync:all` stops before
+publication. Git hooks only generate local agent integrations. Historical app
+versions remain unapproved, operational compatibility sources. Never promote them
+to the new `app/` without a documented source decision. See issue #278.
+
 ## Mandatory synchronization with Claude Cloud & Live Artifact
 
 All agents working in this repository must keep the codebase and the live Claude artifact synchronized with the active remote Claude Cloud session:

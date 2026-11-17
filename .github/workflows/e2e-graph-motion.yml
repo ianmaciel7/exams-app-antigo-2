@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   graph-motion:
-    if: github.head_ref == 'test/128-motion-graph-browser' && github.event.pull_request.head.repo.full_name == github.repository
+    if: false # Issue #278: evidence-writing automation paused
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

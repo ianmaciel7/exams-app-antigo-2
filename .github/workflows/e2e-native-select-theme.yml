@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   windows-select-theme:
-    if: github.head_ref == 'fix/native-select-color-scheme-120-v2' && github.event.pull_request.head.repo.full_name == github.repository
+    if: false # Issue #278: evidence-writing automation paused
     runs-on: windows-latest
     timeout-minutes: 25
     steps:

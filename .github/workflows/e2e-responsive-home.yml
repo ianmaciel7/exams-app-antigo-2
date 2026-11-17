@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   responsive-home:
-    if: github.head_ref == 'fix/132-responsive-home-actions-timer' && github.event.pull_request.head.repo.full_name == github.repository
+    if: false # Issue #278: evidence-writing automation paused
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
