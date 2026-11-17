@@ -4,7 +4,7 @@
 - **Original Branch:** `old-6`
 - **Commit SHA:** `f336db18e2149040707c453814cbb16e388cde37`
 - **GitHub Reference:** [Commit f336db1 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-6)
-- **Git Bundle:** [notes-app-old-6.bundle](notes-app-old-6.bundle)
+- **Git Bundle:** [notes-app-old-6.bundle](archive/backups/notes-app/notes-app-old-6.bundle)
 
 ## Purpose & Summary
 
@@ -31,6 +31,6 @@ A workspace iteration dividing user data into discrete Spaces and Object graphs,
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-6.bundle
-git clone notes-app-old-6.bundle -b old-6 ./restored-notes-app-old-6
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-6.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-6.bundle -b old-6 ./restored-notes-app-old-6
 ```
