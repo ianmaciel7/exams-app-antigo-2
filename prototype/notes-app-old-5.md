@@ -4,7 +4,7 @@
 - **Original Branch:** `old-5`
 - **Commit SHA:** `0857a9977d1f66f1ba2b26d46bb6084344d489c8`
 - **GitHub Reference:** [Commit 0857a99 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-5)
-- **Git Bundle:** [notes-app-old-5.bundle](notes-app-old-5.bundle)
+- **Git Bundle:** [notes-app-old-5.bundle](archive/backups/notes-app/notes-app-old-5.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@ A local-first study and note platform integrating browser IndexedDB persistence 
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-5.bundle
-git clone notes-app-old-5.bundle -b old-5 ./restored-notes-app-old-5
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-5.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-5.bundle -b old-5 ./restored-notes-app-old-5
 ```
