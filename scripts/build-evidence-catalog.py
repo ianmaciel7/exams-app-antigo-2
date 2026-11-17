@@ -479,6 +479,7 @@ dialog button {{ min-height:44px; min-width:44px; border:1px solid var(--line); 
 <body>
 <header>
 <h1>Catálogo de evidências</h1>
+<nav aria-label="Dossiês de evidências"><a href="evidencias-examtopics-2026-11-17.md">ExamTopics — 57 evidências, 16 fontes e 5 capturas históricas</a></nav>
 <p class="muted">{c["resumo"]["midias"]} mídias · gerado em {c["gerado_em"]} · os arquivos ficam no caminho original, sem cópias.</p>
 <input type="search" id="q" placeholder="Buscar por arquivo, funcionalidade ou contexto" aria-label="Buscar evidências">
 <div class="chips" id="chips"><button class="chip" data-f="" aria-pressed="true">Todas</button>{chips}</div>
