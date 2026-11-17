@@ -56,7 +56,7 @@ jobs:
                   actual = hashlib.sha256(f.read_bytes()).hexdigest()[:16]
                   if actual != m.group(3):
                       changes += 1
-                  line = m.group(1) + actual + m.group(4) + ('\\n' if line.endswith('\\n') else '')
+                  line = m.group(1) + actual + m.group(4) + ('\n' if line.endswith('\n') else '')
               output.append(line)
           p.write_text(''.join(output), encoding='utf-8')
           print(f'Migration map refreshed: {changes} destination hashes')
