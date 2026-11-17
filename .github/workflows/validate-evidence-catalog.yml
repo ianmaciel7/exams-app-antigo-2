@@ -7,6 +7,7 @@ on:
       - 'prototypes/**'
       - 'scripts/build-evidence-catalog.py'
       - 'scripts/validate-evidence-catalog.py'
+      - 'tests/test_evidence_catalog_dates.py'
       - '.github/workflows/validate-evidence-catalog.yml'
   push:
     branches: [dev]
@@ -30,5 +31,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Test stable evidence dates across squash merges
+        run: python3 -m unittest discover -s tests -p test_evidence_catalog_dates.py
       - name: Validate catalog against the repository
         run: python3 scripts/validate-evidence-catalog.py
