@@ -4,7 +4,7 @@
 - **Original Branch:** `old-9`
 - **Commit SHA:** `dae844270e7ebc80c6a307c49e0f830630e70cb0`
 - **GitHub Reference:** [Commit dae8442 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-9)
-- **Git Bundle:** [notes-app-old-9.bundle](notes-app-old-9.bundle)
+- **Git Bundle:** [notes-app-old-9.bundle](archive/backups/notes-app/notes-app-old-9.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@ A modern Next.js baseline integrating `@firebase-oss/ui-react`, local Firebase e
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-9.bundle
-git clone notes-app-old-9.bundle -b old-9 ./restored-notes-app-old-9
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-9.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-9.bundle -b old-9 ./restored-notes-app-old-9
 ```
