@@ -77,6 +77,40 @@ for photo in pics:
             check(hashlib.sha256(handle.read()).hexdigest() == cat[p]["sha256"],
                   f"hash divergente da captura: {p}")
 
+# Evidências precisam aparecer realmente no canvas: fundo antes dos itens, sem cortes.
+ordered = board.get("order", [])
+check("e17000" in ordered, "container ausente de order")
+if "e17000" in ordered and "e17001" in ordered:
+    check(ordered.index("e17000") < ordered.index("e17001"),
+          "container de evidências desenhado sobre os achados (ordem de camadas)")
+
+if container:
+    left, top, right, bottom = (container["x"], container["y"],
+                                container["x"] + container["w"],
+                                container["y"] + container["h"])
+    for identifier in [f"e{i}" for i in range(17001, 17026)]:
+        item = elements.get(identifier)
+        check(item is not None, f"bloco de evidências ausente: {identifier}")
+        if item is None:
+            continue
+        check(item.get("wrap") or item.get("type") != "text",
+              f"texto sem quebra de linha no canvas: {identifier}")
+        check(left <= item["x"] and top <= item["y"]
+              and item["x"] + item.get("w", 320) <= right
+              and item["y"] + item.get("h", 56) <= bottom,
+              f"bloco fora do contêiner: {identifier}")
+
+source_text = elements.get("e17024", {}).get("text", "")
+for sid in sources:
+    check(sid in source_text, f"fonte {sid} não está visível no canvas")
+    check(sources[sid]["url"] in source_text, f"URL {sid} não está clicável no canvas")
+for record in checks:
+    item_text = texts
+    check(record["exam_app"]["state"] in item_text,
+          f"{record['id']}: status da dev não aparece no canvas")
+check("57 registros" in dossier or "57 achados" in dossier,
+      "dossiê deixou de informar cobertura completa")
+
 check("<!-- container e17000 @ (14920,0) -->" in markdown_board,
       "board Markdown não inclui e17000")
 for ident in ids:
