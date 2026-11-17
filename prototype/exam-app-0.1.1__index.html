@@ -8512,12 +8512,12 @@ function bodyGraf(v){
     // Stable, type-aware selection independent of link insertion order.
     const ki=KORD.indexOf(a.kind),kj=KORD.indexOf(b.kind);
     return (ki<0?999:ki)-(kj<0?999:kj)||a.title.localeCompare(b.title,'pt-BR',{numeric:true})||a.href.localeCompare(b.href);
-  }); if(!all.length) return ctxBar(v,n)+rpEmpty('Sem ligações diretas','Este objeto ainda não possui relações para mostrar no gráfico.')+'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>'; if(all.length===1){ const m=all[0], cut=x=>x.title.length>16?x.title.slice(0,15)+'…':x.title; const single='<svg class="rp-graph rp-graph-single" viewBox="0 0 300 110" role="group" aria-label="Ligação entre '+esc(n.title)+' e '+esc(m.title)+'"><line class="g-e c" x1="92" y1="43" x2="208" y2="43"/><a href="'+esc(n.href)+'" class="g-n g-c k-'+n.kind+'" aria-label="'+esc(kn(n.kind)+': '+n.title)+'"><title>'+esc(n.title)+'</title><circle cx="80" cy="43" r="11"/><text x="80" y="76" text-anchor="middle">'+esc(cut(n))+'</text></a><a href="'+esc(m.href)+'" class="g-n g-c k-'+m.kind+'" aria-label="'+esc(kn(m.kind)+': '+m.title)+'"><title>'+esc(m.title)+'</title><circle cx="220" cy="43" r="11"/><text x="220" y="76" text-anchor="middle">'+esc(cut(m))+'</text></a></svg>'; return ctxBar(v,n)+single+'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>'; } const MAX=14, ns=all.slice(0,MAX), W=300,H=250,cx=W/2,cy=H/2-6,R=Math.min(96,40+ns.length*6);
+  }); if(!all.length) return ctxBar(v,n)+rpEmpty('Sem ligações diretas','Este objeto ainda não possui relações para mostrar no gráfico.')+'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>'; const MAX=14, ns=all.slice(0,MAX), W=300,H=250,cx=W/2,cy=H/2-6,R=Math.min(96,40+ns.length*6);
   const pos=new Map(); ns.forEach((m,i)=>{ const a=-Math.PI/2+i*2*Math.PI/Math.max(ns.length,1); pos.set(m.href,[cx+R*Math.cos(a)*1.25,cy+R*Math.sin(a)]); }); pos.set(n.href,[cx,cy]);
-  let s='<svg class="rp-graph" viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Gráfico de ligações de '+esc(n.title)+'">'; const seen=new Set();
-  ns.concat([n]).forEach(a=>a.out.forEach(([h])=>{ if(!pos.has(h)) return; const k=[a.href,h].sort().join('|'); if(seen.has(k)) return; seen.add(k); const p=pos.get(a.href),q=pos.get(h); s+='<line class="g-e'+(a===n||h===n.href?' c':'')+'" x1="'+p[0].toFixed(1)+'" y1="'+p[1].toFixed(1)+'" x2="'+q[0].toFixed(1)+'" y2="'+q[1].toFixed(1)+'"/>'; }));
-  const node=(m,c)=>{ const p=pos.get(m.href), t=m.title.length>(c?26:16)?m.title.slice(0,(c?25:15))+'…':m.title; return '<a href="'+esc(m.href)+'" class="g-n k-'+m.kind+(c?' g-c':'')+'" aria-label="'+esc(kn(m.kind)+': '+m.title)+'"><title>'+esc(m.title)+'</title><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(c?11:7.5)+'"/><text x="'+p[0].toFixed(1)+'" y="'+(p[1]+(c?25:19)).toFixed(1)+'" text-anchor="middle">'+esc(t)+'</text></a>'; };
-  ns.forEach(m=>{ s+=node(m,false); }); s+=node(n,true)+'</svg>';
+  const lgId=lgMount(n,ns); const lgList=ns.map(m=>'<li><a href="'+esc(m.href)+'">'+esc(m.title)+'</a></li>').join('');
+  let s='<div class="rp-graph-cv-wrap rp-lg-wrap"><div class="rp-graph-tools" role="group" aria-label="Controles do grafo"><button type="button" data-rpg="zoom-in" aria-label="Aproximar grafo">+</button><button type="button" data-rpg="zoom-out" aria-label="Afastar grafo">−</button><button type="button" data-rpg="reset" aria-label="Ajustar grafo à tela">⟲</button></div>'
+    +'<canvas class="rp-graph-cv rp-lg" id="'+lgId+'" data-rpg-lg tabindex="0" role="img" aria-label="Gráfico de ligações de '+esc(n.title)+' com '+(ns.length)+' itens. Use a lista abaixo para abrir cada item."></canvas></div>'
+    +'<details class="rp-graph-list"><summary>Lista de '+(ns.length)+' itens</summary><ul>'+lgList+'</ul></details>';
   return ctxBar(v,n)+s+(all.length>MAX?'<details class="rp-more rp-hidden-links"><summary>Ver as '+(all.length-MAX)+' ligações adicionais</summary><div class="rp-list">'+all.slice(MAX).map(x=>rpRow(x)).join('')+'</div></details>':'')+'<div class="rp-acts"><a class="rp-btn" href="#/grafico" data-main-link>'+WI.graph+' Ver grafo global</a></div>'; }
 function bodyObj(v){ const m=/^#\/tipo\/([^/]+)/.exec(v.ref||''); if(m){const rows=[...gr().N.values()].filter(n=>n.kind===m[1]);return rpEmpty('Tipo de objeto: '+kn(m[1]),rows.length+' objetos neste espaço')+'<div class="rp-list">'+rows.map(n=>rpRow(n)).join('')+'<button class="rp-btn" data-vmain="'+esc(v.ref)+'">Abrir coleção na área principal</button>';} const n=nodeOf(v.ref); if(!n) return rpEmpty('Este objeto não existe mais','Ele pode ter sido excluído ou movido para outro espaço.','<div class="rp-tools"><button type="button" class="rp-btn" data-vclose="'+v.id+'">Fechar visualização</button></div>');
   const groups={}; n.out.forEach(([h,l])=>{ const m=gr().N.get(h); if(m) (groups[l]=groups[l]||[]).push(m); });
@@ -8552,7 +8552,7 @@ function rpPaintBody(){ rpSig=gr().sig+'|'+curHref(); const t=rpTab(), b=$('rpBo
   b.innerHTML=t.views.map((v,i)=>(i?'<div class="rp-split" role="separator" aria-orientation="horizontal" tabindex="0" data-split="'+(i-1)+'" aria-label="Redimensionar visualizações"></div>':'')+viewHtml(v,t.views.length===1)).join('');
   b.querySelectorAll('[data-vb]').forEach(el=>{ el.scrollTop=ys[el.dataset.vb]??(viewById(el.dataset.vb)||{}).scroll??0; });
   b.querySelectorAll('[data-ai-box]').forEach(el=>{ if(aiMem[el.dataset.aiBox]) aiPaint(el.dataset.aiBox); });
-  springGraphIn(b); initCollectionCanvases(b); }
+  springGraphIn(b); initCollectionCanvases(b); initLocalGraphs(b); }
 /* Collection graph entrance: nodes spring out from the collection centre (#227).
    Pure CSS transition on a transform; skipped under reduced motion; no state is stored. */
 function springGraphIn(root){
@@ -8616,6 +8616,82 @@ function initCollectionCanvases(root){
     animateCollectionCanvas(cv);
   });
 }
+/* Contextual panel graph on canvas, same rules as the global view (#67, item 1):
+   devicePixelRatio buffer, one node per object (rounded badge in its type colour),
+   hover spotlight on direct neighbours, pan, wheel/buttons zoom, drag with neighbours following. */
+const RP_LG=new Map(); let RP_LG_SEQ=0;
+function lgRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function lgMount(n,ns){
+  const id='rplg'+(++RP_LG_SEQ), all=[n].concat(ns), idx=new Map();
+  const nodes=all.map((m,i)=>{ idx.set(m.href,i); const a=-Math.PI/2+(i-1)*2*Math.PI/Math.max(ns.length,1);
+    return {href:m.href,title:m.title,kind:m.kind,center:i===0,x:i===0?0:Math.cos(a)*90,y:i===0?0:Math.sin(a)*90,fx:0,fy:0}; });
+  const edges=[], seen=new Set();
+  all.forEach(a=>a.out.forEach(([h])=>{ if(!idx.has(h)||!idx.has(a.href)) return; const k=[a.href,h].sort().join('|'); if(seen.has(k)) return; seen.add(k); edges.push([idx.get(a.href),idx.get(h)]); }));
+  /* Short deterministic relaxation: neighbours settle near 70px, nodes repel. Centre stays fixed. */
+  for(let it=0;it<160;it++){
+    nodes.forEach(p=>{p.fx=0;p.fy=0;});
+    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){ const p=nodes[i],q=nodes[j], dx=p.x-q.x, dy=p.y-q.y, d=Math.hypot(dx,dy)||0.01, f=900/(d*d); p.fx+=dx/d*f; p.fy+=dy/d*f; q.fx-=dx/d*f; q.fy-=dy/d*f; }
+    edges.forEach(([i,j])=>{ const p=nodes[i],q=nodes[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy)||0.01, f=(d-70)*0.05; p.fx+=dx/d*f; p.fy+=dy/d*f; q.fx-=dx/d*f; q.fy-=dy/d*f; });
+    nodes.forEach(p=>{ if(p.center) return; p.x+=Math.max(-8,Math.min(8,p.fx)); p.y+=Math.max(-8,Math.min(8,p.fy)); });
+  }
+  const adj=nodes.map(()=>new Set()); edges.forEach(([i,j])=>{ adj[i].add(j); adj[j].add(i); });
+  RP_LG.set(id,{id,nodes,edges,adj,hover:-1,drag:-1,moved:false,pan:null,view:null});
+  return id;
+}
+/* Spring follow: pull each neighbour of the dragged node back toward 70px, a few steps per move. */
+function lgFollow(d,i){ for(let s=0;s<3;s++) d.adj[i].forEach(j=>{ const p=d.nodes[i], q=d.nodes[j], dx=q.x-p.x, dy=q.y-p.y, dist=Math.hypot(dx,dy)||0.01, mv=(dist-70)*0.3; q.x-=dx/dist*mv; q.y-=dy/dist*mv; }); }
+function lgFit(d,W,H){ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; d.nodes.forEach(o=>{ x0=Math.min(x0,o.x-16); y0=Math.min(y0,o.y-16); x1=Math.max(x1,o.x+16); y1=Math.max(y1,o.y+30); });
+  const k=Math.max(.5,Math.min(1.6,Math.min((W-32)/Math.max(x1-x0,60),(H-32)/Math.max(y1-y0,60))));
+  d.view={k,tx:-(x0+x1)/2*k,ty:-(y0+y1)/2*k}; }
+function lgScreen(cv,ev){ const r=cv.getBoundingClientRect(); return [ev.clientX-r.left,ev.clientY-r.top]; }
+function lgHit(d,cv,mx,my){ const W=cv.clientWidth||300,H=cv.clientHeight||240,v=d.view||{k:1,tx:0,ty:0}; for(let i=d.nodes.length-1;i>=0;i--){ const o=d.nodes[i], s=o.center?30:22, cx=o.x*v.k+v.tx+W/2, cy=o.y*v.k+v.ty+H/2; if(Math.abs(mx-cx)<=s/2+4&&Math.abs(my-cy)<=s/2+4) return i; } return -1; }
+function drawLocalGraph(cv){
+  const d=RP_LG.get(cv.id); if(!d||!cv.isConnected) return;
+  const dpr=window.devicePixelRatio||1, W=cv.clientWidth||300, H=cv.clientHeight||240;
+  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){ cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); }
+  if(!d.view&&cv.clientWidth) lgFit(d,W,H);
+  const v=d.view||{k:1,tx:0,ty:0}, ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  const cs=getComputedStyle(cv), col=(n,f)=>cs.getPropertyValue(n).trim()||f, cText=col('--text','#222'), cFaint=col('--faint','#888'), cBg=col('--bg','#fff');
+  const T=o=>[o.x*v.k+v.tx+W/2, o.y*v.k+v.ty+H/2];
+  const hv=d.hover, hn=hv>=0?new Set([hv,...d.adj[hv]]):null;
+  ctx.lineWidth=1.2;
+  d.edges.forEach(([i,j])=>{ const on=!hn||i===hv||j===hv; ctx.globalAlpha=hn?(on?.85:.1):.4; ctx.strokeStyle=hn&&on?cText:cFaint; const [x1,y1]=T(d.nodes[i]),[x2,y2]=T(d.nodes[j]); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); });
+  ctx.textAlign='center'; ctx.textBaseline='top'; ctx.font='500 11px system-ui, sans-serif';
+  d.nodes.forEach((o,i)=>{ const [x,y]=T(o), s=o.center?30:22, on=!hn||hn.has(i);
+    ctx.globalAlpha=on?1:.14; ctx.fillStyle=col('--k-'+o.kind,cFaint); lgRect(ctx,x-s/2,y-s/2,s,s,o.center?8:6); ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle=cBg; ctx.stroke();
+    const t=o.title.length>26?o.title.slice(0,25)+'…':o.title, ly=y+s/2+4;
+    ctx.lineWidth=3; ctx.strokeStyle=cBg; ctx.strokeText(t,x,ly); ctx.fillStyle=cText; ctx.fillText(t,x,ly); });
+  ctx.globalAlpha=1;
+}
+function lgAct(cv,kind){
+  const d=RP_LG.get(cv.id); if(!d) return; const v=d.view||{k:1,tx:0,ty:0}, W=cv.clientWidth||300, H=cv.clientHeight||240;
+  if(kind==='reset'){ d.view=null; lgFit(d,W,H); }
+  else if(kind==='zoom-in'||kind==='zoom-out'){ const k=kind==='zoom-in'?1.25:.8; d.view={k:Math.max(.25,Math.min(4,v.k*k)),tx:v.tx*k,ty:v.ty*k}; }
+  else { const st=40, dx=kind==='left'?-st:kind==='right'?st:0, dy=kind==='up'?-st:kind==='down'?st:0; d.view={k:v.k,tx:v.tx+dx,ty:v.ty+dy}; }
+  drawLocalGraph(cv);
+}
+function initLocalGraphs(root){
+  [...RP_LG.keys()].forEach(k=>{ if(!document.getElementById(k)) RP_LG.delete(k); });
+  root.querySelectorAll('canvas[data-rpg-lg]').forEach(cv=>{
+    const d=RP_LG.get(cv.id); if(!d||cv._lg) return; cv._lg=true;
+    cv.addEventListener('pointerdown',ev=>{ const [mx,my]=lgScreen(cv,ev), i=lgHit(d,cv,mx,my); d.moved=false;
+      if(i>=0){ d.drag=i; } else { const v=d.view||{k:1,tx:0,ty:0}; d.pan={x:mx,y:my,tx:v.tx,ty:v.ty}; }
+      cv.setPointerCapture&&cv.setPointerCapture(ev.pointerId); });
+    cv.addEventListener('pointermove',ev=>{ const [mx,my]=lgScreen(cv,ev);
+      if(d.drag>=0){ const v=d.view||{k:1,tx:0,ty:0}, W=cv.clientWidth,H=cv.clientHeight, o=d.nodes[d.drag]; o.x=(mx-W/2-v.tx)/v.k; o.y=(my-H/2-v.ty)/v.k; d.moved=true; lgFollow(d,d.drag); drawLocalGraph(cv); return; }
+      if(d.pan){ const v=d.view||{k:1,tx:0,ty:0}; d.moved=true; d.view={k:v.k,tx:d.pan.tx+(mx-d.pan.x),ty:d.pan.ty+(my-d.pan.y)}; drawLocalGraph(cv); return; }
+      const h=lgHit(d,cv,mx,my); cv.style.cursor=h>=0?'pointer':'grab';
+      if(h!==d.hover){ d.hover=h; drawLocalGraph(cv); } });
+    const end=ev=>{ if(d.drag>=0&&!d.moved){ const o=d.nodes[d.drag]; location.hash=o.href.replace(/^[^#]*/,''); } d.drag=-1; d.pan=null; };
+    cv.addEventListener('pointerup',end); cv.addEventListener('pointercancel',end);
+    cv.addEventListener('pointerleave',()=>{ if(d.hover>=0){ d.hover=-1; drawLocalGraph(cv); } });
+    cv.addEventListener('wheel',ev=>{ ev.preventDefault(); lgAct(cv,ev.deltaY<0?'zoom-in':'zoom-out'); },{passive:false});
+    cv.addEventListener('keydown',ev=>{ const map={'+':'zoom-in','=':'zoom-in','-':'zoom-out','0':'reset',ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'}; if(map[ev.key]){ ev.preventDefault(); lgAct(cv,map[ev.key]); } });
+    if(typeof ResizeObserver==='function') new ResizeObserver(()=>drawLocalGraph(cv)).observe(cv);
+    drawLocalGraph(cv);
+  });
+}
+
 function rpgCanvasAct(cv,kind){
   const d=RP_CV.get(cv.id); if(!d) return; const f=d.fit, v=rpCvView(d,cv); let nv;
   if(kind==='reset') nv=null;
@@ -8737,7 +8813,7 @@ $('rpTabs').addEventListener('dblclick',e=>{ if(e.target.closest('button')) retu
 $('rpTabs').addEventListener('auxclick',e=>{ if(e.button!==1) return; const t=e.target.closest('[data-rp-tab]'); if(t){ e.preventDefault(); rpCloseTab(t.dataset.rpTab); } });
 $('rpTabs').addEventListener('contextmenu',e=>{ const t=e.target.closest('[data-rp-tab]'); if(!t) return; e.preventDefault(); e.stopImmediatePropagation(); const id=t.dataset.rpTab, one=RP.tabs.length<=1; miniMenu(t,[{t:'Empilhar ferramenta',ic:WI.stack,off:(RP.tabs.find(x=>x.id===id)?.views.length||0)>=3,fn:()=>toolMenu($('rpAdd'),k=>{rpSelect(id);rpStack(k);})},{t:'Fechar aba',ic:WI.x,fn:()=>rpCloseTab(id)},{t:'Fechar outras abas',ic:WI.x,off:one,fn:()=>rpCloseOthers(id)}]); });
 $('rpBody').addEventListener('click',e=>{ const T=e.target;
-  let graphBtn=T.closest('[data-rpg]'); if(graphBtn&&graphBtn.closest('.rp-vb')?.querySelector('canvas[data-rpg-cv]')){ rpgCanvasAct(graphBtn.closest('.rp-vb').querySelector('canvas[data-rpg-cv]'),graphBtn.dataset.rpg); return; }
+  let graphBtn=T.closest('[data-rpg]'); if(graphBtn){ const lg=graphBtn.closest('.rp-vb')?.querySelector('canvas[data-rpg-lg]'); if(lg){ lgAct(lg,graphBtn.dataset.rpg); return; } } if(graphBtn&&graphBtn.closest('.rp-vb')?.querySelector('canvas[data-rpg-cv]')){ rpgCanvasAct(graphBtn.closest('.rp-vb').querySelector('canvas[data-rpg-cv]'),graphBtn.dataset.rpg); return; }
   if(graphBtn){ const svg=graphBtn.closest('.rp-vb')?.querySelector('[data-rpg-viewport]'); if(!svg)return; const v=svg.viewBox.baseVal, step=v.width*.2, kind=graphBtn.dataset.rpg; if(kind==='reset'){ const cx=+svg.dataset.cx,cy=+svg.dataset.cy,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240; svg.setAttribute('viewBox',(cx-fw/2)+' '+(cy-fh/2)+' '+fw+' '+fh); } else if(kind==='zoom-in'||kind==='zoom-out'){ const f=kind==='zoom-in'?.8:1.25,fw=+svg.dataset.fitW||300,fh=+svg.dataset.fitH||240,nw=Math.max(80,Math.min(Math.max(2400,fw*2),v.width*f)),nh=nw*fh/fw,cx=v.x+v.width/2,cy=v.y+v.height/2; svg.setAttribute('viewBox',(cx-nw/2)+' '+(cy-nh/2)+' '+nw+' '+nh); } else { const dx=kind==='left'?-step:kind==='right'?step:0,dy=kind==='up'?-step:kind==='down'?step:0; svg.setAttribute('viewBox',(v.x+dx)+' '+(v.y+dy)+' '+v.width+' '+v.height); } return; }
   let b=T.closest('[data-vforward]');if(b){const v=viewById(b.dataset.vforward);if(v?.future?.length){v.hist=(v.hist||[]).concat([{type:v.type,ref:v.ref,q:v.q,kind:v.kind}]);Object.assign(v,v.future.pop());wsSave();rpPaintAll();}return;}
   b=T.closest('[data-vmove]');if(b){const t=rpTab(),v=viewById(b.dataset.vmove),i=t.views.indexOf(v);miniMenu(b,[{t:'Mover para cima',off:i===0,fn:()=>{t.views.splice(i,1);t.views.splice(i-1,0,v);wsSave();rpPaintAll();}},{t:'Mover para baixo',off:i===t.views.length-1,fn:()=>{t.views.splice(i,1);t.views.splice(i+1,0,v);wsSave();rpPaintAll();}}]);return;}
