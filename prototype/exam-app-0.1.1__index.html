@@ -1801,6 +1801,8 @@ button.td-saved{cursor:pointer}.td-saved small{color:var(--muted)}
 .rp-empty{padding:26px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.5}
 .rp-empty b{display:block;color:var(--text);font-weight:600;margin-bottom:4px}
 .rp-empty .rp-tools{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.rp-empty .rp-tools.rp-tools-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;max-width:360px;margin-inline:auto}
+.rp-tools-grid .rp-btn{justify-content:flex-start;min-height:34px}
 .rp-btn{display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--pop);color:var(--text);font-size:12.5px;font-weight:500}
 .rp-btn:hover{background:var(--hover)}
 .rp-btn.pri{background:var(--text);color:var(--bg);border-color:var(--text)}
@@ -8425,7 +8427,7 @@ const rpRow=(n,sub)=>{
   '</div>';
 };
 const rpEmpty=(t,s,extra)=>'<div class="rp-empty"><b>'+esc(t)+'</b>'+esc(s||'')+(extra||'')+'</div>';
-const toolBtns=(cls)=>'<div class="rp-tools">'+['explorar','graf','back','internos','rel','ia','search'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
+const toolBtns=(cls)=>'<div class="rp-tools rp-tools-grid">'+['explorar','graf','back','internos','rel','ia','search'].map(k=>'<button type="button" class="rp-btn '+(cls||'')+'" data-rp-new="'+k+'">'+RT[k].ic+' '+RT[k].n+'</button>').join('')+'</div>';
 function ctxBar(v,n){
   if(v.ref&&!n) return '<div class="rp-ctx"><span>Objeto de outro espaço</span><button type="button" class="rp-link" data-unpin="'+v.id+'">Seguir contexto</button></div>';
   if(!v.ref&&!n) return '';
