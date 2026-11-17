@@ -52,10 +52,19 @@ class InventoryTests(unittest.TestCase):
         navigation=json.loads((ROOT/'prototype/boards/data/phase2-navigation-map.json').read_text(encoding='utf-8'))
         relocated={e['path']:e.get('current_path',e['path']) for e in navigation['mappings']}
         moved=[e for e in navigation['mappings'] if e.get('current_path',e['path'])!=e['path']]
-        self.assertEqual(len(moved),208)
+        self.assertEqual(len(moved),223)
+        markers=[e for e in moved if e['state']=='moved-exact-git-blob']
+        bundles=[e for e in moved if e['state']=='moved-exact-git-bundle']
+        self.assertEqual(len(markers),208)
+        self.assertEqual(len(bundles),15)
         for e in moved:
             self.assertFalse((ROOT/e['path']).exists(),e['path'])
+            self.assertTrue((ROOT/e['current_path']).is_file(),e['current_path'])
+        for e in markers:
             self.assertEqual((ROOT/e['current_path']).read_bytes(),b'',e['current_path'])
+        for e in bundles:
+            actual=subprocess.check_output(['git','hash-object',str(ROOT/e['current_path'])],cwd=ROOT,text=True).strip()
+            self.assertEqual(actual,e['git_blob_sha'],e['current_path'])
 
         self.assertEqual(len(receipt['files']),receipt['source_count'])
         self.assertEqual(len({e['source'] for e in receipt['files']}),receipt['source_count'])
