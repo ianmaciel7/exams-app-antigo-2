@@ -22,7 +22,15 @@ flowchart TB
 - Duplicata não é evidência canônica adicional; órfão precisa de contexto.
 - Resultado deve informar cenário, ambiente, comando e limites da conclusão.
 
+## Evidências ExamTopics — fonte central
+
+**Inventário integral:** [57 achados, 16 fontes, 5 capturas históricas e matriz com a `dev`](evidencias-examtopics-2026-11-17.md). A fonte estruturada é o [manifesto JSON](examtopics-auditoria-evidencias-2026-11-17.json). Tudo está reproduzido por categoria no [canvas, bloco `e17000`](board-exam-app__index.html#e17000), com os cinco arquivos de imagem preservados e a quinta captura (paginação/rodapé) agora visível.
+
+**Critério obrigatório:** cada achado tem ID, URL, método, condição de acesso e estado de comprovação; só usar imagem/GIF como prova se realmente capturado. Recursos autenticados/PRO permanecem não homologados. Filtros e simulado na `dev` são inferidos da leitura estática do código, não de E2E desta auditoria.
+
 ## Documentos
+
+- [Dossiê canônico de evidências ExamTopics](evidencias-examtopics-2026-11-17.md) — 57 registros com fonte, comparação, decisão e imagens.
 
 - [Manifesto de evidências ExamTopics — 17/11/2026](examtopics-auditoria-evidencias-2026-11-17.json) — Fontes públicas e capturas históricas, sem alegar novos screenshots ou E2E executado.
 - [Auditoria funcional ExamTopics × dev](examtopics-auditoria-2026-11-17.md) — Rastreabilidade observação → código → decisão.

@@ -24,6 +24,8 @@ flowchart LR
 
 ## Documentos
 
+- **Fonte central das evidências ExamTopics:** [Board 06 / dossiê integral](evidencias-examtopics-2026-11-17.md) e [canvas `e17000`](board-exam-app__index.html#e17000). A pesquisa abaixo é referência e síntese; todos os 57 achados e imagens estão no Board de Evidências.
+
 - [Auditoria ExamTopics × dev — 17/11/2026](examtopics-auditoria-2026-11-17.md) — Fontes oficiais, controles DOM, limitações, decisões e gaps.
 - [Manifesto de evidências ExamTopics — 17/11/2026](examtopics-auditoria-evidencias-2026-11-17.json) — URLs observadas e cinco capturas anteriores (sem mídia nova).
 

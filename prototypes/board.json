@@ -809,7 +809,31 @@
     "e510",
     "e511",
     "e194",
-    "e195"
+    "e195",
+    "e17001",
+    "e17002",
+    "e17003",
+    "e17004",
+    "e17005",
+    "e17006",
+    "e17007",
+    "e17008",
+    "e17009",
+    "e17010",
+    "e17011",
+    "e17012",
+    "e17013",
+    "e17014",
+    "e17015",
+    "e17016",
+    "e17017",
+    "e17018",
+    "e17019",
+    "e17020",
+    "e17021",
+    "e17022",
+    "e17023",
+    "e17000"
   ],
   "elements": {
     "e1": {
@@ -8354,6 +8378,207 @@
       "y": 3820,
       "title": "Manifesto das evidências ExamTopics — 17/11/2026",
       "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
+    },
+    "e17001": {
+      "type": "text",
+      "x": 14960,
+      "y": 80,
+      "w": 1610,
+      "h": 240,
+      "text": "### Evidências ExamTopics — inventário integral (17/11/2026)\n**57 observações rastreadas** · 16 fontes públicas/históricas · 5 capturas históricas existentes.\nCada achado traz ID ET-E, estado de comprovação, fonte, comparação com a `dev` e decisão. Registro real no board de Evidências, não apenas link em Pesquisa.\n**Limite:** DOM público e código estático; sem sessão logada, sem screenshot novo, sem E2E reexecutado."
+    },
+    "e17002": {
+      "type": "link",
+      "x": 14960,
+      "y": 340,
+      "w": 340,
+      "h": 56,
+      "title": "EVIDÊNCIAS: dossiê completo (57 registros)",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/evidencias-examtopics-2026-11-17.md"
+    },
+    "e17003": {
+      "type": "link",
+      "x": 15740,
+      "y": 340,
+      "w": 340,
+      "h": 56,
+      "title": "Manifesto estruturado (JSON)",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
+    },
+    "e17004": {
+      "type": "link",
+      "x": 14960,
+      "y": 410,
+      "w": 340,
+      "h": 56,
+      "title": "Galeria e mídia histórica",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/gallery.html"
+    },
+    "e17005": {
+      "type": "text",
+      "x": 14960,
+      "y": 500,
+      "w": 1610,
+      "h": 482,
+      "text": "### Catálogo (7 registros)\n- **ET-E01** Lista de fornecedores de certificação — observado; fonte ET-01, ET-02\n- **ET-E02** Listagem de exames por fornecedor — observado; fonte ET-01, ET-02\n- **ET-E03** Pesquisa por nome ou código de exame — observado; fonte ET-01\n- **ET-E04** Rótulo de exame popular — observado; fonte ET-02\n- **ET-E05** Página de detalhes de exame — observado; fonte ET-03\n- **ET-E06** Contagem de questões do exame — observado; fonte ET-03, ET-04\n- **ET-E07** Data de atualização do banco — observado; fonte ET-04\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17006": {
+      "type": "text",
+      "x": 14960,
+      "y": 1012,
+      "w": 1610,
+      "h": 574,
+      "text": "### Questões (9 registros)\n- **ET-E08** Questão identificada por número e tópico — observado; fonte ET-04, ET-05\n- **ET-E09** Enunciado e alternativas com letras — observado; fonte ET-04, ET-05\n- **ET-E10** Paginação por página de questões — observado; fonte ET-04\n- **ET-E11** Intervalo X–Y e total de N questões — observado; fonte ET-04\n- **ET-E12** Navegação anterior e próxima página — observado; fonte ET-04\n- **ET-E13** Revelar ou ocultar solução/gabarito — observado; fonte ET-04\n- **ET-E14** Resposta sugerida apresentada após revelar — observado; fonte ET-04\n- **ET-E15** Enunciado com diagramas e imagens (exhibits) — observado; fonte ET-04\n- **ET-E16** Cenários e estudos de caso nos enunciados — observado; fonte ET-04\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17007": {
+      "type": "text",
+      "x": 14960,
+      "y": 1616,
+      "w": 1610,
+      "h": 574,
+      "text": "### Comunidade (9 registros)\n- **ET-E17** Alternativa mais votada indicada — observado; fonte ET-04\n- **ET-E18** Distribuição percentual de votos por alternativa — observado; fonte ET-04\n- **ET-E19** Discussão individual por questão — observado; fonte ET-08\n- **ET-E20** Comentários de usuários — observado; fonte ET-08, ET-09\n- **ET-E21** Respostas/réplicas em discussões — observado; fonte ET-08\n- **ET-E22** Alternativa escolhida em comentário — observado; fonte ET-08\n- **ET-E23** Votos/curtidas em comentários — observado; fonte ET-08\n- **ET-E24** Denunciar comentário — observado; fonte ET-08\n- **ET-E25** Identificação do autor e data da postagem — observado; fonte ET-08\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17008": {
+      "type": "text",
+      "x": 14960,
+      "y": 2220,
+      "w": 1610,
+      "h": 482,
+      "text": "### Conta e acesso (7 registros)\n- **ET-E26** Login por email e senha — formulário observado; fonte ET-10\n- **ET-E27** Cadastro com apelido, email e senha — formulário observado; fonte ET-11\n- **ET-E28** Verificação de email no fluxo de cadastro — fluxo descrito publicamente; fonte ET-10, ET-11\n- **ET-E29** Recuperação de senha — formulário observado; fonte ET-10\n- **ET-E30** Reenvio de verificação/ativação — fluxo descrito publicamente; fonte ET-10, ET-11\n- **ET-E31** Exigência de login para avançar da primeira página de AZ-900 — observado; fonte ET-06, ET-07\n- **ET-E32** Oferta de salvar histórico de navegação ao cadastrar — texto da interface observado; fonte ET-06\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17009": {
+      "type": "text",
+      "x": 14960,
+      "y": 2732,
+      "w": 1610,
+      "h": 528,
+      "text": "### Premium e conteúdo (8 registros)\n- **ET-E33** Contributor Access por exame — oferta pública; fonte ET-03, ET-12\n- **ET-E34** ExamTopics PRO com ativação de até dez exames — oferta pública; fonte ET-12\n- **ET-E35** Oferta de atualizações durante prazo contratado — oferta pública; fonte ET-12\n- **ET-E36** PRO promete navegação sem CAPTCHA/MFA — oferta pública; fonte ET-12\n- **ET-E37** PRO anuncia discussões integradas — oferta pública; fonte ET-12\n- **ET-E38** Aquisição separada de PDF de questões e respostas — oferta pública; fonte ET-03, ET-13\n- **ET-E39** Checkout de produto digital e termos — formulário/oferta; fonte ET-13, ET-14\n- **ET-E40** Blog e conteúdo sobre certificações — observado; fonte ET-15\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17010": {
+      "type": "text",
+      "x": 14960,
+      "y": 3290,
+      "w": 1610,
+      "h": 574,
+      "text": "### Não confirmado no ExamTopics (9 registros)\n- **ET-E41** Filtro de questões por ano e dificuldade — não identificado no acesso público; fonte ET-04\n- **ET-E42** Filtro de questões por tipo ou situação da resposta — não identificado no acesso público; fonte ET-04\n- **ET-E43** Filtros múltiplos, chips, filtros salvos — não identificado no acesso público; fonte ET-04\n- **ET-E44** Pesquisa pelo texto de questões — não identificado no acesso público; fonte ET-04\n- **ET-E45** Resposta interativa corrigida automaticamente — não identificado no acesso público; fonte ET-04\n- **ET-E46** Drag-and-drop e hotspot executáveis no navegador — não verificado; imagens/cenários não provam interação; fonte ET-04\n- **ET-E47** Simulado cronometrado, configurador e score final — não identificado no acesso público; fonte ET-03, ET-04\n- **ET-E48** Histórico de tentativas e dashboard pessoal — não verificado em conta autenticada; fonte ET-06\n- **ET-E49** Favoritos, flashcards e revisão espaçada — não identificado no acesso público; fonte ET-04\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17011": {
+      "type": "text",
+      "x": 14960,
+      "y": 3894,
+      "w": 1610,
+      "h": 528,
+      "text": "### Comparação dev (8 registros)\n- **ET-E50** Filtro Disciplina > Assunto e demais critérios — evidência estática do código dev; fonte DEV-01\n- **ET-E51** Chips, limpar filtros e sincronizar URL — evidência estática do código dev; fonte DEV-01\n- **ET-E52** Cadernos, favoritos e filtros salvos — evidência estática do código dev; fonte DEV-01\n- **ET-E53** Simulado com timer, correção e resultado — evidência estática do código dev; fonte DEV-01\n- **ET-E54** Exhibits acessíveis em todos contextos de questões — sem E2E específico nesta auditoria; fonte DEV-01\n- **ET-E55** Tipos de resposta múltiplas, hotspot, drag-drop — sem implementação interativa localizada; fonte DEV-01\n- **ET-E56** Fornecedor > certificação > exame e metadados de versão — não localizado como catálogo próprio; fonte DEV-01\n- **ET-E57** Conta real e sincronização multi-dispositivo — não homologados nesta auditoria; fonte DEV-01\n\n**Comparação e decisões por item:** dossiê completo ET-E01–ET-E57."
+    },
+    "e17012": {
+      "type": "text",
+      "x": 14960,
+      "y": 4452,
+      "w": 1610,
+      "h": 210,
+      "text": "### Galeria de capturas reais preexistentes (AZ-104)\nAs cinco imagens abaixo já estavam no repositório; não são screenshots novos nem prova do estado atual de AZ-900. O catálogo de evidências guarda hashes, datas do registro e links históricos. A quinta captura (paginação/rodapé) foi agora anexada visualmente ao board."
+    },
+    "e17013": {
+      "type": "image",
+      "x": 14960,
+      "y": 4692,
+      "w": 770,
+      "h": 340,
+      "src": "assets/examtopics_az104_header_and_overview.png",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_header_and_overview.png"
+    },
+    "e17014": {
+      "type": "text",
+      "x": 14960,
+      "y": 5047,
+      "w": 770,
+      "h": 96,
+      "text": "**EX-IMG-01** — Cabeçalho e visão geral; captura AZ-104 histórica.\nCaptura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_header_and_overview.png)."
+    },
+    "e17015": {
+      "type": "image",
+      "x": 15770,
+      "y": 4692,
+      "w": 770,
+      "h": 340,
+      "src": "assets/examtopics_az104_question_card.png",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_question_card.png"
+    },
+    "e17016": {
+      "type": "text",
+      "x": 15770,
+      "y": 5047,
+      "w": 770,
+      "h": 96,
+      "text": "**EX-IMG-02** — Card da questão; captura AZ-104 histórica.\nCaptura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_question_card.png)."
+    },
+    "e17017": {
+      "type": "image",
+      "x": 14960,
+      "y": 5182,
+      "w": 770,
+      "h": 340,
+      "src": "assets/examtopics_az104_solution_reveal.png",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_solution_reveal.png"
+    },
+    "e17018": {
+      "type": "text",
+      "x": 14960,
+      "y": 5537,
+      "w": 770,
+      "h": 96,
+      "text": "**EX-IMG-03** — Revelação do gabarito e votação; captura AZ-104 histórica.\nCaptura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_solution_reveal.png)."
+    },
+    "e17019": {
+      "type": "image",
+      "x": 15770,
+      "y": 5182,
+      "w": 770,
+      "h": 340,
+      "src": "assets/examtopics_az104_discussion_modal.png",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_discussion_modal.png"
+    },
+    "e17020": {
+      "type": "text",
+      "x": 15770,
+      "y": 5537,
+      "w": 770,
+      "h": 96,
+      "text": "**EX-IMG-04** — Discussão e votos; captura AZ-104 histórica.\nCaptura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_discussion_modal.png)."
+    },
+    "e17021": {
+      "type": "image",
+      "x": 14960,
+      "y": 5672,
+      "w": 770,
+      "h": 340,
+      "src": "assets/examtopics_az104_pagination_and_footer.png",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_pagination_and_footer.png"
+    },
+    "e17022": {
+      "type": "text",
+      "x": 14960,
+      "y": 6027,
+      "w": 770,
+      "h": 96,
+      "text": "**EX-IMG-05** — Paginação e rodapé; captura AZ-104 histórica.\nCaptura histórica; [arquivo original](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics_az104_pagination_and_footer.png)."
+    },
+    "e17023": {
+      "type": "text",
+      "x": 14960,
+      "y": 6162,
+      "w": 1610,
+      "h": 325,
+      "text": "### O que ainda exige evidência nova\n1. Fluxo autenticado gratuito e confirmação do histórico persistido.\n2. Recursos efetivamente entregues no PRO/Contributor (ofertas não são execução).\n3. Screenshots novos desktop/tablet/mobile com URL, viewport, data e proveniência.\n4. E2E executados na branch dev, acessibilidade e tipos especiais de questão.\n5. Diferenciar formatos exibidos como imagem dos controles drag/drop/hotspot efetivamente interativos."
+    },
+    "e17000": {
+      "type": "container",
+      "x": 14920,
+      "y": 0,
+      "w": 1700,
+      "h": 6612,
+      "color": "white",
+      "text": "40. Evidências ExamTopics — catálogo completo, fontes, comparativo dev e capturas (17/11/2026)"
     }
   }
 }

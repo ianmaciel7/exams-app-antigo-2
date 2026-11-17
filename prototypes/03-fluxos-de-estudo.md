@@ -31,6 +31,8 @@ flowchart TB
 
 ## Documentos
 
+- [Evidências ExamTopics × dev](evidencias-examtopics-2026-11-17.md) — Questões, gabarito, paginação, modalidades e limites comprovados/pendentes reunidos no Board 06.
+
 - [Auditoria ExamTopics × dev — 17/11/2026](examtopics-auditoria-2026-11-17.md) — Matriz funcional verificada; diferencia código, proposta e acesso público.
 
 - [Estratégia de questões — #230](docs__research__pesquisas__230-estrategia-questoes__README.md)

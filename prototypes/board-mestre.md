@@ -10,8 +10,8 @@
 | 02 — Workspace & UX | Navegação, layout, painéis, propriedades, grafo, responsividade e interação. | 14 | 7 | [Abrir](02-workspace-e-ux.md) |
 | 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 8 | [Abrir](03-fluxos-de-estudo.md) |
 | 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](04-arquitetura-tecnica.md) |
-| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 10 | [Abrir](05-pesquisa-e-decisoes.md) |
-| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 6 | [Abrir](06-evidencias-e-qualidade.md) |
+| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 9 | [Abrir](05-pesquisa-e-decisoes.md) |
+| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 4 | 7 | [Abrir](06-evidencias-e-qualidade.md) |
 | 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 8 | 5 | [Abrir](07-entrega-e-arquivo.md) |
 
 ## 01 — Produto & domínio
@@ -143,7 +143,6 @@ Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 - [Análise QConcursos](analise-qconcursos.md) — Inventário local.
 - [Análise ExamTopics](analise-examtopics.md) — Inventário local.
 - [Auditoria ExamTopics × dev (17/11)](examtopics-auditoria-2026-11-17.md) — Fontes oficiais e evidência pública verificada no benchmark.
-- [Manifesto de evidências ExamTopics](examtopics-auditoria-evidencias-2026-11-17.json) — Proveniência textual, URLs e referência a capturas antigas.
 
 ### Blocos do canvas original
 
@@ -166,6 +165,7 @@ Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 
 ### Documentos
 
+- [ExamTopics — dossiê integral de evidências](evidencias-examtopics-2026-11-17.md) — 57 achados detalhados, 16 fontes, cinco imagens históricas, comparação com dev e pendências.
 - [Catálogo de evidências](CATALOG.md) — Índice navegável das mídias.
 - [Catálogo estruturado](catalog.json) — Hashes, duplicatas, órfãos e referências.
 - [Galeria de evidências](gallery.html) — Visualização filtrável.
@@ -180,6 +180,7 @@ Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 | Capturas do usuário e feedback | evidencia | [e300](board-exam-app__index.html#e300) |
 | Low-chrome — antes e depois | evidencia | [e993](board-exam-app__index.html#e993) |
 | Fechamento dos gaps de referência | auditoria-evidencia | [e1300](board-exam-app__index.html#e1300) |
+| ExamTopics — evidências integrais | auditoria-evidencia | [e17000](board-exam-app__index.html#e17000) |
 
 ## 07 — Entrega & arquivo
 
