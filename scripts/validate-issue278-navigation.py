@@ -75,6 +75,8 @@ def main():
              PROTOTYPE/"archive/README.md", PROTOTYPE/"tools/README.md",
              PROTOTYPE/"app/README.md"]
     roots += [PROTOTYPE/"boards"/b/"README.md" for b in BOARDS]
+    roots += [PROTOTYPE/"docs__archives__README.md"]
+    roots += [ROOT/(e["path"][:-len(".bundle")]+".md") for e in entries if e.get("state")=="moved-exact-git-bundle"]
     for file in roots:
         if not file.is_file():
             errors.append("Index missing: "+str(file)); continue
