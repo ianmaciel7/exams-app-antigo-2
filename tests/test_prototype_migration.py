@@ -47,9 +47,36 @@ class InventoryTests(unittest.TestCase):
             self.assertEqual(category,'unapproved-historical-app')
         self.assertEqual(inventory.destination('prototypes/02-workspace-e-ux.md')[0],
                          'prototype/boards/02-design/index.md')
+    def test_phase0_preserves_all_original_prototype_files_and_binary_hashes(self):
+        manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
+        intentional={'prototypes/board.json','prototypes/BOARD.md',
+                     'prototypes/board-mestre.json','prototypes/board-mestre.md'}
+        files=[e for e in manifest['files'] if e['source'].startswith('prototypes/')]
+        self.assertEqual(len(files),961)
+        for entry in files:
+            target=ROOT/entry['source']
+            self.assertTrue(target.is_file(),entry['source'])
+            if entry['source'] not in intentional:
+                self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(),entry['sha256'],entry['source'])
+    def test_generated_inventories_are_not_visual_evidence_references(self):
+        builder=module('build-evidence-catalog.py')
+        corpus=builder.load_corpus()
+        for name in ['inventory','dependencies','baseline','coverage-baseline']:
+            self.assertNotIn('prototypes/issue278-'+name+'.json',corpus)
+        self.assertIn('prototypes/board.json',corpus)
+
+    def test_existing_canvas_elements_and_order_are_preserved(self):
+        manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
+        raw=subprocess.check_output(['git','show',manifest['baseline_commit']+':prototypes/board.json'],cwd=ROOT)
+        old=json.loads(raw);current=json.loads((ROOT/'prototypes/board.json').read_text(encoding='utf-8'))
+        for key,value in old['elements'].items():self.assertEqual(current['elements'][key],value,key)
+        self.assertEqual(current['order'][:len(old['order'])],old['order'])
+        self.assertIn('e17000',current['elements'])
+
     def test_full_source_tree_and_hashes_are_reproducible(self):
         manifest=json.loads((ROOT/'prototypes/issue278-inventory.json').read_text(encoding='utf-8'))
-        actual=inventory.snapshot(manifest['baseline_commit'])
+        with patch.dict(os.environ,{'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'core.autocrlf','GIT_CONFIG_VALUE_0':'true'}):
+            actual=inventory.snapshot(manifest['baseline_commit'])
         self.assertEqual(actual,manifest)
 
 class RemoteHoldTests(unittest.TestCase):

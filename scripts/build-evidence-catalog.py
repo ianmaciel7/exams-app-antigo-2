@@ -227,12 +227,13 @@ def load_corpus():
         for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, base)):
             dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != 'assets']
             for fn in filenames:
-                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototypes' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json'}:
-                    continue  # índices gerados não são suas próprias referências
+                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototypes' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json', 'issue278-inventory.json', 'issue278-dependencies.json', 'issue278-baseline.json', 'issue278-coverage-baseline.json'}:
+                    continue  # índices/manifestos gerados não demonstram uso visual da mídia
                 if re.search(r'\.(md|json|html|py|mjs|js|yml)$', fn):
                     p = os.path.join(dirpath, fn)
                     try:
-                        corpus[os.path.relpath(p, ROOT)] = open(p, encoding='utf-8', errors='ignore').read()
+                        with open(p, encoding='utf-8', errors='ignore') as source:
+                            corpus[os.path.relpath(p, ROOT)] = source.read()
                     except OSError:
                         pass
     return corpus

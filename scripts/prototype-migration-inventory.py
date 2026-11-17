@@ -67,7 +67,7 @@ def destination(path):
 
 def git_bytes(ref):
     # archive streams exact committed bytes without checking out or invoking hooks.
-    proc = subprocess.Popen(['git','archive',ref],cwd=ROOT,stdout=subprocess.PIPE)
+    proc = subprocess.Popen(['git','-c','core.autocrlf=false','archive',ref],cwd=ROOT,stdout=subprocess.PIPE)
     with tarfile.open(fileobj=proc.stdout,mode='r|') as archive:
         for item in archive:
             if item.isfile():

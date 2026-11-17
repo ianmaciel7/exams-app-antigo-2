@@ -13,7 +13,7 @@ Este documento não conclui a #278 nem aprova os protótipos históricos.
 - `.github/prototype-migration.json`: hold explícito. Workflow de sincronização agora só valida agentes, sem token, deploy, mirror ou force-push. Hooks conservam geração local de agentes; não publicam nem fazem push.
 - `sync:artifact` bloqueia com código 1, inclusive se a política estiver ausente, inválida ou editada para enabled. `sync:all` usa `&&` e para nesse bloqueio. Retomar publicação exige mudança separada revisada, não variável de ambiente.
 - Os 12 jobs históricos que commitavam/pushavam evidências estão explicitamente pausados. Os outros workflows de validação continuam ativos. Guards originais permanecem recuperáveis no Git.
-- Testes negativos verificam corrupção binária, arquivo ausente, colisão de case, traversal, versões históricas e hooks com executáveis simulados. CI executa a suíte no Ubuntu e Windows; resultado remoto deve ser consultado, não presumido.
+- A suíte verifica também a existência dos 961 arquivos, os hashes dos 957 sem edição e todos os elementos/IDs e a ordem anterior do canvas. Quatro documentos/dados do board têm alterações intencionais revisáveis no diff. Testes negativos verificam corrupção binária, arquivo ausente, colisão de case, traversal, versões históricas e hooks com executáveis simulados. CI executa a suíte no Ubuntu e Windows; resultado remoto deve ser consultado, não presumido.
 
 ## Baseline: problemas anteriores e limites
 
