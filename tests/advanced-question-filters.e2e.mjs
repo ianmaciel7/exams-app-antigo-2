@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes/board-exam-app__assets__*');
+const dir=path.resolve('prototypes');
 await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const report={date:new Date().toISOString(),events:[],errors:[]};
@@ -17,7 +17,7 @@ const manual=[
     enunciado:'QUESTAO FILTRO REST - Qual arquitetura aplicar?',
     alternativas:{A:'Correto',B:'Incorreto'},gabarito:'A',origem:'manual',anulada:true,criada:1763140000001},
 ];
-const url=(port,hash)=>'http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#'+hash;
+const url=(port,hash)=>'http://127.0.0.1:'+port+(String(port)==='8766'?'/exam-app-0.1.1/index.html':'/exam-app-0.1.1__index.html')+'#'+hash;
 async function pageFor(port){
   const context=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
   const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));

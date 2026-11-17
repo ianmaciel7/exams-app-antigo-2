@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const dir=path.resolve('prototypes/board-exam-app__assets__*');
+const dir=path.resolve('prototypes');
 await mkdir(dir,{recursive:true});
 const report={source:'Playwright Chromium',viewport:{width:1100,height:850},scenarios:[],errors:[]};
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
@@ -16,13 +16,13 @@ async function launch(version,port,dpr){
  const page=await context.newPage();
  const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:'+port+'/exam-app-0.1.1__index.html#ret2',{waitUntil:'domcontentloaded',timeout:30000});
+ await page.goto('http://127.0.0.1:'+port+(String(port)==='8766'?'/exam-app-0.1.1/index.html':'/exam-app-0.1.1__index.html')+'#ret2',{waitUntil:'domcontentloaded',timeout:30000});
  await page.locator('.page[data-p="1"] canvas').waitFor({timeout:45000});
  return {page,context,errors,version,port,dpr};
 }
 async function pageNumber(page){
  return page.evaluate(async()=>{
-  const doc=await pdfjsLib.getDocument('pdfs/'+ 'edital-2a-retificacao.pdf').promise;
+  const doc=await pdfjsLib.getDocument((location.pathname.includes('__index.html')?'exam-app-0.1.1__pdfs__':'pdfs/')+ 'edital-2a-retificacao.pdf').promise;
   try{
    for(let p=1;p<=doc.numPages;p++){
     const text=(await (await doc.getPage(p)).getTextContent()).items.map(i=>i.str).join(' ');
