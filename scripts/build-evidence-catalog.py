@@ -56,8 +56,8 @@ FUNCAO_RULES = [
 ]
 
 ORIGEM = [
-    (r'^prototypes/[0-9a-f]{32}\.png, 'Board: upload embutido (hash)'),
-    (r'^prototypes/inline-e\d+\.jpg, 'Board: imagem inline do elemento'),
+    (r'^prototypes/[0-9a-f]{32}\.png$', 'Board: upload embutido (hash)'),
+    (r'^prototypes/inline-e\d+\.jpg$', 'Board: imagem inline do elemento'),
     (r'^prototypes/board-exam-app__assets__claude-storage-bridge__', 'Teste: ponte de armazenamento Claude'),
     (r'^prototypes/board-exam-app__assets__', 'Board: captura de assets'),
     (r'^prototypes/exam-app-0\.1\.\d__', 'Protótipo: versão publicada'),
@@ -1352,7 +1352,7 @@ if __name__ == '__main__':
     result = build()
     print(json.dumps(result['resumo'], ensure_ascii=False, indent=2))
 , 'Board: upload embutido (hash)'),
-    (r'^prototypes/inline-e\d+\.jpg, 'Board: imagem inline do elemento'),
+    (r'^prototypes/inline-e\d+\.jpg$', 'Board: imagem inline do elemento'),
     (r'^prototypes/board-exam-app__assets__claude-storage-bridge__', 'Teste: ponte de armazenamento Claude'),
     (r'^prototypes/board-exam-app__assets__', 'Board: captura de assets'),
     (r'^prototypes/exam-app-0\.1\.\d__', 'Protótipo: versão publicada'),
