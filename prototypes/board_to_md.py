@@ -27,8 +27,12 @@ def center(e):
 
 def img_path(e):
     s = e["src"]
-    if s.startswith("/_blob/"):
-        return s[7:] + ".png"
+    if s.startswith("/_blob/") or s.startswith("assets/"):
+        rel = s[7:] + ".png" if s.startswith("/_blob/") else s[7:]
+        if os.path.isfile(os.path.join(HERE, rel)):
+            return rel
+        alt = "board-exam-app__assets__" + rel.replace("/", "__")
+        return alt if os.path.isfile(os.path.join(HERE, alt)) else rel
     m = re.match(r"data:image/(\w+);base64,(.*)", s, re.S)
     if m:
         ext = {"jpeg": "jpg"}.get(m.group(1), m.group(1))
