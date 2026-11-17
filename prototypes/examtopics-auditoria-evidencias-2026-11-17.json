@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "title": "ExamTopics: manifesto de fontes e evidências da auditoria de 17/11/2026",
+  "observed_at": "2026-11-17",
+  "exam_app_baseline": "41b6987a62e7cbcdede21a28dd9d73cba5b04cbd",
+  "methods": [
+    "Firecrawl map/search/scrape em páginas públicas",
+    "Firecrawl interact: inspeção da página AZ-900 sem autenticação",
+    "GitHub: inspeção estática da branch dev, código e testes"
+  ],
+  "notes": [
+    "Nenhuma imagem nova foi capturada ou criada nesta auditoria.",
+    "Imagens citadas já estavam versionadas, com data de captura não confirmada pelo nome.",
+    "A presença de script E2E não equivale a execução/aprovação neste dia.",
+    "Conteúdo do PRO e páginas autenticadas não foi testado."
+  ],
+  "sources": [
+    {
+      "id": "ET-01",
+      "url": "https://www.examtopics.com/exams/",
+      "observed": "catálogo público de fornecedores e exames"
+    },
+    {
+      "id": "ET-02",
+      "url": "https://www.examtopics.com/exams/google/",
+      "observed": "exames por fornecedor e rótulo Popular"
+    },
+    {
+      "id": "ET-03",
+      "url": "https://www.examtopics.com/exams/microsoft/az-900/",
+      "observed": "landing AZ-900 com contagem"
+    },
+    {
+      "id": "ET-04",
+      "url": "https://www.examtopics.com/exams/microsoft/az-900/view/",
+      "observed": "questões, solução, votos, paginação e atualização"
+    },
+    {
+      "id": "ET-05",
+      "url": "https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner-clf-c02/view/",
+      "observed": "variação AWS"
+    },
+    {
+      "id": "ET-06",
+      "url": "https://www.examtopics.com/exams/microsoft/az-900/view/2/",
+      "observed": "cadastro/login gratuito após primeira página"
+    },
+    {
+      "id": "ET-07",
+      "url": "https://www.examtopics.com/exams/microsoft/az-900/view/30/",
+      "observed": "login obrigatório"
+    },
+    {
+      "id": "ET-08",
+      "url": "https://www.examtopics.com/discussions/microsoft/view/93155-exam-az-900-topic-1-question-401-discussion/",
+      "observed": "discussão e comentários"
+    },
+    {
+      "id": "ET-09",
+      "url": "https://www.examtopics.com/discussions/microsoft/",
+      "observed": "fórum por fornecedor"
+    },
+    {
+      "id": "ET-10",
+      "url": "https://www.examtopics.com/signup/",
+      "observed": "cadastro"
+    },
+    {
+      "id": "ET-11",
+      "url": "https://www.examtopics.com/unlimited/",
+      "observed": "oferta PRO não autenticada"
+    },
+    {
+      "id": "ET-12",
+      "url": "https://www.examtopics.com/terms/",
+      "observed": "termos e políticas"
+    }
+  ],
+  "existing_visual_assets": [
+    {
+      "path": "prototypes/examtopics_az104_header_and_overview.png",
+      "observed_at": "não comprovado",
+      "origin": "arquivo preexistente"
+    },
+    {
+      "path": "prototypes/examtopics_az104_question_card.png",
+      "observed_at": "não comprovado",
+      "origin": "arquivo preexistente"
+    },
+    {
+      "path": "prototypes/examtopics_az104_solution_reveal.png",
+      "observed_at": "não comprovado",
+      "origin": "arquivo preexistente"
+    },
+    {
+      "path": "prototypes/examtopics_az104_discussion_modal.png",
+      "observed_at": "não comprovado",
+      "origin": "arquivo preexistente"
+    },
+    {
+      "path": "prototypes/examtopics_az104_pagination_and_footer.png",
+      "observed_at": "não comprovado",
+      "origin": "arquivo preexistente"
+    }
+  ],
+  "code_sources": [
+    {
+      "path": "prototypes/exam-app-0.1.1__index.html",
+      "symbols": [
+        "qObjs",
+        "QF_CATS",
+        "qfHTML",
+        "qfSyncURL",
+        "renderPracticeList",
+        "sQuestionMarkup",
+        "sSimOpts",
+        "finishExam",
+        "qMetrics",
+        "qMarks"
+      ]
+    },
+    {
+      "path": "tests/advanced-question-filters.e2e.mjs",
+      "executed_in_this_audit": false
+    },
+    {
+      "path": "tests/study-unification.e2e.mjs",
+      "executed_in_this_audit": false
+    },
+    {
+      "path": "tests/question-pedagogy.e2e.mjs",
+      "executed_in_this_audit": false
+    }
+  ],
+  "gaps": [
+    "Área autenticada e PRO não observadas",
+    "Sem screenshot novo",
+    "Sem execução de E2E nesta auditoria",
+    "Sem auditoria de responsividade em navegador real"
+  ]
+}
