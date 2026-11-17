@@ -83,6 +83,7 @@ try {
       const zoomed = await state(page);
       assert.ok(zoomed.drawCalls > idle.drawCalls, 'keyboard zoom redraws a single frame');
 
+      await page.locator('#gvFilters').click();
       const chip = page.locator('.gv-leg [data-gk]').first();
       assert.ok(await chip.count(), 'graph filter actions exist');
       const pressed = await chip.getAttribute('aria-pressed');
