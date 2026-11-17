@@ -458,6 +458,17 @@ ET-16 é referência de capturas históricas, não inspeção atual.
 COBERTURA DE EVIDÊNCIAS
 57 registros com fonte textual/DOM ou inspeção estática e decisão de produto. Cinco capturas antigas mostram apenas alguns estados AZ-104; não são 57 screenshots. Áreas logadas, PRO, imagens novas e execução E2E continuam pendentes. Não tratar ausência de screenshot como funcionalidade inexistente.
 
+## Issue #278 — fase 0: baseline e publicação bloqueada
+<!-- container e17278 @ (18000,0) -->
+
+#278: preparação implementada; migração NÃO iniciada.
+Baseline dev c9356bb: 1.150 arquivos, 961 em prototypes; SHA-256 e destinos propostos em issue278-inventory.json.
+214 testes Node PASS; cinco hashes divergentes no mapa antigo são problemas anteriores. Cobertura recalculada: 59 containers, 754 nós, 754 cobertos (baseline commitada antiga: 57/727/713).
+Hold de publicação Claude, mirror e writers de evidência. PR da proteção deve entrar primeiro em dev. Nenhum deploy executado.
+Relatório: issue278-migration.md; comandos: issue278-baseline.json; dependências: issue278-dependencies.json.
+Não é validação visual/E2E. Migração de paths, testes de browser e Windows 11 permanecem pendentes.
+https://github.com/ianmaciel7/exams-app/issues/278
+
 ## QConcursos
 <!-- container e108 @ (7464,62) -->
 

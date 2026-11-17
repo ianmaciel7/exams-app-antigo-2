@@ -1,29 +1,18 @@
-name: Sync Dev Automation
+name: Check Dev Automation (migration hold)
 
 on:
   push:
-    branches:
-      - dev
+    branches: [dev]
+  pull_request:
+    branches: [dev]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
+# Issue #278: deliberately no branch mirror or artifact deployment.
+# Re-enabling publication requires a separately reviewed target/path decision.
 jobs:
-  sync-claude-branch:
-    name: Sync Claude Remote Branch
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Mirror dev to Claude tracking branch
-        run: |
-          echo "Mirroring dev branch to claude/project-thread-6zihkn..."
-          git push origin HEAD:refs/heads/claude/project-thread-6zihkn --force
-
   agents-sync-check:
     name: Check Agents Sync
     runs-on: ubuntu-latest
@@ -48,32 +37,3 @@ jobs:
         run: |
           agents sync --check
           git diff --exit-code -- AGENTS.md .agents/agents.json
-
-  sync-artifact:
-    name: Sync Live Artifact to Claude
-    needs: [sync-claude-branch, agents-sync-check]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v3
-        with:
-          version: "latest"
-
-      - name: Check token & Deploy Artifact
-        env:
-          CLAUDE_TOKEN: ${{ secrets.CLAUDE_ARTIFACT_TOKEN }}
-        run: |
-          if [ -z "$CLAUDE_TOKEN" ]; then
-            echo "::notice ::CLAUDE_ARTIFACT_TOKEN is not configured in repository secrets. Skipping remote CI artifact sync. Local git hooks handle artifact deployment."
-            exit 0
-          fi
-          echo "Deploying prototypes/exam-app-0.1.1__index.html to live Claude artifact..."
-          uvx --from claude-artifact-cli claude-artifact publish \
-            --mode patch \
-            --token "$CLAUDE_TOKEN" \
-            --url "https://claude.ai/artifact/MeCzKuKCsr6fY4F8AGxnyC" \
-            prototypes/exam-app-0.1.1__index.html

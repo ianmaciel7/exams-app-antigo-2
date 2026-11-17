@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   screenshots:
-    if: github.head_ref == 'fix/low-chrome-shell-97' && github.event.pull_request.head.repo.full_name == github.repository
+    if: false # Issue #278: evidence-writing automation paused
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
