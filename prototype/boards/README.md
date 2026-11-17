@@ -1,6 +1,6 @@
 # Exam App — sete boards
 
-Esta pasta organiza a navegação da issue #278. Na fase 2B, somente 208 marcadores vazios de metadados foram movidos para `boards/06-evidencias/relatorios/`; HTML, PDFs, imagens, catálogos e fontes ativas seguem nos caminhos anteriores para preservar execução, CI e integração.
+Esta pasta organiza a navegação da issue #278. Nas fases 2B/2C, 208 marcadores vazios e 15 bundles históricos foram movidos para `boards/06-evidencias/relatorios/`; HTML, PDFs, imagens, catálogos e fontes ativas seguem nos caminhos anteriores para preservar execução, CI e integração.
 
 [Central visual](index.html) · [Canvas](../board-exam-app__index.html#e17000) · [Galeria](../gallery.html)
 
@@ -21,5 +21,6 @@ Esta pasta organiza a navegação da issue #278. Na fase 2B, somente 208 marcado
 - [Novo aplicativo (destino ainda não aprovado)](../app/README.md)
 - [Evidência da fase 2A](06-evidencias/relatorios/issue278-phase2a.md)
 - [Recibo e limites da fase 2B](06-evidencias/relatorios/issue278-phase2b.md)
+- [Recibo e limites da fase 2C](06-evidencias/relatorios/issue278-phase2c.md)
 
 Não publicar automaticamente o Claude Artifact; a política de hold continua em vigor.
