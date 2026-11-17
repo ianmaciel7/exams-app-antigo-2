@@ -39,7 +39,7 @@ const tcol=c=>TCOL[c]?`var(${TCOL[c]})`:(c||'');
 const world=document.getElementById('world'),view=document.getElementById('view');
 let S=1,X=0,Y=0,B=null;
 function inl(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/`(.+?)`/g,'<code>$1</code>').replace(/\[(.+?)\]\((https?:[^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')}
-function imgSrc(s){if(s.startsWith('/_blob/'))return s.slice(7)+'.png';if(s.startsWith('assets/'))return 'board-exam-app__assets__'+s.slice(7).replaceAll('/','__');return s}
+function imgSrc(s){if(s.startsWith('/_blob/'))return s.slice(7)+'.png';if(s.startsWith('assets/'))return s.slice(7);return s}
 const boxes={};
 fetch('board.json').then(r=>r.json()).then(D=>{
   document.getElementById('ttl').textContent=D.title;document.title=D.title;
