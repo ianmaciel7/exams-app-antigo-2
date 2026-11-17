@@ -4,7 +4,7 @@
 - **Original Branch:** `old-3`
 - **Commit SHA:** `19105d011c84fe7bf9b5cea4bb75f4fd4b94ea34`
 - **GitHub Reference:** [Commit 19105d0 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-3)
-- **Git Bundle:** [notes-app-old-3.bundle](notes-app-old-3.bundle)
+- **Git Bundle:** [notes-app-old-3.bundle](archive/backups/notes-app/notes-app-old-3.bundle)
 
 ## Purpose & Summary
 
@@ -30,6 +30,6 @@ A refactored iteration of the Capacities-inspired workspace, migrating component
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-3.bundle
-git clone notes-app-old-3.bundle -b old-3 ./restored-notes-app-old-3
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-3.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-3.bundle -b old-3 ./restored-notes-app-old-3
 ```
