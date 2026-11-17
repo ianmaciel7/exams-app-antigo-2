@@ -1,9 +1,9 @@
 # Catálogo de evidências
 
-Gerado por `scripts/build-evidence-catalog.py` em 2026-11-17T00:12:18Z. Não edite à mão: rode o script de novo.
+Gerado por `scripts/build-evidence-catalog.py` em 2026-11-17T00:15:49Z. Não edite à mão: rode o script de novo.
 
 - Mídias catalogadas: **374**
-- Órfãs (nenhum texto cita o arquivo): **0**
+- Órfãs (nenhum texto cita o arquivo): **184**
 - Grupos de duplicatas (mesmo conteúdo): **19**
 - Pares antes/depois: **32**
 - Resultados de teste em JSON: **17**
@@ -24,22 +24,22 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-44066168 | ![](capacities_live_right_panel_related.png) | `prototypes/capacities_live_right_panel_related.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-0D09685C | ![](capacities_live_right_panel_tab_overflow.png) | `prototypes/capacities_live_right_panel_tab_overflow.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-44066168 | ![](capacities_live_right_panel_related.png) | `prototypes/capacities_live_right_panel_related.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-0D09685C | ![](capacities_live_right_panel_tab_overflow.png) | `prototypes/capacities_live_right_panel_tab_overflow.png` | evidência externa | — | — | 2026-11-16 | órfão |
 
 ### Grafo e relacionamentos (14)
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-8A5CDCED | ![](archive_notes_app_old_4_graph_sidepanel.png) | `prototypes/archive_notes_app_old_4_graph_sidepanel.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-746317BA | ![](audit2026_graph_collision.png) | `prototypes/audit2026_graph_collision.png` | inspeção técnica | — | — | 2026-11-16 | ok |
+| EV-8A5CDCED | ![](archive_notes_app_old_4_graph_sidepanel.png) | `prototypes/archive_notes_app_old_4_graph_sidepanel.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-746317BA | ![](audit2026_graph_collision.png) | `prototypes/audit2026_graph_collision.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-D8797E8A | ![](capacities_global_graph_search_dropdown_open.png) | `prototypes/capacities_global_graph_search_dropdown_open.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-60A65B83 | ![](capacities_global_graph_search_node_nav.png) | `prototypes/capacities_global_graph_search_node_nav.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-3CCD4F15 | ![](capacities_live_3pane_local_graph.png) | `prototypes/capacities_live_3pane_local_graph.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-12243876 | ![](capacities_live_global_graph_constellation.png) | `prototypes/capacities_live_global_graph_constellation.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-77CE3663 | ![](capacities_live_global_graph_search_autozoom.png) | `prototypes/capacities_live_global_graph_search_autozoom.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-7CD72FA7 | ![](capacities_live_graph_3tier_nodes_resized.png) | `prototypes/capacities_live_graph_3tier_nodes_resized.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-4FAE1CD9 | ![](capacities_live_graph_filter_popover.png) | `prototypes/capacities_live_graph_filter_popover.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-3CCD4F15 | ![](capacities_live_3pane_local_graph.png) | `prototypes/capacities_live_3pane_local_graph.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-12243876 | ![](capacities_live_global_graph_constellation.png) | `prototypes/capacities_live_global_graph_constellation.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-77CE3663 | ![](capacities_live_global_graph_search_autozoom.png) | `prototypes/capacities_live_global_graph_search_autozoom.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-7CD72FA7 | ![](capacities_live_graph_3tier_nodes_resized.png) | `prototypes/capacities_live_graph_3tier_nodes_resized.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-4FAE1CD9 | ![](capacities_live_graph_filter_popover.png) | `prototypes/capacities_live_graph_filter_popover.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-2526ED2C | ![](issue68_export_graph_1366.png) | `prototypes/issue68_export_graph_1366.png` | captura do protótipo | — | [#68](https://github.com/ianmaciel7/exams-app/issues/68) | 2026-11-16 | ok |
 | EV-96F80568 | ![](issue68_export_graph_390.png) | `prototypes/issue68_export_graph_390.png` | captura do protótipo | — | [#68](https://github.com/ianmaciel7/exams-app/issues/68) | 2026-11-16 | ok |
 | EV-B54B8D8C | ![](issue68_graph_toolbar_1366.png) | `prototypes/issue68_graph_toolbar_1366.png` | captura do protótipo | — | [#68](https://github.com/ianmaciel7/exams-app/issues/68) | 2026-11-16 | ok |
@@ -50,56 +50,56 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-2D19B6C7 | ![](02126f3b520aaad9b5c9577b472379a8.png) | `prototypes/02126f3b520aaad9b5c9577b472379a8.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-F8B4C6C0 | ![](245371488f6e2d39a3dc98e934d488f4.png) | `prototypes/245371488f6e2d39a3dc98e934d488f4.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-B5D2169C | ![](265be9aa9703f3cc57f43d3c62f96de1.png) | `prototypes/265be9aa9703f3cc57f43d3c62f96de1.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-B9582D2E | ![](346da48cb8ad25f2a7857b2d30933368.png) | `prototypes/346da48cb8ad25f2a7857b2d30933368.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-31385FBF | ![](474678ed59f7cc5b7fbf3494dd75704f.png) | `prototypes/474678ed59f7cc5b7fbf3494dd75704f.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-CDB2427D | ![](4916231707b4b56575f007bdc921fa91.png) | `prototypes/4916231707b4b56575f007bdc921fa91.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-7166AED6 | ![](5dd2843391f7c5827e8905be47daf12d.png) | `prototypes/5dd2843391f7c5827e8905be47daf12d.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-68F93463 | ![](5e04fb915ee94b2c67a5adb37585e685.png) | `prototypes/5e04fb915ee94b2c67a5adb37585e685.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-E72E88A1 | ![](731ecd45a56634184b7bcd8df6de8c5b.png) | `prototypes/731ecd45a56634184b7bcd8df6de8c5b.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-17E0A82A | ![](748153cb0d733bded9a8c682d75eb22c.png) | `prototypes/748153cb0d733bded9a8c682d75eb22c.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-EBDE6307 | ![](785ec225c4eb1d55dbb90821ab83bfe0.png) | `prototypes/785ec225c4eb1d55dbb90821ab83bfe0.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-C90D94B8 | ![](791462f4696e4cfd2e62304ca7520faf.png) | `prototypes/791462f4696e4cfd2e62304ca7520faf.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-9B52B59E | ![](831c50665375ea7ebd6bb067f3e09c4e.png) | `prototypes/831c50665375ea7ebd6bb067f3e09c4e.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-9D33E02E | ![](84ae80e4902c3ad8907983654d8015b3.png) | `prototypes/84ae80e4902c3ad8907983654d8015b3.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-C32301CE | ![](8852061c63b37547e1c657dda371bbee.png) | `prototypes/8852061c63b37547e1c657dda371bbee.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-E979D9A0 | ![](8d42664c47e656b5f3b9c49ea3e6b134.png) | `prototypes/8d42664c47e656b5f3b9c49ea3e6b134.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-421D8DA2 | ![](9083d3341a57b970d09f1293fe724ffa.png) | `prototypes/9083d3341a57b970d09f1293fe724ffa.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-2CC4E352 | ![](946aec4deb45e6d0b1be13525eb558b0.png) | `prototypes/946aec4deb45e6d0b1be13525eb558b0.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-C1A84D2B | ![](a2e193b128aa82280b9e19b8ba5920be.png) | `prototypes/a2e193b128aa82280b9e19b8ba5920be.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-2D19B6C7 | ![](02126f3b520aaad9b5c9577b472379a8.png) | `prototypes/02126f3b520aaad9b5c9577b472379a8.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-F8B4C6C0 | ![](245371488f6e2d39a3dc98e934d488f4.png) | `prototypes/245371488f6e2d39a3dc98e934d488f4.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-B5D2169C | ![](265be9aa9703f3cc57f43d3c62f96de1.png) | `prototypes/265be9aa9703f3cc57f43d3c62f96de1.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-B9582D2E | ![](346da48cb8ad25f2a7857b2d30933368.png) | `prototypes/346da48cb8ad25f2a7857b2d30933368.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-31385FBF | ![](474678ed59f7cc5b7fbf3494dd75704f.png) | `prototypes/474678ed59f7cc5b7fbf3494dd75704f.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-CDB2427D | ![](4916231707b4b56575f007bdc921fa91.png) | `prototypes/4916231707b4b56575f007bdc921fa91.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-7166AED6 | ![](5dd2843391f7c5827e8905be47daf12d.png) | `prototypes/5dd2843391f7c5827e8905be47daf12d.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-68F93463 | ![](5e04fb915ee94b2c67a5adb37585e685.png) | `prototypes/5e04fb915ee94b2c67a5adb37585e685.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-E72E88A1 | ![](731ecd45a56634184b7bcd8df6de8c5b.png) | `prototypes/731ecd45a56634184b7bcd8df6de8c5b.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-17E0A82A | ![](748153cb0d733bded9a8c682d75eb22c.png) | `prototypes/748153cb0d733bded9a8c682d75eb22c.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-EBDE6307 | ![](785ec225c4eb1d55dbb90821ab83bfe0.png) | `prototypes/785ec225c4eb1d55dbb90821ab83bfe0.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-C90D94B8 | ![](791462f4696e4cfd2e62304ca7520faf.png) | `prototypes/791462f4696e4cfd2e62304ca7520faf.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-9B52B59E | ![](831c50665375ea7ebd6bb067f3e09c4e.png) | `prototypes/831c50665375ea7ebd6bb067f3e09c4e.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-9D33E02E | ![](84ae80e4902c3ad8907983654d8015b3.png) | `prototypes/84ae80e4902c3ad8907983654d8015b3.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-C32301CE | ![](8852061c63b37547e1c657dda371bbee.png) | `prototypes/8852061c63b37547e1c657dda371bbee.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-E979D9A0 | ![](8d42664c47e656b5f3b9c49ea3e6b134.png) | `prototypes/8d42664c47e656b5f3b9c49ea3e6b134.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-421D8DA2 | ![](9083d3341a57b970d09f1293fe724ffa.png) | `prototypes/9083d3341a57b970d09f1293fe724ffa.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-2CC4E352 | ![](946aec4deb45e6d0b1be13525eb558b0.png) | `prototypes/946aec4deb45e6d0b1be13525eb558b0.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-C1A84D2B | ![](a2e193b128aa82280b9e19b8ba5920be.png) | `prototypes/a2e193b128aa82280b9e19b8ba5920be.png` | a classificar | — | — | 2026-11-16 | órfão |
 | EV-41354C47 | ![](antes-depois-concurso.png) | `prototypes/antes-depois-concurso.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-858637B7 | ![](antes-depois-edicao.png) | `prototypes/antes-depois-edicao.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-C10B867D | ![](b58de1eeada0232a88aed896ece2168b.png) | `prototypes/b58de1eeada0232a88aed896ece2168b.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-A6723351 | ![](b7e3a67f5e62b599877bb5b3174ea4c0.png) | `prototypes/b7e3a67f5e62b599877bb5b3174ea4c0.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-9B911B08 | ![](bug_spTopBtn_duplicated_lightbulb.png) | `prototypes/bug_spTopBtn_duplicated_lightbulb.png` | captura do protótipo | — | — | 2026-11-16 | ok |
-| EV-84F4EFDF | ![](c6f3efc2d1ce12dfa1331f679bdfb8a9.png) | `prototypes/c6f3efc2d1ce12dfa1331f679bdfb8a9.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-7001F2F5 | ![](capacities_live_3pane_explorar_grid.png) | `prototypes/capacities_live_3pane_explorar_grid.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-1B137907 | ![](capacities_live_new_popover.png) | `prototypes/capacities_live_new_popover.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-7C4D6AA0 | ![](capacities_live_object_page_anatomy.png) | `prototypes/capacities_live_object_page_anatomy.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-AE9C69BF | ![](capacities_live_type_context_menu.png) | `prototypes/capacities_live_type_context_menu.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-3ECCFB5D | ![](capacities_live_type_dashboard_gallery.png) | `prototypes/capacities_live_type_dashboard_gallery.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-8D9C90DB | ![](cc0093684c5ae6f612afbbf6b91bd674.png) | `prototypes/cc0093684c5ae6f612afbbf6b91bd674.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-06AC4BF3 | ![](cf85b4fdc73d3e37137c304ff737aadc.png) | `prototypes/cf85b4fdc73d3e37137c304ff737aadc.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-8DB5496F | ![](f9c476ddeb52b075e841baacdff748f1.png) | `prototypes/f9c476ddeb52b075e841baacdff748f1.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-B82C33AC | ![](fc38ad7f1771ecbdbcc5341596b58f24.png) | `prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-C411497A | ![](inline-e10.jpg) | `prototypes/inline-e10.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-52814FD9 | ![](inline-e109.jpg) | `prototypes/inline-e109.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-A7F2035B | ![](inline-e110.jpg) | `prototypes/inline-e110.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-1F4D33B1 | ![](inline-e114.jpg) | `prototypes/inline-e114.jpg` | a classificar | — | — | 2026-11-16 | ok |
+| EV-C10B867D | ![](b58de1eeada0232a88aed896ece2168b.png) | `prototypes/b58de1eeada0232a88aed896ece2168b.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-A6723351 | ![](b7e3a67f5e62b599877bb5b3174ea4c0.png) | `prototypes/b7e3a67f5e62b599877bb5b3174ea4c0.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-9B911B08 | ![](bug_spTopBtn_duplicated_lightbulb.png) | `prototypes/bug_spTopBtn_duplicated_lightbulb.png` | captura do protótipo | — | — | 2026-11-16 | órfão |
+| EV-84F4EFDF | ![](c6f3efc2d1ce12dfa1331f679bdfb8a9.png) | `prototypes/c6f3efc2d1ce12dfa1331f679bdfb8a9.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-7001F2F5 | ![](capacities_live_3pane_explorar_grid.png) | `prototypes/capacities_live_3pane_explorar_grid.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-1B137907 | ![](capacities_live_new_popover.png) | `prototypes/capacities_live_new_popover.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-7C4D6AA0 | ![](capacities_live_object_page_anatomy.png) | `prototypes/capacities_live_object_page_anatomy.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-AE9C69BF | ![](capacities_live_type_context_menu.png) | `prototypes/capacities_live_type_context_menu.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-3ECCFB5D | ![](capacities_live_type_dashboard_gallery.png) | `prototypes/capacities_live_type_dashboard_gallery.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-8D9C90DB | ![](cc0093684c5ae6f612afbbf6b91bd674.png) | `prototypes/cc0093684c5ae6f612afbbf6b91bd674.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-06AC4BF3 | ![](cf85b4fdc73d3e37137c304ff737aadc.png) | `prototypes/cf85b4fdc73d3e37137c304ff737aadc.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-8DB5496F | ![](f9c476ddeb52b075e841baacdff748f1.png) | `prototypes/f9c476ddeb52b075e841baacdff748f1.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-B82C33AC | ![](fc38ad7f1771ecbdbcc5341596b58f24.png) | `prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-C411497A | ![](inline-e10.jpg) | `prototypes/inline-e10.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-52814FD9 | ![](inline-e109.jpg) | `prototypes/inline-e109.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-A7F2035B | ![](inline-e110.jpg) | `prototypes/inline-e110.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-1F4D33B1 | ![](inline-e114.jpg) | `prototypes/inline-e114.jpg` | a classificar | — | — | 2026-11-16 | órfão |
 | EV-08C85811 | ![](inline-e117.jpg) | `prototypes/inline-e117.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-0B4FED46 | ![](inline-e121.jpg) | `prototypes/inline-e121.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-0EE46EC6 | ![](inline-e122.jpg) | `prototypes/inline-e122.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-891893BA | ![](inline-e123.jpg) | `prototypes/inline-e123.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-68C2A92F | ![](inline-e124.jpg) | `prototypes/inline-e124.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-DCBD4E38 | ![](inline-e151.jpg) | `prototypes/inline-e151.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-B8AECDBA | ![](inline-e44.jpg) | `prototypes/inline-e44.jpg` | a classificar | — | — | 2026-11-16 | duplicata |
-| EV-A4DC2173 | ![](inline-e5.jpg) | `prototypes/inline-e5.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-959DB5C5 | ![](inline-e6.jpg) | `prototypes/inline-e6.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-3F2AD051 | ![](inline-e7.jpg) | `prototypes/inline-e7.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-CF64F521 | ![](inline-e8.jpg) | `prototypes/inline-e8.jpg` | a classificar | — | — | 2026-11-16 | ok |
-| EV-1598FF02 | ![](inline-e9.jpg) | `prototypes/inline-e9.jpg` | a classificar | — | — | 2026-11-16 | ok |
+| EV-0B4FED46 | ![](inline-e121.jpg) | `prototypes/inline-e121.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-0EE46EC6 | ![](inline-e122.jpg) | `prototypes/inline-e122.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-891893BA | ![](inline-e123.jpg) | `prototypes/inline-e123.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-68C2A92F | ![](inline-e124.jpg) | `prototypes/inline-e124.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-DCBD4E38 | ![](inline-e151.jpg) | `prototypes/inline-e151.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-B8AECDBA | ![](inline-e44.jpg) | `prototypes/inline-e44.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-A4DC2173 | ![](inline-e5.jpg) | `prototypes/inline-e5.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-959DB5C5 | ![](inline-e6.jpg) | `prototypes/inline-e6.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-3F2AD051 | ![](inline-e7.jpg) | `prototypes/inline-e7.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-CF64F521 | ![](inline-e8.jpg) | `prototypes/inline-e8.jpg` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-1598FF02 | ![](inline-e9.jpg) | `prototypes/inline-e9.jpg` | a classificar | — | — | 2026-11-16 | órfão |
 | EV-465CBBF2 | ![](j1-busca-layout-desktop.png) | `prototypes/j1-busca-layout-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-47E922CF | ![](j3-teclado-lista-desktop.png) | `prototypes/j3-teclado-lista-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-FFECF72B | ![](j4-canvas-foco-e500-desktop.png) | `prototypes/j4-canvas-foco-e500-desktop.png` | a classificar | — | — | 2026-11-16 | ok |
@@ -112,12 +112,12 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-16C7ED09 | ![](antes-depois-tipo-pdf.png) | `prototypes/antes-depois-tipo-pdf.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-263DD539 | ![](issue75_before_no_notebooks.png) | `prototypes/issue75_before_no_notebooks.png` | captura do protótipo | antes | [#75](https://github.com/ianmaciel7/exams-app/issues/75) | 2026-11-16 | ok |
 | EV-5DBBE9C0 | ![](issue76_notebook_pending.png) | `prototypes/issue76_notebook_pending.png` | captura do protótipo | — | [#76](https://github.com/ianmaciel7/exams-app/issues/76) | 2026-11-16 | ok |
-| EV-AD61AF3E | ![](issue77_reader_marginalia_1366.png) | `prototypes/issue77_reader_marginalia_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
-| EV-1195C225 | ![](issue77_reader_marginalia_390.png) | `prototypes/issue77_reader_marginalia_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
-| EV-A3540329 | ![](issue77_reader_original_1366.png) | `prototypes/issue77_reader_original_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
-| EV-899DD3D4 | ![](issue77_reader_original_390.png) | `prototypes/issue77_reader_original_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
-| EV-C2ACF691 | ![](issue77_reader_text_highlight_1366.png) | `prototypes/issue77_reader_text_highlight_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
-| EV-2078432A | ![](issue77_reader_text_highlight_390.png) | `prototypes/issue77_reader_text_highlight_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | ok |
+| EV-AD61AF3E | ![](issue77_reader_marginalia_1366.png) | `prototypes/issue77_reader_marginalia_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
+| EV-1195C225 | ![](issue77_reader_marginalia_390.png) | `prototypes/issue77_reader_marginalia_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
+| EV-A3540329 | ![](issue77_reader_original_1366.png) | `prototypes/issue77_reader_original_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
+| EV-899DD3D4 | ![](issue77_reader_original_390.png) | `prototypes/issue77_reader_original_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
+| EV-C2ACF691 | ![](issue77_reader_text_highlight_1366.png) | `prototypes/issue77_reader_text_highlight_1366.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
+| EV-2078432A | ![](issue77_reader_text_highlight_390.png) | `prototypes/issue77_reader_text_highlight_390.png` | captura do protótipo | — | [#77](https://github.com/ianmaciel7/exams-app/issues/77) | 2026-11-16 | órfão |
 | EV-E95314C6 | ![](pdf112_after_dpr2_zoom1.png) | `prototypes/pdf112_after_dpr2_zoom1.png` | teste executado | depois | — | 2026-11-16 | ok |
 | EV-92703D13 | ![](pdf112_after_dpr2_zoom2.png) | `prototypes/pdf112_after_dpr2_zoom2.png` | teste executado | depois | — | 2026-11-16 | ok |
 | EV-F85FF3D5 | ![](pdf112_before_dpr2_zoom1.png) | `prototypes/pdf112_before_dpr2_zoom1.png` | teste executado | antes | — | 2026-11-16 | duplicata |
@@ -171,12 +171,12 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-4B2BB58B | ![](audit2026_questao_collapsed.png) | `prototypes/audit2026_questao_collapsed.png` | inspeção técnica | — | — | 2026-11-16 | ok |
-| EV-200B5091 | ![](audit2026_questao_expanded.png) | `prototypes/audit2026_questao_expanded.png` | inspeção técnica | — | — | 2026-11-16 | ok |
-| EV-EA4158D7 | ![](audit2026_tipo_questao_wrap.png) | `prototypes/audit2026_tipo_questao_wrap.png` | inspeção técnica | — | — | 2026-11-16 | ok |
+| EV-4B2BB58B | ![](audit2026_questao_collapsed.png) | `prototypes/audit2026_questao_collapsed.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
+| EV-200B5091 | ![](audit2026_questao_expanded.png) | `prototypes/audit2026_questao_expanded.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
+| EV-EA4158D7 | ![](audit2026_tipo_questao_wrap.png) | `prototypes/audit2026_tipo_questao_wrap.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-601DF4CD | ![](examtopics_az104_discussion_modal.png) | `prototypes/examtopics_az104_discussion_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-3D095C0C | ![](examtopics_az104_header_and_overview.png) | `prototypes/examtopics_az104_header_and_overview.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-006986D1 | ![](examtopics_az104_pagination_and_footer.png) | `prototypes/examtopics_az104_pagination_and_footer.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-006986D1 | ![](examtopics_az104_pagination_and_footer.png) | `prototypes/examtopics_az104_pagination_and_footer.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-A4C5D49B | ![](examtopics_az104_question_card.png) | `prototypes/examtopics_az104_question_card.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-06924DC9 | ![](examtopics_az104_solution_reveal.png) | `prototypes/examtopics_az104_solution_reveal.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-B58B0AF1 | ![](issue100_after_answer.png) | `prototypes/issue100_after_answer.png` | captura do protótipo | depois | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
@@ -186,14 +186,14 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-1B7F0D0B | ![](issue100_after_manual.png) | `prototypes/issue100_after_manual.png` | captura do protótipo | depois | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
 | EV-EAC6A02C | ![](issue100_before_global.png) | `prototypes/issue100_before_global.png` | captura do protótipo | antes | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
 | EV-DE9FADBE | ![](issue100_before_manual.png) | `prototypes/issue100_before_manual.png` | captura do protótipo | antes | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
-| EV-E376DBE6 | ![](issue70_after_cascade.png) | `prototypes/issue70_after_cascade.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-747DC3C2 | ![](issue70_after_clear_defaults.png) | `prototypes/issue70_after_clear_defaults.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-DD1B059F | ![](issue70_after_exclusion.png) | `prototypes/issue70_after_exclusion.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-7E400C01 | ![](issue70_after_mobile.png) | `prototypes/issue70_after_mobile.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-05180814 | ![](issue70_after_open_panel.png) | `prototypes/issue70_after_open_panel.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-F7573343 | ![](issue70_after_reload_flags.png) | `prototypes/issue70_after_reload_flags.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-9DBD7F7B | ![](issue70_after_saved.png) | `prototypes/issue70_after_saved.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
-| EV-4382E80C | ![](issue70_before_simple.png) | `prototypes/issue70_before_simple.png` | captura do protótipo | antes | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
+| EV-E376DBE6 | ![](issue70_after_cascade.png) | `prototypes/issue70_after_cascade.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-747DC3C2 | ![](issue70_after_clear_defaults.png) | `prototypes/issue70_after_clear_defaults.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-DD1B059F | ![](issue70_after_exclusion.png) | `prototypes/issue70_after_exclusion.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-7E400C01 | ![](issue70_after_mobile.png) | `prototypes/issue70_after_mobile.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-05180814 | ![](issue70_after_open_panel.png) | `prototypes/issue70_after_open_panel.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-F7573343 | ![](issue70_after_reload_flags.png) | `prototypes/issue70_after_reload_flags.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-9DBD7F7B | ![](issue70_after_saved.png) | `prototypes/issue70_after_saved.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
+| EV-4382E80C | ![](issue70_before_simple.png) | `prototypes/issue70_before_simple.png` | captura do protótipo | antes | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
 | EV-82FB4F7A | ![](issue75_after_book_answer.png) | `prototypes/issue75_after_book_answer.png` | captura do protótipo | depois | [#75](https://github.com/ianmaciel7/exams-app/issues/75) | 2026-11-16 | ok |
 | EV-AA84535F | ![](issue75_after_book_created.png) | `prototypes/issue75_after_book_created.png` | captura do protótipo | depois | [#75](https://github.com/ianmaciel7/exams-app/issues/75) | 2026-11-16 | ok |
 | EV-12C94AE0 | ![](issue75_after_continue_pending.png) | `prototypes/issue75_after_continue_pending.png` | captura do protótipo | depois | [#75](https://github.com/ianmaciel7/exams-app/issues/75) | 2026-11-16 | ok |
@@ -205,55 +205,55 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-6C748CC2 | ![](issue76_raiox_vertical.png) | `prototypes/issue76_raiox_vertical.png` | captura do protótipo | — | [#76](https://github.com/ianmaciel7/exams-app/issues/76) | 2026-11-16 | ok |
 | EV-AC965D4A | ![](issue76_recovered.png) | `prototypes/issue76_recovered.png` | captura do protótipo | — | [#76](https://github.com/ianmaciel7/exams-app/issues/76) | 2026-11-16 | ok |
 | EV-E7A0FC3D | ![](issue76_wrong_confirmed.png) | `prototypes/issue76_wrong_confirmed.png` | captura do protótipo | — | [#76](https://github.com/ianmaciel7/exams-app/issues/76) | 2026-11-16 | ok |
-| EV-323207E1 | ![](issue82_cloze_1366.png) | `prototypes/issue82_cloze_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-093E862A | ![](issue82_cloze_390.png) | `prototypes/issue82_cloze_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-1A6A1FC3 | ![](issue82_feedback_dialog_1366.png) | `prototypes/issue82_feedback_dialog_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-46023A16 | ![](issue82_feedback_dialog_390.png) | `prototypes/issue82_feedback_dialog_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-91D8FE6C | ![](issue82_qa_revealed_1366.png) | `prototypes/issue82_qa_revealed_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-7D84A407 | ![](issue82_qa_revealed_390.png) | `prototypes/issue82_qa_revealed_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-85B25E3C | ![](issue82_question_import_1366.png) | `prototypes/issue82_question_import_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
-| EV-AE331D1F | ![](issue82_question_import_390.png) | `prototypes/issue82_question_import_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | ok |
+| EV-323207E1 | ![](issue82_cloze_1366.png) | `prototypes/issue82_cloze_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-093E862A | ![](issue82_cloze_390.png) | `prototypes/issue82_cloze_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-1A6A1FC3 | ![](issue82_feedback_dialog_1366.png) | `prototypes/issue82_feedback_dialog_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-46023A16 | ![](issue82_feedback_dialog_390.png) | `prototypes/issue82_feedback_dialog_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-91D8FE6C | ![](issue82_qa_revealed_1366.png) | `prototypes/issue82_qa_revealed_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-7D84A407 | ![](issue82_qa_revealed_390.png) | `prototypes/issue82_qa_revealed_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-85B25E3C | ![](issue82_question_import_1366.png) | `prototypes/issue82_question_import_1366.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
+| EV-AE331D1F | ![](issue82_question_import_390.png) | `prototypes/issue82_question_import_390.png` | captura do protótipo | — | [#82](https://github.com/ianmaciel7/exams-app/issues/82) | 2026-11-16 | órfão |
 | EV-8421275B | ![](qconcursos_alternative_scissors_struck.png) | `prototypes/qconcursos_alternative_scissors_struck.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-05E35A5A | ![](qconcursos_configuracoes_questoes_drawer.png) | `prototypes/qconcursos_configuracoes_questoes_drawer.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-05E35A5A | ![](qconcursos_configuracoes_questoes_drawer.png) | `prototypes/qconcursos_configuracoes_questoes_drawer.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-5F61CF37 | ![](qconcursos_desempenho_charts_and_table.png) | `prototypes/qconcursos_desempenho_charts_and_table.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-6F381195 | ![](qconcursos_desempenho_disciplina_expanded.png) | `prototypes/qconcursos_desempenho_disciplina_expanded.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-6857861D | ![](qconcursos_desempenho_top_overview.png) | `prototypes/qconcursos_desempenho_top_overview.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-66C8BFF3 | ![](qconcursos_dock_cronometro_open.png) | `prototypes/qconcursos_dock_cronometro_open.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-601DD34F | ![](qconcursos_dock_desempenho_active.png) | `prototypes/qconcursos_dock_desempenho_active.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-971E8205 | ![](qconcursos_dock_folha_respostas.png) | `prototypes/qconcursos_dock_folha_respostas.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-66C8BFF3 | ![](qconcursos_dock_cronometro_open.png) | `prototypes/qconcursos_dock_cronometro_open.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-601DD34F | ![](qconcursos_dock_desempenho_active.png) | `prototypes/qconcursos_dock_desempenho_active.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-971E8205 | ![](qconcursos_dock_folha_respostas.png) | `prototypes/qconcursos_dock_folha_respostas.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-E7E51671 | ![](qconcursos_dock_fonte_aa_active.png) | `prototypes/qconcursos_dock_fonte_aa_active.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-B612D6D0 | ![](qconcursos_dock_marcatexto_open.png) | `prototypes/qconcursos_dock_marcatexto_open.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-AAC6704A | ![](qconcursos_dock_modo_foco.png) | `prototypes/qconcursos_dock_modo_foco.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-B612D6D0 | ![](qconcursos_dock_marcatexto_open.png) | `prototypes/qconcursos_dock_marcatexto_open.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-AAC6704A | ![](qconcursos_dock_modo_foco.png) | `prototypes/qconcursos_dock_modo_foco.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-8C8261FF | ![](qconcursos_dock_resumos_paywall_modal.png) | `prototypes/qconcursos_dock_resumos_paywall_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-AB51C557 | ![](qconcursos_filter_assunto_open.png) | `prototypes/qconcursos_filter_assunto_open.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-AB51C557 | ![](qconcursos_filter_assunto_open.png) | `prototypes/qconcursos_filter_assunto_open.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-9515C7A8 | ![](qconcursos_filter_assunto_tree_open.png) | `prototypes/qconcursos_filter_assunto_tree_open.png` | evidência externa | — | — | 2026-11-16 | duplicata |
-| EV-61F04946 | ![](qconcursos_filter_banca_open.png) | `prototypes/qconcursos_filter_banca_open.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-95281AF8 | ![](qconcursos_filter_dificuldade_open.png) | `prototypes/qconcursos_filter_dificuldade_open.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-61F04946 | ![](qconcursos_filter_banca_open.png) | `prototypes/qconcursos_filter_banca_open.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-95281AF8 | ![](qconcursos_filter_dificuldade_open.png) | `prototypes/qconcursos_filter_dificuldade_open.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-78869277 | ![](qconcursos_filter_disciplina_open.png) | `prototypes/qconcursos_filter_disciplina_open.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-025A4DA8 | ![](qconcursos_gerar_caderno_modal.png) | `prototypes/qconcursos_gerar_caderno_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-36C64E0A | ![](qconcursos_list_toolbar_options.png) | `prototypes/qconcursos_list_toolbar_options.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-025A4DA8 | ![](qconcursos_gerar_caderno_modal.png) | `prototypes/qconcursos_gerar_caderno_modal.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-36C64E0A | ![](qconcursos_list_toolbar_options.png) | `prototypes/qconcursos_list_toolbar_options.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-B76E0DDB | ![](qconcursos_live_filter_actions_bar.png) | `prototypes/qconcursos_live_filter_actions_bar.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-0C65D561 | ![](qconcursos_live_filter_builder_top.png) | `prototypes/qconcursos_live_filter_builder_top.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-0C65D561 | ![](qconcursos_live_filter_builder_top.png) | `prototypes/qconcursos_live_filter_builder_top.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-C4E38362 | ![](qconcursos_live_home_caderno_erros.png) | `prototypes/qconcursos_live_home_caderno_erros.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-E3813414 | ![](qconcursos_live_home_caderno_questoes_tab.png) | `prototypes/qconcursos_live_home_caderno_questoes_tab.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-E3813414 | ![](qconcursos_live_home_caderno_questoes_tab.png) | `prototypes/qconcursos_live_home_caderno_questoes_tab.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-175D5786 | ![](qconcursos_live_home_proxima_acao.png) | `prototypes/qconcursos_live_home_proxima_acao.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-D79D632B | ![](qconcursos_live_home_raiox_curso.png) | `prototypes/qconcursos_live_home_raiox_curso.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-270FF1F0 | ![](qconcursos_live_home_ritmo_disciplinas.png) | `prototypes/qconcursos_live_home_ritmo_disciplinas.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-EA531B53 | ![](qconcursos_live_question_answered_feedback.png) | `prototypes/qconcursos_live_question_answered_feedback.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-92A01037 | ![](qconcursos_live_question_initial_state.png) | `prototypes/qconcursos_live_question_initial_state.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-AA67064B | ![](qconcursos_live_question_option_selected_orange.png) | `prototypes/qconcursos_live_question_option_selected_orange.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-FE85046A | ![](qconcursos_live_question_scissors_eliminated.png) | `prototypes/qconcursos_live_question_scissors_eliminated.png` | evidência externa | — | — | 2026-11-16 | duplicata |
-| EV-6C33A25C | ![](qconcursos_live_question_tab_anotacoes.png) | `prototypes/qconcursos_live_question_tab_anotacoes.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-56CBF0F4 | ![](qconcursos_live_question_tab_aulas_video.png) | `prototypes/qconcursos_live_question_tab_aulas_video.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-93EDA90D | ![](qconcursos_live_question_tab_cadernos_save.png) | `prototypes/qconcursos_live_question_tab_cadernos_save.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-4DA79B6B | ![](qconcursos_live_question_tab_comentarios.png) | `prototypes/qconcursos_live_question_tab_comentarios.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-D79D632B | ![](qconcursos_live_home_raiox_curso.png) | `prototypes/qconcursos_live_home_raiox_curso.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-270FF1F0 | ![](qconcursos_live_home_ritmo_disciplinas.png) | `prototypes/qconcursos_live_home_ritmo_disciplinas.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-EA531B53 | ![](qconcursos_live_question_answered_feedback.png) | `prototypes/qconcursos_live_question_answered_feedback.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-92A01037 | ![](qconcursos_live_question_initial_state.png) | `prototypes/qconcursos_live_question_initial_state.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-AA67064B | ![](qconcursos_live_question_option_selected_orange.png) | `prototypes/qconcursos_live_question_option_selected_orange.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-FE85046A | ![](qconcursos_live_question_scissors_eliminated.png) | `prototypes/qconcursos_live_question_scissors_eliminated.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-6C33A25C | ![](qconcursos_live_question_tab_anotacoes.png) | `prototypes/qconcursos_live_question_tab_anotacoes.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-56CBF0F4 | ![](qconcursos_live_question_tab_aulas_video.png) | `prototypes/qconcursos_live_question_tab_aulas_video.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-93EDA90D | ![](qconcursos_live_question_tab_cadernos_save.png) | `prototypes/qconcursos_live_question_tab_cadernos_save.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-4DA79B6B | ![](qconcursos_live_question_tab_comentarios.png) | `prototypes/qconcursos_live_question_tab_comentarios.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-AD3ECA10 | ![](qconcursos_live_question_tab_estatisticas.png) | `prototypes/qconcursos_live_question_tab_estatisticas.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-7D3CBF40 | ![](qconcursos_live_question_tab_gabarito_comentado.png) | `prototypes/qconcursos_live_question_tab_gabarito_comentado.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-481E0575 | ![](qconcursos_live_question_texto_associado.png) | `prototypes/qconcursos_live_question_texto_associado.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-7D3CBF40 | ![](qconcursos_live_question_tab_gabarito_comentado.png) | `prototypes/qconcursos_live_question_tab_gabarito_comentado.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-481E0575 | ![](qconcursos_live_question_texto_associado.png) | `prototypes/qconcursos_live_question_texto_associado.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-8C9BE85F | ![](qconcursos_question_anotacoes_editor.png) | `prototypes/qconcursos_question_anotacoes_editor.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-0F1ED472 | ![](qconcursos_question_cadernos_tab.png) | `prototypes/qconcursos_question_cadernos_tab.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-888A2968 | ![](qconcursos_question_notificar_erro.png) | `prototypes/qconcursos_question_notificar_erro.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-16CE889F | ![](qconcursos_salvar_filtros_modal.png) | `prototypes/qconcursos_salvar_filtros_modal.png` | evidência externa | — | — | 2026-11-16 | duplicata |
+| EV-888A2968 | ![](qconcursos_question_notificar_erro.png) | `prototypes/qconcursos_question_notificar_erro.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-16CE889F | ![](qconcursos_salvar_filtros_modal.png) | `prototypes/qconcursos_salvar_filtros_modal.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-7A66B6F1 | ![](qconcursos_texto_associado_expanded.png) | `prototypes/qconcursos_texto_associado_expanded.png` | evidência externa | — | — | 2026-11-16 | ok |
 
 ### Revisão espaçada (31)
@@ -274,7 +274,7 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-3D02E3AD | ![](readwise_srs_export_highlights_top.png) | `prototypes/readwise_srs_export_highlights_top.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-08F02341 | ![](readwise_srs_export_integrations.png) | `prototypes/readwise_srs_export_integrations.png` | evidência externa | — | — | 2026-11-16 | duplicata |
 | EV-21AAE6B1 | ![](readwise_srs_feedback_tuning_modal.png) | `prototypes/readwise_srs_feedback_tuning_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-F4EA0F76 | ![](readwise_srs_freeform_input_book_select.png) | `prototypes/readwise_srs_freeform_input_book_select.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-F4EA0F76 | ![](readwise_srs_freeform_input_book_select.png) | `prototypes/readwise_srs_freeform_input_book_select.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-A7CEA066 | ![](readwise_srs_freeform_input_highlight_form.png) | `prototypes/readwise_srs_freeform_input_highlight_form.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-AA6A58B0 | ![](readwise_srs_frequency_tuning_by_source.png) | `prototypes/readwise_srs_frequency_tuning_by_source.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-B7D88D68 | ![](readwise_srs_frequency_tuning_dropdown.png) | `prototypes/readwise_srs_frequency_tuning_dropdown.png` | evidência externa | — | — | 2026-11-16 | ok |
@@ -296,12 +296,12 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-02584A42 | ![](audit2026_simulado_exec.png) | `prototypes/audit2026_simulado_exec.png` | inspeção técnica | — | — | 2026-11-16 | ok |
-| EV-23D9B7D7 | ![](audit2026_simulado_resultado.png) | `prototypes/audit2026_simulado_resultado.png` | inspeção técnica | — | — | 2026-11-16 | ok |
+| EV-02584A42 | ![](audit2026_simulado_exec.png) | `prototypes/audit2026_simulado_exec.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
+| EV-23D9B7D7 | ![](audit2026_simulado_resultado.png) | `prototypes/audit2026_simulado_resultado.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-7015B5D0 | ![](issue100_after_manual_simulado.png) | `prototypes/issue100_after_manual_simulado.png` | captura do protótipo | depois | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
 | EV-1CF15C1E | ![](issue100_after_simulado.png) | `prototypes/issue100_after_simulado.png` | captura do protótipo | depois | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
 | EV-31B7082C | ![](issue100_before_simulado.png) | `prototypes/issue100_before_simulado.png` | captura do protótipo | antes | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
-| EV-8F7952FB | ![](issue70_after_simulado_filtrado.png) | `prototypes/issue70_after_simulado_filtrado.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | ok |
+| EV-8F7952FB | ![](issue70_after_simulado_filtrado.png) | `prototypes/issue70_after_simulado_filtrado.png` | captura do protótipo | depois | [#70](https://github.com/ianmaciel7/exams-app/issues/70) | 2026-11-16 | órfão |
 | EV-CE2AA495 | ![](qconcursos_criar_simulado_config_modal.png) | `prototypes/qconcursos_criar_simulado_config_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
 
 ### Sincronização com Claude (9)
@@ -309,21 +309,21 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
 | EV-680B5C72 | ![](board-exam-app__assets__claude-storage-bridge__evidence-claude-web-artifact-public.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-claude-web-artifact-public.png` | teste executado | — | — | 2026-11-16 | ok |
-| EV-470F0295 | ![](board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png` | teste executado | — | — | 2026-11-16 | ok |
+| EV-470F0295 | ![](board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png` | teste executado | — | — | 2026-11-16 | órfão |
 | EV-06B777D6 | ![](board-exam-app__assets__claude-storage-bridge__evidence-homologation-clean-recovery.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-homologation-clean-recovery.png` | teste executado | — | — | 2026-11-16 | ok |
-| EV-BD6F411D | ![](board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png` | teste executado | — | — | 2026-11-16 | ok |
-| EV-A925D01D | ![](board-exam-app__assets__evidence-claude-web-artifact-public.png) | `prototypes/board-exam-app__assets__evidence-claude-web-artifact-public.png` | a classificar | — | — | 2026-11-16 | duplicata |
+| EV-BD6F411D | ![](board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png) | `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png` | teste executado | — | — | 2026-11-16 | órfão |
+| EV-A925D01D | ![](board-exam-app__assets__evidence-claude-web-artifact-public.png) | `prototypes/board-exam-app__assets__evidence-claude-web-artifact-public.png` | a classificar | — | — | 2026-11-16 | órfão |
 | EV-3A10609F | ![](board-exam-app__assets__evidence-e2e-sync-badge-active.png) | `prototypes/board-exam-app__assets__evidence-e2e-sync-badge-active.png` | a classificar | — | — | 2026-11-16 | duplicata |
-| EV-5A6BBC0D | ![](board-exam-app__assets__evidence-homologation-clean-recovery.png) | `prototypes/board-exam-app__assets__evidence-homologation-clean-recovery.png` | a classificar | — | — | 2026-11-16 | ok |
+| EV-5A6BBC0D | ![](board-exam-app__assets__evidence-homologation-clean-recovery.png) | `prototypes/board-exam-app__assets__evidence-homologation-clean-recovery.png` | a classificar | — | — | 2026-11-16 | órfão |
 | EV-69502B0A | ![](board-exam-app__assets__evidence-iframe-csp-blocked.png) | `prototypes/board-exam-app__assets__evidence-iframe-csp-blocked.png` | a classificar | — | — | 2026-11-16 | duplicata |
-| EV-4CF22728 | ![](claude-artifact-audit-seq128.png) | `prototypes/claude-artifact-audit-seq128.png` | captura do protótipo | — | — | 2026-11-16 | ok |
+| EV-4CF22728 | ![](claude-artifact-audit-seq128.png) | `prototypes/claude-artifact-audit-seq128.png` | captura do protótipo | — | — | 2026-11-16 | órfão |
 
 ### Tema claro/escuro (11)
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-FE578BF5 | ![](audit2026_home_dark.png) | `prototypes/audit2026_home_dark.png` | inspeção técnica | — | — | 2026-11-16 | ok |
-| EV-D012F0D3 | ![](audit2026_home_light.png) | `prototypes/audit2026_home_light.png` | inspeção técnica | — | — | 2026-11-16 | ok |
+| EV-FE578BF5 | ![](audit2026_home_dark.png) | `prototypes/audit2026_home_dark.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
+| EV-D012F0D3 | ![](audit2026_home_light.png) | `prototypes/audit2026_home_light.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-44E64AA7 | ![](issue120_after_auto_dark.png) | `prototypes/issue120_after_auto_dark.png` | captura do protótipo | depois | [#120](https://github.com/ianmaciel7/exams-app/issues/120) | 2026-11-16 | ok |
 | EV-C4B81B33 | ![](issue120_after_auto_light.png) | `prototypes/issue120_after_auto_light.png` | captura do protótipo | depois | [#120](https://github.com/ianmaciel7/exams-app/issues/120) | 2026-11-16 | ok |
 | EV-BF6E3B9F | ![](issue120_after_auto_light_restored.png) | `prototypes/issue120_after_auto_light_restored.png` | captura do protótipo | depois | [#120](https://github.com/ianmaciel7/exams-app/issues/120) | 2026-11-16 | ok |
@@ -339,9 +339,9 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
 | EV-3F547D54 | ![](antes-depois-cargo.png) | `prototypes/antes-depois-cargo.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-A1B2B193 | ![](audit2026_cargo_props.png) | `prototypes/audit2026_cargo_props.png` | inspeção técnica | — | — | 2026-11-16 | ok |
+| EV-A1B2B193 | ![](audit2026_cargo_props.png) | `prototypes/audit2026_cargo_props.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-6ACFCB20 | ![](issue139_after_contexts.png) | `prototypes/issue139_after_contexts.png` | captura do protótipo | depois | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | ok |
-| EV-4F895275 | ![](issue139_after_help.png) | `prototypes/issue139_after_help.png` | captura do protótipo | depois | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | ok |
+| EV-4F895275 | ![](issue139_after_help.png) | `prototypes/issue139_after_help.png` | captura do protótipo | depois | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | órfão |
 | EV-D0A1B8EE | ![](issue139_after_new_item.png) | `prototypes/issue139_after_new_item.png` | captura do protótipo | depois | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | ok |
 | EV-EB264DE2 | ![](issue139_after_search.png) | `prototypes/issue139_after_search.png` | captura do protótipo | depois | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | ok |
 | EV-BA5C7E78 | ![](issue139_before_help.png) | `prototypes/issue139_before_help.png` | captura do protótipo | antes | [#139](https://github.com/ianmaciel7/exams-app/issues/139) | 2026-11-16 | ok |
@@ -357,9 +357,9 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-8E965B1C | ![](archive_notes_app_old_10_recall_home.png) | `prototypes/archive_notes_app_old_10_recall_home.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-53492DA5 | ![](archive_notes_app_old_3_capacities_shell.png) | `prototypes/archive_notes_app_old_3_capacities_shell.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-6EFE2097 | ![](archive_notes_app_old_4_capacities_shell.png) | `prototypes/archive_notes_app_old_4_capacities_shell.png` | evidência externa | — | — | 2026-11-16 | ok |
+| EV-8E965B1C | ![](archive_notes_app_old_10_recall_home.png) | `prototypes/archive_notes_app_old_10_recall_home.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-53492DA5 | ![](archive_notes_app_old_3_capacities_shell.png) | `prototypes/archive_notes_app_old_3_capacities_shell.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-6EFE2097 | ![](archive_notes_app_old_4_capacities_shell.png) | `prototypes/archive_notes_app_old_4_capacities_shell.png` | evidência externa | — | — | 2026-11-16 | órfão |
 | EV-5DE83DBA | ![](exams-app-old-backup-old-1-dark.png) | `prototypes/exams-app-old-backup-old-1-dark.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-841D3050 | ![](exams-app-old-backup-old-1.png) | `prototypes/exams-app-old-backup-old-1.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-4495C970 | ![](notes-app-old-10.png) | `prototypes/notes-app-old-10.png` | a classificar | — | — | 2026-11-16 | duplicata |
@@ -377,10 +377,10 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 
 | Id | Miniatura | Arquivo | Tipo | Estado | Issue | Data | Integridade |
 |---|---|---|---|---|---|---|---|
-| EV-B9DA5922 | ![](467eb8f7f105cfc51e345390bbecd9c4.png) | `prototypes/467eb8f7f105cfc51e345390bbecd9c4.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-7595E35C | ![](capacities_live_collapsed_sidebar.png) | `prototypes/capacities_live_collapsed_sidebar.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-CE2986A7 | ![](issue128_reduced_1366.png) | `prototypes/issue128_reduced_1366.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | ok |
-| EV-B0A2376D | ![](issue128_reduced_390.png) | `prototypes/issue128_reduced_390.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | ok |
+| EV-B9DA5922 | ![](467eb8f7f105cfc51e345390bbecd9c4.png) | `prototypes/467eb8f7f105cfc51e345390bbecd9c4.png` | a classificar | — | — | 2026-11-16 | órfão |
+| EV-7595E35C | ![](capacities_live_collapsed_sidebar.png) | `prototypes/capacities_live_collapsed_sidebar.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-CE2986A7 | ![](issue128_reduced_1366.png) | `prototypes/issue128_reduced_1366.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | órfão |
+| EV-B0A2376D | ![](issue128_reduced_390.png) | `prototypes/issue128_reduced_390.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | órfão |
 | EV-ABF13588 | ![](issue128_restored_1366.png) | `prototypes/issue128_restored_1366.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | ok |
 | EV-9D8A7404 | ![](issue128_restored_390.png) | `prototypes/issue128_restored_390.png` | captura do protótipo | — | [#128](https://github.com/ianmaciel7/exams-app/issues/128) | 2026-11-16 | ok |
 | EV-BE009A8E | ![](issue132_after_1280.png) | `prototypes/issue132_after_1280.png` | captura do protótipo | depois | [#132](https://github.com/ianmaciel7/exams-app/issues/132) | 2026-11-16 | ok |
@@ -396,67 +396,250 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-9DCAA13D | ![](issue138_after_keyboard_desktop.png) | `prototypes/issue138_after_keyboard_desktop.png` | captura do protótipo | depois | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-16 | ok |
 | EV-E6DA16C5 | ![](issue138_after_mobile_390.png) | `prototypes/issue138_after_mobile_390.png` | captura do protótipo | depois | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-16 | ok |
 | EV-340DC64C | ![](issue138_before_desktop.png) | `prototypes/issue138_before_desktop.png` | captura do protótipo | antes | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-16 | ok |
-| EV-7678D4DD | ![](issue138_search_desktop.png) | `prototypes/issue138_search_desktop.png` | captura do protótipo | — | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-16 | ok |
-| EV-F32A3973 | ![](issue83_frequency_silent_1366.png) | `prototypes/issue83_frequency_silent_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
-| EV-77AD9831 | ![](issue83_frequency_silent_390.png) | `prototypes/issue83_frequency_silent_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
-| EV-72F03533 | ![](issue83_nondestructive_edit_1366.png) | `prototypes/issue83_nondestructive_edit_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
-| EV-3ECFFA2D | ![](issue83_nondestructive_edit_390.png) | `prototypes/issue83_nondestructive_edit_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
-| EV-DA94C847 | ![](issue83_review_heatmap_1366.png) | `prototypes/issue83_review_heatmap_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
-| EV-D891B182 | ![](issue83_review_heatmap_390.png) | `prototypes/issue83_review_heatmap_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | ok |
+| EV-7678D4DD | ![](issue138_search_desktop.png) | `prototypes/issue138_search_desktop.png` | captura do protótipo | — | [#138](https://github.com/ianmaciel7/exams-app/issues/138) | 2026-11-16 | órfão |
+| EV-F32A3973 | ![](issue83_frequency_silent_1366.png) | `prototypes/issue83_frequency_silent_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
+| EV-77AD9831 | ![](issue83_frequency_silent_390.png) | `prototypes/issue83_frequency_silent_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
+| EV-72F03533 | ![](issue83_nondestructive_edit_1366.png) | `prototypes/issue83_nondestructive_edit_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
+| EV-3ECFFA2D | ![](issue83_nondestructive_edit_390.png) | `prototypes/issue83_nondestructive_edit_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
+| EV-DA94C847 | ![](issue83_review_heatmap_1366.png) | `prototypes/issue83_review_heatmap_1366.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
+| EV-D891B182 | ![](issue83_review_heatmap_390.png) | `prototypes/issue83_review_heatmap_390.png` | captura do protótipo | — | [#83](https://github.com/ianmaciel7/exams-app/issues/83) | 2026-11-16 | órfão |
 | EV-FF30AFBC | ![](j6-mestre-320.png) | `prototypes/j6-mestre-320.png` | a classificar | — | — | 2026-11-16 | ok |
 | EV-E3B671AB | ![](j6-mestre-390.png) | `prototypes/j6-mestre-390.png` | a classificar | — | — | 2026-11-16 | ok |
-| EV-1C4781EA | ![](lowchrome_97_after_dark_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-C28BD30C | ![](lowchrome_97_after_dark_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-BC5D8509 | ![](lowchrome_97_after_dark_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1024_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-758A63FD | ![](lowchrome_97_after_dark_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_1024_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-2EB888EA | ![](lowchrome_97_after_dark_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-E62B32BB | ![](lowchrome_97_after_dark_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-0960E8A6 | ![](lowchrome_97_after_dark_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1366_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-34F2A8A1 | ![](lowchrome_97_after_dark_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_1366_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-689FBB79 | ![](lowchrome_97_after_dark_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_768_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-AA09E670 | ![](lowchrome_97_after_dark_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_768_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-AD1D7202 | ![](lowchrome_97_after_dark_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_768_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-9ED6AC93 | ![](lowchrome_97_after_dark_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_768_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-F1C7E641 | ![](lowchrome_97_after_light_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_1024_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-BD1DE3B9 | ![](lowchrome_97_after_light_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_1024_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-4A9E72AE | ![](lowchrome_97_after_light_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_1024_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-0FC85A0C | ![](lowchrome_97_after_light_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_1024_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-274432BD | ![](lowchrome_97_after_light_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_1366_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-D2C84331 | ![](lowchrome_97_after_light_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_1366_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-C1953378 | ![](lowchrome_97_after_light_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_1366_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-478D2EB6 | ![](lowchrome_97_after_light_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_1366_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-D7060E7F | ![](lowchrome_97_after_light_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_768_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-0912C577 | ![](lowchrome_97_after_light_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_768_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-2D494C32 | ![](lowchrome_97_after_light_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_768_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-6E4A660C | ![](lowchrome_97_after_light_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_768_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | ok |
-| EV-438F90AD | ![](lowchrome_97_before_dark_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-9B457D03 | ![](lowchrome_97_before_dark_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-06B4F737 | ![](lowchrome_97_before_dark_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1024_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-10DE33D3 | ![](lowchrome_97_before_dark_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_1024_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-CBD77C73 | ![](lowchrome_97_before_dark_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-09E5F50A | ![](lowchrome_97_before_dark_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-9F60C93F | ![](lowchrome_97_before_dark_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1366_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-F5C81BFA | ![](lowchrome_97_before_dark_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_1366_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-71437B94 | ![](lowchrome_97_before_dark_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_768_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-1E06635F | ![](lowchrome_97_before_dark_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_768_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-459E3A06 | ![](lowchrome_97_before_dark_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_768_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-8DF28F38 | ![](lowchrome_97_before_dark_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_768_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-2D7A1158 | ![](lowchrome_97_before_light_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_1024_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-308B3DAE | ![](lowchrome_97_before_light_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_1024_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-3C37423F | ![](lowchrome_97_before_light_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_1024_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-F4C3DCE6 | ![](lowchrome_97_before_light_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_1024_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-F5948D83 | ![](lowchrome_97_before_light_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_1366_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-F551E6D4 | ![](lowchrome_97_before_light_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_1366_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-42EC0E0E | ![](lowchrome_97_before_light_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_1366_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-35E4BB43 | ![](lowchrome_97_before_light_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_1366_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-6A9EC0C5 | ![](lowchrome_97_before_light_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_768_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-B68A76B0 | ![](lowchrome_97_before_light_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_768_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-C73A97DA | ![](lowchrome_97_before_light_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_768_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | ok |
-| EV-505980DC | ![](lowchrome_97_before_light_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_768_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | ok |
+| EV-1C4781EA | ![](lowchrome_97_after_dark_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-C28BD30C | ![](lowchrome_97_after_dark_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-BC5D8509 | ![](lowchrome_97_after_dark_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1024_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-758A63FD | ![](lowchrome_97_after_dark_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_1024_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-2EB888EA | ![](lowchrome_97_after_dark_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-E62B32BB | ![](lowchrome_97_after_dark_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-0960E8A6 | ![](lowchrome_97_after_dark_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_1366_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-34F2A8A1 | ![](lowchrome_97_after_dark_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_1366_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-689FBB79 | ![](lowchrome_97_after_dark_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_dark_768_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-AA09E670 | ![](lowchrome_97_after_dark_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_dark_768_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-AD1D7202 | ![](lowchrome_97_after_dark_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_dark_768_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-9ED6AC93 | ![](lowchrome_97_after_dark_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_dark_768_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-F1C7E641 | ![](lowchrome_97_after_light_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_1024_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-BD1DE3B9 | ![](lowchrome_97_after_light_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_1024_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-4A9E72AE | ![](lowchrome_97_after_light_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_1024_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-0FC85A0C | ![](lowchrome_97_after_light_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_1024_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-274432BD | ![](lowchrome_97_after_light_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_1366_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-D2C84331 | ![](lowchrome_97_after_light_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_1366_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-C1953378 | ![](lowchrome_97_after_light_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_1366_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-478D2EB6 | ![](lowchrome_97_after_light_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_1366_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-D7060E7F | ![](lowchrome_97_after_light_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_after_light_768_sideclosed_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-0912C577 | ![](lowchrome_97_after_light_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_after_light_768_sideclosed_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-2D494C32 | ![](lowchrome_97_after_light_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_after_light_768_sideopen_rightclosed.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-6E4A660C | ![](lowchrome_97_after_light_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_after_light_768_sideopen_rightopen.png` | teste executado | depois | — | 2026-11-16 | órfão |
+| EV-438F90AD | ![](lowchrome_97_before_dark_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-9B457D03 | ![](lowchrome_97_before_dark_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-06B4F737 | ![](lowchrome_97_before_dark_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1024_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-10DE33D3 | ![](lowchrome_97_before_dark_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_1024_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-CBD77C73 | ![](lowchrome_97_before_dark_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-09E5F50A | ![](lowchrome_97_before_dark_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-9F60C93F | ![](lowchrome_97_before_dark_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_1366_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-F5C81BFA | ![](lowchrome_97_before_dark_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_1366_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-71437B94 | ![](lowchrome_97_before_dark_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_dark_768_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-1E06635F | ![](lowchrome_97_before_dark_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_dark_768_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-459E3A06 | ![](lowchrome_97_before_dark_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_dark_768_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-8DF28F38 | ![](lowchrome_97_before_dark_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_dark_768_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-2D7A1158 | ![](lowchrome_97_before_light_1024_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_1024_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-308B3DAE | ![](lowchrome_97_before_light_1024_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_1024_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-3C37423F | ![](lowchrome_97_before_light_1024_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_1024_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-F4C3DCE6 | ![](lowchrome_97_before_light_1024_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_1024_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-F5948D83 | ![](lowchrome_97_before_light_1366_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_1366_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-F551E6D4 | ![](lowchrome_97_before_light_1366_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_1366_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-42EC0E0E | ![](lowchrome_97_before_light_1366_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_1366_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-35E4BB43 | ![](lowchrome_97_before_light_1366_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_1366_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-6A9EC0C5 | ![](lowchrome_97_before_light_768_sideclosed_rightclosed.png) | `prototypes/lowchrome_97_before_light_768_sideclosed_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-B68A76B0 | ![](lowchrome_97_before_light_768_sideclosed_rightopen.png) | `prototypes/lowchrome_97_before_light_768_sideclosed_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-C73A97DA | ![](lowchrome_97_before_light_768_sideopen_rightclosed.png) | `prototypes/lowchrome_97_before_light_768_sideopen_rightclosed.png` | teste executado | antes | — | 2026-11-16 | órfão |
+| EV-505980DC | ![](lowchrome_97_before_light_768_sideopen_rightopen.png) | `prototypes/lowchrome_97_before_light_768_sideopen_rightopen.png` | teste executado | antes | — | 2026-11-16 | órfão |
 
 ## Órfãos
 
-Nenhum.
+- `prototypes/02126f3b520aaad9b5c9577b472379a8.png`
+- `prototypes/245371488f6e2d39a3dc98e934d488f4.png`
+- `prototypes/265be9aa9703f3cc57f43d3c62f96de1.png`
+- `prototypes/346da48cb8ad25f2a7857b2d30933368.png`
+- `prototypes/467eb8f7f105cfc51e345390bbecd9c4.png`
+- `prototypes/474678ed59f7cc5b7fbf3494dd75704f.png`
+- `prototypes/4916231707b4b56575f007bdc921fa91.png`
+- `prototypes/5dd2843391f7c5827e8905be47daf12d.png`
+- `prototypes/5e04fb915ee94b2c67a5adb37585e685.png`
+- `prototypes/731ecd45a56634184b7bcd8df6de8c5b.png`
+- `prototypes/748153cb0d733bded9a8c682d75eb22c.png`
+- `prototypes/785ec225c4eb1d55dbb90821ab83bfe0.png`
+- `prototypes/791462f4696e4cfd2e62304ca7520faf.png`
+- `prototypes/831c50665375ea7ebd6bb067f3e09c4e.png`
+- `prototypes/84ae80e4902c3ad8907983654d8015b3.png`
+- `prototypes/8852061c63b37547e1c657dda371bbee.png`
+- `prototypes/8d42664c47e656b5f3b9c49ea3e6b134.png`
+- `prototypes/9083d3341a57b970d09f1293fe724ffa.png`
+- `prototypes/946aec4deb45e6d0b1be13525eb558b0.png`
+- `prototypes/a2e193b128aa82280b9e19b8ba5920be.png`
+- `prototypes/archive_notes_app_old_10_recall_home.png`
+- `prototypes/archive_notes_app_old_3_capacities_shell.png`
+- `prototypes/archive_notes_app_old_4_capacities_shell.png`
+- `prototypes/archive_notes_app_old_4_graph_sidepanel.png`
+- `prototypes/audit2026_cargo_props.png`
+- `prototypes/audit2026_graph_collision.png`
+- `prototypes/audit2026_home_dark.png`
+- `prototypes/audit2026_home_light.png`
+- `prototypes/audit2026_questao_collapsed.png`
+- `prototypes/audit2026_questao_expanded.png`
+- `prototypes/audit2026_simulado_exec.png`
+- `prototypes/audit2026_simulado_resultado.png`
+- `prototypes/audit2026_tipo_questao_wrap.png`
+- `prototypes/b58de1eeada0232a88aed896ece2168b.png`
+- `prototypes/b7e3a67f5e62b599877bb5b3174ea4c0.png`
+- `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png`
+- `prototypes/board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png`
+- `prototypes/board-exam-app__assets__evidence-claude-web-artifact-public.png`
+- `prototypes/board-exam-app__assets__evidence-homologation-clean-recovery.png`
+- `prototypes/bug_spTopBtn_duplicated_lightbulb.png`
+- `prototypes/c6f3efc2d1ce12dfa1331f679bdfb8a9.png`
+- `prototypes/capacities_live_3pane_explorar_grid.png`
+- `prototypes/capacities_live_3pane_local_graph.png`
+- `prototypes/capacities_live_collapsed_sidebar.png`
+- `prototypes/capacities_live_global_graph_constellation.png`
+- `prototypes/capacities_live_global_graph_search_autozoom.png`
+- `prototypes/capacities_live_graph_3tier_nodes_resized.png`
+- `prototypes/capacities_live_graph_filter_popover.png`
+- `prototypes/capacities_live_new_popover.png`
+- `prototypes/capacities_live_object_page_anatomy.png`
+- `prototypes/capacities_live_right_panel_related.png`
+- `prototypes/capacities_live_right_panel_tab_overflow.png`
+- `prototypes/capacities_live_type_context_menu.png`
+- `prototypes/capacities_live_type_dashboard_gallery.png`
+- `prototypes/cc0093684c5ae6f612afbbf6b91bd674.png`
+- `prototypes/cf85b4fdc73d3e37137c304ff737aadc.png`
+- `prototypes/claude-artifact-audit-seq128.png`
+- `prototypes/examtopics_az104_pagination_and_footer.png`
+- `prototypes/f9c476ddeb52b075e841baacdff748f1.png`
+- `prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png`
+- `prototypes/inline-e10.jpg`
+- `prototypes/inline-e109.jpg`
+- `prototypes/inline-e110.jpg`
+- `prototypes/inline-e114.jpg`
+- `prototypes/inline-e121.jpg`
+- `prototypes/inline-e122.jpg`
+- `prototypes/inline-e123.jpg`
+- `prototypes/inline-e124.jpg`
+- `prototypes/inline-e151.jpg`
+- `prototypes/inline-e44.jpg`
+- `prototypes/inline-e5.jpg`
+- `prototypes/inline-e6.jpg`
+- `prototypes/inline-e7.jpg`
+- `prototypes/inline-e8.jpg`
+- `prototypes/inline-e9.jpg`
+- `prototypes/issue128_reduced_1366.png`
+- `prototypes/issue128_reduced_390.png`
+- `prototypes/issue138_search_desktop.png`
+- `prototypes/issue139_after_help.png`
+- `prototypes/issue70_after_cascade.png`
+- `prototypes/issue70_after_clear_defaults.png`
+- `prototypes/issue70_after_exclusion.png`
+- `prototypes/issue70_after_mobile.png`
+- `prototypes/issue70_after_open_panel.png`
+- `prototypes/issue70_after_reload_flags.png`
+- `prototypes/issue70_after_saved.png`
+- `prototypes/issue70_after_simulado_filtrado.png`
+- `prototypes/issue70_before_simple.png`
+- `prototypes/issue77_reader_marginalia_1366.png`
+- `prototypes/issue77_reader_marginalia_390.png`
+- `prototypes/issue77_reader_original_1366.png`
+- `prototypes/issue77_reader_original_390.png`
+- `prototypes/issue77_reader_text_highlight_1366.png`
+- `prototypes/issue77_reader_text_highlight_390.png`
+- `prototypes/issue82_cloze_1366.png`
+- `prototypes/issue82_cloze_390.png`
+- `prototypes/issue82_feedback_dialog_1366.png`
+- `prototypes/issue82_feedback_dialog_390.png`
+- `prototypes/issue82_qa_revealed_1366.png`
+- `prototypes/issue82_qa_revealed_390.png`
+- `prototypes/issue82_question_import_1366.png`
+- `prototypes/issue82_question_import_390.png`
+- `prototypes/issue83_frequency_silent_1366.png`
+- `prototypes/issue83_frequency_silent_390.png`
+- `prototypes/issue83_nondestructive_edit_1366.png`
+- `prototypes/issue83_nondestructive_edit_390.png`
+- `prototypes/issue83_review_heatmap_1366.png`
+- `prototypes/issue83_review_heatmap_390.png`
+- `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_1024_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_dark_1024_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_1024_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_1366_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_dark_1366_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_1366_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_after_dark_768_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_768_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_dark_768_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_dark_768_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_after_light_1024_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_1024_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_light_1024_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_1024_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_after_light_1366_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_1366_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_light_1366_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_1366_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_after_light_768_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_768_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_after_light_768_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_after_light_768_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_1024_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_1024_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_1024_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_1366_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_1366_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_1366_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_768_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_768_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_dark_768_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_dark_768_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_light_1024_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_1024_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_light_1024_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_1024_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_light_1366_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_1366_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_light_1366_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_1366_sideopen_rightopen.png`
+- `prototypes/lowchrome_97_before_light_768_sideclosed_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_768_sideclosed_rightopen.png`
+- `prototypes/lowchrome_97_before_light_768_sideopen_rightclosed.png`
+- `prototypes/lowchrome_97_before_light_768_sideopen_rightopen.png`
+- `prototypes/qconcursos_configuracoes_questoes_drawer.png`
+- `prototypes/qconcursos_dock_cronometro_open.png`
+- `prototypes/qconcursos_dock_desempenho_active.png`
+- `prototypes/qconcursos_dock_folha_respostas.png`
+- `prototypes/qconcursos_dock_marcatexto_open.png`
+- `prototypes/qconcursos_dock_modo_foco.png`
+- `prototypes/qconcursos_filter_assunto_open.png`
+- `prototypes/qconcursos_filter_banca_open.png`
+- `prototypes/qconcursos_filter_dificuldade_open.png`
+- `prototypes/qconcursos_gerar_caderno_modal.png`
+- `prototypes/qconcursos_list_toolbar_options.png`
+- `prototypes/qconcursos_live_filter_builder_top.png`
+- `prototypes/qconcursos_live_home_caderno_questoes_tab.png`
+- `prototypes/qconcursos_live_home_raiox_curso.png`
+- `prototypes/qconcursos_live_home_ritmo_disciplinas.png`
+- `prototypes/qconcursos_live_question_answered_feedback.png`
+- `prototypes/qconcursos_live_question_initial_state.png`
+- `prototypes/qconcursos_live_question_option_selected_orange.png`
+- `prototypes/qconcursos_live_question_scissors_eliminated.png`
+- `prototypes/qconcursos_live_question_tab_anotacoes.png`
+- `prototypes/qconcursos_live_question_tab_aulas_video.png`
+- `prototypes/qconcursos_live_question_tab_cadernos_save.png`
+- `prototypes/qconcursos_live_question_tab_comentarios.png`
+- `prototypes/qconcursos_live_question_tab_gabarito_comentado.png`
+- `prototypes/qconcursos_live_question_texto_associado.png`
+- `prototypes/qconcursos_question_notificar_erro.png`
+- `prototypes/qconcursos_salvar_filtros_modal.png`
+- `prototypes/readwise_srs_freeform_input_book_select.png`
 
 ## Duplicatas (conteúdo idêntico, nenhum arquivo removido)
 

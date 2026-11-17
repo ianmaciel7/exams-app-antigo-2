@@ -1,9 +1,9 @@
 {
   "versao_schema": 1,
-  "gerado_em": "2026-11-17T00:12:18Z",
+  "gerado_em": "2026-11-17T00:15:49Z",
   "resumo": {
     "midias": 374,
-    "orfaos": 0,
+    "orfaos": 184,
     "duplicatas_grupos": 19,
     "testes_json": 17,
     "pares_antes_depois": 32
@@ -30,14 +30,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -61,14 +59,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -92,14 +88,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -123,14 +117,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -154,15 +146,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -186,14 +175,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -217,14 +204,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -248,14 +233,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -279,14 +262,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -310,14 +291,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -341,14 +320,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -372,14 +349,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -403,14 +378,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -434,14 +407,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -465,14 +436,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -496,14 +465,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -527,14 +494,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -558,14 +523,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -589,14 +552,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -620,14 +581,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -652,7 +611,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "scripts/build-evidence-catalog.py"
       ],
       "no_board_json": false,
@@ -746,7 +704,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "scripts/build-evidence-catalog.py"
       ],
       "no_board_json": false,
@@ -777,16 +734,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/notes-app-old-10.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -810,16 +765,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/notes-app-old-3.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -843,16 +796,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/notes-app-old-4.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -876,15 +827,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -908,15 +856,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -940,15 +885,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -972,14 +914,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1003,14 +943,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1034,15 +972,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1066,15 +1001,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1098,15 +1030,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1130,15 +1059,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1162,15 +1088,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1194,14 +1117,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1225,14 +1146,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1257,7 +1176,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "scripts/test_claude_web_artifact.mjs"
       ],
       "no_board_json": false,
@@ -1290,16 +1208,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/board-exam-app__assets__evidence-e2e-sync-badge-active.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1324,7 +1240,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "tests/claude-storage-api-poc/homologation-matrix.test.mjs"
       ],
       "no_board_json": false,
@@ -1355,16 +1270,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/board-exam-app__assets__evidence-iframe-csp-blocked.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1388,16 +1301,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/board-exam-app__assets__claude-storage-bridge__evidence-claude-web-artifact-public.png"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1423,7 +1334,6 @@
       },
       "referenciado_em": [
         "prototypes/PR_DESCRIPTION.md",
-        "prototypes/feature-links.json",
         "tests/claude-storage-api-poc/e2e-sync.test.mjs"
       ],
       "no_board_json": false,
@@ -1456,14 +1366,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1488,8 +1396,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md",
-        "prototypes/feature-links.json"
+        "prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -1521,14 +1428,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1552,14 +1457,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1587,9 +1490,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -1623,9 +1524,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -1658,14 +1557,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1692,15 +1589,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1727,15 +1621,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1762,15 +1653,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1797,15 +1685,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1832,15 +1717,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1867,15 +1749,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1902,14 +1781,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1936,14 +1813,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -1970,15 +1845,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2005,15 +1877,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2040,14 +1909,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2074,14 +1941,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2105,14 +1970,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2136,14 +1999,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2167,14 +2028,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2273,8 +2132,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2308,8 +2166,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2342,14 +2199,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2377,9 +2232,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2413,9 +2266,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2445,14 +2296,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2476,14 +2325,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2507,14 +2354,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2538,14 +2383,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2569,14 +2412,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2600,14 +2441,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2632,7 +2471,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/board.json"
       ],
       "no_board_json": true,
@@ -2663,14 +2501,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2694,14 +2530,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2725,14 +2559,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2756,14 +2588,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2787,16 +2617,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/inline-e44.jpg"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2820,16 +2648,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/inline-e151.jpg"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2853,14 +2679,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2884,14 +2708,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2915,14 +2737,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2946,14 +2766,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -2977,14 +2795,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -3009,9 +2825,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3042,9 +2856,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3075,9 +2887,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3108,9 +2918,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3145,9 +2953,7 @@
       },
       "referenciado_em": [
         ".github/workflows/e2e-study-unification.yml",
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3181,9 +2987,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3214,9 +3018,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3250,9 +3052,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3286,9 +3086,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3322,9 +3120,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -3358,7 +3154,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3390,7 +3185,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3422,7 +3216,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3454,7 +3247,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3486,7 +3278,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3518,7 +3309,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3550,7 +3340,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3582,7 +3371,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3614,7 +3402,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/issue120_e2e.json"
       ],
       "no_board_json": false,
@@ -3645,15 +3432,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -3677,15 +3461,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -3710,8 +3491,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue128_motion_e2e.json"
       ],
       "no_board_json": false,
@@ -3743,8 +3522,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue128_motion_e2e.json"
       ],
       "no_board_json": false,
@@ -3776,8 +3553,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue132_home_e2e.json"
       ],
       "no_board_json": false,
@@ -3809,8 +3584,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue132_home_e2e.json"
       ],
       "no_board_json": false,
@@ -3842,8 +3615,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue132_home_e2e.json"
       ],
       "no_board_json": false,
@@ -3878,8 +3649,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue132_home_e2e.json"
       ],
       "no_board_json": false,
@@ -3911,8 +3680,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue132_home_e2e.json",
         "tests/home-responsive.e2e.mjs"
       ],
@@ -3948,8 +3715,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue136_e2e.json",
         "scripts/restore-contextual-evidence-board.py"
       ],
@@ -3985,8 +3750,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue136_e2e.json",
         "scripts/restore-contextual-evidence-board.py"
       ],
@@ -4019,8 +3782,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue136_e2e.json",
         "scripts/restore-contextual-evidence-board.py"
       ],
@@ -4053,8 +3814,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue136_e2e.json",
         "scripts/restore-contextual-evidence-board.py",
         "tests/contextual-question-layout.e2e.mjs"
@@ -4091,8 +3850,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue138_spaces_e2e.json",
         "tests/space-switcher.e2e.mjs"
       ],
@@ -4125,8 +3882,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue138_spaces_e2e.json",
         "tests/space-switcher.e2e.mjs"
       ],
@@ -4159,8 +3914,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue138_spaces_e2e.json",
         "tests/space-switcher.e2e.mjs"
       ],
@@ -4193,8 +3946,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue138_spaces_e2e.json",
         "tests/space-switcher.e2e.mjs"
       ],
@@ -4226,15 +3977,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4259,7 +4007,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue139_commands_e2e.json",
         "tests/workspace-command-router.e2e.mjs"
       ],
@@ -4291,15 +4038,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-BA5C7E78",
         "depois": "EV-4F895275"
@@ -4327,8 +4071,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue139_commands_e2e.json",
         "tests/workspace-command-router.e2e.mjs"
       ],
@@ -4361,8 +4103,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue139_commands_e2e.json",
         "tests/workspace-command-router.e2e.mjs"
       ],
@@ -4395,8 +4135,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue139_commands_e2e.json",
         "tests/workspace-command-router.e2e.mjs"
       ],
@@ -4432,7 +4170,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue140_type_studio_e2e.json",
         "tests/custom-object-type-studio.e2e.mjs"
       ],
@@ -4465,7 +4202,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue140_type_studio_e2e.json",
         "tests/custom-object-type-studio.e2e.mjs"
       ],
@@ -4498,7 +4234,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue140_type_studio_e2e.json",
         "tests/custom-object-type-studio.e2e.mjs"
       ],
@@ -4531,7 +4266,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue140_type_studio_e2e.json",
         "tests/custom-object-type-studio.e2e.mjs"
       ],
@@ -4564,7 +4298,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/feature-links.json",
         "prototypes/issue140_type_studio_e2e.json",
         "tests/custom-object-type-studio.e2e.mjs"
       ],
@@ -4597,9 +4330,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -4630,9 +4361,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -4663,8 +4392,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue68_export_e2e.json"
       ],
       "no_board_json": false,
@@ -4696,8 +4423,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue68_export_e2e.json"
       ],
       "no_board_json": false,
@@ -4729,8 +4454,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue68_export_e2e.json"
       ],
       "no_board_json": false,
@@ -4762,8 +4485,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue68_export_e2e.json"
       ],
       "no_board_json": false,
@@ -4794,15 +4515,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4826,15 +4544,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4858,15 +4573,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4890,15 +4602,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4922,15 +4631,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4954,15 +4660,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -4986,15 +4689,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5018,15 +4718,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5050,15 +4747,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5083,8 +4777,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5116,8 +4808,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5149,8 +4839,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5182,8 +4870,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5215,8 +4901,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5248,8 +4932,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5281,8 +4963,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5314,8 +4994,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5347,8 +5025,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "prototypes/issue75_e2e.json"
       ],
       "no_board_json": false,
@@ -5380,8 +5056,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "tests/error-recovery.e2e.mjs"
       ],
       "no_board_json": false,
@@ -5413,8 +5087,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "tests/error-recovery.e2e.mjs"
       ],
       "no_board_json": false,
@@ -5446,8 +5118,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "tests/error-recovery.e2e.mjs"
       ],
       "no_board_json": false,
@@ -5479,8 +5149,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json",
         "tests/error-recovery.e2e.mjs"
       ],
       "no_board_json": false,
@@ -5511,15 +5179,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5543,15 +5208,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5575,15 +5237,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5607,14 +5266,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5638,15 +5295,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5670,14 +5324,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5701,15 +5353,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5733,14 +5382,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5764,14 +5411,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5795,14 +5440,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5826,15 +5469,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5858,14 +5498,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5889,15 +5527,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5921,15 +5556,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5953,14 +5585,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -5984,14 +5614,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -6015,14 +5643,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -6046,14 +5672,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -6077,14 +5701,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -6108,14 +5730,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -6268,8 +5888,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/MIGRATION-MAP.md",
-        "prototypes/feature-links.json"
+        "prototypes/MIGRATION-MAP.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -6300,8 +5919,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/MIGRATION-MAP.md",
-        "prototypes/feature-links.json"
+        "prototypes/MIGRATION-MAP.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -6331,15 +5949,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-438F90AD",
         "depois": "EV-1C4781EA"
@@ -6366,15 +5981,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-9B457D03",
         "depois": "EV-C28BD30C"
@@ -6401,15 +6013,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-06B4F737",
         "depois": "EV-BC5D8509"
@@ -6436,15 +6045,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-10DE33D3",
         "depois": "EV-758A63FD"
@@ -6471,15 +6077,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-CBD77C73",
         "depois": "EV-2EB888EA"
@@ -6506,15 +6109,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-09E5F50A",
         "depois": "EV-E62B32BB"
@@ -6541,15 +6141,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-9F60C93F",
         "depois": "EV-0960E8A6"
@@ -6576,15 +6173,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F5C81BFA",
         "depois": "EV-34F2A8A1"
@@ -6611,15 +6205,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-71437B94",
         "depois": "EV-689FBB79"
@@ -6646,15 +6237,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-1E06635F",
         "depois": "EV-AA09E670"
@@ -6681,15 +6269,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-459E3A06",
         "depois": "EV-AD1D7202"
@@ -6716,15 +6301,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-8DF28F38",
         "depois": "EV-9ED6AC93"
@@ -6751,15 +6333,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-2D7A1158",
         "depois": "EV-F1C7E641"
@@ -6786,15 +6365,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-308B3DAE",
         "depois": "EV-BD1DE3B9"
@@ -6821,15 +6397,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-3C37423F",
         "depois": "EV-4A9E72AE"
@@ -6856,15 +6429,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F4C3DCE6",
         "depois": "EV-0FC85A0C"
@@ -6891,15 +6461,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F5948D83",
         "depois": "EV-274432BD"
@@ -6926,15 +6493,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F551E6D4",
         "depois": "EV-D2C84331"
@@ -6961,15 +6525,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-42EC0E0E",
         "depois": "EV-C1953378"
@@ -6996,15 +6557,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-35E4BB43",
         "depois": "EV-478D2EB6"
@@ -7031,15 +6589,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-6A9EC0C5",
         "depois": "EV-D7060E7F"
@@ -7066,15 +6621,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-B68A76B0",
         "depois": "EV-0912C577"
@@ -7101,15 +6653,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-C73A97DA",
         "depois": "EV-2D494C32"
@@ -7136,15 +6685,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-505980DC",
         "depois": "EV-6E4A660C"
@@ -7171,15 +6717,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-438F90AD",
         "depois": "EV-1C4781EA"
@@ -7206,15 +6749,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-9B457D03",
         "depois": "EV-C28BD30C"
@@ -7241,15 +6781,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-06B4F737",
         "depois": "EV-BC5D8509"
@@ -7276,15 +6813,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-10DE33D3",
         "depois": "EV-758A63FD"
@@ -7311,15 +6845,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-CBD77C73",
         "depois": "EV-2EB888EA"
@@ -7346,15 +6877,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-09E5F50A",
         "depois": "EV-E62B32BB"
@@ -7381,15 +6909,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-9F60C93F",
         "depois": "EV-0960E8A6"
@@ -7416,15 +6941,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F5C81BFA",
         "depois": "EV-34F2A8A1"
@@ -7451,15 +6973,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-71437B94",
         "depois": "EV-689FBB79"
@@ -7486,15 +7005,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-1E06635F",
         "depois": "EV-AA09E670"
@@ -7521,15 +7037,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-459E3A06",
         "depois": "EV-AD1D7202"
@@ -7556,15 +7069,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-8DF28F38",
         "depois": "EV-9ED6AC93"
@@ -7591,15 +7101,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-2D7A1158",
         "depois": "EV-F1C7E641"
@@ -7626,15 +7133,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-308B3DAE",
         "depois": "EV-BD1DE3B9"
@@ -7661,15 +7165,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-3C37423F",
         "depois": "EV-4A9E72AE"
@@ -7696,15 +7197,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F4C3DCE6",
         "depois": "EV-0FC85A0C"
@@ -7731,15 +7229,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F5948D83",
         "depois": "EV-274432BD"
@@ -7766,15 +7261,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-F551E6D4",
         "depois": "EV-D2C84331"
@@ -7801,15 +7293,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-42EC0E0E",
         "depois": "EV-C1953378"
@@ -7836,15 +7325,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-35E4BB43",
         "depois": "EV-478D2EB6"
@@ -7871,15 +7357,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-6A9EC0C5",
         "depois": "EV-D7060E7F"
@@ -7906,15 +7389,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-B68A76B0",
         "depois": "EV-0912C577"
@@ -7941,15 +7421,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-C73A97DA",
         "depois": "EV-2D494C32"
@@ -7976,15 +7453,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": {
         "antes": "EV-505980DC",
         "depois": "EV-6E4A660C"
@@ -8015,7 +7489,6 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/MIGRATION-MAP.md",
         "prototypes/board.json",
         "prototypes/docs__archives__README.md",
@@ -8380,9 +7853,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/board.json",
-        "prototypes/feature-links.json",
         "prototypes/pdf112_diagnostic.json"
       ],
       "no_board_json": true,
@@ -8419,9 +7890,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/board.json",
-        "prototypes/feature-links.json",
         "prototypes/pdf112_diagnostic.json"
       ],
       "no_board_json": true,
@@ -8458,9 +7927,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/board.json",
-        "prototypes/feature-links.json",
         "prototypes/pdf112_diagnostic.json"
       ],
       "no_board_json": true,
@@ -8497,9 +7964,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/board.json",
-        "prototypes/feature-links.json",
         "prototypes/pdf112_diagnostic.json"
       ],
       "no_board_json": true,
@@ -8539,9 +8004,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8576,15 +8039,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8612,9 +8072,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8648,9 +8106,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8684,8 +8140,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8719,9 +8174,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8754,15 +8207,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8789,15 +8239,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8824,14 +8271,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8859,9 +8304,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -8894,15 +8337,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8929,15 +8369,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -8965,9 +8402,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9000,17 +8435,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_filter_assunto_tree_open.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9038,9 +8470,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "duplicata",
@@ -9075,17 +8505,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_filter_dificuldade_open.png"
       ],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9112,17 +8539,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_filter_banca_open.png"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9150,9 +8574,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9185,15 +8607,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9221,9 +8640,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9256,14 +8673,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9291,9 +8706,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9328,15 +8741,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9364,9 +8774,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9401,16 +8809,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_live_home_caderno_erros.png"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9438,9 +8844,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9473,15 +8877,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9508,15 +8909,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9543,15 +8941,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9578,14 +8973,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9612,14 +9005,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9646,17 +9037,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_alternative_scissors_struck.png"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9683,14 +9071,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9717,14 +9103,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9751,14 +9135,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9785,14 +9167,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9820,9 +9200,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9855,15 +9233,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9890,14 +9265,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -9925,9 +9298,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9961,9 +9332,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -9996,15 +9365,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -10031,17 +9397,14 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "duplicata",
+      "status_integridade": "órfão",
       "duplicatas": [
         "prototypes/qconcursos_live_filter_actions_bar.png"
       ],
       "canonica": false,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -10069,9 +9432,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -10105,8 +9466,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10140,9 +9500,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10176,8 +9534,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10211,8 +9568,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10246,8 +9602,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10281,9 +9636,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10317,9 +9670,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10353,9 +9704,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10389,9 +9738,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10425,8 +9772,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10460,8 +9806,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10495,8 +9840,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10530,9 +9874,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10566,8 +9908,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10601,8 +9942,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10636,8 +9976,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10671,10 +10010,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -10708,8 +10045,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10743,8 +10079,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10781,9 +10116,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -10820,9 +10153,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -10859,8 +10190,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10894,9 +10224,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10930,9 +10258,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -10966,8 +10292,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11001,9 +10326,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11037,9 +10360,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11073,9 +10394,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11109,9 +10428,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11145,10 +10462,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -11182,8 +10497,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11217,8 +10531,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11252,10 +10565,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -11289,9 +10600,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11325,9 +10634,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11361,10 +10668,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -11398,8 +10703,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11433,9 +10737,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11469,9 +10771,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11507,8 +10807,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11542,8 +10841,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11577,9 +10875,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -11615,9 +10911,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11651,8 +10945,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11686,9 +10979,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11722,9 +11013,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11758,9 +11047,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11794,10 +11081,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -11831,9 +11116,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11867,9 +11150,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11903,8 +11184,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11938,9 +11218,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -11974,9 +11252,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12010,10 +11286,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12047,9 +11321,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12083,10 +11355,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12122,8 +11392,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -12159,9 +11428,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12194,14 +11461,12 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [
-        "prototypes/feature-links.json"
-      ],
+      "referenciado_em": [],
       "no_board_json": false,
-      "status_integridade": "ok",
+      "status_integridade": "órfão",
       "duplicatas": [],
       "canonica": true,
-      "orfao": false,
+      "orfao": true,
       "par_antes_depois": null
     },
     {
@@ -12229,8 +11494,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12264,10 +11528,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12301,9 +11563,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12337,9 +11597,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12373,8 +11631,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12408,9 +11665,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12444,9 +11699,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12480,9 +11733,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12516,9 +11767,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12552,9 +11801,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12588,10 +11835,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12625,9 +11870,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12661,9 +11904,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12697,9 +11938,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "ok",
@@ -12735,9 +11974,7 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
-        "prototypes/READWISE_DOSSIER.md",
-        "prototypes/feature-links.json"
+        "prototypes/READWISE_DOSSIER.md"
       ],
       "no_board_json": false,
       "status_integridade": "duplicata",
@@ -12773,10 +12010,8 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/BOARD.md",
         "prototypes/READWISE_DOSSIER.md",
-        "prototypes/board.json",
-        "prototypes/feature-links.json"
+        "prototypes/board.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12890,7 +12125,192 @@
       "data": "2026-11-16"
     }
   ],
-  "orfaos": [],
+  "orfaos": [
+    "prototypes/02126f3b520aaad9b5c9577b472379a8.png",
+    "prototypes/245371488f6e2d39a3dc98e934d488f4.png",
+    "prototypes/265be9aa9703f3cc57f43d3c62f96de1.png",
+    "prototypes/346da48cb8ad25f2a7857b2d30933368.png",
+    "prototypes/467eb8f7f105cfc51e345390bbecd9c4.png",
+    "prototypes/474678ed59f7cc5b7fbf3494dd75704f.png",
+    "prototypes/4916231707b4b56575f007bdc921fa91.png",
+    "prototypes/5dd2843391f7c5827e8905be47daf12d.png",
+    "prototypes/5e04fb915ee94b2c67a5adb37585e685.png",
+    "prototypes/731ecd45a56634184b7bcd8df6de8c5b.png",
+    "prototypes/748153cb0d733bded9a8c682d75eb22c.png",
+    "prototypes/785ec225c4eb1d55dbb90821ab83bfe0.png",
+    "prototypes/791462f4696e4cfd2e62304ca7520faf.png",
+    "prototypes/831c50665375ea7ebd6bb067f3e09c4e.png",
+    "prototypes/84ae80e4902c3ad8907983654d8015b3.png",
+    "prototypes/8852061c63b37547e1c657dda371bbee.png",
+    "prototypes/8d42664c47e656b5f3b9c49ea3e6b134.png",
+    "prototypes/9083d3341a57b970d09f1293fe724ffa.png",
+    "prototypes/946aec4deb45e6d0b1be13525eb558b0.png",
+    "prototypes/a2e193b128aa82280b9e19b8ba5920be.png",
+    "prototypes/archive_notes_app_old_10_recall_home.png",
+    "prototypes/archive_notes_app_old_3_capacities_shell.png",
+    "prototypes/archive_notes_app_old_4_capacities_shell.png",
+    "prototypes/archive_notes_app_old_4_graph_sidepanel.png",
+    "prototypes/audit2026_cargo_props.png",
+    "prototypes/audit2026_graph_collision.png",
+    "prototypes/audit2026_home_dark.png",
+    "prototypes/audit2026_home_light.png",
+    "prototypes/audit2026_questao_collapsed.png",
+    "prototypes/audit2026_questao_expanded.png",
+    "prototypes/audit2026_simulado_exec.png",
+    "prototypes/audit2026_simulado_resultado.png",
+    "prototypes/audit2026_tipo_questao_wrap.png",
+    "prototypes/b58de1eeada0232a88aed896ece2168b.png",
+    "prototypes/b7e3a67f5e62b599877bb5b3174ea4c0.png",
+    "prototypes/board-exam-app__assets__claude-storage-bridge__evidence-e2e-sync-badge-active.png",
+    "prototypes/board-exam-app__assets__claude-storage-bridge__evidence-iframe-csp-blocked.png",
+    "prototypes/board-exam-app__assets__evidence-claude-web-artifact-public.png",
+    "prototypes/board-exam-app__assets__evidence-homologation-clean-recovery.png",
+    "prototypes/bug_spTopBtn_duplicated_lightbulb.png",
+    "prototypes/c6f3efc2d1ce12dfa1331f679bdfb8a9.png",
+    "prototypes/capacities_live_3pane_explorar_grid.png",
+    "prototypes/capacities_live_3pane_local_graph.png",
+    "prototypes/capacities_live_collapsed_sidebar.png",
+    "prototypes/capacities_live_global_graph_constellation.png",
+    "prototypes/capacities_live_global_graph_search_autozoom.png",
+    "prototypes/capacities_live_graph_3tier_nodes_resized.png",
+    "prototypes/capacities_live_graph_filter_popover.png",
+    "prototypes/capacities_live_new_popover.png",
+    "prototypes/capacities_live_object_page_anatomy.png",
+    "prototypes/capacities_live_right_panel_related.png",
+    "prototypes/capacities_live_right_panel_tab_overflow.png",
+    "prototypes/capacities_live_type_context_menu.png",
+    "prototypes/capacities_live_type_dashboard_gallery.png",
+    "prototypes/cc0093684c5ae6f612afbbf6b91bd674.png",
+    "prototypes/cf85b4fdc73d3e37137c304ff737aadc.png",
+    "prototypes/claude-artifact-audit-seq128.png",
+    "prototypes/examtopics_az104_pagination_and_footer.png",
+    "prototypes/f9c476ddeb52b075e841baacdff748f1.png",
+    "prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png",
+    "prototypes/inline-e10.jpg",
+    "prototypes/inline-e109.jpg",
+    "prototypes/inline-e110.jpg",
+    "prototypes/inline-e114.jpg",
+    "prototypes/inline-e121.jpg",
+    "prototypes/inline-e122.jpg",
+    "prototypes/inline-e123.jpg",
+    "prototypes/inline-e124.jpg",
+    "prototypes/inline-e151.jpg",
+    "prototypes/inline-e44.jpg",
+    "prototypes/inline-e5.jpg",
+    "prototypes/inline-e6.jpg",
+    "prototypes/inline-e7.jpg",
+    "prototypes/inline-e8.jpg",
+    "prototypes/inline-e9.jpg",
+    "prototypes/issue128_reduced_1366.png",
+    "prototypes/issue128_reduced_390.png",
+    "prototypes/issue138_search_desktop.png",
+    "prototypes/issue139_after_help.png",
+    "prototypes/issue70_after_cascade.png",
+    "prototypes/issue70_after_clear_defaults.png",
+    "prototypes/issue70_after_exclusion.png",
+    "prototypes/issue70_after_mobile.png",
+    "prototypes/issue70_after_open_panel.png",
+    "prototypes/issue70_after_reload_flags.png",
+    "prototypes/issue70_after_saved.png",
+    "prototypes/issue70_after_simulado_filtrado.png",
+    "prototypes/issue70_before_simple.png",
+    "prototypes/issue77_reader_marginalia_1366.png",
+    "prototypes/issue77_reader_marginalia_390.png",
+    "prototypes/issue77_reader_original_1366.png",
+    "prototypes/issue77_reader_original_390.png",
+    "prototypes/issue77_reader_text_highlight_1366.png",
+    "prototypes/issue77_reader_text_highlight_390.png",
+    "prototypes/issue82_cloze_1366.png",
+    "prototypes/issue82_cloze_390.png",
+    "prototypes/issue82_feedback_dialog_1366.png",
+    "prototypes/issue82_feedback_dialog_390.png",
+    "prototypes/issue82_qa_revealed_1366.png",
+    "prototypes/issue82_qa_revealed_390.png",
+    "prototypes/issue82_question_import_1366.png",
+    "prototypes/issue82_question_import_390.png",
+    "prototypes/issue83_frequency_silent_1366.png",
+    "prototypes/issue83_frequency_silent_390.png",
+    "prototypes/issue83_nondestructive_edit_1366.png",
+    "prototypes/issue83_nondestructive_edit_390.png",
+    "prototypes/issue83_review_heatmap_1366.png",
+    "prototypes/issue83_review_heatmap_390.png",
+    "prototypes/lowchrome_97_after_dark_1024_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_1024_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_dark_1024_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_1024_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_after_dark_1366_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_1366_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_dark_1366_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_1366_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_after_dark_768_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_768_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_dark_768_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_dark_768_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_after_light_1024_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_1024_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_light_1024_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_1024_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_after_light_1366_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_1366_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_light_1366_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_1366_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_after_light_768_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_768_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_after_light_768_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_after_light_768_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_1024_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_1024_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_1024_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_1024_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_1366_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_1366_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_1366_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_1366_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_768_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_768_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_dark_768_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_dark_768_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_light_1024_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_1024_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_light_1024_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_1024_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_light_1366_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_1366_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_light_1366_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_1366_sideopen_rightopen.png",
+    "prototypes/lowchrome_97_before_light_768_sideclosed_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_768_sideclosed_rightopen.png",
+    "prototypes/lowchrome_97_before_light_768_sideopen_rightclosed.png",
+    "prototypes/lowchrome_97_before_light_768_sideopen_rightopen.png",
+    "prototypes/qconcursos_configuracoes_questoes_drawer.png",
+    "prototypes/qconcursos_dock_cronometro_open.png",
+    "prototypes/qconcursos_dock_desempenho_active.png",
+    "prototypes/qconcursos_dock_folha_respostas.png",
+    "prototypes/qconcursos_dock_marcatexto_open.png",
+    "prototypes/qconcursos_dock_modo_foco.png",
+    "prototypes/qconcursos_filter_assunto_open.png",
+    "prototypes/qconcursos_filter_banca_open.png",
+    "prototypes/qconcursos_filter_dificuldade_open.png",
+    "prototypes/qconcursos_gerar_caderno_modal.png",
+    "prototypes/qconcursos_list_toolbar_options.png",
+    "prototypes/qconcursos_live_filter_builder_top.png",
+    "prototypes/qconcursos_live_home_caderno_questoes_tab.png",
+    "prototypes/qconcursos_live_home_raiox_curso.png",
+    "prototypes/qconcursos_live_home_ritmo_disciplinas.png",
+    "prototypes/qconcursos_live_question_answered_feedback.png",
+    "prototypes/qconcursos_live_question_initial_state.png",
+    "prototypes/qconcursos_live_question_option_selected_orange.png",
+    "prototypes/qconcursos_live_question_scissors_eliminated.png",
+    "prototypes/qconcursos_live_question_tab_anotacoes.png",
+    "prototypes/qconcursos_live_question_tab_aulas_video.png",
+    "prototypes/qconcursos_live_question_tab_cadernos_save.png",
+    "prototypes/qconcursos_live_question_tab_comentarios.png",
+    "prototypes/qconcursos_live_question_tab_gabarito_comentado.png",
+    "prototypes/qconcursos_live_question_texto_associado.png",
+    "prototypes/qconcursos_question_notificar_erro.png",
+    "prototypes/qconcursos_salvar_filtros_modal.png",
+    "prototypes/readwise_srs_freeform_input_book_select.png"
+  ],
   "referencias_quebradas": [
     {
       "arquivo": "prototypes/roteiro-captura.md",
@@ -12995,22 +12415,6 @@
     {
       "arquivo": "prototypes/exam-app-0.1.0__pdf.min.js",
       "referencia": "this.svg"
-    },
-    {
-      "arquivo": "prototypes/BOARD.md",
-      "referencia": "capacities_live_local_graph_expanded.png"
-    },
-    {
-      "arquivo": "prototypes/BOARD.md",
-      "referencia": "capacities_live_main_and_local_graph.png"
-    },
-    {
-      "arquivo": "prototypes/BOARD.md",
-      "referencia": "exam-app-grafo.png"
-    },
-    {
-      "arquivo": "prototypes/BOARD.md",
-      "referencia": "layout-current.png"
     },
     {
       "arquivo": "scripts/append-graph-export-board.py",

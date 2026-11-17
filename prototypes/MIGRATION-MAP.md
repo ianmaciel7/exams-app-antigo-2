@@ -73,7 +73,7 @@ Gerado em 2026-11-16 a partir da dev `9beadadd` mais PR #260 (`45bebdf`). Cada l
 | `docs/board/jornadas/j5-canvas-visao-geral.png` | `prototypes/j5-canvas-visao-geral.png` | `f9eeca876214947d` | `f9eeca876214947d` |
 | `docs/board/jornadas/j6-mestre-320.png` | `prototypes/j6-mestre-320.png` | `9e7a2cb55eadb738` | `9e7a2cb55eadb738` |
 | `docs/board/jornadas/j6-mestre-390.png` | `prototypes/j6-mestre-390.png` | `14f5215e0e93a455` | `14f5215e0e93a455` |
-| `docs/evidence/catalog.json` | `prototypes/catalog.json` | `65496ff0cab4c1f4` | `c2a5be5acbe5b12c` |
+| `docs/evidence/catalog.json` | `prototypes/catalog.json` | `65496ff0cab4c1f4` | `bda509ad4d7fbcfb` |
 | `docs/features/README.md` | `prototypes/docs__features__README.md` | `—` | `440fe2093b1791bc` |
 | `docs/features/claude-storage.md` | `prototypes/claude-storage.md` | `—` | `b81677f6ce445e90` |
 | `docs/features/features-index.json` | `prototypes/features-index.json` | `—` | `30cce3c80958e331` |
