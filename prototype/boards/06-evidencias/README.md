@@ -2,7 +2,7 @@
 
 Provas, capturas, índices, hashes, testes e relatórios
 
-> **Índice transitório — issue #278.** Os conteúdos canônicos continuam em `prototype/`. Estes links não promovem um Artifact histórico a produto novo nem movem arquivos.
+> **Índice transitório — issue #278.** Os documentos, imagens e dados canônicos ativos permanecem na raiz `prototype/`. A fase 2B move apenas 208 arquivos de metadados com zero bytes para `relatorios/`; nenhuma mídia é promovida a produto novo.
 
 [Central de Boards](../../mestre.html) · [Canvas #e17000](../../board-exam-app__index.html#e17000)
 
@@ -37,5 +37,6 @@ Provas, capturas, índices, hashes, testes e relatórios
 - [Galeria](../../gallery.html)
 - [Catálogo](../../catalog.json)
 - [Dados canônicos](../data/README.md)
-- [Relatório da etapa](relatorios/issue278-phase2a.md)
+- [Relatório da fase 2A](relatorios/issue278-phase2a.md)
+- [Recibo da fase 2B: 208 marcadores vazios](relatorios/issue278-phase2b.md)
 

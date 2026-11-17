@@ -1,6 +1,6 @@
 # Dados do Board Mestre
 
-Fontes canônicas ainda não movidas:
+Fontes de dados canônicos e índices ainda nos caminhos originais (a fase 2B moveu apenas metadados vazios):
 
 - [board.json](../../board.json)
 - [board-mestre.json](../../board-mestre.json)

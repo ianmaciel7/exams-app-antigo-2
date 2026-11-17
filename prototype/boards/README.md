@@ -1,6 +1,6 @@
 # Exam App — sete boards
 
-Esta pasta introduz a navegação por responsabilidades na issue #278. Os arquivos de produto, evidências e protótipos **não foram movidos nesta etapa**, para manter compatibilidade com URLs locais, CI, PDF.js e sincronização.
+Esta pasta organiza a navegação da issue #278. Na fase 2B, somente 208 marcadores vazios de metadados foram movidos para `boards/06-evidencias/relatorios/`; HTML, PDFs, imagens, catálogos e fontes ativas seguem nos caminhos anteriores para preservar execução, CI e integração.
 
 [Central visual](index.html) · [Canvas](../board-exam-app__index.html#e17000) · [Galeria](../gallery.html)
 
@@ -20,5 +20,6 @@ Esta pasta introduz a navegação por responsabilidades na issue #278. Os arquiv
 - [Ferramentas](../tools/README.md)
 - [Novo aplicativo (destino ainda não aprovado)](../app/README.md)
 - [Evidência da fase 2A](06-evidencias/relatorios/issue278-phase2a.md)
+- [Recibo e limites da fase 2B](06-evidencias/relatorios/issue278-phase2b.md)
 
 Não publicar automaticamente o Claude Artifact; a política de hold continua em vigor.

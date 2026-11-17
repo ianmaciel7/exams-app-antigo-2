@@ -49,11 +49,19 @@ class InventoryTests(unittest.TestCase):
                          'prototype/boards/02-design/index.md')
     def test_migration_preserves_every_source_file_with_reviewed_hashes(self):
         receipt=json.loads((ROOT/'prototype/issue278-rename-receipt.json').read_text(encoding='utf-8'))
+        navigation=json.loads((ROOT/'prototype/boards/data/phase2-navigation-map.json').read_text(encoding='utf-8'))
+        relocated={e['path']:e.get('current_path',e['path']) for e in navigation['mappings']}
+        moved=[e for e in navigation['mappings'] if e.get('current_path',e['path'])!=e['path']]
+        self.assertEqual(len(moved),208)
+        for e in moved:
+            self.assertFalse((ROOT/e['path']).exists(),e['path'])
+            self.assertEqual((ROOT/e['current_path']).read_bytes(),b'',e['current_path'])
+
         self.assertEqual(len(receipt['files']),receipt['source_count'])
         self.assertEqual(len({e['source'] for e in receipt['files']}),receipt['source_count'])
         self.assertEqual(len({e['destination'].casefold() for e in receipt['files']}),receipt['source_count'])
         for entry in receipt['files']:
-            target=ROOT/entry['destination']
+            target=ROOT/relocated.get(entry['destination'],entry['destination'])
             self.assertTrue(target.is_file(),entry['destination'])
             data=target.read_bytes()
             # Normalize only Git's Windows text checkout conversion.
