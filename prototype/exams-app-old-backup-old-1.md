@@ -4,7 +4,7 @@
 - **Original Branch:** `backup/old-1`
 - **Commit SHA:** `cc43fb998824101d68da7fad237fd5457986e1cb`
 - **GitHub Reference:** [Commit cc43fb9 on GitHub](https://github.com/ianmaciel7/exams-app-old/tree/backup/old-1)
-- **Git Bundle:** [exams-app-old-backup-old-1.bundle](exams-app-old-backup-old-1.bundle)
+- **Git Bundle:** [exams-app-old-backup-old-1.bundle](archive/backups/exams-app/exams-app-old-backup-old-1.bundle)
 
 ## Purpose & Summary
 
@@ -36,6 +36,6 @@ The foundational bootstrap of the modern Exams App architecture. Combines Next.j
 ## Restoration Instructions
 
 ```bash
-git bundle verify exams-app-old-backup-old-1.bundle
-git clone exams-app-old-backup-old-1.bundle -b backup-old-1 ./restored-exams-app-old-backup-old-1
+git bundle verify prototype/archive/backups/exams-app/exams-app-old-backup-old-1.bundle
+git clone prototype/archive/backups/exams-app/exams-app-old-backup-old-1.bundle -b backup-old-1 ./restored-exams-app-old-backup-old-1
 ```
