@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate #278 phase 2A without moving files or contacting Claude."""
+"""Validate #278 phase 2B paths, Git blobs and the Claude publication hold."""
 import json
 from pathlib import Path
 import re
@@ -36,7 +36,7 @@ def main():
             errors.append("Unexpected baseline source: "+source)
         if current != source:
             if (entry.get("state") != "moved-exact-git-blob" or
-                not re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\\.e\\d+\\.json,by-others",current) or
+                not re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",current) or
                 current != entry["future_path"] or entry["bytes"] != 0 or
                 entry["git_blob_sha"] != empty_sha):
                 errors.append("Unreviewed physical migration: "+source)
@@ -44,13 +44,13 @@ def main():
             errors.append("Incorrect legacy state: "+source)
     raw = subprocess.check_output(["git", "ls-files", "-s", "-z", "--", "prototype"], cwd=ROOT)
     tracked = {}
-    for item in raw.split(b"\\0"):
+    for item in raw.split(b"\0"):
         if not item: continue
-        metadata, name = item.split(b"\\t", 1)
-        path = name.decode("utf-8", "surrogateescape").replace("\\\\", "/")
+        metadata, name = item.split(b"\t", 1)
+        path = name.decode("utf-8", "surrogateescape").replace("\\", "/")
         if path.startswith("prototype/") and (
             path.count("/") == 1 or
-            re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\\.e\\d+\\.json,by-others",path)
+            re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\.e\d+\.json,by-others",path)
         ):
             tracked[path] = metadata.decode("ascii").split()[1]
     expected = {x.get("current_path", x["path"]): x["git_blob_sha"] for x in entries}
