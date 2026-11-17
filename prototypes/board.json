@@ -8593,7 +8593,7 @@
       "x": 14920,
       "y": 0,
       "w": 1700,
-      "h": 8653,
+      "h": 9233,
       "color": "white",
       "text": "40. Evidências ExamTopics — catálogo completo, fontes, comparativo dev e capturas (17/11/2026)"
     },
@@ -8602,14 +8602,14 @@
       "x": 14960,
       "y": 7808,
       "w": 1610,
-      "h": 540,
+      "h": 1100,
       "wrap": 1610,
       "text": "FONTES OFICIAIS, com acesso direto (16 URLs)\n[ET-01 · Catálogo geral](https://www.examtopics.com/exams/) — público\n[ET-02 · Exames Google](https://www.examtopics.com/exams/google/) — público\n[ET-03 · Exame AZ-900](https://www.examtopics.com/exams/microsoft/az-900/) — público\n[ET-04 · Banco AZ-900](https://www.examtopics.com/exams/microsoft/az-900/view/) — público\n[ET-05 · Banco AWS CLF-C02](https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner-clf-c02/view/) — público\n[ET-06 · AZ-900 página 2](https://www.examtopics.com/exams/microsoft/az-900/view/2/) — tela de login pública\n[ET-07 · AZ-900 página 30](https://www.examtopics.com/exams/microsoft/az-900/view/30/) — tela de login pública\n[ET-08 · Discussão AZ-900](https://www.examtopics.com/discussions/microsoft/view/93155-exam-az-900-topic-1-question-401-discussion/) — público\n[ET-09 · Discussões Microsoft](https://www.examtopics.com/discussions/microsoft/) — público\n[ET-10 · Login](https://www.examtopics.com/login/) — formulário público\n[ET-11 · Cadastro](https://www.examtopics.com/signup/) — formulário público\n[ET-12 · ExamTopics PRO](https://www.examtopics.com/unlimited/) — oferta pública; benefícios não testados\n[ET-13 · Checkout PRO](https://www.examtopics.com/pro/) — oferta pública\n[ET-14 · Termos](https://www.examtopics.com/terms/) — público\n[ET-15 · Blog](https://www.examtopics.com/news/) — público\n[ET-16 · Catálogo histórico AZ-104](https://www.examtopics.com/exams/microsoft/az-104/view/) — referência para capturas históricas; não reverificado nesta auditoria\n\nET-16 é referência de capturas históricas, não inspeção atual."
     },
     "e17025": {
       "type": "text",
       "x": 14960,
-      "y": 8373,
+      "y": 8948,
       "w": 1610,
       "h": 185,
       "wrap": 1610,
