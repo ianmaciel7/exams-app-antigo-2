@@ -1,3 +1,5 @@
+> **EVIDÊNCIAS CANÔNICAS:** [Board 06 — dossiê completo, 57 registros e cinco capturas](evidencias-examtopics-2026-11-17.md) · [Canvas de evidências](board-exam-app__index.html#e17000). O texto abaixo é a análise e não substitui o inventário por achado.
+
 # Auditoria comparativa: ExamTopics × Exam App (`dev`) — 17/11/2026
 
 > **Escopo:** benchmark público do ExamTopics e inspeção estática do código do protótipo Exam App 0.1.1 na `dev` (`41b6987a62e7cbcdede21a28dd9d73cba5b04cbd` no início). **Não é homologação de execução do Exam App**; os testes E2E citados são scripts existentes, não reexecutados nesta auditoria.
