@@ -16,11 +16,11 @@ if not MAP.is_file():
 entries = ROW.findall(MAP.read_text(encoding="utf-8"))
 if not entries:
     sys.exit("Mapa de migração vazio ou formato inválido")
-targets = set()
+targets = {}
 for source, relative, digest in entries:
-    if relative in targets:
-        errors.append(f"destino duplicado no mapa: {relative}")
-    targets.add(relative)
+    if relative in targets and targets[relative] != digest:
+        errors.append(f"destino com hashes conflitantes no mapa: {relative}")
+    targets[relative] = digest
     dest = ROOT / relative
     if not dest.is_file():
         errors.append(f"destino ausente: {relative}")
