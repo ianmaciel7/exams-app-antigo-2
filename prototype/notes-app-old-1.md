@@ -4,7 +4,7 @@
 - **Original Branch:** `old-1`
 - **Commit SHA:** `c2fca6232c45ce4d64d0088036e1ddd0742944d4`
 - **GitHub Reference:** [Commit c2fca62 on GitHub](https://github.com/ianmaciel7/notes-app/tree/old-1)
-- **Git Bundle:** [notes-app-old-1.bundle](notes-app-old-1.bundle)
+- **Git Bundle:** [notes-app-old-1.bundle](archive/backups/notes-app/notes-app-old-1.bundle)
 
 ## Purpose & Summary
 
@@ -28,6 +28,6 @@ _No screenshot available: this snapshot contains documentation and agent instruc
 ## Restoration Instructions
 
 ```bash
-git bundle verify notes-app-old-1.bundle
-git clone notes-app-old-1.bundle -b old-1 ./restored-notes-app-old-1
+git bundle verify prototype/archive/backups/notes-app/notes-app-old-1.bundle
+git clone prototype/archive/backups/notes-app/notes-app-old-1.bundle -b old-1 ./restored-notes-app-old-1
 ```
