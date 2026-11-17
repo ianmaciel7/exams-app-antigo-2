@@ -838,7 +838,7 @@ Testamos a comunicação entre o Exam App em localhost (porta 8765) e o Claude P
 
 Evidência técnica registrada em prototypes/CLAUDE_STORAGE_BRIDGE_INVESTIGATION.md
 
-![imagem e1373](board-exam-app__assets__evidence-iframe-csp-blocked.png)
+![imagem e1373](evidence-iframe-csp-blocked.png)
 
 Evidência de execução real no Google Chrome: O navegador acusa 'Framing https://claude.ai/ violates Content Security Policy: frame-ancestors... The request has been blocked'. O iframe renderiza em branco e o canal postMessage é recusado pela Same-Origin Policy. Recomendação: Manter armazenamento local estruturado (localStorage/IndexedDB) e publicação estática via claude-artifact publish.
 
@@ -1005,15 +1005,15 @@ Decisões pendentes (4): listadas no fim do documento. Nada foi alterado na 0.1.
 - **Seguranca do Proxy:** Restricao estrita de Slugs homologados, rejeicao de chamadas sem Origin/Auth, regex estrita e timeout de 15s no upstream.
 - **Artifact Publicado:** Capabilities db e user homologadas; suporte a fallback inline para execucao direta no iframe.
 
-![imagem e1442](board-exam-app__assets__evidence-e2e-sync-badge-active.png)
+![imagem e1442](evidence-e2e-sync-badge-active.png)
 
 Evidencia de execucao real no Google Chrome: Badge SVG ativo (.synced/.syncing) no rodape lateral. Respostas de questoes, cadernos e espacos sincronizados com o Claude Pro DB (127.0.0.1:8766).
 
-![imagem e1444](board-exam-app__assets__evidence-claude-web-artifact-public.png)
+![imagem e1444](evidence-claude-web-artifact-public.png)
 
 Evidencia de auditoria do Claude Web: O acesso web automatizado ao Artifact real (claude.ai/code/artifact/...) apresenta o desafio Cloudflare Turnstile (Just a moment...), enquanto a API de Frame DB via token OAuth do Claude Code no proxy conecta-se diretamente ao backend sem bloqueio.
 
-![imagem e1446](board-exam-app__assets__evidence-homologation-clean-recovery.png)
+![imagem e1446](evidence-homologation-clean-recovery.png)
 
 Evidencia de Homologacao: Recuperacao completa e deterministica de dados (respostas, cadernos, espacos e workspaces) em navegador limpo e virgem a partir do Claude Pro DB.
 
