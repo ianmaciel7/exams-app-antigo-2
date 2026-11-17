@@ -31,10 +31,10 @@ jobs:
           node --check scripts/render-mermaid-check.mjs
       - name: Regenerate derived board and evidence data
         run: |
+          python3 prototypes/board_to_md.py
+          python3 prototypes/render_board_mestre.py
           python3 scripts/build-evidence-catalog.py
           python3 prototypes/build_feature_links.py
-          python3 prototypes/render_board_mestre.py
-          python3 prototypes/board_to_md.py
       - name: Refresh recorded destination SHA256 in migration map
         shell: bash
         run: |

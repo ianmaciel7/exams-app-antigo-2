@@ -200,7 +200,7 @@ def load_corpus():
         for dirpath, dirnames, filenames in os.walk(os.path.join(ROOT, base)):
             dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != 'assets']
             for fn in filenames:
-                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototypes' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json'}:
+                if os.path.relpath(dirpath, ROOT).replace(os.sep, '/') == 'prototypes' and fn in {'CATALOG.md', 'gallery.html', 'catalog.json', 'BOARD.md', 'board-mestre.md', 'feature-links.json'}:
                     continue  # índices gerados não são suas próprias referências
                 if re.search(r'\.(md|json|html|py|mjs|js|yml)$', fn):
                     p = os.path.join(dirpath, fn)
