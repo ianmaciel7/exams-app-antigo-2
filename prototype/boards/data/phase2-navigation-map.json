@@ -1,16 +1,17 @@
 {
   "schema_version": 1,
   "issue": 278,
-  "phase": "2a-navigation-only",
+  "phase": "2b-evidence-zero-byte-marker-move",
   "baseline_commit": "6848c309bfc67e086f81c7e09abe8c83ca643230",
   "count": 969,
   "scope": "all direct tracked file children of prototype/ before phase 2A",
-  "state": "legacy-canonical-files-not-moved",
+  "state": "partial-migration-208-physical-moves",
   "hash_method": "git_blob_sha; full SHA-256 maintained in the immutable previous baseline and rename receipt",
   "notes": [
-    "future_path denotes proposed destinations, not executed moves",
-    "Only new indexes are added; original binary and text contents are untouched",
-    "No publication, branch mirroring or evidence pushes occurred"
+    "Baseline from phase 2A records all 969 canonical files; path remains immutable historical source",
+    "208 empty evidence marker placeholders have moved to their pre-reviewed future_path without changing Git blob SHA",
+    "761 other canonical files remain at legacy path; future_path remains proposed for those files",
+    "No active HTML, JavaScript, PDF, image, data, artifact, or integration source is moved or published"
   ],
   "groups": {
     "boards": 891,
@@ -23,1456 +24,1664 @@
       "future_path": "prototype/boards/06-evidencias/relatorios/.e1.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e1.json,by-others"
     },
     {
       "path": "prototype/.e10.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e10.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e10.json,by-others"
     },
     {
       "path": "prototype/.e100.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e100.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e100.json,by-others"
     },
     {
       "path": "prototype/.e101.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e101.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e101.json,by-others"
     },
     {
       "path": "prototype/.e102.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e102.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e102.json,by-others"
     },
     {
       "path": "prototype/.e103.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e103.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e103.json,by-others"
     },
     {
       "path": "prototype/.e104.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e104.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e104.json,by-others"
     },
     {
       "path": "prototype/.e105.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e105.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e105.json,by-others"
     },
     {
       "path": "prototype/.e106.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e106.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e106.json,by-others"
     },
     {
       "path": "prototype/.e107.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e107.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e107.json,by-others"
     },
     {
       "path": "prototype/.e108.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e108.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e108.json,by-others"
     },
     {
       "path": "prototype/.e109.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e109.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e109.json,by-others"
     },
     {
       "path": "prototype/.e11.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e11.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e11.json,by-others"
     },
     {
       "path": "prototype/.e110.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e110.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e110.json,by-others"
     },
     {
       "path": "prototype/.e111.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e111.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e111.json,by-others"
     },
     {
       "path": "prototype/.e112.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e112.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e112.json,by-others"
     },
     {
       "path": "prototype/.e113.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e113.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e113.json,by-others"
     },
     {
       "path": "prototype/.e114.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e114.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e114.json,by-others"
     },
     {
       "path": "prototype/.e115.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e115.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e115.json,by-others"
     },
     {
       "path": "prototype/.e116.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e116.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e116.json,by-others"
     },
     {
       "path": "prototype/.e117.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e117.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e117.json,by-others"
     },
     {
       "path": "prototype/.e118.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e118.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e118.json,by-others"
     },
     {
       "path": "prototype/.e119.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e119.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e119.json,by-others"
     },
     {
       "path": "prototype/.e12.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e12.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e12.json,by-others"
     },
     {
       "path": "prototype/.e121.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e121.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e121.json,by-others"
     },
     {
       "path": "prototype/.e122.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e122.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e122.json,by-others"
     },
     {
       "path": "prototype/.e123.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e123.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e123.json,by-others"
     },
     {
       "path": "prototype/.e124.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e124.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e124.json,by-others"
     },
     {
       "path": "prototype/.e125.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e125.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e125.json,by-others"
     },
     {
       "path": "prototype/.e13.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e13.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e13.json,by-others"
     },
     {
       "path": "prototype/.e136.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e136.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e136.json,by-others"
     },
     {
       "path": "prototype/.e137.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e137.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e137.json,by-others"
     },
     {
       "path": "prototype/.e138.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e138.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e138.json,by-others"
     },
     {
       "path": "prototype/.e139.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e139.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e139.json,by-others"
     },
     {
       "path": "prototype/.e14.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e14.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e14.json,by-others"
     },
     {
       "path": "prototype/.e140.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e140.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e140.json,by-others"
     },
     {
       "path": "prototype/.e141.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e141.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e141.json,by-others"
     },
     {
       "path": "prototype/.e142.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e142.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e142.json,by-others"
     },
     {
       "path": "prototype/.e143.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e143.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e143.json,by-others"
     },
     {
       "path": "prototype/.e144.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e144.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e144.json,by-others"
     },
     {
       "path": "prototype/.e145.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e145.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e145.json,by-others"
     },
     {
       "path": "prototype/.e146.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e146.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e146.json,by-others"
     },
     {
       "path": "prototype/.e147.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e147.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e147.json,by-others"
     },
     {
       "path": "prototype/.e149.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e149.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e149.json,by-others"
     },
     {
       "path": "prototype/.e15.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e15.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e15.json,by-others"
     },
     {
       "path": "prototype/.e150.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e150.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e150.json,by-others"
     },
     {
       "path": "prototype/.e151.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e151.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e151.json,by-others"
     },
     {
       "path": "prototype/.e152.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e152.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e152.json,by-others"
     },
     {
       "path": "prototype/.e153.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e153.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e153.json,by-others"
     },
     {
       "path": "prototype/.e154.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e154.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e154.json,by-others"
     },
     {
       "path": "prototype/.e155.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e155.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e155.json,by-others"
     },
     {
       "path": "prototype/.e156.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e156.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e156.json,by-others"
     },
     {
       "path": "prototype/.e157.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e157.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e157.json,by-others"
     },
     {
       "path": "prototype/.e158.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e158.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e158.json,by-others"
     },
     {
       "path": "prototype/.e159.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e159.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e159.json,by-others"
     },
     {
       "path": "prototype/.e16.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e16.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e16.json,by-others"
     },
     {
       "path": "prototype/.e160.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e160.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e160.json,by-others"
     },
     {
       "path": "prototype/.e161.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e161.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e161.json,by-others"
     },
     {
       "path": "prototype/.e162.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e162.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e162.json,by-others"
     },
     {
       "path": "prototype/.e163.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e163.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e163.json,by-others"
     },
     {
       "path": "prototype/.e164.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e164.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e164.json,by-others"
     },
     {
       "path": "prototype/.e165.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e165.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e165.json,by-others"
     },
     {
       "path": "prototype/.e166.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e166.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e166.json,by-others"
     },
     {
       "path": "prototype/.e167.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e167.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e167.json,by-others"
     },
     {
       "path": "prototype/.e168.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e168.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e168.json,by-others"
     },
     {
       "path": "prototype/.e169.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e169.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e169.json,by-others"
     },
     {
       "path": "prototype/.e170.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e170.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e170.json,by-others"
     },
     {
       "path": "prototype/.e171.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e171.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e171.json,by-others"
     },
     {
       "path": "prototype/.e172.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e172.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e172.json,by-others"
     },
     {
       "path": "prototype/.e173.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e173.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e173.json,by-others"
     },
     {
       "path": "prototype/.e174.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e174.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e174.json,by-others"
     },
     {
       "path": "prototype/.e175.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e175.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e175.json,by-others"
     },
     {
       "path": "prototype/.e190.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e190.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e190.json,by-others"
     },
     {
       "path": "prototype/.e191.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e191.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e191.json,by-others"
     },
     {
       "path": "prototype/.e192.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e192.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e192.json,by-others"
     },
     {
       "path": "prototype/.e193.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e193.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e193.json,by-others"
     },
     {
       "path": "prototype/.e2.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e2.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e2.json,by-others"
     },
     {
       "path": "prototype/.e20.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e20.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e20.json,by-others"
     },
     {
       "path": "prototype/.e24.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e24.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e24.json,by-others"
     },
     {
       "path": "prototype/.e25.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e25.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e25.json,by-others"
     },
     {
       "path": "prototype/.e300.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e300.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e300.json,by-others"
     },
     {
       "path": "prototype/.e301.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e301.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e301.json,by-others"
     },
     {
       "path": "prototype/.e302.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e302.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e302.json,by-others"
     },
     {
       "path": "prototype/.e303.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e303.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e303.json,by-others"
     },
     {
       "path": "prototype/.e304.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e304.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e304.json,by-others"
     },
     {
       "path": "prototype/.e305.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e305.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e305.json,by-others"
     },
     {
       "path": "prototype/.e306.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e306.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e306.json,by-others"
     },
     {
       "path": "prototype/.e307.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e307.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e307.json,by-others"
     },
     {
       "path": "prototype/.e308.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e308.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e308.json,by-others"
     },
     {
       "path": "prototype/.e309.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e309.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e309.json,by-others"
     },
     {
       "path": "prototype/.e310.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e310.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e310.json,by-others"
     },
     {
       "path": "prototype/.e311.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e311.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e311.json,by-others"
     },
     {
       "path": "prototype/.e312.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e312.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e312.json,by-others"
     },
     {
       "path": "prototype/.e313.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e313.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e313.json,by-others"
     },
     {
       "path": "prototype/.e314.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e314.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e314.json,by-others"
     },
     {
       "path": "prototype/.e315.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e315.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e315.json,by-others"
     },
     {
       "path": "prototype/.e316.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e316.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e316.json,by-others"
     },
     {
       "path": "prototype/.e317.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e317.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e317.json,by-others"
     },
     {
       "path": "prototype/.e318.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e318.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e318.json,by-others"
     },
     {
       "path": "prototype/.e319.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e319.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e319.json,by-others"
     },
     {
       "path": "prototype/.e320.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e320.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e320.json,by-others"
     },
     {
       "path": "prototype/.e321.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e321.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e321.json,by-others"
     },
     {
       "path": "prototype/.e322.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e322.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e322.json,by-others"
     },
     {
       "path": "prototype/.e323.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e323.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e323.json,by-others"
     },
     {
       "path": "prototype/.e324.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e324.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e324.json,by-others"
     },
     {
       "path": "prototype/.e325.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e325.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e325.json,by-others"
     },
     {
       "path": "prototype/.e326.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e326.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e326.json,by-others"
     },
     {
       "path": "prototype/.e327.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e327.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e327.json,by-others"
     },
     {
       "path": "prototype/.e328.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e328.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e328.json,by-others"
     },
     {
       "path": "prototype/.e329.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e329.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e329.json,by-others"
     },
     {
       "path": "prototype/.e330.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e330.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e330.json,by-others"
     },
     {
       "path": "prototype/.e331.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e331.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e331.json,by-others"
     },
     {
       "path": "prototype/.e332.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e332.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e332.json,by-others"
     },
     {
       "path": "prototype/.e333.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e333.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e333.json,by-others"
     },
     {
       "path": "prototype/.e334.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e334.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e334.json,by-others"
     },
     {
       "path": "prototype/.e335.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e335.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e335.json,by-others"
     },
     {
       "path": "prototype/.e336.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e336.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e336.json,by-others"
     },
     {
       "path": "prototype/.e337.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e337.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e337.json,by-others"
     },
     {
       "path": "prototype/.e338.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e338.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e338.json,by-others"
     },
     {
       "path": "prototype/.e339.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e339.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e339.json,by-others"
     },
     {
       "path": "prototype/.e34.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e34.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e34.json,by-others"
     },
     {
       "path": "prototype/.e340.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e340.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e340.json,by-others"
     },
     {
       "path": "prototype/.e341.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e341.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e341.json,by-others"
     },
     {
       "path": "prototype/.e342.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e342.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e342.json,by-others"
     },
     {
       "path": "prototype/.e343.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e343.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e343.json,by-others"
     },
     {
       "path": "prototype/.e344.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e344.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e344.json,by-others"
     },
     {
       "path": "prototype/.e345.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e345.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e345.json,by-others"
     },
     {
       "path": "prototype/.e346.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e346.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e346.json,by-others"
     },
     {
       "path": "prototype/.e347.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e347.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e347.json,by-others"
     },
     {
       "path": "prototype/.e348.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e348.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e348.json,by-others"
     },
     {
       "path": "prototype/.e349.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e349.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e349.json,by-others"
     },
     {
       "path": "prototype/.e350.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e350.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e350.json,by-others"
     },
     {
       "path": "prototype/.e351.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e351.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e351.json,by-others"
     },
     {
       "path": "prototype/.e352.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e352.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e352.json,by-others"
     },
     {
       "path": "prototype/.e353.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e353.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e353.json,by-others"
     },
     {
       "path": "prototype/.e354.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e354.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e354.json,by-others"
     },
     {
       "path": "prototype/.e355.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e355.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e355.json,by-others"
     },
     {
       "path": "prototype/.e356.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e356.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e356.json,by-others"
     },
     {
       "path": "prototype/.e357.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e357.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e357.json,by-others"
     },
     {
       "path": "prototype/.e358.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e358.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e358.json,by-others"
     },
     {
       "path": "prototype/.e359.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e359.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e359.json,by-others"
     },
     {
       "path": "prototype/.e360.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e360.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e360.json,by-others"
     },
     {
       "path": "prototype/.e361.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e361.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e361.json,by-others"
     },
     {
       "path": "prototype/.e362.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e362.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e362.json,by-others"
     },
     {
       "path": "prototype/.e363.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e363.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e363.json,by-others"
     },
     {
       "path": "prototype/.e364.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e364.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e364.json,by-others"
     },
     {
       "path": "prototype/.e365.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e365.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e365.json,by-others"
     },
     {
       "path": "prototype/.e4.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e4.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e4.json,by-others"
     },
     {
       "path": "prototype/.e400.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e400.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e400.json,by-others"
     },
     {
       "path": "prototype/.e401.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e401.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e401.json,by-others"
     },
     {
       "path": "prototype/.e402.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e402.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e402.json,by-others"
     },
     {
       "path": "prototype/.e403.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e403.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e403.json,by-others"
     },
     {
       "path": "prototype/.e410.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e410.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e410.json,by-others"
     },
     {
       "path": "prototype/.e411.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e411.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e411.json,by-others"
     },
     {
       "path": "prototype/.e412.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e412.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e412.json,by-others"
     },
     {
       "path": "prototype/.e413.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e413.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e413.json,by-others"
     },
     {
       "path": "prototype/.e414.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e414.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e414.json,by-others"
     },
     {
       "path": "prototype/.e415.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e415.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e415.json,by-others"
     },
     {
       "path": "prototype/.e416.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e416.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e416.json,by-others"
     },
     {
       "path": "prototype/.e417.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e417.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e417.json,by-others"
     },
     {
       "path": "prototype/.e418.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e418.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e418.json,by-others"
     },
     {
       "path": "prototype/.e419.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e419.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e419.json,by-others"
     },
     {
       "path": "prototype/.e420.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e420.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e420.json,by-others"
     },
     {
       "path": "prototype/.e421.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e421.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e421.json,by-others"
     },
     {
       "path": "prototype/.e43.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e43.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e43.json,by-others"
     },
     {
       "path": "prototype/.e44.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e44.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e44.json,by-others"
     },
     {
       "path": "prototype/.e45.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e45.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e45.json,by-others"
     },
     {
       "path": "prototype/.e46.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e46.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e46.json,by-others"
     },
     {
       "path": "prototype/.e47.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e47.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e47.json,by-others"
     },
     {
       "path": "prototype/.e48.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e48.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e48.json,by-others"
     },
     {
       "path": "prototype/.e49.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e49.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e49.json,by-others"
     },
     {
       "path": "prototype/.e5.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e5.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e5.json,by-others"
     },
     {
       "path": "prototype/.e50.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e50.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e50.json,by-others"
     },
     {
       "path": "prototype/.e500.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e500.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e500.json,by-others"
     },
     {
       "path": "prototype/.e501.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e501.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e501.json,by-others"
     },
     {
       "path": "prototype/.e502.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e502.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e502.json,by-others"
     },
     {
       "path": "prototype/.e503.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e503.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e503.json,by-others"
     },
     {
       "path": "prototype/.e51.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e51.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e51.json,by-others"
     },
     {
       "path": "prototype/.e52.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e52.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e52.json,by-others"
     },
     {
       "path": "prototype/.e53.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e53.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e53.json,by-others"
     },
     {
       "path": "prototype/.e54.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e54.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e54.json,by-others"
     },
     {
       "path": "prototype/.e56.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e56.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e56.json,by-others"
     },
     {
       "path": "prototype/.e57.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e57.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e57.json,by-others"
     },
     {
       "path": "prototype/.e58.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e58.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e58.json,by-others"
     },
     {
       "path": "prototype/.e59.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e59.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e59.json,by-others"
     },
     {
       "path": "prototype/.e6.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e6.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e6.json,by-others"
     },
     {
       "path": "prototype/.e60.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e60.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e60.json,by-others"
     },
     {
       "path": "prototype/.e61.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e61.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e61.json,by-others"
     },
     {
       "path": "prototype/.e62.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e62.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e62.json,by-others"
     },
     {
       "path": "prototype/.e63.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e63.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e63.json,by-others"
     },
     {
       "path": "prototype/.e7.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e7.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e7.json,by-others"
     },
     {
       "path": "prototype/.e73.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e73.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e73.json,by-others"
     },
     {
       "path": "prototype/.e8.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e8.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e8.json,by-others"
     },
     {
       "path": "prototype/.e85.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e85.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e85.json,by-others"
     },
     {
       "path": "prototype/.e86.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e86.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e86.json,by-others"
     },
     {
       "path": "prototype/.e87.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e87.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e87.json,by-others"
     },
     {
       "path": "prototype/.e88.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e88.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e88.json,by-others"
     },
     {
       "path": "prototype/.e89.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e89.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e89.json,by-others"
     },
     {
       "path": "prototype/.e9.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e9.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e9.json,by-others"
     },
     {
       "path": "prototype/.e90.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e90.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e90.json,by-others"
     },
     {
       "path": "prototype/.e91.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e91.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e91.json,by-others"
     },
     {
       "path": "prototype/.e92.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e92.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e92.json,by-others"
     },
     {
       "path": "prototype/.e93.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e93.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e93.json,by-others"
     },
     {
       "path": "prototype/.e95.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e95.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e95.json,by-others"
     },
     {
       "path": "prototype/.e96.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e96.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e96.json,by-others"
     },
     {
       "path": "prototype/.e97.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e97.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e97.json,by-others"
     },
     {
       "path": "prototype/.e98.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e98.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e98.json,by-others"
     },
     {
       "path": "prototype/.e99.json,by-others",
       "future_path": "prototype/boards/06-evidencias/relatorios/.e99.json,by-others",
       "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
       "bytes": 0,
-      "state": "legacy-path-canonical"
+      "state": "moved-exact-git-blob",
+      "current_path": "prototype/boards/06-evidencias/relatorios/.e99.json,by-others"
     },
     {
       "path": "prototype/.meta.json,by-others",
@@ -6801,5 +7010,12 @@
       "bytes": 843,
       "state": "legacy-path-canonical"
     }
-  ]
+  ],
+  "migration_summary": {
+    "moved_exact_git_blob": 208,
+    "remaining_legacy_canonical": 761,
+    "source_count": 969,
+    "empty_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "source_head": "b5a93e65b3c4643487801abeb37e15df7a8bc3c7"
+  }
 }

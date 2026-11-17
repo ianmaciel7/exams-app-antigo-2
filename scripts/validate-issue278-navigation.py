@@ -15,21 +15,45 @@ def main():
     errors = []
     data = json.loads((PROTOTYPE/"boards/data/phase2-navigation-map.json").read_text(encoding="utf-8"))
     entries = data["mappings"]
-    paths = [x["path"] for x in entries]
-    destinations = [x["future_path"].casefold() for x in entries]
-    if len(entries) != data["count"] or len(set(paths)) != len(paths):
-        errors.append("Manifest count or current path uniqueness failed")
-    if len(set(destinations)) != len(destinations):
-        errors.append("Case-insensitive proposed destination collision")
+    original_paths = [x["path"] for x in entries]
+    destination_paths = [x["future_path"].casefold() for x in entries]
+    current_paths = [x.get("current_path", x["path"]) for x in entries]
+    if len(entries) != data["count"] or len(set(original_paths)) != len(entries):
+        errors.append("Manifest count or baseline source uniqueness failed")
+    if len(set(destination_paths)) != len(entries):
+        errors.append("Case-insensitive future destination collision")
+    if len({p.casefold() for p in current_paths}) != len(entries):
+        errors.append("Case-insensitive current destination collision")
+    moved = [x for x in entries if x.get("current_path", x["path"]) != x["path"]]
+    summary = data.get("migration_summary", {})
+    if summary.get("moved_exact_git_blob") != len(moved) or summary.get("remaining_legacy_canonical") != len(entries)-len(moved):
+        errors.append("Moved/remaining manifest totals differ")
+    empty_sha = "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    for entry in entries:
+        source = entry["path"]
+        current = entry.get("current_path", source)
+        if not source.startswith("prototype/") or source.count("/") != 1:
+            errors.append("Unexpected baseline source: "+source)
+        if current != source:
+            if (entry.get("state") != "moved-exact-git-blob" or
+                not re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\\.e\\d+\\.json,by-others",current) or
+                current != entry["future_path"] or entry["bytes"] != 0 or
+                entry["git_blob_sha"] != empty_sha):
+                errors.append("Unreviewed physical migration: "+source)
+        elif entry.get("state") != "legacy-path-canonical":
+            errors.append("Incorrect legacy state: "+source)
     raw = subprocess.check_output(["git", "ls-files", "-s", "-z", "--", "prototype"], cwd=ROOT)
     tracked = {}
-    for item in raw.split(b"\0"):
+    for item in raw.split(b"\\0"):
         if not item: continue
-        metadata, name = item.split(b"\t", 1)
-        path = name.decode("utf-8", "surrogateescape").replace("\\", "/")
-        if path.startswith("prototype/") and path.count("/") == 1:
+        metadata, name = item.split(b"\\t", 1)
+        path = name.decode("utf-8", "surrogateescape").replace("\\\\", "/")
+        if path.startswith("prototype/") and (
+            path.count("/") == 1 or
+            re.fullmatch(r"prototype/boards/06-evidencias/relatorios/\\.e\\d+\\.json,by-others",path)
+        ):
             tracked[path] = metadata.decode("ascii").split()[1]
-    expected = {x["path"]: x["git_blob_sha"] for x in entries}
+    expected = {x.get("current_path", x["path"]): x["git_blob_sha"] for x in entries}
     for missing in sorted(set(tracked)-set(expected)):
         errors.append("Unmapped canonical file: "+missing)
     for missing in sorted(set(expected)-set(tracked)):
@@ -61,7 +85,7 @@ def main():
         errors.append("Artifact publication hold not enforced")
     if errors:
         print("\n".join(errors),file=sys.stderr); return 1
-    print(f"OK: {len(entries)} Git blobs, 7 boards, all navigation links, e17000, Claude publication hold.")
+    print(f"OK: {len(entries)} preserved Git blobs ({len(moved)} physically moved), 7 boards, links, e17000, Claude publication hold.")
     return 0
 
 if __name__=="__main__":
