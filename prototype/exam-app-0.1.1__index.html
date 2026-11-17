@@ -1916,6 +1916,22 @@ a.rp-link:hover{background:var(--active)}
 @media(max-width:620px){.gv-footer{align-items:flex-start;flex-direction:column-reverse}.gv-info{align-self:flex-end}.gv-leg{max-width:100%}}
 .gv-tip{position:absolute;z-index:3;pointer-events:none;background:var(--pop);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow);padding:7px 10px;max-width:260px;font-size:12.5px;line-height:1.35}
 .gv-load{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;color:var(--muted);font-size:13px}.gv-load i{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--text);animation:gvspin .8s linear infinite}@keyframes gvspin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.gv-load i{animation:none}}
+.gv-top{right:12px}
+.gv-bar{position:absolute;bottom:12px;z-index:2;display:flex;align-items:center;gap:4px;height:27px;padding:2px 6px;border-radius:14px;background:var(--pop);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gv-bar-left{left:12px}.gv-bar-right{right:12px}
+.gv-bar .gv-zoom{display:flex;align-items:center;gap:0;background:transparent;border:0;box-shadow:none;border-radius:0}
+.gv-bar .gv-zoom button,.gv-bar>button{width:24px;height:23px;display:grid;place-items:center;color:var(--muted);border-radius:10px;font-size:11px;font-weight:600}
+.gv-bar .gv-zoom button+button{border-left:0}
+.gv-bar button:hover{background:var(--hover);color:var(--text)}
+.gv-bar .gv-pct{width:auto;min-width:34px;padding:0 4px;font-variant-numeric:tabular-nums}
+.gv-bar .gv-zoom+.gv-zoom{border-left:1px solid var(--line);padding-left:4px;margin-left:2px}
+.gv-footer{position:absolute;left:12px;right:12px;bottom:46px;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
+.gv-info{position:absolute;left:50%;transform:translateX(-50%);bottom:0;white-space:nowrap}
+.gv-pop{position:absolute;right:0;bottom:calc(100% + 8px);pointer-events:auto;width:min(300px,80vw);max-height:60vh;overflow:auto;padding:8px;background:var(--pop);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.gv-pop[hidden]{display:none}
+.gv-pop .gv-leg{flex-direction:column;align-items:stretch;gap:6px}
+.gv-pop .gv-k{justify-content:flex-start;width:100%}
+@media(max-width:620px){.gv-footer{align-items:flex-start;flex-direction:column-reverse}.gv-info{position:static;transform:none}.gv-leg{max-width:100%}}
 .gv-tip b{display:block;font-weight:600}.gv-tip span{color:var(--muted);font-size:11.5px}
 
 /* Unified object colors, including the section picker. */
@@ -8779,6 +8795,8 @@ $('rpBody').addEventListener('pointerdown',e=>{ const sp=e.target.closest('[data
 /* ---- Gráfico do espaço (página inteira, barra lateral) ---- */
 let GV=null; const GVK={}; const GV_ICON_CACHE={};
 let GV_HIDE_HUBS=false;
+let GV_DEPTH=5, GV_FOCUS=null;
+const GV_BAR_SVG={exp:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v4h16v-4"/></svg>',filt:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h10"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg>',relay:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2.05-4.95M19 4v4h-4"/></svg>'};
 const graphNodeVisible=(degree,kindEnabled,hideHubs)=>kindEnabled&&(!hideHubs||degree<=40);
 function stopGV(){ if(!GV) return;
   GV.stop=true; cancelAnimationFrame(GV.raf);
@@ -8814,8 +8832,8 @@ function buildGraph(seq){
   const kinds=KORD.filter(k=>list.some(n=>n.kind===k)), edgesN=list.reduce((s,n)=>s+n.out.length,0), hubCount=list.filter(n=>n.out.length+n.inn.length>40).length;
   view.innerHTML='<div class="gv" id="gv"><canvas id="gvc" tabindex="0" role="img" aria-label="Gráfico com '+list.length+' objetos e '+edgesN+' relações. Use a busca para abrir um objeto pelo teclado."></canvas>'
    +'<div class="gv-top"><div class="gv-search-wrap"><div class="rp-search gv-search">'+WI.search+'<input type="search" id="gvq" placeholder="Buscar no gráfico" aria-label="Buscar objeto no gráfico" autocomplete="off" aria-controls="gvMatchCount"></div><output id="gvMatchCount" class="gv-match-count" for="gvq" role="status" aria-live="polite"></output></div>'
-   +'<div class="gv-zoom" role="group" aria-label="Zoom"><button type="button" id="gvIn" aria-label="Aproximar">'+WI.plus+'</button><button type="button" id="gvOut" aria-label="Afastar">'+WI.minus+'</button><button type="button" id="gvFit" aria-label="Ajustar à tela">'+WI.fit+'</button><button type="button" id="gvExport" aria-label="Exportar grafo como imagem PNG" title="Exportar PNG"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v4h16v-4"/></svg></button></div></div>'
-   +'<div class="gv-footer"><div class="gv-leg" role="group" aria-label="Filtros do grafo">'+kinds.map(k=>'<button type="button" class="gv-k k-'+k+'" data-gk="'+k+'" aria-pressed="'+(GVK[k]!==false)+'"><i aria-hidden="true"></i>'+esc(kn(k))+' <span>'+list.filter(n=>n.kind===k).length+'</span></button>').join('')+'<button type="button" class="gv-k" id="gvHubToggle" aria-pressed="'+GV_HIDE_HUBS+'" aria-label="Ocultar objetos com mais de 40 ligações" title="Ocultar nós muito conectados">Ocultar hubs <span>'+hubCount+'</span></button></div>'
+   +'</div>'+'<div class="gv-bar gv-bar-left" role="toolbar" aria-label="Visualização do grafo"><button type="button" id="gvFit" aria-label="Ajustar à visualização" title="Ajustar à visualização">'+WI.fit+'</button><button type="button" id="gvRelayout" aria-label="Reiniciar layout" title="Reiniciar layout">'+GV_BAR_SVG.relay+'</button></div>'+'<div class="gv-bar gv-bar-right" role="toolbar" aria-label="Zoom, exportação e filtros"><div class="gv-zoom" role="group" aria-label="Zoom"><button type="button" id="gvOut" aria-label="Afastar">'+WI.minus+'</button><button type="button" id="gvPct" class="gv-pct" aria-label="Redefinir zoom para 100%" title="Zoom 100%">100%</button><button type="button" id="gvIn" aria-label="Aproximar">'+WI.plus+'</button></div>'+'<div class="gv-zoom" role="group" aria-label="Ações"><button type="button" id="gvExport" aria-label="Exportar grafo como imagem PNG" title="Exportar PNG">'+GV_BAR_SVG.exp+'</button><button type="button" id="gvFilters" aria-label="Filtros e configurações do grafo" aria-expanded="false" aria-controls="gvPop" title="Filtros">'+GV_BAR_SVG.filt+'</button><button type="button" id="gvDepth" class="gv-pct" aria-label="Profundidade de saltos a partir do objeto selecionado" title="Profundidade">● '+GV_DEPTH+'</button></div></div>'
+   +'<div class="gv-footer"><div class="gv-pop" id="gvPop" hidden role="dialog" aria-label="Filtros do grafo"><div class="gv-leg" role="group" aria-label="Filtros do grafo">'+kinds.map(k=>'<button type="button" class="gv-k k-'+k+'" data-gk="'+k+'" aria-pressed="'+(GVK[k]!==false)+'"><i aria-hidden="true"></i>'+esc(kn(k))+' <span>'+list.filter(n=>n.kind===k).length+'</span></button>').join('')+'<button type="button" class="gv-k" id="gvHubToggle" aria-pressed="'+GV_HIDE_HUBS+'" aria-label="Ocultar objetos com mais de 40 ligações" title="Ocultar nós muito conectados">Ocultar hubs <span>'+hubCount+'</span></button></div></div>'
    +'<div class="gv-info" aria-live="polite">'+list.length+' objetos · '+edgesN+' relações'+(loading?' · carregando questões…':'')+'</div></div><div class="gv-tip" id="gvTip" hidden></div></div>';
   wsLoadingEnd('success',{seq});
   const wrap=$('gv'), cv=$('gvc'), ctx=cv.getContext('2d');
@@ -8926,7 +8944,7 @@ function buildGraph(seq){
   const zoomAt=(px,py,f)=>{ const nk=Math.max(.2,Math.min(5,st.k*f)), r=nk/st.k; st.tx=px-(px-st.tx)*r; st.ty=py-(py-st.ty)*r; st.k=nk; invalidate(); };
   const tip=$('gvTip'), setHover=(i,e)=>{ if(i!==st.hover){ st.hover=i; invalidate(); cv.style.cursor=i>=0?'pointer':'grab'; } if(i>=0&&e){ const o=nodes[i]; tip.hidden=false; tip.innerHTML='<b>'+esc(o.n.title)+'</b><span>'+esc(kn(o.n.kind))+' · '+o.deg+(o.deg===1?' ligação':' ligações')+'</span>'; const [px,py]=rel(e); tip.style.left=Math.min(st.W-tip.offsetWidth-8,px+14)+'px'; tip.style.top=Math.min(st.H-tip.offsetHeight-8,py+14)+'px'; } else tip.hidden=true; };
   const ptrs=new Map(); let pan=null, down=null, pinch=0;
-  cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,rel(e)); const [px,py]=rel(e);
+  cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,rel(e)); const [px,py]=rel(e); { const h0=hit(px,py); if(h0>=0&&GV_FOCUS!==nodes[h0].n.href){ GV_FOCUS=nodes[h0].n.href; if(GV_DEPTH<5) updateGraphVisibility(); } }
     if(ptrs.size===2){ const v=[...ptrs.values()]; pinch=Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1]); pan=null; down=null; st.drag=-1; return; }
     const i=hit(px,py); down={x:e.clientX,y:e.clientY,i,moved:false,ev:e}; if(i>=0){ st.drag=i; } else { pan={x:px,y:py,tx:st.tx,ty:st.ty}; cv.style.cursor='grabbing'; } });
   cv.addEventListener('pointermove',e=>{ const [px,py]=rel(e); if(ptrs.has(e.pointerId)) ptrs.set(e.pointerId,[px,py]);
@@ -8942,6 +8960,10 @@ function buildGraph(seq){
   cv.addEventListener('dblclick',e=>{ if(hit(...rel(e))<0){ fit(); invalidate(); } });
   cv.addEventListener('keydown',e=>{ const s=40; if(e.key==='+'||e.key==='='){ zoomAt(st.W/2,st.H/2,1.2); } else if(e.key==='-'){ zoomAt(st.W/2,st.H/2,1/1.2); } else if(e.key==='0'){ fit(); invalidate(); } else if(e.key==='ArrowLeft'){ st.tx+=s; invalidate(); } else if(e.key==='ArrowRight'){ st.tx-=s; invalidate(); } else if(e.key==='ArrowUp'){ st.ty+=s; invalidate(); } else if(e.key==='ArrowDown'){ st.ty-=s; invalidate(); } else return; e.preventDefault(); });
   $('gvIn').onclick=()=>zoomAt(st.W/2,st.H/2,1.3); $('gvOut').onclick=()=>zoomAt(st.W/2,st.H/2,1/1.3); $('gvFit').onclick=()=>{ fit(); invalidate(); };
+  $('gvPct').onclick=()=>{ zoomAt(st.W/2,st.H/2,1/st.k); };
+  $('gvRelayout').onclick=()=>{ if(!st.physicsEnabled){ toast('Layout fixo neste grafo (muitos objetos)'); return; } st.alpha=1; invalidate(); };
+  $('gvFilters').onclick=e=>{ e.stopPropagation(); const p=$('gvPop'), open=p.hidden; p.hidden=!open; $('gvFilters').setAttribute('aria-expanded',String(open)); };
+  $('gvDepth').onclick=()=>{ GV_DEPTH=GV_DEPTH%5+1; $('gvDepth').textContent='● '+GV_DEPTH; $('gvDepth').setAttribute('aria-label','Profundidade de saltos: '+GV_DEPTH); updateGraphVisibility(); };
   $('gvExport').onclick=async()=>{
     try{
       // The canvas already contains devicePixelRatio-scaled pixels; no external service needed.
@@ -8987,8 +9009,9 @@ function buildGraph(seq){
   };
   gq.addEventListener('input',updateGraphSearch);
   gq.addEventListener('keydown',e=>{ if(e.key==='Enter'&&st.match&&st.match.size){ const i=[...st.match][0]; wsOpenMain(nodes[i].n.href); } else if(e.key==='Escape'){ gq.value=''; updateGraphSearch(); } });
+  const gvReach=()=>{ const f=ix.get(GV_FOCUS); if(f===undefined||GV_DEPTH>=5) return null; const adj=nodes.map(()=>[]); edges.forEach(([i,j])=>{ adj[i].push(j); adj[j].push(i); }); const d=new Array(nodes.length).fill(-1); d[f]=0; const q=[f]; for(let h=0;h<q.length;h++){ const u=q[h]; if(d[u]>=GV_DEPTH) continue; for(const v of adj[u]) if(d[v]<0){ d[v]=d[u]+1; q.push(v); } } return d; };
   const updateGraphVisibility=()=>{
-    nodes.forEach(o=>{ o.on=graphNodeVisible(o.deg,GVK[o.n.kind]!==false,GV_HIDE_HUBS); });
+    const reach=(GV_DEPTH<5&&GV_FOCUS!==null)?gvReach():null; nodes.forEach((o,i)=>{ o.on=graphNodeVisible(o.deg,GVK[o.n.kind]!==false,GV_HIDE_HUBS)&&(!reach||reach[i]>=0); });
     $('gvHubToggle').setAttribute('aria-pressed',String(GV_HIDE_HUBS));
     const visible=nodes.filter(o=>o.on).length;
     const liveEdges=edges.filter(([i,j])=>nodes[i].on&&nodes[j].on).length;
