@@ -933,11 +933,15 @@ DEPOIS: página e camada de texto, DPR 2 / 200% | assets/pdf112_after_dpr2_zoom2
 ## 8. Análise ExamTopics → banco de questões
 <!-- container e190 @ (7440,3260) -->
 
-Análise (sem implementação). Aproveitar: busca, filtros básicos, chips ativos, total global x filtrado, paginação, por página, ordenação, estado na URL. Melhorar: unificar as duas listas de questões em um componente. Adicionar (condicionado a dados): tipo, dificuldade (derivada do desempenho), assunto, com imagem, com explicação, filtros salvos. Descartar: votos da comunidade, discussões, gabarito por votação.
+Auditoria revisada em 17/11/2026 (fonte: URLs oficiais públicas + inspeção DOM sem login + código dev). O ExamTopics tem catálogo por fornecedor, questões paginadas, gabarito revelável e votos/discussões. Na dev, filtros unificados, chips, URL, cadernos e simulados JÁ estão implementados no protótipo; não repetir gaps antigos. Modalidades drag-drop/hotspot interativas e catálogo de certificações ainda não homologados.
 
 [Análise ExamTopics: funcionalidades para o banco de questões](https://claude.ai/artifact/5qJgzuASzvMgdcoLDqbXZP)
 
-Decisões pendentes (3): listadas no fim do documento. Nada foi alterado na 0.1.1.
+Evidências: 5 screenshots do AZ-104 previamente registrados (não capturados nesta auditoria); inspeção de AZ-900 em 17/11/2026 documentada por URL e manifesto. Limites: sem sessão autenticada/PRO, sem nova captura e sem E2E reexecutado. Decisões: manter gabarito curado; não copiar votação/comunidade ou paywall.
+
+[Auditoria ExamTopics × dev — 17/11/2026](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-2026-11-17.md)
+
+[Manifesto das evidências ExamTopics — 17/11/2026](https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-evidencias-2026-11-17.json)
 
 ## 7. Roadmap de versões (cada versão entrega uma camada do modelo)
 <!-- container e154 @ (11160,3790) -->

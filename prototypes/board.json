@@ -807,7 +807,9 @@
     "e508",
     "e509",
     "e510",
-    "e511"
+    "e511",
+    "e194",
+    "e195"
   ],
   "elements": {
     "e1": {
@@ -1492,7 +1494,7 @@
       "y": 3260
     },
     "e191": {
-      "text": "Análise (sem implementação). Aproveitar: busca, filtros básicos, chips ativos, total global x filtrado, paginação, por página, ordenação, estado na URL. Melhorar: unificar as duas listas de questões em um componente. Adicionar (condicionado a dados): tipo, dificuldade (derivada do desempenho), assunto, com imagem, com explicação, filtros salvos. Descartar: votos da comunidade, discussões, gabarito por votação.",
+      "text": "Auditoria revisada em 17/11/2026 (fonte: URLs oficiais públicas + inspeção DOM sem login + código dev). O ExamTopics tem catálogo por fornecedor, questões paginadas, gabarito revelável e votos/discussões. Na dev, filtros unificados, chips, URL, cadernos e simulados JÁ estão implementados no protótipo; não repetir gaps antigos. Modalidades drag-drop/hotspot interativas e catálogo de certificações ainda não homologados.",
       "type": "text",
       "w": 480,
       "x": 7460,
@@ -1507,7 +1509,7 @@
       "y": 3660
     },
     "e193": {
-      "text": "Decisões pendentes (3): listadas no fim do documento. Nada foi alterado na 0.1.1.",
+      "text": "Evidências: 5 screenshots do AZ-104 previamente registrados (não capturados nesta auditoria); inspeção de AZ-900 em 17/11/2026 documentada por URL e manifesto. Limites: sem sessão autenticada/PRO, sem nova captura e sem E2E reexecutado. Decisões: manter gabarito curado; não copiar votação/comunidade ou paywall.",
       "type": "text",
       "w": 480,
       "x": 7460,
@@ -8338,6 +8340,20 @@
       "h": 5540,
       "color": "white",
       "text": "Sem grupo (revisar)"
+    },
+    "e194": {
+      "type": "link",
+      "x": 7460,
+      "y": 3820,
+      "title": "Auditoria ExamTopics × dev — 17/11/2026",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-2026-11-17.md"
+    },
+    "e195": {
+      "type": "link",
+      "x": 7960,
+      "y": 3820,
+      "title": "Manifesto das evidências ExamTopics — 17/11/2026",
+      "href": "https://github.com/ianmaciel7/exams-app/blob/dev/prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
     }
   }
 }

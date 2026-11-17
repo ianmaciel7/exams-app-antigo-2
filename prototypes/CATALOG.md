@@ -3,7 +3,7 @@
 Gerado por `scripts/build-evidence-catalog.py` em 2026-11-17T00:15:49Z. Não edite à mão: rode o script de novo.
 
 - Mídias catalogadas: **374**
-- Órfãs (nenhum texto cita o arquivo): **184**
+- Órfãs (nenhum texto cita o arquivo): **183**
 - Grupos de duplicatas (mesmo conteúdo): **19**
 - Pares antes/depois: **32**
 - Resultados de teste em JSON: **17**
@@ -176,7 +176,7 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 | EV-EA4158D7 | ![](audit2026_tipo_questao_wrap.png) | `prototypes/audit2026_tipo_questao_wrap.png` | inspeção técnica | — | — | 2026-11-16 | órfão |
 | EV-601DF4CD | ![](examtopics_az104_discussion_modal.png) | `prototypes/examtopics_az104_discussion_modal.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-3D095C0C | ![](examtopics_az104_header_and_overview.png) | `prototypes/examtopics_az104_header_and_overview.png` | evidência externa | — | — | 2026-11-16 | ok |
-| EV-006986D1 | ![](examtopics_az104_pagination_and_footer.png) | `prototypes/examtopics_az104_pagination_and_footer.png` | evidência externa | — | — | 2026-11-16 | órfão |
+| EV-006986D1 | ![](examtopics_az104_pagination_and_footer.png) | `prototypes/examtopics_az104_pagination_and_footer.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-A4C5D49B | ![](examtopics_az104_question_card.png) | `prototypes/examtopics_az104_question_card.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-06924DC9 | ![](examtopics_az104_solution_reveal.png) | `prototypes/examtopics_az104_solution_reveal.png` | evidência externa | — | — | 2026-11-16 | ok |
 | EV-B58B0AF1 | ![](issue100_after_answer.png) | `prototypes/issue100_after_answer.png` | captura do protótipo | depois | [#100](https://github.com/ianmaciel7/exams-app/issues/100) | 2026-11-16 | ok |
@@ -513,7 +513,6 @@ Galeria visual: `prototypes/gallery.html` (abra o arquivo localmente; o GitHub m
 - `prototypes/cc0093684c5ae6f612afbbf6b91bd674.png`
 - `prototypes/cf85b4fdc73d3e37137c304ff737aadc.png`
 - `prototypes/claude-artifact-audit-seq128.png`
-- `prototypes/examtopics_az104_pagination_and_footer.png`
 - `prototypes/f9c476ddeb52b075e841baacdff748f1.png`
 - `prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png`
 - `prototypes/inline-e10.jpg`

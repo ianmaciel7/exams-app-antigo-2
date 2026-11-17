@@ -31,6 +31,8 @@ flowchart TB
 
 ## Documentos
 
+- [Auditoria ExamTopics × dev — 17/11/2026](examtopics-auditoria-2026-11-17.md) — Matriz funcional verificada; diferencia código, proposta e acesso público.
+
 - [Estratégia de questões — #230](docs__research__pesquisas__230-estrategia-questoes__README.md)
 - [Pesquisa QConcursos — #31](qconcursos-issue-31-2026-11-15.md)
 - [Inventário ExamTopics](examtopics-inventory.md)

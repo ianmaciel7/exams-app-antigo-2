@@ -277,6 +277,11 @@
           "title": "Dossiê Readwise Reader e SRS",
           "path": "prototypes/READWISE_DOSSIER.md",
           "role": "Leitura, destaques e revisão espaçada."
+        },
+        {
+          "title": "Auditoria ExamTopics × dev (17/11)",
+          "path": "prototypes/examtopics-auditoria-2026-11-17.md",
+          "role": "Matriz funcional atual, gaps, decisões para releases e links oficiais."
         }
       ],
       "cards": [
@@ -472,6 +477,16 @@
           "title": "Análise ExamTopics",
           "path": "prototypes/analise-examtopics.md",
           "role": "Inventário local."
+        },
+        {
+          "title": "Auditoria ExamTopics × dev (17/11)",
+          "path": "prototypes/examtopics-auditoria-2026-11-17.md",
+          "role": "Fontes oficiais e evidência pública verificada no benchmark."
+        },
+        {
+          "title": "Manifesto de evidências ExamTopics",
+          "path": "prototypes/examtopics-auditoria-evidencias-2026-11-17.json",
+          "role": "Proveniência textual, URLs e referência a capturas antigas."
         }
       ],
       "cards": [
@@ -566,6 +581,16 @@
           "title": "Relatório de reestruturação",
           "path": "prototypes/RELATORIO-REESTRUTURACAO.md",
           "role": "Histórico, validações e limitações."
+        },
+        {
+          "title": "Manifesto de evidências ExamTopics",
+          "path": "prototypes/examtopics-auditoria-evidencias-2026-11-17.json",
+          "role": "Evidências existentes, datas e limites de validação."
+        },
+        {
+          "title": "Auditoria ExamTopics × dev (17/11)",
+          "path": "prototypes/examtopics-auditoria-2026-11-17.md",
+          "role": "Critérios de verificação e diferenciação de lacunas."
         }
       ],
       "cards": [

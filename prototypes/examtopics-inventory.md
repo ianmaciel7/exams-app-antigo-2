@@ -1,9 +1,11 @@
+> **ATUALIZAÇÃO DE 17/11/2026 — LEIA ANTES DESTE HISTÓRICO:** este arquivo contém afirmações e comparações de versões anteriores que não devem ser tratadas como o estado atual da plataforma ou da `dev`. A auditoria pública e estática mais recente é [ExamTopics × Exam App — 17/11/2026](examtopics-auditoria-2026-11-17.md), com [manifesto de evidências](examtopics-auditoria-evidencias-2026-11-17.json). Ela corrige: (1) a página 2 agora pede login/cadastro gratuito; (2) PRO permite ativar até 10 exames na oferta pública, **não** comprova acesso irrestrito a todo o catálogo; (3) simulados cronometrados e personalização PRO não foram observados; (4) `qfHTML`, `qfSyncURL`, filtros salvos, questões de prática e simulado **já existem no código da dev**. **Histórico abaixo preservado para rastreabilidade, não homologado em 17/11.**
+
 # Inventário e Análise do ExamTopics — Arquitetura, UI/UX, Funcionalidades e Ecossistema
 
 - **Documento:** `prototypes/examtopics-inventory.md`
 - **Issue relacionada:** #28
 - **Data da Observação:** Novembro de 2026
-- **Status:** Concluído e Integrado ao Planning Board
+- **Status:** versão histórica de pesquisa; validar fatos com o suplemento de 17/11/2026
 
 ---
 
@@ -17,9 +19,11 @@ O **ExamTopics** (`examtopics.com`) é uma das maiores plataformas globais de pr
 - **Cobertura geográfica e linguística:** Principalmente em inglês, com alcance global.
 
 ### 1.2 Diferenciação de Funcionalidades (Público vs. Autenticado vs. Premium)
+
+**Aviso:** as três linhas seguintes são observações históricas sem comprovação atual de todas as permissões. Para o fluxo confirmado de cadastro e PRO, use a auditoria de 17/11/2026.
 - **Acesso Público / Visitante:** Visualização parcial de questões (geralmente limitada a um número pequeno de perguntas por tópico, ex: primeiras 5 ou 10 questões), acesso restrito às discussões completas em tópicos populares.
 - **Usuário Autenticado (Free):** Permite participar de discussões, votar em respostas e ver um volume um pouco maior de conteúdo gratuito.
-- **Membros Premium (Paid):** Acesso ilimitado a todo o catálogo de questões, discussões completas sem restrições de paginação, simulações de exames sem anúncios e acesso a atualizações recentes de exames.
+- **Membros Premium (Paid):** Acesso ilimitado a todo o catálogo de questões, discussões completas sem restrições de paginação, acesso a atualizações durante o prazo contratado; simulados no PRO não foram validados.
 
 ---
 

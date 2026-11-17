@@ -8,10 +8,10 @@
 | --- | --- | ---: | ---: | --- |
 | 01 — Produto & domínio | Modelo de domínio, tipos, propriedades, relações e decisões de produto. | 6 | 3 | [Abrir](01-produto-e-dominio.md) |
 | 02 — Workspace & UX | Navegação, layout, painéis, propriedades, grafo, responsividade e interação. | 14 | 7 | [Abrir](02-workspace-e-ux.md) |
-| 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 7 | [Abrir](03-fluxos-de-estudo.md) |
+| 03 — Fluxos de estudo | Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PDFs. | 9 | 8 | [Abrir](03-fluxos-de-estudo.md) |
 | 04 — Arquitetura técnica | Serviços, estado, IA, sincronização, integrações e infraestrutura de agentes. | 6 | 3 | [Abrir](04-arquitetura-tecnica.md) |
-| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 8 | [Abrir](05-pesquisa-e-decisoes.md) |
-| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 4 | [Abrir](06-evidencias-e-qualidade.md) |
+| 05 — Pesquisa & benchmarks | Fontes externas, análises de concorrentes, dossiês e sínteses de referência. | 8 | 10 | [Abrir](05-pesquisa-e-decisoes.md) |
+| 06 — Evidências & qualidade | Capturas, antes/depois, resultados de testes e rastreabilidade verificável. | 3 | 6 | [Abrir](06-evidencias-e-qualidade.md) |
 | 07 — Entrega & arquivo | Versões, roadmap histórico, arquivos de entrada e recuperação de branches antigas. | 8 | 5 | [Abrir](07-entrega-e-arquivo.md) |
 
 ## 01 — Produto & domínio
@@ -87,6 +87,7 @@ Questões, filtros, cadernos, simulados, recuperação, revisão e leitura de PD
 - [Análise QConcursos](analise-qconcursos.md) — Análise funcional complementar.
 - [Análise ExamTopics](analise-examtopics.md) — Análise funcional complementar.
 - [Dossiê Readwise Reader e SRS](READWISE_DOSSIER.md) — Leitura, destaques e revisão espaçada.
+- [Auditoria ExamTopics × dev (17/11)](examtopics-auditoria-2026-11-17.md) — Matriz funcional atual, gaps, decisões para releases e links oficiais.
 
 ### Blocos do canvas original
 
@@ -141,6 +142,8 @@ Fontes externas, análises de concorrentes, dossiês e sínteses de referência.
 - [Pesquisa UX — 20 fontes](pesquisa-20-fontes-2026-11.md) — Síntese de referências.
 - [Análise QConcursos](analise-qconcursos.md) — Inventário local.
 - [Análise ExamTopics](analise-examtopics.md) — Inventário local.
+- [Auditoria ExamTopics × dev (17/11)](examtopics-auditoria-2026-11-17.md) — Fontes oficiais e evidência pública verificada no benchmark.
+- [Manifesto de evidências ExamTopics](examtopics-auditoria-evidencias-2026-11-17.json) — Proveniência textual, URLs e referência a capturas antigas.
 
 ### Blocos do canvas original
 
@@ -167,6 +170,8 @@ Capturas, antes/depois, resultados de testes e rastreabilidade verificável.
 - [Catálogo estruturado](catalog.json) — Hashes, duplicatas, órfãos e referências.
 - [Galeria de evidências](gallery.html) — Visualização filtrável.
 - [Relatório de reestruturação](RELATORIO-REESTRUTURACAO.md) — Histórico, validações e limitações.
+- [Manifesto de evidências ExamTopics](examtopics-auditoria-evidencias-2026-11-17.json) — Evidências existentes, datas e limites de validação.
+- [Auditoria ExamTopics × dev (17/11)](examtopics-auditoria-2026-11-17.md) — Critérios de verificação e diferenciação de lacunas.
 
 ### Blocos do canvas original
 

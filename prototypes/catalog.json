@@ -3,7 +3,7 @@
   "gerado_em": "2026-11-17T00:15:49Z",
   "resumo": {
     "midias": 374,
-    "orfaos": 184,
+    "orfaos": 183,
     "duplicatas_grupos": 19,
     "testes_json": 17,
     "pares_antes_depois": 32
@@ -2132,7 +2132,9 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json"
+        "prototypes/board.json",
+        "prototypes/examtopics-auditoria-2026-11-17.md",
+        "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2166,7 +2168,9 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json"
+        "prototypes/board.json",
+        "prototypes/examtopics-auditoria-2026-11-17.md",
+        "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2199,12 +2203,15 @@
         "pr": null,
         "board_elemento": null
       },
-      "referenciado_em": [],
+      "referenciado_em": [
+        "prototypes/examtopics-auditoria-2026-11-17.md",
+        "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
+      ],
       "no_board_json": false,
-      "status_integridade": "órfão",
+      "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
-      "orfao": true,
+      "orfao": false,
       "par_antes_depois": null
     },
     {
@@ -2232,7 +2239,9 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json"
+        "prototypes/board.json",
+        "prototypes/examtopics-auditoria-2026-11-17.md",
+        "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -2266,7 +2275,9 @@
         "board_elemento": null
       },
       "referenciado_em": [
-        "prototypes/board.json"
+        "prototypes/board.json",
+        "prototypes/examtopics-auditoria-2026-11-17.md",
+        "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
       "no_board_json": true,
       "status_integridade": "ok",
@@ -12183,7 +12194,6 @@
     "prototypes/cc0093684c5ae6f612afbbf6b91bd674.png",
     "prototypes/cf85b4fdc73d3e37137c304ff737aadc.png",
     "prototypes/claude-artifact-audit-seq128.png",
-    "prototypes/examtopics_az104_pagination_and_footer.png",
     "prototypes/f9c476ddeb52b075e841baacdff748f1.png",
     "prototypes/fc38ad7f1771ecbdbcc5341596b58f24.png",
     "prototypes/inline-e10.jpg",
