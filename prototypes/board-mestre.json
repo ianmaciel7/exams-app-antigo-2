@@ -482,11 +482,6 @@
           "title": "Auditoria ExamTopics × dev (17/11)",
           "path": "prototypes/examtopics-auditoria-2026-11-17.md",
           "role": "Fontes oficiais e evidência pública verificada no benchmark."
-        },
-        {
-          "title": "Manifesto de evidências ExamTopics",
-          "path": "prototypes/examtopics-auditoria-evidencias-2026-11-17.json",
-          "role": "Proveniência textual, URLs e referência a capturas antigas."
         }
       ],
       "cards": [
@@ -563,6 +558,11 @@
       "board": "prototypes/06-evidencias-e-qualidade.md",
       "documents": [
         {
+          "title": "ExamTopics — dossiê integral de evidências",
+          "path": "prototypes/evidencias-examtopics-2026-11-17.md",
+          "role": "57 achados detalhados, 16 fontes, cinco imagens históricas, comparação com dev e pendências."
+        },
+        {
           "title": "Catálogo de evidências",
           "path": "prototypes/CATALOG.md",
           "role": "Índice navegável das mídias."
@@ -617,6 +617,14 @@
             "e1300"
           ],
           "summary": "Evidências visuais e DOM dos gaps."
+        },
+        {
+          "name": "ExamTopics — evidências integrais",
+          "kind": "evidencia-pesquisa",
+          "blocks": [
+            "e17000"
+          ],
+          "summary": "Rastreabilidade de todos os achados e imagens da auditoria de 17/11."
         }
       ]
     },
