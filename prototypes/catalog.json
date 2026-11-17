@@ -2133,6 +2133,7 @@
       },
       "referenciado_em": [
         "prototypes/board.json",
+        "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
@@ -2169,6 +2170,7 @@
       },
       "referenciado_em": [
         "prototypes/board.json",
+        "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
@@ -2204,10 +2206,11 @@
         "board_elemento": null
       },
       "referenciado_em": [
+        "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
-      "no_board_json": false,
+      "no_board_json": true,
       "status_integridade": "ok",
       "duplicatas": [],
       "canonica": true,
@@ -2240,6 +2243,7 @@
       },
       "referenciado_em": [
         "prototypes/board.json",
+        "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
@@ -2276,6 +2280,7 @@
       },
       "referenciado_em": [
         "prototypes/board.json",
+        "prototypes/evidencias-examtopics-2026-11-17.md",
         "prototypes/examtopics-auditoria-2026-11-17.md",
         "prototypes/examtopics-auditoria-evidencias-2026-11-17.json"
       ],
