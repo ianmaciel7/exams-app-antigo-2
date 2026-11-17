@@ -198,7 +198,7 @@ test('E2E: Validacao de Sincronizacao Bidirecional no Artifact Principal e Exam 
     const ss = await cdp.send('Page.captureScreenshot', { format: 'png' });
     const buffer = Buffer.from(ss.data, 'base64');
 
-    const outputDir = path.resolve('prototypes/board-exam-app__assets__claude-storage-bridge__*');
+    const outputDir = path.resolve('prototypes');
     fs.mkdirSync(outputDir, { recursive: true });
     const ssPath = path.join(outputDir, 'evidence-e2e-sync-badge-active.png');
     fs.writeFileSync(ssPath, buffer);

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const evidenceDir = path.resolve('prototypes/board-exam-app__assets__*');
+const evidenceDir = path.resolve('prototypes');
 await mkdir(evidenceDir, { recursive: true });
 const report = { browser: 'Chromium', platform: process.platform, scenarios: [], errors: [], limitations: [
   'Native OS popup content may not be included in Playwright screenshots.',

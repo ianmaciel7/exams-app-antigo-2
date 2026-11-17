@@ -3,7 +3,7 @@ import path from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
-const assets=path.resolve('prototypes/board-exam-app__assets__*');
+const assets=path.resolve('prototypes');
 await mkdir(assets,{recursive:true});
 const report={at:new Date().toISOString(),cases:[],errors:[],limitations:[
  'Headless Chromium mobile/desktop emulation; physical touch and assistive technology not independently assessed.'

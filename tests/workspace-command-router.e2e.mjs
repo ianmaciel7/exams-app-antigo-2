@@ -5,7 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const evidenceDir=path.resolve('prototypes/board-exam-app__assets__*');
+const evidenceDir=path.resolve('prototypes');
 await mkdir(evidenceDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const sourceDigest=createHash('sha256').update([

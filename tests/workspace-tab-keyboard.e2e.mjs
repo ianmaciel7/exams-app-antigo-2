@@ -3,7 +3,7 @@ import path from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const assets = path.resolve('prototypes/board-exam-app__assets__*');
+const assets = path.resolve('prototypes');
 await mkdir(assets, { recursive: true });
 const report = { at: new Date().toISOString(), issue: 55, cases: [], errors: [], limitations: [
   'Chromium emulation does not replace screen-reader or physical touch validation.'
